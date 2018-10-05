@@ -19,9 +19,9 @@
     
 
     
-    <meta itemprop="image" content="http://www.krakend.io/images/blog/website-development-as-a-sysadmin.jpg">
-    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/website-development-as-a-sysadmin.jpg">
-    <meta property="og:image" content="http://krakend.io/images/blog/website-development-as-a-sysadmin.jpg" />
+    <meta itemprop="image" content="/images/blog/website-development-as-a-sysadmin.jpg">
+    <meta name="twitter:image:src" content="/images/blog/website-development-as-a-sysadmin.jpg">
+    <meta property="og:image" content="/images/blog/website-development-as-a-sysadmin.jpg" />
     
 
     <meta property="og:type" content="article" />
@@ -198,7 +198,7 @@
 
 <h2 id="the-backend-adding-automatic-api-authentication">The backend: Adding automatic API authentication</h2>
 
-<p>The <a href="http://www.krakend.io">KrakenD API Gateway</a> can filter the fields of all your requests&rsquo; responses using a declarative configuration in json but I also needed KrakenD to do the authentication against the Marvel API for me before doing these requests.</p>
+<p>The <a href="https://www.krakend.io">KrakenD API Gateway</a> can filter the fields of all your requests&rsquo; responses using a declarative configuration in json but I also needed KrakenD to do the authentication against the Marvel API for me before doing these requests.</p>
 
 <p>KrakenD supports a <a href="https://github.com/devopsfaith/krakend-contrib/">lot of middleware</a> one of them being <a href="https://github.com/devopsfaith/krakend-martian/">krakend-martian</a> and, since one of the reasons for this project was to do some programming, I created a martian request modifier so each request would automatically add any data needed to authenticate against Marvel API, decoupling this custom authentication from the application.</p>
 
@@ -212,7 +212,7 @@
 
 <p>You can also see this modifier source code in <a href="https://github.com/taik0/marvelapi-martian_querystring">github</a>.</p>
 
-<p>At the time I created this query string modifier <strong>we didn&rsquo;t had <a href="http://www.krakend.io/blog/krakend-golang-plugins/">plugins</a></strong> so I needed to recomplile KrakenD to add a custom modifier like this one.</p>
+<p>At the time I created this query string modifier <strong>we didn&rsquo;t had <a href="https://www.krakend.io/blog/krakend-golang-plugins/">plugins</a></strong> so I needed to recomplile KrakenD to add a custom modifier like this one.</p>
 
 <h3 id="setting-up-krakend">Setting up KrakenD</h3>
 
