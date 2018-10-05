@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>How we automated our RPM and DEB packaging with Docker - KrakenD API Gateway</title>
+    <meta itemprop="name" content="How we automated our RPM and DEB packaging with Docker - KrakenD API Gateway">
+    <meta name="twitter:title" content="How we automated our RPM and DEB packaging with Docker - KrakenD API Gateway">
+    <meta property="og:title" content="How we automated our RPM and DEB packaging with Docker - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Automating the linux packaging of your own app using docker">
+    <meta itemprop="description" content="Automating the linux packaging of your own app using docker">
+    <meta name="twitter:description" content="Automating the linux packaging of your own app using docker">
+    <meta property="og:description" content="Automating the linux packaging of your own app using docker">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/blog/packed-parcel-deb.jpg">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/packed-parcel-deb.jpg">
+    <meta property="og:image" content="http://krakend.io/images/blog/packed-parcel-deb.jpg" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/blog/automating-linux-packaging/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+	<div class="wrapper">
+		
+		    
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+		
+<div class="blog-wrapper wrap container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+    <section class="blog">
+        <div class="box box-widget">
+            
+            <a href="http://www.krakend.io/blog/automating-linux-packaging/">
+              <img class="post-image" src="/images/blog/packed-parcel-deb.jpg" />
+            </a>
+              
+            
+
+            <div class="box-body">
+                <article class="post-entry">
+                    <header class="post-header">
+                        <div class="section share pull-right">
+                            <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fautomating-linux-packaging%2f&t=How%20we%20automated%20our%20RPM%20and%20DEB%20packaging%20with%20Docker" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fautomating-linux-packaging%2f&text=How%20we%20automated%20our%20RPM%20and%20DEB%20packaging%20with%20Docker&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fautomating-linux-packaging%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fautomating-linux-packaging%2f&title=How%20we%20automated%20our%20RPM%20and%20DEB%20packaging%20with%20Docker" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                        </div>
+                        <h1 class="post-title">
+                            <a href="http://www.krakend.io/blog/automating-linux-packaging/" class="post-link">How we automated our RPM and DEB packaging with Docker</a>
+                        </h1>
+                        <div class="post-metadata clearfix">
+    <p class="author pull-left">
+        by taik0 &middot; Nov 6, 2017
+    </p>
+    <div class="tags">
+        <ul>
+            <li><i class="fa fa-tags" aria-hidden="true"></i></li>
+            
+            
+            <a href="/tags/how-to">
+                how-to
+            </a>
+            
+            ,
+            
+            <a href="/tags/packaging">
+                packaging
+            </a>
+            
+            ,
+            
+            <a href="/tags/docker">
+                docker
+            </a>
+            
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <em>6 min read</em></li>
+        </ul>
+    </div>
+</div>
+                    </header>
+
+                    
+
+<p>Everyone loves reaching the maximum number of available platforms for their software but this usually comes at a cost. In this article we will explain how we generated our packaging for Linux in an automated fashion, being faithful to our DevOps dogma.</p>
+
+<h2 id="dockerize-all-the-things">Dockerize all the things!</h2>
+
+<p>Our team uses both Ubuntu and MacOS X in desktop machines and KrakenD has been running and behaving in the same way in all the platforms because from day one we decided to run everything on Docker. We use containers for all the software we produce and this is still true for the rest of our tooling (as what we are going to show today).</p>
+
+<p>When it comes to generating RPM or DEB packages, choosing Docker ensures that anyone building or compiling a package will generate a consistent output.</p>
+
+<p>Having Docker as the platform to work on, let&rsquo;s see how to build the packages.</p>
+
+<h2 id="building-packages-the-easy-way-using-fpm">Building packages the easy way using FPM</h2>
+
+<p>For those who don&rsquo;t know <code>fpm</code>, this is the key piece for the package generation. According to <a href="https://github.com/jordansissel/fpm">their own intro</a>:</p>
+
+<blockquote>
+<p>The goal of fpm is to make it easy and quick to build packages</p>
+</blockquote>
+
+<p><code>fpm</code> is a tool written in <code>Ruby</code> that allows you to create packages for multiple platforms in a very easy way. Examples of the packages you can create are <code>deb</code>, <code>rpm</code>, <code>tar</code> and even Mac OS X .pkg, solaris, freebsd or pacman (ArchLinux).</p>
+
+<p>Let&rsquo;s get started by creating the <code>fpm</code> builder with a <code>Dockerfile</code> to generate the versions <code>deb</code> and <code>rpm</code>, the ones we were most interested in.</p>
+
+<p><strong>The <code>Dockerfile</code> for Debian/Ubuntu</strong>:</p>
+
+<pre><code>FROM ubuntu:16.04
+LABEL maintainer=&quot;dortiz@devops.faith&quot;
+
+RUN apt-get update &amp;&amp; apt-get install -y \
+	ruby-dev \
+	gcc \
+	make \
+	ruby \
+	&amp;&amp; rm -rf /var/lib/apt/lists/*
+
+RUN gem install fpm -v 1.9.3 --no-ri --no-rdoc
+
+VOLUME [ &quot;/tmp/fpm&quot; ]
+WORKDIR /tmp/fpm
+
+ENTRYPOINT [ &quot;/usr/local/bin/fpm&quot; ]
+CMD [ &quot;--help&quot; ]
+</code></pre>
+
+<p><strong>The <code>Dockerfile</code> for CentOS/Rhel</strong>:</p>
+
+<pre><code>FROM centos:7
+LABEL maintainer=&quot;dortiz@devops.faith&quot;
+
+RUN yum install -y \
+	ruby-devel \
+	gcc \
+	make \
+	ruby \
+	rpm-build \
+	rpm-sign &amp;&amp; yum clean all
+
+RUN gem install fpm -v 1.9.3 --no-ri --no-rdoc
+
+VOLUME [ &quot;/tmp/fpm&quot; ]
+WORKDIR /tmp/fpm
+
+ENTRYPOINT [ &quot;/usr/local/bin/fpm&quot; ]
+CMD [ &quot;--help&quot; ]
+</code></pre>
+
+<p>Then build it and run it:</p>
+
+<pre><code>$ docker run --rm -it fpm:deb
+Intro:
+
+  This is fpm version 1.9.3
+</code></pre>
+
+<p>Notice that the <code>FROM</code> in each one uses a different OS (because fpm still needs rpmbuild, dpkg-deb and other tools).</p>
+
+<p>Now the container is ready to package anything.</p>
+
+<p><strong>Source code:</strong></p>
+
+<ul>
+<li><i class="fa fa-github"></i> <a href="https://github.com/devopsfaith/docker-fpm">Clone and build docker-fpm repository</a></li>
+<li>Or run the docker <a href="https://hub.docker.com/r/devopsfaith/fpm">fpm containers</a> from Docker Hub.</li>
+</ul>
+
+<h2 id="sign-packages-using-pgp">Sign packages using PGP</h2>
+
+<p>If you want to distribute packages you’ll need to sign them using your PGP key. To do so you need to mount your <code>.pgp</code> directory in the container as a volume, as well as the <code>rpmmacros</code> configuration so the process has everything it needs.</p>
+
+<pre><code>	docker run --rm -it -v &quot;${PWD}/rpmmacros:/root/.rpmmacros&quot; -v $HOME/.gnupg:/root/.gnupg \
+		-v &quot;${PWD}:${DOCKER_WDIR}&quot; -w ${DOCKER_WDIR} ${DOCKER_FPM}:rpm -t rpm ${RPM_OPTS} \
+		--iteration ${RELEASE}.el7 \
+		-C skel/el7 \
+		${FPM_OPTS}
+</code></pre>
+
+<p>The example uses some vars that we haven&rsquo;t seen so far. Keep reading&hellip;</p>
+
+<h2 id="write-a-makefile">Write a Makefile</h2>
+
+<p>Unless your are OK with having an environment that suffers the <a href="https://en.wikipedia.org/wiki/Diogenes_syndrome">diogenes syndrome</a>, the next problem you want to face is managing what files go in which package version and leaving the house clean after compiling. How convenient is a <code>Makefile</code> to get that!</p>
+
+<p>Makefile variables, example:</p>
+
+<pre><code>VERSION := 0.3.9
+PKGNAME := krakend
+LICENSE := Apache 2.0
+VENDOR=
+URL := http://krakend.io
+RELEASE := 0
+USER := krakend
+ARCH := amd64
+DESC := High performance API gateway. Aggregate, filter, manipulate and add middlewares
+MAINTAINER := Daniel Ortiz &lt;dortiz@devops.faith&gt;
+DOCKER_WDIR := /tmp/fpm
+DOCKER_FPM := fpm
+</code></pre>
+
+<p>Then every specific option for <code>fpm</code> is also added to the <code>Makefile</code>:</p>
+
+<pre><code>FPM_OPTS=-s dir -v $(VERSION) -n $(PKGNAME) \
+  --license &quot;$(LICENSE)&quot; \
+  --vendor &quot;$(VENDOR)&quot; \
+  --maintainer &quot;$(MAINTAINER)&quot; \
+  --architecture $(ARCH) \
+  --url &quot;$(URL)&quot; \
+  --description  &quot;$(DESC)&quot; \
+	--config-files etc/ \
+  --verbose
+
+DEB_OPTS= -t deb --deb-user $(USER) \
+	--before-remove scripts/prerm.deb \
+  --after-remove scripts/postrm.deb \
+	--before-install scripts/preinst.deb
+
+DEB_INIT=--deb-init krakend.init
+
+RPM_OPTS =--rpm-user $(USER) \
+	--before-install scripts/preinst.rpm \
+	--before-remove scripts/prerm.rpm \
+  --after-remove scripts/postrm.rpm \
+  --rpm-sign
+</code></pre>
+
+<p>Now all the options and variables are controlled inside the Makefile.</p>
+
+<h2 id="pattern-specific-variables">Pattern-specific variables</h2>
+
+<p>A key of success are the pattern-specific variables present in the <code>Makefile</code>. They are used to define a kind of template that can be reused many times (as a function) but with different declarations.</p>
+
+<p>A single platform would be easy to manage: one config file, a couple of scripts (pre and post install) and the systemd configuration. That&rsquo;s it.</p>
+
+<p>For us the problem came when we wanted to generate packages for old versions of Ubuntu/Debian and CentOS/RHEL. Some distributions were using <code>upstart</code> while others created scripts in <code>init.d</code> or needed custom scripts for pre and post installations. Differences never ended.</p>
+
+<p>The use of the pattern-specific variables fixes in a simple way the problem (and using something it&rsquo;s been there for years), this is how we completed the Makefile.</p>
+
+<p>We defined all the files that might be needed during the package creation:</p>
+
+<pre><code>skel/%/etc/init/krakend.conf: krakend.conf
+	mkdir -p &quot;$(dir $@)&quot;
+	cp krakend.conf &quot;$@&quot;
+
+skel/%/etc/init.d/krakend: krakend.init
+	mkdir -p &quot;$(dir $@)&quot;
+	cp krakend.init &quot;$@&quot;
+
+</code></pre>
+
+<p>When declaring the file using the full path, the directory will be created and the file will be copied inside, generating this way the skeleton for that specific version.
+In addition, it will save you from having to manually maintain that skel, because it is generated every time is needed, copying the &ldquo;latest&rdquo; available versions of them.</p>
+
+<pre><code>.PHONY: ubuntu-trusty
+ubuntu-trusty: skel/ubuntu-trusty/usr/bin/krakend
+ubuntu-trusty: skel/ubuntu-trusty/etc/krakend/krakend.json
+ubuntu-trusty: skel/ubuntu-trusty/etc/krakend/service.yml
+ubuntu-trusty: skel/ubuntu-trusty/etc/init.d/krakend
+ubuntu-trusty: skel/ubuntu-trusty/etc/init/krakend.conf
+	docker run --rm -it -v &quot;${PWD}:${DOCKER_WDIR}&quot; -w ${DOCKER_WDIR} ${DOCKER_FPM}:deb -t deb ${DEB_OPTS} \
+		--iteration ${RELEASE}.ubuntu-trusty \
+		-C skel/ubuntu-trusty \
+		${DEB_INIT} \
+		${FPM_OPTS}
+
+
+.PHONY: ubuntu-xenial
+ubuntu-xenial: skel/ubuntu-xenial/usr/bin/krakend
+ubuntu-xenial: skel/ubuntu-xenial/etc/krakend/krakend.json
+ubuntu-xenial: skel/ubuntu-xenial/etc/krakend/service.yml
+	docker run --rm -it -v &quot;${PWD}:${DOCKER_WDIR}&quot; -w ${DOCKER_WDIR} ${DOCKER_FPM}:deb -t deb ${DEB_OPTS} \
+		--iteration ${RELEASE}.ubuntu-xenial \
+		--deb-systemd krakend.service \
+		-C skel/ubuntu-xenial \
+		${FPM_OPTS}
+</code></pre>
+
+<h2 id="testing-your-packages">Testing your packages</h2>
+
+<p>The last step before releasing to the world the packages just created is to test they work properly. There are many ways and strategies to do that and we are not going to show you how, but for us it worked to run a docker container with the OS version we wanted to try and install inside the generated package.</p>
+
+<p>With this done, it is very easy to check that the pre and post installation scripts worked correctly as well as the installation and the service operation.</p>
+
+<p>We did a simple shell script (not being able to invest more time in something elegant and reusable) and a Dockerfile template where the package gets copied and a new container is generated tagged with the version of the package. By specifying the package version as a <code>tag</code> in the docker image, executing <code>docker images</code> will list all the generated packages ready to test!</p>
+
+<p>Dockerfile testing:</p>
+
+<pre><code>FROM ubuntu:16.04
+maintainer dortiz@devops.faith
+
+ARG debfile
+ADD $debfile /
+RUN dpkg -i /$debfile
+
+EXPOSE 8080
+
+CMD [ &quot;krakend&quot;, &quot;run&quot;, &quot;-d&quot; ]
+</code></pre>
+
+<p>Testing script:</p>
+
+<pre><code>#!/bin/sh
+
+DEB=$1
+TARGET=$2
+VERSION=$3
+cp $DEB tests/ubuntu-xenial/
+docker build --build-arg debfile=$DEB -t test_${TARGET}_${VERSION} tests/ubuntu-xenial
+rm -f tests/ubuntu-xenial/$DEB
+</code></pre>
+
+<p>Makefile:</p>
+
+<pre><code>.PHONY: ubuntu-xenial
+ubuntu-xenial: skel/ubuntu-xenial/usr/bin/krakend
+ubuntu-xenial: skel/ubuntu-xenial/etc/krakend/krakend.json
+ubuntu-xenial: skel/ubuntu-xenial/etc/krakend/service.yml
+	docker run --rm -it -v &quot;${PWD}:${DOCKER_WDIR}&quot; -w ${DOCKER_WDIR} ${DOCKER_FPM}:deb -t deb ${DEB_OPTS} \
+		--iteration ${RELEASE}.ubuntu-xenial \
+		--deb-systemd krakend.service \
+		-C skel/ubuntu-xenial \
+		${FPM_OPTS}
+	tests/ubuntu-xenial/test.sh ${PKGNAME}_${VERSION}-${RELEASE}.ubuntu-xenial_${ARCH}.deb ubuntu-xenial ${VERSION}
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>We have seen through several examples how we automated the generation of package files for KrakenD. You can quickly adapt this scripts and containers to your own application and start producing packages in a more automated way. With the combination of the provided Makefile and <code>fpm</code> you will be able to distribute your application to several distributions.</p>
+
+<p>Enjoy!</p>
+
+
+                    <aside>
+                      <div class="share pull-right">
+                        <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fautomating-linux-packaging%2f&t=How%20we%20automated%20our%20RPM%20and%20DEB%20packaging%20with%20Docker" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                        <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fautomating-linux-packaging%2f&text=How%20we%20automated%20our%20RPM%20and%20DEB%20packaging%20with%20Docker&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fautomating-linux-packaging%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fautomating-linux-packaging%2f&title=How%20we%20automated%20our%20RPM%20and%20DEB%20packaging%20with%20Docker" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                      </div>
+                    </aside>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="col-xs-12 col-sm-2 col-md-2 navigation_container affix-top">
+        <h3>KrakenD blog</h3>
+        <ul class="nav">
+          <li><a href="/blog/">All categories</a></li>
+          
+          <li><a href="/categories/announcements">announcements</a></li>
+          
+          <li><a href="/categories/api-gateway">api-gateway</a></li>
+          
+          <li><a href="/categories/api2html">api2html</a></li>
+          
+          <li><a href="/categories/configuration">configuration</a></li>
+          
+          <li><a href="/categories/devops">devops</a></li>
+          
+          <li><a href="/categories/docker">docker</a></li>
+          
+          <li><a href="/categories/enterprise">enterprise</a></li>
+          
+          <li><a href="/categories/krakend">krakend</a></li>
+          
+          <li><a href="/categories/kubernetes">kubernetes</a></li>
+          
+          <li><a href="/categories/reflex">reflex</a></li>
+          
+        </ul>
+        <h3>Tag Cloud</h3>
+        <ul class="nav">
+          
+          <li><a href="/tags/open-source">open-source</a></li>
+          
+          <li><a href="/tags/how-to">how-to</a></li>
+          
+          <li><a href="/tags/golang">golang</a></li>
+          
+          <li><a href="/tags/release-notes">release-notes</a></li>
+          
+          <li><a href="/tags/docker">docker</a></li>
+          
+        </ul>
+        <h3>Recent Posts</h3>
+        <ul class="nav">
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
+          
+        </ul>
+  </div>
+
+
+</div>
+
+	</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>

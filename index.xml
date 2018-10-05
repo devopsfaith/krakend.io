@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KrakenD - Ultra-High performance API Gateway with middlewares</title>
+    <link>http://www.krakend.io/</link>
+    <description>Recent content on KrakenD - Ultra-High performance API Gateway with middlewares</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cluster Management Overview</title>
+      <link>http://www.krakend.io/docs/cluster/cluster-overview/</link>
+      <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/cluster/cluster-overview/</guid>
+      <description>×  Alert!
+The cluster version is not available in the open source distribution.  A KrakenD cluster consists of multiple KrakenD instances running simultaneously and working together to provide increased reliability, higher throughput, scalability, and fail-over.
+The KrakenD cluster provides these immediate benefits:
+ Increased throughput: The KrakenD cluster does not limit the number of requests the service can deliver. And allows to add several nodes as you need (see your subscription) Scalability: The capacity of an application deployed on a KrakenD cluster can be increased dynamically to meet demand as you can add KrakenD instances to the cluster without interruption of the service.</description>
+    </item>
+    
+    <item>
+      <title>Benchmarks Overview</title>
+      <link>http://www.krakend.io/docs/benchmarks/overview/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/benchmarks/overview/</guid>
+      <description>KrakenD, the ultra performer API Gateway An API Gateway is a component that needs to deliver really fast, as it is an added layer in the infrastructure. KrakenD was built with performance in mind. In this page and inner pages you&amp;rsquo;ll find several tests we did to measure the performance. Of course we invite you to do them for yourself!
+TL;DR: Benchmark results ~18,000 requests/second on an ordinary laptop.</description>
+    </item>
+    
+    <item>
+      <title>Running KrakenD server. The `krakend run` command</title>
+      <link>http://www.krakend.io/docs/commands/run/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/commands/run/</guid>
+      <description>To start KrakenD you need to invoke the run command with the path to the configuration file. You can also specify the port (defaults to 8080)
+krakend run -c krakend.json # or krakend run --config /path/to/krakend.json # or krakend run --config /path/to/krakend.json -p 8080  The krakend run command with no flags will remind you that you need the path to the configuration file:
+$ ./krakend run Please, provide the path to your config file  Show the help:</description>
+    </item>
+    
+    <item>
+      <title>KrakenD Throttling</title>
+      <link>http://www.krakend.io/docs/throttling/overview/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/throttling/overview/</guid>
+      <description>The KrakenD is a powerful tool that handles a huge amount of traffic and depending on the usage you could stress your own backend micro-services architecture by requesting a lot of data, compromising your backend SLA.
+In order to prevent the KrakenD to stress your infrastructure (or even someone using it to harm you) there are several mechanisms to put you safe.
+ The Circuit Breaker Rate limits Timeouts Maximum IDLE connections  </description>
+    </item>
+    
+    <item>
+      <title>Introduction to KrakenD</title>
+      <link>http://www.krakend.io/docs/overview/introduction/</link>
+      <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/overview/introduction/</guid>
+      <description>What is KrakenD? KrakenD is a high-performance open source solution to create enterprise-grade API Gateways.
+It&amp;rsquo;s core functionality is to create an API that acts as an aggregator of many microservices into single endpoints, doing automatically the heavy-lifting for you (group, wrap, transform, shrink, protocol translation, etc) and needs no programming as it offers a declarative way to create the endpoints. It is also well structured and layered and open to extend its functionality using plug-and-play middleware developed by the community or in-house.</description>
+    </item>
+    
+    <item>
+      <title>Cluster configuration</title>
+      <link>http://www.krakend.io/docs/cluster/configuration/</link>
+      <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/cluster/configuration/</guid>
+      <description>×  Alert!
+The cluster version is not available in the open source distribution.  Running a cluster basically requires the conditions:
+ The Cluster Manager is running The KrakenD nodes configurations has the cluster mode enabled  Starting the KrakenD Cluster Manager After downloading the cluster manager and installing it you can start it using:
+krakend-cluster-manager  You can have several cluster managers running as long as they conform a unique group.</description>
+    </item>
+    
+    <item>
+      <title>Cluster Subscription</title>
+      <link>http://www.krakend.io/docs/cluster/subscription-levels/</link>
+      <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/cluster/subscription-levels/</guid>
+      <description>×  Alert!
+The cluster version is not available in the open source distribution.  When you start the Cluster Manager the binary will validate against the server the subscription level. It will behave according to your subscription. For instance, if your subscription allows to have 10 nodes in the cluster it won&amp;rsquo;t allow to add the 11th node unless you upgrade. The cluster manager will check daily the subscription.</description>
+    </item>
+    
+    <item>
+      <title>Commands - check</title>
+      <link>http://www.krakend.io/docs/commands/check/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/commands/check/</guid>
+      <description>The krakend check command validates the passed configuration. Since KrakenD does not implement a strict parsing, typos in the config file could be shadowed. In order to validate your config completely, it is recommended to use the --debug flag.
+Usage $ ./krakend check -h Validates that the active configuration file has a valid syntax to run the service. Change the configuration file by using the --config flag Usage: krakend check [flags] Global Flags: --config string Path to the configuration filename -d, --debug Enable the debug  Passing a path to the config file is required</description>
+    </item>
+    
+    <item>
+      <title>Comparison of KrakenD vs other products in the market (Benchmark)</title>
+      <link>http://www.krakend.io/docs/benchmarks/api-gateway-benchmark/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/benchmarks/api-gateway-benchmark/</guid>
+      <description>We wanted to compare our own product with other similar products in the market. In order to do so we used the same environment and conditions and tested the following products:
+ Kong Vulcand Tyk KrakenD  For the benchmarks we based the tests on the benchmarking project varnish/api-gateway-benchmarks.
+At the time of writing, KrakenD does not support auth features, so we just did the benchmark with test01
+TLDR; Check out the generated graphs (throughput and responses) or the summary</description>
+    </item>
+    
+    <item>
+      <title>KrakenD Benchmarks on AWS</title>
+      <link>http://www.krakend.io/docs/benchmarks/aws/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/benchmarks/aws/</guid>
+      <description>TL;DR Check out the generated graphs or the conclusions
+The following numbers show the execution results for the KrakenD benchmarks on Amazon EC2 machines.
+Benchmark setup This set of benchmarks have been running on different AWS EC2 instances. Each individual test consists in spinning up 3 different machines, being:
+ A web server: A LWAN web server using an instance c4.xlarge. This is the &amp;ldquo;fake api&amp;rdquo; where KrakenD will take the data The HTTP load generator: The machine actually running the load test.</description>
+    </item>
+    
+    <item>
+      <title>Response manipulation</title>
+      <link>http://www.krakend.io/docs/features/response-manipulation/</link>
+      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/features/response-manipulation/</guid>
+      <description>KrakenD allows you to perform several manipulations of the responses out of the box, just by adding them in the configuration file. You can also add your own or 3rd parties middlewares to extend this behavior.
+KrakenD manipulations are measured in nanoseconds, you can find the benchmark for every response manipulation in the benchmarks
+The following manipulations are available by default:
+Merging When you create KrakenD endpoints, if a specific endpoint feeds from 2 or more backend sources (APIs), they will be automatically merged in a single response to the client.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Circuit Breaker</title>
+      <link>http://www.krakend.io/docs/throttling/circuit-breaker/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/throttling/circuit-breaker/</guid>
+      <description>To keep KrakenD responsive and resilient, we added a Circuit Breaker middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems, by preventing too many requests to fail due timeouts, etc.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Rate limiting</title>
+      <link>http://www.krakend.io/docs/throttling/rate-limit/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/throttling/rate-limit/</guid>
+      <description>The rate limits allow you to restrict the traffic to any component of the stack (the KrakenD itself and the actual API backend services) and mainly cover two different purposes:
+ Avoid flooding your system with massive requests Establish a quota of usage for your API Create a simple QoS strategy for you API  KrakenD provides rate limiting capabilities just by adding the desired configuration in the krakend.json file and this feature is complementary to the Circuit Breaker, so they can exist together.</description>
+    </item>
+    
+    <item>
+      <title>Local Benchmarks</title>
+      <link>http://www.krakend.io/docs/benchmarks/local/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/benchmarks/local/</guid>
+      <description>TL;DR Check out the generated graphs or the summary
+Hardware Model MacBook Pro (MacBookPro11,4) - August 2015 Processor: Intel Core i7 2,2 GHz  Setup For this test, we stored this configuration at krakend.json
+{ &amp;quot;version&amp;quot;: 1, &amp;quot;endpoints&amp;quot;: [ { &amp;quot;endpoint&amp;quot;: &amp;quot;/foo&amp;quot;, &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/__debug/bar&amp;quot;, &amp;quot;host&amp;quot;: [ &amp;quot;http://127.0.0.1:8080&amp;quot; ] } ], &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;, &amp;quot;max_rate&amp;quot;: 100000 } ], &amp;quot;oauth&amp;quot;: { &amp;quot;disable&amp;quot;: true }, &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;, &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot; }  And we started the KrakenD with this cmd:</description>
+    </item>
+    
+    <item>
+      <title>Concurrent Requests</title>
+      <link>http://www.krakend.io/docs/features/concurrent-requests/</link>
+      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/features/concurrent-requests/</guid>
+      <description>Why enabling concurrent requests? The concurrent requests is a way to ask for the same information at the same time to different backends, in order to improve the response time and decrease error rates.
+Of course this requires that your backend services run in multiple machines and are able to handle more load. When this is the case, you can set the configuration option concurrent_calls with a value bigger than 1 with all your idempotent requests.</description>
+    </item>
+    
+    <item>
+      <title>Installing KrakenD</title>
+      <link>http://www.krakend.io/docs/overview/installing/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/overview/installing/</guid>
+      <description>KrakenD is a single binary file that does not require any external libraries to work. To install KrakenD choose your operative system in the downloads section or use the Docker image.
+Download KrakenD and Generate the configuration file
+Just exploring?
+Use the KrakenD Playground if you want to play with KrakenD without configuring it. The Playground comes with several flavors of KrakenD and a mock API. Everything is ready to start playing, just do a docker-compose up!</description>
+    </item>
+    
+    <item>
+      <title>Parameter forwarding</title>
+      <link>http://www.krakend.io/docs/features/parameter-forwarding/</link>
+      <pubDate>Fri, 20 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/features/parameter-forwarding/</guid>
+      <description>KrakenD always alleviates backends avoiding to pollute them with everything coming from the clients. By default no parameters sent by clients are forwarded to backends and if needed they will require an explicit declaration in the configuration file.
+The parameter forwarding refers to:
+ Query string Headers Cookies  Query string forwarding Use querystring_params
+In order to receive the query strings sent by clients in your backends you will need to declare in the querystring_params the list of recognized parameters.</description>
+    </item>
+    
+    <item>
+      <title>Using KrakenD</title>
+      <link>http://www.krakend.io/docs/overview/usage/</link>
+      <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/overview/usage/</guid>
+      <description>From an operations point of view KrakenD is very simple to use. It only requires you to pass the path the configuration file (which defines behaviours and endpoints). Additionally you can enable the debug with the -d flag, and that&amp;rsquo;s pretty much everything.
+TL;DR  Generate a configuration file with your endpoints definition. Easier way to generate it is using the designer Check the syntax of your krakend.json is good</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Timeouts</title>
+      <link>http://www.krakend.io/docs/throttling/timeouts/</link>
+      <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/throttling/timeouts/</guid>
+      <description>Being KrakenD an API Gateway that talk to other services, being able to control the waiting times for different aspects is crucial. KrakenD will allow you to fine-tune this settings.
+The timeouts can apply to:
+ The duration of the whole pipe (from user request to user response) The HTTP request related timeouts  Additionally you can control the number of maximum IDLE connections.
+Pipe timeouts Global timeout The timeout key in the krakend.</description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>http://www.krakend.io/docs/features/security/</link>
+      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/features/security/</guid>
+      <description>KrakenD has implemented some security strategies
+General security Restrict connections by host Define a whitelist of hosts the KrakenD should accept requests to.
+When a request hits KrakenD, it will confirm if the value of the Host HTTP header is in the whitelist. If so, it will further process the request. If the host is not in the whitelist, KrakenD will simply reject the request.
+Clickjacking protection KrakenD follow the OWASP&amp;rsquo;s recommendations by adding a frame-breaking strategy.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD configuration - The krakend.json file</title>
+      <link>http://www.krakend.io/docs/overview/configuration/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/overview/configuration/</guid>
+      <description>All KrakenD configuration is loaded at start-up time from a single configuration file we usually refer to as /etc/krakend/krakend.json or just krakend.json. This is a convenient name for the documentation but the configuration file can have any path or name you want, or even be split into multiple configuration files with dynamic values where ENV vars can be injected (see flexible-config below).
+The krakend.json file defines endpoints, business logic, service limits, security configuration, SSL certificates and any other piece of configuration needed by KrakenD or your own middlewares.</description>
+    </item>
+    
+    <item>
+      <title>Content Types</title>
+      <link>http://www.krakend.io/docs/features/content-types/</link>
+      <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/features/content-types/</guid>
+      <description>Backend content types KrakenD supports several content types or encodings:
+ JSON String XML RSS  Each backend declaration is able to define which encoder should be used before processing its responses, as shown in this example:
+... &amp;quot;endpoints&amp;quot;: [ { &amp;quot;endpoint&amp;quot;: &amp;quot;/abc&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/a&amp;quot;, &amp;quot;encoding&amp;quot;: &amp;quot;json&amp;quot;, &amp;quot;host&amp;quot;: [ &amp;quot;http://service-a.company.com&amp;quot; ] }, { &amp;quot;url_pattern&amp;quot;: &amp;quot;/b&amp;quot;, &amp;quot;encoding&amp;quot;: &amp;quot;xml&amp;quot;, &amp;quot;host&amp;quot;: [ &amp;quot;http://service-b.company.com&amp;quot; ] }, { &amp;quot;url_pattern&amp;quot;: &amp;quot;/c&amp;quot;, &amp;quot;encoding&amp;quot;: &amp;quot;rss&amp;quot;, &amp;quot;host&amp;quot;: [ &amp;quot;http://service-c.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Maximum IDLE connections</title>
+      <link>http://www.krakend.io/docs/throttling/max-idle-connections/</link>
+      <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/throttling/max-idle-connections/</guid>
+      <description>Having a high number of IDLE connections to every backend affects directly to the performance of the proxy layer. This is why you can control the number using the max_idle_connections setting. For instance:
+{ &amp;quot;version&amp;quot;: 2, &amp;quot;max_idle_connections&amp;quot;: 150, ... }  KrakenD will close connections sitting idle in a &amp;ldquo;keep-alive&amp;rdquo; state when max_idle_connections is reached. If no value is set in the configuration file, KrakenD will use 250 by default.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD vs KrakenD-CE</title>
+      <link>http://www.krakend.io/docs/overview/krakend-vs-krakend-ce/</link>
+      <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/overview/krakend-vs-krakend-ce/</guid>
+      <description>If you had a quick look at our git repositories you might be confused at first, as we have a repository named krakend and another one named krakend-ce.
+What is the difference between KrakenD and KrakenD-CE? and KrakenD Enterprise? TL;DR;
+ KrakenD is a framework KrakenD-CE is a ready to use API Gateway KrakenD Enterprise is professional services to businesses  KrakenD framework KrakenD (repo) is an open-source project created by @devopsfaith to accelerate the creation of API Gateways.</description>
+    </item>
+    
+    <item>
+      <title>Other</title>
+      <link>http://www.krakend.io/docs/features/other/</link>
+      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/features/other/</guid>
+      <description>Load balancing KrakenD has a round robin based load balancing component for a proper load distribution against the registered backends. This component is totally transparent for the user.
+Service Discovery KrakenD integrates several Service Discovery strategies. Each one can be associated with a set of endpoints of the service configuration at the same time.
+static This strategy uses directly the hosts declared at the backend without any further manipulation.</description>
+    </item>
+    
+    <item>
+      <title>The KrakenD Playground</title>
+      <link>http://www.krakend.io/docs/overview/playground/</link>
+      <pubDate>Thu, 13 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/overview/playground/</guid>
+      <description>If you are new to KrakenD, a quick way to get started is to make use of the KrakenD Playground.
+The KrakenD Playground is a Docker Compose environment that puts together the necessary pieces to let you play with KrakenD in a working environment.
+As KrakenD is an API gateway, we have also added to the environment an API (backend) to feed the gateway and a website to make use of the data.</description>
+    </item>
+    
+    <item>
+      <title>Krakend 0.6.1 release notes</title>
+      <link>http://www.krakend.io/blog/krakend-0.6.1-release-notes/</link>
+      <pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/krakend-0.6.1-release-notes/</guid>
+      <description>The 0.6.1 release adds TLS and enables HTTP2 and HTTPS.
+TL;DR This release brings HTTP2 and HTTPS to KrakenD. It also upgrades Go from 1.10 to 1.11 and fixes forwarded query string parameters to backends that are using arrays and repeated variables.
+The KrakenDesigner (UI) is also updated to reflect these changes.
+KrakenD framework The KrakenD framework has the following relevant changes:
+ NEW: Added support for HTTP2/HTTPS FIX: query string parameters works now with arrays and repeated variables (e.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD 0.6 autumn release</title>
+      <link>http://www.krakend.io/blog/krakend-0.6-release-notes/</link>
+      <pubDate>Fri, 07 Sep 2018 09:18:53 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/krakend-0.6-release-notes/</guid>
+      <description>As if we were an agrarian society, our releases keep revolving around the weather calendar seasons. Autumn is around the corner (northern hemisphere), so our release is ready for a cool autumn.
+TL;DR This release adds two interesting components: the JOSE component responsible for the JWT signing and validation, and the Cross-origin resource sharing (CORS) component. There is also a Consul client available.
+The Krakend Playground and the KrakenDesigner (UI) is also updated.</description>
+    </item>
+    
+    <item>
+      <title>Reloading the Krakend configuration with Reflex and Docker</title>
+      <link>http://www.krakend.io/blog/reloading-the-krakend-configuration/</link>
+      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
+      <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&amp;rsquo;s running. The short answer is: No, you can&amp;rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&amp;rsquo;t support such a feature:
+ Performance: This is the #1 reason, and strong enough.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD 0.5 summer release</title>
+      <link>http://www.krakend.io/blog/krakend-0.5-release-notes/</link>
+      <pubDate>Fri, 08 Jun 2018 14:50:53 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/krakend-0.5-release-notes/</guid>
+      <description>KrakenD 0.5 is out and we want to share some of the cool stuff this release is bringing.
+This release focuses heavily on metrics and its export options to different backend systems such as Zipkin, InfluxDB, Prometheus or Jaeger. It also adds the NoOp logger and exposes all the advanced settings of the http client and server, giving all the power to the user. On the middlware side it extends even more the ecosystem with multiple components.</description>
+    </item>
+    
+    <item>
+      <title>Running the KrakenD API Gateway on Kubernetes</title>
+      <link>http://www.krakend.io/blog/krakend-on-kubernetes/</link>
+      <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/krakend-on-kubernetes/</guid>
+      <description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
+We will use for the demonstration Minikube so you cant test it in your own local machine.
+Let&amp;rsquo;s get started!
+Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&amp;rsquo;s quick and easy.</description>
+    </item>
+    
+    <item>
+      <title>Website development as a sysadmin</title>
+      <link>http://www.krakend.io/blog/website-development-as-a-sysadmin/</link>
+      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
+      <description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
+Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description>
+    </item>
+    
+    <item>
+      <title>Edge computing - A story of buses, raspberries, IoT and API gateways</title>
+      <link>http://www.krakend.io/blog/krakend-on-raspberry/</link>
+      <pubDate>Tue, 01 May 2018 21:25:00 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/krakend-on-raspberry/</guid>
+      <description>The IoT industry has been running for some years now adding millions of devices into the network. The range of devices and capabilities is very wide and heterogeneous, from small devices powered with a 9-volt battery to track the location of freight shippings traveling the oceans (using platforms like Sigfox) to permanently plugged devices with more powerful computing like a Raspberry Pi where computation cycles are not a problem.</description>
+    </item>
+    
+    <item>
+      <title>How to work with Golang plugins and KrakenD</title>
+      <link>http://www.krakend.io/blog/krakend-golang-plugins/</link>
+      <pubDate>Thu, 12 Apr 2018 22:07:03 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/krakend-golang-plugins/</guid>
+      <description>The release of golang 1.8 more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.
+We&amp;rsquo;d like to share our experience and details on how we enhanced our products to support golang plugins.
+Why would anyone use plugins in Go? The plugin concept is widely known and supported in several programming languages and environments.</description>
+    </item>
+    
+    <item>
+      <title>Deploying and versioning an API Gateway</title>
+      <link>http://www.krakend.io/blog/deploying-an-api-gateway/</link>
+      <pubDate>Fri, 06 Apr 2018 23:46:25 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/deploying-an-api-gateway/</guid>
+      <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&amp;rsquo;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD 0.4 release notes</title>
+      <link>http://www.krakend.io/blog/krakend-0.4-release-notes/</link>
+      <pubDate>Sun, 21 Jan 2018 14:50:53 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/krakend-0.4-release-notes/</guid>
+      <description>KrakenD 0.4 materializes the announcement we did 3 months ago by going full open source and public releasing the former enterprise-only components.
+This release note comprehends both the KrakenD framework and the KrakenD Community Edition binary distribution.
+KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The summary of changes introduced in the 0.4 are:
+ Removed ALL external dependencies and placed to krakend-contrib repositories Decoder and Service Discovery register system Response metadata Response decoder and formatter exposed Custom status code handler Minor handler optimizations Config version upgraded Server configuration extended (with timeouts and limits) Now non strict REST urls are allowed Request and response manipulation optimized func version for all the interfaces  Link to 0.</description>
+    </item>
+    
+    <item>
+      <title>An API Gateway is not the new Unicorn</title>
+      <link>http://www.krakend.io/blog/what-is-an-api-gateway/</link>
+      <pubDate>Fri, 19 Jan 2018 10:10:53 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/what-is-an-api-gateway/</guid>
+      <description>The more we talk to people about API gateways, the more we have come to realize that the term means different things to different people, and more specifically we see a growing trend where developers (but mostly managers) expect an API gateway to be able to perform miracles, usually a long way away from its intended use.
+It&amp;rsquo;s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.</description>
+    </item>
+    
+    <item>
+      <title>Road to KrakenD 0.4</title>
+      <link>http://www.krakend.io/blog/road-to-0.4/</link>
+      <pubDate>Sun, 12 Nov 2017 12:10:53 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/road-to-0.4/</guid>
+      <description>The next iteration of KrakenD is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the 0.4 release before end of year. The jump from the 0.3.9 of the binary and the 0.3 of the framework to the 0.4 will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: kill external dependencies with fire.</description>
+    </item>
+    
+    <item>
+      <title>How we automated our RPM and DEB packaging with Docker</title>
+      <link>http://www.krakend.io/blog/automating-linux-packaging/</link>
+      <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/automating-linux-packaging/</guid>
+      <description>Everyone loves reaching the maximum number of available platforms for their software but this usually comes at a cost. In this article we will explain how we generated our packaging for Linux in an automated fashion, being faithful to our DevOps dogma.
+Dockerize all the things! Our team uses both Ubuntu and MacOS X in desktop machines and KrakenD has been running and behaving in the same way in all the platforms because from day one we decided to run everything on Docker.</description>
+    </item>
+    
+    <item>
+      <title>Open sourcing all enterprise components</title>
+      <link>http://www.krakend.io/blog/open-sourcing-enterprise-features/</link>
+      <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
+      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?</description>
+    </item>
+    
+    <item>
+      <title>Download KrakenD</title>
+      <link>http://www.krakend.io/download/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/download/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KrakenD API Gateway features</title>
+      <link>http://www.krakend.io/features/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/features/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KrakenD support - Have questions?</title>
+      <link>http://www.krakend.io/services/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/services/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KrakenD support - Have questions?</title>
+      <link>http://www.krakend.io/support/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/support/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KrakenDesigner</title>
+      <link>http://www.krakend.io/designer/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/designer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Frequently Asked Questions</title>
+      <link>http://www.krakend.io/docs/faq/</link>
+      <pubDate>Wed, 26 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/faq/</guid>
+      <description>Understanding the behaviour I am getting a 200 status when the backend returns a 201 E.g:
+2017/01/19 - 10:31:27 | 200 | 1.134431ms | ::1 | POST /users  Explanation By default, the gateway will always send a HTTP status 200 if the backend returns a 200 or a 201. You can inject your own HTTPStatusHandler implementation if you need a different behaviour. Check this issue comment for more details.</description>
+    </item>
+    
+    <item>
+      <title>Verifying packages (PGP and SHA256)</title>
+      <link>http://www.krakend.io/docs/overview/verifying-packages/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/overview/verifying-packages/</guid>
+      <description>How to make sure what you are downloading is legit.
+PGP We will check the detached signature PGP against our package KrakenD.
+$ gpg --verify krakend_0.6.1_amd64.tar.gz.asc krakend_0.6.1_amd64.tar.gz gpg: Signature made vie 02 dic 2016 19:07:49 CET using RSA key ID AB39BEA1 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://www.krakend.io/docs/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/readme/</guid>
+      <description>KrakenD Documentation All the documentation uses Markdown syntax and the site is generated using Hugo. After your contribution this repository will be used to compile all the documentation.
+If you want to use a server to browse this pages, although not necessary, you can copy the folder inside the content directory in any Hugo installation.
+Contribute! Feel free to fork this repository and contribute to a better KrakenD documentation.</description>
+    </item>
+    
+  </channel>
+</rss>

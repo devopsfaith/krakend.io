@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>How to work with Golang plugins and KrakenD - KrakenD API Gateway</title>
+    <meta itemprop="name" content="How to work with Golang plugins and KrakenD - KrakenD API Gateway">
+    <meta name="twitter:title" content="How to work with Golang plugins and KrakenD - KrakenD API Gateway">
+    <meta property="og:title" content="How to work with Golang plugins and KrakenD - KrakenD API Gateway">
+
+    
+    <meta property="description" content="How to implement Golang plugins with the KrakenD API gateway">
+    <meta itemprop="description" content="How to implement Golang plugins with the KrakenD API gateway">
+    <meta name="twitter:description" content="How to implement Golang plugins with the KrakenD API gateway">
+    <meta property="og:description" content="How to implement Golang plugins with the KrakenD API gateway">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/blog/light-bulb.jpg">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/light-bulb.jpg">
+    <meta property="og:image" content="http://krakend.io/images/blog/light-bulb.jpg" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/blog/krakend-golang-plugins/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+	<div class="wrapper">
+		
+		    
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+		
+<div class="blog-wrapper wrap container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+    <section class="blog">
+        <div class="box box-widget">
+            
+            <a href="http://www.krakend.io/blog/krakend-golang-plugins/">
+              <img class="post-image" src="/images/blog/light-bulb.jpg" />
+            </a>
+              
+            
+
+            <div class="box-body">
+                <article class="post-entry">
+                    <header class="post-header">
+                        <div class="section share pull-right">
+                            <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-golang-plugins%2f&t=How%20to%20work%20with%20Golang%20plugins%20and%20KrakenD" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-golang-plugins%2f&text=How%20to%20work%20with%20Golang%20plugins%20and%20KrakenD&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-golang-plugins%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-golang-plugins%2f&title=How%20to%20work%20with%20Golang%20plugins%20and%20KrakenD" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                        </div>
+                        <h1 class="post-title">
+                            <a href="http://www.krakend.io/blog/krakend-golang-plugins/" class="post-link">How to work with Golang plugins and KrakenD</a>
+                        </h1>
+                        <div class="post-metadata clearfix">
+    <p class="author pull-left">
+        by Daniel López &middot; Apr 12, 2018
+    </p>
+    <div class="tags">
+        <ul>
+            <li><i class="fa fa-tags" aria-hidden="true"></i></li>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            ,
+            
+            <a href="/tags/golang">
+                golang
+            </a>
+            
+            ,
+            
+            <a href="/tags/how-to">
+                how to
+            </a>
+            
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <em>6 min read</em></li>
+        </ul>
+    </div>
+</div>
+                    </header>
+
+                    
+
+<p>The release of <a href="https://golang.org/doc/go1.8#plugin">golang 1.8</a> more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.</p>
+
+<p>We&rsquo;d like to share our experience and details on how we enhanced our products to support golang plugins.</p>
+
+<h2 id="why-would-anyone-use-plugins-in-go">Why would anyone use plugins in Go?</h2>
+
+<p>The <em>plugin</em> concept is widely known and supported in several programming languages and environments. It gives third-party developers the ability to extend applications, adding new features or customizing behaviors, without touching a single line of the core application, while avoiding recompilation.</p>
+
+<p>Our distribution of <a href="https://github.com/devopsfaith/krakend-ce">KrakenD (aka, KrakenD-CE)</a> today includes a series of extra middleware living in <a href="https://github.com/devopsfaith/krakend-contrib">separate repositories</a> that are compiled and included in the final binary of KrakenD-CE.</p>
+
+<p>As owners of the product, we have to decide what kind of middleware to include by default in the final distribution, but we understand that our reasoned decision not to include something might not fit your particular interests. Our compromise is to have a pure API Gateway with the best possible performance, and some features will always drop out by their nature and will never join the krakend-ce. This forces users to import this middleware and compile the final binary themselves.</p>
+
+<p>Here&rsquo;s a practical example: if you wanted to include the <a href="https://github.com/devopsfaith/krakend-newrelic">New Relic instrumentation middleware</a> to see metrics in your panel, then you would have to fork the KrakenD-CE repository, import the package, add the middleware in the pipe factory and compile the project. While that&rsquo;s no big deal, it would be much easier to just put a file in a folder and start the server, wouldn&rsquo;t it?</p>
+
+<p><em>If you&rsquo;re wondering why the NR module is not included in our distribution (yet?) it&rsquo;s because adding the agent into the gateway has a high impact in terms of performance and memory consumption, so until the maintainer fixes this issue, it&rsquo;s out.</em></p>
+
+<h2 id="good-news-and-bad-news">Good news and bad news</h2>
+
+<p>The good news is that with plugins we can give a lot of power to KrakenD without jumping into a discussion about whether this specific set of features should go inside the distribution or not (or at least, a less heated discussion).</p>
+
+<p>The bad news is that as the official documentation says <em>&ldquo;Plugin support is currently only available on Linux&rdquo;</em>. Although 99.9% of users deploy in production in a Linux box or a linux container, right now KrakenD is multiplatform but plugins are not.</p>
+
+<h2 id="tuning-the-krakend-framework">Tuning the KrakenD framework</h2>
+
+<p>Let&rsquo;s get our hands dirty and take look at an example of the Go code you need to support plugins.</p>
+
+<p>For the initial iteration, we just added a new config section and a single <code>plugin</code> package.</p>
+
+<p>Here is the definition of the new config <code>struct</code> added in the <code>ServiceConfig</code>:</p>
+
+<pre><code>type Plugin struct {
+    Folder  string `mapstructure:&quot;folder&quot;`
+    Pattern string `mapstructure:&quot;pattern&quot;`
+}
+</code></pre>
+
+<p>In the configuration file we can now define the location of the folder with the plugins and a pattern for filtering the contents of the folder. A typical configuration snippet could go like this:</p>
+
+<pre><code>&quot;plugin&quot;: {
+    &quot;folder&quot;: &quot;./plugins/&quot;,
+    &quot;pattern&quot;: &quot;.so&quot;
+}
+</code></pre>
+
+<p>The entire package in charge of scanning the <strong>plugin</strong> folder and loading all the included plugins exposes a single function <code>func Load(cfg config.Plugin) (int, error)</code>, so it is convenient to consume.</p>
+
+<pre><code>func open(pluginName string) (err error) {
+    defer func() {
+        if r := recover(); r != nil {
+            var ok bool
+            err, ok = r.(error)
+            if !ok {
+                err = fmt.Errorf(&quot;%v&quot;, r)
+            }
+        }
+    }()
+    _, err = pluginOpener(pluginName)
+    return
+}
+
+// pluginOpener keeps the plugin open function in a var for easy testing
+var pluginOpener = plugin.Open
+</code></pre>
+
+<p>We decided that delegating the registering logic to the plugins would give us a better decoupling (the good old <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC </a> principle). After scaning and filtering the contents of the <strong>plugins</strong> folder, the <code>Load</code> function just calls <code>plugin.Open</code> wrapping the possible errors and panics. Currently it doesn&rsquo;t use the returned <code>*plugin.Plugin</code> for lookups. Check the <a href="https://godoc.org/github.com/devopsfaith/krakend/plugin">documentation</a> for more details.</p>
+
+<p>This is the <a href="https://github.com/devopsfaith/krakend/pull/87">Pull Request</a> with all the required changes for the framework.</p>
+
+<h2 id="tuning-the-krakend-ce-distribution">Tuning the KrakenD-CE distribution</h2>
+
+<p>In order to load the plugins before starting the gateway, the <code>executor.go</code> script needs to be extended with this code block:</p>
+
+<pre><code>...
+    if &quot;&quot; != os.Getenv(&quot;KRAKEND_ENABLE_PLUGINS&quot;) &amp;&amp; cfg.Plugin != nil {
+        logger.Info(&quot;Plugin experiment enabled!&quot;)
+        pluginsLoaded, err := plugin.Load(*cfg.Plugin)
+        if err != nil {
+            logger.Error(err.Error())
+        }
+        logger.Info(&quot;Total plugins loaded:&quot;, pluginsLoaded)
+    }
+...
+</code></pre>
+
+<p>Because the plugin feature is still experimental, it should be enabled both in the configuration file and in the <code>KRAKEND_ENABLE_PLUGINS</code> env_var.</p>
+
+<p>This is the complete <a href="https://github.com/devopsfaith/krakend-ce/pull/9">Pull Request</a>.</p>
+
+<h2 id="writing-plugins">Writing plugins</h2>
+
+<p>As required by the <code>plugin</code> Golang package, plugins should have a <code>main</code> package so their <code>main</code> function won&rsquo;t ever be called.</p>
+
+<p>The <a href="https://github.com/kpacha/martian-components/blob/master/krakend-plugin/elastic-search/plugin.go">Elastic Search martian plugin</a> is a very clear example of how to bundle the plugins and the KrakenD-CE binary via the <code>krakend-martian</code> package and without using the martian lib in the plugin in order to avoid flag collisions.</p>
+
+<p>This is all the code required for the plugin:</p>
+
+<pre><code>package main
+
+import (
+    &quot;github.com/devopsfaith/krakend-martian/register&quot;
+    &quot;github.com/kpacha/martian-components/body/elastic-search/modifier&quot;
+)
+
+func init() {
+    register.Set(&quot;body.ESQuery&quot;, []register.Scope{register.ScopeRequest}, func(b []byte) (interface{}, error) {
+        return modifier.FromJSON(b)
+    })
+}
+
+func main() {
+
+}
+</code></pre>
+
+<p>The <code>github.com/devopsfaith/krakend-martian/register</code> package exposes a setter and a getter which delegate registering of the martian modules to the plugins themselves, so the martian lib is included just once in the <code>github.com/devopsfaith/krakend-martian</code> package. Every plugin should register its modifiers in their <code>init</code> functions.</p>
+
+<p>Compile the desired package with the plugin flag:</p>
+
+<pre><code>$ go build -buildmode=plugin -o krakend-martian_es.so ./krakend-plugin/elastic-search
+</code></pre>
+
+<p>And place the generated plugins into your plugin folder, so the KrakenD can load them in runtime.</p>
+
+<h2 id="word-of-advice">Word of advice</h2>
+
+<p>These are the caveats we&rsquo;ve found so far in our experiments, but almost all cases can be avoided with some workarounds:</p>
+
+<h3 id="dependency-versions">Dependency versions</h3>
+
+<p>Shared libraries between the application and the plugins should have the same version or the plugin won&rsquo;t be loaded. Using vendors might help limiting the friction and avoid problems but in some cases this is just not possible.</p>
+
+<h3 id="flag-collisions">Flag collisions</h3>
+
+<p>If the plugin or its dependencies redeclare a flag used by the application (or its dependencies) the plugin will panic.</p>
+
+<h3 id="vendored-packages">Vendored packages</h3>
+
+<p>If your application or your plugin use any kind of dependency vendoring system, the vendored packages will be usually renamed to <code>path/to/your_app/vendor/path/to/dependency</code>. So it won&rsquo;t be accessible from your plugins.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In this post we have seen the benefits of using plugins and how to use them in your application. Even if they are only supported in Linux, it&rsquo;s a very convenient way to extend functionality, especially those that aren&rsquo;t used in all cases and are more rare.</p>
+
+<p>Thanks for reading! If you like our product don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+
+
+                    <aside>
+                      <div class="share pull-right">
+                        <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-golang-plugins%2f&t=How%20to%20work%20with%20Golang%20plugins%20and%20KrakenD" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                        <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-golang-plugins%2f&text=How%20to%20work%20with%20Golang%20plugins%20and%20KrakenD&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-golang-plugins%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-golang-plugins%2f&title=How%20to%20work%20with%20Golang%20plugins%20and%20KrakenD" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                      </div>
+                    </aside>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="col-xs-12 col-sm-2 col-md-2 navigation_container affix-top">
+        <h3>KrakenD blog</h3>
+        <ul class="nav">
+          <li><a href="/blog/">All categories</a></li>
+          
+          <li><a href="/categories/announcements">announcements</a></li>
+          
+          <li><a href="/categories/api-gateway">api-gateway</a></li>
+          
+          <li><a href="/categories/api2html">api2html</a></li>
+          
+          <li><a href="/categories/configuration">configuration</a></li>
+          
+          <li><a href="/categories/devops">devops</a></li>
+          
+          <li><a href="/categories/docker">docker</a></li>
+          
+          <li><a href="/categories/enterprise">enterprise</a></li>
+          
+          <li><a href="/categories/krakend">krakend</a></li>
+          
+          <li><a href="/categories/kubernetes">kubernetes</a></li>
+          
+          <li><a href="/categories/reflex">reflex</a></li>
+          
+        </ul>
+        <h3>Tag Cloud</h3>
+        <ul class="nav">
+          
+          <li><a href="/tags/open-source">open-source</a></li>
+          
+          <li><a href="/tags/how-to">how-to</a></li>
+          
+          <li><a href="/tags/golang">golang</a></li>
+          
+          <li><a href="/tags/release-notes">release-notes</a></li>
+          
+          <li><a href="/tags/docker">docker</a></li>
+          
+        </ul>
+        <h3>Recent Posts</h3>
+        <ul class="nav">
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
+          
+        </ul>
+  </div>
+
+
+</div>
+
+	</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>

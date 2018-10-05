@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Website development as a sysadmin - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Website development as a sysadmin - KrakenD API Gateway">
+    <meta name="twitter:title" content="Website development as a sysadmin - KrakenD API Gateway">
+    <meta property="og:title" content="Website development as a sysadmin - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Fast development using API2HML and KrakenD">
+    <meta itemprop="description" content="Fast development using API2HML and KrakenD">
+    <meta name="twitter:description" content="Fast development using API2HML and KrakenD">
+    <meta property="og:description" content="Fast development using API2HML and KrakenD">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/blog/website-development-as-a-sysadmin.jpg">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/website-development-as-a-sysadmin.jpg">
+    <meta property="og:image" content="http://krakend.io/images/blog/website-development-as-a-sysadmin.jpg" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/blog/website-development-as-a-sysadmin/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+	<div class="wrapper">
+		
+		    
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+		
+<div class="blog-wrapper wrap container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+    <section class="blog">
+        <div class="box box-widget">
+            
+            <a href="http://www.krakend.io/blog/website-development-as-a-sysadmin/">
+              <img class="post-image" src="/images/blog/website-development-as-a-sysadmin.jpg" />
+            </a>
+              
+            
+
+            <div class="box-body">
+                <article class="post-entry">
+                    <header class="post-header">
+                        <div class="section share pull-right">
+                            <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fwebsite-development-as-a-sysadmin%2f&t=Website%20development%20as%20a%20sysadmin" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fwebsite-development-as-a-sysadmin%2f&text=Website%20development%20as%20a%20sysadmin&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fwebsite-development-as-a-sysadmin%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fwebsite-development-as-a-sysadmin%2f&title=Website%20development%20as%20a%20sysadmin" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                        </div>
+                        <h1 class="post-title">
+                            <a href="http://www.krakend.io/blog/website-development-as-a-sysadmin/" class="post-link">Website development as a sysadmin</a>
+                        </h1>
+                        <div class="post-metadata clearfix">
+    <p class="author pull-left">
+        by Daniel Ortiz &middot; May 10, 2018
+    </p>
+    <div class="tags">
+        <ul>
+            <li><i class="fa fa-tags" aria-hidden="true"></i></li>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            ,
+            
+            <a href="/tags/mvp">
+                mvp
+            </a>
+            
+            ,
+            
+            <a href="/tags/golang">
+                golang
+            </a>
+            
+            ,
+            
+            <a href="/tags/how-to">
+                how to
+            </a>
+            
+            ,
+            
+            <a href="/tags/api2html">
+                api2html
+            </a>
+            
+            ,
+            
+            <a href="/tags/mustache">
+                mustache
+            </a>
+            
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <em>6 min read</em></li>
+        </ul>
+    </div>
+</div>
+                    </header>
+
+                    
+
+<p>As a systems administrator for the past 15 years, I&rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.</p>
+
+<p>Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information. This API is used in this exercise, <a href="https://developer.marvel.com/">get your own key</a>.</p>
+
+<p>My first reaction when I initially though about this problem was to start the project in python, writing the code to do the requests, authenticating to the API, parsing the responses and generating the HTML output. Everything in the same service. This is the &ldquo;classical&rdquo; way of developing and the code became dirty very fast as I am an inexperienced programmer. Doing the API authentication was also painful and I wanted a more generic and reusable code.</p>
+
+<p>Being part of KrakenD, I decided to revisit this exercise using KrakenD to do the requests, authentication, parsing, filtering and merging the responses for me.</p>
+
+<p>Check <a href="https://github.com/taik0/krakend-marvel-example">my Github repository for the code used</a> in this post.</p>
+
+<h2 id="the-backend-adding-automatic-api-authentication">The backend: Adding automatic API authentication</h2>
+
+<p>The <a href="http://www.krakend.io">KrakenD API Gateway</a> can filter the fields of all your requests&rsquo; responses using a declarative configuration in json but I also needed KrakenD to do the authentication against the Marvel API for me before doing these requests.</p>
+
+<p>KrakenD supports a <a href="https://github.com/devopsfaith/krakend-contrib/">lot of middleware</a> one of them being <a href="https://github.com/devopsfaith/krakend-martian/">krakend-martian</a> and, since one of the reasons for this project was to do some programming, I created a martian request modifier so each request would automatically add any data needed to authenticate against Marvel API, decoupling this custom authentication from the application.</p>
+
+<p>In this case, Marvel requests need to include in every query string the following parameters:</p>
+
+<ul>
+<li><code>ts</code>: timestamp</li>
+<li><code>apikey</code>: the public API key</li>
+<li><code>hash</code>: an md5 of timestamp + private key + public key.</li>
+</ul>
+
+<p>You can also see this modifier source code in <a href="https://github.com/taik0/marvelapi-martian_querystring">github</a>.</p>
+
+<p>At the time I created this query string modifier <strong>we didn&rsquo;t had <a href="http://www.krakend.io/blog/krakend-golang-plugins/">plugins</a></strong> so I needed to recomplile KrakenD to add a custom modifier like this one.</p>
+
+<h3 id="setting-up-krakend">Setting up KrakenD</h3>
+
+<p>To add the custom modifier to KrakenD it&rsquo;s only needed to create a file like this one in the root of the <a href="https://github.com/devopsfaith/krakend-ce">KrakenD-CE</a> repository:</p>
+
+<p><em>marvel.go:</em></p>
+
+<pre><code>package main
+
+import _ &quot;github.com/taik0/marvelapi-martian_querystring&quot;
+</code></pre>
+
+<p>and just follow the regular build steps (<code>make prepare</code> and <code>make</code>).</p>
+
+<p>To configure KrakenD I needed to add an <code>extra_config</code> using the krakend-martian <code>Namespace</code> and the custom configuration for the modifier.
+Check also the <code>whitelist</code> and <code>mapping</code> sections where I set a filter of some fields.</p>
+
+<h4 id="krakend-configuration-example">KrakenD configuration example</h4>
+
+<pre><code>&quot;endpoints&quot;: [
+    {
+        &quot;backend&quot;: [
+            {
+                &quot;extra_config&quot;: {
+                    &quot;github.com/devopsfaith/krakend-martian&quot;: {
+                        &quot;fifo.Group&quot;: {
+                            &quot;aggregateErrors&quot;: true,
+                            &quot;modifiers&quot;: [
+                                {
+                                    &quot;querystring.MarvelModifier&quot;: {
+                                        &quot;private&quot;: &quot;private_api_key&quot;,
+                                        &quot;public&quot;: &quot;public_api_key&quot;,
+                                        &quot;scope&quot;: [
+                                            &quot;request&quot;
+                                        ]
+                                    }
+                                }
+                            ],
+                            &quot;scope&quot;: [
+                                &quot;request&quot;,
+                                &quot;response&quot;
+                            ]
+                        }
+                    }
+                },
+                &quot;host&quot;: [
+                    &quot;http://gateway.marvel.com&quot;
+                ],
+                &quot;url_pattern&quot;: &quot;/v1/public/characters?name={name}&quot;,
+                &quot;whitelist&quot;: [
+                  &quot;data.results&quot;,
+                  &quot;attributionHTML&quot;
+                ],
+                &quot;mapping&quot;: { &quot;data&quot;: &quot;characters&quot;}
+            }
+        ],
+        &quot;endpoint&quot;: &quot;/character/{name}&quot;,
+        &quot;method&quot;: &quot;GET&quot;
+    }
+  ],
+  &quot;extra_config&quot;: {
+      &quot;github_com/devopsfaith/krakend-gologging&quot;: {
+          &quot;level&quot;: &quot;INFO&quot;,
+          &quot;prefix&quot;: &quot;[KRAKEND]&quot;,
+          &quot;stdout&quot;: true,
+          &quot;syslog&quot;: false
+      }
+  },
+  &quot;name&quot;: &quot;My lovely gateway&quot;,
+  &quot;port&quot;: 8080,
+  &quot;timeout&quot;: &quot;3s&quot;,
+  &quot;version&quot;: 2
+</code></pre>
+
+<h2 id="the-frontend-api2html">The frontend: API2HTML</h2>
+
+<p>To generate the frontend of the application I created some simple logic-less <a href="https://mustache.github.io/">mustache</a> templates and configured <a href="http://api2html.com">api2html</a> to query the KrakenD endpoints and generate the HTML output without even the need of a web server.</p>
+
+<p>In a nutshell, Api2html takes data from an API and injects it in the mustache templates so you can build websites without coding controllers, models or setting web servers. Besides being simple, the service uses the Go standard libraries and will offer a lot of throughput.</p>
+
+<h3 id="mustache-template">Mustache Template</h3>
+
+<p>The HTML template needs to live inside api2html and is used to display the frontend. It looks like this:</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css&quot; integrity=&quot;sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy&quot; crossorigin=&quot;anonymous&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+{{#Data.characters.results}}
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;a href=&quot;/character/{{id}}&quot;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;col-4&quot;&gt;
+        &lt;img class=&quot;rounded-right&quot; src=&quot;{{thumbnail.path}}/landscape_xlarge.{{thumbnail.extension}}&quot; alt=&quot;{{name}}&quot;&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-4&quot;&gt;
+          &lt;h5 class=&quot;mt-0&quot;&gt;{{name}}&lt;/h5&gt;
+          {{description}}
+      &lt;/div&gt;
+    &lt;/div&gt;
+{{/Data.characters.results}}
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-4&quot;&gt;
+    {{{Data.attributionHTML}}}
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/a&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="api2html-configuration">api2html configuration</h3>
+
+<p>Notice that the backend URL it&rsquo;s KrakenD service, not Marvel API.</p>
+
+<pre><code>{
+	&quot;templates&quot;:{
+		&quot;character&quot;: &quot;character.mustache&quot;
+	},
+	&quot;pages&quot;:[
+    {
+      &quot;name&quot;: &quot;character&quot;,
+      &quot;URLPattern&quot;: &quot;/character/:character&quot;,
+      &quot;BackendURLPattern&quot;: &quot;http://localhost:8080/character/:character&quot;,
+      &quot;CacheTTL&quot;: &quot;3600s&quot;,
+      &quot;Template&quot;: &quot;character&quot;
+    }
+  ]
+}
+</code></pre>
+
+<h3 id="running-the-service">Running the service</h3>
+
+<p>The docker-compose will spin up both services, api2html for the frontend, and KrakenD for the backend:</p>
+
+<pre><code>13:27 $ docker-compose up
+Starting krakendmarvelexample_krakend_1 ... done
+Starting krakendmarvelexample_api2html_1 ... done
+Attaching to krakendmarvelexample_krakend_1, krakendmarvelexample_api2html_1
+krakend_1   | Parsing configuration file: /etc/krakend/krakend.json
+krakend_1   | [KRAKEND] 2018/05/11 - 11:28:42.180 ▶ WARNIN building the etcd client: unable to create the etcd client: no config
+krakend_1   | [GIN-debug] [WARNING] Running in &quot;debug&quot; mode. Switch to &quot;release&quot; mode in production.
+krakend_1   |  - using env:	export GIN_MODE=release
+krakend_1   |  - using code:	gin.SetMode(gin.ReleaseMode)
+krakend_1   |
+krakend_1   | [GIN-debug] GET    /__stats/                 --&gt; github.com/devopsfaith/krakend-ce/vendor/github.com/gin-gonic/gin.WrapH.func1 (4 handlers)
+api2html_1  | [GIN-debug] [WARNING] Running in &quot;debug&quot; mode. Switch to &quot;release&quot; mode in production.
+api2html_1  |  - using env:	export GIN_MODE=release
+api2html_1  |  - using code:	gin.SetMode(gin.ReleaseMode)
+api2html_1  |
+api2html_1  | reading ./static/500 : open ./static/500: no such file or directory
+api2html_1  | using the default 500 template
+api2html_1  | [GIN-debug] GET    /character/:character     --&gt; github.com/devopsfaith/api2html/engine.(*Handler).HandlerFunc-fm (4 handlers)
+api2html_1  | handler without layout character
+api2html_1  | reading ./static/404 : open ./static/404: no such file or directory
+api2html_1  | using the default 404 template
+api2html_1  | [GIN-debug] PUT    /template/:templateName   --&gt; github.com/devopsfaith/api2html/engine.Factory.New.func1 (4 handlers)
+api2html_1  | [GIN-debug] Listening and serving HTTP on :8080
+</code></pre>
+
+<p>The docker-compose exposes the service on the 8081 port:</p>
+
+<pre><code>curl -i http://localhost:8081/character/Wolverine
+...
+[GIN] 2018/05/11 - 11:29:15 | 200 |  849.266342ms |             ::1 |  GET     /character/Wolverine
+</code></pre>
+
+<p>Or in your browser:</p>
+
+<p><img src="/images/blog/marvel_krakend.png" alt="marvel krakend api2html" /></p>
+
+<p>Check the <a href="https://github.com/devopsfaith/api2html">documentation</a> to see a lot more of api2html (like generating templates with templates!)</p>
+
+<p>Now if you want to create your own site run this command:</p>
+
+<pre><code>docker run -it --rm -v $PWD:/tmp -w /tmp devopsfaith/api2html skel create blog
+</code></pre>
+
+<p>and a more complete example will be generated in <code>example/blog</code>.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>One of the most important lessons I learned building this, apart from golang coding and some application building, is that you need to know the tools you are using as much as possible since we tend to over-complicate things and rebuild pieces that someone already did (exclude from this exercises/katas to understand better a technology) and knowing what a tool can and can&rsquo;t do helps a lot!</p>
+
+<p>So read documentation, test, play, build something, read a bit more and try again!</p>
+
+
+                    <aside>
+                      <div class="share pull-right">
+                        <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fwebsite-development-as-a-sysadmin%2f&t=Website%20development%20as%20a%20sysadmin" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                        <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fwebsite-development-as-a-sysadmin%2f&text=Website%20development%20as%20a%20sysadmin&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fwebsite-development-as-a-sysadmin%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fwebsite-development-as-a-sysadmin%2f&title=Website%20development%20as%20a%20sysadmin" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                      </div>
+                    </aside>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="col-xs-12 col-sm-2 col-md-2 navigation_container affix-top">
+        <h3>KrakenD blog</h3>
+        <ul class="nav">
+          <li><a href="/blog/">All categories</a></li>
+          
+          <li><a href="/categories/announcements">announcements</a></li>
+          
+          <li><a href="/categories/api-gateway">api-gateway</a></li>
+          
+          <li><a href="/categories/api2html">api2html</a></li>
+          
+          <li><a href="/categories/configuration">configuration</a></li>
+          
+          <li><a href="/categories/devops">devops</a></li>
+          
+          <li><a href="/categories/docker">docker</a></li>
+          
+          <li><a href="/categories/enterprise">enterprise</a></li>
+          
+          <li><a href="/categories/krakend">krakend</a></li>
+          
+          <li><a href="/categories/kubernetes">kubernetes</a></li>
+          
+          <li><a href="/categories/reflex">reflex</a></li>
+          
+        </ul>
+        <h3>Tag Cloud</h3>
+        <ul class="nav">
+          
+          <li><a href="/tags/open-source">open-source</a></li>
+          
+          <li><a href="/tags/how-to">how-to</a></li>
+          
+          <li><a href="/tags/golang">golang</a></li>
+          
+          <li><a href="/tags/release-notes">release-notes</a></li>
+          
+          <li><a href="/tags/docker">docker</a></li>
+          
+        </ul>
+        <h3>Recent Posts</h3>
+        <ul class="nav">
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
+          
+        </ul>
+  </div>
+
+
+</div>
+
+	</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>

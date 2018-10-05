@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Road to KrakenD 0.4 - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Road to KrakenD 0.4 - KrakenD API Gateway">
+    <meta name="twitter:title" content="Road to KrakenD 0.4 - KrakenD API Gateway">
+    <meta property="og:title" content="Road to KrakenD 0.4 - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Upcoming changes in the Krakend 0.4 version">
+    <meta itemprop="description" content="Upcoming changes in the Krakend 0.4 version">
+    <meta name="twitter:description" content="Upcoming changes in the Krakend 0.4 version">
+    <meta property="og:description" content="Upcoming changes in the Krakend 0.4 version">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/blog/road-work-ahead.jpg">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/road-work-ahead.jpg">
+    <meta property="og:image" content="http://krakend.io/images/blog/road-work-ahead.jpg" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/blog/road-to-0.4/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+	<div class="wrapper">
+		
+		    
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+		
+<div class="blog-wrapper wrap container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+    <section class="blog">
+        <div class="box box-widget">
+            
+            <a href="http://www.krakend.io/blog/road-to-0.4/">
+              <img class="post-image" src="/images/blog/road-work-ahead.jpg" />
+            </a>
+              
+                <p class="image-credit">Photo by Mark Brannan | freeimages.com</p>
+              
+            
+
+            <div class="box-body">
+                <article class="post-entry">
+                    <header class="post-header">
+                        <div class="section share pull-right">
+                            <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2froad-to-0.4%2f&t=Road%20to%20KrakenD%200.4" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2froad-to-0.4%2f&text=Road%20to%20KrakenD%200.4&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2froad-to-0.4%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2froad-to-0.4%2f&title=Road%20to%20KrakenD%200.4" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                        </div>
+                        <h1 class="post-title">
+                            <a href="http://www.krakend.io/blog/road-to-0.4/" class="post-link">Road to KrakenD 0.4</a>
+                        </h1>
+                        <div class="post-metadata clearfix">
+    <p class="author pull-left">
+        by dlopez &middot; Nov 12, 2017
+    </p>
+    <div class="tags">
+        <ul>
+            <li><i class="fa fa-tags" aria-hidden="true"></i></li>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <em>4 min read</em></li>
+        </ul>
+    </div>
+</div>
+                    </header>
+
+                    
+
+<p>The next iteration of <a href="http://www.krakend.io">KrakenD</a> is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the <code>0.4</code> release before end of year. The jump from the <code>0.3.9</code> of the binary and the <code>0.3</code> of the framework to the <code>0.4</code> will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: <strong>kill external dependencies with fire</strong>.</p>
+
+<p>Let&rsquo;s go!</p>
+
+<h2 id="goals-for-version-0-4">Goals for version <code>0.4</code></h2>
+
+<p>These are the major goals we have set to release this version:</p>
+
+<ol>
+<li>Remove all the external dependencies from the framework</li>
+<li>Standardize the way of creating and adding plug-ins to the framework</li>
+<li>Open source the enterprise components</li>
+</ol>
+
+<h2 id="side-effects">Side-effects</h2>
+
+<p>As a side effect to all this refactoring is that existing implementations will require updating the code to fix some <code>import</code> statements. The release keeps all the declared interfaces and exposed structs and functions but the dependencies are now external.</p>
+
+<h2 id="external-dependencies-go-away">External dependencies, go away!</h2>
+
+<p>Having external dependencies in the framework allowed us in the beginning to easily create and add adapters to KrakenD without any effort. We chose this path in the initial implementation of the project and we dragged it until now, and this is a common practice in thousands of projects.</p>
+
+<p>The numbers might not seem scary to you, but the implementation of the last released version of the framework (<code>0.3</code>) depends on 8 third party libs, hurting the project build times and its stability. We wanted to stop adding dependencies to the project and provide a way to have them outside.</p>
+
+<p><strong>The 0.4 version will depend only on the standard lib</strong>. All the adapters will be removed from the project and, in some cases (like the <code>config</code> package), some basic alternative will be provided out-of-the-box. By doing this, the project gets closer to the <code>1.0</code>.</p>
+
+<p>Of course this doesn&rsquo;t mean that the features referenced by those adapters will be removed, they will be included in the final distributed binary and the code will be curated the same way we do with the framework.</p>
+
+<p>So, <strong>where are these components now</strong>?
+All the components are listed in the <a href="https://github.com/devopsfaith/krakend-contrib">krakend-contrib</a> repository. Subscribe to it to follow the complete list of available components and middleware.</p>
+
+<h2 id="transparent-plugins">Transparent plugins</h2>
+
+<p>The <code>0.4</code> release extends the flexibility of the <code>0.3</code> version by adding the <code>encoding.Register</code> and <code>encoding.Get</code> functions to deal with injecting custom encoders, and by standarizing the use of the <code>config.ExtraConfig</code> struct, so each component can define a custom namespace for the extra config it could require.</p>
+
+<p>It&rsquo;s in the roadmap to even create a customizable <code>proxy.Factory</code> implementation using this feature, so more accurate management could be achieved without requiring a single extra code line.</p>
+
+<h2 id="component-changes-in-0-4">Component changes in <code>0.4</code></h2>
+
+<p>As a continuation of what we explained in the previous post <em><a href="/blog/open-sourcing-enterprise-features/">Why are we open sourcing our Enterprise version?</a></em> the following new components are included in the 0.4 (The <code>X</code> marks those already available at the time of writing)</p>
+
+<pre><code>[X] - ratelimit
+[X] - circuitbreaker
+[X] - oauth2-client
+[ ] - metrics proxy and router
+[ ] - security router
+[ ] - cmd package
+</code></pre>
+
+<p>New components added:</p>
+
+<pre><code>[X] - martian
+</code></pre>
+
+<p>And the list of the 8 components that we mentioned before that move to it&rsquo;s dedicated repository:</p>
+
+<pre><code>[X] - config/viper
+[X] - encoding/xml
+[X] - encoding/rss
+[X] - logging/gologging
+[X] - sd/etcd
+[ ] - router/gin
+[ ] - router/negroni
+[ ] - router/gorilla
+</code></pre>
+
+<p>In order to provide an alternative to some basic and common features, these components were extended:</p>
+
+<pre><code>[X] - config
+[X] - encoding
+[X] - logging
+</code></pre>
+
+<p><a href="https://github.com/devopsfaith/krakend-contrib">Full list of external components</a></p>
+
+<h2 id="getting-ready-for-the-0-4">Getting ready for the <code>0.4</code></h2>
+
+<p>Don&rsquo;t panic! All the actual adapters will be moved but not removed.</p>
+
+<p>In order to keep your code working, you just need to change the import section from</p>
+
+<pre><code>import &quot;github.com/devopsfaith/krakend/config/viper&quot;
+</code></pre>
+
+<p>to</p>
+
+<pre><code>import &quot;github.com/devopsfaith/krakend-viper&quot;
+</code></pre>
+
+<p>or run the upgrade script (that we will add to the project) in your repos.</p>
+
+<p>To get the <code>xml</code> and/or the <code>rss</code> encodings, one more thing is required: registering it in your code</p>
+
+<pre><code>xml.Register()
+</code></pre>
+
+<p>Checkout each package for more details about its configuration.</p>
+
+<p>We will announce in <a href="http://twitter.com/devopsfaith">Twitter</a> and in this blog when the new version is released, follow us to stay up to date. Needless to say that we will be happy to review your contributions for the next release by sending your PRs to the <code>0.4-dev</code> branch.</p>
+
+<p>Thanks!</p>
+
+
+                    <aside>
+                      <div class="share pull-right">
+                        <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2froad-to-0.4%2f&t=Road%20to%20KrakenD%200.4" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                        <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2froad-to-0.4%2f&text=Road%20to%20KrakenD%200.4&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2froad-to-0.4%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2froad-to-0.4%2f&title=Road%20to%20KrakenD%200.4" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                      </div>
+                    </aside>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="col-xs-12 col-sm-2 col-md-2 navigation_container affix-top">
+        <h3>KrakenD blog</h3>
+        <ul class="nav">
+          <li><a href="/blog/">All categories</a></li>
+          
+          <li><a href="/categories/announcements">announcements</a></li>
+          
+          <li><a href="/categories/api-gateway">api-gateway</a></li>
+          
+          <li><a href="/categories/api2html">api2html</a></li>
+          
+          <li><a href="/categories/configuration">configuration</a></li>
+          
+          <li><a href="/categories/devops">devops</a></li>
+          
+          <li><a href="/categories/docker">docker</a></li>
+          
+          <li><a href="/categories/enterprise">enterprise</a></li>
+          
+          <li><a href="/categories/krakend">krakend</a></li>
+          
+          <li><a href="/categories/kubernetes">kubernetes</a></li>
+          
+          <li><a href="/categories/reflex">reflex</a></li>
+          
+        </ul>
+        <h3>Tag Cloud</h3>
+        <ul class="nav">
+          
+          <li><a href="/tags/open-source">open-source</a></li>
+          
+          <li><a href="/tags/how-to">how-to</a></li>
+          
+          <li><a href="/tags/golang">golang</a></li>
+          
+          <li><a href="/tags/release-notes">release-notes</a></li>
+          
+          <li><a href="/tags/docker">docker</a></li>
+          
+        </ul>
+        <h3>Recent Posts</h3>
+        <ul class="nav">
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
+          
+        </ul>
+  </div>
+
+
+</div>
+
+	</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>

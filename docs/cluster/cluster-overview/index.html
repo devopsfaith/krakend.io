@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Cluster Management Overview - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Cluster Management Overview - KrakenD API Gateway">
+    <meta name="twitter:title" content="Cluster Management Overview - KrakenD API Gateway">
+    <meta property="og:title" content="Cluster Management Overview - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Cluster Management Overview - KrakenD API Gateway">
+    <meta itemprop="description" content="Cluster Management Overview - KrakenD API Gateway">
+    <meta name="twitter:description" content="Cluster Management Overview - KrakenD API Gateway">
+    <meta property="og:description" content="Cluster Management Overview - KrakenD API Gateway">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/logo.png">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/logo.png">
+    <meta property="og:image" content="http://krakend.io/images/logo.png" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/docs/cluster/cluster-overview/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+    <div class="wrapper">
+            
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                
+                <ul class="sidebar-menu">
+    <li class="header">Documentation</li>
+    
+    
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-road'></i> <span>Getting Started</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/overview/introduction/"><i class="fa fa-circle-o"></i> Introduction</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/installing/"><i class="fa fa-circle-o"></i> Installing KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/usage/"><i class="fa fa-circle-o"></i> Using KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/configuration/"><i class="fa fa-circle-o"></i> Configuration file</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/krakend-vs-krakend-ce/"><i class="fa fa-circle-o"></i> KrakenD vs KrakenD-CE</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/playground/"><i class="fa fa-circle-o"></i> The Playground</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-check'></i> <span>Endpoints Features</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/features/response-manipulation/"><i class="fa fa-circle-o"></i> Response manipulation</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/concurrent-requests/"><i class="fa fa-circle-o"></i> Concurrent Requests</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/parameter-forwarding/"><i class="fa fa-circle-o"></i> Parameter forwarding</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/security/"><i class="fa fa-circle-o"></i> Security</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/content-types/"><i class="fa fa-circle-o"></i> Content Types</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/other/"><i class="fa fa-circle-o"></i> Other</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-heartbeat'></i> <span>Throttling and Limits</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/throttling/overview/"><i class="fa fa-circle-o"></i> Throttling Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/circuit-breaker/"><i class="fa fa-circle-o"></i> Circuit Breaker</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/rate-limit/"><i class="fa fa-circle-o"></i> Rate Limits</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/timeouts/"><i class="fa fa-circle-o"></i> Timeouts</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/max-idle-connections/"><i class="fa fa-circle-o"></i> Max IDLE connections</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-space-shuttle'></i> <span>Command line commands</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/commands/run/"><i class="fa fa-circle-o"></i> Run</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/commands/check/"><i class="fa fa-circle-o"></i> Check</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-bar-chart'></i> <span>Benchmarks</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o"></i> Benchmarks Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o"></i> KrakenD vs others</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/aws/"><i class="fa fa-circle-o"></i> On Amazon Web Services</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/local/"><i class="fa fa-circle-o"></i> Local machine</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview active">
+            <a href="javascript:;">
+                <i class='fa fa-connectdevelop'></i> <span>Cluster</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu menu-open">
+            
+                <li class="active">
+                    <a href="/docs/cluster/cluster-overview/"><i class="fa fa-circle-o"></i> Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/configuration/"><i class="fa fa-circle-o"></i> Cluster configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/subscription-levels/"><i class="fa fa-circle-o"></i> Subscription levels</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="/docs/faq/">
+                <i class='fa fa-wrench'></i>  <span>Troubleshooting</span>
+            </a>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="http://github.com/devopsfaith/krakend-ce/issues">
+                <i class='fa fa-github'></i>  <span>Issues</span>
+            </a>
+        </li>
+        
+    
+</ul>
+                
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                
+<a class="btn btn-default pull-right"
+href="https://github.com/devopsfaith/krakend-documentation/tree/master/cluster/cluster-overview.md">
+    <span><i class="fa fa-edit"></i> Edit this page</span>
+</a>
+<h1>
+    Cluster Management Overview
+</h1>
+
+            </section>
+            <section class="content">
+                
+<div class="row">
+    <section class="col-md-12 docs">
+
+        <div class="box box-primary">
+            <div class="box-body">
+                
+                
+
+                
+
+<div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <p><i class="icon fa fa-warning"></i> Alert!</p>
+    The cluster version is not available in the open source distribution.
+</div>
+
+<p>A KrakenD cluster consists of multiple KrakenD instances running simultaneously and working
+together to provide increased reliability, higher throughput, scalability, and fail-over.</p>
+
+<p>The KrakenD cluster provides these immediate <strong>benefits</strong>:</p>
+
+<ul>
+<li><strong>Increased throughput</strong>: The KrakenD cluster does not limit the number of requests the service can deliver. And allows
+to add several nodes as you need (see your subscription)</li>
+<li><strong>Scalability</strong>: The capacity of an application deployed on a KrakenD cluster can be increased dynamically to meet demand as you can add
+KrakenD instances to the cluster without interruption of the service.</li>
+<li><strong>High-Availability and Failover</strong>: If for any reason a server dies or the instance fails the rest of the members in the cluster continue providing the service
+without affecting the global availability.</li>
+<li><strong>Load Balancing</strong>: To do an even distribution of requests to the different KrakenD instances.</li>
+<li><strong>Control</strong>: As the Cluster Manager comes with a web interface to see the activity of the cluster.</li>
+</ul>
+
+<h1 id="introducing-the-cluster-manager">Introducing the Cluster Manager</h1>
+
+<p>The Cluster Manager administers all the nodes that provide the same KrakenD service in the cluster. It manages cluster
+membership and member failure detection using a gossip based protocol (UDP).  Node failures are detected
+and network partitions are partially tolerated by attempting to communicate to potentially dead nodes through multiple routes.</p>
+
+<p>A KrakenD cluster uses the <strong>KrakenD Cluster Manager</strong> to coordinate the formation of the cluster. The Cluster Manager
+is an independent binary with the following responsibilities:</p>
+
+<ul>
+<li>Validates your subscription level and validates the license</li>
+<li>Keeps all the KrakenDs configuration up to date</li>
+<li>Restarts gracefully the services when needed</li>
+<li>Collects and centralizes all the stats sent by the different KrakenD nodes</li>
+<li>Administers the membership of the nodes and acts as seeder (leader) of the cluster</li>
+</ul>
+
+<p>Once all the nodes are registered in the cluster, the only communication with the Cluster Manager is to send the stats and
+metrics and to collect configuration updates.</p>
+
+<p>If for any reason the cluster manager is stopped the KrakenD nodes will continue to run anyway in cluster as they recognize themselves
+as a cluster. But if after several days the nodes cannot connect with the manager all the nodes will degrade to the <em>free version</em>
+with all the corresponding limits and will un-register themselves from the cluster.</p>
+
+<h1 id="krakend-nodes">KrakenD Nodes</h1>
+
+<p>The binary for the KrakenD nodes it&rsquo;s the same as the standalone. So any standalone installation could be at some point used to be included
+inside a cluster with a simple change in its configuration file.</p>
+
+<h1 id="web-interface-cluster-manager">Web interface: Cluster Manager</h1>
+
+<p>The cluster manager machine exposes by default a web interface in the port <code>9897</code>. The activity of your cluster can be
+followed in a URL like <strong><a href="http://localhost:9897">http://localhost:9897</a></strong> (use your own IP)</p>
+
+<p>The web interface shows the activity to all your nodes and to your backends.</p>
+
+
+                <div class="col-md-12">
+                    <hr/>
+                    <p class="pull-right">
+                        <a class="btn btn-primary btn-circle" href="/support">Need support?</a>
+                    </p>
+                </div>
+            </div>
+    </section>
+</div>
+
+            </section>
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+</body>
+</html>

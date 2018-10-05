@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Concurrent Requests - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Concurrent Requests - KrakenD API Gateway">
+    <meta name="twitter:title" content="Concurrent Requests - KrakenD API Gateway">
+    <meta property="og:title" content="Concurrent Requests - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Concurrent Requests - KrakenD API Gateway">
+    <meta itemprop="description" content="Concurrent Requests - KrakenD API Gateway">
+    <meta name="twitter:description" content="Concurrent Requests - KrakenD API Gateway">
+    <meta property="og:description" content="Concurrent Requests - KrakenD API Gateway">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/logo.png">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/logo.png">
+    <meta property="og:image" content="http://krakend.io/images/logo.png" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/docs/features/concurrent-requests/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+    <div class="wrapper">
+            
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                
+                <ul class="sidebar-menu">
+    <li class="header">Documentation</li>
+    
+    
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-road'></i> <span>Getting Started</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/overview/introduction/"><i class="fa fa-circle-o"></i> Introduction</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/installing/"><i class="fa fa-circle-o"></i> Installing KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/usage/"><i class="fa fa-circle-o"></i> Using KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/configuration/"><i class="fa fa-circle-o"></i> Configuration file</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/krakend-vs-krakend-ce/"><i class="fa fa-circle-o"></i> KrakenD vs KrakenD-CE</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/playground/"><i class="fa fa-circle-o"></i> The Playground</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview active">
+            <a href="javascript:;">
+                <i class='fa fa-check'></i> <span>Endpoints Features</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu menu-open">
+            
+                <li class="">
+                    <a href="/docs/features/response-manipulation/"><i class="fa fa-circle-o"></i> Response manipulation</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/docs/features/concurrent-requests/"><i class="fa fa-circle-o"></i> Concurrent Requests</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/parameter-forwarding/"><i class="fa fa-circle-o"></i> Parameter forwarding</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/security/"><i class="fa fa-circle-o"></i> Security</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/content-types/"><i class="fa fa-circle-o"></i> Content Types</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/other/"><i class="fa fa-circle-o"></i> Other</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-heartbeat'></i> <span>Throttling and Limits</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/throttling/overview/"><i class="fa fa-circle-o"></i> Throttling Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/circuit-breaker/"><i class="fa fa-circle-o"></i> Circuit Breaker</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/rate-limit/"><i class="fa fa-circle-o"></i> Rate Limits</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/timeouts/"><i class="fa fa-circle-o"></i> Timeouts</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/max-idle-connections/"><i class="fa fa-circle-o"></i> Max IDLE connections</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-space-shuttle'></i> <span>Command line commands</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/commands/run/"><i class="fa fa-circle-o"></i> Run</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/commands/check/"><i class="fa fa-circle-o"></i> Check</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-bar-chart'></i> <span>Benchmarks</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o"></i> Benchmarks Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o"></i> KrakenD vs others</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/aws/"><i class="fa fa-circle-o"></i> On Amazon Web Services</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/local/"><i class="fa fa-circle-o"></i> Local machine</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-connectdevelop'></i> <span>Cluster</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/cluster/cluster-overview/"><i class="fa fa-circle-o"></i> Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/configuration/"><i class="fa fa-circle-o"></i> Cluster configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/subscription-levels/"><i class="fa fa-circle-o"></i> Subscription levels</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="/docs/faq/">
+                <i class='fa fa-wrench'></i>  <span>Troubleshooting</span>
+            </a>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="http://github.com/devopsfaith/krakend-ce/issues">
+                <i class='fa fa-github'></i>  <span>Issues</span>
+            </a>
+        </li>
+        
+    
+</ul>
+                
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                
+<a class="btn btn-default pull-right"
+href="https://github.com/devopsfaith/krakend-documentation/tree/master/features/concurrent-requests.md">
+    <span><i class="fa fa-edit"></i> Edit this page</span>
+</a>
+<h1>
+    Concurrent Requests
+</h1>
+
+            </section>
+            <section class="content">
+                
+<div class="row">
+    <section class="col-md-12 docs">
+
+        <div class="box box-primary">
+            <div class="box-body">
+                
+                
+                <div class="pull-right col-md-4 visible-lg-inline TOC">
+                    <div class="box">
+                    <div class="box-header with-border">
+                        <h5 class="box-title"><i class="fa fa-book"></i> Table of Contents</h5>
+                        <div class="pull-right">
+                            <a data-widget="collapse"><i class="fa fa-minus"></i></a>
+                        </div>
+                    </div>
+
+                        <div class="box-body">
+                            <nav id="TableOfContents">
+<ul>
+<li><a href="#why-enabling-concurrent-requests">Why enabling concurrent requests?</a></li>
+<li><a href="#how-does-concurrent-calls-work">How does <code>concurrent_calls</code> work?</a>
+<ul>
+<li><a href="#impact-of-concurrent-requests">Impact of concurrent requests</a></li>
+</ul></li>
+</ul>
+</nav>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+
+<h1 id="why-enabling-concurrent-requests">Why enabling concurrent requests?</h1>
+
+<p>The concurrent requests is a way to ask for the same information at the same time to different backends, in order to <strong>improve the response time and decrease error rates</strong>.</p>
+
+<p>Of course this requires that your backend services run in multiple machines and are able to handle more load. When this is the case, you can set the configuration option <code>concurrent_calls</code> with a value bigger than 1 with all your idempotent requests.</p>
+
+<h1 id="how-does-concurrent-calls-work">How does <code>concurrent_calls</code> work?</h1>
+
+<p>KrakenD will send up to N <code>concurrent_calls</code> to your backends for the same request. When the backends respond KrakenD will pick the fastest successful response ignoring any previous failures. Only in the case that all <code>concurrent_calls</code> fail, the user will receive also the failure.</p>
+
+<p>The trade-off of this strategy is an increment of the load in the backend services, so make sure your infrastructure is ready for it. But your users will love it: Less errors, and faster responses!</p>
+
+<p>To enable the concurrent requests in specific endpoints use the variable <code>concurrent_calls</code> in the <code>krakend.json</code> as follows:</p>
+
+<pre><code>...,
+&quot;endpoints&quot;: [
+{
+  &quot;endpoint&quot;: &quot;/products&quot;,
+  &quot;method&quot;: &quot;GET&quot;,
+  &quot;concurrent_calls&quot;: &quot;3&quot;,
+  ...
+</code></pre>
+
+<p>In the example configuration when a user calls the <code>/products</code> endpoint, KrakenD will open 3 different connections to the backends and will return the fastest successful response. The rest will be cancelled.</p>
+
+<h2 id="impact-of-concurrent-requests">Impact of concurrent requests</h2>
+
+<p>In order to demonstrate the impact of this component, let&rsquo;s imagine two different scenarios: the happy one and the sad one. Here you have the cumulative distribution and the probability distribution of these two cases (the time range is just a &lsquo;placeholder&rsquo; for whatever your actual response time values are, just replace the <code>100</code> with your <code>max_response_time</code>):</p>
+
+<p><img src="/images/documentation/concurrency/CDF_happy_vs_sad.png" alt="CDF happy vs sad" />
+<img src="/images/documentation/concurrency/PDF_happy_vs_sad.png" alt="PDF happy vs sad" /></p>
+
+<p>Just as a reminder: for the CDF graphs, the more to the left the line is, the better. For the PDF graphs, the more to the left and the narrow the peak is, the better.</p>
+
+<p>This is the effect of using different concurrency levels for the happy case (notice how the response times are concentrated arround 20% of the <code>max_response_time</code>):</p>
+
+<p><img src="/images/documentation/concurrency/CDF_concurrency_happy.png" alt="CDF concurrency happy" />
+<img src="/images/documentation/concurrency/PDF_concurrency_happy.png" alt="PDF concurrency happy" /></p>
+
+<p>Here, you have the effects for the sad case:</p>
+
+<p><img src="/images/documentation/concurrency/CDF_concurrency_sad.png" alt="CDF concurrency sad" />
+<img src="/images/documentation/concurrency/PDF_concurrency_sad.png" alt="PDF concurrency sad" /></p>
+
+<p>The concurrent request component also reduces the error rate of the exposed endpoint by <strong>orders of magnitude</strong>.</p>
+
+<p><img src="/images/documentation/concurrency/Error_concurrent_requests_up_2.png" alt="Error concurrency up to 2" />
+<img src="/images/documentation/concurrency/Error_concurrent_requests_bigger_2.png" alt="Error concurrency bigger than 2" /></p>
+
+<p>Since the scale of the previous graphs is hiding the huge impact, let&rsquo;s use a logarithmic scale:</p>
+
+<p><img src="/images/documentation/concurrency/Error_concurrent_calls.png" alt="error concurrent calls" /></p>
+
+
+                <div class="col-md-12">
+                    <hr/>
+                    <p class="pull-right">
+                        <a class="btn btn-primary btn-circle" href="/support">Need support?</a>
+                    </p>
+                </div>
+            </div>
+    </section>
+</div>
+
+            </section>
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+</body>
+</html>

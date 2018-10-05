@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Open sourcing all enterprise components - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Open sourcing all enterprise components - KrakenD API Gateway">
+    <meta name="twitter:title" content="Open sourcing all enterprise components - KrakenD API Gateway">
+    <meta property="og:title" content="Open sourcing all enterprise components - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Why are we open sourcing our Enterprise version?">
+    <meta itemprop="description" content="Why are we open sourcing our Enterprise version?">
+    <meta name="twitter:description" content="Why are we open sourcing our Enterprise version?">
+    <meta property="og:description" content="Why are we open sourcing our Enterprise version?">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/blog/enterprise-loves-opensource.jpg">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/enterprise-loves-opensource.jpg">
+    <meta property="og:image" content="http://krakend.io/images/blog/enterprise-loves-opensource.jpg" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/blog/open-sourcing-enterprise-features/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+	<div class="wrapper">
+		
+		    
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+		
+<div class="blog-wrapper wrap container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+    <section class="blog">
+        <div class="box box-widget">
+            
+            <a href="http://www.krakend.io/blog/open-sourcing-enterprise-features/">
+              <img class="post-image" src="/images/blog/enterprise-loves-opensource.jpg" />
+            </a>
+              
+            
+
+            <div class="box-body">
+                <article class="post-entry">
+                    <header class="post-header">
+                        <div class="section share pull-right">
+                            <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fopen-sourcing-enterprise-features%2f&t=Open%20sourcing%20all%20enterprise%20components" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fopen-sourcing-enterprise-features%2f&text=Open%20sourcing%20all%20enterprise%20components&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fopen-sourcing-enterprise-features%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fopen-sourcing-enterprise-features%2f&title=Open%20sourcing%20all%20enterprise%20components" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                        </div>
+                        <h1 class="post-title">
+                            <a href="http://www.krakend.io/blog/open-sourcing-enterprise-features/" class="post-link">Open sourcing all enterprise components</a>
+                        </h1>
+                        <div class="post-metadata clearfix">
+    <p class="author pull-left">
+        by alombarte &middot; Oct 22, 2017
+    </p>
+    <div class="tags">
+        <ul>
+            <li><i class="fa fa-tags" aria-hidden="true"></i></li>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <em>5 min read</em></li>
+        </ul>
+    </div>
+</div>
+                    </header>
+
+                    
+
+<p>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?</p>
+
+<h2 id="a-look-back">A look back&hellip;</h2>
+
+<p>If you are reading this post chances are that you know this already, in short KrakenD is the <strong>fastest API Gateway in the market</strong>. It&rsquo;s built in <a href="https://golang.org/">Go programming language</a> while following best practices and designed with performance in mind. But don&rsquo;t take it for granted, we encourage you go run your own <a href="http://www.krakend.io/docs/benchmarks/overview/">benchmarks</a> against your APIs.</p>
+
+<p>KrakenD is developed by <a href="http://devops.faith">Devops Faith</a>. We are a small group of engineers helping companies solve complex problems. Since we&rsquo;re all engineers here, our marketing skills are on a similar level to our skills in butterfly sexing. So we decided to communicate this big change in our product with this only <a href="https://twitter.com/devopsfaith/status/917122967573749760">tweet</a>:</p>
+
+<p><blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"><p lang="en" dir="ltr">KrakenD goes full open source! We will be publishing all our components of the Enterprise version, first one here <a href="https://t.co/fDE1qzjbAc">https://t.co/fDE1qzjbAc</a></p>&mdash; Devops Faith (@devopsfaith) <a href="https://twitter.com/devopsfaith/status/917122967573749760?ref_src=twsrc%5Etfw">October 8, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>Today with this post I will extend a little bit this short announcement.</p>
+
+<h2 id="krakend-open-source-krakend-free-and-krakend-enterprise-what-da">KrakenD open source, KrakenD free and KrakenD Enterprise. What Da?</h2>
+
+<p>When we started this adventure, we made a distinction between the <strong>commercial KrakenD</strong> products - the downloadable binary versions that have been commercialized only for a few months - and the <strong>Open Source KrakenD framework</strong> that we use ourselves as the foundations of all products.</p>
+
+<p>We <a href="https://github.com/devopsfaith/krakend/commit/44fe35b2bb581201b57b0e26da4fab11939db6e2">unleashed the KrakenD</a> on Github right before past winter holidays. We always believed in the OS movement and it is no strange that a commercial product is built upon an open source framework maintained by the same organization.</p>
+
+<p>On the other hand the <strong>free version</strong> was a packaged product (not a framework) with almost all the Enterprise features only that limited in concurrency and number of endpoints you could create. Just a teaser to make you want more and pay for an <strong>Enterprise license</strong>.</p>
+
+<p>The three products (os, free and enterprise) are meant to run <strong>on-premises</strong>. It is what makes more sense in terms of performance because what is a better place to put an API Gateway than inside the network your backends (APIs) live?</p>
+
+<p>But now we decided to give this scenario a fresh perspective&hellip;</p>
+
+<h2 id="goodbye-to-the-on-premise-licensing-model">Goodbye to the on-premise licensing model</h2>
+
+<p>So yesterday, if you wanted a <em>full-equipped</em> KrakenD in functionalities you needed to apply (pay) for an enterprise license. If you did we generated a license that you would install in your on-premise. All features were unlocked then and the limits raised accordingly.</p>
+
+<p>What we are changing from now on is that <strong>no one will need a license to run all the existing features of KrakenD in their own datacenter</strong> as we will release them in the open source project.</p>
+
+<p>It might seem a big change for us in terms of business, but we believe that the product will benefit more from a full open source model that does not conflict with the enterprise features.</p>
+
+<p><strong>From an API Gateway perspective, KrakenD functionality will be in its whole open sourced</strong></p>
+
+<p>On the other hand, the <strong>Enterprise product</strong> will orbit around the <strong>centralized management</strong> of KrakenD clusters and will also offer a <strong>hosted solution</strong> (SaaS) for those customers not willing to deploy themselves Krakend.</p>
+
+<p>In addition to that, what we are not changing is that we will continue giving paid support, consultancy and expert development as this model has been working well for us.</p>
+
+<h2 id="so-what-is-exactly-open-sourced">So, what is exactly open sourced?</h2>
+
+<p>Unlike Netflix we won&rsquo;t be releasing all episodes in the first season. We will progressively release the enterprise components in our <a href="https://github.com/devopsfaith/krakend">KrakenD Github page</a> when they are core, or on its own repository if they are not essential functionality of a <strong>pure API Gateway</strong>.</p>
+
+<p>A lot of components and middlewares will be going out, and time will bring even more. Here is a preview (non-limited) of functionalities that we will be releasing soon, do not take this sample as an accurate roadmap:</p>
+
+<ul>
+<li><a href="https://github.com/devopsfaith/krakend-ratelimit">Rate limit</a> (<i class="fa fa-check"></i> published!)</li>
+<li><a href="https://github.com/devopsfaith/krakend-circuitbreaker">Circuit breaker</a> (<i class="fa fa-check"></i> published!)</li>
+<li>OAuth2 client credentials grant</li>
+<li>Metrics proxy and router</li>
+<li>Security router
+
+<ul>
+<li>Restrict connections by host</li>
+<li>HTTP Strict Transport Security (HSTS)</li>
+<li>Clickjacking protection</li>
+<li>HTTP Public Key Pinning (HPKP)</li>
+<li>MIME-Sniffing prevention</li>
+<li>Cross-site scripting (XSS) protection</li>
+<li>Cross-origin resource sharing (CORS)</li>
+</ul></li>
+<li><code>cmd</code> package</li>
+<li>JSON Web Tokens (JWT) and JSON Object Signing and Encryption (JOSE)</li>
+<li>Custom caching headers</li>
+</ul>
+
+<h2 id="summing-up">Summing up</h2>
+
+<p>We had crossed thoughts for a long time and we had a lot of internal debate. With this change you might even think we are shooting ourselves in the foot. Maybe. But we are certain of this is better for the community and also for the product and its satellite middlewares as they will grow faster this way.</p>
+
+<p>We will announce via <a href="https://github.com/devopsfaith">Twitter</a> when we publish new components, but make sure at least to <i class="fa fa-star"></i> <strong>star</strong> (thanks!!!) the project. Even better if you also <strong>watch</strong> it to get the notifications, and super if you decide to <i class="fa fa-code-fork"></i> <strong>fork</strong> it and contribute.</p>
+
+<p>Thanks for watching! :)</p>
+
+
+                    <aside>
+                      <div class="share pull-right">
+                        <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fopen-sourcing-enterprise-features%2f&t=Open%20sourcing%20all%20enterprise%20components" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                        <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fopen-sourcing-enterprise-features%2f&text=Open%20sourcing%20all%20enterprise%20components&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fopen-sourcing-enterprise-features%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fopen-sourcing-enterprise-features%2f&title=Open%20sourcing%20all%20enterprise%20components" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                      </div>
+                    </aside>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="col-xs-12 col-sm-2 col-md-2 navigation_container affix-top">
+        <h3>KrakenD blog</h3>
+        <ul class="nav">
+          <li><a href="/blog/">All categories</a></li>
+          
+          <li><a href="/categories/announcements">announcements</a></li>
+          
+          <li><a href="/categories/api-gateway">api-gateway</a></li>
+          
+          <li><a href="/categories/api2html">api2html</a></li>
+          
+          <li><a href="/categories/configuration">configuration</a></li>
+          
+          <li><a href="/categories/devops">devops</a></li>
+          
+          <li><a href="/categories/docker">docker</a></li>
+          
+          <li><a href="/categories/enterprise">enterprise</a></li>
+          
+          <li><a href="/categories/krakend">krakend</a></li>
+          
+          <li><a href="/categories/kubernetes">kubernetes</a></li>
+          
+          <li><a href="/categories/reflex">reflex</a></li>
+          
+        </ul>
+        <h3>Tag Cloud</h3>
+        <ul class="nav">
+          
+          <li><a href="/tags/open-source">open-source</a></li>
+          
+          <li><a href="/tags/how-to">how-to</a></li>
+          
+          <li><a href="/tags/golang">golang</a></li>
+          
+          <li><a href="/tags/release-notes">release-notes</a></li>
+          
+          <li><a href="/tags/docker">docker</a></li>
+          
+        </ul>
+        <h3>Recent Posts</h3>
+        <ul class="nav">
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
+          
+        </ul>
+  </div>
+
+
+</div>
+
+	</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>

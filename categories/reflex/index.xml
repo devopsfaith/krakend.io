@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reflex on KrakenD - Ultra-High performance API Gateway with middlewares</title>
+    <link>http://www.krakend.io/categories/reflex/</link>
+    <description>Recent content in Reflex on KrakenD - Ultra-High performance API Gateway with middlewares</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Jun 2018 11:06:53 +0200</lastBuildDate>
+    
+	<atom:link href="http://www.krakend.io/categories/reflex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reloading the Krakend configuration with Reflex and Docker</title>
+      <link>http://www.krakend.io/blog/reloading-the-krakend-configuration/</link>
+      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
+      <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&amp;rsquo;s running. The short answer is: No, you can&amp;rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&amp;rsquo;t support such a feature:
+ Performance: This is the #1 reason, and strong enough.</description>
+    </item>
+    
+  </channel>
+</rss>

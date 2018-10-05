@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Running the KrakenD API Gateway on Kubernetes - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Running the KrakenD API Gateway on Kubernetes - KrakenD API Gateway">
+    <meta name="twitter:title" content="Running the KrakenD API Gateway on Kubernetes - KrakenD API Gateway">
+    <meta property="og:title" content="Running the KrakenD API Gateway on Kubernetes - KrakenD API Gateway">
+
+    
+    <meta property="description" content="How to run KrakenD API Gateway on Kubernetes">
+    <meta itemprop="description" content="How to run KrakenD API Gateway on Kubernetes">
+    <meta name="twitter:description" content="How to run KrakenD API Gateway on Kubernetes">
+    <meta property="og:description" content="How to run KrakenD API Gateway on Kubernetes">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/blog/krakend-kubernetes.jpg">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/krakend-kubernetes.jpg">
+    <meta property="og:image" content="http://krakend.io/images/blog/krakend-kubernetes.jpg" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/blog/krakend-on-kubernetes/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+	<div class="wrapper">
+		
+		    
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+		
+<div class="blog-wrapper wrap container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+    <section class="blog">
+        <div class="box box-widget">
+            
+            <a href="http://www.krakend.io/blog/krakend-on-kubernetes/">
+              <img class="post-image" src="/images/blog/krakend-kubernetes.jpg" />
+            </a>
+              
+            
+
+            <div class="box-body">
+                <article class="post-entry">
+                    <header class="post-header">
+                        <div class="section share pull-right">
+                            <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-on-kubernetes%2f&t=Running%20the%20KrakenD%20API%20Gateway%20on%20Kubernetes" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-on-kubernetes%2f&text=Running%20the%20KrakenD%20API%20Gateway%20on%20Kubernetes&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-on-kubernetes%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-on-kubernetes%2f&title=Running%20the%20KrakenD%20API%20Gateway%20on%20Kubernetes" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                        </div>
+                        <h1 class="post-title">
+                            <a href="http://www.krakend.io/blog/krakend-on-kubernetes/" class="post-link">Running the KrakenD API Gateway on Kubernetes</a>
+                        </h1>
+                        <div class="post-metadata clearfix">
+    <p class="author pull-left">
+        by Daniel López &middot; Jun 6, 2018
+    </p>
+    <div class="tags">
+        <ul>
+            <li><i class="fa fa-tags" aria-hidden="true"></i></li>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            ,
+            
+            <a href="/tags/golang">
+                golang
+            </a>
+            
+            ,
+            
+            <a href="/tags/how-to">
+                how to
+            </a>
+            
+            ,
+            
+            <a href="/tags/docker">
+                docker
+            </a>
+            
+            ,
+            
+            <a href="/tags/kubernetes">
+                kubernetes
+            </a>
+            
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <em>7 min read</em></li>
+        </ul>
+    </div>
+</div>
+                    </header>
+
+                    
+
+<p>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.</p>
+
+<p>We will use for the demonstration <a href="https://github.com/kubernetes/minikube">Minikube</a> so you cant test it in your own local machine.</p>
+
+<p>Let&rsquo;s get started!</p>
+
+<h2 id="setting-up-a-local-kubernetes">Setting up a local Kubernetes</h2>
+
+<p>We will run Kubernetes locally thanks to Minikube. Just follow the <a href="https://github.com/kubernetes/minikube">README</a> in the project for the installation and the <em>Quickstart</em> section. Installing minikube it&rsquo;s quick and easy.</p>
+
+<pre><code>$ minikube start
+Starting local Kubernetes v1.7.5 cluster...
+Starting VM...
+SSH-ing files into VM...
+Setting up certs...
+Starting cluster components...
+Connecting to cluster...
+Setting up kubeconfig...
+Kubectl is now configured to use the cluster.
+</code></pre>
+
+<p>Once Minikube is installed and running you can see the graphical interface with:</p>
+
+<pre><code>$ minikube dashboard
+</code></pre>
+
+<p>Now we are ready and with a Kubernetes ready to start pushing containers!</p>
+
+<h2 id="building-the-docker-images">Building the Docker images</h2>
+
+<p><strong><a href="https://github.com/kpacha/krakend-k8s">Download here</a></strong> all the example files mentioned in this post.</p>
+
+<h3 id="local-backend-your-api">Local Backend (Your API)</h3>
+
+<p>If your API has a container already you can skip this step. Otherwise we will create here a backend API that will provide the data to Krakend. The easiest way to build an ultra-fast backend for our demonstration purposes is to use a server named LWAN. The <a href="https://github.com/devopsfaith/krakend-playground">krakend-playground</a> contains several <a href="https://github.com/devopsfaith/krakend-playground/tree/master/data">dummy responses</a> that we have used in other demos. These static files used for the responses are also included in the example repository.</p>
+
+<p>The backend <code>Dockerfile</code> is under the <code>backend</code> folder and contains these 2 simple lines:</p>
+
+<p><strong>backend/Dockerfile</strong></p>
+
+<pre><code>FROM jaxgeller/lwan
+ADD ./data/. /lwan/wwwroot/.
+</code></pre>
+
+<p>Now we are going to build this image in the same registry Minikube uses. To do so you need to export the required environment variables before building it, as follows:</p>
+
+<pre><code>$ cd backend
+$ eval $(minikube docker-env)
+$ docker build -t fake-api -f Dockerfile .
+</code></pre>
+
+<p>Now the Docker registry associated to Minikube contains the <code>fake-api</code> image. If you have executed the eval the images list should like this:</p>
+
+<pre><code>$ docker images
+REPOSITORY                                 TAG                 IMAGE ID            CREATED              SIZE
+fake-api                                   latest              4db4257837ee        About a minute ago   439MB
+k8s.gcr.io/kube-proxy-amd64                v1.10.0             bfc21aadc7d3        2 months ago         97MB
+k8s.gcr.io/kube-scheduler-amd64            v1.10.0             704ba848e69a        2 months ago         50.4MB
+k8s.gcr.io/kube-controller-manager-amd64   v1.10.0             ad86dbed1555        2 months ago         148MB
+k8s.gcr.io/kube-apiserver-amd64            v1.10.0             af20925d51a3        2 months ago         225MB
+k8s.gcr.io/etcd-amd64                      3.1.12              52920ad46f5b        2 months ago         193MB
+k8s.gcr.io/kube-addon-manager              v8.6                9c16409588eb        3 months ago         78.4MB
+k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64     1.14.8              c2ce1ffb51ed        5 months ago         41MB
+k8s.gcr.io/k8s-dns-sidecar-amd64           1.14.8              6f7f2dc7fab5        5 months ago         42.2MB
+k8s.gcr.io/k8s-dns-kube-dns-amd64          1.14.8              80cc5ea4b547        5 months ago         50.5MB
+k8s.gcr.io/pause-amd64                     3.1                 da86e6ba6ca1        5 months ago         742kB
+k8s.gcr.io/kubernetes-dashboard-amd64      v1.8.1              e94d2f21bc0c        5 months ago         121MB
+k8s.gcr.io/kube-addon-manager              v6.5                d166ffa9201a        6 months ago         79.5MB
+gcr.io/k8s-minikube/storage-provisioner    v1.8.0              4689081edb10        7 months ago         80.8MB
+gcr.io/k8s-minikube/storage-provisioner    v1.8.1              4689081edb10        7 months ago         80.8MB
+k8s.gcr.io/k8s-dns-sidecar-amd64           1.14.4              38bac66034a6        11 months ago        41.8MB
+k8s.gcr.io/k8s-dns-kube-dns-amd64          1.14.4              a8e00546bcf3        11 months ago        49.4MB
+k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64     1.14.4              f7f45b9cb733        11 months ago        41.4MB
+k8s.gcr.io/etcd-amd64                      3.0.17              243830dae7dd        15 months ago        169MB
+k8s.gcr.io/pause-amd64                     3.0                 99e59f495ffa        2 years ago          747kB
+jaxgeller/lwan                             latest              526243cbb205        2 years ago          439MB
+</code></pre>
+
+<p>You will quickly realize the terminal session you are in is not using your docker host, but minikube&rsquo;s.</p>
+
+<h3 id="krakend">KrakenD</h3>
+
+<p>With your backend ready is time to setup the image for the API gateway, which is also very easy to setup. All it takes is to write the Krakend&rsquo; settings in the <code>krakend.json</code> and add it in the image, as follows:</p>
+
+<p><strong>krakend.json</strong></p>
+
+<pre><code>{
+    &quot;version&quot;: 2,
+    &quot;name&quot;: &quot;KrakenD on k8s&quot;,
+    &quot;port&quot;: 8080,
+    &quot;cache_ttl&quot;: &quot;3600s&quot;,
+    &quot;timeout&quot;: &quot;3s&quot;,
+    &quot;host&quot;: [ &quot;https://jsonplaceholder.typicode.com&quot; ],
+    &quot;endpoints&quot;: [
+        {
+            &quot;endpoint&quot;: &quot;/debug&quot;,
+            &quot;backend&quot;: [
+                {
+                    &quot;host&quot;: [ &quot;http://krakend-service:8000&quot; ],
+                    &quot;url_pattern&quot;: &quot;/__debug/debug&quot;
+                }
+            ]
+        },
+        {
+            &quot;endpoint&quot;: &quot;/combination/{id}&quot;,
+            &quot;backend&quot;: [
+                {
+                    &quot;url_pattern&quot;: &quot;/posts?userId={id}&quot;,
+                    &quot;is_collection&quot;: true,
+                    &quot;mapping&quot;: { &quot;collection&quot;: &quot;posts&quot; }
+                },
+                {
+                    &quot;url_pattern&quot;: &quot;/users/{id}&quot;,
+                    &quot;mapping&quot;: { &quot;email&quot;: &quot;personal_email&quot; }
+                }
+            ]
+        },
+        {
+          &quot;endpoint&quot;: &quot;/splash&quot;,
+          &quot;backend&quot;: [
+            {
+              &quot;host&quot;: [ &quot;http://fake_api:8080&quot; ],
+              &quot;url_pattern&quot;: &quot;/shop/campaigns.json&quot;,
+              &quot;whitelist&quot;: [ &quot;campaigns&quot; ]
+            },
+            {
+              &quot;host&quot;: [ &quot;http://fake_api:8080&quot; ],
+              &quot;url_pattern&quot;: &quot;/shop/products.json&quot;,
+              &quot;whitelist&quot;: [ &quot;products&quot; ]
+            }
+          ]
+        }
+    ]
+}
+</code></pre>
+
+<p>And now let&rsquo;s create the API Gateway image with the configuration. The following <code>Dockerfile</code> is in the root folder.</p>
+
+<p><strong>Dockerfile</strong></p>
+
+<pre><code>FROM devopsfaith/krakend:0.4.2
+COPY configuration.json /etc/krakend/krakend.json
+</code></pre>
+
+<p>And this how you build it:</p>
+
+<pre><code>$ docker build -t k8s-krakend:0.0.1 .
+</code></pre>
+
+<h2 id="deploying-in-kubernetes">Deploying in kubernetes</h2>
+
+<p>At this point we have two images ready to use in the Docker registry: the <code>fake-api</code> and the <code>k8s-krakend</code>. We need to deploy them now in k8s.</p>
+
+<h3 id="deploy-the-backend-api-in-k8s">Deploy the backend API in k8s</h3>
+
+<p>With two <code>kubectl</code> calls you can create a kubernetes deployment and a service, so our fake backend is started and published in the service discovery.</p>
+
+<pre><code>$ kubectl run fake-api --image=fake-api:latest --port=8080 --image-pull-policy='Never'
+$ kubectl expose deployment fake-api --type=NodePort
+</code></pre>
+
+<h3 id="deploy-the-api-gateway-in-k8s">Deploy the API gateway in k8s</h3>
+
+<p>With the backend running and the custom image ready, let&rsquo;s go with the YAML way of defining resource creations in kubernetes. Place the KrakenD <code>deployment</code> definition in a file called <code>deployment-definition.yaml</code>:</p>
+
+<p><strong>deployment-definition.yaml</strong></p>
+
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krakend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: krakend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: krakend
+    spec:
+      containers:
+      - name: krakend
+        image: k8s-krakend:0.0.1
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Never
+        command: [ &quot;/usr/bin/krakend&quot; ]
+        args: [ &quot;run&quot;, &quot;-d&quot;, &quot;-c&quot;, &quot;/etc/krakend/krakend.json&quot;, &quot;-p&quot;, &quot;8080&quot; ]
+</code></pre>
+
+<p>The KrakenD <code>service</code> definition, in a file called <code>service-definition.yaml</code>:</p>
+
+<p><strong>service-definition.yaml</strong></p>
+
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: krakend-service
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: krakend
+</code></pre>
+
+<p>And then register both with the same <code>kubectl</code> command:</p>
+
+<pre><code>$ kubectl create -f deployment-definition.yaml
+$ kubectl create -f service-definition.yaml
+</code></pre>
+
+<p>You are done, both services are now running in Kubernetes!</p>
+
+<p><img class="img-responsive" src="/images/blog/kubernetes-services.png" alt="Kubernetes services"></p>
+
+<h2 id="testing-the-services">Testing the services</h2>
+
+<p>After exposing the <code>krakend-service</code> you can test it by asking Minikube the assigned URL with:</p>
+
+<pre><code>$ minikube service krakend-service
+</code></pre>
+
+<p>This will open your default browser with the krakend-service. It will return a <code>404</code> as we haven&rsquo;t configured any endpoint in the root <code>/</code>. Keep the URL and let&rsquo;s query the gateway with the endpoints we have defined.</p>
+
+<p>Check the regular features work as expected:</p>
+
+<pre><code>$ curl -i http://192.168.99.101:32064/combination/10
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=3600
+Content-Type: application/json; charset=utf-8
+X-Krakend: Version 0.4.2
+Date: Mon, 23 Apr 2018 19:16:40 GMT
+Transfer-Encoding: chunked
+
+{&quot;address&quot;:{&quot;city&quot;:&quot;Lebsackbury&quot;,&quot;geo&quot;:{&quot;lat&quot;:&quot;-38.2386&quot;,&quot;lng&quot;:&quot;57.2232&quot;},&quot;street&quot;:&quot;Kattie Turnpike&quot;,&quot;suite&quot;:&quot;Suite 198&quot;,&quot;zipcode&quot;:&quot;31428-2261&quot;},&quot;company&quot;:{&quot;bs&quot;:&quot;target end-to-end models&quot;,&quot;catchPhrase&quot;:&quot;Centralized empowering task-force&quot;,&quot;name&quot;:&quot;Hoeger LLC&quot;},&quot;id&quot;:10,&quot;name&quot;:&quot;Clementina DuBuque&quot;,&quot;personal_email&quot;:&quot;Rey.Padberg@karina.biz&quot;,&quot;phone&quot;:&quot;024-648-3804&quot;,&quot;posts&quot;:[{&quot;body&quot;:&quot;libero voluptate eveniet aperiam sed\nsunt placeat suscipit molestias\nsimilique fugit nam natus\nexpedita consequatur consequatur dolores quia eos et placeat&quot;,&quot;id&quot;:91,&quot;title&quot;:&quot;aut amet sed&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;aut et excepturi dicta laudantium sint rerum nihil\nlaudantium et at\na neque minima officia et similique libero et\ncommodi voluptate qui&quot;,&quot;id&quot;:92,&quot;title&quot;:&quot;ratione ex tenetur perferendis&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;dolorem quibusdam ducimus consequuntur dicta aut quo laboriosam\nvoluptatem quis enim recusandae ut sed sunt\nnostrum est odit totam\nsit error sed sunt eveniet provident qui nulla&quot;,&quot;id&quot;:93,&quot;title&quot;:&quot;beatae soluta recusandae&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;aspernatur expedita soluta quo ab ut similique\nexpedita dolores amet\nsed temporibus distinctio magnam saepe deleniti\nomnis facilis nam ipsum natus sint similique omnis&quot;,&quot;id&quot;:94,&quot;title&quot;:&quot;qui qui voluptates illo iste minima&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;earum voluptatem facere provident blanditiis velit laboriosam\npariatur accusamus odio saepe\ncumque dolor qui a dicta ab doloribus consequatur omnis\ncorporis cupiditate eaque assumenda ad nesciunt&quot;,&quot;id&quot;:95,&quot;title&quot;:&quot;id minus libero illum nam ad officiis&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;in non odio excepturi sint eum\nlabore voluptates vitae quia qui et\ninventore itaque rerum\nveniam non exercitationem delectus aut&quot;,&quot;id&quot;:96,&quot;title&quot;:&quot;quaerat velit veniam amet cupiditate aut numquam ut sequi&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;eum non blanditiis soluta porro quibusdam voluptas\nvel voluptatem qui placeat dolores qui velit aut\nvel inventore aut cumque culpa explicabo aliquid at\nperspiciatis est et voluptatem dignissimos dolor itaque sit nam&quot;,&quot;id&quot;:97,&quot;title&quot;:&quot;quas fugiat ut perspiciatis vero provident&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;doloremque ex facilis sit sint culpa\nsoluta assumenda eligendi non ut eius\nsequi ducimus vel quasi\nveritatis est dolores&quot;,&quot;id&quot;:98,&quot;title&quot;:&quot;laboriosam dolor voluptates&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;quo deleniti praesentium dicta non quod\naut est molestias\nmolestias et officia quis nihil\nitaque dolorem quia&quot;,&quot;id&quot;:99,&quot;title&quot;:&quot;temporibus sit alias delectus eligendi possimus magni&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut&quot;,&quot;id&quot;:100,&quot;title&quot;:&quot;at nam consequatur ea labore ea harum&quot;,&quot;userId&quot;:10}],&quot;username&quot;:&quot;Moriah.Stanton&quot;,&quot;website&quot;:&quot;ambrose.net&quot;}
+</code></pre>
+
+<p>Now check the kubernetes out-of-the-box host resolution by requesting data from our <strong>debug</strong> endpoint:</p>
+
+<pre><code>$ curl -i http://192.168.99.101:32064/debug
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=3600
+Content-Type: application/json; charset=utf-8
+X-Krakend: Version 0.4.2
+Date: Mon, 23 Apr 2018 19:17:10 GMT
+Content-Length: 18
+
+{&quot;message&quot;:&quot;pong&quot;}
+</code></pre>
+
+<p>Finally, the actual test using the dummy backends:</p>
+
+<pre><code>$ curl -i http://192.168.99.101:32064/splash
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=3600
+Content-Type: application/json; charset=utf-8
+X-Krakend: Version 0.4.2
+Date: Mon, 23 Apr 2018 19:17:53 GMT
+Transfer-Encoding: chunked
+
+{&quot;campaigns&quot;:[{&quot;discounts&quot;:[{&quot;discount&quot;:0.15,&quot;id_product&quot;:1},{&quot;discount&quot;:0.50,&quot;id_product&quot;:2},{&quot;discount&quot;:0.25,&quot;id_product&quot;:3}],&quot;end_date&quot;:&quot;2017/02/15&quot;,&quot;id_campaign&quot;:1,
+...
+</code></pre>
+
+<p>Hurray!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In this post we have seen how quickly you can get an API Gateway running on Kubernetes without requiring any extra modules nor 3rd party components. In under 5 minutes you can have an ultra-perfomance API Gateway that doesn&rsquo;t require coding the endpoints and that anyone can use.</p>
+
+<p>Start doing your own experiments now by downloading the <a href="https://github.com/kpacha/krakend-k8s">source code</a> of these examples.</p>
+
+<p>Thanks for reading! If you like our product don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+
+
+                    <aside>
+                      <div class="share pull-right">
+                        <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-on-kubernetes%2f&t=Running%20the%20KrakenD%20API%20Gateway%20on%20Kubernetes" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                        <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-on-kubernetes%2f&text=Running%20the%20KrakenD%20API%20Gateway%20on%20Kubernetes&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-on-kubernetes%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-on-kubernetes%2f&title=Running%20the%20KrakenD%20API%20Gateway%20on%20Kubernetes" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                      </div>
+                    </aside>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="col-xs-12 col-sm-2 col-md-2 navigation_container affix-top">
+        <h3>KrakenD blog</h3>
+        <ul class="nav">
+          <li><a href="/blog/">All categories</a></li>
+          
+          <li><a href="/categories/announcements">announcements</a></li>
+          
+          <li><a href="/categories/api-gateway">api-gateway</a></li>
+          
+          <li><a href="/categories/api2html">api2html</a></li>
+          
+          <li><a href="/categories/configuration">configuration</a></li>
+          
+          <li><a href="/categories/devops">devops</a></li>
+          
+          <li><a href="/categories/docker">docker</a></li>
+          
+          <li><a href="/categories/enterprise">enterprise</a></li>
+          
+          <li><a href="/categories/krakend">krakend</a></li>
+          
+          <li><a href="/categories/kubernetes">kubernetes</a></li>
+          
+          <li><a href="/categories/reflex">reflex</a></li>
+          
+        </ul>
+        <h3>Tag Cloud</h3>
+        <ul class="nav">
+          
+          <li><a href="/tags/open-source">open-source</a></li>
+          
+          <li><a href="/tags/how-to">how-to</a></li>
+          
+          <li><a href="/tags/golang">golang</a></li>
+          
+          <li><a href="/tags/release-notes">release-notes</a></li>
+          
+          <li><a href="/tags/docker">docker</a></li>
+          
+        </ul>
+        <h3>Recent Posts</h3>
+        <ul class="nav">
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
+          
+        </ul>
+  </div>
+
+
+</div>
+
+	</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Installing KrakenD - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Installing KrakenD - KrakenD API Gateway">
+    <meta name="twitter:title" content="Installing KrakenD - KrakenD API Gateway">
+    <meta property="og:title" content="Installing KrakenD - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Installing KrakenD - KrakenD API Gateway">
+    <meta itemprop="description" content="Installing KrakenD - KrakenD API Gateway">
+    <meta name="twitter:description" content="Installing KrakenD - KrakenD API Gateway">
+    <meta property="og:description" content="Installing KrakenD - KrakenD API Gateway">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/logo.png">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/logo.png">
+    <meta property="og:image" content="http://krakend.io/images/logo.png" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/docs/overview/installing/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+    <div class="wrapper">
+            
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                
+                <ul class="sidebar-menu">
+    <li class="header">Documentation</li>
+    
+    
+    
+        
+        <li class="treeview active">
+            <a href="javascript:;">
+                <i class='fa fa-road'></i> <span>Getting Started</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu menu-open">
+            
+                <li class="">
+                    <a href="/docs/overview/introduction/"><i class="fa fa-circle-o"></i> Introduction</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/docs/overview/installing/"><i class="fa fa-circle-o"></i> Installing KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/usage/"><i class="fa fa-circle-o"></i> Using KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/configuration/"><i class="fa fa-circle-o"></i> Configuration file</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/krakend-vs-krakend-ce/"><i class="fa fa-circle-o"></i> KrakenD vs KrakenD-CE</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/overview/playground/"><i class="fa fa-circle-o"></i> The Playground</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-check'></i> <span>Endpoints Features</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/features/response-manipulation/"><i class="fa fa-circle-o"></i> Response manipulation</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/concurrent-requests/"><i class="fa fa-circle-o"></i> Concurrent Requests</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/parameter-forwarding/"><i class="fa fa-circle-o"></i> Parameter forwarding</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/security/"><i class="fa fa-circle-o"></i> Security</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/content-types/"><i class="fa fa-circle-o"></i> Content Types</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/features/other/"><i class="fa fa-circle-o"></i> Other</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-heartbeat'></i> <span>Throttling and Limits</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/throttling/overview/"><i class="fa fa-circle-o"></i> Throttling Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/circuit-breaker/"><i class="fa fa-circle-o"></i> Circuit Breaker</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/rate-limit/"><i class="fa fa-circle-o"></i> Rate Limits</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/timeouts/"><i class="fa fa-circle-o"></i> Timeouts</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/throttling/max-idle-connections/"><i class="fa fa-circle-o"></i> Max IDLE connections</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-space-shuttle'></i> <span>Command line commands</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/commands/run/"><i class="fa fa-circle-o"></i> Run</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/commands/check/"><i class="fa fa-circle-o"></i> Check</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-bar-chart'></i> <span>Benchmarks</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o"></i> Benchmarks Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o"></i> KrakenD vs others</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/aws/"><i class="fa fa-circle-o"></i> On Amazon Web Services</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/benchmarks/local/"><i class="fa fa-circle-o"></i> Local machine</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-connectdevelop'></i> <span>Cluster</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/cluster/cluster-overview/"><i class="fa fa-circle-o"></i> Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/configuration/"><i class="fa fa-circle-o"></i> Cluster configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/subscription-levels/"><i class="fa fa-circle-o"></i> Subscription levels</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="/docs/faq/">
+                <i class='fa fa-wrench'></i>  <span>Troubleshooting</span>
+            </a>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="http://github.com/devopsfaith/krakend-ce/issues">
+                <i class='fa fa-github'></i>  <span>Issues</span>
+            </a>
+        </li>
+        
+    
+</ul>
+                
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                
+<a class="btn btn-default pull-right"
+href="https://github.com/devopsfaith/krakend-documentation/tree/master/overview/installing.md">
+    <span><i class="fa fa-edit"></i> Edit this page</span>
+</a>
+<h1>
+    Installing KrakenD
+</h1>
+
+            </section>
+            <section class="content">
+                
+<div class="row">
+    <section class="col-md-12 docs">
+
+        <div class="box box-primary">
+            <div class="box-body">
+                
+                
+                <div class="pull-right col-md-4 visible-lg-inline TOC">
+                    <div class="box">
+                    <div class="box-header with-border">
+                        <h5 class="box-title"><i class="fa fa-book"></i> Table of Contents</h5>
+                        <div class="pull-right">
+                            <a data-widget="collapse"><i class="fa fa-minus"></i></a>
+                        </div>
+                    </div>
+
+                        <div class="box-body">
+                            <nav id="TableOfContents">
+<ul>
+<li><a href="#docker">Docker</a></li>
+<li><a href="#mac-os-x">Mac OS X</a></li>
+<li><a href="#linux">Linux</a>
+<ul>
+<li><a href="#centos-and-redhat">CentOS and Redhat</a></li>
+<li><a href="#fedora">Fedora</a></li>
+<li><a href="#debian-and-ubuntu">Debian and Ubuntu</a></li>
+<li><a href="#generic-via-tar-gz">Generic (via <code>tar.gz</code>)</a></li>
+</ul></li>
+<li><a href="#build-krakend-yourself">Build KrakenD yourself</a></li>
+</ul>
+</nav>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+
+<p>KrakenD is a <strong>single binary file</strong> that does not require any external libraries to work. To install KrakenD choose your operative system in the downloads section or use the Docker image.</p>
+
+<p><a href="/download" class="btn btn-primary">Download KrakenD</a>
+and
+<a href="http://designer.krakend.io" class="btn btn-primary">Generate the configuration file</a></p>
+
+<p><strong>Just exploring?</strong></p>
+
+<p>Use the <a href="https://github.com/devopsfaith/krakend-playground">KrakenD Playground</a> if you want to play with KrakenD without configuring it. The Playground comes with several flavors of KrakenD and a mock API. Everything is ready to start playing, just do a <code>docker-compose up</code>!</p>
+
+<h1 id="docker">Docker</h1>
+
+<p>If you are already familiar with Docker, the easiest way to get started is by pulling the <a href="https://hub.docker.com/r/devopsfaith/krakend/">KrakenD image</a> from the Docker Hub:</p>
+
+<pre><code>docker pull devopsfaith/krakend
+docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /etc/krakend/krakend.json
+</code></pre>
+
+<p>Make sure you have a <code>krakend.json</code> in the current directory with your endpoint definition. You can <a href="http://designer.krakend.io/">generate it here</a></p>
+
+<h1 id="mac-os-x">Mac OS X</h1>
+
+<p>The <a href="https://brew.sh/">Homebrew</a> formula will download the source code, build the formula and link the binary for you.</p>
+
+<pre><code>brew install krakend
+</code></pre>
+
+<h1 id="linux">Linux</h1>
+
+<h2 id="centos-and-redhat">CentOS and Redhat</h2>
+
+<p>The installation process requires following these steps:</p>
+
+<ol>
+<li>Install the repo package</li>
+<li>Install the KrakenD package</li>
+<li>Start the KrakenD service</li>
+</ol>
+
+<p>Paste this in the terminal:</p>
+
+<pre><code>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm
+yum install -y krakend
+systemctl start krakend
+</code></pre>
+
+<h2 id="fedora">Fedora</h2>
+
+<p>Paste this in the terminal:</p>
+
+<pre><code>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm
+dnf install -y krakend
+systemctl start krakend
+</code></pre>
+
+<p>Current KrakenD version will run at least in Centos 7 and Fedora 24</p>
+
+<h2 id="debian-and-ubuntu">Debian and Ubuntu</h2>
+
+<p>The installation process requires following these steps:</p>
+
+<ol>
+<li>Add the key</li>
+<li>Add the repo to the sources.list</li>
+<li>Update your package list</li>
+<li>Install the KrakenD service</li>
+</ol>
+
+<p>Bottom line:</p>
+
+<pre><code>apt-key adv --keyserver keyserver.ubuntu.com --recv AB39BEA1
+echo &quot;deb http://repo.krakend.io/apt stable main&quot; | tee /etc/apt/sources.list.d/krakend.list
+apt-get update
+apt-get install -y krakend
+</code></pre>
+
+<p>Current KrakenD version will run at least in Debian 8, Debian 9 and Ubuntu 16.x</p>
+
+<h2 id="generic-via-tar-gz">Generic (via <code>tar.gz</code>)</h2>
+
+<p>You can also <a href="/download">download</a> the <code>tar.gz</code> and decompress it anywhere. Instructions to check the SHA and PGP signature <a href="/docs/overview/verifying-packages">here</a>.</p>
+
+<h1 id="build-krakend-yourself">Build KrakenD yourself</h1>
+
+<p>As KrakenD is open source you can opt for <a href="https://github.com/devopsfaith/krakend-ce">building the binary</a>. The binary you will produce is the same you can get in our download page, only that compiling it yourself always feels good!</p>
+
+
+                <div class="col-md-12">
+                    <hr/>
+                    <p class="pull-right">
+                        <a class="btn btn-primary btn-circle" href="/support">Need support?</a>
+                    </p>
+                </div>
+            </div>
+    </section>
+</div>
+
+            </section>
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+</body>
+</html>

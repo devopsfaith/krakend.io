@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>KrakenD - Ultra-High performance API Gateway with middlewares</title>
+    <meta property="description" content="The open source, Ultra-High performance, API Gateway">
+
+    
+    <meta itemprop="name" content="KrakenD - Ultra-High performance API Gateway with middlewares">
+    <meta itemprop="description" content="The open source, Ultra-High performance, API Gateway">
+    <meta itemprop="image" content="http://www.krakend.io/images/logo.png">
+
+    
+    <meta name="twitter:title" content="KrakenD - Ultra-High performance API Gateway with middlewares">
+    <meta name="twitter:description" content="The open source, Ultra-High performance, API Gateway">
+    
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/logo.png">
+
+    
+    <meta property="og:title" content="KrakenD - Ultra-High performance API Gateway with middlewares">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://krakend.io/images/logo.png" />
+    <meta property="og:url" content="http://www.krakend.io/" />
+    <meta property="og:description" content="The open source, Ultra-High performance, API Gateway" />
+    <meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+    <div class="wrapper">
+            
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+        <div class="homepage">
+            <section class="title">
+                <div class="container">
+                    <h1>Skyrocketing mobile apps and web clients!</h1>
+                    <p>KrakenD sits between your clients and services to offer tailored API endpoints with only the data you need and a brutal performance. Make your apps fly!</p>
+                    <p>
+                        <a class="btn btn-primary btn-lg" href="http://www.krakend.io/download" role="button"><i class="fa fa-download"></i> Get KrakenD 0.6.1 &raquo;</a>
+                        <a class="btn btn-default btn-lg" href="https://github.com/devopsfaith/krakend" class="img-responsive">
+                            <i class="fa fa-github"></i> Clone in Github
+                        </a>
+                    </p>
+                </div>
+            </section>
+            <section class="feature-block zebra">
+                <div class="container title">
+                    <h2>Build reliable apps. Have a premium user experience.</h2>
+                    <p>Eliminate the necessity of dealing with multiple REST services. KrakenD isolates clients from the
+                        micro-service implementation details, and allows you to design the specific interface you
+                        need to interact with all your API ecosystem. Have a better response time, reduce the
+                        bandwidth and decrease error rates.
+                    </p>
+
+                </div>
+            </section>
+
+            <section class="feature-block">
+                <div class="container">
+                    <div class="col-lg-3">
+                        <h3>How it works?</h3>
+                        <p>KrakenD is your <strong>self-designed REST API Gateway</strong> that feeds from your existing data
+                            services (Your APIs, legacy, cloud, IoT...)
+                            Just define visually or in a configuration file the endpoints your
+                        applications will use and the KrakenD will fetch and transform the content at your will for you.</p>
+
+
+                        <h4 class="feature">Get or send the data you want, as you want it</h4>
+                        <p><strong>Manipulate, merge and aggregate</strong> several responses from you
+                            backend servers to create a new API response that fits perfectly with your applications needs, not
+                        with the microservice design.</p>
+
+
+                    </div>
+                    <div class="col-lg-9 text-center">
+                        <img src="/images/KrakendFlow.png" title="How KrakenD works" class="img-responsive"/>
+                        <div class="footnote">
+                            <p><strong>Image:</strong> An example of flow for an endpoint in KrakenD that uses 3 different backend sources.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="col-lg-6">
+                        <h4 class="feature">Protect your own APIs</h4>
+                        <p>Avoid harmful usage of your own backends by rate limiting the access, enabling OAuth, SSL,
+                            certificates and a long list of other <strong>security and traffic management options</strong>.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4 class="feature">Extensible via plugins</h4>
+                            <p>The design of the KrakenD follows the UNIX philosophy and stacks middleware (or plugins) that add
+                            any features you might need. Use our own, the ones coded by the community or easily create yours.</p>
+
+                        </div>
+                    </div>
+                </section>
+
+
+    
+
+<section class="feature-block zebra">
+    <div class="title">
+        <h2><strong>+18,000 requests/second</strong> on <abbr title="Intel Core i7 2,2 GHz">commodity</abbr>
+        hardware</h2>
+        <p>~No, there isn't an extra zero by mistake. It's the <strong>fastest API Gateway</strong> in the market~
+        </p>
+    </div>
+</section>
+
+<section class="feature-block">
+    <div class="container">
+        <div class="col-md-4">
+            <h3>Built for performance</h3>
+            <p>KrakenD has been built with performance as the final goal (and obsession). We are super proud of the speed we are delivering and we haven't find a similar product that beat us in the market.</p>
+            <p>With a single box you can support a huge amount of traffic. It's so fast that we needed to implement
+            rate limits to give your backend a breathe!</p>
+            <a class="btn btn-success btn-circle" href="http://www.krakend.io/docs/benchmarks/overview">
+                <i class="fa fa-bar-chart"></i> See the benchmarks</a>
+            </div>
+
+            <div class="col-md-8 text-center">
+                <h4>KrakenD vs other products in the market</h4>
+                <img src="/images/KrakenD-comparison.png" class="img-responsive"/>
+                <p class="text-center">Requests per second in equal conditions. <a href="http://www.krakend.io/docs/benchmarks/overview">See benchmarks</a> </p>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="feature-block zebra">
+        <div class="title">
+            <h2>Get started in 5 minutes</h2>
+            <p>Edit the configuration file and run the service, as a daemon or as an agent. Don't like editing text
+                files? No problem, use the visual <a href="http://designer.krakend.io/">KrakenDesigner</a>.</p>
+            </div>
+        </section>
+
+        <section class="feature-block">
+            <div class="container">
+                <div class="col-md-4">
+                    <h3>Create endpoints at a click</h3>
+                    <p>All KrakenD endpoint configuration is stored in a plain text <code>.json</code>configuration file.
+                    You can edit this file by hand or design your API interface visually using the KrakenDesigner. </p>
+                    <p>
+                        <a href="http://designer.krakend.io/" class="btn btn-success btn-circle">
+                            <i class="fa fa-cog"></i> Configure online</a>
+                        </p>
+
+                        <div class="hidden-xs hidden-sm">
+                            <h3 class="feature">Just run the binary</h3>
+                            <p>Everything you need to run the server:</p>
+                            <p><code>krakend run --config krakend.json</code></p>
+                            <p>The command will start the http daemon serving all the endpoints you defined in the configuration file.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <a href="http://designer.krakend.io/">
+                            <img src="/images/builder_screenshot.png"
+                            class="img-responsive"
+                            title="KrakenDesigner screenshot"/>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <section class="feature-block zebra">
+                <div class="title">
+                    <h2>See all KrakenD can do for you</h2>
+                    <p>
+                        <a href="/features" class="btn btn-primary btn-lg btn-circle">
+                            <i class="fa fa-check"></i> Discover more features</a>
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+        <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+        <script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+    </body>
+    </html>

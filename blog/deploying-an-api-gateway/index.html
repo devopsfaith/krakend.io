@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Deploying and versioning an API Gateway - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Deploying and versioning an API Gateway - KrakenD API Gateway">
+    <meta name="twitter:title" content="Deploying and versioning an API Gateway - KrakenD API Gateway">
+    <meta property="og:title" content="Deploying and versioning an API Gateway - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Practices and recommendations for maintaining an API Gateway ecosystem">
+    <meta itemprop="description" content="Practices and recommendations for maintaining an API Gateway ecosystem">
+    <meta name="twitter:description" content="Practices and recommendations for maintaining an API Gateway ecosystem">
+    <meta property="og:description" content="Practices and recommendations for maintaining an API Gateway ecosystem">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/blog/shipping-container.jpg">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/shipping-container.jpg">
+    <meta property="og:image" content="http://krakend.io/images/blog/shipping-container.jpg" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/blog/deploying-an-api-gateway/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+	<div class="wrapper">
+		
+		    
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+		
+<div class="blog-wrapper wrap container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+    <section class="blog">
+        <div class="box box-widget">
+            
+            <a href="http://www.krakend.io/blog/deploying-an-api-gateway/">
+              <img class="post-image" src="/images/blog/shipping-container.jpg" />
+            </a>
+              
+            
+
+            <div class="box-body">
+                <article class="post-entry">
+                    <header class="post-header">
+                        <div class="section share pull-right">
+                            <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fdeploying-an-api-gateway%2f&t=Deploying%20and%20versioning%20an%20API%20Gateway" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fdeploying-an-api-gateway%2f&text=Deploying%20and%20versioning%20an%20API%20Gateway&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fdeploying-an-api-gateway%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fdeploying-an-api-gateway%2f&title=Deploying%20and%20versioning%20an%20API%20Gateway" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                        </div>
+                        <h1 class="post-title">
+                            <a href="http://www.krakend.io/blog/deploying-an-api-gateway/" class="post-link">Deploying and versioning an API Gateway</a>
+                        </h1>
+                        <div class="post-metadata clearfix">
+    <p class="author pull-left">
+        by Daniel López and Albert Lombarte &middot; Apr 6, 2018
+    </p>
+    <div class="tags">
+        <ul>
+            <li><i class="fa fa-tags" aria-hidden="true"></i></li>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            ,
+            
+            <a href="/tags/golang">
+                golang
+            </a>
+            
+            ,
+            
+            <a href="/tags/how-to">
+                how to
+            </a>
+            
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <em>8 min read</em></li>
+        </ul>
+    </div>
+</div>
+                    </header>
+
+                    
+
+<p>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&rsquo;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</p>
+
+<p>In this article we&rsquo;ll outline some things you&rsquo;ll need to keep in mind if you want to deploy an API Gateway in your ecosystem.</p>
+
+<h2 id="an-api-contract-written-in-blood">An API contract written in blood</h2>
+
+<p>As with any business relationship between two parties, creators and consumers of an API should also agree to an <strong>API contract</strong>. But this API contract is not a piece of paper, but the configuration file used to start the API gateway service itself. The API contract defines exactly how the API will respond.</p>
+
+<p>Unless you are a solo developer consuming and creating your own API, once you publish a new endpoint in your API it&rsquo;s quite hard to be 100% sure who will use it and how, especially in large organizations and public facing interfaces. Making changes to its definition or removing parts can have a big impact on your clients, break stuff and piss off developers. So treat your endpoints&rsquo; definitions as if they were written in blood and avoid making changes to existing endpoints.</p>
+
+<p>Since it may only take you a minute to change the API contract and deploy it to production, you should avoid adding unnecessary features. Having a lot of endpoints is not a problem for the gateway, it&rsquo;s a problem for you, the <strong>gatekeeper</strong>.</p>
+
+<h3 id="make-changes-but-version-all-the-things">Make changes, but version all the things!</h3>
+
+<p>As a rule of thumb <strong>when you add endpoints, always use versioning</strong>. The greater the coupling between the client and the backend services, the greater the odds of breaking something in the next deploy of either of the components. If you need to change the definition of an endpoint, do it in another version and leave the previous endpoint as it is.</p>
+
+<h4 id="versioning-endpoints">Versioning endpoints</h4>
+
+<p>If you keep your API and endpoints properly versioned, your clients won&rsquo;t get conflicts and wrong responses. It also helps with your release cycle, avoiding complex and expensive regression tests at the edge of your infrastructure.</p>
+
+<p>Keeping that in mind, the <strong>interface exposed by the API Gateway will be your ultimate contract</strong>. Your backend services can all evolve, but as long as your gateway keeps its promise (its contract), all your existing clients will be happy.</p>
+
+<p>Start by using a major version prefix in all your endpoints and keep that piece semantically meaningful. At the very least, you should consider creating <strong>endpoints with a prefix like <code>/v1/</code></strong>.</p>
+
+<h4 id="versioning-the-code">Versioning the code</h4>
+
+<p>Even more important is to track all changes in the API Gateway definition (the <code>krakend.json</code> configuration file). <strong>Add the configuration file to git</strong>, or whatever your preferred source code management system is, so you can manage it properly and rollback when necessary.</p>
+
+<h2 id="gateway-and-configuration-in-a-single-artifact">Gateway and configuration in a single artifact</h2>
+
+<p>Since your contract should just depend on the configuration (where all the endpoints definitions are), it&rsquo;s sound to demand that the configuration must be versioned and the critical parts (e.g: the service discovery) should not change dynamically. Let&rsquo;s see the issues you create when you don&rsquo;t do this.</p>
+
+<h3 id="backward-compatibility">Backward compatibility</h3>
+
+<p>It is impossible for the maintainers of every microservice to be aware of all of their clients&rsquo; needs. If every release impacts on their clients, everyone will become wary of new releases and the entire environment will start to rot.</p>
+
+<p>On the other hand, if the microservice environment clients are too coupled to the services they are consuming data from, a known design problem appears: <strong>rigidity</strong>. When this happens, every release is also a pain due the &ldquo;house of cards&rdquo; effect.</p>
+
+<p>A nice way to avoid problems like this is to <strong>coordinate the releases between the clients and the gateway maintainers</strong> so both parties can easily detect and avoid any changes in their contract.</p>
+
+<h3 id="contract-ownership">Contract ownership</h3>
+
+<p>In our experience, if the ownership of the contract (the gateway configuration) does not belong to the actual consumer or at least someone working closely with them, the contract tends to be forgotten about - until something breaks.</p>
+
+<p>If owning the contract is as easy as keeping track of a JSON definition file containing the use cases, and know-how to proceed on exceptional situations, then it makes sense for the owner of the contract and the consumer to be the same person. This comes with implicit benefits in uptime and quality of the service (QoS).</p>
+
+<h3 id="state-propagation-and-the-cap-theorem">State propagation and the CAP theorem</h3>
+
+<p>From <a href="https://en.wikipedia.org/wiki/CAP_theorem">wikipedia</a>:</p>
+
+<blockquote>
+<p>&hellip; it is impossible for a distributed data store to simultaneously provide more than two out of the following three guarantees:</p>
+
+<ul>
+<li>Consistency: Every read receives the most recent write or an error</li>
+<li>Availiability: Every request receives a (non-error) response – without guarantee that it contains the most recent write</li>
+<li>Partition tolerance: The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes</li>
+</ul>
+</blockquote>
+
+<p>Since the configuration version used in the API Gateway could be considered a state, in clustered-based scenarios it shouldn&rsquo;t be changed without requiring a coordinated effort. This effort is out of the scope of the service and it is easier to proceed with the API Gateway as with any other regular service in our environment.</p>
+
+<h3 id="stateless-service">Stateless service</h3>
+
+<p>There is plenty of writing from the past 20 years to support the statement that <em>&ldquo;stateless services are easier to scale&rdquo;</em>. When every node is the same as its neighbours, any one of them can be replaced without disruption and with no impact on the global performance of the cluster.</p>
+
+<p>That&rsquo;s because stateless services do not care about <strong>Consistency</strong>. And their reward is almost 100% uptime and complete resilency against partitions. These services do not require co-ordination, consensus or any other type of internal signaling for reaching an agreement before committing to a change in the state&hellip; because they can&rsquo;t change their state at all!</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>In the API Gateway layer, the most important metrics are related to the responsiveness and the throughput of the service. Enforcing some level of co-ordination between the members of the cluster will impact on these metrics and in your QoS. It&rsquo;s easier and more effective to manage the configuration with a more complex rationale than a template dumping a list of your registered services in, let&rsquo;s say, your kubernetes cluster.</p>
+
+<h2 id="releasing-a-new-version">Releasing a new version</h2>
+
+<p>Now with an agreement on the API contract let&rsquo;s put our gateway into production. We recommend you add a step to create and push a Docker image that will be deployed later to your continuous integration pipeline.</p>
+
+<h3 id="creating-your-krakend-docker-image">Creating your KrakenD docker image</h3>
+
+<p>If you don&rsquo;t use Docker in production you can create a simple artifact with 2 files inside: the binary and the configuration file.</p>
+
+<p>Your <code>Dockerfile</code> will look like the following:</p>
+
+<pre><code>FROM devopsfaith/krakend
+
+COPY krakend.json /etc/krakend/krakend.json
+</code></pre>
+
+<p>Now your pipeline only needs to:</p>
+
+<ul>
+<li>Build the image, e.g: <code>docker build -t $IMAGE .</code></li>
+<li>Tag the image (as latest and the specific commit <code>sha</code>) with <code>docker tag</code></li>
+<li>And push it to the registry: <code>docker push</code></li>
+</ul>
+
+<p>At this point you have a new Docker image available in the registry every time you push changes to the desired branch.</p>
+
+<h3 id="the-blue-green-deployment-strategy">The blue/green deployment strategy</h3>
+
+<p>Almost all our Enterprise customers live in the cloud, where it is very easy to spin up new machines and destroy them later (or maybe not machines but just containers). No feelings attached!</p>
+
+<p>A very simple way of deploying KrakenD is using the <strong>blue-green deployment</strong> strategy. If you are in AWS you can use <a href="https://aws.amazon.com/es/blogs/compute/bluegreen-deployments-with-amazon-ecs/">their service</a> directly.</p>
+
+<p>If you are unfamiliar with the blue/green technique all you need to know is that you start a new set of services with the desired configuration, check if they work propperly, and then you move all the traffic to them. Previous services can be shut down when there is no traffic left, or kept for a while for quicker rollbacks.</p>
+
+<p>For a further explanation read <a href="https://martinfowler.com/bliki/BlueGreenDeployment.html">Martin Fowler&rsquo;s article</a></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>In this article we shared our experience deploying API Gateways with some recommendations that might be handy for you. We&rsquo;ve stressed the importance of respecting the API contract and thinking thoroughly before adding more endpoints to the system. Introducing another moving piece like an API Gateway comes with organizational challenges that you&rsquo;ll need to work on. As a first step to avoid future problems, introduce versioning in your endpoint definition from the first created service, even your backends do not have versioning.</p>
+
+<p>Finally, we have seen an example on how easy is to deploy the API gateway. We used Docker for the sample but being a binary and a configuration file there are numerous ways you could do this.</p>
+
+<p>You made it this far?</p>
+
+<p>Thanks for reading! If you like our product, don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+
+
+                    <aside>
+                      <div class="share pull-right">
+                        <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2fdeploying-an-api-gateway%2f&t=Deploying%20and%20versioning%20an%20API%20Gateway" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                        <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2fdeploying-an-api-gateway%2f&text=Deploying%20and%20versioning%20an%20API%20Gateway&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2fdeploying-an-api-gateway%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2fdeploying-an-api-gateway%2f&title=Deploying%20and%20versioning%20an%20API%20Gateway" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                      </div>
+                    </aside>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="col-xs-12 col-sm-2 col-md-2 navigation_container affix-top">
+        <h3>KrakenD blog</h3>
+        <ul class="nav">
+          <li><a href="/blog/">All categories</a></li>
+          
+          <li><a href="/categories/announcements">announcements</a></li>
+          
+          <li><a href="/categories/api-gateway">api-gateway</a></li>
+          
+          <li><a href="/categories/api2html">api2html</a></li>
+          
+          <li><a href="/categories/configuration">configuration</a></li>
+          
+          <li><a href="/categories/devops">devops</a></li>
+          
+          <li><a href="/categories/docker">docker</a></li>
+          
+          <li><a href="/categories/enterprise">enterprise</a></li>
+          
+          <li><a href="/categories/krakend">krakend</a></li>
+          
+          <li><a href="/categories/kubernetes">kubernetes</a></li>
+          
+          <li><a href="/categories/reflex">reflex</a></li>
+          
+        </ul>
+        <h3>Tag Cloud</h3>
+        <ul class="nav">
+          
+          <li><a href="/tags/open-source">open-source</a></li>
+          
+          <li><a href="/tags/how-to">how-to</a></li>
+          
+          <li><a href="/tags/golang">golang</a></li>
+          
+          <li><a href="/tags/release-notes">release-notes</a></li>
+          
+          <li><a href="/tags/docker">docker</a></li>
+          
+        </ul>
+        <h3>Recent Posts</h3>
+        <ul class="nav">
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
+          
+        </ul>
+  </div>
+
+
+</div>
+
+	</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>

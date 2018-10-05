@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.48" />
+
+
+    <title>Reloading the Krakend configuration with Reflex and Docker - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Reloading the Krakend configuration with Reflex and Docker - KrakenD API Gateway">
+    <meta name="twitter:title" content="Reloading the Krakend configuration with Reflex and Docker - KrakenD API Gateway">
+    <meta property="og:title" content="Reloading the Krakend configuration with Reflex and Docker - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Reloading the Krakend configuration with Reflex and Docker">
+    <meta itemprop="description" content="Reloading the Krakend configuration with Reflex and Docker">
+    <meta name="twitter:description" content="Reloading the Krakend configuration with Reflex and Docker">
+    <meta property="og:description" content="Reloading the Krakend configuration with Reflex and Docker">
+    
+
+    
+    <meta itemprop="image" content="http://www.krakend.io/images/blog/reloading-configuration.jpg">
+    <meta name="twitter:image:src" content="http://www.krakend.io/images/blog/reloading-configuration.jpg">
+    <meta property="og:image" content="http://krakend.io/images/blog/reloading-configuration.jpg" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.krakend.io/blog/reloading-the-krakend-configuration/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD - Ultra-High performance API Gateway with middlewares" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+	<div class="wrapper">
+		
+		    
+    <header class="main-header">
+
+        
+        <a href="http://www.krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://www.krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://www.krakend.io/images/logo-inverse.png" alt="KrakenD logo" height="35">
+        </a>
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+
+            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse pull-left collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://www.krakend.io/features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+
+                    
+                    <li><a href="http://www.krakend.io/blog">Blog</a></li>
+                    <li><a href="http://www.krakend.io/support">Support</a></li>
+                </ul>
+                
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="github-container">
+                        <a class="github-button" href="https://github.com/devopsfaith/krakend" data-icon="octicon-star" data-show-count="true" aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+                    </li>
+                    <li>
+                        <a href="http://designer.krakend.io/">Go to KrakenDesigner</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+		
+<div class="blog-wrapper wrap container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+    <section class="blog">
+        <div class="box box-widget">
+            
+            <a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">
+              <img class="post-image" src="/images/blog/reloading-configuration.jpg" />
+            </a>
+              
+            
+
+            <div class="box-body">
+                <article class="post-entry">
+                    <header class="post-header">
+                        <div class="section share pull-right">
+                            <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2freloading-the-krakend-configuration%2f&t=Reloading%20the%20Krakend%20configuration%20with%20Reflex%20and%20Docker" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2freloading-the-krakend-configuration%2f&text=Reloading%20the%20Krakend%20configuration%20with%20Reflex%20and%20Docker&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2freloading-the-krakend-configuration%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2freloading-the-krakend-configuration%2f&title=Reloading%20the%20Krakend%20configuration%20with%20Reflex%20and%20Docker" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                        </div>
+                        <h1 class="post-title">
+                            <a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/" class="post-link">Reloading the Krakend configuration with Reflex and Docker</a>
+                        </h1>
+                        <div class="post-metadata clearfix">
+    <p class="author pull-left">
+        by Daniel Ortiz &middot; Jun 22, 2018
+    </p>
+    <div class="tags">
+        <ul>
+            <li><i class="fa fa-tags" aria-hidden="true"></i></li>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            ,
+            
+            <a href="/tags/docker">
+                docker
+            </a>
+            
+            ,
+            
+            <a href="/tags/devops">
+                devops
+            </a>
+            
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <em>4 min read</em></li>
+        </ul>
+    </div>
+</div>
+                    </header>
+
+                    
+
+<p>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&rsquo;s running. The short answer is: No, you can&rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&rsquo;t support such a feature:</p>
+
+<ul>
+<li><strong>Performance</strong>: This is the #1 reason, and strong enough. <strong>KrakenD is focused on performance</strong>, we never take choices lightly. All decision process from beginning to end, the pipes, are built at start up time and when it finishes starts serving the traffic. This means KrakenD will do this job only once and there is no need to calculate routes or what to do when serving. This makes a huge difference.</li>
+<li><strong>Simplicity</strong>: Because we believe an API contract must go under the version control system and after that be released (and through CI/CD if possible), but never altered at runtime by throwing curls or whatever. Are you familiar with <a href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">POLA</a>?</li>
+<li><strong>Consistency</strong>: Imagine yourself distributing configuration updates in an ecosystem like the one KrakenD is offering: <strong>independent, non-coordinated and state-less</strong>. It would require you to develop consistency strategies that are far out of the scope of an API Gateway. And not to mention that this would come with some restrictions making the hot-reload feature less attractive and the system very error-prone.</li>
+<li><strong>Why us?</strong>: You never demanded such a feature in Varnish, Apache, Nginx or any other major service. All of them are reloaded when configuration changes, and the Internet is still running.</li>
+</ul>
+
+<p>We could keep going, but with just this in mind, it&rsquo;s clear that KrakenD won&rsquo;t support a feature were you can push the new configuration at runtime. But we heard you! So we have built a small solution to automate the KrakenD reloading task, at least in development.</p>
+
+<p>Check <a href="https://github.com/devopsfaith/krakend-config-watcher/">the Github repository for the code used</a> in this post.</p>
+
+<h2 id="enters-krakend-config-watcher-mode">Enters <code>krakend:config-watcher</code> mode</h2>
+
+<p>We have published a new Docker tag <code>:config-watcher</code> in the existing <a href="https://hub.docker.com/r/devopsfaith/krakend/">KrakenD Docker</a>, you can get it with:</p>
+
+<pre><code>docker pull devopsfaith/krakend:config-watcher
+</code></pre>
+
+<p>This image starts the service from the <code>reflex</code> watcher.</p>
+
+<p><strong>What is reflex?</strong></p>
+
+<p><a href="https://github.com/cespare/reflex">Reflex</a> is a small tool that watches a directory and reruns a command when certain files change (e.g using a regexp). Since it&rsquo;s written in golang it has no dependencies. Take the opportunity to look to this amazing tool!</p>
+
+<p>By having reflex as the entrypoint when the configuration changes KrakenD is reloaded. This is very convenient while you are developing as it allows you to test new changes without having to restart manually and making the process less tedious.</p>
+
+<h3 id="pull-it-or-build-it-yourself">Pull it or build it yourself</h3>
+
+<p>This is the <a href="https://github.com/devopsfaith/krakend-config-watcher/blob/master/Dockerfile"><code>Dockerfile</code></a> that generates our config-watcher image today:</p>
+
+<pre><code>FROM devopsfaith/krakend:latest
+
+LABEL maintainer=&quot;dortiz@devops.faith&quot;
+
+ENV KRAKEND_CONFIG krakend.json
+
+ADD reflex /usr/bin/reflex
+ADD entrypoint.sh /
+
+WORKDIR /etc/krakend
+
+ENTRYPOINT [ &quot;/entrypoint.sh&quot; ]
+</code></pre>
+
+<p>As you can see it uses the latest KrakenD version available (at the moment of writing <a href="https://hub.docker.com/r/devopsfaith/krakend/tags/">0.5.1</a>), adds the reflex binary, defines the KRAKEND_CONFIG environment variable and adds the entrypoint script to launch everything.</p>
+
+<p><strong>Note</strong>: Reflex binary needs to be the <code>alpine</code> version, since KrakenD container uses it as base.</p>
+
+<p>And the <a href="https://github.com/devopsfaith/krakend-config-watcher/blob/master/entrypoint.sh">entrypoint script</a> is as follows:</p>
+
+<pre><code>#!/bin/sh
+
+KRAKEND_CFG=${KRAKEND_CONFIG:-krakend.json}
+
+cd /etc/krakend
+/usr/bin/reflex -g &quot;$KRAKEND_CFG&quot; -s  -- /usr/bin/krakend run -c /etc/krakend/${KRAKEND_CFG} -d
+</code></pre>
+
+<p>It executes reflex with the file pattern to look for (in the same directory) and launches the command as a service.
+If you don&rsquo;t want to use Docker, you can just use the entrypoint.sh as start script.</p>
+
+<h2 id="let-s-develop-running-the-docker-image">Let&rsquo;s develop! Running the Docker image</h2>
+
+<p>To run the container you need to mount a volume with your configuration file mapped to the <code>/etc/krakend</code> directory. Optionally you can pass the environment variable <code>KRAKEND_CONFIG</code> if the configuration file you are using is not named <code>krakend.json</code>.</p>
+
+<p>Example:</p>
+
+<pre><code>docker run -it --rm -v $PWD:/etc/krakend -e KRAKEND_CONFIG=krakend.json devopsfaith/krakend:config-watcher
+</code></pre>
+
+<p><strong>IMPORTANT</strong>: The volume needs to be shared as a directory, and not as a file because the changes wouldn&rsquo;t be notified inside the container (<em>it&rsquo;s a Docker thing</em>)</p>
+
+<p>Now play with your configuration file as much as you want, KrakenD will be restarted every time!</p>
+
+<p><img src="/images/blog/config-test.png" alt="config-test" title="config-watcher" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>We don&rsquo;t support hot reloading in production, but we have shared this blog post to help you test your KrakenD configurations while you are developing. We also hope you discovered an amazing tools like Reflex or have given you ideas of the kind of stuff you can do with Docker.</p>
+
+<p>Just try to keep it simple!
+Thanks for reading! If you like our product don’t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+
+
+                    <aside>
+                      <div class="share pull-right">
+                        <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2fwww.krakend.io%2fblog%2freloading-the-krakend-configuration%2f&t=Reloading%20the%20Krakend%20configuration%20with%20Reflex%20and%20Docker" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                        <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fwww.krakend.io%2fblog%2freloading-the-krakend-configuration%2f&text=Reloading%20the%20Krakend%20configuration%20with%20Reflex%20and%20Docker&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.krakend.io%2fblog%2freloading-the-krakend-configuration%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://getpocket.com/edit?url=http%3a%2f%2fwww.krakend.io%2fblog%2freloading-the-krakend-configuration%2f&title=Reloading%20the%20Krakend%20configuration%20with%20Reflex%20and%20Docker" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+                      </div>
+                    </aside>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="col-xs-12 col-sm-2 col-md-2 navigation_container affix-top">
+        <h3>KrakenD blog</h3>
+        <ul class="nav">
+          <li><a href="/blog/">All categories</a></li>
+          
+          <li><a href="/categories/announcements">announcements</a></li>
+          
+          <li><a href="/categories/api-gateway">api-gateway</a></li>
+          
+          <li><a href="/categories/api2html">api2html</a></li>
+          
+          <li><a href="/categories/configuration">configuration</a></li>
+          
+          <li><a href="/categories/devops">devops</a></li>
+          
+          <li><a href="/categories/docker">docker</a></li>
+          
+          <li><a href="/categories/enterprise">enterprise</a></li>
+          
+          <li><a href="/categories/krakend">krakend</a></li>
+          
+          <li><a href="/categories/kubernetes">kubernetes</a></li>
+          
+          <li><a href="/categories/reflex">reflex</a></li>
+          
+        </ul>
+        <h3>Tag Cloud</h3>
+        <ul class="nav">
+          
+          <li><a href="/tags/open-source">open-source</a></li>
+          
+          <li><a href="/tags/how-to">how-to</a></li>
+          
+          <li><a href="/tags/golang">golang</a></li>
+          
+          <li><a href="/tags/release-notes">release-notes</a></li>
+          
+          <li><a href="/tags/docker">docker</a></li>
+          
+        </ul>
+        <h3>Recent Posts</h3>
+        <ul class="nav">
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
+          
+          <li><a href="http://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
+          
+        </ul>
+  </div>
+
+
+</div>
+
+	</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>Ultra-High performance</strong> API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    <h6>Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://medium.com/devops-faith">Blog</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/features/">Features</a></li>
+                        <li><a href="http://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="http://www.krakend.io/download/">Download</a></li>
+                        <li><a href="http://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="http://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/app.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>
