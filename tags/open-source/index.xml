@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Open Source on KrakenD - Ultra-High performance API Gateway with middlewares</title>
-    <link>http://www.krakend.io/tags/open-source/</link>
+    <link>https://www.krakend.io/tags/open-source/</link>
     <description>Recent content in Open Source on KrakenD - Ultra-High performance API Gateway with middlewares</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 04 Oct 2018 09:15:49 +0200</lastBuildDate>
     
-	<atom:link href="http://www.krakend.io/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.krakend.io/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Krakend 0.6.1 release notes</title>
-      <link>http://www.krakend.io/blog/krakend-0.6.1-release-notes/</link>
+      <link>https://www.krakend.io/blog/krakend-0.6.1-release-notes/</link>
       <pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/krakend-0.6.1-release-notes/</guid>
+      <guid>https://www.krakend.io/blog/krakend-0.6.1-release-notes/</guid>
       <description>The 0.6.1 release adds TLS and enables HTTP2 and HTTPS.
 TL;DR This release brings HTTP2 and HTTPS to KrakenD. It also upgrades Go from 1.10 to 1.11 and fixes forwarded query string parameters to backends that are using arrays and repeated variables.
 The KrakenDesigner (UI) is also updated to reflect these changes.
@@ -26,10 +26,10 @@ KrakenD framework The KrakenD framework has the following relevant changes:
     
     <item>
       <title>KrakenD 0.6 autumn release</title>
-      <link>http://www.krakend.io/blog/krakend-0.6-release-notes/</link>
+      <link>https://www.krakend.io/blog/krakend-0.6-release-notes/</link>
       <pubDate>Fri, 07 Sep 2018 09:18:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/krakend-0.6-release-notes/</guid>
+      <guid>https://www.krakend.io/blog/krakend-0.6-release-notes/</guid>
       <description>As if we were an agrarian society, our releases keep revolving around the weather calendar seasons. Autumn is around the corner (northern hemisphere), so our release is ready for a cool autumn.
 TL;DR This release adds two interesting components: the JOSE component responsible for the JWT signing and validation, and the Cross-origin resource sharing (CORS) component. There is also a Consul client available.
 The Krakend Playground and the KrakenDesigner (UI) is also updated.</description>
@@ -37,30 +37,30 @@ The Krakend Playground and the KrakenDesigner (UI) is also updated.</description
     
     <item>
       <title>Reloading the Krakend configuration with Reflex and Docker</title>
-      <link>http://www.krakend.io/blog/reloading-the-krakend-configuration/</link>
+      <link>https://www.krakend.io/blog/reloading-the-krakend-configuration/</link>
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
+      <guid>https://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
       <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&amp;rsquo;s running. The short answer is: No, you can&amp;rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&amp;rsquo;t support such a feature:
  Performance: This is the #1 reason, and strong enough.</description>
     </item>
     
     <item>
       <title>KrakenD 0.5 summer release</title>
-      <link>http://www.krakend.io/blog/krakend-0.5-release-notes/</link>
+      <link>https://www.krakend.io/blog/krakend-0.5-release-notes/</link>
       <pubDate>Fri, 08 Jun 2018 14:50:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/krakend-0.5-release-notes/</guid>
+      <guid>https://www.krakend.io/blog/krakend-0.5-release-notes/</guid>
       <description>KrakenD 0.5 is out and we want to share some of the cool stuff this release is bringing.
 This release focuses heavily on metrics and its export options to different backend systems such as Zipkin, InfluxDB, Prometheus or Jaeger. It also adds the NoOp logger and exposes all the advanced settings of the http client and server, giving all the power to the user. On the middlware side it extends even more the ecosystem with multiple components.</description>
     </item>
     
     <item>
       <title>Running the KrakenD API Gateway on Kubernetes</title>
-      <link>http://www.krakend.io/blog/krakend-on-kubernetes/</link>
+      <link>https://www.krakend.io/blog/krakend-on-kubernetes/</link>
       <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/krakend-on-kubernetes/</guid>
+      <guid>https://www.krakend.io/blog/krakend-on-kubernetes/</guid>
       <description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
 We will use for the demonstration Minikube so you cant test it in your own local machine.
 Let&amp;rsquo;s get started!
@@ -69,29 +69,29 @@ Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube.
     
     <item>
       <title>Website development as a sysadmin</title>
-      <link>http://www.krakend.io/blog/website-development-as-a-sysadmin/</link>
+      <link>https://www.krakend.io/blog/website-development-as-a-sysadmin/</link>
       <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
+      <guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
       <description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
 Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description>
     </item>
     
     <item>
       <title>Edge computing - A story of buses, raspberries, IoT and API gateways</title>
-      <link>http://www.krakend.io/blog/krakend-on-raspberry/</link>
+      <link>https://www.krakend.io/blog/krakend-on-raspberry/</link>
       <pubDate>Tue, 01 May 2018 21:25:00 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/krakend-on-raspberry/</guid>
+      <guid>https://www.krakend.io/blog/krakend-on-raspberry/</guid>
       <description>The IoT industry has been running for some years now adding millions of devices into the network. The range of devices and capabilities is very wide and heterogeneous, from small devices powered with a 9-volt battery to track the location of freight shippings traveling the oceans (using platforms like Sigfox) to permanently plugged devices with more powerful computing like a Raspberry Pi where computation cycles are not a problem.</description>
     </item>
     
     <item>
       <title>How to work with Golang plugins and KrakenD</title>
-      <link>http://www.krakend.io/blog/krakend-golang-plugins/</link>
+      <link>https://www.krakend.io/blog/krakend-golang-plugins/</link>
       <pubDate>Thu, 12 Apr 2018 22:07:03 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/krakend-golang-plugins/</guid>
+      <guid>https://www.krakend.io/blog/krakend-golang-plugins/</guid>
       <description>The release of golang 1.8 more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.
 We&amp;rsquo;d like to share our experience and details on how we enhanced our products to support golang plugins.
 Why would anyone use plugins in Go? The plugin concept is widely known and supported in several programming languages and environments.</description>
@@ -99,19 +99,19 @@ Why would anyone use plugins in Go? The plugin concept is widely known and suppo
     
     <item>
       <title>Deploying and versioning an API Gateway</title>
-      <link>http://www.krakend.io/blog/deploying-an-api-gateway/</link>
+      <link>https://www.krakend.io/blog/deploying-an-api-gateway/</link>
       <pubDate>Fri, 06 Apr 2018 23:46:25 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/deploying-an-api-gateway/</guid>
+      <guid>https://www.krakend.io/blog/deploying-an-api-gateway/</guid>
       <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&amp;rsquo;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
     </item>
     
     <item>
       <title>KrakenD 0.4 release notes</title>
-      <link>http://www.krakend.io/blog/krakend-0.4-release-notes/</link>
+      <link>https://www.krakend.io/blog/krakend-0.4-release-notes/</link>
       <pubDate>Sun, 21 Jan 2018 14:50:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/krakend-0.4-release-notes/</guid>
+      <guid>https://www.krakend.io/blog/krakend-0.4-release-notes/</guid>
       <description>KrakenD 0.4 materializes the announcement we did 3 months ago by going full open source and public releasing the former enterprise-only components.
 This release note comprehends both the KrakenD framework and the KrakenD Community Edition binary distribution.
 KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The summary of changes introduced in the 0.4 are:
@@ -120,29 +120,29 @@ KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The 
     
     <item>
       <title>An API Gateway is not the new Unicorn</title>
-      <link>http://www.krakend.io/blog/what-is-an-api-gateway/</link>
+      <link>https://www.krakend.io/blog/what-is-an-api-gateway/</link>
       <pubDate>Fri, 19 Jan 2018 10:10:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/what-is-an-api-gateway/</guid>
+      <guid>https://www.krakend.io/blog/what-is-an-api-gateway/</guid>
       <description>The more we talk to people about API gateways, the more we have come to realize that the term means different things to different people, and more specifically we see a growing trend where developers (but mostly managers) expect an API gateway to be able to perform miracles, usually a long way away from its intended use.
 It&amp;rsquo;s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.</description>
     </item>
     
     <item>
       <title>Road to KrakenD 0.4</title>
-      <link>http://www.krakend.io/blog/road-to-0.4/</link>
+      <link>https://www.krakend.io/blog/road-to-0.4/</link>
       <pubDate>Sun, 12 Nov 2017 12:10:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/road-to-0.4/</guid>
+      <guid>https://www.krakend.io/blog/road-to-0.4/</guid>
       <description>The next iteration of KrakenD is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the 0.4 release before end of year. The jump from the 0.3.9 of the binary and the 0.3 of the framework to the 0.4 will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: kill external dependencies with fire.</description>
     </item>
     
     <item>
       <title>Open sourcing all enterprise components</title>
-      <link>http://www.krakend.io/blog/open-sourcing-enterprise-features/</link>
+      <link>https://www.krakend.io/blog/open-sourcing-enterprise-features/</link>
       <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
+      <guid>https://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
       <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?</description>
     </item>
     

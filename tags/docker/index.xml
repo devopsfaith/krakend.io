@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on KrakenD - Ultra-High performance API Gateway with middlewares</title>
-    <link>http://www.krakend.io/tags/docker/</link>
+    <link>https://www.krakend.io/tags/docker/</link>
     <description>Recent content in Docker on KrakenD - Ultra-High performance API Gateway with middlewares</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 22 Jun 2018 11:06:53 +0200</lastBuildDate>
     
-	<atom:link href="http://www.krakend.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.krakend.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Reloading the Krakend configuration with Reflex and Docker</title>
-      <link>http://www.krakend.io/blog/reloading-the-krakend-configuration/</link>
+      <link>https://www.krakend.io/blog/reloading-the-krakend-configuration/</link>
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
+      <guid>https://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
       <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&amp;rsquo;s running. The short answer is: No, you can&amp;rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&amp;rsquo;t support such a feature:
  Performance: This is the #1 reason, and strong enough.</description>
     </item>
     
     <item>
       <title>Running the KrakenD API Gateway on Kubernetes</title>
-      <link>http://www.krakend.io/blog/krakend-on-kubernetes/</link>
+      <link>https://www.krakend.io/blog/krakend-on-kubernetes/</link>
       <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/krakend-on-kubernetes/</guid>
+      <guid>https://www.krakend.io/blog/krakend-on-kubernetes/</guid>
       <description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
 We will use for the demonstration Minikube so you cant test it in your own local machine.
 Let&amp;rsquo;s get started!
@@ -35,10 +35,10 @@ Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube.
     
     <item>
       <title>How we automated our RPM and DEB packaging with Docker</title>
-      <link>http://www.krakend.io/blog/automating-linux-packaging/</link>
+      <link>https://www.krakend.io/blog/automating-linux-packaging/</link>
       <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/automating-linux-packaging/</guid>
+      <guid>https://www.krakend.io/blog/automating-linux-packaging/</guid>
       <description>Everyone loves reaching the maximum number of available platforms for their software but this usually comes at a cost. In this article we will explain how we generated our packaging for Linux in an automated fashion, being faithful to our DevOps dogma.
 Dockerize all the things! Our team uses both Ubuntu and MacOS X in desktop machines and KrakenD has been running and behaving in the same way in all the platforms because from day one we decided to run everything on Docker.</description>
     </item>

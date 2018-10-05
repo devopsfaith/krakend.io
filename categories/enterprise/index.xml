@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Enterprise on KrakenD - Ultra-High performance API Gateway with middlewares</title>
-    <link>http://www.krakend.io/categories/enterprise/</link>
+    <link>https://www.krakend.io/categories/enterprise/</link>
     <description>Recent content in Enterprise on KrakenD - Ultra-High performance API Gateway with middlewares</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Oct 2017 19:01:33 +0200</lastBuildDate>
     
-	<atom:link href="http://www.krakend.io/categories/enterprise/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.krakend.io/categories/enterprise/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Open sourcing all enterprise components</title>
-      <link>http://www.krakend.io/blog/open-sourcing-enterprise-features/</link>
+      <link>https://www.krakend.io/blog/open-sourcing-enterprise-features/</link>
       <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
       
-      <guid>http://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
+      <guid>https://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
       <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?</description>
     </item>
     

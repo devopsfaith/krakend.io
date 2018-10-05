@@ -2,102 +2,102 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on KrakenD - Ultra-High performance API Gateway with middlewares</title>
-    <link>http://www.krakend.io/categories/</link>
+    <link>https://www.krakend.io/categories/</link>
     <description>Recent content in Categories on KrakenD - Ultra-High performance API Gateway with middlewares</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 04 Oct 2018 09:15:49 +0200</lastBuildDate>
     
-	<atom:link href="http://www.krakend.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.krakend.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Announcements</title>
-      <link>http://www.krakend.io/categories/announcements/</link>
+      <link>https://www.krakend.io/categories/announcements/</link>
       <pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/announcements/</guid>
+      <guid>https://www.krakend.io/categories/announcements/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Api Gateway</title>
-      <link>http://www.krakend.io/categories/api-gateway/</link>
+      <link>https://www.krakend.io/categories/api-gateway/</link>
       <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/api-gateway/</guid>
+      <guid>https://www.krakend.io/categories/api-gateway/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Api2html</title>
-      <link>http://www.krakend.io/categories/api2html/</link>
+      <link>https://www.krakend.io/categories/api2html/</link>
       <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/api2html/</guid>
+      <guid>https://www.krakend.io/categories/api2html/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Configuration</title>
-      <link>http://www.krakend.io/categories/configuration/</link>
+      <link>https://www.krakend.io/categories/configuration/</link>
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/configuration/</guid>
+      <guid>https://www.krakend.io/categories/configuration/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Devops</title>
-      <link>http://www.krakend.io/categories/devops/</link>
+      <link>https://www.krakend.io/categories/devops/</link>
       <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/devops/</guid>
+      <guid>https://www.krakend.io/categories/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>http://www.krakend.io/categories/docker/</link>
+      <link>https://www.krakend.io/categories/docker/</link>
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/docker/</guid>
+      <guid>https://www.krakend.io/categories/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Enterprise</title>
-      <link>http://www.krakend.io/categories/enterprise/</link>
+      <link>https://www.krakend.io/categories/enterprise/</link>
       <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/enterprise/</guid>
+      <guid>https://www.krakend.io/categories/enterprise/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Krakend</title>
-      <link>http://www.krakend.io/categories/krakend/</link>
+      <link>https://www.krakend.io/categories/krakend/</link>
       <pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/krakend/</guid>
+      <guid>https://www.krakend.io/categories/krakend/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubernetes</title>
-      <link>http://www.krakend.io/categories/kubernetes/</link>
+      <link>https://www.krakend.io/categories/kubernetes/</link>
       <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/kubernetes/</guid>
+      <guid>https://www.krakend.io/categories/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Reflex</title>
-      <link>http://www.krakend.io/categories/reflex/</link>
+      <link>https://www.krakend.io/categories/reflex/</link>
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
-      <guid>http://www.krakend.io/categories/reflex/</guid>
+      <guid>https://www.krakend.io/categories/reflex/</guid>
       <description></description>
     </item>
     
