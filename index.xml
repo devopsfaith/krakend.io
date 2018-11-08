@@ -379,10 +379,8 @@ The integrations are not bundled with KrakenD-CE releases but they can be added 
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/authorization/revoking-tokens/</guid>
-      <description>This document is a draft (functionality is well tested though)
-At some point in time you might want to decide to revoke tokens that are valid.
-KrakenD integrates a bloomfilter that allows you to reject tokens that were issued correctly and are still unexpired.
-The Bloomfilter is designed to support massive rejection of tokens with very little memory consumption.</description>
+      <description>The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to revoke tokens that are supposed to be still valid.
+Examples of revoking a valid token could be that an administrator of your application decides that a user can&amp;rsquo;t longer login into the system, or you want to force the renegotiation of the tokens for a subset or all the users because you are not going to wait for the expiration.</description>
     </item>
     
     <item>
