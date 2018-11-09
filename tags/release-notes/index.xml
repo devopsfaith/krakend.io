@@ -6,10 +6,20 @@
     <description>Recent content in Release Notes on KrakenD API Gateway - English</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Oct 2018 09:15:49 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/tags/release-notes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KrakenD 0.7 released</title>
+      <link>https://www.krakend.io/blog/krakend-0.7-release-notes/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-0.7-release-notes/</guid>
+      <description>The most relevant features for the 0.7 release are increased metrics and tracing options, and functionality that has been requested by many, the sequential proxy merger. During this release, we also updated the KrakenD brand with a new logo, and we added more documentation.
+On the metrics side, we can now send structured events using GELF to your Graylog Cluster. Opencensus middleware adds new functionality to push metrics to your Google StackDriver account.</description>
+    </item>
     
     <item>
       <title>Krakend 0.6.1 release notes</title>

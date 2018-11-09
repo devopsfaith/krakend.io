@@ -182,12 +182,12 @@
 		
 		
 		<li class="nav-item">
-			<a class="nav-link" href="/tags/golang">golang</a>
+			<a class="nav-link" href="/tags/release-notes">release-notes</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a class="nav-link" href="/tags/release-notes">release-notes</a>
+			<a class="nav-link" href="/tags/golang">golang</a>
 		</li>
 		
 		
@@ -202,6 +202,8 @@
 	<h6 class="header">Recent entries</h6>
 	<ul class="nav menu">
 		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.7-release-notes/">KrakenD 0.7 released</a></li>
+		
 		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
 		
 		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
@@ -210,13 +212,51 @@
 		
 		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.5-release-notes/">KrakenD 0.5 summer release</a></li>
 		
-		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-on-kubernetes/">Running the KrakenD API Gateway on Kubernetes</a></li>
-		
 	</ul>
 </div>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9">
             <section class="blog px-3">
+                
+                <div class="list-item">
+	
+	<article class="post-entry">
+		<header class="post-header">
+			<h1 class="post-title">
+				<a href="https://www.krakend.io/blog/krakend-0.7-release-notes/" class="post-link">KrakenD 0.7 released</a>
+			</h1>
+			<div class="post-metadata clearfix">
+    <p class="author float-left">
+        by Albert Lombarte &middot; Nov 8, 2018
+    </p>
+    <div class="tags">
+        <ul>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            ,
+            
+            <a href="/tags/release-notes">
+                release notes
+            </a>
+            
+            <li><em class="reading-time">3 min read</em></li>
+        </ul>
+    </div>
+</div>
+		</header>
+		<p class="post-summary">
+			<a class="summary" href="https://www.krakend.io/blog/krakend-0.7-release-notes/" title="Continue reading KrakenD 0.7 released">
+				The most relevant features for the 0.7 release are increased metrics and tracing options, and functionality that has been requested by many, the sequential proxy merger. During this release, we also updated the KrakenD brand with a new logo, and we added more documentation.
+On the metrics side, we can now send structured events using GELF to your Graylog Cluster. Opencensus middleware adds new functionality to push metrics to your Google StackDriver account.
+			</a>
+			<a class="read-more" href="https://www.krakend.io/blog/krakend-0.7-release-notes/">Continue reading →</a>
+		</p>
+	</article>
+</div>
                 
                 <div class="list-item">
 	
@@ -645,48 +685,6 @@ Why would anyone use plugins in Go? The plugin concept is widely known and suppo
 				When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it’s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.
 			</a>
 			<a class="read-more" href="https://www.krakend.io/blog/deploying-an-api-gateway/">Continue reading →</a>
-		</p>
-	</article>
-</div>
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/krakend-0.4-release-notes/" class="post-link">KrakenD 0.4 release notes</a>
-			</h1>
-			<div class="post-metadata clearfix">
-    <p class="author float-left">
-        by Albert Lombarte &middot; Jan 21, 2018
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/open-source">
-                open source
-            </a>
-            
-            ,
-            
-            <a href="/tags/release-notes">
-                release notes
-            </a>
-            
-            <li><em class="reading-time">1 min read</em></li>
-        </ul>
-    </div>
-</div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/krakend-0.4-release-notes/" title="Continue reading KrakenD 0.4 release notes">
-				KrakenD 0.4 materializes the announcement we did 3 months ago by going full open source and public releasing the former enterprise-only components.
-This release note comprehends both the KrakenD framework and the KrakenD Community Edition binary distribution.
-KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The summary of changes introduced in the 0.4 are:
- Removed ALL external dependencies and placed to krakend-contrib repositories Decoder and Service Discovery register system Response metadata Response decoder and formatter exposed Custom status code handler Minor handler optimizations Config version upgraded Server configuration extended (with timeouts and limits) Now non strict REST urls are allowed Request and response manipulation optimized func version for all the interfaces  Link to 0.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/krakend-0.4-release-notes/">Continue reading →</a>
 		</p>
 	</article>
 </div>

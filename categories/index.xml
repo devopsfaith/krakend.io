@@ -6,7 +6,7 @@
     <description>Recent content in Categories on KrakenD API Gateway - English</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Oct 2018 09:15:49 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Announcements</title>
       <link>https://www.krakend.io/categories/announcements/</link>
-      <pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/categories/announcements/</guid>
       <description></description>
@@ -77,7 +77,7 @@
     <item>
       <title>Krakend</title>
       <link>https://www.krakend.io/categories/krakend/</link>
-      <pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/categories/krakend/</guid>
       <description></description>
