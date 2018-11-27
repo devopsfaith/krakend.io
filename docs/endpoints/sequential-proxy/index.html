@@ -7,16 +7,16 @@
 <meta name="generator" content="Hugo 0.49" />
 
 
-    <title>Commands - check - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Commands - check - KrakenD API Gateway">
-    <meta name="twitter:title" content="Commands - check - KrakenD API Gateway">
-    <meta property="og:title" content="Commands - check - KrakenD API Gateway">
+    <title>Sequential Proxy - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Sequential Proxy - KrakenD API Gateway">
+    <meta name="twitter:title" content="Sequential Proxy - KrakenD API Gateway">
+    <meta property="og:title" content="Sequential Proxy - KrakenD API Gateway">
 
     
-    <meta property="description" content="KrakenD Check Command">
-    <meta itemprop="description" content="KrakenD Check Command">
-    <meta name="twitter:description" content="KrakenD Check Command">
-    <meta property="og:description" content="KrakenD Check Command">
+    <meta property="description" content="Sequential Proxy - KrakenD API Gateway">
+    <meta itemprop="description" content="Sequential Proxy - KrakenD API Gateway">
+    <meta name="twitter:description" content="Sequential Proxy - KrakenD API Gateway">
+    <meta property="og:description" content="Sequential Proxy - KrakenD API Gateway">
     
 
     
@@ -26,7 +26,7 @@
     
 
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.krakend.io/docs/commands/check/" />
+    <meta property="og:url" content="https://www.krakend.io/docs/endpoints/sequential-proxy/" />
 
 
 
@@ -182,19 +182,19 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-2" role="button" aria-expanded="true"
-                aria-controls="menu-2" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-2" role="button" aria-expanded="false"
+                aria-controls="menu-2" class="nav-link parent">
                 Command line commands
             </a>
-            <div class="collapse show" id="menu-2">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-2">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
                         <a href="/docs/commands/run/" class="nav-link children ">Run</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/commands/check/" class="nav-link children active">Check</a>
+                        <a href="/docs/commands/check/" class="nav-link children ">Check</a>
                     </li>
                     
                 </ul>
@@ -205,12 +205,12 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-3" role="button" aria-expanded="false"
-                aria-controls="menu-3" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-3" role="button" aria-expanded="true"
+                aria-controls="menu-3" class="nav-link parent active">
                 Endpoints
             </a>
-            <div class="collapse" id="menu-3">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-3">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/rate-limit/" class="nav-link children ">Rate Limits</a>
@@ -233,7 +233,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/sequential-proxy/" class="nav-link children ">Sequential Proxy</a>
+                        <a href="/docs/endpoints/sequential-proxy/" class="nav-link children active">Sequential Proxy</a>
                     </li>
                     
                 </ul>
@@ -513,10 +513,10 @@
                     <section class="content-header">
                         
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/check.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints/sequential-proxy.md">
     Edit this page
 </a>
-<h1 class="main-title">Commands - check</h1>
+<h1 class="main-title">Sequential Proxy</h1>
 
                     </section>
                     <section class="content">
@@ -525,300 +525,94 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/
     <section class="col-md-12">            
         
         
+        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
+            <div class="shadow rounded pb-2">
+                <h6 class="header rounded-top">Table of Contents</h6>
+                <nav id="TableOfContents">
+<ul>
+<li><a href="#chaining-the-requests">Chaining the requests</a>
+<ul>
+<li><a href="#example">Example</a></li>
+</ul></li>
+</ul>
+</nav>
+            </div>
+        </div>
         
         
+        
 
-<p>The <code>krakend check</code> command validates the passed configuration. Since KrakenD does not implement a strict parsing, typos
- in the config file could be shadowed. In order to validate your config completely, it is recommended to use the <code>--debug</code> flag.</p>
+<p>The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends concurrently at the same time. However, there are times when you need to <strong>delay a backend call</strong> until you can inject as input the result of a previous call.</p>
 
-<h1 id="usage">Usage</h1>
+<p>The sequential proxy allows you to <strong>chain backend requests</strong>.</p>
 
-<pre><code>$ krakend check -h
+<h1 id="chaining-the-requests">Chaining the requests</h1>
 
-`7MMF' `YMM'                  `7MM                         `7MM&quot;&quot;&quot;Yb.
- MM   .M'                      MM                           MM    `Yb.
- MM .d&quot;     `7Mb,od8 ,6&quot;Yb.    MM  ,MP'.gP&quot;Ya `7MMpMMMb.    MM     `Mb
- MMMMM.       MM' &quot;'8)   MM    MM ;Y  ,M'   Yb  MM    MM    MM      MM
- MM  VMA      MM     ,pm9MM    MM;Mm  8M&quot;&quot;&quot;&quot;&quot;&quot;  MM    MM    MM     ,MP
- MM   `MM.    MM    8M   MM    MM `Mb.YM.    ,  MM    MM    MM    ,dP'
- .JMML.   MMb..JMML.  `Moo9^Yo..JMML. YA.`Mbmmd'.JMML  JMML..JMMmmmdP'
- _______________________________________________________________________
+<p>All you need to enable the sequential proxy is add in the endpoint definition the following configuration:</p>
 
- Version: 0.7.0
-
- Validates that the active configuration file has a valid syntax to run the service.
- Change the configuration file by using the --config flag
-
- Usage:
- krakend check [flags]
-
- Aliases:
- check, validate
-
- Examples:
- krakend check -d -c config.json
-
- Flags:
- -h, --help   help for check
-
- Global Flags:
- -c, --config string   Path to the configuration filename
- -d, --debug           Enable the debug
+<pre><code>&quot;endpoint&quot;: &quot;/hotels/{id}&quot;,
+&quot;extra_config&quot;: {
+      &quot;github.com/devopsfaith/krakend/proxy&quot;: {
+          &quot;sequential&quot;: true
+      }
+  }
 </code></pre>
 
-<p>Passing a path to the config file is required</p>
+<p>When the sequential proxy is enabled, the <code>url_pattern</code> of every backend can use a new variable that references the <strong>resp</strong>onse of a previous API call. The variable has the following construction:</p>
 
-<pre><code>$ krakend check
-Please, provide the path to your config file
+<pre><code>{resp0_XXXX}
 </code></pre>
 
-<h1 id="example">Example</h1>
+<p>Where <code>0</code> is the index of the specific backend you want to access ( <code>backend</code> array), and where <code>XXXX</code> is the attribute name you want to inject from the previous call.</p>
 
-<p>We will use this configuration for the demo</p>
+<h2 id="example">Example</h2>
+
+<p>It&rsquo;s easier to understand with an example:</p>
+
+<p>The <code>/hotels/{hotel_id}</code> is a backend call that returns data for the requested hotel, including a <code>destination_id</code> that is a relationship identifier. The output is like the following:</p>
 
 <pre><code>{
-    &quot;version&quot;: 2,
-    &quot;name&quot;: &quot;My lovely gateway&quot;,
-    &quot;port&quot;: 8080,
-    &quot;cache_ttl&quot;: &quot;3600s&quot;,
-    &quot;timeout&quot;: &quot;3s&quot;,
-    &quot;extra_config&quot;: {
-      &quot;github_com/devopsfaith/krakend-gologging&quot;: {
-        &quot;level&quot;:  &quot;ERROR&quot;,
-        &quot;prefix&quot;: &quot;[KRAKEND]&quot;,
-        &quot;syslog&quot;: false,
-        &quot;stdout&quot;: true
-      }
-    },
-    &quot;endpoints&quot;: [
-        {
-            &quot;endpoint&quot;: &quot;/supu&quot;,
-            &quot;method&quot;: &quot;GET&quot;,
-            &quot;backend&quot;: [
-                {
-                    &quot;host&quot;: [
-                        &quot;http://127.0.0.1:8080&quot;
-                    ],
-                    &quot;url_pattern&quot;: &quot;/__debug/supu&quot;,
-                    &quot;extra_config&quot;: {
-                        &quot;github.com/devopsfaith/krakend-martian&quot;: {
-                            &quot;fifo.Group&quot;: {
-                                &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
-                                &quot;aggregateErrors&quot;: true,
-                                &quot;modifiers&quot;: [
-                                {
-                                    &quot;header.Modifier&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
-                                        &quot;name&quot; : &quot;X-Martian&quot;,
-                                        &quot;value&quot; : &quot;ouh yeah!&quot;
-                                    }
-                                },
-                                {
-                                    &quot;body.Modifier&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;],
-                                        &quot;contentType&quot; : &quot;application/json&quot;,
-                                        &quot;body&quot; : &quot;eyJtc2ciOiJ5b3Ugcm9jayEifQ==&quot;
-                                    }
-                                },
-                                {
-                                    &quot;header.RegexFilter&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;],
-                                        &quot;header&quot; : &quot;X-Neptunian&quot;,
-                                        &quot;regex&quot; : &quot;no!&quot;,
-                                        &quot;modifier&quot;: {
-                                            &quot;header.Modifier&quot;: {
-                                                &quot;scope&quot;: [&quot;request&quot;],
-                                                &quot;name&quot; : &quot;X-Martian-New&quot;,
-                                                &quot;value&quot; : &quot;some value&quot;
-                                            }
-                                        }
-                                    }
-                                }
-                                ]
-                            }
-                        },
-                        &quot;github.com/devopsfaith/krakend-circuitbreaker/gobreaker&quot;: {
-                            &quot;interval&quot;: 60,
-                            &quot;timeout&quot;: 10,
-                            &quot;maxErrors&quot;: 1
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            &quot;endpoint&quot;: &quot;/github/{user}&quot;,
-            &quot;method&quot;: &quot;GET&quot;,
-            &quot;backend&quot;: [
-                {
-                    &quot;host&quot;: [
-                        &quot;https://api.github.com&quot;
-                    ],
-                    &quot;url_pattern&quot;: &quot;/&quot;,
-                    &quot;whitelist&quot;: [
-                        &quot;authorizations_url&quot;,
-                        &quot;code_search_url&quot;
-                    ],
-                    &quot;disable_host_sanitize&quot;: true,
-                    &quot;extra_config&quot;: {
-                        &quot;github.com/devopsfaith/krakend-martian&quot;: {
-                            &quot;fifo.Group&quot;: {
-                                &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
-                                &quot;aggregateErrors&quot;: true,
-                                &quot;modifiers&quot;: [
-                                {
-                                    &quot;header.Modifier&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
-                                        &quot;name&quot; : &quot;X-Martian&quot;,
-                                        &quot;value&quot; : &quot;ouh yeah!&quot;
-                                    }
-                                },
-                                {
-                                    &quot;body.Modifier&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;],
-                                        &quot;contentType&quot; : &quot;application/json&quot;,
-                                        &quot;body&quot; : &quot;eyJtc2ciOiJ5b3Ugcm9jayEifQ==&quot;
-                                    }
-                                },
-                                {
-                                    &quot;header.RegexFilter&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;],
-                                        &quot;header&quot; : &quot;X-Neptunian&quot;,
-                                        &quot;regex&quot; : &quot;no!&quot;,
-                                        &quot;modifier&quot;: {
-                                            &quot;header.Modifier&quot;: {
-                                                &quot;scope&quot;: [&quot;request&quot;],
-                                                &quot;name&quot; : &quot;X-Martian-New&quot;,
-                                                &quot;value&quot; : &quot;some value&quot;
-                                            }
-                                        }
-                                    }
-                                }
-                                ]
-                            }
-                        },
-                        &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
-                            &quot;maxRate&quot;: 2,
-                            &quot;capacity&quot;: 2
-                        },
-                        &quot;github.com/devopsfaith/krakend-circuitbreaker/gobreaker&quot;: {
-                            &quot;interval&quot;: 60,
-                            &quot;timeout&quot;: 10,
-                            &quot;maxErrors&quot;: 1
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            &quot;endpoint&quot;: &quot;/show/{id}&quot;,
-            &quot;backend&quot;: [
-                {
-                    &quot;host&quot;: [
-                        &quot;http://showrss.info/&quot;
-                    ],
-                    &quot;url_pattern&quot;: &quot;/user/schedule/{id}.rss&quot;,
-                    &quot;encoding&quot;: &quot;rss&quot;,
-                    &quot;group&quot;: &quot;schedule&quot;,
-                    &quot;whitelist&quot;: [&quot;items&quot;, &quot;title&quot;],
-                    &quot;extra_config&quot;: {
-                        &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
-                            &quot;maxRate&quot;: 1,
-                            &quot;capacity&quot;: 1
-                        },
-                        &quot;github.com/devopsfaith/krakend-circuitbreaker/gobreaker&quot;: {
-                            &quot;interval&quot;: 60,
-                            &quot;timeout&quot;: 10,
-                            &quot;maxErrors&quot;: 1
-                        }
-                    }
-                },
-                {
-                    &quot;host&quot;: [
-                        &quot;http://showrss.info/&quot;
-                    ],
-                    &quot;url_pattern&quot;: &quot;/user/{id}.rss&quot;,
-                    &quot;encoding&quot;: &quot;rss&quot;,
-                    &quot;group&quot;: &quot;available&quot;,
-                    &quot;whitelist&quot;: [&quot;items&quot;, &quot;title&quot;],
-                    &quot;extra_config&quot;: {
-                        &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
-                            &quot;maxRate&quot;: 2,
-                            &quot;capacity&quot;: 2
-                        },
-                        &quot;github.com/devopsfaith/krakend-circuitbreaker/gobreaker&quot;: {
-                            &quot;interval&quot;: 60,
-                            &quot;timeout&quot;: 10,
-                            &quot;maxErrors&quot;: 1
-                        }
-                    }
-                }
-            ],
-            &quot;extra_config&quot;: {
-                &quot;github.com/devopsfaith/krakend-ratelimit/juju/router&quot;: {
-                    &quot;maxRate&quot;: 50,
-                    &quot;clientMaxRate&quot;: 5,
-                    &quot;strategy&quot;: &quot;ip&quot;
-                }
-            }
-        }
-    ]
+  &quot;hotel_id&quot;: 25,
+  &quot;name&quot;: &quot;Hotel California&quot;,
+  &quot;destination_id&quot;: 1034
 }
 </code></pre>
 
-<h2 id="debug-disabled">Debug disabled</h2>
+<p>Another backend call, <code>/destinations/{destination_id}</code>, returns all the possible destinations for a given numeric ID:</p>
 
-<pre><code>$ krakend check --config krakend.json
-Parsing configuration file: krakend.json
-Syntax OK!
+<pre><code>{
+  &quot;destination_id&quot;: 1034,
+  &quot;destinations&quot;: [
+    { ... }, { ... }
+  ]
+}
 </code></pre>
 
-<h2 id="debug-enabled">Debug enabled</h2>
+<p>We want the API Gateway to expose <code>/hotels/{id}</code> and return in the same call both the hotel data and its relationship with the destinations. The code looks like this:</p>
 
-<pre><code>$ krakend check -c krakend.json -d
-Parsing configuration file: krakend.json
-Parsed configuration: CacheTTL: 1h0m0s, Port: 8080
-Hosts: []
-Extra (1):
-  github_com/devopsfaith/krakend-gologging: map[level:ERROR syslog:false stdout:true prefix:[KRAKEND]]
-Endpoints (3):
-    Endpoint: /supu, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (0):
-    Backends (1):
-        URL: /__debug/supu, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [], Group:
-            Hosts: [http://127.0.0.1:8080]
-            Extra (2):
-              github.com/devopsfaith/krakend-martian: map[fifo.Group:map[scope:[request response] aggregateErrors:true modifiers:[map[header.Modifier:map[value:ouh yeah! scope:[request response] name:X-Martian]] map[body.Modifier:map[scope:[request] contentType:application/json body:eyJtc2ciOiJ5b3Ugcm9jayEifQ==]] map[header.RegexFilter:map[header:X-Neptunian regex:no! modifier:map[header.Modifier:map[scope:[request] name:X-Martian-New value:some value]] scope:[request]]]]]]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[timeout:10 maxErrors:1 interval:60]
-    Endpoint: /github/:user, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (0):
-    Backends (1):
-        URL: /, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [authorizations_url code_search_url], Group:
-            Hosts: [https://api.github.com]
-            Extra (3):
-              github.com/devopsfaith/krakend-martian: map[fifo.Group:map[modifiers:[map[header.Modifier:map[name:X-Martian value:ouh yeah! scope:[request response]]] map[body.Modifier:map[scope:[request] contentType:application/json body:eyJtc2ciOiJ5b3Ugcm9jayEifQ==]] map[header.RegexFilter:map[scope:[request] header:X-Neptunian regex:no! modifier:map[header.Modifier:map[scope:[request] name:X-Martian-New value:some value]]]]] scope:[request response] aggregateErrors:true]]
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:2 capacity:2]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-    Endpoint: /show/:id, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (1):
-      github.com/devopsfaith/krakend-ratelimit/juju/router: map[maxRate:50 clientMaxRate:5 strategy:ip]
-    Backends (2):
-        URL: /user/schedule/{{.Id}}.rss, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [items title], Group: schedule
-            Hosts: [http://showrss.info]
-            Extra (2):
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:1 capacity:1]
-        URL: /user/{{.Id}}.rss, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [items title], Group: available
-            Hosts: [http://showrss.info]
-            Extra (2):
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:2 capacity:2]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-Syntax OK!
+<pre><code>&quot;endpoint&quot;: &quot;/hotels/{id}&quot;,
+&quot;backend&quot;: [
+    { &lt;--- Index 0
+        &quot;host&quot;: [
+            &quot;https://hotels.api&quot;
+        ],
+        &quot;url_pattern&quot;: &quot;/hotels/{id}&quot;
+    },
+    { &lt;--- Index 1
+        &quot;host&quot;: [
+            &quot;https://hotels.api&quot;
+        ],
+        &quot;url_pattern&quot;: &quot;/destinations/{resp0_destination_id}&quot;
+    }
+],
+&quot;extra_config&quot;: {
+    &quot;github.com/devopsfaith/krakend/proxy&quot;: {
+        &quot;sequential&quot;: true
+    }
+}
 </code></pre>
+
+<p>The key here is the variable <code>{resp0_destination_id}</code> that references the <code>destination_id</code> to the response of the backend number <code>0</code> (first).</p>
 
     </section>
 </div>

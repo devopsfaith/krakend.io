@@ -198,6 +198,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/endpoints/sequential-proxy/</loc>
+    <lastmod>2018-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/throttling/max-idle-connections/</loc>
     <lastmod>2018-09-27T00:00:00+00:00</lastmod>
   </url>

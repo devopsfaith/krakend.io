@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Open Source on KrakenD API Gateway - English</title>
+    <title>Open Source on KrakenD API Gateway</title>
     <link>https://www.krakend.io/tags/open-source/</link>
-    <description>Recent content in Open Source on KrakenD API Gateway - English</description>
+    <description>Recent content in Open Source on KrakenD API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>

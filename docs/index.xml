@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docs on KrakenD API Gateway - English</title>
+    <title>Docs on KrakenD API Gateway</title>
     <link>https://www.krakend.io/docs/</link>
-    <description>Recent content in Docs on KrakenD API Gateway - English</description>
+    <description>Recent content in Docs on KrakenD API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 25 Oct 2016 00:00:00 +0000</lastBuildDate>
@@ -437,6 +437,17 @@ This caching technique applies to traffic between KrakenD and your microservices
       <description>KrakenD supports sending responses back to the client using content types other than JSON (v0.5 or greater. The list of supported content types depends on the selected router package.
 Each endpoint declaration is able to define which encoder should be used, as shown in this example. By default, the KrakenD router will fall back to JSON:
 ... &amp;quot;endpoints&amp;quot;: [ { &amp;quot;endpoint&amp;quot;: &amp;quot;/a&amp;quot;, &amp;quot;output_encoding&amp;quot;: &amp;quot;negotiate&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/a&amp;quot; } ] }, { &amp;quot;endpoint&amp;quot;: &amp;quot;/b&amp;quot;, &amp;quot;output_encoding&amp;quot;: &amp;quot;string&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/b&amp;quot; } ] }, { &amp;quot;endpoint&amp;quot;: &amp;quot;/c&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/c&amp;quot; } ] } .</description>
+    </item>
+    
+    <item>
+      <title>Sequential Proxy</title>
+      <link>https://www.krakend.io/docs/endpoints/sequential-proxy/</link>
+      <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/sequential-proxy/</guid>
+      <description>The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends concurrently at the same time. However, there are times when you need to delay a backend call until you can inject as input the result of a previous call.
+The sequential proxy allows you to chain backend requests.
+Chaining the requests All you need to enable the sequential proxy is add in the endpoint definition the following configuration:</description>
     </item>
     
     <item>

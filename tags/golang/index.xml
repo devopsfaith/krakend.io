@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Golang on KrakenD API Gateway - English</title>
+    <title>Golang on KrakenD API Gateway</title>
     <link>https://www.krakend.io/tags/golang/</link>
-    <description>Recent content in Golang on KrakenD API Gateway - English</description>
+    <description>Recent content in Golang on KrakenD API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 06 Jun 2018 18:47:03 +0200</lastBuildDate>
