@@ -225,6 +225,10 @@
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/debug-endpoint/" class="nav-link children ">Debug endpoint</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/security/" class="nav-link children ">Security</a>
                     </li>
                     
@@ -530,7 +534,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">Table of Contents</h6>
                 <nav id="TableOfContents">
 <ul>
-<li><a href="#query-string-forwarding">Query string forwarding</a></li>
+<li><a href="#query-string-forwarding">Query string forwarding</a>
+<ul>
+<li><a href="#mixing-endpoint-variables-and-query-string-parameters">Mixing endpoint {variables} and query string parameters</a></li>
+</ul></li>
 <li><a href="#headers-forwarding">Headers forwarding</a></li>
 <li><a href="#cookies-forwarding">Cookies forwarding</a></li>
 </ul>
@@ -541,23 +548,27 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         
         
 
-<p>KrakenD always <strong>alleviates backends</strong> avoiding to pollute them with everything coming from the clients. By default, <strong>no parameters sent by clients are forwarded to backends</strong> and if needed they will require an explicit declaration in the configuration file.</p>
+<p>KrakenD is an API Gateway, and when it comes to forward query strings, cookies, and headers, it <strong>does not behave like a regular proxy</strong> by forwarding parameters to the backend.</p>
 
-<p>The parameter forwarding refers to:</p>
+<p>The <strong>default policy</strong> for data forwarding works as follows:</p>
 
 <ul>
-<li><a href="#query-string-forwarding">Query string</a></li>
-<li><a href="#headers-forwarding">Headers</a></li>
-<li><a href="#cookies-forwarding">Cookies</a></li>
+<li>No <a href="#query-string-forwarding">query string</a> parameters are forwarded to the backend</li>
+<li>No <a href="#headers-forwarding">headers</a> are forwarded</li>
+<li>No <a href="#cookies-forwarding">cookies</a> are forwarded</li>
 </ul>
+
+<p>You can change this behavior according to your needs, and define which elements are allowed to pass.</p>
+
+<p>However, if you want a specific endpoint to act just like a regular proxy without doing any operations use the <code>no-op</code> option on its encoding options. When using <code>no-op</code>, the gateway can&rsquo;t do anything with the content. The request goes from the client to the backend &ldquo;as is&rdquo;.</p>
 
 <h1 id="query-string-forwarding">Query string forwarding</h1>
 
-<p>Use <code>querystring_params</code></p>
+<p>KrakenD <strong>sends all query string parameters to the backend by default</strong>. Meaning that if an endpoint <code>/foo</code> receives the query string <code>/foo?a=1&amp;b=2</code> all its declared backends are going to receive <code>a</code> and <code>b</code>.</p>
 
-<p>In order to receive the query strings sent by clients in your backends, you will need to declare in the <code>querystring_params</code> the list of recognized parameters. When this list is set, any matching parameters are included in the backend call <strong>when present</strong>.</p>
+<p>Nevertheless, it&rsquo;s recommended to add the property list <code>querystring_params</code> in the <code>endpoint</code> configuration to declare the allowed parameters and avoid polluting backends. When this list exists in the configuration, the forwarding policy behaves like a whitelist: all matching parameters declared in the <code>querystring_params</code> list are forwarded to the backend, and the rest dropped.</p>
 
-<p>For instance, let&rsquo;s forward<code>?a=1&amp;b=2</code> to the backends:</p>
+<p>For instance, let&rsquo;s forward <code>?a=1&amp;b=2</code> only to the backends:</p>
 
 <pre><code>{
   &quot;version&quot;: 2,
@@ -583,17 +594,72 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 }
 </code></pre>
 
-<p>With this configuration, given a request like <code>http://krakend:8080/v1/foo?a=1&amp;b=2&amp;c=3</code> the backend will receive <code>a</code> and <code>b</code> but <code>c</code> will be missing. But also, a request like <code>http://krakend:8080/v1/foo?a=1</code> the backend will receive <code>a</code> but <code>b</code> will be missing.</p>
+<p>With this configuration, given a request like <code>http://krakend:8080/v1/foo?a=1&amp;b=2&amp;evil=here</code>, the backend receives <code>a</code> and <code>b</code>, but <code>evil</code> is missing.</p>
+
+<p>Also, if a request like <code>http://krakend:8080/v1/foo?a=1</code> is skipping an allowed parameter like <code>b</code>, this parameter is missing in the backend as well.</p>
+
+<h2 id="mixing-endpoint-variables-and-query-string-parameters">Mixing endpoint {variables} and query string parameters</h2>
+
+<p>The <code>{variables}</code> used in the endpoints definition can be injected in the backends as part of the query string parameters as well. These variables combine with any actual query string parameters in the endpoint. For instance:</p>
+
+<pre><code>...
+{
+        &quot;endpoint&quot;: &quot;/v3/{channel}/foo&quot;,
+        &quot;backend&quot;: [
+                {
+                        &quot;host&quot;: [&quot;http://backend&quot;],
+                        &quot;url_pattern&quot;: &quot;/foo?channel={channel}&quot;
+                }
+        ]
+}
+</code></pre>
+
+<div class="alert note">
+    <h4><i class="fa fa-sticky-note"></i> Important note</h4>
+	<p>Injecting variables in the backend as a query string enables the forwarding of all client query string parameters, unless the <code>querystring_params</code> is set.</p>
+
+ </div>
+
+<p>With the configuration above a request to the KrakenD endpoint such as <code>http://krakend/v3/iOS/foo?limit=10&amp;evil=here</code> makes a call to the backend with the following query string parameters:</p>
+
+<pre><code>/foo?channel=iOS&amp;limit=10&amp;evil=here
+</code></pre>
+
+<p>The same call using <code>querystring_params</code> produces the equivalent behavior, only that unexpected parameters drop:</p>
+
+<pre><code>{
+        &quot;endpoint&quot;: &quot;/v3/{channel}/foo&quot;,
+        &quot;querystring_params&quot;: [
+                &quot;page&quot;,
+                &quot;limit&quot;
+        ],
+        &quot;backend&quot;: [
+                {
+                        &quot;host&quot;: [&quot;http://backend&quot;],
+                        &quot;url_pattern&quot;: &quot;/foo?channel={channel}&quot;
+                }
+        ]
+}
+</code></pre>
+
+<p>And the backend receives:</p>
+
+<pre><code>/foo?channel=iOS&amp;limit=10
+</code></pre>
+
+<p>No <code>evil</code> here! So, remember to set always the <code>querystring_params</code> if you intend to inject variables as parameters.</p>
+
+<p>Read the <a href="/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test query string parameters.</p>
 
 <h1 id="headers-forwarding">Headers forwarding</h1>
 
-<p>Use <code>headers_to_pass</code></p>
+<p>KrakenD <strong>does not send client headers to the backend by default</strong>.  Use <code>headers_to_pass</code>.</p>
 
 <p>Declare the list of headers sent by the client that you want to let pass to the backend with the <code>headers_to_pass</code> option.</p>
 
-<p>A client request from a browser or a mobile client usually contains a lot of headers, including cookies. Typical examples of the kind of headers that are usually received from clients are <code>Host</code>, <code>Connection</code>, <code>Cache-Control</code>, <code>Cookie</code>&hellip; and a long long etcetera. The backend usually does not need any of this to return the content.</p>
+<p>A client request from a browser or a mobile client usually contains a lot of headers, including cookies. Typical examples of the variety of headers that clients send are <code>Host</code>, <code>Connection</code>, <code>Cache-Control</code>, <code>Cookie</code>&hellip; and a long, long etcetera. The backend usually does not need any of this to return the content.</p>
 
-<p>KrakenD will pass only the essential headers to the backends, for instance:</p>
+<p>KrakenD passes only these essential headers to the backends:</p>
 
 <pre><code>Accept-Encoding: gzip
 Host: localhost:8080
@@ -601,7 +667,7 @@ User-Agent: KrakenD Version 0.7.0
 X-Forwarded-For: ::1
 </code></pre>
 
-<p>When you use the <code>headers_to_pass</code> take into account that any of these headers will be replaced with the ones you declare.</p>
+<p>When you use the <code>headers_to_pass</code>, take into account that any of these headers are replaced with the ones you declare.</p>
 
 <p>An example to pass the <code>User-Agent</code> to the backend:</p>
 
@@ -613,7 +679,7 @@ X-Forwarded-For: ::1
       &quot;method&quot;: &quot;GET&quot;,
       &quot;headers_to_pass&quot;: [
         &quot;User-Agent&quot;
-      ],
+        ],
       &quot;backend&quot;: [
         {
           &quot;url_pattern&quot;: &quot;/catalog&quot;,
@@ -628,7 +694,7 @@ X-Forwarded-For: ::1
 }
 </code></pre>
 
-<p>This setting will change the headers received by the backend to:</p>
+<p>This setting changes the headers received by the backend to:</p>
 
 <pre><code>Accept-Encoding: gzip
 Host: localhost:8080
@@ -636,9 +702,13 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (
 X-Forwarded-For: ::1
 </code></pre>
 
+<p>Read the <a href="/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test headers.</p>
+
 <h1 id="cookies-forwarding">Cookies forwarding</h1>
 
-<p>A cookie is just some content passing inside the <code>Cookie</code> header. If you want cookies to reach your backend, add the <code>Cookie</code> header under <code>headers_to_pass</code>, just as you would do with any other header. With this, <strong>all your cookies</strong> will be sent to all backends inside the endpoint. Use this option wisely!</p>
+<p>A cookie is just some content passing inside the <code>Cookie</code> header. If you want cookies to reach your backend, add the <code>Cookie</code> header under <code>headers_to_pass</code>, just as you would do with any other header.</p>
+
+<p>When doing this, <strong>all your cookies</strong> are sent to all backends inside the endpoint. Use this option wisely!</p>
 
 <p>Example:</p>
 
@@ -650,7 +720,7 @@ X-Forwarded-For: ::1
       &quot;method&quot;: &quot;GET&quot;,
       &quot;headers_to_pass&quot;: [
         &quot;Cookie&quot;
-      ],
+        ],
       &quot;backend&quot;: [
         {
           &quot;url_pattern&quot;: &quot;/catalog&quot;,

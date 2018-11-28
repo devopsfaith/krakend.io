@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/overview/introduction/</loc>
-    <lastmod>2018-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -149,7 +149,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/endpoints/parameter-forwarding/</loc>
-    <lastmod>2018-09-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -165,6 +165,11 @@
   <url>
     <loc>https://www.krakend.io/docs/service-discovery/eureka/</loc>
     <lastmod>2018-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/endpoints/debug-endpoint/</loc>
+    <lastmod>2018-11-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -199,7 +204,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/endpoints/sequential-proxy/</loc>
-    <lastmod>2018-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -415,7 +420,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/</loc>
-    <lastmod>2018-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -445,7 +450,7 @@
   
   <url>
     <loc>https://www.krakend.io/</loc>
-    <lastmod>2018-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -335,10 +335,9 @@ Why choosing json? You are free to choose YAML, TOML or any of the other formats
       <pubDate>Fri, 20 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/endpoints/parameter-forwarding/</guid>
-      <description>KrakenD always alleviates backends avoiding to pollute them with everything coming from the clients. By default, no parameters sent by clients are forwarded to backends and if needed they will require an explicit declaration in the configuration file.
-The parameter forwarding refers to:
- Query string Headers Cookies  Query string forwarding Use querystring_params
-In order to receive the query strings sent by clients in your backends, you will need to declare in the querystring_params the list of recognized parameters.</description>
+      <description>KrakenD is an API Gateway, and when it comes to forward query strings, cookies, and headers, it does not behave like a regular proxy by forwarding parameters to the backend.
+The default policy for data forwarding works as follows:
+ No query string parameters are forwarded to the backend No headers are forwarded No cookies are forwarded  You can change this behavior according to your needs, and define which elements are allowed to pass.</description>
     </item>
     
     <item>
@@ -371,6 +370,17 @@ When using concurrent requests, the backend services must be able to handle an a
       <description>Users of the Netflix&amp;rsquo;s service Eureka have a couple of user contributed integrations available listed in our krakend-contrib repository.
 The integrations are not bundled with KrakenD-CE releases but they can be added to the project and make a custom build without difficulties.
  schibsted/krakend-eureka: The Eureka client Schibsted has been running in production since 2017. joaoqalves/krakend-eureka: A Eureka client contributed by João Alves  </description>
+    </item>
+    
+    <item>
+      <title>The `/__debug` endpoint</title>
+      <link>https://www.krakend.io/docs/endpoints/debug-endpoint/</link>
+      <pubDate>Tue, 27 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/debug-endpoint/</guid>
+      <description>The /__debug endpoint is available when you start the server with the -d flag.
+The endpoint can be used as a fake backend to see its activity in the log. When developing, add KrakenD itself as a backend using the /__debug/ endpoint so you can see exactly what headers and query string parameters your backends are receiving.
+The debug endpoint might save you a lot of trouble, as your application might not work when certain headers or parameters are not present, and you might be relying upon what your client is sending, and not in what the gateway is sending.</description>
     </item>
     
     <item>
