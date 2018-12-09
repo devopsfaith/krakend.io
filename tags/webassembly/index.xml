@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Webassembly on KrakenD API Gateway</title>
+    <link>https://www.krakend.io/tags/webassembly/</link>
+    <description>Recent content in Webassembly on KrakenD API Gateway</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.krakend.io/tags/webassembly/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How we run KrakenD on Javascript with WebAssembly</title>
+      <link>https://www.krakend.io/blog/krakend-wasm/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-wasm/</guid>
+      <description>KrakenD is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the KrakenDesigner is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.
+In this post, we are going to explain how we included KrakenD framework components in a .</description>
+    </item>
+    
+  </channel>
+</rss>

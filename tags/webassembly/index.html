@@ -6,16 +6,16 @@
 <meta name="generator" content="Hugo 0.49" />
 
 
-    <title>Devops - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Devops - KrakenD API Gateway">
-    <meta name="twitter:title" content="Devops - KrakenD API Gateway">
-    <meta property="og:title" content="Devops - KrakenD API Gateway">
+    <title>Webassembly - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Webassembly - KrakenD API Gateway">
+    <meta name="twitter:title" content="Webassembly - KrakenD API Gateway">
+    <meta property="og:title" content="Webassembly - KrakenD API Gateway">
 
     
-    <meta property="description" content="Devops - KrakenD API Gateway">
-    <meta itemprop="description" content="Devops - KrakenD API Gateway">
-    <meta name="twitter:description" content="Devops - KrakenD API Gateway">
-    <meta property="og:description" content="Devops - KrakenD API Gateway">
+    <meta property="description" content="Webassembly - KrakenD API Gateway">
+    <meta itemprop="description" content="Webassembly - KrakenD API Gateway">
+    <meta name="twitter:description" content="Webassembly - KrakenD API Gateway">
+    <meta property="og:description" content="Webassembly - KrakenD API Gateway">
     
 
     
@@ -25,7 +25,7 @@
     
 
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.krakend.io/tags/devops/" />
+    <meta property="og:url" content="https://www.krakend.io/tags/webassembly/" />
 
 
 
@@ -227,11 +227,11 @@
 	<article class="post-entry">
 		<header class="post-header">
 			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/reloading-the-krakend-configuration/" class="post-link">Reloading the Krakend configuration with Reflex and Docker</a>
+				<a href="https://www.krakend.io/blog/krakend-wasm/" class="post-link">How we run KrakenD on Javascript with WebAssembly</a>
 			</h1>
 			<div class="post-metadata clearfix">
     <p class="author float-left">
-        by Daniel Ortiz &middot; Jun 22, 2018
+        by Daniel Lopez &middot; Dec 9, 2018
     </p>
     <div class="tags">
         <ul>
@@ -243,27 +243,33 @@
             
             ,
             
-            <a href="/tags/docker">
-                docker
+            <a href="/tags/how-to">
+                how to
             </a>
             
             ,
             
-            <a href="/tags/devops">
-                devops
+            <a href="/tags/golang">
+                golang
             </a>
             
-            <li><em class="reading-time">4 min read</em></li>
+            ,
+            
+            <a href="/tags/webassembly">
+                WebAssembly
+            </a>
+            
+            <li><em class="reading-time">11 min read</em></li>
         </ul>
     </div>
 </div>
 		</header>
 		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/reloading-the-krakend-configuration/" title="Continue reading Reloading the Krakend configuration with Reflex and Docker">
-				A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it’s running. The short answer is: No, you can’t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don’t support such a feature:
- Performance: This is the #1 reason, and strong enough.
+			<a class="summary" href="https://www.krakend.io/blog/krakend-wasm/" title="Continue reading How we run KrakenD on Javascript with WebAssembly">
+				KrakenD is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the KrakenDesigner is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.
+In this post, we are going to explain how we included KrakenD framework components in a .
 			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/reloading-the-krakend-configuration/">Continue reading →</a>
+			<a class="read-more" href="https://www.krakend.io/blog/krakend-wasm/">Continue reading →</a>
 		</p>
 	</article>
 </div>

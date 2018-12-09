@@ -503,6 +503,16 @@ As KrakenD is an API gateway, we have also added to the environment an API (back
     </item>
     
     <item>
+      <title>How we run KrakenD on Javascript with WebAssembly</title>
+      <link>https://www.krakend.io/blog/krakend-wasm/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-wasm/</guid>
+      <description>KrakenD is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the KrakenDesigner is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.
+In this post, we are going to explain how we included KrakenD framework components in a .</description>
+    </item>
+    
+    <item>
       <title>KrakenD 0.7 released</title>
       <link>https://www.krakend.io/blog/krakend-0.7-release-notes/</link>
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>

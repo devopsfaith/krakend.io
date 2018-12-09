@@ -59,7 +59,7 @@
     <item>
       <title>Golang</title>
       <link>https://www.krakend.io/tags/golang/</link>
-      <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/tags/golang/</guid>
       <description></description>
@@ -68,7 +68,7 @@
     <item>
       <title>How To</title>
       <link>https://www.krakend.io/tags/how-to/</link>
-      <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/tags/how-to/</guid>
       <description></description>
@@ -104,7 +104,7 @@
     <item>
       <title>Open Source</title>
       <link>https://www.krakend.io/tags/open-source/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/tags/open-source/</guid>
       <description></description>
@@ -125,6 +125,15 @@
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/tags/release-notes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Webassembly</title>
+      <link>https://www.krakend.io/tags/webassembly/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/tags/webassembly/</guid>
       <description></description>
     </item>
     

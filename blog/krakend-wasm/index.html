@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49" />
+
+
+    <title>How we run KrakenD on Javascript with WebAssembly - KrakenD API Gateway</title>
+    <meta itemprop="name" content="How we run KrakenD on Javascript with WebAssembly - KrakenD API Gateway">
+    <meta name="twitter:title" content="How we run KrakenD on Javascript with WebAssembly - KrakenD API Gateway">
+    <meta property="og:title" content="How we run KrakenD on Javascript with WebAssembly - KrakenD API Gateway">
+
+    
+    <meta property="description" content="A KrakenD in your browser">
+    <meta itemprop="description" content="A KrakenD in your browser">
+    <meta name="twitter:description" content="A KrakenD in your browser">
+    <meta property="og:description" content="A KrakenD in your browser">
+    
+
+    
+    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
+    <meta name="twitter:image:src" content="https://www.krakend.io/images/logo.png">
+    <meta property="og:image" content="https://www.krakend.io/images/logo.png" />
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.krakend.io/blog/krakend-wasm/" />
+
+
+
+<meta name="twitter:site" content="@devopsfaith">
+<meta name="twitter:creator" content="@devopsfaith">
+<meta name="twitter:card" content="summary">
+
+
+<meta property="og:site_name" content="KrakenD API Gateway" />
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="/dist/styles.css">
+
+
+<link rel="icon" type="image/png" href="/favicon/favicon-196x196.png" sizes="196x196" />
+<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
+</head>
+<body class="krakend">
+	<div class="wrapper">
+
+		
+		<div class="top-bar">
+  <div class="container my-2">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="/" title="Home">
+        <img class="mr-4" src="/images/logo.png" alt="" width="180">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="mega-dropdown navbar-nav mr-auto">
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="/features/">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/docs/overview/introduction/">Documentation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/enterprise/">Enterprise</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/support/">Support</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/">Blog</a>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="github d-none d-lg-block">
+        <a class="nav-link github-button" href="https://github.com/devopsfaith/krakend" data-show-count="true"
+          aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+      </div>
+      <div class="download d-none d-lg-block">
+          <a class="btn btn-sm" href="/download/">Downloads</a>
+      </div>
+      <div class="designer d-none d-lg-block">
+        <a class="btn btn-sm" href="https://designer.krakend.io">Designer</a>
+      </div>
+      
+     
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+		
+<div class="blog-wrapper container">
+  <div class="blog row">
+    <div class="col-3">
+      <div class="sidebar mb-3">
+	<h6 class="header">Blog categories</h6>
+	<ul class="nav menu">
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/blog/">All categories</a></li>
+		</li>
+		
+		
+		
+		<li class="nav-item">
+			<a href="/categories/announcements" class="nav-link">announcements</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/api-gateway" class="nav-link">api-gateway</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/api2html" class="nav-link">api2html</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/configuration" class="nav-link">configuration</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/devops" class="nav-link">devops</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/docker" class="nav-link">docker</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/enterprise" class="nav-link">enterprise</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/krakend" class="nav-link">krakend</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/kubernetes" class="nav-link">kubernetes</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/reflex" class="nav-link">reflex</a>
+		</li>
+		
+	</ul>
+</div>
+
+<div class="sidebar mb-3">
+	<h6 class="header">Tags</h6>
+	<ul class="nav menu">
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/open-source">open-source</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/how-to">how-to</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/golang">golang</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/release-notes">release-notes</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/docker">docker</a>
+		</li>
+		
+	</ul>
+</div>
+
+<div class="sidebar mb-3">
+	<h6 class="header">Recent entries</h6>
+	<ul class="nav menu">
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-wasm/">How we run KrakenD on Javascript with WebAssembly</a></li>
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.7-release-notes/">KrakenD 0.7 released</a></li>
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.6-release-notes/">KrakenD 0.6 autumn release</a></li>
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/reloading-the-krakend-configuration/">Reloading the Krakend configuration with Reflex and Docker</a></li>
+		
+	</ul>
+</div>
+    </div>
+    <div class="col-9">
+      <section class="blog px-3">
+        <article class="post-entry">
+          <header class="post-header">
+            <div class="share float-right">
+	<a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-wasm%2f&t=How%20we%20run%20KrakenD%20on%20Javascript%20with%20WebAssembly" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-facebook"></i></a>
+	<a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-wasm%2f&text=How%20we%20run%20KrakenD%20on%20Javascript%20with%20WebAssembly&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-twitter"></i></a>
+	<a href="https://plus.google.com/share?url=https%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-wasm%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-google-plus"></i></a>
+	<a href="http://getpocket.com/edit?url=https%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-wasm%2f&title=How%20we%20run%20KrakenD%20on%20Javascript%20with%20WebAssembly" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-get-pocket"></i></a>
+</div>
+            <h1 class="post-title">
+              <a href="https://www.krakend.io/blog/krakend-wasm/" class="post-link">How we run KrakenD on Javascript with WebAssembly</a>
+            </h1>
+            <div class="post-metadata clearfix">
+    <p class="author float-left">
+        by Daniel Lopez &middot; Dec 9, 2018
+    </p>
+    <div class="tags">
+        <ul>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            ,
+            
+            <a href="/tags/how-to">
+                how to
+            </a>
+            
+            ,
+            
+            <a href="/tags/golang">
+                golang
+            </a>
+            
+            ,
+            
+            <a href="/tags/webassembly">
+                WebAssembly
+            </a>
+            
+            <li><em class="reading-time">11 min read</em></li>
+        </ul>
+    </div>
+</div>
+            
+          </header>
+
+          
+
+<p><a href="https://www.krakend.io">KrakenD</a> is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the <a href="https://designer.krakend.io">KrakenDesigner</a> is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.</p>
+
+<p>In this post, we are going to explain how we included KrakenD framework components in a <code>.wasm</code> file and how we integrated it into our existing SPA. This is our go code running on javascript.</p>
+
+<p>Let&rsquo;s start!</p>
+
+<h2 id="golang-1-11-and-webassembly">Golang 1.11 and WebAssembly</h2>
+
+<p>During the last 3 years, the popularity of WebAssembly (and its promise to replace JS) has been increasing at a breakneck pace.</p>
+
+<p>From the project&rsquo;s <a href="https://webassembly.org/">home page</a>:</p>
+
+<blockquote>
+<p>WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based virtual machine. Wasm is designed as a portable target for compilation of high-level languages like C/C++/Rust, enabling deployment on the web for client and server applications.</p>
+</blockquote>
+
+<p>The latest release of the golang language comes with an experimental port to WebAssembly.</p>
+
+<h2 id="quick-environment-setup">Quick environment setup</h2>
+
+<p>There are two dependencies in this project, be sure to have both installed correctly in your environment</p>
+
+<ul>
+<li>golang 1.11</li>
+<li>dep 0.5.0</li>
+</ul>
+
+<p>To reproduce the steps we did, let&rsquo;s start with a clean Go project. Copy the JS and HTML already bundled with your golang distribution to your new project.</p>
+
+<pre><code>cd myproject/
+$ cp &quot;$(go env GOROOT)/misc/wasm/wasm_exec.js&quot; .
+$ cp &quot;$(go env GOROOT)/misc/wasm/wasm_exec.html&quot; index.html
+</code></pre>
+
+<p>Now add a very simple <code>Makefile</code> that is going to download any dependencies and generate the <code>.wasm</code> file:</p>
+
+<pre><code>all: prepare build
+
+prepare:
+    dep ensure -v
+
+build:
+    GOARCH=wasm GOOS=js go build -o test.wasm main.go
+</code></pre>
+
+<p>Running <code>make</code> is all it takes to generate the <code>test.wasm</code> file, but to get a faster development environment, we&rsquo;ve also used two handy tools:</p>
+
+<ul>
+<li><a href="https://github.com/cespare/reflex">reflex</a> watches changes in the <code>main.go</code> file and recompiles automatically.</li>
+<li><a href="https://github.com/shurcooL/goexec">goexec</a> helps us launch Go one-liners, that we are using to launch a local web server.</li>
+</ul>
+
+<p>Open a new terminal, move to your project and start the <code>reflex</code> task:</p>
+
+<pre><code>$ reflex -r '^main.go$'  make build
+</code></pre>
+
+<p>We are creating the <code>main.go</code> content in a minute. Now, any changes happening to the main.go file execute a <code>make build</code> every time.</p>
+
+<p>In a second terminal, move to your project and create the basic local HTTP server for serving the files <code>index.html</code>, <code>wasm_exec.js</code>, and <code>test.wasm</code></p>
+
+<pre><code>$ goexec 'http.ListenAndServe(&quot;:8080&quot;, http.FileServer(http.Dir(&quot;.&quot;)))'
+</code></pre>
+
+<p>It&rsquo;s time to test if everything is properly working. Create a file called <code>main.go</code> with this content:</p>
+
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    fmt.Println(&quot;Hello, WebAssembly!&quot;)
+}
+</code></pre>
+
+<p>Open your browser at <a href="http://localhost:8080">http://localhost:8080</a> and click the <code>run</code> button. You should find the <code>Hello, WebAssembly!</code> message in your console.</p>
+
+<p><img src="https://media0.giphy.com/media/JNrWNUUNZlIhG/giphy.gif?cid=3640f6095bf6d25a50506c4677a68f5e" alt="Horray!" /></p>
+
+<h2 id="using-go-libs">Using go libs</h2>
+
+<p>With our environment ready, we can start hacking our way in. So let&rsquo;s create the minimal required code to expose a golang function to the JS space called <code>parse</code>.</p>
+
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;syscall/js&quot;
+)
+
+func parse(i []js.Value) {
+	fmt.Println(i)
+}
+
+func main() {
+	fmt.Println(&quot;WASM Go Initialized&quot;)
+
+	js.Global().Set(&quot;parse&quot;, js.NewCallback(parse))
+
+	select {}
+}
+</code></pre>
+
+<p>You can test it in the console (after clicking run):</p>
+
+<pre><code>WASM Go Initialized
+&gt; parse(&quot;aaaa&quot;, {a:42,b:true}, [&quot;one&quot;,&quot;two&quot;]);
+[aaaa [object Object] one,two]
+</code></pre>
+
+<p>As we are going to use external dependencies, we&rsquo;ll use the same system as in the KrakenD framework: <code>dep</code>. There are some problems using the versions locked in the framework in our WASM, so you can create a file called <code>Gopkg.toml</code> with the following content:</p>
+
+<pre><code>[[override]]
+  name = &quot;github.com/mattn/go-isatty&quot;
+  revision = &quot;3fb116b820352b7f0c281308a4d6250c22d94e27&quot;
+
+[[override]]
+  name = &quot;github.com/gin-gonic/gin&quot;
+  branch = &quot;master&quot;
+
+[[override]]
+	version = &quot;v2.2.1&quot;
+	source = &quot;github.com/go-yaml/yaml&quot;
+	name = &quot;gopkg.in/yaml.v2&quot;
+
+[[constraint]]
+  name = &quot;github.com/devopsfaith/krakend&quot;
+  branch = &quot;master&quot;
+
+[prune]
+  go-tests = true
+  unused-packages = true
+</code></pre>
+
+<p>With the <code>Gopkg.toml</code> in the root of your project, prepare it by typing</p>
+
+<pre><code>make prepare
+</code></pre>
+
+<p>The easiest way to create a KrakenD is by using just the framework. Let&rsquo;s alter the <code>parse</code> function so that it dumps the result of the actual KrakenD config parser:</p>
+
+<pre><code>func parse(i []js.Value) {
+	cfg, err := config.NewParserWithFileReader(func(s string) ([]byte, error) {
+		return []byte(s), nil
+	}).Parse(i[0].String())
+	if err != nil {
+		fmt.Println(&quot;error:&quot;, err.Error())
+		return
+	}
+	fmt.Printf(&quot;%d endpoints parsed:\n&quot;, len(cfg.Endpoints))
+	fmt.Printf(&quot;%+v\n&quot;, cfg)
+}
+</code></pre>
+
+<p>So far, so good. We already have a running environment and a clear way to port existent golang code into JS.</p>
+
+<h2 id="building-an-ephemeral-krakend-instance">Building an ephemeral KrakenD instance</h2>
+
+<p>Before digging more in-depth in the function bindings and translations required to consume the golang libs from the JS space, we need some wrapper over the ephemeral KrakenD instances so we can consume them <strong>without starting an HTTP server inside the browser</strong>.</p>
+
+<p>All the <code>router</code> implementations of the framework accept a <code>RunServerFunc</code> and delegate to it the setup of the server for exposing the <code>http.Handler</code> containing the KrakenD instance. So, if we want to avoid the server instantiation and capture the handler, we can create a custom implementation of the <code>client.RunServer</code>. As you can see, we also catch the <code>cancel</code> function of the instance context, so the wrapper can offer a way to close the embedded KrakenD service.</p>
+
+<pre><code>type LocalServer struct {
+    close   func()
+    handler func(rw http.ResponseWriter, req *http.Request)
+}
+
+func newServer(cfg string) (*LocalServer, error) {
+	// parse the received config string
+	serviceConfig, err := config.NewParserWithFileReader(func(s string) ([]byte, error) {
+		return []byte(s), nil
+	}).Parse(cfg)
+	if err != nil {
+		return nil, err
+	}
+	serviceConfig.Debug = true
+
+	// instantiate the framework logger
+	logger, err := logging.NewLogger(&quot;DEBUG&quot;, os.Stdout, &quot;[KRAKEND]&quot;)
+	if err != nil {
+		return nil, err
+	}
+
+	// create a context for the ephimeral instance
+	ctx, cancel := context.WithCancel(context.Background())
+
+	s := &amp;LocalServer{
+		// capture the context cancel function
+		close:   cancel,
+		// empty handler to override at the RunServer func
+		handler: func(rw http.ResponseWriter, req *http.Request) {},
+	}
+
+	routerFactory := krakendgin.NewFactory(krakendgin.Config{
+		Engine:         gin.New(),
+		ProxyFactory:   proxy.DefaultFactory(logger),
+		Logger:         logger,
+		HandlerFactory: krakendgin.EndpointHandler,
+		// RunServer just captures the handler and waits for a context cancelation
+		RunServer: func(ctx context.Context, _ config.ServiceConfig, handler http.Handler) error {
+			s.handler = handler.ServeHTTP
+			&lt;-ctx.Done()
+			return ctx.Err()
+		},
+	})
+
+	// start the service in a goroutine
+	go func(ctx context.Context, serviceConfig config.ServiceConfig) {
+		routerFactory.NewWithContext(ctx).Run(serviceConfig)
+	}(ctx, serviceConfig)
+
+	return s, nil
+}
+</code></pre>
+
+<p>With the <code>LocalServer</code> ready, we can build the simplest consumer/client with some help from the <code>httptest</code> package:</p>
+
+<pre><code>type Client struct {
+	Server *LocalServer
+}
+
+func (c Client) Do(req *http.Request) *http.Response {
+	req.Header.Add(&quot;js.fetch:credentials&quot;, &quot;omit&quot;)
+	rw := httptest.NewRecorder()
+	c.Server.handler(rw, req)
+	return rw.Result()
+}
+
+func (c *Client) Close() {
+	c.Server.close()
+}
+</code></pre>
+
+<p>Notice we add the header <code>js.fetch:credentials</code> so no cookies are sent with the requests. This is a feature of the golang adapter of the JS <code>fetch</code> function. The comments at the <a href="https://golang.org/src/net/http/roundtrip_js.go">source code</a> of the golang stdlib show the possible values.</p>
+
+<pre><code>// jsFetchMode is a Request.Header map key that, if present,
+// signals that the map entry is actually an option to the Fetch API mode setting.
+// Valid values are: &quot;cors&quot;, &quot;no-cors&quot;, &quot;same-origin&quot;, &quot;navigate&quot;
+// The default is &quot;same-origin&quot;.
+//
+// Reference: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters
+const jsFetchMode = &quot;js.fetch:mode&quot;
+
+// jsFetchCreds is a Request.Header map key that, if present,
+// signals that the map entry is actually an option to the Fetch API credentials setting.
+// Valid values are: &quot;omit&quot;, &quot;same-origin&quot;, &quot;include&quot;
+// The default is &quot;same-origin&quot;.
+//
+// Reference: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters
+const jsFetchCreds = &quot;js.fetch:credentials&quot;
+</code></pre>
+
+<p>And that&rsquo;s all we need to embed a KrakenD instance into a simple client. As a footnote, trying to avoid the CORS validation of the browser will give you the <em>pleasure</em> of meeting the CORB layer.</p>
+
+<h2 id="adding-callbacks">Adding callbacks</h2>
+
+<p>Since we are not allowed to return any values from the transpiled functions, we must accept some kind of callback function both for success and for the error case&hellip; you can think about it as if it was some special kind of <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Promise">promise</a> constructor.</p>
+
+<p>With that important point already in mind, we can define the single function we will add to the DOM: <code>parse</code>.</p>
+
+<pre><code>func parse(i []js.Value) {
+	if len(i) &lt; 2 {
+		println(&quot;not enough args&quot;)
+		return
+	}
+
+	if i[1].Type() != js.TypeFunction {
+		println(&quot;arg 1 should be a function&quot;)
+		return
+	}
+
+	logger := func(msg string) {
+		fmt.Println(msg)
+	}
+	if len(i) &gt; 2 {
+		if i[2].Type() == js.TypeFunction {
+			logger = func(msg string) {
+				i[2].Invoke(msg)
+			}
+		}
+	}
+
+	client, err := newJSClient(i[0].String(), logger)
+	if err != nil {
+		logger(err.Error())
+		return
+	}
+
+	i[1].Invoke(client.Value())
+}
+</code></pre>
+
+<p>As you can see, this function defines a logger, creates a JS client of the KrakenD gateway and invokes a callback. The default logger is based on the <code>fmt.Println</code> function but <code>parse</code> also accepts a third param as an error logger.</p>
+
+<p>The <code>newJSClient</code> function creates a JS adapter over the already defined <code>Client</code>.</p>
+
+<pre><code>func newJSClient(cfg string, logger func(string)) (*JSClient, error) {
+	server, err := newServer(cfg)
+	if err != nil {
+		return nil, err
+	}
+
+	return &amp;JSClient{
+		client: &amp;Client{server},
+		logger: logger,
+	}, nil
+}
+
+type JSClient struct {
+	client *Client
+	logger func(string)
+}
+</code></pre>
+
+<p>The <code>JSClient</code> struct has a single exported method <code>Value</code> so it can generate a JS object with bindings to the <code>Close</code> and <code>Do</code> methods exposed by the <code>Client</code>.</p>
+
+<pre><code>func (j *JSClient) Value() js.Value {
+	opt := js.Global().Get(&quot;Object&quot;).New()
+
+	opt.Set(&quot;close&quot;, js.NewCallback(j.close))
+	opt.Set(&quot;test&quot;, js.NewCallback(j.test))
+
+	return opt
+}
+
+func (j *JSClient) close(_ []js.Value) {
+	j.client.Close()
+}
+</code></pre>
+
+<p>The most important part of the <code>JSClient</code> is the <code>test</code> method, where the request is built and dispatched in an independent goroutine. After parsing the response into a JS object, the goroutine executes the injected callback and ends.</p>
+
+<pre><code>func (j *JSClient) test(i []js.Value) {
+    // check if there are enough arguments
+    if len(i) &lt; 5 {
+        j.logger(&quot;the test function requires at least 5 arguments: method, path, body, headers and a callback&quot;)
+        return
+    }
+    // inject the body if present
+    var reqBody io.Reader
+    if b := i[2].String(); b != &quot;&quot; {
+        reqBody = bytes.NewBufferString(b)
+    }
+    // create the http request
+    req, err := http.NewRequest(i[0].String(), i[1].String(), reqBody)
+    if err != nil {
+        j.logger(err.Error())
+        return
+    }
+    // parse and add the injected headers
+    headers := map[string][]string{}
+    if err := json.Unmarshal([]byte(i[3].String()), &amp;headers); err != nil {
+        j.logger(err.Error())
+        return
+    }
+    req.Header = headers
+
+    go func() {
+        // dispatch the request to the client
+        resp := j.client.Do(req)
+        body, err := ioutil.ReadAll(resp.Body)
+        if err != nil {
+            j.logger(err.Error())
+            return
+        }
+        resp.Body.Close()
+
+        // parse the response
+        headers := js.Global().Get(&quot;Object&quot;).New()
+        for k, v := range resp.Header {
+            headers.Set(k, v[0])
+        }
+
+        jsResp := js.Global().Get(&quot;Object&quot;).New()
+        jsResp.Set(&quot;statusCode&quot;, resp.StatusCode)
+        jsResp.Set(&quot;header&quot;, headers)
+        jsResp.Set(&quot;body&quot;, string(body))
+
+        // invoke the injected callback
+        i[4].Invoke(jsResp)
+    }()
+}
+</code></pre>
+
+<h2 id="testing-the-krakend-from-js">Testing the KrakenD from JS</h2>
+
+<p>We are not front-end developers, and our skills and knowledge in the domain are very restricted. That&rsquo;s why we thought this should be the most time-consuming part of the project. However, it was not!</p>
+
+<p>We just needed to add this fragment to our template, and we were ready to call the <code>parse</code> function, create a client and test our KrakenD configuration (notice the wasm was renamed and both files placed inside the <code>wasm</code> folder):</p>
+
+<pre><code>&lt;script src='wasm/wasm_exec.js'&gt;&lt;/script&gt;
+&lt;script&gt;
+    if (!WebAssembly.instantiateStreaming) { // polyfill
+        WebAssembly.instantiateStreaming = async (resp, importObject) =&gt; {
+            const source = await (await resp).arrayBuffer();
+            return await WebAssembly.instantiate(source, importObject);
+        };
+    }
+
+    var krakendClient = {};
+    var onKrakendClientReady = function() {};
+    var krakendClientReady = new Promise(function(resolve, reject) {
+        onKrakendClientReady = resolve;
+    });
+
+    const go = new Go();
+    let mod, inst;
+    WebAssembly.instantiateStreaming(fetch(&quot;wasm/main.wasm&quot;), go.importObject).then(async (result) =&gt; {
+        mod = result.module;
+        inst = result.instance;
+        await go.run(inst);
+    });
+
+&lt;/script&gt;
+</code></pre>
+
+<p>The script also defines some globals in order to let the rest of the JS code know when the WASM code is loaded and available. With the callback already in place, we can invoke it from the wasm/go code:</p>
+
+<pre><code>func main() {
+	fmt.Println(&quot;WASM Go Initialized&quot;)
+
+	js.Global().Set(&quot;parse&quot;, js.NewCallback(parse))
+	js.Global().Get(&quot;onKrakendClientReady&quot;).Invoke()
+
+	select {}
+}
+</code></pre>
+
+<p>The last step is to introduce the following bits of code into the SPA:</p>
+
+<pre><code>$rootScope.krakendPrepare = function() {
+
+	if ( 'undefined' !== typeof krakendClient.close ) {
+	    krakendClient.close();
+	    console.log('Resetting KrakenD client');
+	}
+
+	var cfg = JSON.stringify($rootScope.service);
+	krakendClientReady.then(function(){
+	    parse(cfg, function(c) {
+	        krakendClient = c;
+	        console.log(&quot;KrakenD Client is ready&quot;);
+	    })
+	})
+};
+
+$rootScope.runEndpoint = function(requestMethod, requestURL, requestBody, requestHeaders) {
+
+    if ( 'undefined' === typeof requestBody ) {
+        // GET or HEAD methods
+        requestBody = &quot;&quot;;
+    }
+    if ( 'undefined' === typeof requestHeaders || requestHeaders == &quot;&quot; ) {
+        // GET or HEAD methods
+        requestHeaders = &quot;{}&quot;;
+    }
+
+    krakendClient.test(requestMethod, requestURL, requestBody, requestHeaders, console.log);
+};
+</code></pre>
+
+<p>Showing the returned values is just a matter of replacing the <code>console.log</code> for the name of the function responsible for binding the response properties with the view fields.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>With very little extra code, we have embedded our essential KrakenD gateway into the browser! We can do the same with almost any existing golang codebase if we follow the lessons learned in this experiment:</p>
+
+<ul>
+<li>since the WASM code is loaded in an async fashion and the main function is blocked by the empty <code>select</code>, we need to notify the JS code when the WASM is ready (before entering the infinite wait).</li>
+<li>golang functions ported to WASM do not return a thing. They should accept callbacks if there is something to pass/return to the caller.</li>
+<li>HTTP requests should run in a dedicated goroutine. Running on the same goroutine than the caller generates deadlocks.</li>
+<li>GET and HEAD HTTP requests must have a nil body.</li>
+<li>type conversion between JS and Go are tricky. Manual conversions are very verbose.</li>
+</ul>
+
+<p>You can see it in action at <a href="https://designer.krakend.io">https://designer.krakend.io</a></p>
+
+<p>Thanks for reading! If you like our product, don’t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+
+
+          <aside>
+            <div class="share float-right">
+	<a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-wasm%2f&t=How%20we%20run%20KrakenD%20on%20Javascript%20with%20WebAssembly" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-facebook"></i></a>
+	<a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-wasm%2f&text=How%20we%20run%20KrakenD%20on%20Javascript%20with%20WebAssembly&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-twitter"></i></a>
+	<a href="https://plus.google.com/share?url=https%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-wasm%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-google-plus"></i></a>
+	<a href="http://getpocket.com/edit?url=https%3a%2f%2fwww.krakend.io%2fblog%2fkrakend-wasm%2f&title=How%20we%20run%20KrakenD%20on%20Javascript%20with%20WebAssembly" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-get-pocket"></i></a>
+</div>
+          </aside>
+        </article>
+      </section>
+    </div>
+  </div>
+</div>
+
+	</div>
+	<div class="row action-bar">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-12 col-md-8">
+				<h6><i class="fa fa-envelope mr-2"></i>Stay up to date with KrakenD releases and important updates</h6>
+			</div>
+			<div class="col-12 col-md-4">
+				<form action="https://krakend.us19.list-manage.com/subscribe/post?u=5cae4bbe9877b1adfe8fe808d&amp;id=e5385eb57b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					
+					<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_5cae4bbe9877b1adfe8fe808d_e5385eb57b" tabindex="-1" value=""></div>
+					<div class="input-group">
+						<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="email address" required>
+						<div class="input-group-append">
+							<input type="submit" class="btn btn-secondary" value="Subscribe">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-white.png" class="pb-2" width="80%" >
+                <p class="lead">The <strong>Ultra-High performance</strong> Open Source API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fab fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+
+                <div class="col-md-2 offset-md-1">
+                    <h6>by Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://www.krakend.io/blog/">Blog</a></li>
+                        <li><a href="https://medium.com/devops-faith">Medium</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>KrakenD</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.krakend.io/features/">Features</a></li>
+                        <li><a href="https://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="https://www.krakend.io/download/">Download</a></li>
+                        <li><a href="https://www.krakend.io/blog/">KrakenD Blog</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="https://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+
+        </div>
+        <div class="row copyright">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2018 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="col-md-7 hidden-xs">
+                <span class="float-right">
+                    Made with <i class="fa fa-heart heart"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="pea_cook_wrapper pea_cook_bottom" style="display:none">
+    <p>We use cookies to understand how you use our site and to improve your overall experience. By continuing to use our site, you accept our Privacy Policy. <a data-toggle="modal" data-target="#cookiesConsent" style="color:#0a0a0a;"
+            href="#">More information</a>
+        <button class="btn btn-primary btn-sm ml-2 ACCEPT_COOKIES" href="#">Accept</button>
+    </p>
+</div>
+
+
+<div class="modal fade" id="cookiesConsent" tabindex="-1" role="dialog" aria-labelledby="cookiesConsentLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cookiesConsentLabel">Cookies</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>In order to give you the best experience, we use cookies and similar technologies for performance, analytics and marketing. Want to know more?</p>
+                <p><a href="/privacy-policy/">Privacy Policy</a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary ACCEPT_COOKIES" data-dismiss="modal">
+                    Accept cookies</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+	<script src="/dist/krakend-io.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>
