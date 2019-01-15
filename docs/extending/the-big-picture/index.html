@@ -596,7 +596,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 
 <h1 id="krakend-internal-states">KrakenD internal states</h1>
 
-<p>When you start KrakenD the system goes through two different internal states: <strong>building</strong> and <strong>working</strong>. Let&rsquo;s see what happens in every state.</p>
+<p>When you start KrakenD, the system goes through two different internal states: <strong>building</strong> and <strong>working</strong>. Let&rsquo;s see what happens in every state.</p>
 
 <h2 id="building-state">Building state</h2>
 
@@ -608,7 +608,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <li>Construction of the pipes</li>
 </ul>
 
-<p>A <code>pipe</code> is a function that receives a request message, processes it, and produces the response message and an error. The KrakenD router binds the pipes to the selected transport layer (e.g: HTTP, gRPC).</p>
+<p>A <code>pipe</code> is a function that receives a request message, processes it, and produces the response message and an error. The KrakenD router binds the pipes to the selected transport layer (e.g., HTTP, gRPC).</p>
 
 <p>When the building state finishes, the KrakenD service is not going to need to calculate any route or lookup for the associated handler function, as all the mapping is direct in-memory.</p>
 
@@ -616,11 +616,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 
 <p>The working state is when the system is ready and can process the requests. When they arrive, the <code>router</code> already has the mapping of the request with the handler function and triggers the pipe execution. The <code>proxy</code> is the step of the pipe that manipulates, aggregates, and does other data handling for the rest of the process.</p>
 
-<p>As the handler functions were built in the previous step, <strong>KrakenD doesn&rsquo;t penalize the performance depending on the number of endpoints or the possible cardinality</strong> of the URIs requested by the users.</p>
+<p>As the handler functions are in the previous step, <strong>KrakenD doesn&rsquo;t penalize the performance depending on the number of endpoints or the possible cardinality</strong> of the URIs requested by the users.</p>
 
 <h1 id="the-important-packages">The important packages</h1>
 
 <p>The KrakenD framework is composed of a set of packages designed as building blocks for creating pipes and processors between an exposed endpoint and one or several API resources served by your backends.</p>
+
+<p><center>
+<img src="/images/documentation/config-router-proxy-packages.png" alt="KrakenD packages" />
+</center></p>
 
 <p>The most important packages are:</p>
 
@@ -632,7 +636,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 
 <p>The rest of the packages of the framework contain some helpers and adapters for additional tasks, like encoding, logging or service discovery.</p>
 
-<p>Additionally, the KrakenD-CE bundles a lot of middleware and components that are in its own scope and package. These packages and others are listed in our <a href="https://github.com/devopsfaith/krakend-contrib">KrakenD Contrib</a> repository.</p>
+<p>Additionally, the KrakenD-CE bundles a lot of middleware and components that are in its scope and package. These packages and others are listed in our <a href="https://github.com/devopsfaith/krakend-contrib">KrakenD Contrib</a> repository.</p>
 
 <h2 id="the-config-package">The <code>config</code> package</h2>
 
