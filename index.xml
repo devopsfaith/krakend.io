@@ -23,6 +23,17 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
     </item>
     
     <item>
+      <title>Extending KrakenD, the big picture.</title>
+      <link>https://www.krakend.io/docs/extending/the-big-picture/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/extending/the-big-picture/</guid>
+      <description>Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
+The KrakenD rules Let&amp;rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:
+ Reactive is key Reactive is key (yes, it is very very important) Failing fast is better than succeeding slow (say it one more time!</description>
+    </item>
+    
+    <item>
       <title>Backends Overview</title>
       <link>https://www.krakend.io/docs/backends/overview/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>

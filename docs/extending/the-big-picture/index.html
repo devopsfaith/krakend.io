@@ -7,16 +7,16 @@
 <meta name="generator" content="Hugo 0.49" />
 
 
-    <title>Commands - check - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Commands - check - KrakenD API Gateway">
-    <meta name="twitter:title" content="Commands - check - KrakenD API Gateway">
-    <meta property="og:title" content="Commands - check - KrakenD API Gateway">
+    <title>Extending KrakenD, the big picture. - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Extending KrakenD, the big picture. - KrakenD API Gateway">
+    <meta name="twitter:title" content="Extending KrakenD, the big picture. - KrakenD API Gateway">
+    <meta property="og:title" content="Extending KrakenD, the big picture. - KrakenD API Gateway">
 
     
-    <meta property="description" content="KrakenD Check Command">
-    <meta itemprop="description" content="KrakenD Check Command">
-    <meta name="twitter:description" content="KrakenD Check Command">
-    <meta property="og:description" content="KrakenD Check Command">
+    <meta property="description" content="Extending KrakenD, the big picture. - KrakenD API Gateway">
+    <meta itemprop="description" content="Extending KrakenD, the big picture. - KrakenD API Gateway">
+    <meta name="twitter:description" content="Extending KrakenD, the big picture. - KrakenD API Gateway">
+    <meta property="og:description" content="Extending KrakenD, the big picture. - KrakenD API Gateway">
     
 
     
@@ -26,7 +26,7 @@
     
 
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.krakend.io/docs/commands/check/" />
+    <meta property="og:url" content="https://www.krakend.io/docs/extending/the-big-picture/" />
 
 
 
@@ -183,19 +183,19 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-2" role="button" aria-expanded="true"
-                aria-controls="menu-2" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-2" role="button" aria-expanded="false"
+                aria-controls="menu-2" class="nav-link parent">
                 Command line commands
             </a>
-            <div class="collapse show" id="menu-2">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-2">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
                         <a href="/docs/commands/run/" class="nav-link children ">Run</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/commands/check/" class="nav-link children active">Check</a>
+                        <a href="/docs/commands/check/" class="nav-link children ">Check</a>
                     </li>
                     
                 </ul>
@@ -461,15 +461,15 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-12" role="button" aria-expanded="false"
-                aria-controls="menu-12" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-12" role="button" aria-expanded="true"
+                aria-controls="menu-12" class="nav-link parent active">
                 Extending KrakenD
             </a>
-            <div class="collapse" id="menu-12">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-12">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
-                        <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
+                        <a href="/docs/extending/the-big-picture/" class="nav-link children active">The big picture</a>
                     </li>
                     
                 </ul>
@@ -537,10 +537,10 @@
                     <section class="content-header">
                         
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/check.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending/the-big-picture.md">
     Edit this page
 </a>
-<h1 class="main-title">Commands - check</h1>
+<h1 class="main-title">Extending KrakenD, the big picture.</h1>
 
                     </section>
                     <section class="content">
@@ -549,300 +549,141 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/
     <section class="col-md-12">            
         
         
+        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
+            <div class="shadow rounded pb-2">
+                <h6 class="header rounded-top">Table of Contents</h6>
+                <nav id="TableOfContents">
+<ul>
+<li><a href="#the-krakend-rules">The KrakenD rules</a></li>
+<li><a href="#krakend-internal-states">KrakenD internal states</a>
+<ul>
+<li><a href="#building-state">Building state</a></li>
+<li><a href="#working-state">Working state</a></li>
+</ul></li>
+<li><a href="#the-important-packages">The important packages</a>
+<ul>
+<li><a href="#the-config-package">The <code>config</code> package</a></li>
+<li><a href="#the-router-package">The <code>router</code> package</a></li>
+<li><a href="#the-proxy-package">The <code>proxy</code> package</a>
+<ul>
+<li><a href="#middlewares-available">Middlewares available</a></li>
+<li><a href="#proxies-available">Proxies available</a></li>
+<li><a href="#other-components-of-the-proxy-package">Other components of the <code>proxy</code> package</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+            </div>
+        </div>
         
         
+        
 
-<p>The <code>krakend check</code> command validates the passed configuration. Since KrakenD does not implement a strict parsing, typos
- in the config file could be shadowed. In order to validate your config completely, it is recommended to use the <code>--debug</code> flag.</p>
+<p>Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.</p>
 
-<h1 id="usage">Usage</h1>
+<h1 id="the-krakend-rules">The KrakenD rules</h1>
 
-<pre><code>$ krakend check -h
+<p>Let&rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:</p>
 
-`7MMF' `YMM'                  `7MM                         `7MM&quot;&quot;&quot;Yb.
- MM   .M'                      MM                           MM    `Yb.
- MM .d&quot;     `7Mb,od8 ,6&quot;Yb.    MM  ,MP'.gP&quot;Ya `7MMpMMMb.    MM     `Mb
- MMMMM.       MM' &quot;'8)   MM    MM ;Y  ,M'   Yb  MM    MM    MM      MM
- MM  VMA      MM     ,pm9MM    MM;Mm  8M&quot;&quot;&quot;&quot;&quot;&quot;  MM    MM    MM     ,MP
- MM   `MM.    MM    8M   MM    MM `Mb.YM.    ,  MM    MM    MM    ,dP'
- .JMML.   MMb..JMML.  `Moo9^Yo..JMML. YA.`Mbmmd'.JMML  JMML..JMMmmmdP'
- _______________________________________________________________________
+<ul>
+<li><a href="http://www.reactivemanifesto.org/">Reactive is key</a></li>
+<li>Reactive is key (yes, it is very very important)</li>
+<li>Failing fast is better than succeeding slow (say it one more time!)</li>
+<li>The simpler, the better</li>
+<li>Everything is pluggable</li>
+<li>Each request must be processed in its request-scoped context</li>
+</ul>
 
- Version: 0.7.0
+<h1 id="krakend-internal-states">KrakenD internal states</h1>
 
- Validates that the active configuration file has a valid syntax to run the service.
- Change the configuration file by using the --config flag
+<p>When you start KrakenD the system goes through two different internal states: <strong>building</strong> and <strong>working</strong>. Let&rsquo;s see what happens in every state.</p>
 
- Usage:
- krakend check [flags]
+<h2 id="building-state">Building state</h2>
 
- Aliases:
- check, validate
+<p>The building state administers the service start-up and prepares the system before it can start receiving traffic. During the building state, three things happen:</p>
 
- Examples:
- krakend check -d -c config.json
+<ul>
+<li>Parsing of the configuration to fix the system behavior</li>
+<li>Preparation of the middlewares</li>
+<li>Construction of the pipes</li>
+</ul>
 
- Flags:
- -h, --help   help for check
+<p>A <code>pipe</code> is a function that receives a request message, processes it, and produces the response message and an error. The KrakenD router binds the pipes to the selected transport layer (e.g: HTTP, gRPC).</p>
 
- Global Flags:
- -c, --config string   Path to the configuration filename
- -d, --debug           Enable the debug
-</code></pre>
+<p>When the building state finishes, the KrakenD service is not going to need to calculate any route or lookup for the associated handler function, as all the mapping is direct in-memory.</p>
 
-<p>Passing a path to the config file is required</p>
+<h2 id="working-state">Working state</h2>
 
-<pre><code>$ krakend check
-Please, provide the path to your config file
-</code></pre>
+<p>The working state is when the system is ready and can process the requests. When they arrive, the <code>router</code> already has the mapping of the request with the handler function and triggers the pipe execution. The <code>proxy</code> is the step of the pipe that manipulates, aggregates, and does other data handling for the rest of the process.</p>
 
-<h1 id="example">Example</h1>
+<p>As the handler functions were built in the previous step, <strong>KrakenD doesn&rsquo;t penalize the performance depending on the number of endpoints or the possible cardinality</strong> of the URIs requested by the users.</p>
 
-<p>We will use this configuration for the demo</p>
+<h1 id="the-important-packages">The important packages</h1>
 
-<pre><code>{
-    &quot;version&quot;: 2,
-    &quot;name&quot;: &quot;My lovely gateway&quot;,
-    &quot;port&quot;: 8080,
-    &quot;cache_ttl&quot;: &quot;3600s&quot;,
-    &quot;timeout&quot;: &quot;3s&quot;,
-    &quot;extra_config&quot;: {
-      &quot;github_com/devopsfaith/krakend-gologging&quot;: {
-        &quot;level&quot;:  &quot;ERROR&quot;,
-        &quot;prefix&quot;: &quot;[KRAKEND]&quot;,
-        &quot;syslog&quot;: false,
-        &quot;stdout&quot;: true
-      }
-    },
-    &quot;endpoints&quot;: [
-        {
-            &quot;endpoint&quot;: &quot;/supu&quot;,
-            &quot;method&quot;: &quot;GET&quot;,
-            &quot;backend&quot;: [
-                {
-                    &quot;host&quot;: [
-                        &quot;http://127.0.0.1:8080&quot;
-                    ],
-                    &quot;url_pattern&quot;: &quot;/__debug/supu&quot;,
-                    &quot;extra_config&quot;: {
-                        &quot;github.com/devopsfaith/krakend-martian&quot;: {
-                            &quot;fifo.Group&quot;: {
-                                &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
-                                &quot;aggregateErrors&quot;: true,
-                                &quot;modifiers&quot;: [
-                                {
-                                    &quot;header.Modifier&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
-                                        &quot;name&quot; : &quot;X-Martian&quot;,
-                                        &quot;value&quot; : &quot;ouh yeah!&quot;
-                                    }
-                                },
-                                {
-                                    &quot;body.Modifier&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;],
-                                        &quot;contentType&quot; : &quot;application/json&quot;,
-                                        &quot;body&quot; : &quot;eyJtc2ciOiJ5b3Ugcm9jayEifQ==&quot;
-                                    }
-                                },
-                                {
-                                    &quot;header.RegexFilter&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;],
-                                        &quot;header&quot; : &quot;X-Neptunian&quot;,
-                                        &quot;regex&quot; : &quot;no!&quot;,
-                                        &quot;modifier&quot;: {
-                                            &quot;header.Modifier&quot;: {
-                                                &quot;scope&quot;: [&quot;request&quot;],
-                                                &quot;name&quot; : &quot;X-Martian-New&quot;,
-                                                &quot;value&quot; : &quot;some value&quot;
-                                            }
-                                        }
-                                    }
-                                }
-                                ]
-                            }
-                        },
-                        &quot;github.com/devopsfaith/krakend-circuitbreaker/gobreaker&quot;: {
-                            &quot;interval&quot;: 60,
-                            &quot;timeout&quot;: 10,
-                            &quot;maxErrors&quot;: 1
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            &quot;endpoint&quot;: &quot;/github/{user}&quot;,
-            &quot;method&quot;: &quot;GET&quot;,
-            &quot;backend&quot;: [
-                {
-                    &quot;host&quot;: [
-                        &quot;https://api.github.com&quot;
-                    ],
-                    &quot;url_pattern&quot;: &quot;/&quot;,
-                    &quot;whitelist&quot;: [
-                        &quot;authorizations_url&quot;,
-                        &quot;code_search_url&quot;
-                    ],
-                    &quot;disable_host_sanitize&quot;: true,
-                    &quot;extra_config&quot;: {
-                        &quot;github.com/devopsfaith/krakend-martian&quot;: {
-                            &quot;fifo.Group&quot;: {
-                                &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
-                                &quot;aggregateErrors&quot;: true,
-                                &quot;modifiers&quot;: [
-                                {
-                                    &quot;header.Modifier&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
-                                        &quot;name&quot; : &quot;X-Martian&quot;,
-                                        &quot;value&quot; : &quot;ouh yeah!&quot;
-                                    }
-                                },
-                                {
-                                    &quot;body.Modifier&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;],
-                                        &quot;contentType&quot; : &quot;application/json&quot;,
-                                        &quot;body&quot; : &quot;eyJtc2ciOiJ5b3Ugcm9jayEifQ==&quot;
-                                    }
-                                },
-                                {
-                                    &quot;header.RegexFilter&quot;: {
-                                        &quot;scope&quot;: [&quot;request&quot;],
-                                        &quot;header&quot; : &quot;X-Neptunian&quot;,
-                                        &quot;regex&quot; : &quot;no!&quot;,
-                                        &quot;modifier&quot;: {
-                                            &quot;header.Modifier&quot;: {
-                                                &quot;scope&quot;: [&quot;request&quot;],
-                                                &quot;name&quot; : &quot;X-Martian-New&quot;,
-                                                &quot;value&quot; : &quot;some value&quot;
-                                            }
-                                        }
-                                    }
-                                }
-                                ]
-                            }
-                        },
-                        &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
-                            &quot;maxRate&quot;: 2,
-                            &quot;capacity&quot;: 2
-                        },
-                        &quot;github.com/devopsfaith/krakend-circuitbreaker/gobreaker&quot;: {
-                            &quot;interval&quot;: 60,
-                            &quot;timeout&quot;: 10,
-                            &quot;maxErrors&quot;: 1
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            &quot;endpoint&quot;: &quot;/show/{id}&quot;,
-            &quot;backend&quot;: [
-                {
-                    &quot;host&quot;: [
-                        &quot;http://showrss.info/&quot;
-                    ],
-                    &quot;url_pattern&quot;: &quot;/user/schedule/{id}.rss&quot;,
-                    &quot;encoding&quot;: &quot;rss&quot;,
-                    &quot;group&quot;: &quot;schedule&quot;,
-                    &quot;whitelist&quot;: [&quot;items&quot;, &quot;title&quot;],
-                    &quot;extra_config&quot;: {
-                        &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
-                            &quot;maxRate&quot;: 1,
-                            &quot;capacity&quot;: 1
-                        },
-                        &quot;github.com/devopsfaith/krakend-circuitbreaker/gobreaker&quot;: {
-                            &quot;interval&quot;: 60,
-                            &quot;timeout&quot;: 10,
-                            &quot;maxErrors&quot;: 1
-                        }
-                    }
-                },
-                {
-                    &quot;host&quot;: [
-                        &quot;http://showrss.info/&quot;
-                    ],
-                    &quot;url_pattern&quot;: &quot;/user/{id}.rss&quot;,
-                    &quot;encoding&quot;: &quot;rss&quot;,
-                    &quot;group&quot;: &quot;available&quot;,
-                    &quot;whitelist&quot;: [&quot;items&quot;, &quot;title&quot;],
-                    &quot;extra_config&quot;: {
-                        &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
-                            &quot;maxRate&quot;: 2,
-                            &quot;capacity&quot;: 2
-                        },
-                        &quot;github.com/devopsfaith/krakend-circuitbreaker/gobreaker&quot;: {
-                            &quot;interval&quot;: 60,
-                            &quot;timeout&quot;: 10,
-                            &quot;maxErrors&quot;: 1
-                        }
-                    }
-                }
-            ],
-            &quot;extra_config&quot;: {
-                &quot;github.com/devopsfaith/krakend-ratelimit/juju/router&quot;: {
-                    &quot;maxRate&quot;: 50,
-                    &quot;clientMaxRate&quot;: 5,
-                    &quot;strategy&quot;: &quot;ip&quot;
-                }
-            }
-        }
-    ]
-}
-</code></pre>
+<p>The KrakenD framework is composed of a set of packages designed as building blocks for creating pipes and processors between an exposed endpoint and one or several API resources served by your backends.</p>
 
-<h2 id="debug-disabled">Debug disabled</h2>
+<p>The most important packages are:</p>
 
-<pre><code>$ krakend check --config krakend.json
-Parsing configuration file: krakend.json
-Syntax OK!
-</code></pre>
+<ol>
+<li>the <code>config</code> package defines the service.</li>
+<li>the <code>router</code> package sets up the endpoints exposed to the clients.</li>
+<li>the <code>proxy</code> package adds the required middlewares and components for further processing of the requests to send and the received responses sent by the backends, and also to manage the connections against those backends.</li>
+</ol>
 
-<h2 id="debug-enabled">Debug enabled</h2>
+<p>The rest of the packages of the framework contain some helpers and adapters for additional tasks, like encoding, logging or service discovery.</p>
 
-<pre><code>$ krakend check -c krakend.json -d
-Parsing configuration file: krakend.json
-Parsed configuration: CacheTTL: 1h0m0s, Port: 8080
-Hosts: []
-Extra (1):
-  github_com/devopsfaith/krakend-gologging: map[level:ERROR syslog:false stdout:true prefix:[KRAKEND]]
-Endpoints (3):
-    Endpoint: /supu, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (0):
-    Backends (1):
-        URL: /__debug/supu, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [], Group:
-            Hosts: [http://127.0.0.1:8080]
-            Extra (2):
-              github.com/devopsfaith/krakend-martian: map[fifo.Group:map[scope:[request response] aggregateErrors:true modifiers:[map[header.Modifier:map[value:ouh yeah! scope:[request response] name:X-Martian]] map[body.Modifier:map[scope:[request] contentType:application/json body:eyJtc2ciOiJ5b3Ugcm9jayEifQ==]] map[header.RegexFilter:map[header:X-Neptunian regex:no! modifier:map[header.Modifier:map[scope:[request] name:X-Martian-New value:some value]] scope:[request]]]]]]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[timeout:10 maxErrors:1 interval:60]
-    Endpoint: /github/:user, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (0):
-    Backends (1):
-        URL: /, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [authorizations_url code_search_url], Group:
-            Hosts: [https://api.github.com]
-            Extra (3):
-              github.com/devopsfaith/krakend-martian: map[fifo.Group:map[modifiers:[map[header.Modifier:map[name:X-Martian value:ouh yeah! scope:[request response]]] map[body.Modifier:map[scope:[request] contentType:application/json body:eyJtc2ciOiJ5b3Ugcm9jayEifQ==]] map[header.RegexFilter:map[scope:[request] header:X-Neptunian regex:no! modifier:map[header.Modifier:map[scope:[request] name:X-Martian-New value:some value]]]]] scope:[request response] aggregateErrors:true]]
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:2 capacity:2]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-    Endpoint: /show/:id, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (1):
-      github.com/devopsfaith/krakend-ratelimit/juju/router: map[maxRate:50 clientMaxRate:5 strategy:ip]
-    Backends (2):
-        URL: /user/schedule/{{.Id}}.rss, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [items title], Group: schedule
-            Hosts: [http://showrss.info]
-            Extra (2):
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:1 capacity:1]
-        URL: /user/{{.Id}}.rss, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [items title], Group: available
-            Hosts: [http://showrss.info]
-            Extra (2):
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:2 capacity:2]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-Syntax OK!
-</code></pre>
+<p>Additionally, the KrakenD-CE bundles a lot of middleware and components that are in its own scope and package. These packages and others are listed in our <a href="https://github.com/devopsfaith/krakend-contrib">KrakenD Contrib</a> repository.</p>
+
+<h2 id="the-config-package">The <code>config</code> package</h2>
+
+<p>The <code>config</code> package contains the structs required for the service description.</p>
+
+<p>The <code>ServiceConfig</code> struct defines the entire service. Initialize it before using it to be sure that all parameters are normalized and default values are applied.</p>
+
+<p>The <code>config</code> package also defines an interface for a file config parser and a parser based on the <a href="https://github.com/spf13/viper">Viper</a> library.</p>
+
+<h2 id="the-router-package">The <code>router</code> package</h2>
+
+<p>The <code>router</code> package contains an interface and several implementations for the KrakenD router layer using the <code>mux</code> router from the <code>net/http</code> and the <code>httprouter</code> wrapped in the <code>gin</code> framework.</p>
+
+<p>The router layer is responsible for setting up the HTTP(S) services, binding the endpoints defined at the <code>ServiceConfig</code> struct and transforming the HTTP request into proxy requests before delegating the task to the inner layer (proxy). Once the internal proxy layer returns a proxy response, the router layer converts it into a proper HTTP response and sends it to the user.</p>
+
+<p>This layer can be easily extended to use any HTTP router, framework or middleware of your choice. Adding transport layer adapters for other protocols (Thrift, gRPC, AMQP, NATS, and others) is in the roadmap. As always, PRs are welcome!</p>
+
+<h2 id="the-proxy-package">The <code>proxy</code> package</h2>
+
+<p>The <code>proxy</code> package is where most of the KrakenD components and features are. It defines two important interfaces, designed to be stacked:</p>
+
+<ul>
+<li><em>Proxy</em> is a function that converts a given context and request into a response.</li>
+<li><em>Middleware</em> is a function that accepts one or more proxies and returns a single proxy wrapping them.</li>
+</ul>
+
+<p>This layer transforms the request received from the outer layer (router) into a single or several requests to your backend services, processes the responses and returns a single response.</p>
+
+<p>Middlewares generates custom proxies that are chained depending on the workflow defined in the configuration until each possible branch ends in a transport-related proxy. Every one of these generated proxies can transform the input or even clone it several times and pass it or them to the next element in the chain. Finally, they can also modify the received response or responses adding all kinds of features to the generated pipe.</p>
+
+<p>The KrakenD framework provides a default implementation of the proxy stack factory.</p>
+
+<h3 id="middlewares-available">Middlewares available</h3>
+
+<ul>
+<li>The <code>balancing</code> middleware uses some strategy for selecting a backend host to query.</li>
+<li>The <code>concurrent</code> middleware improves the QoS by sending several concurrent requests to the next step of the chain and returning the first successful response using a timeout for canceling the generated workload.</li>
+<li>The <code>logging</code> middleware logs the received request and response and also the duration of the segment execution.</li>
+<li>The <code>merging</code> middleware is a fork-and-join middleware. It is intended to split the process of the request into several concurrent processes, each one against a different backend, and to merge all the received responses from those created pipes into a single one. It applies a timeout, as the <code>concurrent</code> one does.</li>
+<li>The <code>http</code> middleware completes the received proxy request by replacing the parameters extracted from the user request in the defined <code>URLPattern</code>.</li>
+</ul>
+
+<h3 id="proxies-available">Proxies available</h3>
+
+<ul>
+<li>The <code>http</code> proxy translates a proxy request into an HTTP one, sends it to the backend API using an <code>HTTPClientFactory</code>, decodes the returned HTTP response with a <code>Decoder</code>, manipulates the response data with an <code>EntityFormatter</code> and returns it to the caller.</li>
+</ul>
+
+<h3 id="other-components-of-the-proxy-package">Other components of the <code>proxy</code> package</h3>
+
+<p>The <code>proxy</code> package also defines the <code>EntityFormatter</code>, the block responsible for enabling a powerful and fast response manipulation.</p>
 
     </section>
 </div>
