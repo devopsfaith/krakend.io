@@ -753,7 +753,7 @@ I am getting a 500 status when the backend returns anything but 200, 201 or redi
       <guid>https://www.krakend.io/docs/overview/verifying-packages/</guid>
       <description>How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_0.7.0_amd64.tar.gz.asc krakend_0.7.0_amd64.tar.gz gpg: Signature made vie 02 dic 2016 19:07:49 CET using RSA key ID AB39BEA1 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
+$ gpg --verify krakend_0.7.1_amd64.tar.gz.asc krakend_0.7.1_amd64.tar.gz gpg: Signature made vie 02 dic 2016 19:07:49 CET using RSA key ID AB39BEA1 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
     </item>
     
     <item>
