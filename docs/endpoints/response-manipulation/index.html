@@ -558,7 +558,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <ul>
 <li><a href="#merging-timeouts">Merging timeouts</a>
 <ul>
-<li><a href="#what-happens-when-the-timeout-is-triggered">What happens when the timeout is triggered?</a></li>
+<li><a href="#what-happens-when-the-timeout-is-triggered-or-some-backend-failed">What happens when the timeout is triggered or some backend failed?</a></li>
 </ul></li>
 <li><a href="#merge-example">Merge example</a></li>
 </ul></li>
@@ -583,6 +583,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <ul>
 <li><a href="#capturing-example">Capturing example</a></li>
 </ul></li>
+<li><a href="#collections-or-arrays">Collections or Arrays</a></li>
 </ul>
 </nav>
             </div>
@@ -604,6 +605,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p><img class="img-fluid" src="/images/documentation/krakend-merge.png" /></p>
 
 <p>The merge operation is implemented in a way where user experience and responsiveness goes first. It does its <em>best effort</em> to get all the required parts from the involved backends and returning the composed object as soon as possible.</p>
+
+<p>By simply adding several backends into an endpoint, you get the merge operation automatically.</p>
 
 <p>The configuration for the image above could be like this:</p>
 
@@ -644,11 +647,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <p>The <code>timeout</code> value can be introduced inside each endpoint or globally placing <code>timeout</code> in the root of the configuration file. The most specific definition always overwrites the generic one.</p>
 
-<h3 id="what-happens-when-the-timeout-is-triggered">What happens when the timeout is triggered?</h3>
+<h3 id="what-happens-when-the-timeout-is-triggered-or-some-backend-failed">What happens when the timeout is triggered or some backend failed?</h3>
 
 <p>If KrakenD is waiting for the backends to respond and the timeout is reached, the response will be incomplete and missing any data that couldn&rsquo;t be fetched before the timeout happened. On the other hand, all the parts that could effectively be retrieved before the timeout happened they will do appear in the response.</p>
 
 <p>If the response has missing parts, the cache header won&rsquo;t exist, as we don&rsquo;t want clients to cache incomplete responses.</p>
+
+<p>At all times, the <code>x-krakend-completed</code> header returned by KrakenD contains a boolean telling you if all backends returned its content (<code>x-krakend-completed: true</code>) or a partial response (<code>x-krakend-completed: false</code>).</p>
 
 <h2 id="merge-example">Merge example</h2>
 
@@ -1004,6 +1009,77 @@ We will repeat the same exercise we did in the blacklist to get the same output.
     &quot;items&quot;:[]
 }
 </code></pre>
+
+<h1 id="collections-or-arrays">Collections or Arrays</h1>
+
+<p>KrakenD expects that all backends return an object. For instance, a JSON response needs to be encapsulated between curly braces <code>{}</code>. E.g.:</p>
+
+<pre><code>{
+	&quot;a&quot;: true,
+	&quot;b&quot;: false
+}
+</code></pre>
+
+<p>When your API returns a collection (<code>[]</code> or array) instead of an object you need to tell this to KrakenD so its content can be converted to an object. Example of collection:</p>
+
+<pre><code>[
+	{&quot;a&quot;: true },
+	{&quot;b&quot;: false}
+]
+</code></pre>
+
+<p>In these cases, add inside the <code>backend</code> key the property <code>&quot;is_collection&quot;: true</code> so KrakenD can convert this collection to an object. By default, the key <code>collection</code> will be added, e.g.:</p>
+
+<pre><code>{
+	&quot;collection&quot;: [
+		{&quot;a&quot;: true },
+		{&quot;b&quot;: false}
+	]
+}
+</code></pre>
+
+<p>You can rename the automatically named key <code>collection</code> to something else using the <code>mapping</code> attribute (see above).</p>
+
+<p>The following is a real example based on a <a href="http://jsonplaceholder.typicode.com/posts">collection response</a>, copy and paste to test in your environment:</p>
+
+<pre><code>&quot;endpoints&quot;: [
+    {
+      &quot;endpoint&quot;: &quot;/posts&quot;,
+      &quot;backend&quot;: [
+        {
+          &quot;url_pattern&quot;: &quot;/posts&quot;,
+          &quot;host&quot;: [&quot;http://jsonplaceholder.typicode.com&quot;],
+          &quot;sd&quot;: &quot;static&quot;,
+          &quot;is_collection&quot;: true,
+          &quot;mapping&quot;: {
+            &quot;collection&quot;: &quot;myposts&quot;
+          }
+        }
+      ]
+    }
+]
+</code></pre>
+
+<p>The response will look like this:</p>
+
+<pre><code>{
+  &quot;myposts&quot;: [
+    {
+      ...
+    },
+    {
+      ...
+    }
+}
+</code></pre>
+
+<div class="alert note">
+    <h4><i class="fa fa-sticky-note"></i> No manipulation on arrays</h4>
+	<p>When working with backend responses that are collections be aware that
+data manipulations are not available (except for the mapping/renaming of the
+<code>collection</code> key)</p>
+
+ </div>
 
     </section>
 </div>
