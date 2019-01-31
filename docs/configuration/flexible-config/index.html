@@ -634,7 +634,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 <pre><code>{{ include &quot;partial_file_name.tmpl&quot; }}
 </code></pre>
 
-<p>The file is assumed to live inside the directory defined in <code>FC_PARTIALS</code>.</p>
+<p><strong>The content inside the partial is not parsed</strong>, and is inserted <em>as is</em>. The file is assumed to live inside the directory defined in <code>FC_PARTIALS</code>.</p>
 
 <h3 id="insert-values-from-settings-files">Insert values from settings files</h3>
 
@@ -745,7 +745,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go">    <span class="p">{</span>
         <span class="s">&#34;version&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-<span class="hl">        <span class="s">&#34;port&#34;</span><span class="p">:</span> <span class="s">&#34;{{ .service.port }}&#34;</span><span class="p">,</span>
+<span class="hl">        <span class="s">&#34;port&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">port</span> <span class="p">}},</span>
 </span><span class="hl">        <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">extra_config</span> <span class="p">}},</span>
 </span><span class="hl">        <span class="s">&#34;host&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">default_hosts</span> <span class="p">}},</span>
 </span>        <span class="s">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
@@ -775,7 +775,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 
 <ul>
 <li>The <code>.service.port</code> is taken from the <code>service.json</code> file.</li>
-<li>The <code>extra_config</code> in the third line is inserted as a JSON object using the <code>marshall</code> function from the <code>service.json</code> as well.</li>
+<li>The <code>extra_config</code> in the third line is inserted as a JSON object using the <code>marshal</code> function from the <code>service.json</code> as well.</li>
 <li>A <code>range</code> iterates the array found under <code>endpoint.json</code> and key <code>example_group</code>. The variables inside the range are relative to the <code>example_group</code> content.</li>
 <li>Finally, an <code>include</code> at the bottom inserts the content as is.</li>
 </ul>

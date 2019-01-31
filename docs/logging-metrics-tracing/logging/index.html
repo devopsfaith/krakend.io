@@ -562,12 +562,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <li><a href="#set-the-reporting-level">Set the <em>reporting level</em></a></li>
 <li><a href="#write-to-syslog-or-stdout">Write to Syslog or Stdout</a></li>
 <li><a href="#add-a-prefix-to-all-lines">Add a prefix to all lines</a></li>
+<li><a href="#predefined-and-customs-formats">Predefined and customs formats</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#graylog-and-the-gelf-format">Graylog and the GELF format</a>
 <ul>
 <li><a href="#enabling-gelf">Enabling GELF</a></li>
 </ul></li>
+<li><a href="#logstash">Logstash</a></li>
 </ul>
 </nav>
             </div>
@@ -591,6 +593,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <li>Option to write to the syslog</li>
 <li>Add a prefix to log lines</li>
 <li>Select the reporting level</li>
+<li>Option to use a predefined or custom format</li>
 </ul>
 
 <h2 id="enabling-gologging">Enabling <code>gologging</code></h2>
@@ -604,7 +607,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
       &quot;level&quot;: &quot;INFO&quot;,
       &quot;prefix&quot;: &quot;[KRAKEND]&quot;,
       &quot;syslog&quot;: true,
-      &quot;stdout&quot;: true
+      &quot;stdout&quot;: true,
+      &quot;format&quot;: &quot;custom&quot;,
+      &quot;custom_format&quot;: &quot;%{message}&quot;
     }
   }
 </code></pre>
@@ -640,6 +645,27 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <li><code>&quot;prefix&quot;: &quot;[ANY STRING]&quot;</code></li>
 </ul>
 
+<h3 id="predefined-and-customs-formats">Predefined and customs formats</h3>
+
+<p>If you want to follow other patterns for logging, you&rsquo;re able to.</p>
+
+<ul>
+<li><code>&quot;format&quot;: &quot;custom&quot;</code></li>
+</ul>
+
+<p>The valid formats are:
+ - <code>default</code>
+ - <code>logstash</code>
+ - <code>custom</code></p>
+
+<p>If you select the <code>custom</code> format, you&rsquo;ll be able to use the <code>custom_format</code> field:</p>
+
+<ul>
+<li><code>&quot;custom_format&quot;: &quot;%{message}&quot;</code></li>
+</ul>
+
+<p>The pattern to use is the same as the <a href="https://github.com/op/go-logging/blob/master/format.go#L156">go-logging library</a></p>
+
 <h1 id="graylog-and-the-gelf-format">Graylog and the GELF format</h1>
 
 <p>KrakenD supports sending structured events in GELF format to your Graylog Cluster (KrakenD 0.7+) thanks to the <a href="https://github.com/devopsfaith/krakend-gelf">krakend-gelf</a> integration.</p>
@@ -667,6 +693,27 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
       &quot;prefix&quot;: &quot;[KRAKEND]&quot;,
       &quot;syslog&quot;: false,
       &quot;stdout&quot;: true
+  }
+}
+</code></pre>
+
+<h1 id="logstash">Logstash</h1>
+
+<p>If you want to log using the Logstash standard via stdout, you have to add the <code>krakend-logstash</code> integration in the
+root level of your <code>krakend.json</code>, inside the <code>extra_config</code> section. <strong>The <code>gologging</code> needs to be enabled too</strong>.</p>
+
+<p>For instance:</p>
+
+<pre><code>&quot;extra_config&quot;: {
+  &quot;github_com/devopsfaith/krakend-logstash&quot;: {
+    &quot;enabled&quot;: true
+  }
+  &quot;github_com/devopsfaith/krakend-gologging&quot;: {
+      &quot;level&quot;: &quot;INFO&quot;,
+      &quot;prefix&quot;: &quot;[KRAKEND]&quot;,
+      &quot;syslog&quot;: false,
+      &quot;stdout&quot;: true,
+      &quot;format&quot;: &quot;logstash&quot;
   }
 }
 </code></pre>
