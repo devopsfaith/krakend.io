@@ -574,16 +574,17 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
 
 <p>Using <code>&quot;sd&quot;: &quot;static&quot;</code> in the configuration file is optional.</p>
 
-<p>&ldquo;backend&rdquo;: [
-    {
-        &ldquo;url_pattern&rdquo;: &ldquo;/some-url&rdquo;,
-        &ldquo;sd&rdquo;: &ldquo;static&rdquo;,
-        &ldquo;host&rdquo;: [
-            &ldquo;<a href="http://my-service-01.api.com:9000&quot;">http://my-service-01.api.com:9000&quot;</a>,
-            &ldquo;<a href="http://my-service-02.api.com:9000&quot;">http://my-service-02.api.com:9000&quot;</a>
-        ]
-    }
-]</p>
+<pre><code>&quot;backend&quot;: [
+	{
+		&quot;url_pattern&quot;: &quot;/some-url&quot;,
+		&quot;sd&quot;: &quot;static&quot;,
+		&quot;host&quot;: [
+			&quot;http://my-service-01.api.com:9000&quot;,
+			&quot;http://my-service-02.api.com:9000&quot;
+		]
+	}
+]
+</code></pre>
 
 <h1 id="dns-srv">DNS SRV</h1>
 
