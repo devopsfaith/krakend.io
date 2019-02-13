@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.49" />
+<meta name="generator" content="Hugo 0.51" />
 
 
     <title>Service Discovery overview - KrakenD API Gateway</title>
@@ -572,19 +572,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
 
 <p>The <code>static</code> resolution is the default service discovery choice. It uses a list of hosts declared in the configuration file and KrakenD must be able to reach them directly by hostname, DNS or IP. All the necessary connections are load balanced between all the servers in the list.</p>
 
-<p>Just use <code>&quot;sd&quot;: &quot;static&quot;</code> in the configuration file</p>
+<p>Using <code>&quot;sd&quot;: &quot;static&quot;</code> in the configuration file is optional.</p>
 
-<pre><code>&quot;backend&quot;: [
-        {
-          &quot;url_pattern&quot;: &quot;/some-url&quot;,
-          &quot;sd&quot;: &quot;static&quot;,
-          &quot;host&quot;: [
-            &quot;http://my-service-01.api.com:9000&quot;,
-          &quot;http://my-service-02.api.com:9000&quot;
-          ]
-        }
-      ]
-</code></pre>
+<p>&ldquo;backend&rdquo;: [
+    {
+        &ldquo;url_pattern&rdquo;: &ldquo;/some-url&rdquo;,
+        &ldquo;sd&rdquo;: &ldquo;static&rdquo;,
+        &ldquo;host&rdquo;: [
+            &ldquo;<a href="http://my-service-01.api.com:9000&quot;">http://my-service-01.api.com:9000&quot;</a>,
+            &ldquo;<a href="http://my-service-02.api.com:9000&quot;">http://my-service-02.api.com:9000&quot;</a>
+        ]
+    }
+]</p>
 
 <h1 id="dns-srv">DNS SRV</h1>
 
