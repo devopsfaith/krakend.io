@@ -542,16 +542,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 </a>
 <h1 class="main-title">The Circuit Breaker</h1>
 
+
                     </section>
                     <section class="content">
                         
+
 <div class="row">
-    <section class="col-md-12">            
+    <section class="col-md-12">
         
         
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">Table of Contents</h6>
+                <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
 <ul>
 <li><a href="#how-it-works">How it works</a></li>
@@ -561,7 +563,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
             </div>
         </div>
         
-        
+
         
 
 <p>To keep KrakenD responsive and resilient, we added a <strong>Circuit Breaker</strong> middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems, by preventing too many requests to fail due to timeouts, etc.</p>
