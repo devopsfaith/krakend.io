@@ -461,6 +461,16 @@ Each endpoint declaration is able to define which encoder should be used, as sho
     </item>
     
     <item>
+      <title>Proxying directly to the backends with `no-op`</title>
+      <link>https://www.krakend.io/docs/endpoints/no-op/</link>
+      <pubDate>Fri, 22 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/no-op/</guid>
+      <description>KrakenD no-op (no-operation), is a special type of encoding that behaves as a proxy by passing the client&amp;rsquo;s request to the backend as is, and vice-versa.
+Using no-op to proxy requests When setting no-op, KrakenD does not inspect the request body or manipulates it in any way. Instead, when a request to a no-op endpoint is received, KrakenD directly forwards it to the backend without doing any operation with it.</description>
+    </item>
+    
+    <item>
       <title>Sequential Proxy</title>
       <link>https://www.krakend.io/docs/endpoints/sequential-proxy/</link>
       <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>

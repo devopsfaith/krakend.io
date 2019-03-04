@@ -7,16 +7,16 @@
 <meta name="generator" content="Hugo 0.51" />
 
 
-    <title>Response manipulation - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Response manipulation - KrakenD API Gateway">
-    <meta name="twitter:title" content="Response manipulation - KrakenD API Gateway">
-    <meta property="og:title" content="Response manipulation - KrakenD API Gateway">
+    <title>Proxying directly to the backends with `no-op` - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
+    <meta name="twitter:title" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
+    <meta property="og:title" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
 
     
-    <meta property="description" content="Response manipulation - KrakenD API Gateway">
-    <meta itemprop="description" content="Response manipulation - KrakenD API Gateway">
-    <meta name="twitter:description" content="Response manipulation - KrakenD API Gateway">
-    <meta property="og:description" content="Response manipulation - KrakenD API Gateway">
+    <meta property="description" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
+    <meta itemprop="description" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
+    <meta name="twitter:description" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
+    <meta property="og:description" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
     
 
     
@@ -26,7 +26,7 @@
     
 
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.krakend.io/docs/endpoints/response-manipulation/" />
+    <meta property="og:url" content="https://www.krakend.io/docs/endpoints/no-op/" />
 
 
 
@@ -218,7 +218,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/response-manipulation/" class="nav-link children active">Response manipulation</a>
+                        <a href="/docs/endpoints/response-manipulation/" class="nav-link children ">Response manipulation</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -238,7 +238,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/no-op/" class="nav-link children ">No-op (proxy only)</a>
+                        <a href="/docs/endpoints/no-op/" class="nav-link children active">No-op (proxy only)</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -541,10 +541,10 @@
                     <section class="content-header">
                         
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints/response-manipulation.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints/no-op.md">
     Edit this page
 </a>
-<h1 class="main-title">Response manipulation</h1>
+<h1 class="main-title">Proxying directly to the backends with <code>no-op</code></h1>
 
 
                     </section>
@@ -560,36 +560,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
 <ul>
-<li><a href="#merging">Merging</a>
+<li><a href="#using-no-op-to-proxy-requests">Using <code>no-op</code> to proxy requests</a>
 <ul>
-<li><a href="#merging-timeouts">Merging timeouts</a>
-<ul>
-<li><a href="#what-happens-when-the-timeout-is-triggered-or-some-backend-failed">What happens when the timeout is triggered or some backend failed?</a></li>
+<li><a href="#key-concepts">Key concepts</a></li>
+<li><a href="#when-to-use-no-op">When to use <code>no-op</code></a></li>
+<li><a href="#how-to-use-no-op">How to use <code>no-op</code></a></li>
+<li><a href="#example">Example</a></li>
 </ul></li>
-<li><a href="#merge-example">Merge example</a></li>
-</ul></li>
-<li><a href="#filtering">Filtering</a>
-<ul>
-<li><a href="#blacklisting-fields-don-t-show">Blacklisting fields (don&rsquo;t show)</a>
-<ul>
-<li><a href="#blacklist-example">Blacklist example</a></li>
-</ul></li>
-<li><a href="#whitelisting-fields-only-show">Whitelisting fields (only show)</a></li>
-<li><a href="#whitelist-or-blacklist">Whitelist or blacklist</a></li>
-</ul></li>
-<li><a href="#grouping">Grouping</a>
-<ul>
-<li><a href="#grouping-example">Grouping example</a></li>
-</ul></li>
-<li><a href="#mapping-renaming">Mapping (renaming)</a>
-<ul>
-<li><a href="#mapping-example">Mapping example:</a></li>
-</ul></li>
-<li><a href="#capturing">Capturing</a>
-<ul>
-<li><a href="#capturing-example">Capturing example</a></li>
-</ul></li>
-<li><a href="#collections-or-arrays">Collections or Arrays</a></li>
 </ul>
 </nav>
             </div>
@@ -598,494 +575,69 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
         
 
-<p>KrakenD allows you to perform several manipulations of the responses out of the box, just by adding them to the configuration file. You can also add your own or 3rd parties middlewares to extend this behavior.</p>
+<p>KrakenD <code>no-op</code> (<strong>no-operation</strong>), is a special type of <strong>encoding</strong> that behaves as a <strong>proxy</strong> by passing the client&rsquo;s request to the backend <strong><em>as is</em></strong>, and vice-versa.</p>
 
-<p>KrakenD manipulations are measured in <code>nanoseconds</code>, you can find the benchmark for every response manipulation in the <a href="https://github.com/devopsfaith/krakend/blob/master/docs/BENCHMARKS.md#response-manipulation">benchmarks</a></p>
+<h1 id="using-no-op-to-proxy-requests">Using <code>no-op</code> to proxy requests</h1>
 
-<p>The following manipulations are available by default:</p>
+<p>When setting <code>no-op</code>, KrakenD does not inspect the request <code>body</code> or manipulates it in any way. Instead, when a request to a <code>no-op</code> endpoint is received, KrakenD directly forwards it to the backend without doing any operation with it.</p>
 
-<h1 id="merging">Merging</h1>
+<p>The <em>proxy pipe</em> (this is from KrakenD to backend) is marked to do no-operation, meaning that KrakenD does not aggregate content, filter, manipulate or any of the other functionalities performed during this pipe. It&rsquo;s also important to notice that only a <strong>single backend</strong> is accepted, as the merge operation happens during the <em>proxy pipe</em>.</p>
 
-<p>When you create KrakenD endpoints, if a specific endpoint feeds from 2 or more backend sources (APIs), they will be automatically merged in a single response to the client. For instance, imagine you have 3 different API services exposing the resources <code>/a</code>,<code>/b</code>, and <code>/c</code> and you want to expose them all together in the KrakenD endpoint <code>/abc</code>. This is what you would get:</p>
+<p>Employing the same principle, when the backend produces the response, it&rsquo;s passed back to the client <em>as is</em>, preserving its form: body, headers, status codes and such.</p>
 
-<p><img class="img-fluid" src="/images/documentation/krakend-merge.png" /></p>
+<p>On the other hand, the <em>router pipe</em>&rsquo;s features (from client to KrakenD) remain unaltered, meaning that for instance you can still rate-limit your end-users or require JWT authorization to name a few examples.</p>
 
-<p>The merge operation is implemented in a way where user experience and responsiveness goes first. It does its <em>best effort</em> to get all the required parts from the involved backends and returning the composed object as soon as possible.</p>
+<h2 id="key-concepts">Key concepts</h2>
 
-<p>By simply adding several backends into an endpoint, you get the merge operation automatically.</p>
-
-<p>The configuration for the image above could be like this:</p>
-
-<pre><code>&quot;endpoints&quot;: [
-    {
-      &quot;endpoint&quot;: &quot;/abc&quot;,
-      &quot;timeout&quot;: &quot;800ms&quot;,
-      &quot;method&quot;: &quot;GET&quot;,
-      &quot;backend&quot;: [
-        {
-          &quot;url_pattern&quot;: &quot;/a&quot;,
-          &quot;encoding&quot;: &quot;json&quot;,
-          &quot;host&quot;: [
-            &quot;http://service-a.company.com&quot;
-          ]
-        },
-        {
-          &quot;url_pattern&quot;: &quot;/b&quot;,
-          &quot;encoding&quot;: &quot;xml&quot;,
-          &quot;host&quot;: [
-            &quot;http://service-b.company.com&quot;
-          ]
-        },
-        {
-          &quot;url_pattern&quot;: &quot;/c&quot;,
-          &quot;encoding&quot;: &quot;json&quot;,
-          &quot;host&quot;: [
-            &quot;http://service-c.company.com&quot;
-          ]
-        }
-      ]
-    }
-</code></pre>
-
-<h2 id="merging-timeouts">Merging timeouts</h2>
-
-<p>Keep in mind that in order to avoid any degraded user experience, KrakenD won&rsquo;t be stuck forever until all the backends decide to respond. In a gateway <strong>failing fast is better than succeeding slowly</strong> and KrakenD will make sure this happens as it will <strong>apply the timeout policy</strong>. This will put your users safe during high load peaks, network errors, or any other problems that stress your backends.</p>
-
-<p>The <code>timeout</code> value can be introduced inside each endpoint or globally placing <code>timeout</code> in the root of the configuration file. The most specific definition always overwrites the generic one.</p>
-
-<h3 id="what-happens-when-the-timeout-is-triggered-or-some-backend-failed">What happens when the timeout is triggered or some backend failed?</h3>
-
-<p>If KrakenD is waiting for the backends to respond and the timeout is reached, the response will be incomplete and missing any data that couldn&rsquo;t be fetched before the timeout happened. On the other hand, all the parts that could effectively be retrieved before the timeout happened they will do appear in the response.</p>
-
-<p>If the response has missing parts, the cache header won&rsquo;t exist, as we don&rsquo;t want clients to cache incomplete responses.</p>
-
-<p>At all times, the <code>x-krakend-completed</code> header returned by KrakenD contains a boolean telling you if all backends returned its content (<code>x-krakend-completed: true</code>) or a partial response (<code>x-krakend-completed: false</code>).</p>
-
-<h2 id="merge-example">Merge example</h2>
-
-<p>Imagine an endpoint with the following configuration:</p>
-
-<pre><code>...
-&quot;endpoints&quot;: [
-    {
-      &quot;endpoint&quot;: &quot;/users/{user}&quot;,
-      &quot;method&quot;: &quot;GET&quot;,
-      &quot;timeout&quot;: &quot;800ms&quot;
-      &quot;backend&quot;: [
-        {
-          &quot;url_pattern&quot;: &quot;/users/{user}&quot;,
-          &quot;host&quot;: [
-            &quot;https://jsonplaceholder.typicode.com&quot;
-          ]
-        },
-        {
-          &quot;url_pattern&quot;: &quot;/posts/{user}&quot;,
-          &quot;host&quot;: [
-            &quot;https://jsonplaceholder.typicode.com&quot;
-          ]
-        }
-      ]
-    }
-</code></pre>
-
-<p>When a user calls the endpoint <code>/users/1</code>, KrakenD will send two requests and, in the happy scenario, it will receive these responses:</p>
-
-<pre><code>{
-  &quot;id&quot;: 1,
-  &quot;name&quot;: &quot;Leanne Graham&quot;,
-  &quot;username&quot;: &quot;Bret&quot;,
-  &quot;email&quot;: &quot;Sincere@april.biz&quot;,
-  &quot;address&quot;: {
-    &quot;street&quot;: &quot;Kulas Light&quot;,
-    &quot;suite&quot;: &quot;Apt. 556&quot;,
-    &quot;city&quot;: &quot;Gwenborough&quot;,
-    &quot;zipcode&quot;: &quot;92998-3874&quot;,
-    &quot;geo&quot;: {
-      &quot;lat&quot;: &quot;-37.3159&quot;,
-      &quot;lng&quot;: &quot;81.1496&quot;
-    }
-  },
-  &quot;phone&quot;: &quot;1-770-736-8031 x56442&quot;,
-  &quot;website&quot;: &quot;hildegard.org&quot;,
-  &quot;company&quot;: {
-    &quot;name&quot;: &quot;Romaguera-Crona&quot;,
-    &quot;catchPhrase&quot;: &quot;Multi-layered client-server neural-net&quot;,
-    &quot;bs&quot;: &quot;harness real-time e-markets&quot;
-  }
-}
-</code></pre>
-
-<p>and</p>
-
-<pre><code>{
-  &quot;userId&quot;: 1,
-  &quot;id&quot;: 1,
-  &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
-  &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
-}
-</code></pre>
-
-<p>With these &lsquo;partial responses&rsquo; and the given configuration, KrakenD will return the following response:</p>
-
-<pre><code>{
-  &quot;id&quot;: 1,
-  &quot;name&quot;: &quot;Leanne Graham&quot;,
-  &quot;username&quot;: &quot;Bret&quot;,
-  &quot;email&quot;: &quot;Sincere@april.biz&quot;,
-  &quot;address&quot;: {
-    &quot;street&quot;: &quot;Kulas Light&quot;,
-    &quot;suite&quot;: &quot;Apt. 556&quot;,
-    &quot;city&quot;: &quot;Gwenborough&quot;,
-    &quot;zipcode&quot;: &quot;92998-3874&quot;,
-    &quot;geo&quot;: {
-      &quot;lat&quot;: &quot;-37.3159&quot;,
-      &quot;lng&quot;: &quot;81.1496&quot;
-    }
-  },
-  &quot;phone&quot;: &quot;1-770-736-8031 x56442&quot;,
-  &quot;website&quot;: &quot;hildegard.org&quot;,
-  &quot;company&quot;: {
-    &quot;name&quot;: &quot;Romaguera-Crona&quot;,
-    &quot;catchPhrase&quot;: &quot;Multi-layered client-server neural-net&quot;,
-    &quot;bs&quot;: &quot;harness real-time e-markets&quot;
-  },
-  &quot;userId&quot;: 1,
-  &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
-  &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
-}
-</code></pre>
-
-<h1 id="filtering">Filtering</h1>
-
-<p>When you create a KrakenD endpoint you can decide to show only a subset of the fields coming from the response of your backends. There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&rsquo;s bandwidth and increase load and render times.</p>
-
-<p>There are two different strategies you can use to filter content:</p>
+<p>The <strong>key concepts</strong> of <code>no-op</code> are:</p>
 
 <ul>
-<li>Blacklist</li>
-<li>Whitelist</li>
+<li>The KrakenD endpoint works just like a regular proxy</li>
+<li>The <em>router pipe</em> functionalities are available (e.g., rate limiting the endpoint)</li>
+<li>The <em>proxy pipe</em> functionalities are disabled (aggregate/merge, filter, manipulations, body inspection, concurrency&hellip;)</li>
+<li>Headers passing to the backend still need to be declared under <code>headers_to_pass</code>, as they hit the router layer first.</li>
+<li>Backend response and headers remain unchanged (including status codes)</li>
+<li>The body cannot be changed and is set solely by the backend</li>
+<li><code>1:1</code> relationship between endpoint-backend (one backend per endpoint).</li>
 </ul>
 
-<h2 id="blacklisting-fields-don-t-show">Blacklisting fields (don&rsquo;t show)</h2>
+<h2 id="when-to-use-no-op">When to use <code>no-op</code></h2>
 
-<p>The blacklist filter can be read as the <em>don&rsquo;t show this</em> filter. KrakenD will remove from the response all matching fields defined in the list, and the ones that do not match will be revealed. Use the blacklist to exclude some fields in the response.</p>
+<p>Use <code>no-op</code> when you need to <strong>couple the client with a specific backend without any KrakenD manipulation</strong>.</p>
 
-<p>The blacklisted fields of your choice can also be nested field. Use a <strong>dot</strong> as the level separator. For instance the <code>a1</code> field in the following JSON response <code>{ &quot;a&quot;: { &quot;a1&quot;: 1 } }</code> can be blacklisted as <code>a.a1</code>.</p>
+<p>Examples:</p>
 
-<h3 id="blacklist-example">Blacklist example</h3>
+<ul>
+<li>You want to set a <code>Cookie</code> to the client directly from the backend.</li>
+<li>You need to keep the headers of the backend as is.</li>
+</ul>
 
-<p>We will use the <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a> fake API so you can see live the output of the backend.</p>
+<h2 id="how-to-use-no-op">How to use <code>no-op</code></h2>
 
-<p>We want to set up a KrakenD endpoint that returns the <strong>posts for a specific user</strong>, but we&rsquo;ve seen that the <a href="https://jsonplaceholder.typicode.com/posts/1">backend response</a> contains too much data since our use case do not need the <code>body</code> and <code>userId</code> fields and we want a lighter and faster response.</p>
+<p>To declare endpoints that go directly to the backend as they are you need to define the <code>no-op</code> encoding <strong>both</strong> in the <code>endpoint</code> <strong>and</strong> the <code>backend</code> section, specifically:</p>
 
-<p>The KrakenD endpoint to accept URLs like<code>/posts/1</code> is defined as follows:</p>
+<ul>
+<li>Add <code>&quot;output_encoding&quot;: &quot;no-op&quot;</code> in the <code>endpoint</code> section</li>
+<li>Add <code>&quot;encoding&quot;: &quot;no-op&quot;</code> in the <code>backend</code> section</li>
+</ul>
 
-<pre><code>{
-  &quot;endpoint&quot;: &quot;/posts/{user}&quot;,
-  &quot;method&quot;: &quot;GET&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/posts/{user}&quot;,
-      &quot;host&quot;: [
-        &quot;https://jsonplaceholder.typicode.com&quot;
-      ],
-      &quot;blacklist&quot;: [
-        &quot;body&quot;,
-        &quot;userId&quot;
-      ]
-    }
-  ]
-}
-</code></pre>
+<p>When using the no-op encoding remember that the endpoint can only have <strong>one backend</strong> as KrakenD is not going to inspect or manipulate the response (no merging happens). Also, other pipe options like the concurrent requests, the circuit breaker, or the backend rate-limit specific to the proxy pipe aren&rsquo;t available (but still have endpoint rate limit -&gt; router pipe).</p>
 
-<p>Now, when calling the KrakenD endpoint <code>/posts/1</code> the response you would get will be as follows:</p>
+<h2 id="example">Example</h2>
 
-<pre><code>{
-  &quot;id&quot;: 1,
-  &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;
-}
-</code></pre>
+<p>The following snippet shows an endpoint that is passed to the backend as is. Notice that both the endpoint and the backend have a <code>no-op</code> encoding. The backend is using KrakenD&rsquo;s debug endpoint to capture the request in the console:</p>
 
-<p><a href="https://jsonplaceholder.typicode.com/posts/1">Compared with the backend response</a> you&rsquo;ll see that the fields <code>body</code> and <code>userId</code> are no longer there.</p>
-
-<h2 id="whitelisting-fields-only-show">Whitelisting fields (only show)</h2>
-
-<p>The blacklist filter can be read as the <em>only show this</em> filter. When you set a whitelist KrakenD will include in the endpoint response only those fields that match exactly with your choice. Use the whitelist to strictly define the fields you want to show in the response.</p>
-
-<p>The whitelisted fields of your choice can also be nested field. Use a <strong>dot</strong> as the level separator. For instance the <code>a1</code> field in the following JSON response <code>{ &quot;a&quot;: { &quot;a1&quot;: 1 } }</code> can be whitelisted as <code>a.a1</code>.</p>
-
-<p>### Whitelist example
-We will repeat the same exercise we did in the blacklist to get the same output. We only want to get the <code>id</code> and <code>title</code> fields from the backend.</p>
-
-<pre><code>{
-  &quot;endpoint&quot;: &quot;/posts/{user}&quot;,
-  &quot;method&quot;: &quot;GET&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/posts/{user}&quot;,
-      &quot;host&quot;: [
-        &quot;https://jsonplaceholder.typicode.com&quot;
-      ],
-      &quot;whitelist&quot;: [
-        &quot;id&quot;,
-        &quot;title&quot;
-      ]
-    }
-  ]
-}
-</code></pre>
-
-<p>Now, when calling the KrakenD endpoint <code>/posts/1</code> the response you would get will be as follows:</p>
-
-<pre><code>{
-  &quot;id&quot;: 1,
-  &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;
-}
-</code></pre>
-
-<p>Just exactly as we did with the blacklist.</p>
-
-<h2 id="whitelist-or-blacklist">Whitelist or blacklist</h2>
-
-<p>When filtering you need to choose the blacklist or the whitelist, as the behaviors are contradictory and can&rsquo;t coexist. Nothing stops you to play for a while and see what happens if you mix them, but you&rsquo;ve been warned!</p>
-
-<h1 id="grouping">Grouping</h1>
-
-<p>KrakenD is able to group partial responses from backends under a user-defined field. In other words, when you set the <code>group</code> attribute for a backend, instead of placing all the response attributes in the root, KrakenD will create a new key and place the response inside.</p>
-
-<p>Grouping is useful to encapsulate every backend call under different keys, especially when different backend responses can have colliding key names (e.g: all responses contain an <code>id</code> with different values).</p>
-
-<h2 id="grouping-example">Grouping example</h2>
-
-<p>The following code is an endpoint that gets data from two different backends but one of the responses is encapsulated inside the field <code>last_post</code>.</p>
-
-<pre><code>{
-  &quot;endpoint&quot;: &quot;/users/{user}&quot;,
-  &quot;method&quot;: &quot;GET&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/users/{user}&quot;,
-      &quot;host&quot;: [
-        &quot;https://jsonplaceholder.typicode.com&quot;
-      ]
-    },
-    {
-      &quot;url_pattern&quot;: &quot;/posts/{user}&quot;,
-      &quot;host&quot;: [
-        &quot;https://jsonplaceholder.typicode.com&quot;
-      ],
-      &quot;group&quot;: &quot;last_post&quot;
-    }
-  ]
-}
-</code></pre>
-
-<p>This will generate responses like this one:</p>
-
-<pre><code>{
-  &quot;id&quot;: 1,
-  &quot;name&quot;: &quot;Leanne Graham&quot;,
-  &quot;username&quot;: &quot;Bret&quot;,
-  &quot;email&quot;: &quot;Sincere@april.biz&quot;,
-  &quot;address&quot;: {
-    &quot;street&quot;: &quot;Kulas Light&quot;,
-    &quot;suite&quot;: &quot;Apt. 556&quot;,
-    &quot;city&quot;: &quot;Gwenborough&quot;,
-    &quot;zipcode&quot;: &quot;92998-3874&quot;,
-    &quot;geo&quot;: {
-      &quot;lat&quot;: &quot;-37.3159&quot;,
-      &quot;lng&quot;: &quot;81.1496&quot;
-    }
-  },
-  &quot;phone&quot;: &quot;1-770-736-8031 x56442&quot;,
-  &quot;website&quot;: &quot;hildegard.org&quot;,
-  &quot;company&quot;: {
-    &quot;name&quot;: &quot;Romaguera-Crona&quot;,
-    &quot;catchPhrase&quot;: &quot;Multi-layered client-server neural-net&quot;,
-    &quot;bs&quot;: &quot;harness real-time e-markets&quot;
-  },
-  &quot;last_post&quot;: {
-    &quot;id&quot;: 1,
-    &quot;userId&quot;: 1,
-    &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
-    &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
-  }
-}
-</code></pre>
-
-<h1 id="mapping-renaming">Mapping (renaming)</h1>
-
-<p>KrakenD is also able to manipulate the name of the fields of the generated responses, so your composed response would be as close to your use case as possible without changing a line on any backend.</p>
-
-<p>In the <code>mapping</code> section map the original field name with the desired name.</p>
-
-<h2 id="mapping-example">Mapping example:</h2>
-
-<p>Instead of showing the <code>email</code> field we want to name it <code>personal_email</code>:</p>
-
-<pre><code>{
-  &quot;endpoint&quot;: &quot;/users/{user}&quot;,
-  &quot;method&quot;: &quot;GET&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/users/{user}&quot;,
-      &quot;host&quot;: [
-        &quot;https://jsonplaceholder.typicode.com&quot;
-      ],
-      &quot;mapping&quot;: {
-        &quot;email&quot;: &quot;personal_email&quot;
-      }
-    }
-  ]
-}
-</code></pre>
-
-<p>Will generate responses like this one:</p>
-
-<pre><code>{
-  &quot;id&quot;: 1,
-  &quot;name&quot;: &quot;Leanne Graham&quot;,
-  &quot;username&quot;: &quot;Bret&quot;,
-  &quot;personal_email&quot;: &quot;Sincere@april.biz&quot;,
-  &quot;address&quot;: {
-    &quot;street&quot;: &quot;Kulas Light&quot;,
-    &quot;suite&quot;: &quot;Apt. 556&quot;,
-    &quot;city&quot;: &quot;Gwenborough&quot;,
-    &quot;zipcode&quot;: &quot;92998-3874&quot;,
-    &quot;geo&quot;: {
-      &quot;lat&quot;: &quot;-37.3159&quot;,
-      &quot;lng&quot;: &quot;81.1496&quot;
-    }
-  },
-  &quot;phone&quot;: &quot;1-770-736-8031 x56442&quot;,
-  &quot;website&quot;: &quot;hildegard.org&quot;,
-  &quot;company&quot;: {
-    &quot;name&quot;: &quot;Romaguera-Crona&quot;,
-    &quot;catchPhrase&quot;: &quot;Multi-layered client-server neural-net&quot;,
-    &quot;bs&quot;: &quot;harness real-time e-markets&quot;
-  }
-}
-</code></pre>
-
-<h1 id="capturing">Capturing</h1>
-
-<p>It is frequent in many API implementations that the desired data is always encapsulated inside a generic field like <code>data</code> or <code>content</code> and you don&rsquo;t want to have this level in your responses.</p>
-
-<p>Use capturing when you want to capture the content inside these generic containers and extract it to the root as it never existed and when you want to work with other manipulation options. Capture takes place before other options like whitelist or mapping.</p>
-
-<p>The capturing option uses the attribute <code>target</code> in the configuration file.</p>
-
-<h2 id="capturing-example">Capturing example</h2>
-
-<p>Given a backend endpoint with this kind of responses containing a level <code>data</code>:</p>
-
-<pre><code>{
-  &quot;apiVersion&quot;:&quot;2.0&quot;,
-  &quot;data&quot;: {
-    &quot;updated&quot;:&quot;2010-01-07T19:58:42.949Z&quot;,
-    &quot;totalItems&quot;:800,
-    &quot;startIndex&quot;:1,
-    &quot;itemsPerPage&quot;:1,
-    &quot;items&quot;:[]
-  }
-}
-</code></pre>
-
-<p>and with this KrakenD configuration</p>
-
-<pre><code>{
-  &quot;endpoint&quot;: &quot;/foo&quot;,
-  &quot;method&quot;: &quot;GET&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/bar&quot;,
-      &quot;target&quot;: &quot;data&quot;
-    }
-  ]
-}
-</code></pre>
-
-<p>the gateway will generate responses like this one:</p>
-
-<pre><code>{
-    &quot;updated&quot;:&quot;2010-01-07T19:58:42.949Z&quot;,
-    &quot;totalItems&quot;:800,
-    &quot;startIndex&quot;:1,
-    &quot;itemsPerPage&quot;:1,
-    &quot;items&quot;:[]
-}
-</code></pre>
-
-<h1 id="collections-or-arrays">Collections or Arrays</h1>
-
-<p>KrakenD expects that all backends return an object. For instance, a JSON response needs to be encapsulated between curly braces <code>{}</code>. E.g.:</p>
-
-<pre><code>{
-	&quot;a&quot;: true,
-	&quot;b&quot;: false
-}
-</code></pre>
-
-<p>When your API returns a collection (<code>[]</code> or array) instead of an object you need to tell this to KrakenD so its content can be converted to an object. Example of collection:</p>
-
-<pre><code>[
-	{&quot;a&quot;: true },
-	{&quot;b&quot;: false}
-]
-</code></pre>
-
-<p>In these cases, add inside the <code>backend</code> key the property <code>&quot;is_collection&quot;: true</code> so KrakenD can convert this collection to an object. By default, the key <code>collection</code> will be added, e.g.:</p>
-
-<pre><code>{
-	&quot;collection&quot;: [
-		{&quot;a&quot;: true },
-		{&quot;b&quot;: false}
-	]
-}
-</code></pre>
-
-<p>You can rename the automatically named key <code>collection</code> to something else using the <code>mapping</code> attribute (see above).</p>
-
-<p>The following is a real example based on a <a href="http://jsonplaceholder.typicode.com/posts">collection response</a>, copy and paste to test in your environment:</p>
-
-<pre><code>&quot;endpoints&quot;: [
-    {
-      &quot;endpoint&quot;: &quot;/posts&quot;,
-      &quot;backend&quot;: [
-        {
-          &quot;url_pattern&quot;: &quot;/posts&quot;,
-          &quot;host&quot;: [&quot;http://jsonplaceholder.typicode.com&quot;],
-          &quot;sd&quot;: &quot;static&quot;,
-          &quot;is_collection&quot;: true,
-          &quot;mapping&quot;: {
-            &quot;collection&quot;: &quot;myposts&quot;
-          }
-        }
-      ]
-    }
-]
-</code></pre>
-
-<p>The response will look like this:</p>
-
-<pre><code>{
-  &quot;myposts&quot;: [
-    {
-      ...
-    },
-    {
-      ...
-    }
-}
-</code></pre>
-
-<div class="alert note">
-    <h4><i class="fa fa-sticky-note"></i> No manipulation on arrays</h4>
-	<p>When working with backend responses that are collections be aware that
-data manipulations are not available (except for the mapping/renaming of the
-<code>collection</code> key)</p>
-
- </div>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/auth/login&#34;</span><span class="p">,</span>
+<span class="hl">    <span class="nt">&#34;output_encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;no-op&#34;</span><span class="p">,</span>
+</span>    <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+<span class="hl">            <span class="nt">&#34;encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;no-op&#34;</span><span class="p">,</span>
+</span>            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;localhost:8080&#34;</span> <span class="p">],</span>
+            <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/__debug/login&#34;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
 
     </section>
 </div>
