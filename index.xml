@@ -110,6 +110,16 @@ $ krakend run Please, provide the path to your config file  Show the help:</desc
     </item>
     
     <item>
+      <title>Enabling TLS for HTTPS and HTTP/2</title>
+      <link>https://www.krakend.io/docs/service-settings/tls/</link>
+      <pubDate>Fri, 22 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/service-settings/tls/</guid>
+      <description>There are two different strategies when using TLS over KrakenD:
+ Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&amp;rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted.</description>
+    </item>
+    
+    <item>
       <title>JSON Web Tokens overview</title>
       <link>https://www.krakend.io/docs/authorization/jwt-overview/</link>
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
@@ -489,6 +499,16 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
       <guid>https://www.krakend.io/docs/throttling/max-idle-connections/</guid>
       <description>Having a high number of IDLE connections to every backend affects directly to the performance of the proxy layer. This is why you can control the number using the max_idle_connections setting. For instance:
 { &amp;quot;version&amp;quot;: 2, &amp;quot;max_idle_connections&amp;quot;: 150, ... }  KrakenD will close connections sitting idle in a &amp;ldquo;keep-alive&amp;rdquo; state when max_idle_connections is reached. If no value is set in the configuration file, KrakenD will use 250 by default.</description>
+    </item>
+    
+    <item>
+      <title>Static Proxy - Adding static/stub data</title>
+      <link>https://www.krakend.io/docs/endpoints/static-proxy/</link>
+      <pubDate>Fri, 22 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/static-proxy/</guid>
+      <description>The static proxy is an aid to clients dealing with incomplete and other types of degraded responses. When enabled, the static proxy injects static data in the final response when the behavior of a backend falls in the selected strategy.
+A typical scenario is when some backend fails and the endpoint becomes incomplete, but you prefer to provide a stub response for that part instead. When your application cannot handle well the degraded response, the static data comes handy.</description>
     </item>
     
     <item>

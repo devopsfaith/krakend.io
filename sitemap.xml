@@ -48,6 +48,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/service-settings/tls/</loc>
+    <lastmod>2019-02-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/authorization/jwt-overview/</loc>
     <lastmod>2018-11-03T00:00:00+00:00</lastmod>
   </url>
@@ -220,6 +225,11 @@
   <url>
     <loc>https://www.krakend.io/docs/throttling/max-idle-connections/</loc>
     <lastmod>2018-09-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/endpoints/static-proxy/</loc>
+    <lastmod>2019-02-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>

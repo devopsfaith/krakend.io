@@ -208,9 +208,28 @@
             
             <a data-toggle="collapse" href="#menu-3" role="button" aria-expanded="false"
                 aria-controls="menu-3" class="nav-link parent">
-                Endpoints
+                Service settings
             </a>
             <div class="collapse" id="menu-3">
+                <ul class="nav flex-column">
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+        </li>
+        
+        
+        <li class="nav-item">
+            
+            <a data-toggle="collapse" href="#menu-4" role="button" aria-expanded="false"
+                aria-controls="menu-4" class="nav-link parent">
+                Endpoints
+            </a>
+            <div class="collapse" id="menu-4">
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
@@ -242,7 +261,11 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/sequential-proxy/" class="nav-link children ">Sequential Proxy</a>
+                        <a href="/docs/endpoints/sequential-proxy/" class="nav-link children ">Sequential Proxy (chain reqs.)</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/static-proxy/" class="nav-link children ">Static responses (stubs)</a>
                     </li>
                     
                 </ul>
@@ -253,11 +276,11 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-4" role="button" aria-expanded="false"
-                aria-controls="menu-4" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-5" role="button" aria-expanded="false"
+                aria-controls="menu-5" class="nav-link parent">
                 Backends
             </a>
-            <div class="collapse" id="menu-4">
+            <div class="collapse" id="menu-5">
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
@@ -292,11 +315,11 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-5" role="button" aria-expanded="true"
-                aria-controls="menu-5" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-6" role="button" aria-expanded="true"
+                aria-controls="menu-6" class="nav-link parent active">
                 Authorization
             </a>
-            <div class="collapse show" id="menu-5">
+            <div class="collapse show" id="menu-6">
                 <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
@@ -313,33 +336,6 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/authorization/revoking-tokens/" class="nav-link children ">Revoking tokens</a>
-                    </li>
-                    
-                </ul>
-            </div>
-            
-        </li>
-        
-        
-        <li class="nav-item">
-            
-            <a data-toggle="collapse" href="#menu-6" role="button" aria-expanded="false"
-                aria-controls="menu-6" class="nav-link parent">
-                Throttling and limits
-            </a>
-            <div class="collapse" id="menu-6">
-                <ul class="nav flex-column">
-                    
-                    <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
-                    </li>
-                    
-                    <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
-                    </li>
-                    
-                    <li class="nav-item child">
-                        <a href="/docs/throttling/max-idle-connections/" class="nav-link children ">Max IDLE connections</a>
                     </li>
                     
                 </ul>
@@ -383,9 +379,36 @@
             
             <a data-toggle="collapse" href="#menu-8" role="button" aria-expanded="false"
                 aria-controls="menu-8" class="nav-link parent">
-                Logging, metrics and tracing
+                Throttling and limits
             </a>
             <div class="collapse" id="menu-8">
+                <ul class="nav flex-column">
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/max-idle-connections/" class="nav-link children ">Max IDLE connections</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+        </li>
+        
+        
+        <li class="nav-item">
+            
+            <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
+                aria-controls="menu-9" class="nav-link parent">
+                Logging, metrics and tracing
+            </a>
+            <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
@@ -404,11 +427,11 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
-                aria-controls="menu-9" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-10" role="button" aria-expanded="false"
+                aria-controls="menu-10" class="nav-link parent">
                 Cluster
             </a>
-            <div class="collapse" id="menu-9">
+            <div class="collapse" id="menu-10">
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
@@ -427,11 +450,11 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-10" role="button" aria-expanded="false"
-                aria-controls="menu-10" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-11" role="button" aria-expanded="false"
+                aria-controls="menu-11" class="nav-link parent">
                 Deploying
             </a>
-            <div class="collapse" id="menu-10">
+            <div class="collapse" id="menu-11">
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
@@ -446,11 +469,11 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-11" role="button" aria-expanded="false"
-                aria-controls="menu-11" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-12" role="button" aria-expanded="false"
+                aria-controls="menu-12" class="nav-link parent">
                 Developer Tools
             </a>
-            <div class="collapse" id="menu-11">
+            <div class="collapse" id="menu-12">
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
@@ -465,11 +488,11 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-12" role="button" aria-expanded="false"
-                aria-controls="menu-12" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-13" role="button" aria-expanded="false"
+                aria-controls="menu-13" class="nav-link parent">
                 Extending KrakenD
             </a>
-            <div class="collapse" id="menu-12">
+            <div class="collapse" id="menu-13">
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
@@ -484,11 +507,11 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-13" role="button" aria-expanded="false"
-                aria-controls="menu-13" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-14" role="button" aria-expanded="false"
+                aria-controls="menu-14" class="nav-link parent">
                 Benchmarks
             </a>
-            <div class="collapse" id="menu-13">
+            <div class="collapse" id="menu-14">
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
