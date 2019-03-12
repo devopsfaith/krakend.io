@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.51" />
+<meta name="generator" content="Hugo 0.53" />
 
 
     <title>Installing KrakenD - KrakenD API Gateway</title>
@@ -266,6 +266,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/static-proxy/" class="nav-link children ">Static responses (stubs)</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/common-expression-language-cel/" class="nav-link children ">Checking requests and responses</a>
                     </li>
                     
                 </ul>
@@ -642,7 +646,7 @@ docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /
 
 <p>Paste this in the terminal:</p>
 
-<pre><code>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm
+<pre><code>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
 yum install -y krakend
 systemctl start krakend
 </code></pre>
@@ -651,7 +655,7 @@ systemctl start krakend
 
 <p>Paste this in the terminal:</p>
 
-<pre><code>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm
+<pre><code>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
 dnf install -y krakend
 systemctl start krakend
 </code></pre>
@@ -671,7 +675,7 @@ systemctl start krakend
 
 <p>Bottom line:</p>
 
-<pre><code>apt-key adv --keyserver keyserver.ubuntu.com --recv AB39BEA1
+<pre><code>apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
 echo &quot;deb http://repo.krakend.io/apt stable main&quot; | tee /etc/apt/sources.list.d/krakend.list
 apt-get update
 apt-get install -y krakend

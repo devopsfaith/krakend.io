@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.51" />
+<meta name="generator" content="Hugo 0.53" />
 
 
     <title>Supported backend encodings - KrakenD API Gateway</title>
@@ -266,6 +266,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/static-proxy/" class="nav-link children ">Static responses (stubs)</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/common-expression-language-cel/" class="nav-link children ">Checking requests and responses</a>
                     </li>
                     
                 </ul>
@@ -578,25 +582,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     <section class="col-md-12">
         
         
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#response-content-type">Response content type</a>
-<ul>
-<li><a href="#mux">Mux</a></li>
-<li><a href="#gin">Gin</a></li>
-</ul></li>
-</ul>
-</nav>
-            </div>
-        </div>
-        
 
-        
-
-<p>KrakenD can parse responses from mixed backends that are using several content types or encodings, such as:</p>
+        <p>KrakenD can parse responses from mixed backends that are using several content types or encodings, such as:</p>
 
 <ul>
 <li>JSON</li>
@@ -604,6 +591,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <li>RSS</li>
 <li>Treat as string</li>
 </ul>
+
+<p>Additionally the special case <a href="/docs/endpoints/no-op/">No-op (proxy)</a> is available but cannot be used to merge content.</p>
 
 <p>Each backend declaration can set a different encoder to process the responses, and still, KrakenD can transparently work with the mixed content returning a unified encoding in the endpoint.</p>
 
@@ -641,62 +630,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 </code></pre>
 
 <p>As you can see, having the <code>encoding</code> declaration inside every backend allows you to consume services with different content types. The endpoint <code>/abc</code> instead uses the encoding of your choice (e.g., JSON).</p>
-
-<h1 id="response-content-type">Response content type</h1>
-
-<p>KrakenD supports sending responses back to the client using content types other than JSON (v0.5 or greater). The list of supported content types depends on the selected router package.</p>
-
-<p>Each endpoint declaration is able to define which encoder should be used, as shown in this example. By default, the KrakenD router will fall back to JSON:</p>
-
-<pre><code>...
-&quot;endpoints&quot;: [
-{
-  &quot;endpoint&quot;: &quot;/a&quot;,
-  &quot;output_encoding&quot;: &quot;negotiate&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/a&quot;
-    }
-  ]
-},
-{
-  &quot;endpoint&quot;: &quot;/b&quot;,
-  &quot;output_encoding&quot;: &quot;string&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/b&quot;
-    }
-  ]
-},
-{
-  &quot;endpoint&quot;: &quot;/c&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/c&quot;
-    }
-  ]
-}
-...
-</code></pre>
-
-<h2 id="mux">Mux</h2>
-
-<p>The three mux based routers supported by the KrakenD framework include these output encodings:</p>
-
-<ul>
-<li>JSON</li>
-<li>String</li>
-</ul>
-
-<h2 id="gin">Gin</h2>
-
-<p>The gin-based KrakenD router includes these output encodings:</p>
-
-<ul>
-<li>JSON</li>
-<li>String</li>
-<li>Negotiate: internally supports JSON, XML, and YAML. It selects one or the other depending on the received <code>Accept</code> header.</li>
-</ul>
 
     </section>
 </div>

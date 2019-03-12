@@ -445,7 +445,8 @@ Clickjacking protection KrakenD follow the OWASP&amp;rsquo;s recommendations by 
       
       <guid>https://www.krakend.io/docs/backends/supported-encodings/</guid>
       <description>KrakenD can parse responses from mixed backends that are using several content types or encodings, such as:
- JSON XML RSS Treat as string  Each backend declaration can set a different encoder to process the responses, and still, KrakenD can transparently work with the mixed content returning a unified encoding in the endpoint.
+ JSON XML RSS Treat as string  Additionally the special case No-op (proxy) is available but cannot be used to merge content.
+Each backend declaration can set a different encoder to process the responses, and still, KrakenD can transparently work with the mixed content returning a unified encoding in the endpoint.
 The following example demonstrates how an endpoint /abc is feeding on three different services and urls /a, /b, and /c and aggregates their responses:</description>
     </item>
     
@@ -465,9 +466,9 @@ This caching technique applies to traffic between KrakenD and your microservices
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/endpoints/content-types/</guid>
-      <description>KrakenD supports sending responses back to the client using content types other than JSON (v0.5 or greater. The list of supported content types depends on the selected router package.
-Each endpoint declaration is able to define which encoder should be used, as shown in this example. By default, the KrakenD router will fall back to JSON:
-... &amp;quot;endpoints&amp;quot;: [ { &amp;quot;endpoint&amp;quot;: &amp;quot;/a&amp;quot;, &amp;quot;output_encoding&amp;quot;: &amp;quot;negotiate&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/a&amp;quot; } ] }, { &amp;quot;endpoint&amp;quot;: &amp;quot;/b&amp;quot;, &amp;quot;output_encoding&amp;quot;: &amp;quot;string&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/b&amp;quot; } ] }, { &amp;quot;endpoint&amp;quot;: &amp;quot;/c&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/c&amp;quot; } ] } .</description>
+      <description>KrakenD supports sending responses back to the client using content types other than JSON. The list of supported content types depends on the router package used.
+Supported encodings The gateway can work with several content types, even allowing your clients to choose how to consume the content. The following output_encoding strategies are available to choose for every an endpoint:
+ json: The endpoint always return a response in JSON format to the client.</description>
     </item>
     
     <item>
@@ -512,6 +513,17 @@ A typical scenario is when some backend fails and the endpoint becomes incomplet
     </item>
     
     <item>
+      <title>Checking requests and responses with the Common Expression Language (CEL)</title>
+      <link>https://www.krakend.io/docs/endpoints/common-expression-language-cel/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/common-expression-language-cel/</guid>
+      <description>There are times when you might want to include additional logic in the gateway to decide if a request has to be fulfilled or not.
+The Common Expression Language (CEL) middleware enables Google&amp;rsquo;s CEL spec which implements common semantics for expression evaluation, and is a very simple and powerful option to have full control during requests and responses.
+When the CEL component is enabled, any amount of expressions to check both requests and responses can be set.</description>
+    </item>
+    
+    <item>
       <title>Flexible configuration</title>
       <link>https://www.krakend.io/docs/configuration/flexible-config/</link>
       <pubDate>Fri, 21 Sep 2018 00:00:00 +0000</pubDate>
@@ -541,6 +553,17 @@ Difference between KrakenD, KrakenD-CE, and Enterprise TL;DR;
       <description>If you are new to KrakenD, a quick way to get started is to make use of the KrakenD Playground.
 The KrakenD Playground is a Docker Compose environment that puts together the necessary pieces to let you play with KrakenD in a working environment.
 As KrakenD is an API gateway, we have also added to the environment an API (backend) to feed the gateway and a website to make use of the data.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD 0.8 released</title>
+      <link>https://www.krakend.io/blog/krakend-0.8-release-notes/</link>
+      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-0.8-release-notes/</guid>
+      <description>KrakenD 0.8 is a significant release as it brings numerous code changes and functionality. The framework brings +100 commits, the gateway +50 commits and even more changes in the components. A lot of refactoring and component updates has taken place. The big picture is a move from a single binary application to become a package with several internal binaries.
+See the details below.
+KrakenD framework The KrakenD framework brings +100 commits compared to 0.</description>
     </item>
     
     <item>
@@ -783,7 +806,7 @@ I am getting a 500 status when the backend returns anything but 200, 201 or redi
       <guid>https://www.krakend.io/docs/overview/verifying-packages/</guid>
       <description>How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_0.7.1_amd64.tar.gz.asc krakend_0.7.1_amd64.tar.gz gpg: Signature made vie 02 dic 2016 19:07:49 CET using RSA key ID AB39BEA1 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
+$ gpg --verify krakend_0.8.0_amd64.tar.gz.asc krakend_0.8.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
     </item>
     
     <item>

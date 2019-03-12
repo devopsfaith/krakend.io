@@ -7,16 +7,16 @@
 <meta name="generator" content="Hugo 0.53" />
 
 
-    <title>Flexible configuration - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Flexible configuration - KrakenD API Gateway">
-    <meta name="twitter:title" content="Flexible configuration - KrakenD API Gateway">
-    <meta property="og:title" content="Flexible configuration - KrakenD API Gateway">
+    <title>Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway">
+    <meta name="twitter:title" content="Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway">
+    <meta property="og:title" content="Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway">
 
     
-    <meta property="description" content="Flexible configuration - KrakenD API Gateway">
-    <meta itemprop="description" content="Flexible configuration - KrakenD API Gateway">
-    <meta name="twitter:description" content="Flexible configuration - KrakenD API Gateway">
-    <meta property="og:description" content="Flexible configuration - KrakenD API Gateway">
+    <meta property="description" content="Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway">
+    <meta itemprop="description" content="Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway">
+    <meta name="twitter:description" content="Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway">
+    <meta property="og:description" content="Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway">
     
 
     
@@ -26,7 +26,7 @@
     
 
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.krakend.io/docs/configuration/flexible-config/" />
+    <meta property="og:url" content="https://www.krakend.io/docs/endpoints/common-expression-language-cel/" />
 
 
 
@@ -152,12 +152,12 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-1" role="button" aria-expanded="true"
-                aria-controls="menu-1" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-1" role="button" aria-expanded="false"
+                aria-controls="menu-1" class="nav-link parent">
                 Configuration file
             </a>
-            <div class="collapse show" id="menu-1">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-1">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/overview/" class="nav-link children ">Configuration overview</a>
@@ -172,7 +172,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children active">Flexible configuration</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Flexible configuration</a>
                     </li>
                     
                 </ul>
@@ -225,12 +225,12 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-4" role="button" aria-expanded="false"
-                aria-controls="menu-4" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-4" role="button" aria-expanded="true"
+                aria-controls="menu-4" class="nav-link parent active">
                 Endpoints
             </a>
-            <div class="collapse" id="menu-4">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-4">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/rate-limit/" class="nav-link children ">Rate Limits</a>
@@ -269,7 +269,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/common-expression-language-cel/" class="nav-link children ">Checking requests and responses</a>
+                        <a href="/docs/endpoints/common-expression-language-cel/" class="nav-link children active">Checking requests and responses</a>
                     </li>
                     
                 </ul>
@@ -568,10 +568,14 @@
                     <section class="content-header">
                         
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/configuration/flexible-config.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints/common-expression-language-cel.md">
     Edit this page
 </a>
-<h1 class="main-title">Flexible configuration</h1>
+<h1 class="main-title">Checking requests and responses with the Common Expression Language (CEL)</h1>
+
+<p class="feature-since">
+    <strong>Since KrakenD <span class="badge badge-success">v0.8</span></strong>
+</p>
 
 
                     </section>
@@ -587,18 +591,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
 <ul>
-<li><a href="#when-to-use-flexible-configuration">When to use Flexible Configuration</a></li>
-<li><a href="#requirements">Requirements</a></li>
-<li><a href="#usage">Usage</a>
+<li><a href="#adding-logic-in-the-request">Adding logic in the request</a>
 <ul>
-<li><a href="#template-syntax">Template syntax</a>
+<li><a href="#cel-variables">CEL variables</a>
 <ul>
-<li><a href="#include-an-external-file">Include an external file</a></li>
-<li><a href="#insert-values-from-settings-files">Insert values from settings files</a></li>
+<li><a href="#requests">Requests</a></li>
+<li><a href="#responses">Responses</a></li>
+<li><a href="#jwt-rejecter">JWT rejecter</a></li>
 </ul></li>
-<li><a href="#testing-the-configuration">Testing the configuration</a></li>
 </ul></li>
-<li><a href="#flexible-configuration-example">Flexible configuration example</a></li>
+<li><a href="#cel-syntax">CEL Syntax</a></li>
 </ul>
 </nav>
             </div>
@@ -607,219 +609,82 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 
         
 
-<p>The <strong>Flexible Configuration</strong> component (<a href="https://github.com/devopsfaith/krakend-flexibleconfig">source code</a>) is included in the KrakenD API Gateway and allows you to split the configuration file into several pieces for a more natural organization.</p>
+<p>There are times when you might want to include <strong>additional logic</strong> in the gateway
+to decide if a request has to be fulfilled or not.</p>
 
-<p>When the Flexible Configuration is enabled, KrakenD assumes that your configuration file is a template that needs compilation during start-up time. With this, you have the opportunity to produce a more sophisticated configuration file that utilizes variables and brings content from external files.</p>
+<p>The <a href="https://github.com/devopsfaith/krakend-cel">Common Expression Language (CEL)</a>
+middleware enables Google&rsquo;s <a href="https://github.com/google/cel-spec">CEL spec</a>
+which implements common semantics for expression evaluation, and is a very
+simple and powerful option to have full control during requests and responses.</p>
 
-<h1 id="when-to-use-flexible-configuration">When to use Flexible Configuration</h1>
+<p>When the CEL component is enabled, any amount of expressions to check both requests and responses can be set.</p>
 
-<p>A template system gives you full flexibility to work with the configuration file. It comes handy to:</p>
+<p>Then, during runtime, when an expression returns <code>false</code>, KrakenD does not return the content as the condition has failed. Otherwise, if all expressions returned <code>true</code> the content is served.</p>
+
+<p>The CEL expressions have similar syntax to expressions in C/C++/Java/JavaScript and evaluate to a boolean condition. For instance:</p>
+
+<pre><code>'::1' in req_headers['X-Forwarded-For']
+</code></pre>
+
+<p>This expression checks that the request header <code>X-Forwarded-For</code> contains the string <code>::1</code> (request comes from localhost).</p>
+
+<p>CEL expressions can be used both during the <strong>request</strong> or the <strong>response</strong> of
+the <strong>backends</strong> and the <strong>endpoints</strong>. The flow is:</p>
 
 <ul>
-<li>Split a large <code>krakend.json</code> file into several pieces</li>
-<li>Inject variables in the configuration</li>
-<li>Use placeholders and reusable code blocks</li>
-<li>Have the full power of the go template system!</li>
+<li>Request endpoint evaluation</li>
+<li>Request backend evaluation (N times)</li>
+<li>Response backend evaluation (N times)</li>
+<li>Response endpoint evaluation (can evaluate all merged data)</li>
 </ul>
 
-<h1 id="requirements">Requirements</h1>
+<h1 id="adding-logic-in-the-request">Adding logic in the request</h1>
 
-<p>The only requirement to use the Flexible Configuration is to encode the configuration file in <code>JSON</code> format as the package does not support other formats just yet.</p>
+<p>If you want to add some logic to decide whether or not to continue serving the request
+to an endpoint or proxy to the next backend not, use a <code>req_*</code> variable.</p>
 
-<h1 id="usage">Usage</h1>
+<h2 id="cel-variables">CEL variables</h2>
 
-<p>The activation of the package works via environment variables, as follows:</p>
+<p>The following data is injected to the CEL evaluator for its inspection:</p>
+
+<h3 id="requests">Requests</h3>
 
 <ul>
-<li><code>FC_ENABLE=1</code> to let KrakenD know that you are using Flexible Configuration. You can use <code>1</code> or any other value, just pass the variable ( <code>0</code> won&rsquo;t disable it!). The file passed with the <code>-c</code> flag is the base template.</li>
-<li><code>FC_SETTINGS=dirname</code>: The path to the directory with all the settings files.</li>
-<li><code>FC_PARTIALS=dirname</code>: The path to the directory with the partial templates included in the configuration file.</li>
-<li><code>FC_OUT</code>: For debugging purposes, pass a filename where the final JSON result of parsing the template is saved.</li>
+<li><code>req_method</code>: What is the method of this endpoint, e.g.: <code>GET</code></li>
+<li><code>req_path</code>: The path used to access this endpoing, e.g: : <code>/foo</code></li>
+<li><code>req_params</code>: Object with all the parameters sent with the request, e.g:
+<code>req_params.foo.var</code></li>
+<li><code>req_headers</code>: Array with all the headers received, e.g: <code>req_headers['X-Forwarded-For']</code></li>
+<li><code>now</code>: An object containing the current timestamp, e.g:
+<code>timestamp(now).getDayOfWeek()</code></li>
 </ul>
 
-<p>For instance, let&rsquo;s assume you decided to organize your configuration as follows:</p>
-
-<pre><code>.
-└── config
-   ├── krakend.json
-   ├── partials
-   │   └── service_extra_config.tmpl
-   └── settings
-       └── db.json
-</code></pre>
-
-<p>Then you can run KrakenD from the terminal with this command:</p>
-
-<pre><code>$ FC_ENABLE=1 \
-FC_SETTINGS=&quot;$PWD/config/settings&quot; \
-FC_PARTIALS=&quot;$PWD/config/partials&quot; \
-krakend run -c &quot;$PWD/config/krakend.json&quot;
-</code></pre>
-
-<h2 id="template-syntax">Template syntax</h2>
-
-<p>The configuration file passed with the <code>-c</code> flag is treated as a <strong>Go template</strong>, and you can make use of all the power the template engine brings. The data evaluations or control structures are easily recognized as they are surrounded by <code>{{</code> and <code>}}</code>. Any other text outside the delimiters is copied to the output unchanged.</p>
-
-<h3 id="include-an-external-file">Include an external file</h3>
-
-<p>To insert the content of an external partial file in-place use:</p>
-
-<pre><code>{{ include &quot;partial_file_name.tmpl&quot; }}
-</code></pre>
-
-<p><strong>The content inside the partial is not parsed</strong>, and is inserted <em>as is</em>. The file is assumed to live inside the directory defined in <code>FC_PARTIALS</code>.</p>
-
-<h3 id="insert-values-from-settings-files">Insert values from settings files</h3>
-
-<p>In the <code>FC_SETTINGS</code> directory, you can save different <code>.json</code> files with data structures insides that you can reference in the templates.</p>
-
-<p>For instance, if you have a file <code>settings/db.json</code> with the following content:</p>
-
-<pre><code>{
-    &quot;host&quot;: &quot;192.168.1.23&quot;,
-    &quot;port&quot;: 8766,
-    &quot;pass&quot;: &quot;a-p4ssw0rd&quot;
-}
-</code></pre>
-
-<p>You can access particular settings like this: <code>{{ .db.host }}</code>.</p>
-
-<p>When instead of a single value you need to insert a whole JSON structure, you need to use the <code>marshall</code>.</p>
-
-<pre><code>{{ marshal .db }}
-</code></pre>
-
-<h2 id="testing-the-configuration">Testing the configuration</h2>
-
-<p>As the configuration is now composed of several pieces, it&rsquo;s easy to do a mistake in some point. Test the syntax of all the files is good with the <code>krakend check</code> command and pay attention to the output to verify there aren&rsquo;t any errors.</p>
-
-<p>You might also want to use the flag <code>FC_OUT</code> to write the temporary file to a known path, so you can check its contents:</p>
-
-<pre><code>FC_ENABLE=1 FC_SETTINGS=&quot;$PWD/config/settings&quot; FC_PARTIALS=&quot;$PWD/config/partials&quot; FC_OUT=out.json krakend check -d -c &quot;$PWD/config/krakend.json&quot;
-</code></pre>
-
-<p>When there are errors the output contains information to help you resolve it, e.g:</p>
-
-<pre><code>ERROR parsing the configuration file: loading flexible-config settings:
-- backends.json: invalid character '}' looking for beginning of object key string
-</code></pre>
-
-<h1 id="flexible-configuration-example">Flexible configuration example</h1>
-
-<p>To demonstrate the usage of the flexible configuration we are going to reorganize a configuration file in several pieces. This is a simple example to see the basics of the templating system, and it does not intend to show a good way to organize and split the files:</p>
-
-<pre><code>.
-└── config
-    ├── krakend.json
-    ├── partials
-    │   └── rate_limit_backend.tmpl
-    └── settings
-        ├── endpoint.json
-        └── service.json
-</code></pre>
-
-<p><strong>partials/rate_limit_backend.tmpl</strong></p>
-
-<p>In this file we have written the content of the rate limit configuration for a backend. This file will be inserted when included &ldquo;as is&rdquo;:</p>
-
-<pre><code>&quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
-    &quot;maxRate&quot;: &quot;100&quot;,
-    &quot;capacity&quot;: &quot;100&quot;
-}
-</code></pre>
-
-<p><strong>settings/service.json</strong></p>
-
-<p>In the settings directory we will write all the files that be offered you can write anything you want and the contents can be retrieved as variables.</p>
-
-<pre><code>{
-    &quot;port&quot;: 8090,
-    &quot;default_hosts&quot;: [
-        &quot;https://catalog-api-01.srv&quot;,
-        &quot;https://catalog-api-02.srv&quot;,
-        &quot;https://catalog-api-03.srv&quot;
-    ],
-    &quot;extra_config&quot;: {
-        &quot;github_com/devopsfaith/krakend-httpsecure&quot;: {
-        &quot;allowed_hosts&quot;: [],
-        &quot;ssl_proxy_headers&quot;: {
-            &quot;X-Forwarded-Proto&quot;: &quot;https&quot;
-        },
-        &quot;ssl_certificate&quot;: &quot;/opt/rsa.cert&quot;,
-        &quot;ssl_private_key&quot;: &quot;/opt/rsa.key&quot;
-        }
-    }
-}
-</code></pre>
-
-<p><strong>settings/endpoint.json</strong></p>
-
-<p>This file declares a couple of endpoints that feed from a single backend:</p>
-
-<pre><code>{
-    &quot;example_group&quot;: [
-        {
-            &quot;endpoint&quot;: &quot;/users/{id}&quot;,
-            &quot;backend&quot;: &quot;/v1/users?userId={id}&quot;
-        },
-        {
-            &quot;endpoint&quot;: &quot;/posts/{id}&quot;,
-            &quot;backend&quot;: &quot;/posts?postId={id}&quot;
-        }
-    ]
-}
-</code></pre>
-
-<p><strong>krakend.json</strong></p>
-
-<p>Finally, the base template. It inserts the content of other files using <code>include</code>, uses the variables declared in the settings files and writes json content with <code>marshal</code>.</p>
-
-<p>Have a look at the highlighted lines:</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go">    <span class="p">{</span>
-        <span class="s">&#34;version&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-<span class="hl">        <span class="s">&#34;port&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">port</span> <span class="p">}},</span>
-</span><span class="hl">        <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">extra_config</span> <span class="p">}},</span>
-</span><span class="hl">        <span class="s">&#34;host&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">default_hosts</span> <span class="p">}},</span>
-</span>        <span class="s">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
-<span class="hl">            <span class="p">{{</span> <span class="k">range</span> <span class="p">.</span><span class="nx">endpoint</span><span class="p">.</span><span class="nx">example_group</span> <span class="p">}}</span>
-</span>            <span class="p">{</span>
-<span class="hl">            <span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;{{ .endpoint }}&#34;</span><span class="p">,</span>
-</span>            <span class="s">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-<span class="hl">                    <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;{{ .backend }}&#34;</span>
-</span>                <span class="p">}</span>
-            <span class="p">]</span>
-            <span class="p">},</span>
-<span class="hl">            <span class="p">{{</span> <span class="nx">end</span> <span class="p">}}</span>
-</span>            <span class="p">{</span>
-            <span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;/limited-endpoint&#34;</span><span class="p">,</span>
-            <span class="s">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;/v1/slow-backend&#34;</span><span class="p">,</span>
-                    <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="hl">                        <span class="p">{{</span> <span class="nx">include</span> <span class="s">&#34;rate_limit_backend.tmpl&#34;</span> <span class="p">}}</span>
-</span>                    <span class="p">}</span>
-                <span class="p">}</span>
-                <span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">]</span>
-    <span class="p">}</span></code></pre></div>
+<h3 id="responses">Responses</h3>
 
 <ul>
-<li>The <code>.service.port</code> is taken from the <code>service.json</code> file.</li>
-<li>The <code>extra_config</code> in the third line is inserted as a JSON object using the <code>marshal</code> function from the <code>service.json</code> as well.</li>
-<li>A <code>range</code> iterates the array found under <code>endpoint.json</code> and key <code>example_group</code>. The variables inside the range are relative to the <code>example_group</code> content.</li>
-<li>Finally, an <code>include</code> at the bottom inserts the content as is.</li>
+<li><code>resp_completed</code>: Boolean whether all the data has been successfully
+retrieved</li>
+<li><code>resp_metadata_status</code>: Returns an integer with the StatusCode</li>
+<li><code>resp_metadata_header</code>: Returns an array with all the headers of the response</li>
+<li><code>resp_data</code>: An object with all the data captured in the response</li>
+<li><code>now</code>: An object containing the current timestamp</li>
 </ul>
 
-<p>To parse the configuration use:</p>
+<h3 id="jwt-rejecter">JWT rejecter</h3>
 
-<pre><code>FC_ENABLE=1 \
-FC_SETTINGS=&quot;$PWD/config/settings&quot; \
-FC_PARTIALS=&quot;$PWD/config/partials&quot; \
-krakend check -d -c &quot;$PWD/config/krakend.json&quot;
+<p>CEL expressions can also be used during the JWT token validation. Use the <code>JWT</code>
+variable to access its metadata. For instance:</p>
+
+<pre><code>has(JWT.user_id) &amp;&amp; has(JWT.enabled_days) &amp;&amp; (timestamp(now).getDayOfWeek() in JWT.enabled_days)
 </code></pre>
+
+<p>This example checks that the JWT token contains the metadata <code>user_id</code> and
+<code>enabled_days</code> with the macro <code>has()</code>, and then checks that today&rsquo;s weekday  is
+within one of the allowed days to see the endpoint.</p>
+
+<h1 id="cel-syntax">CEL Syntax</h1>
+
+<p>See the <a href="https://github.com/google/cel-spec/blob/master/doc/langdef.md">language definition</a></p>
 
     </section>
 </div>

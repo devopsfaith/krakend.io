@@ -6,10 +6,21 @@
     <description>Recent content in Krakend on KrakenD API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/categories/krakend/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KrakenD 0.8 released</title>
+      <link>https://www.krakend.io/blog/krakend-0.8-release-notes/</link>
+      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-0.8-release-notes/</guid>
+      <description>KrakenD 0.8 is a significant release as it brings numerous code changes and functionality. The framework brings +100 commits, the gateway +50 commits and even more changes in the components. A lot of refactoring and component updates has taken place. The big picture is a move from a single binary application to become a package with several internal binaries.
+See the details below.
+KrakenD framework The KrakenD framework brings +100 commits compared to 0.</description>
+    </item>
     
     <item>
       <title>How we run KrakenD on Javascript with WebAssembly</title>

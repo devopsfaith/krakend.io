@@ -144,7 +144,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/overview/installing/</loc>
-    <lastmod>2018-09-27T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -199,7 +199,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/backends/supported-encodings/</loc>
-    <lastmod>2018-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -209,7 +209,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/endpoints/content-types/</loc>
-    <lastmod>2018-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -233,6 +233,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/endpoints/common-expression-language-cel/</loc>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/configuration/flexible-config/</loc>
     <lastmod>2018-09-29T00:00:00+00:00</lastmod>
   </url>
@@ -245,6 +250,11 @@
   <url>
     <loc>https://www.krakend.io/docs/overview/playground/</loc>
     <lastmod>2018-09-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/blog/krakend-0.8-release-notes/</loc>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -364,7 +374,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/overview/verifying-packages/</loc>
-    <lastmod>2016-06-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -373,7 +383,7 @@
   
   <url>
     <loc>https://www.krakend.io/categories/announcements/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -397,13 +407,13 @@
   
   <url>
     <loc>https://www.krakend.io/blog/</loc>
-    <lastmod>2018-12-09T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -481,7 +491,7 @@
   
   <url>
     <loc>https://www.krakend.io/categories/krakend/</loc>
-    <lastmod>2018-12-09T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -511,7 +521,7 @@
   
   <url>
     <loc>https://www.krakend.io/tags/open-source/</loc>
-    <lastmod>2018-12-09T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -529,7 +539,7 @@
   
   <url>
     <loc>https://www.krakend.io/tags/release-notes/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
