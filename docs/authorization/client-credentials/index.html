@@ -7,16 +7,16 @@
 <meta name="generator" content="Hugo 0.53" />
 
 
-    <title>Benchmarks Overview - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Benchmarks Overview - KrakenD API Gateway">
-    <meta name="twitter:title" content="Benchmarks Overview - KrakenD API Gateway">
-    <meta property="og:title" content="Benchmarks Overview - KrakenD API Gateway">
+    <title>OAuth 2.0 Client Credentials - KrakenD API Gateway</title>
+    <meta itemprop="name" content="OAuth 2.0 Client Credentials - KrakenD API Gateway">
+    <meta name="twitter:title" content="OAuth 2.0 Client Credentials - KrakenD API Gateway">
+    <meta property="og:title" content="OAuth 2.0 Client Credentials - KrakenD API Gateway">
 
     
-    <meta property="description" content="Performance tests of KrakenD">
-    <meta itemprop="description" content="Performance tests of KrakenD">
-    <meta name="twitter:description" content="Performance tests of KrakenD">
-    <meta property="og:description" content="Performance tests of KrakenD">
+    <meta property="description" content="OAuth 2.0 Client Credentials - KrakenD API Gateway">
+    <meta itemprop="description" content="OAuth 2.0 Client Credentials - KrakenD API Gateway">
+    <meta name="twitter:description" content="OAuth 2.0 Client Credentials - KrakenD API Gateway">
+    <meta property="og:description" content="OAuth 2.0 Client Credentials - KrakenD API Gateway">
     
 
     
@@ -26,7 +26,7 @@
     
 
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.krakend.io/docs/benchmarks/overview/" />
+    <meta property="og:url" content="https://www.krakend.io/docs/authorization/client-credentials/" />
 
 
 
@@ -319,12 +319,12 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-6" role="button" aria-expanded="false"
-                aria-controls="menu-6" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-6" role="button" aria-expanded="true"
+                aria-controls="menu-6" class="nav-link parent active">
                 Authorization
             </a>
-            <div class="collapse" id="menu-6">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-6">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
                         <a href="/docs/authorization/jwt-overview/" class="nav-link children ">JWT overview</a>
@@ -343,7 +343,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/authorization/client-credentials/" class="nav-link children ">OAuth2 Client credentials</a>
+                        <a href="/docs/authorization/client-credentials/" class="nav-link children active">OAuth2 Client credentials</a>
                     </li>
                     
                 </ul>
@@ -515,15 +515,15 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-14" role="button" aria-expanded="true"
-                aria-controls="menu-14" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-14" role="button" aria-expanded="false"
+                aria-controls="menu-14" class="nav-link parent">
                 Benchmarks
             </a>
-            <div class="collapse show" id="menu-14">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-14">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/benchmarks/overview/" class="nav-link children active">Benchmarks Overview</a>
+                        <a href="/docs/benchmarks/overview/" class="nav-link children ">Benchmarks Overview</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -572,10 +572,10 @@
                     <section class="content-header">
                         
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmarks/overview.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/authorization/client-credentials.md">
     Edit this page
 </a>
-<h1 class="main-title">Benchmarks Overview</h1>
+<h1 class="main-title">OAuth 2.0 Client Credentials</h1>
 
 
                     </section>
@@ -591,19 +591,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmark
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
 <ul>
-<li><a href="#krakend-the-ultra-performer-api-gateway">KrakenD, the <strong>ultra performer</strong> API Gateway</a></li>
-<li><a href="#tl-dr-benchmark-results">TL;DR: <strong>Benchmark results</strong></a>
-<ul>
-<li><a href="#benchmark-in-a-macbook-pro">Benchmark in a MacBook Pro</a></li>
-<li><a href="#benchmark-in-amazon-aws-ec2-instances">Benchmark in Amazon AWS EC2 Instances</a></li>
-<li><a href="#api-gateway-benchmark">API Gateway Benchmark</a></li>
-</ul></li>
-<li><a href="#tooling">Tooling</a>
-<ul>
-<li><a href="#hey">hey</a></li>
-<li><a href="#api-gateway-benchmark-1">api-gateway-benchmark</a></li>
-<li><a href="#lwan">Lwan</a></li>
-</ul></li>
+<li><a href="#configuring-oauth2-client-credentials">Configuring OAuth2 Client Credentials</a></li>
+<li><a href="#auth0-integration">Auth0 integration</a></li>
 </ul>
 </nav>
             </div>
@@ -612,93 +601,95 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmark
 
         
 
-<h1 id="krakend-the-ultra-performer-api-gateway">KrakenD, the <strong>ultra performer</strong> API Gateway</h1>
+<p>Through the <strong>OAuth 2.0 Client Credentials Grant</strong> KrakenD can request to your authorization server an access token to reach protected resources.</p>
 
-<p>An API Gateway is a component that needs to deliver really fast, as it is an added layer in the infrastructure. KrakenD
-was built with performance in mind. In this page and inner pages, you&rsquo;ll find several tests we did to measure the performance.
-We also invite you to do them for yourself!</p>
+<p>The client credentials <strong>authorize KrakenD, as the client, to access the protected resources</strong>. Do not confuse this with authorizing an end-user (see <a href="/docs/authorization/jwt-overview">JWT</a> instead).</p>
 
-<h1 id="tl-dr-benchmark-results">TL;DR: <strong>Benchmark results</strong></h1>
+<p>Successfully setting the client credentials for a backend means that KrakenD can get the protected content, but the endpoint offered to the end-user is going to be public unless you protect it with JWT.</p>
 
-<p><strong>~18,000 requests/second</strong> on an ordinary laptop.</p>
+<h1 id="configuring-oauth2-client-credentials">Configuring OAuth2 Client Credentials</h1>
 
-<p>The following table summarizes different performance tests using Amazon EC2 virtual instances and an example with a laptop.</p>
+<p>To access a protected resource using client-credentials add under every <code>backend</code> the appropriate <code>extra_config</code>.</p>
 
-<p><table class="table table-striped">
-    <tbody><tr>
-        <th style="width: 10px">#</th>
-        <th>Hardware specs</th>
-        <th>Requests second</th>
-        <th>Average response</th>
-    </tr>
-    <tr>
-        <td>1.</td>
-        <td>Amazon EC2 (c4.2xlarge)</td>
-        <td>10126.1613 reqs/s</td>
-        <td>9.8ms</td>
-    </tr>
-    <tr>
-        <td>2.</td>
-        <td>Amazon EC2 (c4.xlarge)</td>
-        <td>8465.4012 reqs/s</td>
-        <td>11.7ms</td>
-    </tr>
-    <tr>
-        <td>3.</td>
-        <td>Amazon EC2 (m4.large)</td>
-        <td>3634.1247 reqs/s</td>
-        <td>27.3ms</td>
-    </tr>
-    <tr>
-        <td>4.</td>
-        <td>Amazon EC2 (t2.medium)</td>
-        <td>2781.8611 reqs/s</td>
-        <td>351.3ms</td>
-    </tr>
-    <tr>
-        <td>5.</td>
-        <td>Amazon EC2 (t2.micro)</td>
-        <td>2757.6407 reqs/s</td>
-        <td>35.8ms</td>
-    </tr>
-    <tr>
-        <td>6.</td>
-        <td>MacBook Pro (Aug 2015) 2,2 GHz Intel Core i7</td>
-        <td>18157.4274 reqs/s</td>
-        <td>5.5ms</td>
-    </tr>
-    </tbody>
- </table></p>
+<p>The namespace used is <code>&quot;github.com/devopsfaith/krakend-oauth2-clientcredentials&quot;</code>. Sample configuration below:</p>
 
-<h2 id="benchmark-in-a-macbook-pro">Benchmark in a MacBook Pro</h2>
+<pre><code>{
+  &quot;endpoint&quot;: &quot;/endpoint&quot;,
+  &quot;backend&quot;: [
+      {
+          &quot;url_pattern&quot;: &quot;/protected-resource&quot;,
+          &quot;extra_config&quot;: {
+              &quot;github.com/devopsfaith/krakend-oauth2-clientcredentials&quot;: {
+                  &quot;client_id&quot;: &quot;YOUR-CLIENT-ID&quot;,
+                  &quot;client_secret&quot;: &quot;YOUR-CLIENT-SECRET&quot;,
+                  &quot;token_url&quot;: &quot;https://your.custom.identity.service.tld/token_endpoint&quot;,
+                  &quot;endpoint_params&quot;: {
+                      &quot;audience&quot;: [&quot;YOUR-AUDIENCE&quot;]
+                  }
+              }
+          }
+      }
+  ]
+}
+</code></pre>
 
-<p><a href="/docs/benchmarks/local">Here you will find the results of the benchmarks</a></p>
+<p>The settings of this component are:</p>
 
-<h2 id="benchmark-in-amazon-aws-ec2-instances">Benchmark in Amazon AWS EC2 Instances</h2>
+<ul>
+<li><code>client_id</code> <em>string</em>: The Client ID provided to the Auth server</li>
+<li><code>client_secret</code> <em>string</em>: The secret string provided to the Auth server</li>
+<li><code>token_url</code> <em>string</em>: The endpoint URL where the negotiation of the token happens</li>
+<li><code>scopes</code>: <em>string,optional</em> A comma separated list of scopes needed, e.g.: <code>scopeA,scopeB</code></li>
+<li><code>endpoint_params</code> <em>list,optional</em>: Any additional parameters that you want to include <strong>in the payload</strong> when requesting the token. For instance, it is frequent to add the <code>audience</code> request parameter that denotes the target API for which the token should be issued.</li>
+</ul>
 
-<p><a href="/docs/benchmarks/aws">Here you will find the results of the benchmarks</a></p>
+<h1 id="auth0-integration">Auth0 integration</h1>
 
-<h2 id="api-gateway-benchmark">API Gateway Benchmark</h2>
+<p>The following example demonstrates a complete configuration to fulfill the requirements of <a href="https://auth0.com/">Auth0</a>. It is essentially the same configuration we have shown above, but with some additions, explained after the code:</p>
 
-<p><a href="/docs/benchmarks/api-gateway-benchmark">Here you will find the results of the comparisons</a></p>
+<pre><code>{
+    &quot;endpoint&quot;: &quot;/endpoint&quot;,
+    &quot;backend&quot;: [
+        {
+            &quot;url_pattern&quot;: &quot;/backend&quot;,
+            &quot;extra_config&quot;: {
+                &quot;github.com/devopsfaith/krakend-oauth2-clientcredentials&quot;: {
+                    &quot;client_id&quot;: &quot;YOUR-CLIENT-ID&quot;,
+                    &quot;client_secret&quot;: &quot;YOUR-CLIENT-SECRET&quot;,
+                    &quot;token_url&quot;: &quot;https://custom.auth0.tld/token_endpoint&quot;,
+                    &quot;endpoint_params&quot;: {
+                        &quot;client_id&quot;: [&quot;YOUR-CLIENT-ID&quot;],
+                        &quot;client_secret&quot;: [&quot;YOUR-CLIENT-SECRET&quot;],
+                        &quot;audience&quot;: [&quot;YOUR-AUDIENCE&quot;]
+                    }
+                },
+                &quot;github.com/devopsfaith/krakend-martian&quot;: {
+                    &quot;fifo.Group&quot;: {
+                        &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
+                        &quot;aggregateErrors&quot;: false,
+                        &quot;modifiers&quot;: [
+                            {
+                                &quot;header.Modifier&quot;: {
+                                    &quot;scope&quot;: [&quot;request&quot;],
+                                    &quot;name&quot; : &quot;Accept&quot;,
+                                    &quot;value&quot; : &quot;application/json&quot;
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+</code></pre>
 
-<h1 id="tooling">Tooling</h1>
+<p>The code above works with Auth0. The differences with the basic example are:</p>
 
-<h2 id="hey">hey</h2>
-
-<p>Some local benchmarks used the <a href="https://github.com/rakyll/hey">hey</a> tool, which is an Apache Benchmark (ab) replacement tool.</p>
-
-<h2 id="api-gateway-benchmark-1">api-gateway-benchmark</h2>
-
-<blockquote>
-<p>This project aims to provide a complete set of tools needed to do simple performance comparisons in the API manager/gateway space. It is inspired by the great Framework Benchmarks project by TechEmpower.</p>
-</blockquote>
-
-<p>Check the <a href="https://github.com/varnish/api-gateway-benchmarks">varnish/api-gateway-benchmarks</a> project for more info.</p>
-
-<h2 id="lwan">Lwan</h2>
-
-<p><a href="https://lwan.ws/">LWAN</a> is a high performance web server used to build the backends REST APIs for KrakenD to load the data during the benchmarks.</p>
+<ul>
+<li>The id and the secret are passed as <code>endpoint_params</code>, as auth0 ignores the auth header and expects the credentials sent as JSON data or form body.</li>
+<li>The <code>Accept</code> header is needed when sending a request to auth0. The <code>krakend-martian</code> component modifies the request to the backend to do that.</li>
+</ul>
 
     </section>
 </div>

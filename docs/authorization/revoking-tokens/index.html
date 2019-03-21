@@ -342,6 +342,10 @@
                         <a href="/docs/authorization/revoking-tokens/" class="nav-link children active">Revoking tokens</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/authorization/client-credentials/" class="nav-link children ">OAuth2 Client credentials</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -616,7 +620,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 
 <h1 id="why-bloomfilters">Why bloomfilters?</h1>
 
-<p>The Bloomfilters are ideal for supporting massive rejection of tokens with very little memory consumption. For instance, 100 million tokens of any size consume around 0.5GB RAM (with a rate of false positives of 1 in 999,925,224 tokens). These numbers are impossible to get with a key-value or a relational database.</p>
+<p>The Bloomfilters are ideal for supporting massive rejection of tokens with very little memory consumption. For instance, 100 million tokens of any size consume around 0.5GB RAM (with a rate of false positives of 1 in 999,925,224 tokens), and lookups are completed in constant time (k number of hashes). These numbers are impossible to get with a key-value or a relational database.</p>
 
 <p>The tokens are in-memory, directly in the rejecter interface, so the system is quick resolving the match.</p>
 
