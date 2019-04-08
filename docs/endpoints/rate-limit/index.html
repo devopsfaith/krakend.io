@@ -292,6 +292,10 @@
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/backends/data-manipulation/" class="nav-link children ">Data manipulation</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/backends/rate-limit/" class="nav-link children ">Proxy rate limit</a>
                     </li>
                     
@@ -309,6 +313,18 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/caching/" class="nav-link children ">Caching responses</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/shadow-backends/" class="nav-link children ">Traffic shadowing/mirroring</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/flatmap/" class="nav-link children ">Array manipulations</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
                     </li>
                     
                 </ul>
@@ -576,6 +592,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     Edit this page
 </a>
 
+<p class="docs-metadata">
+    
+    
+        <a class="source-code-link" href="https://github.com/devopsfaith/krakend-ratelimit"><i class="fab fa-github"></i> Source code</a> for this component
+    
+</p>
+
 
 <h1 class="main-title">Endpoint rate limiting</h1>
 
@@ -649,7 +672,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <pre><code>200 IPs x 10 req/s = 2000req/s
 </code></pre>
 
-<div class="alert note">
+<div class="note">
     <h4><i class="fa fa-sticky-note"></i> A note on performance</h4>
 	<p>Limiting endpoints per user makes KrakenD keep in memory counters for the two dimensions: <em>endpoints x clients</em>.</p>
 

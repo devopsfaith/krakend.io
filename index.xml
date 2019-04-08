@@ -241,6 +241,16 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
     </item>
     
     <item>
+      <title>Data manipulation</title>
+      <link>https://www.krakend.io/docs/backends/data-manipulation/</link>
+      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/backends/data-manipulation/</guid>
+      <description>Filtering When you offer a KrakenD endpoint you can decide to show only a subset of the fields coming from the backends&amp;rsquo; response or alter the structure of the content provided. There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&amp;rsquo;s bandwidth and increase load and render times.
+There are two different strategies you can use to filter content:</description>
+    </item>
+    
+    <item>
       <title>Response manipulation</title>
       <link>https://www.krakend.io/docs/endpoints/response-manipulation/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
@@ -504,6 +514,16 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
     </item>
     
     <item>
+      <title>Traffic shadowing or mirroring</title>
+      <link>https://www.krakend.io/docs/backends/shadow-backends/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/backends/shadow-backends/</guid>
+      <description>There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&amp;rsquo;s too risky to put it live as there might be issues that impact your end users.
+The traffic shadowing or traffic mirroring functionality allows you to test new backends in production by sending them copies of the traffic but ignore their responses.</description>
+    </item>
+    
+    <item>
       <title>Maximum IDLE connections</title>
       <link>https://www.krakend.io/docs/throttling/max-idle-connections/</link>
       <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
@@ -511,6 +531,17 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
       <guid>https://www.krakend.io/docs/throttling/max-idle-connections/</guid>
       <description>Having a high number of IDLE connections to every backend affects directly to the performance of the proxy layer. This is why you can control the number using the max_idle_connections setting. For instance:
 { &amp;quot;version&amp;quot;: 2, &amp;quot;max_idle_connections&amp;quot;: 150, ... }  KrakenD will close connections sitting idle in a &amp;ldquo;keep-alive&amp;rdquo; state when max_idle_connections is reached. If no value is set in the configuration file, KrakenD will use 250 by default.</description>
+    </item>
+    
+    <item>
+      <title>Array manipulation - flatmap</title>
+      <link>https://www.krakend.io/docs/backends/flatmap/</link>
+      <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/backends/flatmap/</guid>
+      <description>The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
+ Important Use a regular data manipulation operation such as target, blacklist or whitelist whenever it fits as their computational cost is lower.
+The flatmap component makes sense only when you need to manipulate arrays, and not as a general solution for all objects.</description>
     </item>
     
     <item>
@@ -532,6 +563,19 @@ A typical scenario is when some backend fails and the endpoint becomes incomplet
       <description>There are times when you might want to include additional logic in the gateway to decide if a request has to be fulfilled or not.
 The Common Expression Language (CEL) middleware enables Google&amp;rsquo;s CEL spec which implements common semantics for expression evaluation, and is a very simple and powerful option to have full control during requests and responses.
 When the CEL component is enabled, any amount of expressions to check both requests and responses can be set.</description>
+    </item>
+    
+    <item>
+      <title>API Gateway integration with AMQP messaging</title>
+      <link>https://www.krakend.io/docs/backends/amqp/</link>
+      <pubDate>Thu, 05 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/backends/amqp/</guid>
+      <description>The AMQP component allows to send and receive messages to and from a queue through the API Gateway.
+The configuration of the queue is a straightforward process. To connect the endpoints to the messaging system you only need to include the extra_config key with the namespaces github.com/devopsfaith/krakend-amqp/consume or github.com/devopsfaith/krakend-amqp/produce.
+Common settings
+Both the consumers and the producers have this configuration keys in common:
+ name - string exchange - string routing_key - []string durable - bool true is recommended, but depends on the use case.</description>
     </item>
     
     <item>
@@ -564,6 +608,16 @@ Difference between KrakenD, KrakenD-CE, and Enterprise TL;DR;
       <description>If you are new to KrakenD, a quick way to get started is to make use of the KrakenD Playground.
 The KrakenD Playground is a Docker Compose environment that puts together the necessary pieces to let you play with KrakenD in a working environment.
 As KrakenD is an API gateway, we have also added to the environment an API (backend) to feed the gateway and a website to make use of the data.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD 0.9 released</title>
+      <link>https://www.krakend.io/blog/krakend-0.9-release-notes/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-0.9-release-notes/</guid>
+      <description>It&amp;rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&amp;rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&amp;rsquo;s get started!
+Integration with AMQP The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</description>
     </item>
     
     <item>
@@ -826,7 +880,7 @@ I am getting a 500 status when the backend returns anything but 200, 201 or redi
       <guid>https://www.krakend.io/docs/overview/verifying-packages/</guid>
       <description>How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_0.8.0_amd64.tar.gz.asc krakend_0.8.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
+$ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
     </item>
     
     <item>

@@ -6,10 +6,20 @@
     <description>Recent content in Release Notes on KrakenD API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/tags/release-notes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KrakenD 0.9 released</title>
+      <link>https://www.krakend.io/blog/krakend-0.9-release-notes/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-0.9-release-notes/</guid>
+      <description>It&amp;rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&amp;rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&amp;rsquo;s get started!
+Integration with AMQP The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</description>
+    </item>
     
     <item>
       <title>KrakenD 0.8 released</title>

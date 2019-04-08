@@ -108,6 +108,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/backends/data-manipulation/</loc>
+    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/endpoints/response-manipulation/</loc>
     <lastmod>2019-01-31T00:00:00+00:00</lastmod>
   </url>
@@ -228,8 +233,18 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/backends/shadow-backends/</loc>
+    <lastmod>2018-10-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/throttling/max-idle-connections/</loc>
     <lastmod>2018-09-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/backends/flatmap/</loc>
+    <lastmod>2019-04-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -240,6 +255,11 @@
   <url>
     <loc>https://www.krakend.io/docs/endpoints/common-expression-language-cel/</loc>
     <lastmod>2019-01-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/backends/amqp/</loc>
+    <lastmod>2018-04-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -255,6 +275,11 @@
   <url>
     <loc>https://www.krakend.io/docs/overview/playground/</loc>
     <lastmod>2018-09-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/blog/krakend-0.9-release-notes/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -393,7 +418,7 @@
   
   <url>
     <loc>https://www.krakend.io/categories/announcements/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -404,37 +429,31 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/api2html/</loc>
-    <lastmod>2018-05-10T16:18:25+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/categories/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://www.krakend.io/tags/api2html/</loc>
+    <lastmod>2018-05-10T16:18:25+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/blog/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/configuration/</loc>
-    <lastmod>2018-06-22T11:06:53+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/devops/</loc>
     <lastmod>2018-06-22T11:06:53+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -446,19 +465,25 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/tags/devops/</loc>
+    <lastmod>2018-06-22T11:06:53+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/tags/diy/</loc>
     <lastmod>2018-05-01T21:25:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/docker/</loc>
+    <loc>https://www.krakend.io/categories/docker/</loc>
     <lastmod>2018-06-22T11:06:53+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/docker/</loc>
+    <loc>https://www.krakend.io/tags/docker/</loc>
     <lastmod>2018-06-22T11:06:53+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -501,18 +526,18 @@
   
   <url>
     <loc>https://www.krakend.io/categories/krakend/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/kubernetes/</loc>
-    <lastmod>2018-06-06T18:47:03+02:00</lastmod>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/kubernetes/</loc>
+    <lastmod>2018-06-06T18:47:03+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/kubernetes/</loc>
     <lastmod>2018-06-06T18:47:03+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -531,7 +556,7 @@
   
   <url>
     <loc>https://www.krakend.io/tags/open-source/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -549,7 +574,7 @@
   
   <url>
     <loc>https://www.krakend.io/tags/release-notes/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -292,6 +292,10 @@
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/backends/data-manipulation/" class="nav-link children ">Data manipulation</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/backends/rate-limit/" class="nav-link children ">Proxy rate limit</a>
                     </li>
                     
@@ -309,6 +313,18 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/caching/" class="nav-link children ">Caching responses</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/shadow-backends/" class="nav-link children ">Traffic shadowing/mirroring</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/flatmap/" class="nav-link children ">Array manipulations</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
                     </li>
                     
                 </ul>
@@ -576,6 +592,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
     Edit this page
 </a>
 
+<p class="docs-metadata">
+    
+    
+        <a class="source-code-link" href="https://github.com/devopsfaith/krakend-jose"><i class="fab fa-github"></i> Source code</a> for this component
+    
+</p>
+
 
 <h1 class="main-title">JWT Validation</h1>
 
@@ -612,7 +635,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 
 <p>The JWT validation shields any amount of desired endpoints, forcing requests to the API gateway to provide a token <strong>issued by a third party</strong>. Verification of the token takes place in every request, including the check of the signature and optionally the assurance that its issuer, roles, and audience are sufficient to access the endpoint.</p>
 
-<p>The <a href="https://github.com/devopsfaith/krakend-jose">JOSE component</a> is responsible for validating the tokens.</p>
+<p>The <strong>JOSE component</strong> is responsible for validating the tokens.</p>
 
 <p>A typical request requiring JWT validation includes in the <code>Authorization</code> header a bearer with the token:</p>
 
@@ -625,7 +648,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIXVCJ9...TJVA95OrM7E20RMHrHDcEfxjoYZgeFO
 
 <p>We consider a JWT token to be valid when is well formed, signed by a recognized issuer, unexpired, with some claims and is not marked as <a href="/docs/authorization/revoking-tokens">revoked</a>.</p>
 
-<div class="alert note">
+<div class="note">
     <h4><i class="fa fa-sticky-note"></i> A note on JWT generation</h4>
 	<p>When you generate tokens for end-users, make sure to set a <strong>low expiration</strong>. Tokens are supposed to have short lives and are recommended to expire in minutes or hours.</p>
 
