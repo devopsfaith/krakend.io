@@ -769,6 +769,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 
 <p>Encapsulating backend responses inside each own group is especially interesting when different backend responses can have colliding key names (e.g: all responses contain an <code>id</code> with different values).</p>
 
+<p>When grouping different backend responses <strong>don&rsquo;t share the same group name</strong>, as the slowest backend would overwrite the response with the same group. Group names are supposed to be unique for each backend in the same endpoint but this is not enforced.</p>
+
 <h2 id="grouping-example">Grouping example</h2>
 
 <p>The following code is an endpoint that gets data from two different backends but one of the responses is encapsulated inside the field <code>last_post</code>.</p>
