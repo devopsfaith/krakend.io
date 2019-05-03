@@ -429,13 +429,13 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/api2html/</loc>
+    <loc>https://www.krakend.io/categories/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/api2html/</loc>
+    <loc>https://www.krakend.io/tags/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -459,14 +459,14 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/devops/</loc>
-    <lastmod>2018-06-22T11:06:53+02:00</lastmod>
+    <loc>https://www.krakend.io/categories/devops/</loc>
+    <lastmod>2017-11-06T12:43:33+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/devops/</loc>
-    <lastmod>2017-11-06T12:43:33+02:00</lastmod>
+    <loc>https://www.krakend.io/tags/devops/</loc>
+    <lastmod>2018-06-22T11:06:53+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -477,13 +477,13 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/docker/</loc>
+    <loc>https://www.krakend.io/categories/docker/</loc>
     <lastmod>2018-06-22T11:06:53+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/docker/</loc>
+    <loc>https://www.krakend.io/tags/docker/</loc>
     <lastmod>2018-06-22T11:06:53+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -531,13 +531,13 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/kubernetes/</loc>
+    <loc>https://www.krakend.io/categories/kubernetes/</loc>
     <lastmod>2018-06-06T18:47:03+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/kubernetes/</loc>
+    <loc>https://www.krakend.io/tags/kubernetes/</loc>
     <lastmod>2018-06-06T18:47:03+02:00</lastmod>
     <priority>0</priority>
   </url>
