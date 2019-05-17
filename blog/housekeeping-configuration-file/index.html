@@ -6,33 +6,36 @@
 <meta name="generator" content="Hugo 0.53" />
 
 
-    <title>Reflex - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Reflex - KrakenD API Gateway">
+    <title>Doing housekeeping on your KrakenD configuration file - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Doing housekeeping on your KrakenD configuration file - KrakenD API Gateway">
 
     
-    <meta property="description" content="Reflex - KrakenD API Gateway">
-    <meta itemprop="description" content="Reflex - KrakenD API Gateway">
-    
+    <meta property="description" content="How to shrink, optimize and clean your krakend.json settings">
+    <meta itemprop="description" content="How to shrink, optimize and clean your krakend.json settings">
 
     
-    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
+
+    
+    <meta itemprop="image" content="">
     
 
 
 
-<meta property="og:title" content="Reflex" />
-<meta property="og:description" content="Enterprise open source API Gateway built with Go lang" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.krakend.io/categories/reflex/" />
-<meta property="og:updated_time" content="2018-06-22T11:06:53&#43;02:00"/><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:title" content="Doing housekeeping on your KrakenD configuration file" />
+<meta property="og:description" content="How to shrink, optimize and clean your krakend.json settings" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.krakend.io/blog/housekeeping-configuration-file/" />
+<meta property="og:image" content="https://www.krakend.io/images/blog/configuration-file-optimization.png" />
+<meta property="article:published_time" content="2019-05-17T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-05-17T00:00:00&#43;00:00"/><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/blog/configuration-file-optimization.png"/>
 
-<meta name="twitter:title" content="Reflex"/>
-<meta name="twitter:description" content="Enterprise open source API Gateway built with Go lang"/>
+<meta name="twitter:title" content="Doing housekeeping on your KrakenD configuration file"/>
+<meta name="twitter:description" content="How to shrink, optimize and clean your krakend.json settings"/>
 
 
 
@@ -105,9 +108,9 @@
 
 		
 <div class="blog-wrapper container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-3 col-md-3 navigation_container affix-top">
-            <div class="sidebar mb-3">
+  <div class="blog row">
+    <div class="col-3">
+      <div class="sidebar mb-3">
 	<h6 class="header">Blog categories</h6>
 	<ul class="nav menu">
 		
@@ -163,7 +166,7 @@
 		
 		
 		<li class="nav-item">
-			<a href="/categories/reflex" class="nav-link active">reflex</a>
+			<a href="/categories/reflex" class="nav-link">reflex</a>
 		</li>
 		
 	</ul>
@@ -217,60 +220,144 @@
 		
 	</ul>
 </div>
-        </div>
-        <div class="col-xs-12 col-sm-9 col-md-9">
-            <section class="blog px-3">
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/reloading-the-krakend-configuration/" class="post-link">Reloading the Krakend configuration with Reflex and Docker</a>
-			</h1>
-			<div class="post-metadata clearfix">
+    </div>
+    <div class="col-9">
+      <section class="blog px-3">
+        <article class="post-entry">
+          <header class="post-header">
+            <div class="share float-right">
+	<a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2fwww.krakend.io%2fblog%2fhousekeeping-configuration-file%2f&t=Doing%20housekeeping%20on%20your%20KrakenD%20configuration%20file" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-facebook"></i></a>
+	<a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fwww.krakend.io%2fblog%2fhousekeeping-configuration-file%2f&text=Doing%20housekeeping%20on%20your%20KrakenD%20configuration%20file&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-twitter"></i></a>
+	<a href="https://plus.google.com/share?url=https%3a%2f%2fwww.krakend.io%2fblog%2fhousekeeping-configuration-file%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-google-plus"></i></a>
+	<a href="http://getpocket.com/edit?url=https%3a%2f%2fwww.krakend.io%2fblog%2fhousekeeping-configuration-file%2f&title=Doing%20housekeeping%20on%20your%20KrakenD%20configuration%20file" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-get-pocket"></i></a>
+</div>
+            <h1 class="post-title">
+              <a href="https://www.krakend.io/blog/housekeeping-configuration-file/" class="post-link">Doing housekeeping on your KrakenD configuration file</a>
+            </h1>
+            <div class="post-metadata clearfix">
     <p class="author float-left">
-        by Daniel Ortiz &middot; Jun 22, 2018
+        by Albert Lombarte &middot; May 17, 2019
     </p>
     <div class="tags">
         <ul>
             
             
-            <a href="/tags/open-source">
-                open source
+            <a href="/tags/how-to">
+                how-to
             </a>
             
             ,
             
-            <a href="/tags/docker">
-                docker
-            </a>
-            
-            ,
-            
-            <a href="/tags/devops">
-                devops
+            <a href="/tags/tips-and-tricks">
+                tips and tricks
             </a>
             
             <li><em class="reading-time">4 min read</em></li>
         </ul>
     </div>
 </div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/reloading-the-krakend-configuration/" title="Continue reading Reloading the Krakend configuration with Reflex and Docker">
-				A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it’s running. The short answer is: No, you can’t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don’t support such a feature:
- Performance: This is the #1 reason, and strong enough.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/reloading-the-krakend-configuration/">Continue reading →</a>
-		</p>
-	</article>
+            
+            <a href="https://www.krakend.io/blog/housekeeping-configuration-file/">
+              <img class="post-image img-fluid" src="/images/blog/configuration-file-optimization.png" />
+            </a>
+            
+            
+          </header>
+
+          
+
+<p>Starting your <code>krakend.json</code> configuration from scratch and writing every attribute in a blank editor might be a difficult and time consuming task, and that&rsquo;s why we have the <a href="https://designer.krakend.io">KrakenDesigner</a>.</p>
+
+<p>KrakenDesigner is an aid tool to generate KrakenD configurations for the uninitiated audience. It produces a verbose output of the configuration file and explicitly writes unneeded attributes to let you see that a specific configuration option exists. These attributes I am mentioning are not necessary because they contain <strong>default values</strong> and the server is not going to alter its behavior.</p>
+
+<p>Maybe you just copied fragments from here and there, and now you have a working configuration. In any case, after tinkering with the designer or any other way, you might have a file full of default values that have no practical impact in the configuration. For instance, the designer lets you see that a <code>&quot;method&quot;: &quot;GET&quot;</code> might be converted into a <code>&quot;method&quot;:&quot;PUT&quot;</code>, but when not stated, a <code>GET</code> is assumed. With this in mind, it&rsquo;s time to delete unnecessary settings and enjoy a cleaner and more optimized file.</p>
+
+<h2 id="settings-you-can-safely-delete-from-your-configuration">Settings you can safely delete from your configuration</h2>
+
+<p>If your configuration presents any of the following attributes with the <strong>exact value</strong> we are showing, it&rsquo;s safe to delete them.</p>
+
+<h3 id="output-encoding-json"><code>&quot;output_encoding&quot;: &quot;json&quot;</code></h3>
+
+<p>By default KrakenD outputs all its endpoints in <code>json</code> format, no matter what the client asks for. If this is enough for you, remove this line. <a href="/docs/endpoints/content-types/">More information on output encoding</a></p>
+
+<h3 id="concurrent-calls-1"><code>&quot;concurrent_calls&quot;: 1</code></h3>
+
+<p>The concurrent requests technique improves the response times and decreases error rates by requesting the same information multiple times, taking the fastest successful response and canceling the pending ones.</p>
+
+<p>As this is an aggressive option that does not fit all infrastructures, KrakenD takes the conservative option: one call to the endpoint, one request per backend.</p>
+
+<p>Want real user experience improvement? Set it to <code>3</code>. <a href="/docs/backends/concurrent-requests/">Concurrent calls docs</a>.</p>
+
+<h3 id="disable-host-sanitize-false"><code>&quot;disable_host_sanitize&quot;: false</code></h3>
+
+<p>The host sanitization is automatically performed when connecting to a backend. A case where you don&rsquo;t want the host sanitized is when your backends are found using <a href="/docs/service-discovery/overview/">Service Discovery</a>. Not using SD? Out!</p>
+
+<h3 id="sd-static"><code>&quot;sd&quot;: &quot;static&quot;</code></h3>
+
+<p>SD stands for service discovery, and when the value is <code>static</code> it means that the hostnames of your backends are resolved using the internal machine settings, using its DNS settings, <code>resolv.conf</code> configuration or any other internal system that could lead you to ping the name without additional help. A host like <code>http(s)://your.dns</code> is a typical <code>static</code> resolution.</p>
+
+<h3 id="encoding-json"><code>&quot;encoding&quot;: &quot;json&quot;</code></h3>
+
+<p>As it happens with the output encoding to return data to the user, when connecting to the backends KrakenD assumes that their response will be in JSON format. Unless they are returning other formats like XML or RSS, or you are proxying to them, you don&rsquo;t need this attribute in the configuration.</p>
+
+<h3 id="extra-config"><code>&quot;extra_config&quot;: {}</code></h3>
+
+<p>The additional configuration of the different plugins, middlewares, and other surrounding components, it&rsquo;s necessary only when you want to provide specific settings for them. An empty <code>extra_config</code> without declaring a namespace, it&rsquo;s just noise.</p>
+
+<h3 id="port-8080"><code>&quot;port&quot;: 8080</code></h3>
+
+<p>We went through a deep brainstorming session to find the most original port in the Internet era, and we decided that our listening port would be <code>8080</code>. Usually, the gateway will live behind a balancer that exposes to the world whatever port you like, so it doesn&rsquo;t matter what port KrakenD is listening unless is conflicting with something else. If <code>8080</code> is fine for you, remove the line.</p>
+
+<h3 id="summary-of-attributes-with-default-values">Summary of attributes with default values</h3>
+
+<p>These are the no-brainer deletions:</p>
+
+<pre><code>&quot;output_encoding&quot;: &quot;json&quot;
+&quot;concurrent_calls&quot;: 1
+&quot;disable_host_sanitize&quot;: false
+&quot;sd&quot;: &quot;static&quot;,
+&quot;encoding&quot;: &quot;json&quot;,
+&quot;extra_config&quot;: {},
+&quot;port&quot;: 8080,
+</code></pre>
+
+<p>Send them to hell now!</p>
+
+<h3 id="some-other-refactoring-you-can-do">Some other refactoring you can do</h3>
+
+<p>Well, refactoring is too much of a word for this, but at least we would like to reduce the size of the file and optimize it for better legibility.</p>
+
+<p>When all your backends use the same hosts (you have a single API), or a majority of backends use the same host list, place the <code>host: []</code> key in the root of your file to use it as the default for all backends. Then delete it from the backend declarations and add it only when you need to overwrite them.</p>
+
+<p>Do not assume that this technique works for any other piece of the configuration. Placing attributes in the root of the file won&rsquo;t set them as default values, but you can put other keys at the root of the file like <code>timeout</code> or <code>cache_ttl</code>.</p>
+
+<p>Now apply all this in your configuration file and spot the differences!</p>
+
+<h3 id="split-the-configuration-file-into-several-files">Split the configuration file into several files</h3>
+
+<p>For large configurations, you might also want to have a general krakend configuration file that includes many other templates. This can be done using the <a href="/docs/configuration/flexible-config/">Flexible Configuration</a>!</p>
+
+
+          <aside>
+            <div class="share float-right">
+	<a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2fwww.krakend.io%2fblog%2fhousekeeping-configuration-file%2f&t=Doing%20housekeeping%20on%20your%20KrakenD%20configuration%20file" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-facebook"></i></a>
+	<a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fwww.krakend.io%2fblog%2fhousekeeping-configuration-file%2f&text=Doing%20housekeeping%20on%20your%20KrakenD%20configuration%20file&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-twitter"></i></a>
+	<a href="https://plus.google.com/share?url=https%3a%2f%2fwww.krakend.io%2fblog%2fhousekeeping-configuration-file%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-google-plus"></i></a>
+	<a href="http://getpocket.com/edit?url=https%3a%2f%2fwww.krakend.io%2fblog%2fhousekeeping-configuration-file%2f&title=Doing%20housekeeping%20on%20your%20KrakenD%20configuration%20file" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-get-pocket"></i></a>
 </div>
-                
-                
-            </section>
-        </div>
+          </aside>
+        </article>
+      </section>
     </div>
+  </div>
 </div>
 
 	</div>

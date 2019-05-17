@@ -24,7 +24,7 @@
 <meta property="og:description" content="Enterprise open source API Gateway built with Go lang" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.krakend.io/blog/" />
-<meta property="og:updated_time" content="2019-04-07T00:00:00&#43;00:00"/><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:updated_time" content="2019-05-17T00:00:00&#43;00:00"/><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -180,12 +180,12 @@
 		
 		
 		<li class="nav-item">
-			<a class="nav-link" href="/tags/release-notes">release-notes</a>
+			<a class="nav-link" href="/tags/how-to">how-to</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a class="nav-link" href="/tags/how-to">how-to</a>
+			<a class="nav-link" href="/tags/release-notes">release-notes</a>
 		</li>
 		
 		
@@ -205,6 +205,8 @@
 	<h6 class="header">Recent entries</h6>
 	<ul class="nav menu">
 		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/housekeeping-configuration-file/">Doing housekeeping on your KrakenD configuration file</a></li>
+		
 		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.9-release-notes/">KrakenD 0.9 released</a></li>
 		
 		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.8-release-notes/">KrakenD 0.8 released</a></li>
@@ -213,13 +215,51 @@
 		
 		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.7-release-notes/">KrakenD 0.7 released</a></li>
 		
-		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.6.1-release-notes/">Krakend 0.6.1 release notes</a></li>
-		
 	</ul>
 </div>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9">
             <section class="blog px-3">
+                
+                <div class="list-item">
+	
+	<article class="post-entry">
+		<header class="post-header">
+			<h1 class="post-title">
+				<a href="https://www.krakend.io/blog/housekeeping-configuration-file/" class="post-link">Doing housekeeping on your KrakenD configuration file</a>
+			</h1>
+			<div class="post-metadata clearfix">
+    <p class="author float-left">
+        by Albert Lombarte &middot; May 17, 2019
+    </p>
+    <div class="tags">
+        <ul>
+            
+            
+            <a href="/tags/how-to">
+                how-to
+            </a>
+            
+            ,
+            
+            <a href="/tags/tips-and-tricks">
+                tips and tricks
+            </a>
+            
+            <li><em class="reading-time">4 min read</em></li>
+        </ul>
+    </div>
+</div>
+		</header>
+		<p class="post-summary">
+			<a class="summary" href="https://www.krakend.io/blog/housekeeping-configuration-file/" title="Continue reading Doing housekeeping on your KrakenD configuration file">
+				Starting your krakend.json configuration from scratch and writing every attribute in a blank editor might be a difficult and time consuming task, and that’s why we have the KrakenDesigner.
+KrakenDesigner is an aid tool to generate KrakenD configurations for the uninitiated audience. It produces a verbose output of the configuration file and explicitly writes unneeded attributes to let you see that a specific configuration option exists. These attributes I am mentioning are not necessary because they contain default values and the server is not going to alter its behavior.
+			</a>
+			<a class="read-more" href="https://www.krakend.io/blog/housekeeping-configuration-file/">Continue reading →</a>
+		</p>
+	</article>
+</div>
                 
                 <div class="list-item">
 	
@@ -620,70 +660,6 @@ Let’s get started!
 Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it’s quick and easy.
 			</a>
 			<a class="read-more" href="https://www.krakend.io/blog/krakend-on-kubernetes/">Continue reading →</a>
-		</p>
-	</article>
-</div>
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/website-development-as-a-sysadmin/" class="post-link">Website development as a sysadmin</a>
-			</h1>
-			<div class="post-metadata clearfix">
-    <p class="author float-left">
-        by Daniel Ortiz &middot; May 10, 2018
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/open-source">
-                open source
-            </a>
-            
-            ,
-            
-            <a href="/tags/mvp">
-                mvp
-            </a>
-            
-            ,
-            
-            <a href="/tags/golang">
-                golang
-            </a>
-            
-            ,
-            
-            <a href="/tags/how-to">
-                how to
-            </a>
-            
-            ,
-            
-            <a href="/tags/api2html">
-                api2html
-            </a>
-            
-            ,
-            
-            <a href="/tags/mustache">
-                mustache
-            </a>
-            
-            <li><em class="reading-time">6 min read</em></li>
-        </ul>
-    </div>
-</div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/website-development-as-a-sysadmin/" title="Continue reading Website development as a sysadmin">
-				As a systems administrator for the past 15 years, I’m not very used to web development as this kind of work has been usually done by other colleagues in every company I’ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
-Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/website-development-as-a-sysadmin/">Continue reading →</a>
 		</p>
 	</article>
 </div>

@@ -278,6 +278,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/blog/housekeeping-configuration-file/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/blog/krakend-0.9-release-notes/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
@@ -429,20 +434,20 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/api2html/</loc>
-    <lastmod>2018-05-10T16:18:25+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/categories/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://www.krakend.io/tags/api2html/</loc>
+    <lastmod>2018-05-10T16:18:25+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/blog/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -454,13 +459,7 @@
   
   <url>
     <loc>https://www.krakend.io/categories/configuration/</loc>
-    <lastmod>2018-06-22T11:06:53+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/devops/</loc>
-    <lastmod>2018-06-22T11:06:53+02:00</lastmod>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -471,19 +470,25 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/tags/devops/</loc>
+    <lastmod>2018-06-22T11:06:53+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/tags/diy/</loc>
     <lastmod>2018-05-01T21:25:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/docker/</loc>
+    <loc>https://www.krakend.io/categories/docker/</loc>
     <lastmod>2018-06-22T11:06:53+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/docker/</loc>
+    <loc>https://www.krakend.io/tags/docker/</loc>
     <lastmod>2018-06-22T11:06:53+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -514,7 +519,7 @@
   
   <url>
     <loc>https://www.krakend.io/tags/how-to/</loc>
-    <lastmod>2018-12-09T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -526,18 +531,18 @@
   
   <url>
     <loc>https://www.krakend.io/categories/krakend/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/kubernetes/</loc>
-    <lastmod>2018-06-06T18:47:03+02:00</lastmod>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/kubernetes/</loc>
+    <lastmod>2018-06-06T18:47:03+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/kubernetes/</loc>
     <lastmod>2018-06-06T18:47:03+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -581,6 +586,12 @@
   <url>
     <loc>https://www.krakend.io/tags/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/tips-and-tricks/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
