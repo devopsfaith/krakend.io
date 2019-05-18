@@ -6,37 +6,10 @@
     <description>Recent content in Categories on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Announcements</title>
-      <link>https://www.krakend.io/categories/announcements/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/categories/announcements/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Api Gateway</title>
-      <link>https://www.krakend.io/categories/api-gateway/</link>
-      <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/categories/api-gateway/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Api2html</title>
-      <link>https://www.krakend.io/categories/api2html/</link>
-      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/categories/api2html/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Configuration</title>
@@ -48,11 +21,20 @@
     </item>
     
     <item>
-      <title>Devops</title>
-      <link>https://www.krakend.io/categories/devops/</link>
-      <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
+      <title>KrakenD</title>
+      <link>https://www.krakend.io/categories/krakend/</link>
+      <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/categories/devops/</guid>
+      <guid>https://www.krakend.io/categories/krakend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Announcements</title>
+      <link>https://www.krakend.io/categories/announcements/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/categories/announcements/</guid>
       <description></description>
     </item>
     
@@ -66,20 +48,20 @@
     </item>
     
     <item>
-      <title>Enterprise</title>
-      <link>https://www.krakend.io/categories/enterprise/</link>
-      <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
+      <title>Reflex</title>
+      <link>https://www.krakend.io/categories/reflex/</link>
+      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
-      <guid>https://www.krakend.io/categories/enterprise/</guid>
+      <guid>https://www.krakend.io/categories/reflex/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Krakend</title>
-      <link>https://www.krakend.io/categories/krakend/</link>
-      <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
+      <title>API Gateway</title>
+      <link>https://www.krakend.io/categories/api-gateway/</link>
+      <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
       
-      <guid>https://www.krakend.io/categories/krakend/</guid>
+      <guid>https://www.krakend.io/categories/api-gateway/</guid>
       <description></description>
     </item>
     
@@ -93,11 +75,29 @@
     </item>
     
     <item>
-      <title>Reflex</title>
-      <link>https://www.krakend.io/categories/reflex/</link>
-      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
+      <title>api2html</title>
+      <link>https://www.krakend.io/categories/api2html/</link>
+      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
       
-      <guid>https://www.krakend.io/categories/reflex/</guid>
+      <guid>https://www.krakend.io/categories/api2html/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://www.krakend.io/categories/devops/</link>
+      <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Enterprise</title>
+      <link>https://www.krakend.io/categories/enterprise/</link>
+      <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/categories/enterprise/</guid>
       <description></description>
     </item>
     

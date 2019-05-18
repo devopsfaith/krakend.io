@@ -6,7 +6,7 @@
     <description>Recent content in Docs on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/docs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -540,8 +540,7 @@ The traffic shadowing or traffic mirroring functionality allows you to test new 
       
       <guid>https://www.krakend.io/docs/backends/flatmap/</guid>
       <description>The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
- Important Use a regular data manipulation operation such as target, blacklist or whitelist whenever it fits as their computational cost is lower.
-The flatmap component makes sense only when you need to manipulate arrays, and not as a general solution for all objects.</description>
+ Important Use a regular [data manipulation](/docs/backends/data-manipulation/) operation such as [`target`](/docs/backends/data-manipulation/#target), [`blacklist`](/docs/backends/data-manipulation/#blacklist) or [`whitelist`](/docs/backends/data-manipulation/#whitelist) whenever it fits as their computational cost is lower. The flatmap component makes sense only when you need to manipulate arrays, and **not as a general solution for all objects**.</description>
     </item>
     
     <item>

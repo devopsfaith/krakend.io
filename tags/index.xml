@@ -6,67 +6,13 @@
     <description>Recent content in Tags on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 May 2018 16:18:25 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 17 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Api2html</title>
-      <link>https://www.krakend.io/tags/api2html/</link>
-      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/api2html/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Devops</title>
-      <link>https://www.krakend.io/tags/devops/</link>
-      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Diy</title>
-      <link>https://www.krakend.io/tags/diy/</link>
-      <pubDate>Tue, 01 May 2018 21:25:00 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/diy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://www.krakend.io/tags/docker/</link>
-      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Edge Computing</title>
-      <link>https://www.krakend.io/tags/edge-computing/</link>
-      <pubDate>Tue, 01 May 2018 21:25:00 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/edge-computing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://www.krakend.io/tags/golang/</link>
-      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>How To</title>
+      <title>how-to</title>
       <link>https://www.krakend.io/tags/how-to/</link>
       <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
       
@@ -75,61 +21,7 @@
     </item>
     
     <item>
-      <title>Kubernetes</title>
-      <link>https://www.krakend.io/tags/kubernetes/</link>
-      <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mustache</title>
-      <link>https://www.krakend.io/tags/mustache/</link>
-      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/mustache/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mvp</title>
-      <link>https://www.krakend.io/tags/mvp/</link>
-      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/mvp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Open Source</title>
-      <link>https://www.krakend.io/tags/open-source/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/tags/open-source/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Packaging</title>
-      <link>https://www.krakend.io/tags/packaging/</link>
-      <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/packaging/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Release Notes</title>
-      <link>https://www.krakend.io/tags/release-notes/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/tags/release-notes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tips and Tricks</title>
+      <title>tips and tricks</title>
       <link>https://www.krakend.io/tags/tips-and-tricks/</link>
       <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
       
@@ -138,11 +30,119 @@
     </item>
     
     <item>
-      <title>Webassembly</title>
+      <title>open source</title>
+      <link>https://www.krakend.io/tags/open-source/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>release notes</title>
+      <link>https://www.krakend.io/tags/release-notes/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/tags/release-notes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WebAssembly</title>
       <link>https://www.krakend.io/tags/webassembly/</link>
       <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/tags/webassembly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://www.krakend.io/tags/golang/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://www.krakend.io/tags/devops/</link>
+      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://www.krakend.io/tags/docker/</link>
+      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://www.krakend.io/tags/kubernetes/</link>
+      <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>api2html</title>
+      <link>https://www.krakend.io/tags/api2html/</link>
+      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/api2html/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mustache</title>
+      <link>https://www.krakend.io/tags/mustache/</link>
+      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/mustache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mvp</title>
+      <link>https://www.krakend.io/tags/mvp/</link>
+      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/mvp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DIY</title>
+      <link>https://www.krakend.io/tags/diy/</link>
+      <pubDate>Tue, 01 May 2018 21:25:00 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Edge computing</title>
+      <link>https://www.krakend.io/tags/edge-computing/</link>
+      <pubDate>Tue, 01 May 2018 21:25:00 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/edge-computing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>packaging</title>
+      <link>https://www.krakend.io/tags/packaging/</link>
+      <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/tags/packaging/</guid>
       <description></description>
     </item>
     
