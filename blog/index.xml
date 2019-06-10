@@ -6,10 +6,19 @@
     <description>Recent content in Blogs on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Jun 2019 18:26:10 +0100</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>gRPC-gateway as a KrakenD plugin</title>
+      <link>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</link>
+      <pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</guid>
+      <description>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&amp;rsquo;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</description>
+    </item>
     
     <item>
       <title>Doing housekeeping on your KrakenD configuration file</title>
