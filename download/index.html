@@ -107,10 +107,12 @@
 		
 		<div class="row banner">
 			<div class="container">
-				<h1>Download KrakenD</h1>
+				<h1>Download KrakenD API Gateway</h1>
 				
-				<h2>KrakenD API Gateway is open source and free to use.</h2>
+				<h2>100% open source</h2>
 				
+				
+				<p><strong>All features</strong> included in KrakenD API Gateway are unrestricted and <strong>free to use</strong>. Run <strong>unlimited nodes</strong> without any licensing costs. Now and <strong>forever</strong>.</p>
 				
 			</div>
 		</div>
@@ -118,42 +120,40 @@
 		
 		<div class="page-download">
 			
-				<section class="feature-block zebra">
-    <div class="container title">
-        <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz" class="btn btn-primary btn-circle">
-            Download 0.9.0 for Linux
-        </a>
-        <br />
-        <strong>Linux 64 bits</strong> <br />
-        Release April 8th, 2019
-
-    </div>
-</section>
+				<p class="download_version">
+    <span class="badge badge-secondary">v0.9.0</span> <br/>
+    April 8th, 2019
+</p>
 <section class="feature-block">
     <div class="container">
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <h2 class="title">Operating systems</h2>
-                <table class="table no-margin downloads">
-                    <thead>
-                        <tr>
-                            <th>Version</th>
-                            <th>Download</th>
-                        </tr>
-                    </thead>
+            <div class="col">
+                <table class="downloads">
                     <tbody>
                         <tr>
-                            <td><i class="fab fa-apple"></i> Mac OS X</a></td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#install_brew">Homebrew install</a>
+                                    <a href="#" data-toggle="modal" data-target="#install_brew">
+                                        <i class="fab fa-apple"></i>
+                                    </a>
+                            </td>
+                            <td>
+                                <p>
+                                    Mac OS X
+                                    <a href="#" data-toggle="modal" data-target="#install_brew">Homebrew installation</a>
+                                </p>
+
                             </td>
                         </tr>
                         <tr>
-                            <td><i class="fab fa-linux"></i> Linux generic (.tar.gz)</a></td>
                             <td>
-                                <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz">
-                                    Tar.gz</a> |
+                                    <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz">
+                                        <i class="fab fa-linux"></i>
+                                    </a>
+                            </td>
+                            <td>
+                                <p>Linux generic</p>
+                                <em>64 bits</em> - <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz">
+                                    Download tgz</a> |
                                 <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz.sha256"
                                     class="sha"> SHA</a> |
                                 <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz.asc"
@@ -161,165 +161,76 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-cube"></i> Debian and Ubuntu (.deb)</td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#install_deb"> Show repository</a>
+                                <a href="#" data-toggle="modal" data-target="#install_deb">
+                                    <i class="fab fa-ubuntu"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <p>Ubuntu or Debian</p>
+                                <a href="#" data-toggle="modal" data-target="#install_deb"> DEB packages</a>
                             </td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-cube"></i> CentOS, Fedora and Redhat (.rpm)</a></td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#install_rpm"> Show repository</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-cube"></i> Docker container</a></td>
-                            <td>
-                                <a href="https://hub.docker.com/r/devopsfaith/krakend/"> Pull a docker container</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-
-                
-
-                <div id="install_brew" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Install KrakenD using Homebrew</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Paste the following lines in the terminal. You'll need <a href="https://brew.sh">Homebrew</a>
-                                    installed:</p>
-                                <pre>brew install krakend</pre>
-                                <p>The process might take a while as it compiles the binary for your platform</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <div id="install_deb" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Install KrakenD with Debian package</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Paste the following lines in the terminal:</p>
-                                <pre>
-apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
-echo "deb http://repo.krakend.io/apt stable main" | tee /etc/apt/sources.list.d/krakend.list
-apt-get update
-apt-get install -y krakend</pre>
-                                <p>What these commands are doing:</p>
-                                <ul>
-                                    <li>Add the key</li>
-                                    <li>Add the repo to the sources.list</li>
-                                    <li>Update your package list</li>
-                                    <li>Install the KrakenD service</li>
-                                </ul>
-                                <p>The process has been tested on Debian 8, Debian 9, Ubuntu 16.x and Ubuntu 18.x</p>
-                                <p>We changed the tool and the pgp key we use to create this repository, if you find this error:</p>
-                                  <pre>
-E: Repository 'http://repo.krakend.io/apt stable InRelease' changed its 'Origin' value from '' to 'repo.krakend.io'
-                                  </pre>
-                                    Run one of this commands:
-                                    <pre>
-apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
-apt update
-                                    </pre>
-                                    or:
-                                    <pre>
-apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
-apt-get update --allow-releaseinfo-change
-                                      </pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <div id="install_rpm" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Install KrakenD with RPM package</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Paste the following lines in the terminal:</p>
-                                <pre>
-rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
-yum install -y krakend
-systemctl start krakend</pre>
-                                <p>What these commands are doing:</p>
-                                <ul>
-                                    <li>Install the repo package</li>
-                                    <li>Install the KrakenD package</li>
-                                    <li>Start the KrakenD service</li>
-                                </ul>
-
-                                <h4>Fedora only</h4>
-                                <p>Since fedora has deprecated <code>yum</code> in favor of <code>dnf</code>, you must
-                                    replace one for the other (btw, <code>dnf</code> will start your KrakenD service):</p>
-                                <pre>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
-dnf install -y krakend
-systemctl start krakend</pre>
-
-                                <p>The process has been tested on Centos 7 and Fedora 24</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <h2 class="title">Other systems or build from source</h2>
-                <table class="table no-margin downloads">
-                    <thead>
-                        <tr>
-                            <th>Version</th>
-                            <th>Source</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <i class="fa fa-cube"></i> Amazon EC2 with krakend pre-installed</a>
+                                <a href="#" data-toggle="modal" data-target="#install_rpm">
+                                    <i class="fab fa-redhat"></i>
+                                </a>
                             </td>
                             <td>
-                                <a href="https://aws.amazon.com/marketplace/seller-profile?id=0b4c8ac8-584c-406c-9b8d-4c8e3c34b81f&ref=dtl_B07KXM7BRG">AWS marketplace</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><i class="fab fa-github"></i> KrakenD Community Edition</td>
-                            <td>
-                                <a href="https://github.com/devopsfaith/krakend-ce"> Github</a>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><i class="fab fa-github"></i> KrakenD Framework (to build a gateway of your own)</td>
-                            <td>
-                                <a href="https://github.com/devopsfaith/krakend"> Github</a>
-
+                                <p>
+                                    Redhat, CentOS or Fedora
+                                    <a href="#" data-toggle="modal" data-target="#install_rpm"> RPM Packages</a>
+                                </p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col">
+                    <table class="downloads">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="https://hub.docker.com/r/devopsfaith/krakend/">
+                                        <i class="fab fa-docker"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <p>Docker container</p>
+                                    <a href="https://hub.docker.com/r/devopsfaith/krakend/"></a> Run it within a Docker container</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                        <a href="https://aws.amazon.com/marketplace/seller-profile?id=0b4c8ac8-584c-406c-9b8d-4c8e3c34b81f&ref=dtl_B07KXM7BRG">
+                                            <i class="fab fa-amazon"></i>
+                                        </a>
+                                </td>
+                                <td>
+                                    <p>Run on AWS Marketplace</p>
+                                    <a href="https://aws.amazon.com/marketplace/seller-profile?id=0b4c8ac8-584c-406c-9b8d-4c8e3c34b81f&ref=dtl_B07KXM7BRG">Start an Amazon EC2 instance</a> with krakend pre-installed
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                        <a href="https://github.com/devopsfaith/krakend-ce">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                </td>
+                                <td>
+                                    <p>Build from source</p>
+                                    <ul>
+                                        <li><a href="https://github.com/devopsfaith/krakend-ce"> KrakenD Community Edition</a></li>
+                                        <li><a href="https://github.com/devopsfaith/krakend"> KrakenD Framework</a> (to build a gateway of your own)</li>
+                                    </ul>
+
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
         </div>
 
 
@@ -332,11 +243,112 @@ systemctl start krakend</pre>
 </section>
 <section class="feature-block zebra">
     <div class="container title">
-        <a class="btn btn-primary btn-circle" href="/docs/overview/installing">Go to install notes</a>
+        <a class="btn btn-primary btn-circle" href="/docs/overview/installing"><i class="fa fa-book"></i> Go to install notes</a>
         <br /> Start reading the documentation
     </div>
 </section>
 
+
+
+
+<div id="install_brew" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Install KrakenD using Homebrew</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Paste the following lines in the terminal. You'll need <a href="https://brew.sh">Homebrew</a>
+                        installed:</p>
+                    <pre>brew install krakend</pre>
+                    <p>The process might take a while as it compiles the binary for your platform</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="install_deb" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Install KrakenD with Debian package</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Paste the following lines in the terminal:</p>
+                    <pre>
+apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
+echo "deb http://repo.krakend.io/apt stable main" | tee /etc/apt/sources.list.d/krakend.list
+apt-get update
+apt-get install -y krakend</pre>
+                    <p>What these commands are doing:</p>
+                    <ul>
+                        <li>Add the key</li>
+                        <li>Add the repo to the sources.list</li>
+                        <li>Update your package list</li>
+                        <li>Install the KrakenD service</li>
+                    </ul>
+                    <p>The process has been tested on Debian 8, Debian 9, Ubuntu 16.x and Ubuntu 18.x</p>
+                    <p>We changed the tool and the pgp key we use to create this repository, if you find this error:</p>
+                      <pre>
+E: Repository 'http://repo.krakend.io/apt stable InRelease' changed its 'Origin' value from '' to 'repo.krakend.io'
+                      </pre>
+                        Run one of this commands:
+                        <pre>
+apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
+apt update
+                        </pre>
+                        or:
+                        <pre>
+apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
+apt-get update --allow-releaseinfo-change
+                          </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="install_rpm" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Install KrakenD with RPM package</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Paste the following lines in the terminal:</p>
+                    <pre>
+rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
+yum install -y krakend
+systemctl start krakend</pre>
+                    <p>What these commands are doing:</p>
+                    <ul>
+                        <li>Install the repo package</li>
+                        <li>Install the KrakenD package</li>
+                        <li>Start the KrakenD service</li>
+                    </ul>
+
+                    <h4>Fedora only</h4>
+                    <p>Since fedora has deprecated <code>yum</code> in favor of <code>dnf</code>, you must
+                        replace one for the other (btw, <code>dnf</code> will start your KrakenD service):</p>
+                    <pre>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
+dnf install -y krakend
+systemctl start krakend</pre>
+
+                    <p>The process has been tested on Centos 7 and Fedora 24</p>
+                </div>
+            </div>
+        </div>
+    </div>
 			
 
 		</div>
