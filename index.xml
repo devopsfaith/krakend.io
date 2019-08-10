@@ -689,6 +689,15 @@ On the metrics side, we can now send structured events using GELF to your Graylo
     </item>
     
     <item>
+      <title>Who is using KrakenD? Case studies</title>
+      <link>https://www.krakend.io/who-is-using-krakend/</link>
+      <pubDate>Fri, 05 Oct 2018 17:23:05 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/who-is-using-krakend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Krakend 0.6.1 release notes</title>
       <link>https://www.krakend.io/blog/krakend-0.6.1-release-notes/</link>
       <pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate>
