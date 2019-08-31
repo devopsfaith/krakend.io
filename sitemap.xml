@@ -414,6 +414,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/partners/</loc>
+    <lastmod>2018-10-05T17:23:05+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/who-is-using-krakend/</loc>
     <lastmod>2018-10-05T17:23:05+02:00</lastmod>
   </url>
@@ -490,13 +495,13 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/api2html/</loc>
+    <loc>https://www.krakend.io/tags/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/api2html/</loc>
+    <loc>https://www.krakend.io/categories/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
     <priority>0</priority>
   </url>
