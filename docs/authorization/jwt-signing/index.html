@@ -668,7 +668,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 
 <p>When your application knows how to issue tokens, you can sign them before passing them to the user automatically in the gateway. To achieve that, instead of publishing our internal backend that generates plain tokens under <code>/token-issuer</code>, we only expose via KrakenD a new endpoint named <code>/token</code> (choose your name). This endpoint forwards the data received in the <code>POST</code> (as chosen in the example) and returns a signed token when the backend replies.</p>
 
-<p>For instance, from the plain token above we want to sign the keys <code>&quot;access_token&quot;</code> and <code>&quot;refresh_token&quot;</code> so nobody can see its contents. We need a configuration like this:</p>
+<p>For instance, from the plain token above we want to sign the keys <code>&quot;access_token&quot;</code> and <code>&quot;refresh_token&quot;</code> so nobody can modify its contents. We need a configuration like this:</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;/token&#34;</span><span class="p">,</span>
 <span class="s">&#34;method&#34;</span><span class="p">:</span> <span class="s">&#34;POST&#34;</span><span class="p">,</span>
