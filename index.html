@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.57.2" />
 
     <title>KrakenD - Open source API Gateway</title>
     <meta property="description" content="Enterprise open source API Gateway built with Go lang">
@@ -23,7 +23,7 @@
 
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
 
-<meta property="og:updated_time" content="2019-06-09T18:26:10&#43;01:00"/><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:updated_time" content="2019-06-09T18:26:10+01:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -82,14 +82,14 @@
             <a class="nav-link" href="/features/">Features</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/docs/overview/introduction/">Documentation</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/enterprise/">Enterprise</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/support/">Support</a>
-            </li>
+            <a class="nav-link" href="/support/">Support</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/docs/overview/introduction/">Docs</a>
+          </li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -123,29 +123,31 @@
     </nav>
   </div>
 </div>
-        <div class="hero">
+        <div class="hero hero-home">
             <section class="background">
-                <div class="container">
-                    <h1>The fastest API Gateway</h1>
-                    <p>KrakenD sits between your clients and services to offer tailored API endpoints with only the
-                        data you need and a brutal performance. Make your apps fly!</p>
-                    <p>
-                        <a class="btn btn-secondary btn-lg" href="https://www.krakend.io/download" role="button"><i class="fa fa-download"></i>
-                            Get KrakenD 0.9.0 &raquo;</a>
-                        <a class="btn btn-default btn-lg" href="https://github.com/devopsfaith/krakend" class="img-fluid">
-                            <i class="fab fa-github"></i> Clone in Github
-                        </a>
-                    </p>
+                <div class="overlay">
+                    <div class="container">
+                        <h1>The fastest API gateway comes with true linear scalability</h1>
+                        <p>KrakenD is a stateless, distributed, high-performance API Gateway that helps you effortlessly adopt microservices</p>
+                        <p>
+                            <a class="btn btn-outline-light btn-lg" href="https://www.krakend.io/download"
+                                role="button"><i class="fa fa-download"></i>
+                                Get KrakenD 0.9.0 &raquo;</a>
+                            <a class="btn btn-default btn-lg" href="https://github.com/devopsfaith/krakend"
+                                class="img-fluid">
+                                <i class="fab fa-github"></i> Clone in Github
+                            </a>
+                        </p>
+                        
+                    </div>
                 </div>
             </section>
             <section class="feature-block zebra">
                 <div class="container title">
-                    <h2>Build reliable apps. Have a premium user experience.</h2>
-                    <p>Eliminate the necessity of dealing with multiple REST services. KrakenD isolates clients from
-                        the
-                        micro-service implementation details, and allows you to design the specific interface you
-                        need to interact with all your API ecosystem. Have a better response time, reduce the
-                        bandwidth and decrease error rates.
+                    <h2>The API Gateway pattern at its full extent</h2>
+                    <p>KrakenD is more than a typical proxy that forwards clients to backend services, but a powerful engine that can transform, aggregate or remove data from your own or third party services.
+                        KrakenD also implements the <strong>Backend for Frontend</strong> and <strong>Micro-frontends</strong> patterns to eliminate the necessity of dealing with multiple REST services,
+                        isolating clients from the micro-service implementation details.
                     </p>
                 </div>
             </section>
@@ -153,142 +155,104 @@
             <section class="feature-block">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <h3>How it works?</h3>
-                            <p>KrakenD is your <strong>self-designed REST API Gateway</strong> that feeds from your
-                                existing data
-                                services (Your APIs, legacy, cloud, IoT...)
-                                Just define visually or in a configuration file the endpoints your
-                                applications will use and the KrakenD will fetch and transform the content at your will
-                                for you.</p>
-
-
-                            <h4 class="feature">Get or send the data you want, as you want it</h4>
-                            <p><strong>Manipulate, merge and aggregate</strong> several responses from you
-                                backend servers to create a new API response that fits perfectly with your applications
-                                needs, not
-                                with the microservice design.</p>
-
-
-                        </div>
-                        <div class="col-lg-8 text-center">
+                        <div class="col text-center">
                             <img src="/images/KrakendFlow.png" title="How KrakenD works" class="img-fluid" />
-                            <div class="footnote">
-                                <p><strong>Image:</strong> An example of flow for an endpoint in KrakenD that uses 3
-                                    different backend sources.</p>
-
-                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h4 class="feature">Protect your own APIs</h4>
-                            <p>Avoid harmful usage of your own backends by rate limiting the access, enabling OAuth,
-                                SSL,
-                                certificates and a long list of other <strong>security and traffic management options</strong>.</p>
-                        </div>
-                        <div class="col-lg-6">
-                            <h4 class="feature">Extensible via plugins</h4>
-                            <p>The design of the KrakenD follows the UNIX philosophy and stacks middleware (or plugins)
-                                that add
-                                any features you might need. Use our own, the ones coded by the community or easily
-                                create yours.</p>
 
-                        </div>
-                    </div>
                 </div>
             </section>
 
 
 
 
-                <section class="feature-block zebra">
-                    <div class="title">
-                        <h2><strong>+18,000 requests/second</strong> on <abbr title="Intel Core i7 2,2 GHz">commodity</abbr>
-                            hardware</h2>
-                        <p>~No, there isn't an extra zero by mistake. It's the <strong>fastest API Gateway</strong> in
-                            the market~
-                        </p>
-                    </div>
-                </section>
+            <section class="feature-block zebra">
+                <div class="title">
+                    <h2>The fastest API Gateway in the market</h2>
+                    <p><strong>+18,000 requests/second</strong> on <abbr title="Intel Core i7 2,2 GHz">commodity</abbr>
+                        hardware
+                    </p>
+                </div>
+            </section>
 
-                <section class="feature-block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h3>Built for performance</h3>
-                                <p>KrakenD has been built with performance as the final goal (and obsession). We are super
-                                    proud of the speed we are delivering and we haven't find a similar product that beat us
-                                    in the market.</p>
-                                <p>With a single box you can support a huge amount of traffic. It's so fast that we needed
-                                    to implement
-                                    rate limits to give your backend a breathe!</p>
-                                <a class="btn btn-success btn-circle" href="https://www.krakend.io/docs/benchmarks/overview">
-                                    <i class="fa fa-chart-bar"></i> See the benchmarks</a>
-                            </div>
+            <section class="feature-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3>Built for performance</h3>
+                            <p>KrakenD's <strong>stateless architecture</strong> and performance-first approach for every internal component beat any API Gateway in the market.
+                            </p>
+                            <p>Our customers with massive usage face the networking limits while KrakenD still keeps a low consumption of resources.</p>
+                            <p>But don't take our word for granted, do your own benchmarks.</p>
+                            <a class="btn btn-success btn-circle" href="https://www.krakend.io/docs/benchmarks/overview">
+                                <i class="fa fa-chart-bar"></i> See the benchmarks</a>
+                        </div>
 
-                            <div class="col-md-8 text-center">
-                                <img src="/images/KrakenD-comparison.png" class="img-fluid" />
-                                <p lass="text-center">KrakenD vs other products in the market. Requests per second in equal conditions. <a href="https://www.krakend.io/docs/benchmarks/overview">See
-                                        benchmarks</a> </p>
-                            </div>
+                        <div class="col-md-8 text-center">
+                            <img src="/images/KrakenD-comparison.png" class="img-fluid" />
+                            <p lass="text-center">KrakenD vs other products in the market. Requests per second in equal
+                                conditions. <a href="https://www.krakend.io/docs/benchmarks/overview">See
+                                    benchmarks</a> </p>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="feature-block zebra">
-                    <div class="title">
-                        <h2>Get started in 5 minutes</h2>
-                        <p>Edit the configuration file and run the service, as a daemon or as an agent. Don't like
-                            editing text
-                            files? No problem, use the visual <a href="http://designer.krakend.io/">KrakenDesigner</a>.</p>
-                    </div>
-                </section>
+            <section class="feature-block zebra">
+                <div class="title">
+                    <h2>Get started in 5 minutes</h2>
+                    <p>Edit the configuration file and run the service, as a daemon or as an agent. Don't like
+                        editing text
+                        files? No problem, use the visual <a href="http://designer.krakend.io/">KrakenDesigner</a>.</p>
+                </div>
+            </section>
 
-                <section class="feature-block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h3>Create endpoints at a click</h3>
-                                <p>All KrakenD endpoint configuration is stored in a plain text <code>.json</code> configuration
-                                    file.
-                                    You can edit this file by hand or design your API interface visually using the
-                                    KrakenDesigner. </p>
-                                <p>
-                                    <a href="http://designer.krakend.io/" class="btn btn-success btn-circle">
-                                        <i class="fa fa-cog"></i> Configure online</a>
-                                </p>
+            <section class="feature-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3>Create endpoints at a click</h3>
+                            <p>All KrakenD endpoint configuration is stored in a plain text <code>.json</code>
+                                configuration
+                                file.
+                                You can edit this file by hand or design your API interface visually using the
+                                KrakenDesigner. </p>
+                            <p>
+                                <a href="http://designer.krakend.io/" class="btn btn-success btn-circle">
+                                    <i class="fa fa-cog"></i> Configure online</a>
+                            </p>
 
-                                <div class="hidden-xs hidden-sm">
-                                    <h3 class="feature">Just run the binary</h3>
-                                    <p>Everything you need to run the server:</p>
-                                    <p><code>krakend run --config krakend.json</code></p>
-                                    <p>The command will start the http daemon serving all the endpoints you defined in the
-                                        configuration file.</p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-8">
-                                <a href="http://designer.krakend.io/">
-                                    <img src="/images/builder_screenshot.png" class="img-fluid" title="KrakenDesigner screenshot" />
-                                </a>
+                            <div class="hidden-xs hidden-sm">
+                                <h3 class="feature">Just run the binary</h3>
+                                <p>Everything you need to run the server:</p>
+                                <p><code>krakend run --config krakend.json</code></p>
+                                <p>The command will start the http daemon serving all the endpoints you defined in the
+                                    configuration file.</p>
                             </div>
                         </div>
-                    </div>
-                </section>
 
-                <section class="feature-block zebra">
-                    <div class="title">
-                        <h2>See everything KrakenD can do for you</h2>
-                        <p>
-                            <a href="/features" class="btn btn-primary btn-lg btn-circle">
-                                <i class="fa fa-check"></i> Discover more features</a>
-                        </p>
+                        <div class="col-md-8">
+                            <a href="http://designer.krakend.io/">
+                                <img src="/images/builder_screenshot.png" class="img-fluid"
+                                    title="KrakenDesigner screenshot" />
+                            </a>
+                        </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-            </div>
+            <section class="feature-block zebra">
+                <div class="title">
+                    <h2>See everything KrakenD can do for you</h2>
+                    <p>
+                        <a href="/features" class="btn btn-primary btn-lg btn-circle">
+                            <i class="fa fa-check"></i> Discover more features</a>
+                    </p>
+                </div>
+            </section>
+
         </div>
+    </div>
     </div>
     <div class="row action-bar">
 	<div class="container">

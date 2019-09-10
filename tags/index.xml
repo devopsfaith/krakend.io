@@ -12,20 +12,20 @@
     
     
     <item>
-      <title>gRPC</title>
-      <link>https://www.krakend.io/tags/grpc/</link>
-      <pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate>
-      
-      <guid>https://www.krakend.io/tags/grpc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>golang</title>
       <link>https://www.krakend.io/tags/golang/</link>
       <pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate>
       
       <guid>https://www.krakend.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gRPC</title>
+      <link>https://www.krakend.io/tags/grpc/</link>
+      <pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate>
+      
+      <guid>https://www.krakend.io/tags/grpc/</guid>
       <description></description>
     </item>
     

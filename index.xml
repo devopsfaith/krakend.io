@@ -230,6 +230,16 @@ Benchmark Setup This set of benchmarks have been running on different AWS EC2 in
     </item>
     
     <item>
+      <title>Data manipulation</title>
+      <link>https://www.krakend.io/docs/backends/data-manipulation/</link>
+      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/backends/data-manipulation/</guid>
+      <description>Filtering When you offer a KrakenD endpoint you can decide to show only a subset of the fields coming from the backends&amp;rsquo; response or alter the structure of the content provided. There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&amp;rsquo;s bandwidth and increase load and render times.
+There are two different strategies you can use to filter content:</description>
+    </item>
+    
+    <item>
       <title>SD with DNS SRV (e.g. Consul)</title>
       <link>https://www.krakend.io/docs/service-discovery/dns-srv/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
@@ -238,16 +248,6 @@ Benchmark Setup This set of benchmarks have been running on different AWS EC2 in
       <description>The DNS SRV is a market standard used by systems such as Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd, and more.
 To integrate Consul as the Service Discovery or any other DNS SRV compatible systems you only need to set two keys:
  &amp;quot;sd&amp;quot;: &amp;quot;dns&amp;quot;: To set service discovery = DNS SRV &amp;quot;host&amp;quot;: []: The list of all the names providing the resolution  These keys need to be added in the backend section of your configuration.</description>
-    </item>
-    
-    <item>
-      <title>Data manipulation</title>
-      <link>https://www.krakend.io/docs/backends/data-manipulation/</link>
-      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/docs/backends/data-manipulation/</guid>
-      <description>Filtering When you offer a KrakenD endpoint you can decide to show only a subset of the fields coming from the backends&amp;rsquo; response or alter the structure of the content provided. There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&amp;rsquo;s bandwidth and increase load and render times.
-There are two different strategies you can use to filter content:</description>
     </item>
     
     <item>
