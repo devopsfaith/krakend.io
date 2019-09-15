@@ -21,8 +21,8 @@
 
 
 <meta property="og:title" content="Metrics middleware" />
-<meta property="og:description" content="The metrics middleware offers a new service in a different port and exposes a /__stats/ endpoint with the collection of all the KrakenD metrics.
-Enabling metrics In order to add metrics to your KrakenD installation add the github_com/devopsfaith/krakend-metrics namespace under extra_config in the root of your configuration file, e.g.:
+<meta property="og:description" content="The metrics middleware offers a new service in a different port and exposes a /__stats/ endpoint with the collection of all the KrakenD metrics:
+http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your KrakenD installation add the github_com/devopsfaith/krakend-metrics namespace under extra_config in the root of your configuration file, e.g.:
 { &#34;version&#34;: 2, &#34;extra_config&#34;: { &#34;github_com/devopsfaith/krakend-metrics&#34;: { &#34;collection_time&#34;: &#34;60s&#34;, &#34;proxy_disabled&#34;: false, &#34;router_disabled&#34;: false, &#34;backend_disabled&#34;: false, &#34;endpoint_disabled&#34;: false, &#34;listen_address&#34;: &#34;:8090&#34; },  ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/metrics/" />
@@ -37,8 +37,8 @@ Enabling metrics In order to add metrics to your KrakenD installation add the gi
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Metrics middleware"/>
-<meta name="twitter:description" content="The metrics middleware offers a new service in a different port and exposes a /__stats/ endpoint with the collection of all the KrakenD metrics.
-Enabling metrics In order to add metrics to your KrakenD installation add the github_com/devopsfaith/krakend-metrics namespace under extra_config in the root of your configuration file, e.g.:
+<meta name="twitter:description" content="The metrics middleware offers a new service in a different port and exposes a /__stats/ endpoint with the collection of all the KrakenD metrics:
+http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your KrakenD installation add the github_com/devopsfaith/krakend-metrics namespace under extra_config in the root of your configuration file, e.g.:
 { &#34;version&#34;: 2, &#34;extra_config&#34;: { &#34;github_com/devopsfaith/krakend-metrics&#34;: { &#34;collection_time&#34;: &#34;60s&#34;, &#34;proxy_disabled&#34;: false, &#34;router_disabled&#34;: false, &#34;backend_disabled&#34;: false, &#34;endpoint_disabled&#34;: false, &#34;listen_address&#34;: &#34;:8090&#34; },  ."/>
 
 
@@ -504,6 +504,10 @@ Enabling metrics In order to add metrics to your KrakenD installation add the gi
                         <a href="/docs/logging-metrics-tracing/stackdriver/" class="nav-link children ">Google Stackdriver</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/logger/" class="nav-link children ">Logger</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -671,21 +675,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
     <section class="col-md-12">
         
         
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#enabling-metrics">Enabling metrics</a></li>
-</ul>
-</nav>
-            </div>
-        </div>
-        
 
         
 
-<p>The metrics <em>middleware</em> offers a new service in a different port and exposes a <code>/__stats/</code> endpoint with the collection of all the KrakenD metrics.</p>
+<p>The metrics <em>middleware</em> offers a new service in a different port and exposes a <code>/__stats/</code> endpoint with the collection of all the KrakenD metrics:</p>
+
+<pre><code>http://localhost:8080/__stats/
+</code></pre>
 
 <h1 id="enabling-metrics">Enabling metrics</h1>
 

@@ -290,8 +290,8 @@ Hardware Model MacBook Pro (MacBookPro11,4) - August 2015 Processor: Intel Core 
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/logging-metrics-tracing/metrics/</guid>
-      <description>The metrics middleware offers a new service in a different port and exposes a /__stats/ endpoint with the collection of all the KrakenD metrics.
-Enabling metrics In order to add metrics to your KrakenD installation add the github_com/devopsfaith/krakend-metrics namespace under extra_config in the root of your configuration file, e.g.:
+      <description>The metrics middleware offers a new service in a different port and exposes a /__stats/ endpoint with the collection of all the KrakenD metrics:
+http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your KrakenD installation add the github_com/devopsfaith/krakend-metrics namespace under extra_config in the root of your configuration file, e.g.:
 { &amp;#34;version&amp;#34;: 2, &amp;#34;extra_config&amp;#34;: { &amp;#34;github_com/devopsfaith/krakend-metrics&amp;#34;: { &amp;#34;collection_time&amp;#34;: &amp;#34;60s&amp;#34;, &amp;#34;proxy_disabled&amp;#34;: false, &amp;#34;router_disabled&amp;#34;: false, &amp;#34;backend_disabled&amp;#34;: false, &amp;#34;endpoint_disabled&amp;#34;: false, &amp;#34;listen_address&amp;#34;: &amp;#34;:8090&amp;#34; },  .</description>
     </item>
     
@@ -730,6 +730,18 @@ As KrakenD is an API gateway, we have also added to the environment an API (back
 The Opencensus exporter allows you export data to Google Stackdriver. Enabling it only requires you to add the stackdriver exporter in the opencensus module.
 The following configuration snippet sends data to your X-Ray:
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;stackdriver&amp;quot;: { &amp;quot;project_id&amp;quot;: &amp;quot;my-krakend-project&amp;quot;, &amp;quot;metrics_prefix&amp;quot;: &amp;quot;krakend&amp;quot;, &amp;quot;default_labels&amp;quot;: { &amp;quot;env&amp;quot;: &amp;quot;production&amp;quot; } } } }   project_id: The identifier of your Google Cloud project.</description>
+    </item>
+    
+    <item>
+      <title>Exporting to the logger</title>
+      <link>https://www.krakend.io/docs/logging-metrics-tracing/logger/</link>
+      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/logging-metrics-tracing/logger/</guid>
+      <description>Opencensus can export data to the system logger as another exporter.
+Enabling it only requires you to add the logger exporter in the opencensus module.
+The following configuration snippet enables the logger:
+&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;logger&amp;quot;: { &amp;quot;stats&amp;quot;: true, &amp;quot;spans&amp;quot;: true } } }   stats: Whether to log the statistics or not spans: Wether to log the spans or not  See also the additional settings of the Opencensus module that can be declared.</description>
     </item>
     
     <item>
