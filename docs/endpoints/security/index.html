@@ -21,16 +21,15 @@
 
 
 <meta property="og:title" content="Security" />
-<meta property="og:description" content="KrakenD has implemented some security strategies
-General security Restrict connections by host Define a whitelist of hosts the KrakenD should accept requests to.
-When a request hits KrakenD, it will confirm if the value of the Host HTTP header is in the whitelist. If so, it will further process the request. If the host is not in the whitelist, KrakenD will simply reject the request.
-Clickjacking protection KrakenD follow the OWASP&rsquo;s recommendations by adding a frame-breaking strategy." />
+<meta property="og:description" content="KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at endpoint level or service (root) level, depending on the item.
+The following example describes the options explained later in this article:
+&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-httpsecure&quot;: { &quot;allowed_hosts&quot;: [ &quot;host.known.com:443&quot; ], &quot;ssl_proxy_headers&quot;: { &quot;X-Forwarded-Proto&quot;: &quot;https&quot; }, &quot;ssl_redirect&quot;: true, &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;, &quot;ssl_port&quot;: &quot;443&quot;, &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;, &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;, &quot;sts_seconds&quot;: &quot;300&quot;, &quot;sts_include_subdomains&quot;: true, &quot;frame_deny&quot;: true, &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/security/" />
 
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
 <meta property="article:published_time" content="2016-09-30T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-09-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2019-09-02T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -38,10 +37,9 @@ Clickjacking protection KrakenD follow the OWASP&rsquo;s recommendations by addi
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Security"/>
-<meta name="twitter:description" content="KrakenD has implemented some security strategies
-General security Restrict connections by host Define a whitelist of hosts the KrakenD should accept requests to.
-When a request hits KrakenD, it will confirm if the value of the Host HTTP header is in the whitelist. If so, it will further process the request. If the host is not in the whitelist, KrakenD will simply reject the request.
-Clickjacking protection KrakenD follow the OWASP&rsquo;s recommendations by adding a frame-breaking strategy."/>
+<meta name="twitter:description" content="KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at endpoint level or service (root) level, depending on the item.
+The following example describes the options explained later in this article:
+&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-httpsecure&quot;: { &quot;allowed_hosts&quot;: [ &quot;host.known.com:443&quot; ], &quot;ssl_proxy_headers&quot;: { &quot;X-Forwarded-Proto&quot;: &quot;https&quot; }, &quot;ssl_redirect&quot;: true, &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;, &quot;ssl_port&quot;: &quot;443&quot;, &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;, &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;, &quot;sts_seconds&quot;: &quot;300&quot;, &quot;sts_include_subdomains&quot;: true, &quot;frame_deny&quot;: true, &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example."/>
 
 
 
@@ -289,6 +287,10 @@ Clickjacking protection KrakenD follow the OWASP&rsquo;s recommendations by addi
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/common-expression-language-cel/" class="nav-link children ">Checking requests and responses</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
                 </ul>
@@ -611,6 +613,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     Edit this page
 </a>
 
+<p class="docs-metadata">
+    
+    
+        <a class="source-code-link" href="https://github.com/devopsfaith/krakend-httpsecure"><i class="fab fa-github"></i> Source code</a> for this component
+    
+</p>
+
 
 <h1 class="main-title">Security</h1>
 
@@ -648,29 +657,67 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
         
 
-<p>KrakenD has implemented some security strategies</p>
+<p>KrakenD has implemented several security strategies, controlled via <a href="https://github.com/devopsfaith/krakend-httpsecure">krakend-httpsecure</a>. To enable them you only need to add the <code>extra_config</code> at <code>endpoint</code> level or service (root) level, depending on the item.</p>
+
+<p>The following example describes the options explained later in this article:</p>
+
+<pre><code>&quot;extra_config&quot;: {
+  &quot;github_com/devopsfaith/krakend-httpsecure&quot;: {
+    &quot;allowed_hosts&quot;: [
+      &quot;host.known.com:443&quot;
+    ],
+    &quot;ssl_proxy_headers&quot;: {
+      &quot;X-Forwarded-Proto&quot;: &quot;https&quot;
+    },
+    &quot;ssl_redirect&quot;: true,
+    &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;,
+    &quot;ssl_port&quot;: &quot;443&quot;,
+    &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;,
+    &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;,
+    &quot;sts_seconds&quot;: &quot;300&quot;,
+    &quot;sts_include_subdomains&quot;: true,
+    &quot;frame_deny&quot;: true,
+    &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example.com&quot;,
+    &quot;hpkp_public_key&quot;: &quot;pin-sha256=\&quot;base64==\&quot;; max-age=expireTime [; includeSubDomains][; report-uri=\&quot;reportURI\&quot;]&quot;,
+    &quot;content_type_nosniff&quot;: true,
+    &quot;browser_xss_filter&quot;: true,
+    &quot;content_security_policy&quot;: &quot;default-src 'self';&quot;
+  }
+</code></pre>
+
+<p>See below the different options described in this configuration file.</p>
 
 <h1 id="general-security">General security</h1>
 
 <h2 id="restrict-connections-by-host">Restrict connections by host</h2>
 
-<p>Define a whitelist of hosts the KrakenD should accept requests to.</p>
+<p>Use <code>allowed_hosts</code></p>
+
+<p>Define a whitelist of hosts that KrakenD should accept requests to.</p>
 
 <p>When a request hits KrakenD, it will confirm if the value of the <code>Host</code> HTTP header is in the whitelist. If so, it will further process the request. If the host is not in the whitelist, KrakenD will simply reject the request.</p>
 
+<p>The list must contain the fully qualified domain names that are allowed, along with the origin port. When the list is empty accepts any host.</p>
+
 <h2 id="clickjacking-protection">Clickjacking protection</h2>
+
+<p>Use <code>frame_deny</code></p>
 
 <p>KrakenD follow the OWASP&rsquo;s recommendations by adding a frame-breaking strategy.</p>
 
-<p>You can add an <code>X-Frame-Options</code> header with the value of <code>DENY</code> (default behavior) or even set your custom value.</p>
+<p>You can add an <code>X-Frame-Options</code> header using <code>custom_frame_options_value</code> with the value of <code>DENY</code> (default behavior) or even set your custom value.</p>
 
 <p>Check the <a href="https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet#X-Frame-Options_Header_Types">OWASP Clickjacking cheat sheet</a> for more details about the header and its recommended values.</p>
 
 <h2 id="mime-sniffing-prevention">MIME-Sniffing prevention</h2>
 
+<p>Use <code>content_type_nosniff</code></p>
+
 <p>Enabling this feature will prevent the user&rsquo;s browser from interpreting files as something else than declared by the content type in the HTTP headers.</p>
 
 <h2 id="cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</h2>
+
+<p>Use <code>browser_xss_filter</code></p>
 
 <p>This feature enables the <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">Cross-site scripting (XSS)</a> filter in the user&rsquo;s browser.</p>
 
@@ -678,13 +725,19 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <h2 id="http-strict-transport-security-hsts">HTTP Strict Transport Security (HSTS)</h2>
 
+<p>Use <code>sts_seconds</code></p>
+
 <p>OWASP defines the HSTS as</p>
 
 <blockquote>
 <p>HTTP Strict Transport Security (HSTS) is a web security policy mechanism which helps to protect websites against protocol downgrade attacks and cookie hijacking. It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and never via the insecure HTTP protocol. HSTS is an IETF standards track protocol and is specified in RFC 6797. A server implements an HSTS policy by supplying a header (Strict-Transport-Security) over an HTTPS connection (HSTS headers over HTTP are ignored).</p>
 </blockquote>
 
+<p>Enable this policy by setting the max-age of the Strict-Transport-Security header. Setting to <code>0</code> disables HSTS. Use the <code>sts_seconds</code> setting.</p>
+
 <h2 id="http-public-key-pinning-hpkp">HTTP Public Key Pinning (HPKP)</h2>
+
+<p>Use <code>hpkp_public_key</code></p>
 
 <p>OWASP defines the HPKP as</p>
 
@@ -699,6 +752,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>KrakenD supports the client credentials grant.</p>
 
 <p>Use this feature if you need to authorize the KrakenD to access your backend services.</p>
+
+<p>See the specific docs for <a href="/docs/authorization/client-credentials/">OAuth2 Client Credentials</a></p>
 
     </section>
 </div>
