@@ -143,9 +143,9 @@
       <section class="case">
         <p><strong>Letgo is the biggest and fastest-growing app for buying and selling locally.</strong></p>
 
-<p>Letgo is both a mobile application and a desktop application (SPA) with native implementations for every operating system. As Letgo&rsquo;s organization is large, there are different teams for every UI experience.</p>
+<p>Letgo is both a desktop application (SPA) and a mobile application with native implementations for every OS. As Letgo&rsquo;s organization is large, the UI experience of each client is handled by a different team.</p>
 
-<p>Letgo uses several clusters of KrakenD API Gateway to allow each client application to have its views of merged data. The API contract can be maintained by the mobile as KrakenD provides the automatic aggregation and filtering capabilities that provide to the client a simple API for each device and team needs.</p>
+<p>Letgo uses different clusters of KrakenD API Gateway per client, allowing each team to have its customized views of merged data. The API contract used in every device is preserved and respected even when the backends need to change their specification. KrakenD provides automatic aggregation and filtering capabilities that provide to the client a simple API for each device and team needs.</p>
 
 <p>Letgo makes intensive usage of all authorization and token revoking features allowing legitimate end-users to be accepted and illegitimate users discarded at the API layer without impacting any backend. KrakenD API gateway inspects the JWT tokens and makes sure that every user is inside the allowed usage limits, with a valid signature and possess enough permissions to view the requested endpoint.</p>
 

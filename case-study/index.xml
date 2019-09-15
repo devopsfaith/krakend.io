@@ -40,8 +40,8 @@ As the business developed rapidly, Dusdusan.com needs to keep improving its plat
       
       <guid>https://www.krakend.io/case-study/letgo/</guid>
       <description>Letgo is the biggest and fastest-growing app for buying and selling locally.
-Letgo is both a mobile application and a desktop application (SPA) with native implementations for every operating system. As Letgo&amp;rsquo;s organization is large, there are different teams for every UI experience.
-Letgo uses several clusters of KrakenD API Gateway to allow each client application to have its views of merged data. The API contract can be maintained by the mobile as KrakenD provides the automatic aggregation and filtering capabilities that provide to the client a simple API for each device and team needs.</description>
+Letgo is both a desktop application (SPA) and a mobile application with native implementations for every OS. As Letgo&amp;rsquo;s organization is large, the UI experience of each client is handled by a different team.
+Letgo uses different clusters of KrakenD API Gateway per client, allowing each team to have its customized views of merged data. The API contract used in every device is preserved and respected even when the backends need to change their specification.</description>
     </item>
     
     <item>
