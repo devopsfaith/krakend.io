@@ -278,6 +278,31 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/case-study/pearson/</loc>
+    <lastmod>2019-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/case-study/dusdusan/</loc>
+    <lastmod>2019-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/case-study/letgo/</loc>
+    <lastmod>2019-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/case-study/</loc>
+    <lastmod>2019-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/</loc>
+    <lastmod>2019-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/categories/api-gateway/</loc>
     <lastmod>2019-06-09T18:26:10+01:00</lastmod>
   </url>
@@ -314,11 +339,6 @@
   
   <url>
     <loc>https://www.krakend.io/categories/krakend/</loc>
-    <lastmod>2019-06-09T18:26:10+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/</loc>
     <lastmod>2019-06-09T18:26:10+01:00</lastmod>
   </url>
   
@@ -393,17 +413,22 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/case-study/adevinta/</loc>
+    <lastmod>2018-10-05T17:23:05+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/case-study/icontainers/</loc>
+    <lastmod>2018-10-05T17:23:05+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/enterprise/</loc>
     <lastmod>2018-10-05T17:23:05+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/partners/</loc>
-    <lastmod>2018-10-05T17:23:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/who-is-using-krakend/</loc>
     <lastmod>2018-10-05T17:23:05+02:00</lastmod>
   </url>
   
@@ -468,12 +493,12 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/api2html/</loc>
+    <loc>https://www.krakend.io/categories/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/api2html/</loc>
+    <loc>https://www.krakend.io/tags/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
   </url>
   
