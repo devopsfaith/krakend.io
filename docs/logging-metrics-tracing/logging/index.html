@@ -462,6 +462,46 @@ Extending the logging capabilities Different logging components allow you to ext
                         <a href="/docs/logging-metrics-tracing/metrics/" class="nav-link children ">Metrics</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/tracing/" class="nav-link children ">Tracing</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/graylog-gelf/" class="nav-link children ">Graylog - GELF</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/logstash/" class="nav-link children ">Logstash</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/opencensus/" class="nav-link children ">Opencensus</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/prometheus/" class="nav-link children ">Prometheus</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/zipkin/" class="nav-link children ">Zipkin</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/jaeger/" class="nav-link children ">Jaeger</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/xray/" class="nav-link children ">AWS X-Ray</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/stackdriver/" class="nav-link children ">Google Stackdriver</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -645,10 +685,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <li><a href="#predefined-and-customs-formats">Predefined and customs formats</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#graylog-and-the-gelf-format">Graylog and the GELF format</a>
-<ul>
-<li><a href="#enabling-gelf">Enabling GELF</a></li>
-</ul></li>
 <li><a href="#logstash">Logstash</a></li>
 </ul>
 </nav>
@@ -662,7 +698,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 
 <h1 id="extending-the-logging-capabilities">Extending the logging capabilities</h1>
 
-<p>Different logging components allow you to extend the logging functionality, such as sending the events to the <strong>syslog</strong>, choosing the verbosity level or use the <strong>Graylog Extended Log Format (GELF)</strong>.</p>
+<p>Different logging components allow you to extend the logging functionality, such as sending the events to the <strong>syslog</strong>, choosing the verbosity level or use the <strong>Graylog Extended Log Format (GELF)</strong>. In addition to this, a lot of exporters are available to send your logs out.</p>
 
 <h2 id="improved-logging-with-gologging">Improved logging with <code>gologging</code>.</h2>
 
@@ -745,37 +781,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 </ul>
 
 <p>The pattern to use is the same as the <a href="https://github.com/op/go-logging/blob/master/format.go#L156">go-logging library</a></p>
-
-<h1 id="graylog-and-the-gelf-format">Graylog and the GELF format</h1>
-
-<p>KrakenD supports sending structured events in GELF format to your Graylog Cluster (KrakenD 0.7+) thanks to the <a href="https://github.com/devopsfaith/krakend-gelf">krakend-gelf</a> integration.</p>
-
-<p>The setup of GELF is straightforward and requires only to set two parameters:</p>
-
-<ul>
-<li><code>address</code>: The address (including the port) of your Graylog cluster (or any other service that receives GELF inputs).</li>
-<li><code>enable_tcp</code>: Set to <code>false</code> (recommended) to use UDP. When using TCP performance might be affected.</li>
-</ul>
-
-<h2 id="enabling-gelf">Enabling GELF</h2>
-
-<p>Add the <code>krakend-gelf</code> integration in the root level of your <code>krakend.json</code>, inside the <code>extra_config</code> section. <strong>The <code>gologging</code> needs to be enabled too</strong>.</p>
-
-<p>For instance:</p>
-
-<pre><code>&quot;extra_config&quot;: {
-  &quot;github_com/devopsfaith/krakend-gelf&quot;: {
-    &quot;address&quot;: &quot;myGraylogInstance:12201&quot;,
-    &quot;enable_tcp&quot;: false
-  }
-  &quot;github_com/devopsfaith/krakend-gologging&quot;: {
-      &quot;level&quot;: &quot;INFO&quot;,
-      &quot;prefix&quot;: &quot;[KRAKEND]&quot;,
-      &quot;syslog&quot;: false,
-      &quot;stdout&quot;: true
-  }
-}
-</code></pre>
 
 <h1 id="logstash">Logstash</h1>
 
