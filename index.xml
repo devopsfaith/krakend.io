@@ -55,13 +55,14 @@ Static resolution The static resolution is the default service discovery choice.
     </item>
     
     <item>
-      <title>KrakenD&#39;s configuration file overview</title>
+      <title>KrakenD&#39;s configuration file(s)</title>
       <link>https://www.krakend.io/docs/configuration/overview/</link>
       <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/configuration/overview/</guid>
-      <description>When the KrakenD service is about to be started, the run command requires passing the flag -c which states the path to the configuration file. We refer through the documentation to this file as the krakend.json, but it can be stored or named according to your preferences.
-If your configuration file is too large or repetitive, it can be split into multiple files using a templating system, where ENV vars can also be injected as dynamic values.</description>
+      <description>All the configuration that the KrakenD server needs to start and operate is a single configuration file. This file is referred to as krakend.json through all the documentation.
+The name krakend.json is just an alias, a convention, that we use everywhere. Your real configuration file can have any name, be stored anywhere, or split in many pieces.
+Provided this simple configuration mechanism, the versioning and automation are very convenient. Any change in the API Gateway is always under the version control system, and the code controls the state of the gateway.</description>
     </item>
     
     <item>
@@ -307,6 +308,16 @@ A typical request requiring JWT validation includes in the Authorization header 
     </item>
     
     <item>
+      <title>Flexible configuration</title>
+      <link>https://www.krakend.io/docs/configuration/flexible-config/</link>
+      <pubDate>Fri, 21 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/configuration/flexible-config/</guid>
+      <description>The Flexible Configuration component is included in the KrakenD API Gateway and allows you to split the configuration file into several pieces for a more natural organization.
+When the Flexible Configuration is enabled, KrakenD assumes that your configuration file is a template that needs compilation during start-up time. With this, you have the opportunity to produce a more sophisticated configuration file that utilizes variables and brings content from external files.</description>
+    </item>
+    
+    <item>
       <title>Service Discovery with etcd</title>
       <link>https://www.krakend.io/docs/service-discovery/etcd/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
@@ -337,18 +348,6 @@ Enabling etcd To enable the integration add in the root of your configuration fi
  Download KrakenD and  Generate the configuration file
 Just exploring?
 Use the KrakenD Playground if you want to play with KrakenD without configuring it. The Playground comes with several flavors of KrakenD and a mock API. Everything is ready to start playing, just do a docker-compose up!</description>
-    </item>
-    
-    <item>
-      <title>KrakenD file supported formats</title>
-      <link>https://www.krakend.io/docs/configuration/supported-formats/</link>
-      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/docs/configuration/supported-formats/</guid>
-      <description>The expected configuration file format by default is json, but KrakenD can parse different formats if one of the following extensions is found:
- .json .toml .yaml .yml .properties .props .prop .hcl  Nevertheless, our recommendation is to choose JSON.
-Validate the syntax (not the logic) with krakend check
-Why choosing json? You are free to choose YAML, TOML or any of the other formats at your best convenience. But have in mind the following logic when choosing a file format other than json.</description>
     </item>
     
     <item>
@@ -411,6 +410,18 @@ When using concurrent requests, the backend services must be able to handle an a
       <description>Users of the Netflix&amp;rsquo;s service Eureka have a couple of user contributed integrations available listed in our krakend-contrib repository.
 The integrations are not bundled with KrakenD-CE releases but they can be added to the project and make a custom build without difficulties.
  schibsted/krakend-eureka: The Eureka client Schibsted has been running in production since 2017. joaoqalves/krakend-eureka: A Eureka client contributed by João Alves  </description>
+    </item>
+    
+    <item>
+      <title>KrakenD file supported formats</title>
+      <link>https://www.krakend.io/docs/configuration/supported-formats/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/configuration/supported-formats/</guid>
+      <description>The expected configuration file format by default is json, but KrakenD can parse different formats if one of the following extensions is found:
+ .json .toml .yaml .yml .properties .props .prop .hcl  Nevertheless, our recommendation is to choose JSON.
+Validate the syntax (not the logic) with krakend check
+Why choosing json? You are free to choose YAML, TOML or any of the other formats at your best convenience. But have in mind the following logic when choosing a file format other than json.</description>
     </item>
     
     <item>
@@ -531,7 +542,7 @@ Supported encodings The gateway can work with several content types, even allowi
       <guid>https://www.krakend.io/docs/logging-metrics-tracing/opencensus/</guid>
       <description>The Opencensus exporter is a single component that allows you to export data to multiple providers, both open source and privative.
 You will be interested in Opencensus when you want to see data in one of its supported exporters. For instance, you might want to send metrics to Prometheus. That would be as easy as adding this snippet in the root level of your krakend.json file:
-&amp;quot;extra_config&amp;quot;: { &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091 } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration.</description>
+&amp;quot;extra_config&amp;quot;: { &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091 &amp;quot;namespace&amp;quot;: &amp;quot;krakend&amp;quot; } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration.</description>
     </item>
     
     <item>
@@ -582,8 +593,8 @@ The traffic shadowing or traffic mirroring functionality allows you to test new 
       
       <guid>https://www.krakend.io/docs/logging-metrics-tracing/prometheus/</guid>
       <description>Prometheus is an open-source systems monitoring and alerting toolkit.
-The Opencensus exporter allows you export data to Prometheus. Enabling it only requires you to specify the port on which Prometheus is running, and your Prometheus instance will start receiving the data.
-&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091 } } }  See also the additional settings of the Opencensus module that can be declared.</description>
+The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the prometheus exporter. Specify the port on which Prometheus is running, the namespace (optional), and Prometheus will start receiving the data.
+&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091 &amp;quot;namespace&amp;quot;: &amp;quot;krakend&amp;quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to.</description>
     </item>
     
     <item>
@@ -674,16 +685,6 @@ The parameters of this integration follow the AMQP specification. To understand 
 The Opencensus exporter allows you export data to Jaeger. Enabling it only requires you to add the jaeger exporter in the opencensus module.
 The following configuration snippet sends data to your Jaeger:
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;jaeger&amp;quot;: { &amp;quot;endpoint&amp;quot;: &amp;quot;http://192.168.99.100:14268&amp;quot;, &amp;quot;serviceName&amp;quot;:&amp;quot;krakend&amp;quot; }, } }   endpoint is the URL (including port) where your Jaeger is serviceName the service name registered in Jaeger  See also the additional settings of the Opencensus module that can be declared.</description>
-    </item>
-    
-    <item>
-      <title>Flexible configuration</title>
-      <link>https://www.krakend.io/docs/configuration/flexible-config/</link>
-      <pubDate>Fri, 21 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/docs/configuration/flexible-config/</guid>
-      <description>The Flexible Configuration component (source code) is included in the KrakenD API Gateway and allows you to split the configuration file into several pieces for a more natural organization.
-When the Flexible Configuration is enabled, KrakenD assumes that your configuration file is a template that needs compilation during start-up time. With this, you have the opportunity to produce a more sophisticated configuration file that utilizes variables and brings content from external files.</description>
     </item>
     
     <item>

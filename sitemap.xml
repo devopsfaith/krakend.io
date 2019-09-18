@@ -138,6 +138,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/configuration/flexible-config/</loc>
+    <lastmod>2018-09-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/service-discovery/etcd/</loc>
     <lastmod>2019-02-13T00:00:00+00:00</lastmod>
   </url>
@@ -150,11 +155,6 @@
   <url>
     <loc>https://www.krakend.io/docs/overview/installing/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/docs/configuration/supported-formats/</loc>
-    <lastmod>2018-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -185,6 +185,11 @@
   <url>
     <loc>https://www.krakend.io/docs/service-discovery/eureka/</loc>
     <lastmod>2018-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/configuration/supported-formats/</loc>
+    <lastmod>2018-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -305,11 +310,6 @@
   <url>
     <loc>https://www.krakend.io/docs/logging-metrics-tracing/jaeger/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/docs/configuration/flexible-config/</loc>
-    <lastmod>2018-09-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>

@@ -23,7 +23,7 @@
 <meta property="og:title" content="Exporting logs, metrics, and traces to several providers" />
 <meta property="og:description" content="The Opencensus exporter is a single component that allows you to export data to multiple providers, both open source and privative.
 You will be interested in Opencensus when you want to see data in one of its supported exporters. For instance, you might want to send metrics to Prometheus. That would be as easy as adding this snippet in the root level of your krakend.json file:
-&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration." />
+&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 &quot;namespace&quot;: &quot;krakend&quot; } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/opencensus/" />
 
@@ -39,7 +39,7 @@ You will be interested in Opencensus when you want to see data in one of its sup
 <meta name="twitter:title" content="Exporting logs, metrics, and traces to several providers"/>
 <meta name="twitter:description" content="The Opencensus exporter is a single component that allows you to export data to multiple providers, both open source and privative.
 You will be interested in Opencensus when you want to see data in one of its supported exporters. For instance, you might want to send metrics to Prometheus. That would be as easy as adding this snippet in the root level of your krakend.json file:
-&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration."/>
+&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 &quot;namespace&quot;: &quot;krakend&quot; } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration."/>
 
 
 
@@ -185,11 +185,11 @@ You will be interested in Opencensus when you want to see data in one of its sup
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Flexible configuration</a>
+                        <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
                     </li>
                     
                 </ul>
@@ -658,8 +658,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 
 <p class="docs-metadata">
     
+        <a href="https://github.com/devopsfaith/krakend-opencensus"><i class="fab fa-github"></i> Source code</a> for this component
     
-        <a class="source-code-link" href="https://github.com/devopsfaith/krakend-opencensus"><i class="fab fa-github"></i> Source code</a> for this component
     
 </p>
 
@@ -685,7 +685,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
     &quot;github_com/devopsfaith/krakend-opencensus&quot;: {
         &quot;exporters&quot;: {
             &quot;prometheus&quot;: {
-            &quot;port&quot;: 9091
+                &quot;port&quot;: 9091
+                &quot;namespace&quot;: &quot;krakend&quot;
             }
         }
     }

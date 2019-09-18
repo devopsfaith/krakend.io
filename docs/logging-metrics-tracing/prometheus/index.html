@@ -22,8 +22,8 @@
 
 <meta property="og:title" content="Exporting metrics to Prometheus" />
 <meta property="og:description" content="Prometheus is an open-source systems monitoring and alerting toolkit.
-The Opencensus exporter allows you export data to Prometheus. Enabling it only requires you to specify the port on which Prometheus is running, and your Prometheus instance will start receiving the data.
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 } } }  See also the additional settings of the Opencensus module that can be declared." />
+The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the prometheus exporter. Specify the port on which Prometheus is running, the namespace (optional), and Prometheus will start receiving the data.
+&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 &quot;namespace&quot;: &quot;krakend&quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/prometheus/" />
 
@@ -38,8 +38,8 @@ The Opencensus exporter allows you export data to Prometheus. Enabling it only r
 
 <meta name="twitter:title" content="Exporting metrics to Prometheus"/>
 <meta name="twitter:description" content="Prometheus is an open-source systems monitoring and alerting toolkit.
-The Opencensus exporter allows you export data to Prometheus. Enabling it only requires you to specify the port on which Prometheus is running, and your Prometheus instance will start receiving the data.
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 } } }  See also the additional settings of the Opencensus module that can be declared."/>
+The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the prometheus exporter. Specify the port on which Prometheus is running, the namespace (optional), and Prometheus will start receiving the data.
+&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 &quot;namespace&quot;: &quot;krakend&quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to."/>
 
 
 
@@ -185,11 +185,11 @@ The Opencensus exporter allows you export data to Prometheus. Enabling it only r
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Flexible configuration</a>
+                        <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
                     </li>
                     
                 </ul>
@@ -658,8 +658,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 
 <p class="docs-metadata">
     
+        <a href="https://github.com/devopsfaith/krakend-opencensus"><i class="fab fa-github"></i> Source code</a> for this component
     
-        <a class="source-code-link" href="https://github.com/devopsfaith/krakend-opencensus"><i class="fab fa-github"></i> Source code</a> for this component
     
 </p>
 
@@ -677,16 +677,22 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 
         <p><a href="https://prometheus.io/">Prometheus</a> is an open-source systems monitoring and alerting toolkit.</p>
 
-<p>The Opencensus exporter allows you export data to Prometheus. Enabling it only requires you to specify the port on which Prometheus is running, and your Prometheus instance will start receiving the data.</p>
+<p>The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the <code>prometheus</code> exporter. Specify the <code>port</code> on which Prometheus is running, the <code>namespace</code> (optional), and Prometheus will start receiving the data.</p>
 
 <pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
   &quot;exporters&quot;: {
     &quot;prometheus&quot;: {
-      &quot;port&quot;: 9091
+        &quot;port&quot;: 9091
+        &quot;namespace&quot;: &quot;krakend&quot;
     }
   }
 }
 </code></pre>
+
+<ul>
+<li><code>port</code> on which Prometheus is listening</li>
+<li><code>namespace</code> sets the domain the metric belongs to. Optional field.</li>
+</ul>
 
 <p>See also the <a href="/docs/logging-metrics-tracing/opencensus/">additional settings</a> of the Opencensus module that can be declared.</p>
 

@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2" />
 
-    <title>KrakenD&#39;s configuration file overview - KrakenD API Gateway</title>
-    <meta itemprop="name" content="KrakenD&#39;s configuration file overview - KrakenD API Gateway">
+    <title>KrakenD&#39;s configuration file(s) - KrakenD API Gateway</title>
+    <meta itemprop="name" content="KrakenD&#39;s configuration file(s) - KrakenD API Gateway">
 
     
-    <meta property="description" content="KrakenD&#39;s configuration file overview - KrakenD API Gateway">
-    <meta itemprop="description" content="KrakenD&#39;s configuration file overview - KrakenD API Gateway">
+    <meta property="description" content="KrakenD&#39;s configuration file(s) - KrakenD API Gateway">
+    <meta itemprop="description" content="KrakenD&#39;s configuration file(s) - KrakenD API Gateway">
     
 
     
@@ -20,9 +20,10 @@
 
 
 
-<meta property="og:title" content="KrakenD&#39;s configuration file overview" />
-<meta property="og:description" content="When the KrakenD service is about to be started, the run command requires passing the flag -c which states the path to the configuration file. We refer through the documentation to this file as the krakend.json, but it can be stored or named according to your preferences.
-If your configuration file is too large or repetitive, it can be split into multiple files using a templating system, where ENV vars can also be injected as dynamic values." />
+<meta property="og:title" content="KrakenD&#39;s configuration file(s)" />
+<meta property="og:description" content="All the configuration that the KrakenD server needs to start and operate is a single configuration file. This file is referred to as krakend.json through all the documentation.
+The name krakend.json is just an alias, a convention, that we use everywhere. Your real configuration file can have any name, be stored anywhere, or split in many pieces.
+Provided this simple configuration mechanism, the versioning and automation are very convenient. Any change in the API Gateway is always under the version control system, and the code controls the state of the gateway." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/configuration/overview/" />
 
@@ -35,9 +36,10 @@ If your configuration file is too large or repetitive, it can be split into mult
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="KrakenD&#39;s configuration file overview"/>
-<meta name="twitter:description" content="When the KrakenD service is about to be started, the run command requires passing the flag -c which states the path to the configuration file. We refer through the documentation to this file as the krakend.json, but it can be stored or named according to your preferences.
-If your configuration file is too large or repetitive, it can be split into multiple files using a templating system, where ENV vars can also be injected as dynamic values."/>
+<meta name="twitter:title" content="KrakenD&#39;s configuration file(s)"/>
+<meta name="twitter:description" content="All the configuration that the KrakenD server needs to start and operate is a single configuration file. This file is referred to as krakend.json through all the documentation.
+The name krakend.json is just an alias, a convention, that we use everywhere. Your real configuration file can have any name, be stored anywhere, or split in many pieces.
+Provided this simple configuration mechanism, the versioning and automation are very convenient. Any change in the API Gateway is always under the version control system, and the code controls the state of the gateway."/>
 
 
 
@@ -183,11 +185,11 @@ If your configuration file is too large or repetitive, it can be split into mult
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Flexible configuration</a>
+                        <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
                     </li>
                     
                 </ul>
@@ -655,7 +657,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 </a>
 
 
-<h1 class="main-title">KrakenD&rsquo;s configuration file overview</h1>
+<h1 class="main-title">KrakenD&rsquo;s configuration file(s)</h1>
 
                 </section>
                 <section class="content">
@@ -670,7 +672,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
 <ul>
-<li><a href="#generating-the-configuration-file">Generating the configuration file</a></li>
+<li><a href="#generating-the-configuration-file-s">Generating the configuration file(s)</a></li>
 <li><a href="#supported-file-formats">Supported file formats</a></li>
 <li><a href="#validating-the-syntax-of-the-configuration-file">Validating the syntax of the configuration file</a></li>
 </ul>
@@ -681,13 +683,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 
         
 
-<p>When the KrakenD service is about to be started, the <code>run</code> command requires passing the flag <code>-c</code> which states the path to the configuration file. We refer through the documentation to this file as the <code>krakend.json</code>, but it can be stored or named according to your preferences.</p>
+<p>All the configuration that the KrakenD server needs to start and operate is a single configuration file. This file is referred to as <code>krakend.json</code> through all the documentation.</p>
 
-<p>If your configuration file is too large or repetitive, it can be split into multiple files using a templating system, where ENV vars can also be injected as dynamic values. See the <a href="/docs/configuration/flexible-config">flexible-config</a>) for more information on this feature.</p>
+<p>The name <code>krakend.json</code> is just <strong>an alias</strong>, a convention, that we use everywhere. Your real configuration file can have any name, be stored anywhere, or split in many pieces.</p>
 
-<p>Provided this simple configuration mechanism, the versioning and automation are very convenient. Any change in the API Gateway is always under the version control system, and the code controls the state of the gateway.</p>
+<p>Provided this simple configuration mechanism, the <strong>versioning and automation are very convenient</strong>. Any change in the API Gateway is always under the version control system, and the code controls the state of the gateway.</p>
 
-<h1 id="generating-the-configuration-file">Generating the configuration file</h1>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> Configuration using multiple files</h4>
+    If your configuration file is too large or repetitive, it can be split into several files using a templating system. See the <a href="/docs/configuration/flexible-config">flexible configuration documentation</a> for more information on this feature.
+ </div>
+
+<h1 id="generating-the-configuration-file-s">Generating the configuration file(s)</h1>
 
 <p>The configuration file can be written from scratch or reuse another existing file as a base, but the easiest way to write your first configuration file is by simply using the online configuration editor <a href="https://designer.krakend.io/">KrakenDesigner</a>.</p>
 

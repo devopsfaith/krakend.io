@@ -183,11 +183,11 @@ This caching technique applies to traffic between KrakenD and your microservices
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Flexible configuration</a>
+                        <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
                     </li>
                     
                 </ul>
@@ -656,8 +656,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 
 <p class="docs-metadata">
     
+        <a href="https://github.com/devopsfaith/krakend-httpcache"><i class="fab fa-github"></i> Source code</a> for this component
     
-        <a class="source-code-link" href="https://github.com/devopsfaith/krakend-httpcache"><i class="fab fa-github"></i> Source code</a> for this component
     
 </p>
 
@@ -697,17 +697,17 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 
 <pre><code>...
 &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/&quot;,
-      &quot;encoding&quot;: &quot;json&quot;,
-      &quot;extra_config&quot;: {
-        &quot;github.com/devopsfaith/krakend-httpcache&quot;: {}
-      },
-      &quot;sd&quot;: &quot;dns&quot;
-    }
-  ]
-...
+{
+  &quot;url_pattern&quot;: &quot;/&quot;,
+  &quot;host&quot;: [&quot;http://my-service.tld&quot;],
+  &quot;extra_config&quot;: {
+    &quot;github.com/devopsfaith/krakend-httpcache&quot;: {}
+  }
+}
+]
 </code></pre>
+
+<p>&hellip;</p>
 
     </section>
 </div>
