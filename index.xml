@@ -6,7 +6,7 @@
     <description>Recent content on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -743,6 +743,17 @@ The following configuration snippet sends data to your X-Ray:
 Enabling it only requires you to add the logger exporter in the opencensus module.
 The following configuration snippet enables the logger:
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;logger&amp;quot;: { &amp;quot;stats&amp;quot;: true, &amp;quot;spans&amp;quot;: true } } }   stats: Whether to log the statistics or not spans: Wether to log the spans or not  See also the additional settings of the Opencensus module that can be declared.</description>
+    </item>
+    
+    <item>
+      <title>Case Study: KrakenD for Real Estate applications - Open Room Inc</title>
+      <link>https://www.krakend.io/case-study/openroom/</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/case-study/openroom/</guid>
+      <description>Open Room Inc. uses KrakenD to expose easily and safely various Real Estate applications, to help agents in their daily work and end-users to find the home they are looking for.
+Open Room uses image processing, character recognition, document analysis, and machine learning.
+KrakenD API Gateway helped Open Room to reduce the latency of all queries by grouping backend queries by frontend use-case, and allowed Open Room to build their API simply and coherently.</description>
     </item>
     
     <item>
