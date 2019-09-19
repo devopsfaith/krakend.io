@@ -353,6 +353,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/case-study/adevinta/</loc>
+    <lastmod>2019-09-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
@@ -475,11 +480,6 @@
   <url>
     <loc>https://www.krakend.io/blog/krakend-0.7-release-notes/</loc>
     <lastmod>2018-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/case-study/adevinta/</loc>
-    <lastmod>2018-10-05T17:23:05+02:00</lastmod>
   </url>
   
   <url>

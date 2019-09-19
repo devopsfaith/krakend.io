@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Case Study: KrakenD for Real Estate applications - Open Room Inc</title>
+      <title>API Gateway for Real Estate applications</title>
       <link>https://www.krakend.io/case-study/openroom/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
@@ -23,7 +23,17 @@ KrakenD API Gateway helped Open Room to reduce the latency of all queries by gro
     </item>
     
     <item>
-      <title>Case Study: API Gateway for a parental control application</title>
+      <title>Benchmarking API Gateways to deliver the fastest image service</title>
+      <link>https://www.krakend.io/case-study/adevinta/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/case-study/adevinta/</guid>
+      <description>Adevinta handles a vast amount of traffic, as it operates marketplaces with an average of 1.5 billion visits every month. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
+Adevinta was investigating how to get more performance in their company-wide solution related to images streaming. The existing application was having performance issues, and it was needed to start looking for possible solutions to serve all the marketplaces better.</description>
+    </item>
+    
+    <item>
+      <title>API Gateway for the education sector: parental control</title>
       <link>https://www.krakend.io/case-study/pearson/</link>
       <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
       
@@ -34,7 +44,7 @@ KrakenD handles OAuth with HMAC security and implements minor custom middlewares
     </item>
     
     <item>
-      <title>Case Study: Backend for frontend design pattern in Dusdusan.com</title>
+      <title>E-commerce mobile app using the Backend for Frontend pattern</title>
       <link>https://www.krakend.io/case-study/dusdusan/</link>
       <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
       
@@ -45,7 +55,7 @@ As the business developed rapidly, Dusdusan.com needs to keep improving its plat
     </item>
     
     <item>
-      <title>Case Study: Second hand selling application using several gateways</title>
+      <title>Second hand selling application using several gateways</title>
       <link>https://www.krakend.io/case-study/letgo/</link>
       <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
       
@@ -56,17 +66,7 @@ Letgo uses different clusters of KrakenD API Gateway per client, allowing each t
     </item>
     
     <item>
-      <title>Case Study: Benchmarking API Gateways to deliver the fastest image service</title>
-      <link>https://www.krakend.io/case-study/adevinta/</link>
-      <pubDate>Fri, 05 Oct 2018 17:23:05 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/adevinta/</guid>
-      <description>Adevinta handles a vast amount of traffic, as it operates marketplaces with an average of 1.5 billion visits every month. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
-Adevinta was investigating how to get more performance in their company-wide solution related to images streaming. The existing application was having performance issues, and it was needed to start looking for possible solutions to serve all the marketplaces better.</description>
-    </item>
-    
-    <item>
-      <title>Case study: Consuming unified API data from multiple freight providers</title>
+      <title>API data consumption from multiple freight providers</title>
       <link>https://www.krakend.io/case-study/icontainers/</link>
       <pubDate>Fri, 05 Oct 2018 17:23:05 +0200</pubDate>
       
