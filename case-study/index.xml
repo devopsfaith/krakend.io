@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>API Gateway for insurance companies and fund management societies</title>
+      <link>https://www.krakend.io/case-study/i2s/</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/case-study/i2s/</guid>
+      <description>GFI is one of the most high-performing IT and digital service companies in the market. Their insurance branch i2S has software solutions installed in nearly 50 insurance companies (Life and Non-life) and several pension fund management societies.
+KrakenD is the entry point to consume all the micro-services in a controlled way and helps create an insurance-related product, covering many aspects, from legal to finance and actuarial.
+KrakenD unifies and aggregates the responses of all the underlying Java microservices, and injects custom middleware for insurance&amp;rsquo;s particular use case.</description>
+    </item>
+    
+    <item>
       <title>API Gateway for Real Estate applications</title>
       <link>https://www.krakend.io/case-study/openroom/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
