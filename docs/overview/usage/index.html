@@ -22,7 +22,7 @@
 
 <meta property="og:title" content="Using KrakenD" />
 <meta property="og:description" content="From an operations point of view KrakenD, is very simple to use. It only requires you to pass the path the configuration file (which defines behaviors and endpoints). Additionally, you can enable the debug with the -d flag, and that&rsquo;s pretty much everything.
-TL;DR  Generate a configuration file with your endpoints definition. The easier way to generate it is using the designer Check the syntax of your krakend.json is good" />
+TL;DR  Generate a configuration file with your endpoints definition. The easier way to generate it is using the designer Check the syntax of your krakend.json is good Syntax checking&nbsp;   krakend&nbsp;check&nbsp;--config&nbsp;krakend." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/overview/usage/" />
 
@@ -37,7 +37,7 @@ TL;DR  Generate a configuration file with your endpoints definition. The easier 
 
 <meta name="twitter:title" content="Using KrakenD"/>
 <meta name="twitter:description" content="From an operations point of view KrakenD, is very simple to use. It only requires you to pass the path the configuration file (which defines behaviors and endpoints). Additionally, you can enable the debug with the -d flag, and that&rsquo;s pretty much everything.
-TL;DR  Generate a configuration file with your endpoints definition. The easier way to generate it is using the designer Check the syntax of your krakend.json is good"/>
+TL;DR  Generate a configuration file with your endpoints definition. The easier way to generate it is using the designer Check the syntax of your krakend.json is good Syntax checking&nbsp;   krakend&nbsp;check&nbsp;--config&nbsp;krakend."/>
 
 
 
@@ -59,8 +59,8 @@ TL;DR  Generate a configuration file with your endpoints definition. The easier 
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -183,7 +183,7 @@ TL;DR  Generate a configuration file with your endpoints definition. The easier 
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -291,6 +291,10 @@ TL;DR  Generate a configuration file with your endpoints definition. The easier 
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -344,6 +348,14 @@ TL;DR  Generate a configuration file with your endpoints definition. The easier 
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -428,11 +440,15 @@ TL;DR  Generate a configuration file with your endpoints definition. The easier 
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -449,7 +465,7 @@ TL;DR  Generate a configuration file with your endpoints definition. The easier 
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -586,6 +602,10 @@ TL;DR  Generate a configuration file with your endpoints definition. The easier 
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -657,6 +677,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 
 <h1 class="main-title">Using KrakenD</h1>
 
+
+
                 </section>
                 <section class="content">
                     
@@ -676,14 +698,64 @@ enable the debug with the <code>-d</code> flag, and that&rsquo;s pretty much eve
 
 <ol>
 <li>Generate a configuration file with your endpoints definition. The easier way to generate it is using the <a href="http://designer.krakend.io/">designer</a></li>
-
-<li><p>Check the syntax of your <code>krakend.json</code> is good</p>
-
-<p><code>./krakend check --config krakend.json --debug</code></p></li>
-
-<li><p>Run KrakenD</p>
-
-<p><code>./krakend run -c krakend.json -d</code></p></li>
+<li>Check the syntax of your <code>krakend.json</code> is good
+<div class="terminal">
+	<div class="title">
+		Syntax checking&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>krakend&nbsp;check&nbsp;--config&nbsp;krakend.json&nbsp;--debug&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div></li>
+<li>Run KrakenD
+<div class="terminal">
+	<div class="title">
+		Start the server&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>krakend&nbsp;run&nbsp;-c&nbsp;krakend.json&nbsp;-d&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div></li>
 </ol>
 
 <p>The flag <code>-c</code> is the short version of <code>--config</code> and <code>-d</code> the short version of <code>--debug</code> which allows
@@ -694,52 +766,258 @@ you to find problems easily.</p>
 <p>To start KrakenD make sure to provide the path to the binary or add it to the <code>PATH</code>. You can see all
 KrakenD options by running the binary with no options:</p>
 
-<pre><code>./krakend
-
-`7MMF' `YMM'                  `7MM                         `7MM&quot;&quot;&quot;Yb.
-  MM   .M'                      MM                           MM    `Yb.
-  MM .d&quot;     `7Mb,od8 ,6&quot;Yb.    MM  ,MP'.gP&quot;Ya `7MMpMMMb.    MM     `Mb
-  MMMMM.       MM' &quot;'8)   MM    MM ;Y  ,M'   Yb  MM    MM    MM      MM
-  MM  VMA      MM     ,pm9MM    MM;Mm  8M&quot;&quot;&quot;&quot;&quot;&quot;  MM    MM    MM     ,MP
-  MM   `MM.    MM    8M   MM    MM `Mb.YM.    ,  MM    MM    MM    ,dP'
-.JMML.   MMb..JMML.  `Moo9^Yo..JMML. YA.`Mbmmd'.JMML  JMML..JMMmmmdP'
-_______________________________________________________________________
-
-Version: 0.9.0
-
-The API Gateway builder
-
-Usage:
-  krakend [command]
-
-Available Commands:
-  check       Validates that the configuration file is valid.
-  help        Help about any command
-  run         Run the KrakenD server.
-
-Flags:
-  -c, --config string   Path to the configuration filename
-  -d, --debug           Enable the debug
-  -h, --help            help for krakend
-
-Use &quot;krakend [command] --help&quot; for more information about a command.
-
-$ krakend
-krakend
-
-Usage:
-  krakend [command]
-
-Available Commands:
-  check       Validates that the configuration file is valid.
-  run         Runs the KrakenD server
-
-Flags:
-      --config string   Path to the configuration filename
-  -d, --debug           Enable the debug
-
-Use &quot;krakend [command] --help&quot; for more information about a command.
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		The krakend command&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>`7MMF'&nbsp;`YMM'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM"""Yb.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;.M'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;`Yb.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;MM&nbsp;.d"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7Mb,od8&nbsp;,6"Yb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;,MP'.gP"Ya&nbsp;`7MMpMMMb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Mb&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;MMMMM.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM'&nbsp;"'8)&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;;Y&nbsp;&nbsp;,M'&nbsp;&nbsp;&nbsp;Yb&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;VMA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,pm9MM&nbsp;&nbsp;&nbsp;&nbsp;MM;Mm&nbsp;&nbsp;8M""""""&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,MP&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;`MM.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;8M&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;`Mb.YM.&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;,dP'&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>.JMML.&nbsp;&nbsp;&nbsp;MMb..JMML.&nbsp;&nbsp;`Moo9^Yo..JMML.&nbsp;YA.`Mbmmd'.JMML&nbsp;&nbsp;JMML..JMMmmmdP'&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>_______________________________________________________________________&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Version:&nbsp;0.9.0&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>The&nbsp;API&nbsp;Gateway&nbsp;builder&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Usage:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;krakend&nbsp;[command]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Available&nbsp;Commands:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;check&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Validates&nbsp;that&nbsp;the&nbsp;configuration&nbsp;file&nbsp;is&nbsp;valid.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help&nbsp;about&nbsp;any&nbsp;command&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run&nbsp;the&nbsp;KrakenD&nbsp;server.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Flags:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;-c,&nbsp;--config&nbsp;string&nbsp;&nbsp;&nbsp;Path&nbsp;to&nbsp;the&nbsp;configuration&nbsp;filename&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;-d,&nbsp;--debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;the&nbsp;debug&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;-h,&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help&nbsp;for&nbsp;krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Use&nbsp;"krakend&nbsp;[command]&nbsp;--help"&nbsp;for&nbsp;more&nbsp;information&nbsp;about&nbsp;a&nbsp;command.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
 <p>As you can see there are 3 different supported commands:</p>
 

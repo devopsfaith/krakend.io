@@ -15,7 +15,7 @@
     
 
     
-    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
+    <meta itemprop="image" content="">
     
 
 
@@ -27,14 +27,14 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/sequential-proxy/" />
 
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/documentation/krakend-sequential-call.png" />
 <meta property="article:published_time" content="2018-11-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-11-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2019-09-26T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/documentation/krakend-sequential-call.png"/>
 
 <meta name="twitter:title" content="Sequential Proxy"/>
 <meta name="twitter:description" content="The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends concurrently at the same time. However, there are times when you need to delay a backend call until you can inject as input the result of a previous call.
@@ -61,8 +61,8 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -185,7 +185,7 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -293,6 +293,10 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -346,6 +350,14 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -430,11 +442,15 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -451,7 +467,7 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -588,6 +604,10 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -666,6 +686,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <h1 class="main-title">Sequential Proxy</h1>
 
+    <p class="main-image">
+        <img src="/images/documentation/krakend-sequential-call.png" />
+    </p>
+
+
+
                 </section>
                 <section class="content">
                     
@@ -673,20 +699,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <div class="row">
     <section class="col-md-12">
         
-        
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#chaining-the-requests">Chaining the requests</a>
-<ul>
-<li><a href="#example">Example</a></li>
-</ul></li>
-</ul>
-</nav>
-            </div>
-        </div>
         
 
         
@@ -716,9 +728,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <h2 id="example">Example</h2>
 
-<p>It&rsquo;s easier to understand with an example:</p>
+<p>It&rsquo;s easier to understand with the example of the graph:</p>
 
-<p>The <code>/hotels/{hotel_id}</code> is a backend call that returns data for the requested hotel, including a <code>destination_id</code> that is a relationship identifier. The output is like the following:</p>
+<p>KrakenD calls a backend <code>/hotels/{hotel_id}</code> that returns data for the requested hotel. When we request for the hotel ID <code>25</code> the backend service responds with the hotel data, including a <code>destination_id</code> that is a relationship identifier. The output for <code>GET /hotels/25</code> is like the following:</p>
 
 <pre><code>{
   &quot;hotel_id&quot;: 25,
@@ -727,19 +739,35 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 }
 </code></pre>
 
-<p>Another backend call, <code>/destinations/{destination_id}</code>, returns all the possible destinations for a given numeric ID:</p>
+<p>KrakenD waits for the response of the backend and looks for the field <code>destination_id</code>. And then injects the value in the next backend call to <code>/destinations/{destination_id}</code>. In this case the next call is <code>GET /destinations/1034</code>, and the response is:</p>
 
 <pre><code>{
   &quot;destination_id&quot;: 1034,
   &quot;destinations&quot;: [
-    { ... }, { ... }
-  ]
+      &quot;LAX&quot;,
+      &quot;SFO&quot;,
+      &quot;OAK&quot;
+    ]
 }
 </code></pre>
 
-<p>We want the API Gateway to expose <code>/hotels/{id}</code> and return in the same call both the hotel data and its relationship with the destinations. The code looks like this:</p>
+<p>Now KrakenD has both responses from the backends and can merge the data, returning the following object to the user:</p>
 
-<pre><code>&quot;endpoint&quot;: &quot;/hotels/{id}&quot;,
+<pre><code>{
+  &quot;hotel_id&quot;: 25,
+  &quot;name&quot;: &quot;Hotel California&quot;,
+  &quot;destination_id&quot;: 1034,
+  &quot;destinations&quot;: [
+      &quot;LAX&quot;,
+      &quot;SFO&quot;,
+      &quot;OAK&quot;
+    ]
+}
+</code></pre>
+
+<p>The configuration needed for this example is:</p>
+
+<pre><code>&quot;endpoint&quot;: &quot;/hotel-destinations/{id}&quot;,
 &quot;backend&quot;: [
     { &lt;--- Index 0
         &quot;host&quot;: [
@@ -749,7 +777,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     },
     { &lt;--- Index 1
         &quot;host&quot;: [
-            &quot;https://hotels.api&quot;
+            &quot;https://destinations.api&quot;
         ],
         &quot;url_pattern&quot;: &quot;/destinations/{resp0_destination_id}&quot;
     }
@@ -761,7 +789,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 }
 </code></pre>
 
-<p>The key here is the variable <code>{resp0_destination_id}</code> that references the <code>destination_id</code> to the response of the backend number <code>0</code> (first).</p>
+<p>The key here is the variable <code>{resp0_destination_id}</code> that refers to <code>destination_id</code> for the backend with index <code>0</code> (first in the list).</p>
 
     </section>
 </div>

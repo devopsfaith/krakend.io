@@ -23,7 +23,7 @@
 <meta property="og:title" content="Exporting metrics to Prometheus" />
 <meta property="og:description" content="Prometheus is an open-source systems monitoring and alerting toolkit.
 The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the prometheus exporter. Specify the port on which Prometheus is running, the namespace (optional), and Prometheus will start receiving the data.
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 &quot;namespace&quot;: &quot;krakend&quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to." />
+&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091, &quot;namespace&quot;: &quot;krakend&quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/prometheus/" />
 
@@ -39,7 +39,7 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
 <meta name="twitter:title" content="Exporting metrics to Prometheus"/>
 <meta name="twitter:description" content="Prometheus is an open-source systems monitoring and alerting toolkit.
 The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the prometheus exporter. Specify the port on which Prometheus is running, the namespace (optional), and Prometheus will start receiving the data.
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 &quot;namespace&quot;: &quot;krakend&quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to."/>
+&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091, &quot;namespace&quot;: &quot;krakend&quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to."/>
 
 
 
@@ -61,8 +61,8 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -185,7 +185,7 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -293,6 +293,10 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -346,6 +350,14 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -430,11 +442,15 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -451,7 +467,7 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="true"
                 aria-controls="menu-9" class="nav-link parent active">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse show" id="menu-9">
                 <ul class="nav flex-column menu-open">
@@ -588,6 +604,10 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -666,6 +686,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 
 <h1 class="main-title">Exporting metrics to Prometheus</h1>
 
+
+
                 </section>
                 <section class="content">
                     
@@ -682,7 +704,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
   &quot;exporters&quot;: {
     &quot;prometheus&quot;: {
-        &quot;port&quot;: 9091
+        &quot;port&quot;: 9091,
         &quot;namespace&quot;: &quot;krakend&quot;
     }
   }

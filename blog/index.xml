@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Jun 2019 18:26:10 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 21 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KrakenD 1.0 announcement</title>
+      <link>https://www.krakend.io/blog/announcing-krakend-1.0/</link>
+      <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/announcing-krakend-1.0/</guid>
+      <description>In November 2016, we released KrakenD framework to the public. Today, after three years serving traffic around the world, and a lot of lessons learned on the way, KrakenD 1.0 is out 🎉🎉🎉
+KrakenD 1.0 is our announcement to the world that our libraries are now fully established and with the solid commitment of keeping backward compatibility. In the last twelve months, we have seen 120,000+ clusters in the world and 1M+ docker pulls, but as we always did (since 0.</description>
+    </item>
     
     <item>
       <title>gRPC-gateway as a KrakenD plugin</title>

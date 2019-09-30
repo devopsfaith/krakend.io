@@ -58,8 +58,8 @@
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -182,7 +182,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -290,6 +290,10 @@
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -343,6 +347,14 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -427,11 +439,15 @@
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -448,7 +464,7 @@
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -585,6 +601,10 @@
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -656,6 +676,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/
 
 <h1 class="main-title">Commands - check</h1>
 
+
+
                 </section>
                 <section class="content">
                     
@@ -670,46 +692,321 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/
 <p>The <code>krakend check</code> command validates the passed configuration. Since KrakenD does not implement a strict parsing, typos
  in the config file could be shadowed. In order to validate your config completely, it is recommended to use the <code>--debug</code> flag.</p>
 
-<h1 id="usage">Usage</h1>
-
-<pre><code>$ krakend check -h
-
-`7MMF' `YMM'                  `7MM                         `7MM&quot;&quot;&quot;Yb.
- MM   .M'                      MM                           MM    `Yb.
- MM .d&quot;     `7Mb,od8 ,6&quot;Yb.    MM  ,MP'.gP&quot;Ya `7MMpMMMb.    MM     `Mb
- MMMMM.       MM' &quot;'8)   MM    MM ;Y  ,M'   Yb  MM    MM    MM      MM
- MM  VMA      MM     ,pm9MM    MM;Mm  8M&quot;&quot;&quot;&quot;&quot;&quot;  MM    MM    MM     ,MP
- MM   `MM.    MM    8M   MM    MM `Mb.YM.    ,  MM    MM    MM    ,dP'
- .JMML.   MMb..JMML.  `Moo9^Yo..JMML. YA.`Mbmmd'.JMML  JMML..JMMmmmdP'
- _______________________________________________________________________
-
- Version: 0.9.0
-
- Validates that the active configuration file has a valid syntax to run the service.
- Change the configuration file by using the --config flag
-
- Usage:
- krakend check [flags]
-
- Aliases:
- check, validate
-
- Examples:
- krakend check -d -c config.json
-
- Flags:
- -h, --help   help for check
-
- Global Flags:
- -c, --config string   Path to the configuration filename
- -d, --debug           Enable the debug
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		Usage of KrakenD check&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>./krakend&nbsp;check&nbsp;-h&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>`7MMF'&nbsp;`YMM'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM"""Yb.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	MM&nbsp;&nbsp;&nbsp;.M'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;`Yb.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	MM&nbsp;.d"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7Mb,od8&nbsp;,6"Yb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;,MP'.gP"Ya&nbsp;`7MMpMMMb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Mb&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	MMMMM.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM'&nbsp;"'8)&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;;Y&nbsp;&nbsp;,M'&nbsp;&nbsp;&nbsp;Yb&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	MM&nbsp;&nbsp;VMA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,pm9MM&nbsp;&nbsp;&nbsp;&nbsp;MM;Mm&nbsp;&nbsp;8M""""""&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,MP&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	MM&nbsp;&nbsp;&nbsp;`MM.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;8M&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;`Mb.YM.&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;,dP'&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>.JMML.&nbsp;&nbsp;&nbsp;MMb..JMML.&nbsp;&nbsp;`Moo9^Yo..JMML.&nbsp;YA.`Mbmmd'.JMML&nbsp;&nbsp;JMML..JMMmmmdP'&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>_______________________________________________________________________&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Version:&nbsp;1.0.0&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Validates&nbsp;that&nbsp;the&nbsp;active&nbsp;configuration&nbsp;file&nbsp;has&nbsp;a&nbsp;valid&nbsp;syntax&nbsp;to&nbsp;run&nbsp;the&nbsp;service.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Change&nbsp;the&nbsp;configuration&nbsp;file&nbsp;by&nbsp;using&nbsp;the&nbsp;--config&nbsp;flag&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Usage:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>krakend&nbsp;check&nbsp;[flags]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Aliases:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>check,&nbsp;validate&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Examples:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>krakend&nbsp;check&nbsp;-d&nbsp;-c&nbsp;config.json&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Flags:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>-h,&nbsp;--help&nbsp;&nbsp;&nbsp;help&nbsp;for&nbsp;check&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Global&nbsp;Flags:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>-c,&nbsp;--config&nbsp;string&nbsp;&nbsp;&nbsp;Path&nbsp;to&nbsp;the&nbsp;configuration&nbsp;filename&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>-d,&nbsp;--debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;the&nbsp;debug&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
 <p>Passing a path to the config file is required</p>
 
-<pre><code>$ krakend check
-Please, provide the path to your config file
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>krakend&nbsp;check&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Please,&nbsp;provide&nbsp;the&nbsp;path&nbsp;to&nbsp;your&nbsp;config&nbsp;file&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
 <h1 id="example">Example</h1>
 
@@ -907,57 +1204,417 @@ Please, provide the path to your config file
 
 <h2 id="debug-disabled">Debug disabled</h2>
 
-<pre><code>$ krakend check --config krakend.json
-Parsing configuration file: krakend.json
-Syntax OK!
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		Checking the configuration without the debug flag&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>krakend&nbsp;check&nbsp;--config&nbsp;krakend.json&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Parsing&nbsp;configuration&nbsp;file:&nbsp;krakend.json&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Syntax&nbsp;OK!&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
 <h2 id="debug-enabled">Debug enabled</h2>
 
-<pre><code>$ krakend check -c krakend.json -d
-Parsing configuration file: krakend.json
-Parsed configuration: CacheTTL: 1h0m0s, Port: 8080
-Hosts: []
-Extra (1):
-  github_com/devopsfaith/krakend-gologging: map[level:ERROR syslog:false stdout:true prefix:[KRAKEND]]
-Endpoints (3):
-    Endpoint: /supu, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (0):
-    Backends (1):
-        URL: /__debug/supu, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [], Group:
-            Hosts: [http://127.0.0.1:8080]
-            Extra (2):
-              github.com/devopsfaith/krakend-martian: map[fifo.Group:map[scope:[request response] aggregateErrors:true modifiers:[map[header.Modifier:map[value:ouh yeah! scope:[request response] name:X-Martian]] map[body.Modifier:map[scope:[request] contentType:application/json body:eyJtc2ciOiJ5b3Ugcm9jayEifQ==]] map[header.RegexFilter:map[header:X-Neptunian regex:no! modifier:map[header.Modifier:map[scope:[request] name:X-Martian-New value:some value]] scope:[request]]]]]]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[timeout:10 maxErrors:1 interval:60]
-    Endpoint: /github/:user, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (0):
-    Backends (1):
-        URL: /, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [authorizations_url code_search_url], Group:
-            Hosts: [https://api.github.com]
-            Extra (3):
-              github.com/devopsfaith/krakend-martian: map[fifo.Group:map[modifiers:[map[header.Modifier:map[name:X-Martian value:ouh yeah! scope:[request response]]] map[body.Modifier:map[scope:[request] contentType:application/json body:eyJtc2ciOiJ5b3Ugcm9jayEifQ==]] map[header.RegexFilter:map[scope:[request] header:X-Neptunian regex:no! modifier:map[header.Modifier:map[scope:[request] name:X-Martian-New value:some value]]]]] scope:[request response] aggregateErrors:true]]
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:2 capacity:2]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-    Endpoint: /show/:id, Method: GET, CacheTTL: 1h0m0s, Concurrent: 1, QueryString: []
-    Extra (1):
-      github.com/devopsfaith/krakend-ratelimit/juju/router: map[maxRate:50 clientMaxRate:5 strategy:ip]
-    Backends (2):
-        URL: /user/schedule/{{.Id}}.rss, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [items title], Group: schedule
-            Hosts: [http://showrss.info]
-            Extra (2):
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:1 capacity:1]
-        URL: /user/{{.Id}}.rss, Method: GET
-            Timeout: 3s, Target: , Mapping: map[], BL: [], WL: [items title], Group: available
-            Hosts: [http://showrss.info]
-            Extra (2):
-              github.com/devopsfaith/krakend-ratelimit/juju/proxy: map[maxRate:2 capacity:2]
-              github.com/devopsfaith/krakend-circuitbreaker/gobreaker: map[interval:60 timeout:10 maxErrors:1]
-Syntax OK!
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		Checking the configuration with the debug flag&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>krakend&nbsp;check&nbsp;-c&nbsp;krakend.json&nbsp;-d&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Parsing&nbsp;configuration&nbsp;file:&nbsp;krakend.json&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Parsed&nbsp;configuration:&nbsp;CacheTTL:&nbsp;1h0m0s,&nbsp;Port:&nbsp;8080&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Hosts:&nbsp;[]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Extra&nbsp;(1):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	github_com/devopsfaith/krakend-gologging:&nbsp;map[level:ERROR&nbsp;syslog:false&nbsp;stdout:true&nbsp;prefix:[KRAKEND]]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Endpoints&nbsp;(3):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Endpoint:&nbsp;/supu,&nbsp;Method:&nbsp;GET,&nbsp;CacheTTL:&nbsp;1h0m0s,&nbsp;Concurrent:&nbsp;1,&nbsp;QueryString:&nbsp;[]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Extra&nbsp;(0):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Backends&nbsp;(1):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>		URL:&nbsp;/__debug/supu,&nbsp;Method:&nbsp;GET&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Timeout:&nbsp;3s,&nbsp;Target:&nbsp;,&nbsp;Mapping:&nbsp;map[],&nbsp;BL:&nbsp;[],&nbsp;WL:&nbsp;[],&nbsp;Group:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Hosts:&nbsp;[http://127.0.0.1:8080]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Extra&nbsp;(2):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-martian:&nbsp;map[fifo.Group:map[scope:[request&nbsp;response]&nbsp;aggregateErrors:true&nbsp;modifiers:[map[header.Modifier:map[value:ouh&nbsp;yeah!&nbsp;scope:[request&nbsp;response]&nbsp;name:X-Martian]]&nbsp;map[body.Modifier:map[scope:[request]&nbsp;contentType:application/json&nbsp;body:eyJtc2ciOiJ5b3Ugcm9jayEifQ==]]&nbsp;map[header.RegexFilter:map[header:X-Neptunian&nbsp;regex:no!&nbsp;modifier:map[header.Modifier:map[scope:[request]&nbsp;name:X-Martian-New&nbsp;value:some&nbsp;value]]&nbsp;scope:[request]]]]]]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-circuitbreaker/gobreaker:&nbsp;map[timeout:10&nbsp;maxErrors:1&nbsp;interval:60]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Endpoint:&nbsp;/github/:user,&nbsp;Method:&nbsp;GET,&nbsp;CacheTTL:&nbsp;1h0m0s,&nbsp;Concurrent:&nbsp;1,&nbsp;QueryString:&nbsp;[]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Extra&nbsp;(0):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Backends&nbsp;(1):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>		URL:&nbsp;/,&nbsp;Method:&nbsp;GET&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Timeout:&nbsp;3s,&nbsp;Target:&nbsp;,&nbsp;Mapping:&nbsp;map[],&nbsp;BL:&nbsp;[],&nbsp;WL:&nbsp;[authorizations_url&nbsp;code_search_url],&nbsp;Group:&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Hosts:&nbsp;[https://api.github.com]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Extra&nbsp;(3):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-martian:&nbsp;map[fifo.Group:map[modifiers:[map[header.Modifier:map[name:X-Martian&nbsp;value:ouh&nbsp;yeah!&nbsp;scope:[request&nbsp;response]]]&nbsp;map[body.Modifier:map[scope:[request]&nbsp;contentType:application/json&nbsp;body:eyJtc2ciOiJ5b3Ugcm9jayEifQ==]]&nbsp;map[header.RegexFilter:map[scope:[request]&nbsp;header:X-Neptunian&nbsp;regex:no!&nbsp;modifier:map[header.Modifier:map[scope:[request]&nbsp;name:X-Martian-New&nbsp;value:some&nbsp;value]]]]]&nbsp;scope:[request&nbsp;response]&nbsp;aggregateErrors:true]]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-ratelimit/juju/proxy:&nbsp;map[maxRate:2&nbsp;capacity:2]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-circuitbreaker/gobreaker:&nbsp;map[interval:60&nbsp;timeout:10&nbsp;maxErrors:1]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Endpoint:&nbsp;/show/:id,&nbsp;Method:&nbsp;GET,&nbsp;CacheTTL:&nbsp;1h0m0s,&nbsp;Concurrent:&nbsp;1,&nbsp;QueryString:&nbsp;[]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Extra&nbsp;(1):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>		github.com/devopsfaith/krakend-ratelimit/juju/router:&nbsp;map[maxRate:50&nbsp;clientMaxRate:5&nbsp;strategy:ip]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>	Backends&nbsp;(2):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>		URL:&nbsp;/user/schedule/{{.Id}}.rss,&nbsp;Method:&nbsp;GET&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Timeout:&nbsp;3s,&nbsp;Target:&nbsp;,&nbsp;Mapping:&nbsp;map[],&nbsp;BL:&nbsp;[],&nbsp;WL:&nbsp;[items&nbsp;title],&nbsp;Group:&nbsp;schedule&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Hosts:&nbsp;[http://showrss.info]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Extra&nbsp;(2):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-circuitbreaker/gobreaker:&nbsp;map[interval:60&nbsp;timeout:10&nbsp;maxErrors:1]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-ratelimit/juju/proxy:&nbsp;map[maxRate:1&nbsp;capacity:1]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>		URL:&nbsp;/user/{{.Id}}.rss,&nbsp;Method:&nbsp;GET&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Timeout:&nbsp;3s,&nbsp;Target:&nbsp;,&nbsp;Mapping:&nbsp;map[],&nbsp;BL:&nbsp;[],&nbsp;WL:&nbsp;[items&nbsp;title],&nbsp;Group:&nbsp;available&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Hosts:&nbsp;[http://showrss.info]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>			Extra&nbsp;(2):&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-ratelimit/juju/proxy:&nbsp;map[maxRate:2&nbsp;capacity:2]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>				github.com/devopsfaith/krakend-circuitbreaker/gobreaker:&nbsp;map[interval:60&nbsp;timeout:10&nbsp;maxErrors:1]&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Syntax&nbsp;OK!&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
     </section>
 </div>

@@ -6,7 +6,7 @@
     <description>Recent content on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
       <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/overview/introduction/</guid>
-      <description>What is KrakenD? KrakenD is a high-performance open source API Gateway.
+      <description>KrakenD is a high-performance open source API Gateway.
 Its core functionality is to create an API that acts as an aggregator of many microservices into single endpoints, doing the heavy-lifting automatically for you: aggregate, transform, filter, decode, throttle, auth and more.
 KrakenD needs no programming as it offers a declarative way to create the endpoints. It is well structured and layered and open to extending its functionality using plug-and-play middleware developed by the community or in-house.</description>
     </item>
@@ -106,8 +106,18 @@ The following table summarizes different performance tests using Amazon EC2 virt
       
       <guid>https://www.krakend.io/docs/commands/run/</guid>
       <description>To start KrakenD, you need to invoke the run command with the path to the configuration file. You can also specify the port (defaults to 8080)
-krakend run -c krakend.json # or krakend run --config /path/to/krakend.json # or krakend run --config /path/to/krakend.json -p 8080  The krakend run command with no flags will remind you that you need the path to the configuration file:
-$ krakend run Please, provide the path to your config file  Show the help:</description>
+Command to start KrakenD&amp;nbsp;   krakend&amp;nbsp;run&amp;nbsp;-c&amp;nbsp;krakend.json&amp;nbsp; #&amp;nbsp;or&amp;nbsp; krakend&amp;nbsp;run&amp;nbsp;--config&amp;nbsp;/path/to/krakend.json&amp;nbsp; #&amp;nbsp;or&amp;nbsp; krakend&amp;nbsp;run&amp;nbsp;--config&amp;nbsp;/path/to/krakend.json&amp;nbsp;-p&amp;nbsp;8080&amp;nbsp;    The krakend run command with no flags will remind you that you need the path to the configuration file:
+Missing configuration file&amp;nbsp;   krakend&amp;nbsp;run&amp;nbsp; Please,&amp;nbsp;provide&amp;nbsp;the&amp;nbsp;path&amp;nbsp;to&amp;nbsp;your&amp;nbsp;config&amp;nbsp;file&amp;nbsp;    Show the help: Run command help&amp;nbsp;   krakend&amp;nbsp;run&amp;nbsp;-h&amp;nbsp; &amp;nbsp; `7MMF&#39;&amp;nbsp;`YMM&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&#34;</description>
+    </item>
+    
+    <item>
+      <title>Control of bot traffic</title>
+      <link>https://www.krakend.io/docs/throttling/botdetector/</link>
+      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/throttling/botdetector/</guid>
+      <description>The bot detector module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.
+Bots are detected by inspecting the User-Agent and comparing its value with a set of configuration rules provided by you. The bot detector module does not set any initial rules, meaning that is up to you to decide the best rules for your use case, and choose how restrictive or permissive you are with bots.</description>
     </item>
     
     <item>
@@ -118,6 +128,16 @@ $ krakend run Please, provide the path to your config file  Show the help:</desc
       <guid>https://www.krakend.io/docs/service-settings/tls/</guid>
       <description>There are two different strategies when using TLS over KrakenD:
  Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&amp;rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted.</description>
+    </item>
+    
+    <item>
+      <title>Writing custom plugins</title>
+      <link>https://www.krakend.io/docs/extending/writing-plugins/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/extending/writing-plugins/</guid>
+      <description>KrakenD&amp;rsquo;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&amp;rsquo;s always tempting to start writing code but the majority of scenarios do not require writing any. Existing modules, middleware, and plugins suffice almost everyone&amp;rsquo;s needs.
+It&amp;rsquo;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code.</description>
     </item>
     
     <item>
@@ -203,7 +223,7 @@ KrakenD nodes are stateless and they don&amp;rsquo;t store data or application s
       
       <guid>https://www.krakend.io/docs/commands/check/</guid>
       <description>The krakend check command validates the passed configuration. Since KrakenD does not implement a strict parsing, typos in the config file could be shadowed. In order to validate your config completely, it is recommended to use the --debug flag.
-Usage $ krakend check -h `7MMF&#39; `YMM&#39; `7MM `7MM&amp;quot;&amp;quot;&amp;quot;Yb. MM .M&#39; MM MM `Yb. MM .d&amp;quot; `7Mb,od8 ,6&amp;quot;Yb. MM ,MP&#39;.gP&amp;quot;Ya `7MMpMMMb. MM `Mb MMMMM. MM&#39; &amp;quot;&#39;8) MM MM ;Y ,M&#39; Yb MM MM MM MM MM VMA MM ,pm9MM MM;Mm 8M&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot; MM MM MM ,MP MM `MM.</description>
+Usage of KrakenD check&amp;nbsp;   ./krakend&amp;nbsp;check&amp;nbsp;-h&amp;nbsp; &amp;nbsp; `7MMF&#39;&amp;nbsp;`YMM&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&#34;&#34;&#34;Yb.&amp;nbsp; 	MM&amp;nbsp;&amp;nbsp;&amp;nbsp;.M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Yb.&amp;nbsp; 	MM&amp;nbsp;.d&#34;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7Mb,od8&amp;nbsp;,6&#34;Yb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;,MP&#39;.gP&#34;Ya&amp;nbsp;`7MMpMMMb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Mb&amp;nbsp; 	MMMMM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&#39;&amp;nbsp;&#34;&#39;8)&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;;Y&amp;nbsp;&amp;nbsp;,M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;Yb&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp; 	MM&amp;nbsp;&amp;nbsp;VMA&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,pm9MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM;Mm&amp;nbsp;&amp;nbsp;8M&#34;&#34;&#34;&#34;&#34;&#34;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,MP&amp;nbsp; 	MM&amp;nbsp;&amp;nbsp;&amp;nbsp;`MM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;8M&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;`Mb.YM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,dP&#39;&amp;nbsp; .JMML.&amp;nbsp;&amp;nbsp;&amp;nbsp;MMb..JMML.&amp;nbsp;&amp;nbsp;`Moo9^Yo..JMML.&amp;nbsp;YA.`Mbmmd&#39;.JMML&amp;nbsp;&amp;nbsp;JMML..JMMmmmdP&#39;&amp;nbsp; _______________________________________________________________________&amp;nbsp; &amp;nbsp; &amp;nbsp; Version:&amp;nbsp;1.0.0&amp;nbsp; &amp;nbsp; Validates&amp;nbsp;that&amp;nbsp;the&amp;nbsp;active&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;has&amp;nbsp;a&amp;nbsp;valid&amp;nbsp;syntax&amp;nbsp;to&amp;nbsp;run&amp;nbsp;the&amp;nbsp;service.&amp;nbsp; Change&amp;nbsp;the&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;by&amp;nbsp;using&amp;nbsp;the&amp;nbsp;--config&amp;nbsp;flag&amp;nbsp; &amp;nbsp; Usage:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;[flags]&amp;nbsp; &amp;nbsp; Aliases:&amp;nbsp; check,&amp;nbsp;validate&amp;nbsp; &amp;nbsp; Examples:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;-d&amp;nbsp;-c&amp;nbsp;config.</description>
     </item>
     
     <item>
@@ -304,7 +324,7 @@ http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your
       <guid>https://www.krakend.io/docs/authorization/jwt-validation/</guid>
       <description>The JWT validation shields any amount of desired endpoints, forcing requests to the API gateway to provide a token issued by a third party. Verification of the token takes place in every request, including the check of the signature and optionally the assurance that its issuer, roles, and audience are sufficient to access the endpoint.
 The JOSE component is responsible for validating the tokens.
-A typical request requiring JWT validation includes in the Authorization header a bearer with the token:</description>
+A typical request requiring JWT validation includes in the Authorization header a bearer with the token: &amp;nbsp;   GET&amp;nbsp;/resource&amp;nbsp;HTTP/1.</description>
     </item>
     
     <item>
@@ -387,7 +407,7 @@ The default policy for data forwarding works as follows:
       
       <guid>https://www.krakend.io/docs/overview/usage/</guid>
       <description>From an operations point of view KrakenD, is very simple to use. It only requires you to pass the path the configuration file (which defines behaviors and endpoints). Additionally, you can enable the debug with the -d flag, and that&amp;rsquo;s pretty much everything.
-TL;DR  Generate a configuration file with your endpoints definition. The easier way to generate it is using the designer Check the syntax of your krakend.json is good</description>
+TL;DR  Generate a configuration file with your endpoints definition. The easier way to generate it is using the designer Check the syntax of your krakend.json is good Syntax checking&amp;nbsp;   krakend&amp;nbsp;check&amp;nbsp;--config&amp;nbsp;krakend.</description>
     </item>
     
     <item>
@@ -594,7 +614,7 @@ The traffic shadowing or traffic mirroring functionality allows you to test new 
       <guid>https://www.krakend.io/docs/logging-metrics-tracing/prometheus/</guid>
       <description>Prometheus is an open-source systems monitoring and alerting toolkit.
 The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the prometheus exporter. Specify the port on which Prometheus is running, the namespace (optional), and Prometheus will start receiving the data.
-&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091 &amp;quot;namespace&amp;quot;: &amp;quot;krakend&amp;quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to.</description>
+&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091, &amp;quot;namespace&amp;quot;: &amp;quot;krakend&amp;quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to.</description>
     </item>
     
     <item>
@@ -653,6 +673,16 @@ Martian is mighty and gives you endless possibilities to control what is going i
     </item>
     
     <item>
+      <title>Transformations using Lua scripting</title>
+      <link>https://www.krakend.io/docs/endpoints/lua/</link>
+      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/lua/</guid>
+      <description>Scripting with Lua is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.
+If you are more familiar with Lua than Go, this module can help you solve exceptional cases that need solution using a little bit of scripting. The introduction of Lua scripts in your Gateway does not require to recompile KrakenD, but unlike Go, Lua scripts are interpreted in real-time.</description>
+    </item>
+    
+    <item>
       <title>Exporting traces to Zipkin</title>
       <link>https://www.krakend.io/docs/logging-metrics-tracing/zipkin/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
@@ -688,6 +718,15 @@ The following configuration snippet sends data to your Jaeger:
     </item>
     
     <item>
+      <title>Using publisher/subscribe as backends</title>
+      <link>https://www.krakend.io/docs/backends/pubsub/</link>
+      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/backends/pubsub/</guid>
+      <description>Since KrakenD 1.0 you can connect an endpoint to multiple publish/subscribe backends, helping you integrate with event driven architectures. For instance, a frontend client can push events to a queue using a REST interface. Or a client could consume a REST endpoint that is plugged to the last events pushed in a backend. You can even validate messages and formats, as all the KrakenD available middleware can be used. The list of supported backend technologies is:</description>
+    </item>
+    
+    <item>
       <title>KrakenD vs. KrakenD-CE</title>
       <link>https://www.krakend.io/docs/overview/krakend-vs-krakend-ce/</link>
       <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
@@ -708,6 +747,17 @@ Difference between KrakenD, KrakenD-CE, and Enterprise TL;DR;
 The Opencensus exporter allows you export data to AWS X-Ray. Enabling it only requires you to add the xray exporter in the opencensus module.
 The following configuration snippet sends data to your X-Ray:
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;xray&amp;quot;: { &amp;quot;version&amp;quot;: &amp;quot;latest&amp;quot;, &amp;quot;region&amp;quot;: &amp;quot;eu-west-1&amp;quot;, &amp;quot;use_env&amp;quot;: false, &amp;quot;access_key_id&amp;quot;: &amp;quot;myaccesskey&amp;quot;, &amp;quot;secret_access_key&amp;quot;: &amp;quot;mysecretkey&amp;quot; }, } }   version: The version of the AWS X-Ray service to use.</description>
+    </item>
+    
+    <item>
+      <title>Integration with AWS Lambda functions</title>
+      <link>https://www.krakend.io/docs/backends/lambda/</link>
+      <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/backends/lambda/</guid>
+      <description>The Lambda integration allows you to invoke Amazon Lambda functions on a KrakenD endpoint call. The content returned by the lambda function can be treated and manipulated as any other backend.
+The payload that is sent to the Lambda function comes from the request and depends on the method used by the endpoint:
+ Method GET: The payload contains all the parameters of the request. Non-GET methods: The payload is defined by the content of the body in the request.</description>
     </item>
     
     <item>
@@ -743,6 +793,28 @@ The following configuration snippet sends data to your X-Ray:
 Enabling it only requires you to add the logger exporter in the opencensus module.
 The following configuration snippet enables the logger:
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;logger&amp;quot;: { &amp;quot;stats&amp;quot;: true, &amp;quot;spans&amp;quot;: true } } }   stats: Whether to log the statistics or not spans: Wether to log the spans or not  See also the additional settings of the Opencensus module that can be declared.</description>
+    </item>
+    
+    <item>
+      <title>Salesforce integration with company&#39;s microservices</title>
+      <link>https://www.krakend.io/case-study/privalia/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/case-study/privalia/</guid>
+      <description>Veepee is the European flash sales leader with 72M of members, and Privalia its strategic brand for Spain, Italy, Brazil, and Mexico.
+Privalia, with +13M members, evolved their customer care solution from an in-house solution to a Salesforce integration with their internal systems.
+Before KrakenD, the main challenge of Veepee was to integrate Salesforce with multiple microservices and handle authorization, security, and aggregation in the middle layers.
+KrakenD solved this challenge with out of the box features, keeping Privalia&amp;rsquo;s logic separated, and decoupled from Salesforce.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD 1.0 announcement</title>
+      <link>https://www.krakend.io/blog/announcing-krakend-1.0/</link>
+      <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/announcing-krakend-1.0/</guid>
+      <description>In November 2016, we released KrakenD framework to the public. Today, after three years serving traffic around the world, and a lot of lessons learned on the way, KrakenD 1.0 is out 🎉🎉🎉
+KrakenD 1.0 is our announcement to the world that our libraries are now fully established and with the solid commitment of keeping backward compatibility. In the last twelve months, we have seen 120,000+ clusters in the world and 1M+ docker pulls, but as we always did (since 0.</description>
     </item>
     
     <item>
@@ -1119,7 +1191,7 @@ I am getting a 500 status when the backend returns anything but 200, 201 or redi
       <guid>https://www.krakend.io/docs/overview/verifying-packages/</guid>
       <description>How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
+$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
     </item>
     
     <item>

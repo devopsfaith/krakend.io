@@ -23,7 +23,7 @@
 <meta property="og:title" content="Verifying packages (PGP and SHA256)" />
 <meta property="og:description" content="How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server." />
+$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/overview/verifying-packages/" />
 
@@ -39,7 +39,7 @@ $ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Si
 <meta name="twitter:title" content="Verifying packages (PGP and SHA256)"/>
 <meta name="twitter:description" content="How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server."/>
+$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server."/>
 
 
 
@@ -61,8 +61,8 @@ $ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Si
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -185,7 +185,7 @@ $ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Si
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -293,6 +293,10 @@ $ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Si
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -346,6 +350,14 @@ $ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Si
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -430,11 +442,15 @@ $ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Si
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -451,7 +467,7 @@ $ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Si
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -588,6 +604,10 @@ $ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz gpg: Si
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -659,6 +679,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 
 <h1 class="main-title">Verifying packages (PGP and SHA256)</h1>
 
+
+
                 </section>
                 <section class="content">
                     
@@ -674,9 +696,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 
 <h1 id="pgp">PGP</h1>
 
-<p>We will check the detached signature <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz.asc">PGP</a> against our package <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz">KrakenD</a>.</p>
+<p>We will check the detached signature <a href="http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz.asc">PGP</a> against our package <a href="http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz">KrakenD</a>.</p>
 
-<pre><code>$ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz
+<pre><code>$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz
 gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2
 gpg: Can't check signature: public key not found
 </code></pre>
@@ -693,7 +715,7 @@ gpg:                             imported: 1    (RSA: 1)
 
 <p>Now you can verify the signature of the package:</p>
 
-<pre><code>$ gpg --verify krakend_0.9.0_amd64.tar.gz.asc krakend_0.9.0_amd64.tar.gz
+<pre><code>$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz
 gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2
 gpg: Good signature from &quot;Devops Faith Package Manager &lt;packages@devops.faith&gt;&quot;
 gpg: WARNING: This key is not certified with a trusted signature!
@@ -703,12 +725,12 @@ Primary key fingerprint: 5B27 0F2E 01E3 75FD 9D56  35E2 5DE6 FD69 8AD6 FDD2
 
 <h1 id="sha256">SHA256</h1>
 
-<p>To make sure the binary downloaded matches our SHA256 ensure the next 2 commands produce the same <a href="http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz.sha256">SHA</a> output.</p>
+<p>To make sure the binary downloaded matches our SHA256 ensure the next 2 commands produce the same <a href="http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz.sha256">SHA</a> output.</p>
 
 <pre><code># Your downloaded file
-$ shasum -a 256 -b krakend_0.9.0_amd64.tar.gz
+$ shasum -a 256 -b krakend_1.0.0_amd64.tar.gz
 # Our SHA256
-$ curl http://repo.krakend.io/bin/krakend_0.9.0_amd64.tar.gz.sha256
+$ curl http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz.sha256
 </code></pre>
 
     </section>

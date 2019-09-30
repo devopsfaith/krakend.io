@@ -58,8 +58,8 @@
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -182,7 +182,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -290,6 +290,10 @@
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -343,6 +347,14 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -427,11 +439,15 @@
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -448,7 +464,7 @@
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -585,6 +601,10 @@
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -656,6 +676,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 
 <h1 class="main-title">KrakenD vs. KrakenD-CE</h1>
 
+
+
                 </section>
                 <section class="content">
                     
@@ -687,7 +709,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 
 <p>KrakenD focuses on providing a core framework and functionality that a pure API gateway needs, and it keeps it clean and extensible, so that you can create your custom gateway without any trouble.</p>
 
-<p><a href="https://github.com/devopsfaith/krakend">See source code</a></p>
+<p><a class="btn btn-light" href="https://github.com/devopsfaith/krakend"><i class="fab fa-github"></i> Source code</a></p>
 
 <h2 id="krakend-community-edition">KrakenD Community Edition</h2>
 
@@ -698,11 +720,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 <p>The good news is that we always refer to both things as &ldquo;KrakenD&rdquo; :)</p>
 
 <p><a class="btn btn-secondary btn-circle" href="/download/"><i class="fa fa-download"></i> Download</a>
-<a class="btn" href="https://github.com/devopsfaith/krakend-ce"><i class="fab fa-github"></i> Source code</a></p>
+<a class="btn btn-light" href="https://github.com/devopsfaith/krakend-ce"><i class="fab fa-github"></i> Source code</a></p>
 
 <h2 id="krakend-enterprise">KrakenD Enterprise</h2>
 
-<p>There is no Enterprise software. KrakenD(-CE) is the same product for paying customers or the community. The KrakenD Enterprise subscription is a series of services in consultancy, development, and support around KrakenD.</p>
+<p>Customers of the <a href="/enterprise">KrakenD Enterprise</a> package enjoy the development, consultancy, support, and training services offered by the very same KrakenD creators. As per the software, KrakenD Enterprise users have SaaS functionalities that allow remote management, observability, and other features. There is also more tooling around KrakenD to increase productivity, and enable working with KrakenD in large groups of developers.</p>
+
+<p><strong>Our commitment to open-source is still in the center of our business</strong>, and this is why our Enterprise solution is built on top of the open-source version.  The Enterprise version uses the same OSS binary and extends it with a great variety of pluggable solutions. We want to make sure that both enterprise and community users have the excellent quality and reliability they are used to.</p>
 
 <p><a href="/enterprise/">Learn more about Enterprise</a></p>
 

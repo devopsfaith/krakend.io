@@ -61,8 +61,8 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -185,7 +185,7 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -293,6 +293,10 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -346,6 +350,14 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -430,11 +442,15 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -451,7 +467,7 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -588,6 +604,10 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -658,6 +678,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 
 <h1 class="main-title">The <code>/__debug</code> endpoint</h1>
+
+
 
                 </section>
                 <section class="content">
@@ -752,15 +774,67 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <p>Start the server:</p>
 
-<pre><code>krakend run -d -c krakend-test.json
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		Run KrakenD with debug mode&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>krakend&nbsp;run&nbsp;-d&nbsp;-c&nbsp;krakend-test.json&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
 <p>Now we can test that the endpoints behave as expected:</p>
 
 <p><strong>Default behavior:</strong></p>
 
-<pre><code>curl -i 'http://localhost:8080/default-behavior?a=1&amp;b=2&amp;c=3'
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		Ignore query strings by default&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>curl&nbsp;-i&nbsp;'http://localhost:8080/default-behavior?a=1&b=2&c=3'&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
 <p>In the KrakenD log, we can see that <code>a</code>, <code>b</code>, and <code>c</code> do not appear in the backend call, neither its headers. The <code>curl</code> command automatically sends the <code>Accept</code> and <code>User-Agent</code> headers but they are not in the backend call either, instead we see the KrakenD User-Agent as set by the gateway:</p>
 
@@ -768,15 +842,41 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">URL</span><span class="p">:</span> <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[]</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[{</span><span class="nx">param</span> <span class="o">/</span><span class="k">default</span><span class="p">}]</span>
-<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">0.9.0</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:[::</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:[</span><span class="nx">gzip</span><span class="p">]]</span>
+<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">1.0.0</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:[::</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:[</span><span class="nx">gzip</span><span class="p">]]</span>
 </span><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Body</span><span class="p">:</span>
 <span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">118.543</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
 </span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">565.971</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="k">default</span><span class="o">-</span><span class="nx">behavior</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>
 
 <p>Now let&rsquo;s repeat the same request but to the <code>/optional-params</code> endpoint:</p>
 
-<pre><code>curl -i 'http://localhost:8080/optional-params?a=1&amp;b=2&amp;c=3'
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		Recognized and forwarded query strings&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>curl&nbsp;-i&nbsp;'http://localhost:8080/optional-params?a=1&b=2&c=3'&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
 <p>In the KrakenD log we can see now that the <code>User-Agent</code> and <code>Accept</code> are present (as they are implicitly sent by curl), and that <code>a</code> and <code>b</code> are reaching the backend (but not <code>c</code>):</p>
 
@@ -791,8 +891,34 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <p>Finally, let&rsquo;s note what happens when you inject mandatory query strings in the backend definition, the <code>/mandatory/{variable}</code> endpoint:</p>
 
-<pre><code>curl -i 'http://localhost:8080/mandatory/foo?a=1&amp;b=2&amp;c=3'
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		Mandatory query strings&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>curl&nbsp;-i&nbsp;'http://localhost:8080/mandatory/foo?a=1&b=2&c=3'&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
 
 <p>As we can see, the backend includes the <code>?mandatory=foo</code> variable that was written manually in the backend definition:</p>
 

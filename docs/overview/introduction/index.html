@@ -21,11 +21,13 @@
 
 
 <meta property="og:title" content="Introduction to KrakenD" />
-<meta property="og:description" content="What is KrakenD? KrakenD is a high-performance open source API Gateway.
+<meta property="og:description" content="KrakenD is a high-performance open source API Gateway.
 Its core functionality is to create an API that acts as an aggregator of many microservices into single endpoints, doing the heavy-lifting automatically for you: aggregate, transform, filter, decode, throttle, auth and more.
 KrakenD needs no programming as it offers a declarative way to create the endpoints. It is well structured and layered and open to extending its functionality using plug-and-play middleware developed by the community or in-house." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/overview/introduction/" />
+
+<meta property="og:image" content="https://www.krakend.io/images/KrakendFlow.png" />
 
 <meta property="og:image" content="https://www.krakend.io/images/documentation/krakend-gateway.png" />
 <meta property="article:published_time" content="2016-10-25T00:00:00+00:00" />
@@ -34,10 +36,10 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.krakend.io/images/documentation/krakend-gateway.png"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/KrakendFlow.png"/>
 
 <meta name="twitter:title" content="Introduction to KrakenD"/>
-<meta name="twitter:description" content="What is KrakenD? KrakenD is a high-performance open source API Gateway.
+<meta name="twitter:description" content="KrakenD is a high-performance open source API Gateway.
 Its core functionality is to create an API that acts as an aggregator of many microservices into single endpoints, doing the heavy-lifting automatically for you: aggregate, transform, filter, decode, throttle, auth and more.
 KrakenD needs no programming as it offers a declarative way to create the endpoints. It is well structured and layered and open to extending its functionality using plug-and-play middleware developed by the community or in-house."/>
 
@@ -61,8 +63,8 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -185,7 +187,7 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -293,6 +295,10 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -346,6 +352,14 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -430,11 +444,15 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -451,7 +469,7 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -588,6 +606,10 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -659,6 +681,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 
 <h1 class="main-title">Introduction to KrakenD</h1>
 
+    <p class="main-image">
+        <img src="/images/KrakendFlow.png" />
+    </p>
+
+
+
                 </section>
                 <section class="content">
                     
@@ -667,25 +695,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
     <section class="col-md-12">
         
         
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#what-is-krakend">What is KrakenD?</a></li>
-<li><a href="#why-an-api-gateway">Why an API Gateway?</a>
-<ul>
-<li><a href="#a-practical-example">A practical example</a></li>
-</ul></li>
-</ul>
-</nav>
-            </div>
-        </div>
-        
 
         
-
-<h1 id="what-is-krakend">What is KrakenD?</h1>
 
 <p>KrakenD is a high-performance open source API Gateway.</p>
 

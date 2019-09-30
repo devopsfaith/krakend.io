@@ -6,10 +6,28 @@
     <description>Recent content in Categories on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Jun 2019 18:26:10 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 21 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Announcements</title>
+      <link>https://www.krakend.io/categories/announcements/</link>
+      <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/categories/announcements/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KrakenD</title>
+      <link>https://www.krakend.io/categories/krakend/</link>
+      <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/categories/krakend/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>API Gateway</title>
@@ -21,29 +39,11 @@
     </item>
     
     <item>
-      <title>KrakenD</title>
-      <link>https://www.krakend.io/categories/krakend/</link>
-      <pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate>
-      
-      <guid>https://www.krakend.io/categories/krakend/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Configuration</title>
       <link>https://www.krakend.io/categories/configuration/</link>
       <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/categories/configuration/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Announcements</title>
-      <link>https://www.krakend.io/categories/announcements/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/categories/announcements/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,22 @@
     <description>Recent content in Case-studies on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/case-study/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Salesforce integration with company&#39;s microservices</title>
+      <link>https://www.krakend.io/case-study/privalia/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/case-study/privalia/</guid>
+      <description>Veepee is the European flash sales leader with 72M of members, and Privalia its strategic brand for Spain, Italy, Brazil, and Mexico.
+Privalia, with +13M members, evolved their customer care solution from an in-house solution to a Salesforce integration with their internal systems.
+Before KrakenD, the main challenge of Veepee was to integrate Salesforce with multiple microservices and handle authorization, security, and aggregation in the middle layers.
+KrakenD solved this challenge with out of the box features, keeping Privalia&amp;rsquo;s logic separated, and decoupled from Salesforce.</description>
+    </item>
     
     <item>
       <title>API Gateway for insurance companies and fund management societies</title>

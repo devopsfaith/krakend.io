@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2" />
+
+    <title>Blogs - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Blogs - KrakenD API Gateway">
+
+    
+    <meta property="description" content="Blogs - KrakenD API Gateway">
+    <meta itemprop="description" content="Blogs - KrakenD API Gateway">
+    
+
+    
+    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
+    
+
+
+
+<meta property="og:title" content="Blogs" />
+<meta property="og:description" content="Enterprise open source API Gateway built with Go lang" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.krakend.io/blog/" />
+
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+
+<meta property="og:updated_time" content="2019-09-21T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+
+<meta name="twitter:title" content="Blogs"/>
+<meta name="twitter:description" content="Enterprise open source API Gateway built with Go lang"/>
+
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="/dist/styles.css">
+
+
+<link rel="icon" type="image/png" href="/favicon/favicon-196x196.png" sizes="196x196" />
+<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
+</head>
+<body class="krakend">
+	<div class="wrapper">
+
+		
+<div class="announcement">
+	<p>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
+	</p>
+</div>
+
+		<div class="top-bar">
+  <div class="container my-2">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="/" title="Home">
+        <img class="mr-4" src="/images/logo.png" alt="" width="180">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="mega-dropdown navbar-nav mr-auto">
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="/features/">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/enterprise/">Enterprise</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/support/">Support</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/docs/overview/introduction/">Docs</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link" href="/partners/">Partners</a></li>
+              <li class="nav-item"><a class="nav-link" href="/team/">About us</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://www.krakend.io/case-study/">Case studies</a></li>
+              <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="github d-none d-lg-block">
+        <a class="nav-link github-button" href="https://github.com/devopsfaith/krakend" data-show-count="true"
+          aria-label="Star devopsfaith/krakend on GitHub">Star</a>
+      </div>
+      <div class="download d-none d-lg-block">
+          <a class="btn btn-sm" href="/download/">Downloads</a>
+      </div>
+      <div class="designer d-none d-lg-block">
+        <a class="btn btn-sm" href="https://designer.krakend.io">Designer</a>
+      </div>
+      
+
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+		
+<div class="blog-wrapper container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-3 navigation_container affix-top">
+            <div class="sidebar mb-3">
+	<h6 class="header">Blog categories</h6>
+	<ul class="nav menu">
+		
+		<li class="nav-item">
+			<a class="nav-link active" href="/blog/">All categories</a></li>
+		</li>
+		
+		
+		
+		<li class="nav-item">
+			<a href="/categories/announcements" class="nav-link">announcements</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/api-gateway" class="nav-link">api-gateway</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/api2html" class="nav-link">api2html</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/configuration" class="nav-link">configuration</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/devops" class="nav-link">devops</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/docker" class="nav-link">docker</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/enterprise" class="nav-link">enterprise</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/krakend" class="nav-link">krakend</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/kubernetes" class="nav-link">kubernetes</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a href="/categories/reflex" class="nav-link">reflex</a>
+		</li>
+		
+	</ul>
+</div>
+
+<div class="sidebar mb-3">
+	<h6 class="header">Tags</h6>
+	<ul class="nav menu">
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/open-source">open-source</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/how-to">how-to</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/release-notes">release-notes</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/golang">golang</a>
+		</li>
+		
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/tags/docker">docker</a>
+		</li>
+		
+	</ul>
+</div>
+
+<div class="sidebar mb-3">
+	<h6 class="header">Recent entries</h6>
+	<ul class="nav menu">
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/announcing-krakend-1.0/">KrakenD 1.0 announcement</a></li>
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-grpc-gateway-plugin/">gRPC-gateway as a KrakenD plugin</a></li>
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/housekeeping-configuration-file/">Doing housekeeping on your KrakenD configuration file</a></li>
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.9-release-notes/">KrakenD 0.9 released</a></li>
+		
+		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-0.8-release-notes/">KrakenD 0.8 released</a></li>
+		
+	</ul>
+</div>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9">
+            <section class="blog px-3">
+                
+                <div class="list-item">
+	
+	<article class="post-entry">
+		<header class="post-header">
+			<h1 class="post-title">
+				<a href="https://www.krakend.io/blog/open-sourcing-enterprise-features/" class="post-link">Open sourcing all enterprise components</a>
+			</h1>
+			<div class="post-metadata clearfix">
+    <p class="author float-left">
+        by alombarte &middot; Oct 22, 2017
+    </p>
+    <div class="tags">
+        <ul>
+            
+            
+            <a href="/tags/open-source">
+                open source
+            </a>
+            
+            <li><em class="reading-time">5 min read</em></li>
+        </ul>
+    </div>
+</div>
+		</header>
+		<p class="post-summary">
+			<a class="summary" href="https://www.krakend.io/blog/open-sourcing-enterprise-features/" title="Continue reading Open sourcing all enterprise components">
+				What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don’t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
+			</a>
+			<a class="read-more" href="https://www.krakend.io/blog/open-sourcing-enterprise-features/">Continue reading →</a>
+		</p>
+	</article>
+</div>
+                
+                
+                <div class="paginator">
+                    
+                    <a class="btn btn-sm btn-secondary" href="/blog/page/2/"><i class="fa fa-arrow-circle-left"></i> Previous page</a>
+                    
+                    
+                </div>
+                
+            </section>
+        </div>
+    </div>
+</div>
+
+	</div>
+	<div class="row action-bar">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-12 col-md-8">
+				<h6><i class="fa fa-envelope mr-2"></i>Stay up to date with KrakenD releases and important updates</h6>
+			</div>
+			<div class="col-12 col-md-4">
+				<form action="https://krakend.us19.list-manage.com/subscribe/post?u=5cae4bbe9877b1adfe8fe808d&amp;id=e5385eb57b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					
+					<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_5cae4bbe9877b1adfe8fe808d_e5385eb57b" tabindex="-1" value=""></div>
+					<div class="input-group">
+						<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="email address" required>
+						<div class="input-group-append">
+							<input type="submit" class="btn btn-secondary" value="Subscribe">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+	<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-white.png" class="pb-2" width="80%" >
+                <p class="lead">The <strong>Ultra-High performance</strong> Open Source API Gateway with middlewares</p>
+                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fab fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="mailto:hello@krakend.io" target="_blank" title="Send us an email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
+                    </a>
+                </div>
+
+            </div>
+
+                <div class="col-md-2 offset-md-1">
+                    <h6>by Devops Faith</h6>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://www.krakend.io/blog/">Blog</a></li>
+                        <li><a href="https://medium.com/devops-faith">Medium</a></li>
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                    <h6>More products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="http://api2html.com">API2HTML</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>KrakenD</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.krakend.io/features/">Features</a></li>
+                        <li><a href="https://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="https://www.krakend.io/download/">Download</a></li>
+                        <li><a href="https://www.krakend.io/blog/">KrakenD Blog</a></li>
+                        <li><a href="https://www.krakend.io/team/">Team</a></li>
+                        <li><a href="https://www.krakend.io/case-study/">Case studies</a></li>
+
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
+                        <li><a href="https://www.krakend.io/support/">Support</a></li>
+                        
+
+                    </ul>
+                </div>
+
+        </div>
+        <div class="row copyright">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2017-2019 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="col-md-7 hidden-xs">
+                <span class="float-right">
+                    Made with <i class="fa fa-heart heart"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
+                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
+                </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="pea_cook_wrapper pea_cook_bottom" style="display:none">
+    <p>We use cookies to understand how you use our site and to improve your overall experience. By continuing to use our site, you accept our Privacy Policy. <a data-toggle="modal" data-target="#cookiesConsent" style="color:#0a0a0a;"
+            href="#">More information</a>
+        <button class="btn btn-primary btn-sm ml-2 ACCEPT_COOKIES" href="#">Accept</button>
+    </p>
+</div>
+
+
+<div class="modal fade" id="cookiesConsent" tabindex="-1" role="dialog" aria-labelledby="cookiesConsentLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cookiesConsentLabel">Cookies</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>In order to give you the best experience, we use cookies and similar technologies for performance, analytics and marketing. Want to know more?</p>
+                <p><a href="/privacy-policy/">Privacy Policy</a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary ACCEPT_COOKIES" data-dismiss="modal">
+                    Accept cookies</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-87994359-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+	<script src="/dist/krakend-io.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+</body>
+</html>

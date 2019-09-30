@@ -23,7 +23,7 @@
 <meta property="og:title" content="JWT Validation" />
 <meta property="og:description" content="The JWT validation shields any amount of desired endpoints, forcing requests to the API gateway to provide a token issued by a third party. Verification of the token takes place in every request, including the check of the signature and optionally the assurance that its issuer, roles, and audience are sufficient to access the endpoint.
 The JOSE component is responsible for validating the tokens.
-A typical request requiring JWT validation includes in the Authorization header a bearer with the token:" />
+A typical request requiring JWT validation includes in the Authorization header a bearer with the token: &nbsp;   GET&nbsp;/resource&nbsp;HTTP/1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/authorization/jwt-validation/" />
 
@@ -39,7 +39,7 @@ A typical request requiring JWT validation includes in the Authorization header 
 <meta name="twitter:title" content="JWT Validation"/>
 <meta name="twitter:description" content="The JWT validation shields any amount of desired endpoints, forcing requests to the API gateway to provide a token issued by a third party. Verification of the token takes place in every request, including the check of the signature and optionally the assurance that its issuer, roles, and audience are sufficient to access the endpoint.
 The JOSE component is responsible for validating the tokens.
-A typical request requiring JWT validation includes in the Authorization header a bearer with the token:"/>
+A typical request requiring JWT validation includes in the Authorization header a bearer with the token: &nbsp;   GET&nbsp;/resource&nbsp;HTTP/1."/>
 
 
 
@@ -61,8 +61,8 @@ A typical request requiring JWT validation includes in the Authorization header 
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -185,7 +185,7 @@ A typical request requiring JWT validation includes in the Authorization header 
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -293,6 +293,10 @@ A typical request requiring JWT validation includes in the Authorization header 
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -346,6 +350,14 @@ A typical request requiring JWT validation includes in the Authorization header 
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -430,11 +442,15 @@ A typical request requiring JWT validation includes in the Authorization header 
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -451,7 +467,7 @@ A typical request requiring JWT validation includes in the Authorization header 
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -588,6 +604,10 @@ A typical request requiring JWT validation includes in the Authorization header 
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -666,6 +686,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 
 <h1 class="main-title">JWT Validation</h1>
 
+
+
                 </section>
                 <section class="content">
                     
@@ -701,14 +723,52 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 
 <p>The <strong>JOSE component</strong> is responsible for validating the tokens.</p>
 
-<p>A typical request requiring JWT validation includes in the <code>Authorization</code> header a bearer with the token:</p>
-
-<pre><code>GET /resource HTTP/1.1
-Host: krakend.example.com
-Authorization: Bearer eyJhbGciOiJIUzI1NiIXVCJ9...TJVA95OrM7E20RMHrHDcEfxjoYZgeFONFh7HgQeyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IktyYWtlbkQiLCJpYXQiOjE1MTYyMzkwMjJ9.NVFYj2MhyvJjMESOg4ktIOfzak2ekD7IrCa9-UiO4QA
-</code></pre>
-
-<p><strong>And cookies?</strong> Yes, you can also send the validation token in a <strong>cookie</strong>.</p>
+<p>A typical request requiring JWT validation includes in the <code>Authorization</code> header a bearer with the token:
+<div class="terminal">
+	<div class="title">
+		&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>GET&nbsp;/resource&nbsp;HTTP/1.1&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Host:&nbsp;krakend.example.com&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>Authorization:&nbsp;Bearer&nbsp;eyJhbGciOiJIUzI1NiIXVCJ9...TJVA95OrM7E20RMHrHDcEfxjoYZgeFONFh7HgQeyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IktyYWtlbkQiLCJpYXQiOjE1MTYyMzkwMjJ9.NVFYj2MhyvJjMESOg4ktIOfzak2ekD7IrCa9-UiO4QA&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
+<strong>And cookies?</strong> Yes, you can also send the validation token in a <strong>cookie</strong>.</p>
 
 <p>We consider a JWT token to be valid when is well formed, signed by a recognized issuer, unexpired, with some claims and is not marked as <a href="/docs/authorization/revoking-tokens">revoked</a>.</p>
 

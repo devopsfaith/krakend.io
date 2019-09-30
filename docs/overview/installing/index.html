@@ -63,8 +63,8 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -187,7 +187,7 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -295,6 +295,10 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -348,6 +352,14 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -432,11 +444,15 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -453,7 +469,7 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -590,6 +606,10 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -661,6 +681,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 
 <h1 class="main-title">Installing KrakenD</h1>
 
+
+
                 </section>
                 <section class="content">
                     
@@ -704,20 +726,71 @@ and
 
 <h1 id="docker">Docker</h1>
 
-<p>If you are already familiar with Docker, the easiest way to get started is by pulling the <a href="https://hub.docker.com/r/devopsfaith/krakend/">KrakenD image</a> from the Docker Hub:</p>
-
-<pre><code>docker pull devopsfaith/krakend
-docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /etc/krakend/krakend.json
-</code></pre>
-
-<p>Make sure you have a <code>krakend.json</code> in the current directory with your endpoint definition. You can <a href="http://designer.krakend.io/">generate it here</a></p>
+<p>If you are already familiar with Docker, the easiest way to get started is by pulling and running the <a href="https://hub.docker.com/r/devopsfaith/krakend/">KrakenD image</a> from the Docker Hub.
+<div class="terminal">
+	<div class="title">
+		Running KrakenD using the Docker container&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>docker&nbsp;run&nbsp;-p&nbsp;8080:8080&nbsp;-v&nbsp;$PWD:/etc/krakend/&nbsp;devopsfaith/krakend&nbsp;run&nbsp;--config&nbsp;/etc/krakend/krakend.json&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
+Make sure you have a <code>krakend.json</code> in the current directory with your endpoint definition. You can <a href="http://designer.krakend.io/">generate it here</a></p>
 
 <h1 id="mac-os-x">Mac OS X</h1>
 
-<p>The <a href="https://brew.sh/">Homebrew</a> formula will download the source code, build the formula and link the binary for you.</p>
+<p>The <a href="https://brew.sh/">Homebrew</a> formula will download the source code, build the formula and link the binary for you. The installation might take a while.</p>
 
-<pre><code>brew install krakend
-</code></pre>
+<div class="terminal">
+	<div class="title">
+		Install on Mac via Brew&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>brew&nbsp;install&nbsp;krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
+
+<p>After the installation completes go to <a href="/docs/overview/usage/">Using KrakenD</a></p>
 
 <h1 id="linux">Linux</h1>
 
@@ -731,21 +804,99 @@ docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /
 <li>Start the KrakenD service</li>
 </ol>
 
-<p>Paste this in the terminal:</p>
-
-<pre><code>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
-yum install -y krakend
-systemctl start krakend
-</code></pre>
+<p>Paste this in the terminal:
+<div class="terminal">
+	<div class="title">
+		Yum based&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>rpm&nbsp;-Uvh&nbsp;http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>yum&nbsp;install&nbsp;-y&nbsp;krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>systemctl&nbsp;start&nbsp;krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div></p>
 
 <h2 id="fedora">Fedora</h2>
 
-<p>Paste this in the terminal:</p>
-
-<pre><code>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
-dnf install -y krakend
-systemctl start krakend
-</code></pre>
+<p>Paste this in the terminal:
+<div class="terminal">
+	<div class="title">
+		DNF based&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>rpm&nbsp;-Uvh&nbsp;http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>dnf&nbsp;install&nbsp;-y&nbsp;krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>systemctl&nbsp;start&nbsp;krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div></p>
 
 <p>The current KrakenD version will run at least in Centos 7 and Fedora 24</p>
 
@@ -760,13 +911,59 @@ systemctl start krakend
 <li>Install the KrakenD service</li>
 </ol>
 
-<p>Bottom line:</p>
-
-<pre><code>apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
-echo &quot;deb http://repo.krakend.io/apt stable main&quot; | tee /etc/apt/sources.list.d/krakend.list
-apt-get update
-apt-get install -y krakend
-</code></pre>
+<p>Bottom line:
+<div class="terminal">
+	<div class="title">
+		DEB based&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>apt-key&nbsp;adv&nbsp;--keyserver&nbsp;keyserver.ubuntu.com&nbsp;--recv&nbsp;5DE6FD698AD6FDD2&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>echo&nbsp;"deb&nbsp;http://repo.krakend.io/apt&nbsp;stable&nbsp;main"&nbsp;|&nbsp;tee&nbsp;/etc/apt/sources.list.d/krakend.list&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>apt-get&nbsp;update&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>apt-get&nbsp;install&nbsp;-y&nbsp;krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div></p>
 
 <p>The current KrakenD version will run at least in Debian 8, Debian 9 and Ubuntu 16.x</p>
 

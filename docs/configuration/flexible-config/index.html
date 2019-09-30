@@ -15,7 +15,7 @@
     
 
     
-    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
+    <meta itemprop="image" content="">
     
 
 
@@ -26,14 +26,14 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/configuration/flexible-config/" />
 
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-flexible-config.png" />
 <meta property="article:published_time" content="2018-09-21T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-09-29T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/krakend-flexible-config.png"/>
 
 <meta name="twitter:title" content="Flexible configuration"/>
 <meta name="twitter:description" content="The Flexible Configuration component is included in the KrakenD API Gateway and allows you to split the configuration file into several pieces for a more natural organization.
@@ -59,8 +59,8 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -183,7 +183,7 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children active">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children active">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -291,6 +291,10 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -344,6 +348,14 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -428,11 +440,15 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -449,7 +465,7 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -586,6 +602,10 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -666,6 +686,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 
 <h1 class="main-title">Flexible configuration</h1>
 
+    <p class="main-image">
+        <img src="/images/krakend-flexible-config.png" />
+    </p>
+
+
+
                 </section>
                 <section class="content">
                     
@@ -685,8 +711,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 <ul>
 <li><a href="#template-syntax">Template syntax</a>
 <ul>
-<li><a href="#include-an-external-file">Include an external file</a></li>
 <li><a href="#insert-values-from-settings-files">Insert values from settings files</a></li>
+<li><a href="#insert-structures-from-settings-files">Insert structures from settings files</a></li>
+<li><a href="#include-an-external-file">Include an external file</a></li>
+<li><a href="#include-and-process-a-sub-template">Include and process a sub-template</a></li>
 </ul></li>
 <li><a href="#testing-the-configuration">Testing the configuration</a></li>
 </ul></li>
@@ -720,24 +748,27 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 
 <h1 id="usage">Usage</h1>
 
-<p>The activation of the package works via environment variables, as follows:</p>
+<p>The activation of the package works via environment variables when running krakend, as follows:</p>
 
 <ul>
-<li><code>FC_ENABLE=1</code> to let KrakenD know that you are using Flexible Configuration. You can use <code>1</code> or any other value, just pass the variable ( <code>0</code> won&rsquo;t disable it!). The file passed with the <code>-c</code> flag is the base template.</li>
+<li><code>FC_ENABLE=1</code> to let KrakenD know that you are using Flexible Configuration. You can use <code>1</code> or any other value (but  <code>0</code> won&rsquo;t disable it!). The file passed with the <code>-c</code> flag is the base template.</li>
 <li><code>FC_SETTINGS=dirname</code>: The path to the directory with all the settings files.</li>
-<li><code>FC_PARTIALS=dirname</code>: The path to the directory with the partial templates included in the configuration file.</li>
-<li><code>FC_OUT</code>: For debugging purposes, pass a filename where the final JSON result of parsing the template is saved.</li>
+<li><code>FC_PARTIALS=dirname</code>: The path to the directory with the partial files included in the configuration file. Partial files DON&rsquo;T EVALUATE, they are only inserted in the placeholder.</li>
+<li><code>FC_TEMPLATES=dirname</code>: The path to the directory with the sub-templates included in the configuration file. These are evaluated using the Go templating system.</li>
+<li><code>FC_OUT</code>: For debugging purposes, saves the resulting configuration of processing the flexible configuration in the given filename. Otherwise, the final file is not visible.</li>
 </ul>
 
 <p>For instance, let&rsquo;s assume you decided to organize your configuration as follows:</p>
 
 <pre><code>.
 └── config
-   ├── krakend.json
-   ├── partials
-   │   └── service_extra_config.tmpl
-   └── settings
-       └── db.json
+   ├── krakend.json
+   ├── partials
+   │   └── static_file.tmpl
+   ├── templates
+   │   └── environment.tmpl
+   └── settings
+       └── db.json
 </code></pre>
 
 <p>Then you can run KrakenD from the terminal with this command:</p>
@@ -745,6 +776,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 <pre><code>$ FC_ENABLE=1 \
 FC_SETTINGS=&quot;$PWD/config/settings&quot; \
 FC_PARTIALS=&quot;$PWD/config/partials&quot; \
+FC_TEMPLATES=&quot;$PWD/config/templates&quot; \
 krakend run -c &quot;$PWD/config/krakend.json&quot;
 </code></pre>
 
@@ -752,45 +784,79 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 
 <p>The configuration file passed with the <code>-c</code> flag is treated as a <strong>Go template</strong>, and you can make use of all the power the template engine brings. The data evaluations or control structures are easily recognized as they are surrounded by <code>{{</code> and <code>}}</code>. Any other text outside the delimiters is copied to the output unchanged.</p>
 
-<h3 id="include-an-external-file">Include an external file</h3>
+<p>These are all the syntax possibilities:</p>
 
-<p>To insert the content of an external partial file in-place use:</p>
+<ul>
+<li><code>{{ .file.key }}</code>: Insert the value of a <code>key</code> in a settings <code>file</code></li>
+<li><code>{{ marshall .file.key }}</code>: Insert a JSON structure under a <code>key</code> in a settings <code>file</code></li>
+<li><code>{{ include &quot;file.txt&quot; }}</code>: Replace with the complete content of the <code>file.txt</code></li>
+<li><code>{{ template &quot;file.tmpl&quot; context }}</code>: Process the Go template <code>file.tmpl</code> passing in its dot (<code>{{ . }}</code>) the <code>context</code></li>
+</ul>
 
-<pre><code>{{ include &quot;partial_file_name.tmpl&quot; }}
-</code></pre>
-
-<p><strong>The content inside the partial is not parsed</strong>, and is inserted <em>as is</em>. The file is assumed to live inside the directory defined in <code>FC_PARTIALS</code>.</p>
+<p>See below for further explanation and examples.</p>
 
 <h3 id="insert-values-from-settings-files">Insert values from settings files</h3>
 
-<p>In the <code>FC_SETTINGS</code> directory, you can save different <code>.json</code> files with data structures insides that you can reference in the templates.</p>
+<p>In the <code>FC_SETTINGS</code> directory, you can save different <code>.json</code> files with data structures inside that you can reference in the templates.</p>
 
 <p>For instance, if you have a file <code>settings/db.json</code> with the following content:</p>
 
 <pre><code>{
     &quot;host&quot;: &quot;192.168.1.23&quot;,
     &quot;port&quot;: 8766,
-    &quot;pass&quot;: &quot;a-p4ssw0rd&quot;
+    &quot;pass&quot;: &quot;a-p4ssw0rd&quot;,
+    &quot;label&quot;: &quot;production&quot;
 }
 </code></pre>
 
-<p>You can access particular settings like this: <code>{{ .db.host }}</code>.</p>
+<p>You can access particular settings like using this syntax: <code>{{ .db.host }}</code>.</p>
 
-<p>When instead of a single value you need to insert a whole JSON structure, you need to use the <code>marshall</code>.</p>
+<p>The first name after the dot is the name of the file, and then the element in the structure you want to access. The example would write <code>192.168.1.23</code> where you wrote the placeholder.</p>
+
+<h3 id="insert-structures-from-settings-files">Insert structures from settings files</h3>
+
+<p>When instead of a single value you need to insert a <strong>JSON structure</strong> (several elements), you need to use <code>marshall</code>.</p>
 
 <pre><code>{{ marshal .db }}
 </code></pre>
 
-<h2 id="testing-the-configuration">Testing the configuration</h2>
+<p>The example would write the entire content of the <code>db.json</code> file.</p>
 
-<p>As the configuration is now composed of several pieces, it&rsquo;s easy to do a mistake in some point. Test the syntax of all the files is good with the <code>krakend check</code> command and pay attention to the output to verify there aren&rsquo;t any errors.</p>
+<h3 id="include-an-external-file">Include an external file</h3>
 
-<p>You might also want to use the flag <code>FC_OUT</code> to write the temporary file to a known path, so you can check its contents:</p>
+<p>To insert the content of an external partial file in-place use:</p>
 
-<pre><code>FC_ENABLE=1 FC_SETTINGS=&quot;$PWD/config/settings&quot; FC_PARTIALS=&quot;$PWD/config/partials&quot; FC_OUT=out.json krakend check -d -c &quot;$PWD/config/krakend.json&quot;
+<pre><code>{{ include &quot;partial_file_name.txt&quot; }}
 </code></pre>
 
-<p>When there are errors the output contains information to help you resolve it, e.g:</p>
+<p><strong>The content inside the partial template is not parsed</strong>, and is inserted <em>as is</em> in plain text. The file is assumed to live inside the directory defined in <code>FC_PARTIALS</code> and can have any name and extension.</p>
+
+<h3 id="include-and-process-a-sub-template">Include and process a sub-template</h3>
+
+<p>While the <code>include</code> is only meant to paste the content of a plain text file, the <code>template</code> gives you all the power of Go templating (<a href="https://golang.org/pkg/text/template/">documentation</a>). The syntax is as follows:</p>
+
+<pre><code>{{ template &quot;template_name.tmpl&quot; context }}
+</code></pre>
+
+<p>The template <code>template_name.tmpl</code> is executed and processed. The value of <code>context</code> is passed in the template as the context, meaning that the sub-template can access it using the dot <code>{{ . }}</code>. This context variable could be an object, such as <code>{{ template &quot;environment&quot; .db.label }}</code>, but it can also be another type, like a string: `<code>{{ template &quot;environment&quot; &quot;production&quot; }}</code>.</p>
+
+<p>Go templates allow you to introduce handy stuff like conditionals or loops and allow you to create powerful configurations.</p>
+
+<h2 id="testing-the-configuration">Testing the configuration</h2>
+
+<p>As the configuration is now composed of several pieces, it&rsquo;s easy to make a mistake at some point. Test the syntax of all the files is good with the <code>krakend check</code> command and pay attention to the output to verify there aren&rsquo;t any errors.</p>
+
+<p>You might also want to use the flag <code>FC_OUT</code> to write the content of the final file in a known path, so you can check its contents:</p>
+
+<pre><code>FC_ENABLE=1 \
+FC_SETTINGS=&quot;$PWD/config/settings&quot; \
+FC_PARTIALS=&quot;$PWD/config/partials&quot; \
+FC_TEMPLATES=&quot;$PWD/config/templates&quot; \
+FC_OUT=out.json \
+krakend check -d -c &quot;$PWD/config/krakend.json&quot;
+</code></pre>
+
+<p>When there are errors, the output contains information to help you resolve it, e.g.:</p>
 
 <pre><code>ERROR parsing the configuration file: loading flexible-config settings:
 - backends.json: invalid character '}' looking for beginning of object key string
@@ -798,21 +864,21 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 
 <h1 id="flexible-configuration-example">Flexible configuration example</h1>
 
-<p>To demonstrate the usage of the flexible configuration we are going to reorganize a configuration file in several pieces. This is a simple example to see the basics of the templating system, and it does not intend to show a good way to organize and split the files:</p>
+<p>To demonstrate the usage of the flexible configuration, we are going to reorganize a configuration file in several pieces. This is a simple example to see the basics of the templates system, and it does not intend to show a good way to organize and split the files:</p>
 
 <pre><code>.
 └── config
-    ├── krakend.json
-    ├── partials
-    │   └── rate_limit_backend.tmpl
-    └── settings
-        ├── endpoint.json
-        └── service.json
+    ├── krakend.json
+    ├── partials
+    │   └── rate_limit_backend.tmpl
+    └── settings
+        ├── endpoint.json
+        └── service.json
 </code></pre>
 
 <p><strong>partials/rate_limit_backend.tmpl</strong></p>
 
-<p>In this file we have written the content of the rate limit configuration for a backend. This file will be inserted when included &ldquo;as is&rdquo;:</p>
+<p>In this file, we have written the content of the rate limit configuration for a backend. This file is inserted when included &ldquo;as is&rdquo;:</p>
 
 <pre><code>&quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
     &quot;maxRate&quot;: &quot;100&quot;,
@@ -822,7 +888,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 
 <p><strong>settings/service.json</strong></p>
 
-<p>In the settings directory we will write all the files that be offered you can write anything you want and the contents can be retrieved as variables.</p>
+<p>In the settings directory, we write all the files whose values can be accessed as variables.</p>
 
 <pre><code>{
     &quot;port&quot;: 8090,
@@ -846,7 +912,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 
 <p><strong>settings/endpoint.json</strong></p>
 
-<p>This file declares a couple of endpoints that feed from a single backend:</p>
+<p>This file declares a couple of endpoints that feed on a single backend:</p>
 
 <pre><code>{
     &quot;example_group&quot;: [
@@ -864,7 +930,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 
 <p><strong>krakend.json</strong></p>
 
-<p>Finally, the base template. It inserts the content of other files using <code>include</code>, uses the variables declared in the settings files and writes json content with <code>marshal</code>.</p>
+<p>Finally, introducing the base template. It inserts the content of other files using <code>include</code>, uses the variables declared in the settings files and writes json content with <code>marshal</code>.</p>
 
 <p>Have a look at the highlighted lines:</p>
 
@@ -904,6 +970,8 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 <li>A <code>range</code> iterates the array found under <code>endpoint.json</code> and key <code>example_group</code>. The variables inside the range are relative to the <code>example_group</code> content.</li>
 <li>Finally, an <code>include</code> at the bottom inserts the content as is.</li>
 </ul>
+
+<p>Notice that there is a <code>{{ range }}</code>. If you wanted to use it inside a template, and not the base file, you would need to include it inside a sub-template with <code>{{ template &quot;template.tmp&quot; .endpoint.example_group }}</code>.</p>
 
 <p>To parse the configuration use:</p>
 

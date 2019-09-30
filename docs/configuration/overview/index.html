@@ -61,8 +61,8 @@ Provided this simple configuration mechanism, the versioning and automation are 
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is almost ready. <a href="https://mailchi.mp/aabf430a71eb/krakend-newsletter">Subscribe</a> to be the first to know.
-		 <i class="fab fa-twitter"></i> <a href="https://twitter.com/devopsfaith">follow us</a></a>
+		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		 
 	</p>
 </div>
 
@@ -185,7 +185,7 @@ Provided this simple configuration mechanism, the versioning and automation are 
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Configuration in multiple files</a>
+                        <a href="/docs/configuration/flexible-config/" class="nav-link children ">Multiple configuration files</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -293,6 +293,10 @@ Provided this simple configuration mechanism, the versioning and automation are 
                         <a href="/docs/endpoints/martian/" class="nav-link children ">Transform requests and responses</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/lua/" class="nav-link children ">Lua scripting</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -346,6 +350,14 @@ Provided this simple configuration mechanism, the versioning and automation are 
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/amqp/" class="nav-link children ">AMQP - RabbitMQ</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/pubsub/" class="nav-link children ">Publisher/subscribe</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/backends/lambda/" class="nav-link children ">Lambda functions</a>
                     </li>
                     
                 </ul>
@@ -430,11 +442,15 @@ Provided this simple configuration mechanism, the versioning and automation are 
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling overview</a>
+                        <a href="/docs/throttling/overview/" class="nav-link children ">Rate limits and throttling</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Timeouts</a>
+                        <a href="/docs/throttling/botdetector/" class="nav-link children ">Bot detector</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/throttling/timeouts/" class="nav-link children ">Request timeouts</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -451,7 +467,7 @@ Provided this simple configuration mechanism, the versioning and automation are 
             
             <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
                 aria-controls="menu-9" class="nav-link parent">
-                Observability
+                Logging, metrics and tracing
             </a>
             <div class="collapse" id="menu-9">
                 <ul class="nav flex-column">
@@ -588,6 +604,10 @@ Provided this simple configuration mechanism, the versioning and automation are 
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -659,6 +679,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 
 <h1 class="main-title">KrakenD&rsquo;s configuration file(s)</h1>
 
+
+
                 </section>
                 <section class="content">
                     
@@ -712,13 +734,46 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 
 <p>Validate the syntax (not the logic) of your configuration file using the <code>krakend check</code> command:</p>
 
-<pre><code>krakend check --config ./krakend.toml --debug
-</code></pre>
+<div class="terminal">
+    <div class="title">
+        &nbsp;
+    </div>
+    <div class="output">
+        <ul>
+            
+            
+                
+                
+            
+                
+                 
+                    
+                    
+                    <li><span class="prompt"></span>krakend&nbsp;check&nbsp;--config&nbsp;./krakend.toml&nbsp;--debug&nbsp;</li>
+                    
+                
+            
+                
+                 
+                    
+                    
+                    <li>Syntax&nbsp;OK!&nbsp;</li>
+                    
+                
+            
+                
+                 
+                    
+                    
+                
+            
+        </ul>
+    </div>
+</div>
 
-<p>You can also start the service directly as this is done right before the server starts. When the syntax is correct, you&rsquo;ll see the message</p>
+<p>When the syntax is correct, you&rsquo;ll see the message <code>Syntax OK!</code>, otherwise the error is shown.</p>
 
-<pre><code>Syntax OK!
-</code></pre>
+<p>You can also start the service directly as this is done right before the server starts.</p>
 
 <p>Read more about <a href="/docs/commands/check/"><code>krakend check</code></a></p>
 
