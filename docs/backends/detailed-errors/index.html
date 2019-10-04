@@ -6,13 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2" />
 
-    <title>Running KrakenD server. The `krakend run` command - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Running KrakenD server. The `krakend run` command - KrakenD API Gateway">
+    <title>Returning the details of backend errors - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Returning the details of backend errors - KrakenD API Gateway">
 
     
-    <meta property="description" content="KrakenD Run Command">
-    <meta itemprop="description" content="KrakenD Run Command">
-
+    <meta property="description" content="Returning the details of backend errors - KrakenD API Gateway">
+    <meta itemprop="description" content="Returning the details of backend errors - KrakenD API Gateway">
     
 
     
@@ -21,22 +20,24 @@
 
 
 
-<meta property="og:title" content="Running KrakenD server. The `krakend run` command" />
-<meta property="og:description" content="KrakenD Run Command" />
+<meta property="og:title" content="Returning the details of backend errors" />
+<meta property="og:description" content="When you are willing to manipulate or aggregate data, KrakenD&rsquo;s policy regarding errors and status codes is to hide from the client any backend details. The philosophy behind this is that clients have to be decoupled from its underlying services.
+If in the other hand, your endpoint connects to a single backend with no manipulation, use the no-op encoding which returns the response to the client as is, preserving its form: body, headers, status codes and such." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/commands/run/" />
+<meta property="og:url" content="https://www.krakend.io/docs/backends/detailed-errors/" />
 
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
-<meta property="article:published_time" content="2016-10-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2016-10-28T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:published_time" content="2019-10-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-10-02T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="Running KrakenD server. The `krakend run` command"/>
-<meta name="twitter:description" content="KrakenD Run Command"/>
+<meta name="twitter:title" content="Returning the details of backend errors"/>
+<meta name="twitter:description" content="When you are willing to manipulate or aggregate data, KrakenD&rsquo;s policy regarding errors and status codes is to hide from the client any backend details. The philosophy behind this is that clients have to be decoupled from its underlying services.
+If in the other hand, your endpoint connects to a single backend with no manipulation, use the no-op encoding which returns the response to the client as is, preserving its form: body, headers, status codes and such."/>
 
 
 
@@ -54,7 +55,7 @@
 <link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
 </head>
 
-<body class="krakend page-e5213a35be5daab7ef9a2b267a0515cf">
+<body class="krakend page-028d2bf252dc123cd9417a242e95d639">
     
 <div class="announcement">
 	<p>
@@ -197,15 +198,15 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-2" role="button" aria-expanded="true"
-                aria-controls="menu-2" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-2" role="button" aria-expanded="false"
+                aria-controls="menu-2" class="nav-link parent">
                 Command line commands
             </a>
-            <div class="collapse show" id="menu-2">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-2">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/commands/run/" class="nav-link children active">Run</a>
+                        <a href="/docs/commands/run/" class="nav-link children ">Run</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -298,12 +299,12 @@
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-5" role="button" aria-expanded="false"
-                aria-controls="menu-5" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-5" role="button" aria-expanded="true"
+                aria-controls="menu-5" class="nav-link parent active">
                 Backends
             </a>
-            <div class="collapse" id="menu-5">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-5">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/overview/" class="nav-link children ">Backends Overview</a>
@@ -358,7 +359,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/backends/detailed-errors/" class="nav-link children ">Return backend errors</a>
+                        <a href="/docs/backends/detailed-errors/" class="nav-link children active">Return backend errors</a>
                     </li>
                     
                 </ul>
@@ -673,12 +674,12 @@
                 <section class="content-header">
                     
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/run.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/detailed-errors.md">
     Edit this page
 </a>
 
 
-<h1 class="main-title">Running KrakenD server. The <code>krakend run</code> command</h1>
+<h1 class="main-title">Returning the details of backend errors</h1>
 
 
 
@@ -693,428 +694,78 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/
 
         
 
-<p>To start KrakenD, you need to invoke the <code>run</code> command with the path to the configuration file. You
-can also specify the port (defaults to <code>8080</code>)</p>
+<p>When you are willing to manipulate or aggregate data, KrakenD&rsquo;s policy regarding errors and status codes is to <strong>hide from the client any backend details</strong>. The philosophy behind this is that clients have to be decoupled from its underlying services.</p>
 
-<div class="terminal">
-	<div class="title">
-		Command to start KrakenD&nbsp;
-	</div>
-	<div class="output">
-		<ul>
-			
-			
-				
-				
-			
-				
-				 
-					
-					
-					<li><span class="prompt"></span>krakend&nbsp;run&nbsp;-c&nbsp;krakend.json&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>#&nbsp;or&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>krakend&nbsp;run&nbsp;--config&nbsp;/path/to/krakend.json&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>#&nbsp;or&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>krakend&nbsp;run&nbsp;--config&nbsp;/path/to/krakend.json&nbsp;-p&nbsp;8080&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-				
-			
-		</ul>
-	</div>
-</div>
+<p>If in the other hand, your endpoint connects to a single backend with no manipulation, <a href="/docs/endpoints/no-op">use the <code>no-op</code> encoding</a> which returns the response to the client <em>as is</em>, preserving its form: body, headers, status codes and such.</p>
 
-<p>The <code>krakend run</code> command with no flags will remind you that you need the path to the configuration file:</p>
+<p>You can override the default policy of hiding backend error details.</p>
 
-<div class="terminal">
-	<div class="title">
-		Missing configuration file&nbsp;
-	</div>
-	<div class="output">
-		<ul>
-			
-			
-				
-				
-			
-				
-				 
-					
-					
-					<li><span class="prompt"></span>krakend&nbsp;run&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>Please,&nbsp;provide&nbsp;the&nbsp;path&nbsp;to&nbsp;your&nbsp;config&nbsp;file&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-				
-			
-		</ul>
-	</div>
-</div>
+<h1 id="showing-backend-errors">Showing backend errors</h1>
 
-<p>Show the help:
-<div class="terminal">
-	<div class="title">
-		Run command help&nbsp;
-	</div>
-	<div class="output">
-		<ul>
-			
-			
-				
-				
-			
-				
-				 
-					
-					
-					<li><span class="prompt"></span>krakend&nbsp;run&nbsp;-h&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>`7MMF'&nbsp;`YMM'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM"""Yb.&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;.M'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;`Yb.&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;MM&nbsp;.d"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7Mb,od8&nbsp;,6"Yb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;,MP'.gP"Ya&nbsp;`7MMpMMMb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Mb&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;MMMMM.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM'&nbsp;"'8)&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;;Y&nbsp;&nbsp;,M'&nbsp;&nbsp;&nbsp;Yb&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;VMA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,pm9MM&nbsp;&nbsp;&nbsp;&nbsp;MM;Mm&nbsp;&nbsp;8M""""""&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,MP&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;`MM.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;8M&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;`Mb.YM.&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;,dP'&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>.JMML.&nbsp;&nbsp;&nbsp;MMb..JMML.&nbsp;&nbsp;`Moo9^Yo..JMML.&nbsp;YA.`Mbmmd'.JMML&nbsp;&nbsp;JMML..JMMmmmdP'&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>_______________________________________________________________________&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>Version:&nbsp;1.0.0&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>The&nbsp;API&nbsp;Gateway&nbsp;builder&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>Usage:&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;krakend&nbsp;[command]&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>Available&nbsp;Commands:&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;check&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Validates&nbsp;that&nbsp;the&nbsp;configuration&nbsp;file&nbsp;is&nbsp;valid.&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help&nbsp;about&nbsp;any&nbsp;command&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run&nbsp;the&nbsp;KrakenD&nbsp;server.&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>Flags:&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;-c,&nbsp;--config&nbsp;string&nbsp;&nbsp;&nbsp;Path&nbsp;to&nbsp;the&nbsp;configuration&nbsp;filename&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;-d,&nbsp;--debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;the&nbsp;debug&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;&nbsp;-h,&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help&nbsp;for&nbsp;krakend&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-					<li>Use&nbsp;"krakend&nbsp;[command]&nbsp;--help"&nbsp;for&nbsp;more&nbsp;information&nbsp;about&nbsp;a&nbsp;command.&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-				
-			
-		</ul>
-	</div>
-</div></p>
+<p>If you prefer revealing these details to the client, you can choose to show them in the gateway response. To achieve this, enable the <code>return_error_details</code> option in backend the configuration, and then all errors will appear in the desired key.</p>
 
-<h2 id="example">Example</h2>
+<p>Place the following configuration inside the <code>backend</code> configuration:</p>
 
-<p>The most common way of starting the service is:</p>
+<pre><code>&quot;extra_config&quot;: {
+    &quot;github.com/devopsfaith/krakend/http&quot;: {
+        &quot;return_error_details&quot;: &quot;backend_alias&quot;
+    }
+}
+</code></pre>
 
-<div class="terminal">
-	<div class="title">
-		Start krakend&nbsp;
-	</div>
-	<div class="output">
-		<ul>
-			
-			
-				
-				
-			
-				
-				 
-					
-					
-					<li><span class="prompt"></span>krakend&nbsp;run&nbsp;--config&nbsp;krakend.json&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-				
-			
-		</ul>
-	</div>
-</div>
+<p>Notice that <code>return_error_details</code> sets an alias for this backend.</p>
 
-<p>To start the KrakenD service in a different port (the port can be set in the configuration file as well):</p>
+<h1 id="response-for-failing-backends">Response for failing backends</h1>
 
-<div class="terminal">
-	<div class="title">
-		Start in a custom port&nbsp;
-	</div>
-	<div class="output">
-		<ul>
-			
-			
-				
-				
-			
-				
-				 
-					
-					
-					<li><span class="prompt"></span>krakend&nbsp;run&nbsp;--config&nbsp;path/to/krakend.json&nbsp;--port&nbsp;8888&nbsp;</li>
-					
-				
-			
-				
-				 
-					
-					
-				
-			
-		</ul>
-	</div>
-</div>
+<p>When a backend fails, you&rsquo;ll find an object named <code>error_</code> + <code>backend_alias</code> containing the detailed errors of the backend. The returned structure on error contains the status code and the body:</p>
 
-<p>In development and testing phase <a href="http://localhost:1313/docs/logging-metrics-tracing/logging/#set-the-reporting-level">increase the verbosity of the logs</a></p>
+<pre><code>&quot;error_backend_alias&quot;: {
+    &quot;http_status_code&quot;: 404,
+    &quot;http_body&quot;: &quot;404 page not found\\n&quot;
+}
+</code></pre>
+
+<p>If there are no errors, the key won&rsquo;t exist.</p>
+
+<h1 id="example">Example</h1>
+
+<p>The following configuration sets an endpoint with two backends that return its errors in two different keys:</p>
+
+<pre><code>{
+    &quot;endpoint&quot;: &quot;/detail_error&quot;,
+    &quot;backend&quot;: [
+        {
+            &quot;host&quot;: [&quot;http://127.0.0.1:8081&quot;],
+            &quot;url_pattern&quot;: &quot;/foo&quot;,
+            &quot;extra_config&quot;: {
+                &quot;github.com/devopsfaith/krakend/http&quot;: {
+                    &quot;return_error_details&quot;: &quot;backend_a&quot;
+                }
+            }
+        },
+        {
+            &quot;host&quot;: [&quot;http://127.0.0.1:8081&quot;],
+            &quot;url_pattern&quot;: &quot;/var&quot;,
+            &quot;extra_config&quot;: {
+                &quot;github.com/devopsfaith/krakend/http&quot;: {
+                    &quot;return_error_details&quot;: &quot;backend_b&quot;
+                }
+            }
+        }
+    ]
+}
+</code></pre>
+
+<p>Let&rsquo;s say your <code>backend_b</code> has failed, but your <code>backend_a</code> worked just fine. The client response could look like this:</p>
+
+<pre><code>{
+    &quot;error_backend_b&quot;: {
+        &quot;http_status_code&quot;: 404,
+        &quot;http_body&quot;: &quot;404 page not found\\n&quot;
+    },
+    &quot;foo&quot;: 42
+}
+</code></pre>
 
     </section>
 </div>

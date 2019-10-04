@@ -6,7 +6,7 @@
     <description>Recent content on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -781,6 +781,16 @@ As KrakenD is an API gateway, we have also added to the environment an API (back
 The Opencensus exporter allows you export data to Google Stackdriver. Enabling it only requires you to add the stackdriver exporter in the opencensus module.
 The following configuration snippet sends data to your X-Ray:
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;stackdriver&amp;quot;: { &amp;quot;project_id&amp;quot;: &amp;quot;my-krakend-project&amp;quot;, &amp;quot;metrics_prefix&amp;quot;: &amp;quot;krakend&amp;quot;, &amp;quot;default_labels&amp;quot;: { &amp;quot;env&amp;quot;: &amp;quot;production&amp;quot; } } } }   project_id: The identifier of your Google Cloud project.</description>
+    </item>
+    
+    <item>
+      <title>Returning the details of backend errors</title>
+      <link>https://www.krakend.io/docs/backends/detailed-errors/</link>
+      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/backends/detailed-errors/</guid>
+      <description>When you are willing to manipulate or aggregate data, KrakenD&amp;rsquo;s policy regarding errors and status codes is to hide from the client any backend details. The philosophy behind this is that clients have to be decoupled from its underlying services.
+If in the other hand, your endpoint connects to a single backend with no manipulation, use the no-op encoding which returns the response to the client as is, preserving its form: body, headers, status codes and such.</description>
     </item>
     
     <item>
