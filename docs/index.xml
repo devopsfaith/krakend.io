@@ -6,7 +6,7 @@
     <description>Recent content in Docs on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/docs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -735,6 +735,17 @@ The following configuration snippet sends data to your Jaeger:
       <description>If you had a quick look at our git repositories, you might be confused at first, as we have a repository named krakend and another one named krakend-ce.
 Difference between KrakenD, KrakenD-CE, and Enterprise TL;DR;
  KrakenD is a framework KrakenD-CE is an API Gateway ready to use KrakenD Enterprise are our professional services to businesses  KrakenD framework KrakenD (repo) is an open-source project created by @devopsfaith to accelerate the creation of custom API Gateways.</description>
+    </item>
+    
+    <item>
+      <title>Adding a health endpoint</title>
+      <link>https://www.krakend.io/docs/endpoints/health/</link>
+      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/health/</guid>
+      <description>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need to have an HTTP endpoint like /health or /ping in systems like Kubernetes, you can do it in different ways.
+Although there is no default health check implementation, the result can be achieved using different strategies. For instance:
+ Add a /health endpoint in the configuration with stub data (see example below) Enable the /__debug/ endpoint with your desired log level and use it as the health check.</description>
     </item>
     
     <item>
