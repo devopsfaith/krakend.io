@@ -78,6 +78,18 @@ As the business developed rapidly, Dusdusan.com needs to keep improving its plat
     </item>
     
     <item>
+      <title>Largest online food delivery in Russia</title>
+      <link>https://www.krakend.io/case-study/mailru/</link>
+      <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/case-study/mailru/</guid>
+      <description>Delivery Club, a Mail.ru brand, is the largest online food delivery platform in Russia, moving food from thousands of restaurants to homes in more than 100 cities.
+Delivery Club processes +30,000 orders per day, 72% of which are made from mobile devices.
+The technology is built using a modernized microservices architecture with around 20 services, including KrakenD API Gateway that sits between end users and Delivery Club&amp;rsquo;s services.
+KrakenD&amp;rsquo;s main duty is processing ingoing and outgoing traffic making sure that user sessions are properly authorized when needed, and discarding malicious activity and hacking attempts.</description>
+    </item>
+    
+    <item>
       <title>Second hand selling application using several gateways</title>
       <link>https://www.krakend.io/case-study/letgo/</link>
       <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>

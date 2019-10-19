@@ -458,6 +458,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/case-study/mailru/</loc>
+    <lastmod>2019-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/case-study/letgo/</loc>
     <lastmod>2019-09-13T00:00:00+00:00</lastmod>
   </url>
@@ -608,12 +613,12 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/api2html/</loc>
+    <loc>https://www.krakend.io/tags/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/api2html/</loc>
+    <loc>https://www.krakend.io/categories/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
   </url>
   
