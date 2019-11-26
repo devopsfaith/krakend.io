@@ -6,7 +6,7 @@
     <description>Recent content on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -814,6 +814,17 @@ If in the other hand, your endpoint connects to a single backend with no manipul
 Enabling it only requires you to add the logger exporter in the opencensus module.
 The following configuration snippet enables the logger:
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;logger&amp;quot;: { &amp;quot;stats&amp;quot;: true, &amp;quot;spans&amp;quot;: true } } }   stats: Whether to log the statistics or not spans: Wether to log the spans or not  See also the additional settings of the Opencensus module that can be declared.</description>
+    </item>
+    
+    <item>
+      <title>Digital services for the world&#39;s leading car manufacturers and dealer networks</title>
+      <link>https://www.krakend.io/case-study/perx/</link>
+      <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/case-study/perx/</guid>
+      <description>Perx is developing a data management platform called Hoop built on microservices and an architecture that makes use of extensive internal and external communications through REST APIs and asynchronous NATS channels.
+KrakenD API Gateway offers robust functionality to control the traffic between external API clients and services. It aggregates microservices responses together into one unified API and thus provides flexible options for request/response manipulation to meet customers&amp;rsquo; needs.
+Using KrakenD provides secure external connections with OAuth.</description>
     </item>
     
     <item>
