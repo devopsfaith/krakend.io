@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Adding a health endpoint - KrakenD API Gateway</title>
     <meta itemprop="name" content="Adding a health endpoint - KrakenD API Gateway">
@@ -26,8 +26,7 @@ Although there is no default health check implementation, the result can be achi
  Add a /health endpoint in the configuration with stub data (see example below) Enable the /__debug/ endpoint with your desired log level and use it as the health check." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/health/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-10-07T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-10-07T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -698,23 +697,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         
         
 
-        
-
-<p>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need to have an HTTP endpoint like <code>/health</code> or <code>/ping</code> in systems like Kubernetes, you can do it in different ways.</p>
-
+        <p>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need to have an HTTP endpoint like <code>/health</code> or <code>/ping</code> in systems like Kubernetes, you can do it in different ways.</p>
 <p>Although there is no default health check implementation, the result can be achieved using different strategies. For instance:</p>
-
 <ul>
 <li>Add a <code>/health</code> endpoint in the configuration with <a href="/docs/endpoints/static-proxy/">stub data</a> (see example below)</li>
 <li>Enable the <code>/__debug/</code> endpoint with your desired log level and use it as the health check.</li>
 <li>Use a <a href="/docs/backends/martian/">static Martian modifier</a> and serve any static file as <code>/health</code>.</li>
 <li>Pass the <code>/health</code> to another backend (although you are checking the backend, not KrakenD)</li>
 </ul>
-
 <h1 id="adding-a-health-endpoint-with-stub-data">Adding a <code>/health</code> endpoint with stub data</h1>
-
-<p>The easiest option is to use the <a href="/docs/endpoints/static-proxy/">static proxy</a> functionality. With this technique, we are going to add an endpoint that uses an unreachable (and fake) backend. As the data can&rsquo;t be fetched from KrakenD, the strategy <code>always</code> is going to make sure we return the desired static data that we want.</p>
-
+<p>The easiest option is to use the <a href="/docs/endpoints/static-proxy/">static proxy</a> functionality. With this technique, we are going to add an endpoint that uses an unreachable (and fake) backend. As the data can't be fetched from KrakenD, the strategy <code>always</code> is going to make sure we return the desired static data that we want.</p>
 <pre><code>{
     &quot;version&quot;: 2,
     &quot;port&quot;: 8080,
@@ -743,9 +735,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     ]
 }
 </code></pre>
-
 <p>In the previous example we are returning a <code>{ &quot;status&quot;: &quot;OK&quot; }</code> every time the <code>/health</code> endpoint is called:</p>
-
 <div class="terminal">
 	<div class="title">
 		k8s check endpoint&nbsp;

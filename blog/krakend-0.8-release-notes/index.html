@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>KrakenD 0.8 released - KrakenD API Gateway</title>
     <meta itemprop="name" content="KrakenD 0.8 released - KrakenD API Gateway">
@@ -24,8 +24,7 @@
 <meta property="og:description" content="Krakend 0.8 release notes" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/blog/krakend-0.8-release-notes/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-03-08T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-03-08T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -276,21 +275,14 @@
             
           </header>
 
-          
-
-<p>KrakenD 0.8 is a significant release as it brings numerous code changes and functionality. The framework brings +100 commits, the gateway +50 commits and even more changes in the components. A lot of refactoring and component updates has taken place. The big picture is a move from a single binary application to become a package with several internal binaries.</p>
-
+          <p>KrakenD 0.8 is a significant release as it brings numerous code changes and functionality. The framework brings +100 commits, the gateway +50 commits and even more changes in the components. A lot of refactoring and component updates has taken place. The big picture is a move from a single binary application to become a package with several internal binaries.</p>
 <p>See the details below.</p>
-
 <h2 id="krakend-framework">KrakenD framework</h2>
-
 <p>The KrakenD framework brings +100 commits compared to 0.7. Several changes in the <strong>router functionality</strong> have been done: two new routers are available, being <strong>Chi</strong> and <strong>httpmux</strong>. Also, the <strong>Mux</strong> router has now the same features that the Gin router had (like multi-method). The router changes have been driven mostly thanks to the community.</p>
-
 <p>The most significant changes are:</p>
-
 <ul>
 <li><strong>New routers</strong>! <strong>Chi</strong> and <strong>httpmux</strong></li>
-<li>Mux based routers add <strong>multiple methods in same URL pattern</strong> (thanks to the <a href="https://corp.mail.ru/en/">Mail.ru team</a>, Спасибо!). Mux based features now are like the Gin&rsquo;s ones</li>
+<li>Mux based routers add <strong>multiple methods in same URL pattern</strong> (thanks to the <a href="https://corp.mail.ru/en/">Mail.ru team</a>, Спасибо!). Mux based features now are like the Gin's ones</li>
 <li>Added <strong>integration tests</strong> that complement the existing unit tests.</li>
 <li>Mixing mandatory and optional query strings parameters is now possible</li>
 <li>Error interface added</li>
@@ -299,28 +291,22 @@
 <li>Bugfixing in sequential backends (cascading requests)</li>
 <li>A detailed HTTP executor</li>
 </ul>
-
 <p>Link to <a href="https://github.com/devopsfaith/krakend/releases/tag/0.8.0">0.8.0 release notes</a></p>
-
 <h2 id="krakend-api-gateway">KrakenD API Gateway</h2>
-
 <p>The KrakenD API Gateway binary comes with all the framework updates and all the component changes (listed in <a href="https://github.com/devopsfaith/krakend-contrib">krakend-contrib</a>), which is a considerable list!.</p>
-
 <p>The project has split into a package for building the CE gateway and several binaries. It also brings now tons of <a href="https://github.com/devopsfaith/krakend-ce/tree/master/tests/fixtures/specs">integration tests</a>!</p>
-
 <p>The summary of changes is:</p>
-
 <ul>
 <li>Updated to Go 1.12</li>
 <li>Many improvements on the logging:
-
 <ul>
 <li>Startup logs</li>
 <li>GELF formatter</li>
 <li>Logstash logger integration</li>
 <li>Added logging to the circuit breaker to warn every time the circuit is opened/closed (Thanks to <a href="https://we.letgo.com/">Letgo</a>, gràcies!)</li>
 <li>Metrics log removed</li>
-</ul></li>
+</ul>
+</li>
 <li>Forbidden and unauthorized responses</li>
 <li>New CEL module (JWT, request, and response), see below</li>
 <li>Client headers are now case insensitive</li>
@@ -332,23 +318,15 @@
 <li>JWK client supports local CA</li>
 <li>Chained token rejecters</li>
 </ul>
-
-<p>Between 0.7 and 0.8, we published an intermediate release 0.7.1 which only updated Go to 1.11.5. This release was to make sure the <a href="https://golang.org/issue/29903">crypto/elliptic Go bug</a> didn&rsquo;t affect KrakenD.</p>
-
+<p>Between 0.7 and 0.8, we published an intermediate release 0.7.1 which only updated Go to 1.11.5. This release was to make sure the <a href="https://golang.org/issue/29903">crypto/elliptic Go bug</a> didn't affect KrakenD.</p>
 <p>Link to <a href="https://github.com/devopsfaith/krakend-ce/releases/tag/0.8.0">0.8.0 release notes</a></p>
-
-<p><a href="/download" class="btn btn-secondary"><i class="fa fa-download"></i> Download KrakenD now</a></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --> Download KrakenD now<!-- raw HTML omitted --></p>
 <h2 id="middleware-and-other-features">Middleware and other features</h2>
-
 <p>New middleware, changes and other components for KrakenD worth mentioning.</p>
-
 <ul>
 <li><strong>CEL module</strong> (<a href="/docs/endpoints/common-expression-language-cel/">docs</a>): A new component to add additional logic using the Common Expression Language.</li>
 </ul>
-
 <p>Components upgraded:</p>
-
 <ul>
 <li>Circuit breaker</li>
 <li>Influx</li>
@@ -368,13 +346,9 @@
 <li>gRPC</li>
 <li>Bloomfilter</li>
 </ul>
-
 <p>All the middleware and components are listed in our <a href="https://github.com/devopsfaith/krakend-contrib">krakend-contrib</a> repository.</p>
-
 <h2 id="contributors">Contributors</h2>
-
 <p><strong>Special thanks</strong> to individuals of the open source community who helped us with this release, shown in no particular order:</p>
-
 <ul>
 <li><a href="https://github.com/rgomezcasas">Rafa Gómez</a></li>
 <li><a href="https://github.com/LiFeAiR">Pavel Mozhchil</a></li>
@@ -385,9 +359,7 @@
 <li><a href="https://github.com/Michael2008S">谢灼贤</a></li>
 <li><a href="https://github.com/ricmoreira">Ricardo Moreira</a></li>
 </ul>
-
 <p>Join now our #krakend channel at <a href="https://invite.slack.golangbridge.org/">Gophers</a> on Slack.</p>
-
 <p>Enjoy KrakenD!</p>
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tips and tricks on KrakenD - Open source API Gateway</title>
@@ -17,7 +17,7 @@
       <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/blog/housekeeping-configuration-file/</guid>
-      <description>Starting your krakend.json configuration from scratch and writing every attribute in a blank editor might be a difficult and time consuming task, and that&amp;rsquo;s why we have the KrakenDesigner.
+      <description>Starting your krakend.json configuration from scratch and writing every attribute in a blank editor might be a difficult and time consuming task, and that&#39;s why we have the KrakenDesigner.
 KrakenDesigner is an aid tool to generate KrakenD configurations for the uninitiated audience. It produces a verbose output of the configuration file and explicitly writes unneeded attributes to let you see that a specific configuration option exists. These attributes I am mentioning are not necessary because they contain default values and the server is not going to alter its behavior.</description>
     </item>
     

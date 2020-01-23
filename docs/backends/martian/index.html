@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Modify requests and responses with Martian - KrakenD API Gateway</title>
     <meta itemprop="name" content="Modify requests and responses with Martian - KrakenD API Gateway">
@@ -26,8 +26,7 @@ Use Martian when you want to intercept the request of the end-user and make modi
 Martian is mighty and gives you endless possibilities to control what is going in and out the gateway." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/martian/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-01-24T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -710,54 +709,32 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#transforming-requests-and-responses">Transforming requests and responses</a>
-<ul>
-<li><a href="#modifier-configuration">Modifier configuration</a></li>
-</ul></li>
-<li><a href="#transform-headers">Transform headers</a></li>
-<li><a href="#modify-the-body">Modify the body</a></li>
-<li><a href="#transform-the-url">Transform the URL</a></li>
-<li><a href="#inject-query-string-parameters">Inject query string parameters</a></li>
-<li><a href="#copying-headers">Copying headers</a></li>
-<li><a href="#apply-multiple-modifiers-consecutively">Apply multiple modifiers consecutively</a></li>
-<li><a href="#all-martian-modifiers-verifiers-and-filters">All Martian modifiers, verifiers and filters</a></li>
-<li><a href="#building-new-modifiers">Building new modifiers</a></li>
-</ul>
+  <ul>
+    <li><a href="#modifier-configuration">Modifier configuration</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>The <a href="https://github.com/devopsfaith/krakend-martian">krakend-martian</a> component allows you to <strong>transform requests and responses</strong> through a simple DSL definition in the configuration file. Martian works perfectly in combination with <a href="/docs/endpoints/common-expression-language-cel">CEL verifications</a>.</p>
-
+        <p>The <a href="https://github.com/devopsfaith/krakend-martian">krakend-martian</a> component allows you to <strong>transform requests and responses</strong> through a simple DSL definition in the configuration file. Martian works perfectly in combination with <a href="/docs/endpoints/common-expression-language-cel">CEL verifications</a>.</p>
 <p>Use Martian when you want to intercept the request of the end-user and make modifications before passing the content to the backends. Also, the other way around, transform the backends response before passing it to the user.</p>
-
 <p>Martian is mighty and gives you endless possibilities to control what is going in and out the gateway. Some <strong>examples of typical Martian scenarios</strong> are:</p>
-
 <ul>
 <li>Set a new cookie during gateway processing</li>
 <li>Add, remove or change specific headers</li>
 <li>Query string additions before making the backend request (e.g., set an API key)</li>
 </ul>
-
 <p>There are four different types of interactions you can do with Martian:</p>
-
 <ul>
 <li><strong>Modifiers</strong>: Change the state of a request or a response. For instance, you want to add a custom header in the request before sending it to a backend.</li>
 <li><strong>Filters</strong>: Add a condition to execute a contained Modifier</li>
 <li><strong>Groups</strong>: Bundle multiple operations to execute in the order specified in the group</li>
 <li><strong>Verifiers</strong>: Track network traffic against expectations</li>
 </ul>
-
 <h1 id="transforming-requests-and-responses">Transforming requests and responses</h1>
-
 <p>Add martian modifiers in your configuration under the <code>extra_config</code> of any <code>endpoint</code> using the namespace <code>github.com/devopsfaith/krakend-martian</code>.</p>
-
 <p>Your configuration has to look as follows:</p>
-
 <pre><code>&quot;endpoint&quot;: &quot;/foo&quot;,
 &quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
@@ -765,15 +742,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     }
 }
 </code></pre>
-
 <h2 id="modifier-configuration">Modifier configuration</h2>
-
-<p>In the examples below, you&rsquo;ll find that all modifiers have a configuration key named <code>scope</code>. The scope indicates when to apply the modifier, it can be an array containing <code>request</code>, <code>response</code>, or both. The rest of the keys in every modifier depends on the modifier itself.</p>
-
+<p>In the examples below, you'll find that all modifiers have a configuration key named <code>scope</code>. The scope indicates when to apply the modifier, it can be an array containing <code>request</code>, <code>response</code>, or both. The rest of the keys in every modifier depends on the modifier itself.</p>
 <h1 id="transform-headers">Transform headers</h1>
-
 <p>The <code>header.Modifier</code> injects a header with a specific value. For instance, the following configuration adds a header <code>X-Martian</code> both in the request and the response.</p>
-
 <pre><code>&quot;endpoint&quot;: &quot;/foo&quot;,
 &quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
@@ -785,13 +757,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     }
 }
 </code></pre>
-
 <h1 id="modify-the-body">Modify the body</h1>
-
 <p>Through the <code>body.Modifier</code> you can modify the body of the request and the response. The content of the <code>body</code> must be encoded in <code>base64</code>.</p>
-
 <p>The following modifier sets the body of the request and the response to <code>{&quot;msg&quot;:&quot;you rock!&quot;}</code>. Notice that the <code>body</code> field is <code>base64</code> encoded.</p>
-
 <pre><code>&quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;:
       {
@@ -802,11 +770,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
       }
 }
 </code></pre>
-
 <h1 id="transform-the-url">Transform the URL</h1>
-
 <p>The <code>url.Modifier</code> allows you to change settings in the URL. For instance:</p>
-
 <pre><code>&quot;endpoint&quot;: &quot;/foo&quot;,
 &quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
@@ -820,11 +785,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     }
 }
 </code></pre>
-
 <h1 id="inject-query-string-parameters">Inject query string parameters</h1>
-
 <p>The <code>querystring.Modifier</code> allows you to modify query strings injecting key pairs. It can be useful if you want the Gateway to send something extra to the backends, for instance:</p>
-
 <pre><code>{
   extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
@@ -837,11 +799,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
   }
 }
 </code></pre>
-
 <h1 id="copying-headers">Copying headers</h1>
-
 <p>Although not widely used, the <code>header.Copy</code> lets you duplicate a header using another name.</p>
-
 <pre><code>{
   extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
@@ -854,13 +813,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
   }
 }
 </code></pre>
-
 <h1 id="apply-multiple-modifiers-consecutively">Apply multiple modifiers consecutively</h1>
-
 <p>All the examples above perform a single modification in the request or the response. However, the <code>fifo.Group</code> allows you to create a list of modifiers that execute consecutively. The group is needed when using more than one modifier and encapsulates all the following actions to perform in the <code>modifiers</code> array. You can use the FIFO group even when there is only one modifier in the list.</p>
-
 <p>Example of usage (modify the body, and set a header):</p>
-
 <pre><code>&quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
         &quot;fifo.Group&quot;: {
@@ -885,13 +840,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     }
 }
 </code></pre>
-
 <h1 id="all-martian-modifiers-verifiers-and-filters">All Martian modifiers, verifiers and filters</h1>
-
 <p>The Martian library comes with <a href="https://github.com/google/martian">+25 modifiers</a> you can use, we are not listing all the options in the documentation. Instead, we provided the modifiers that are key when using Martian.</p>
-
-<p>For the complete list of modifiers and usage see <a href="https://github.com/google/martian">Google&rsquo;s Martian repository</a>. These are the packages included in KrakenD-CE:</p>
-
+<p>For the complete list of modifiers and usage see <a href="https://github.com/google/martian">Google's Martian repository</a>. These are the packages included in KrakenD-CE:</p>
 <ul>
 <li><a href="https://github.com/google/martian/tree/master/body">github.com/google/martian/body</a></li>
 <li><a href="https://github.com/google/martian/tree/master/cookie">github.com/google/martian/cookie</a></li>
@@ -903,13 +854,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <li><a href="https://github.com/google/martian/tree/master/stash">github.com/google/martian/stash</a></li>
 <li><a href="https://github.com/google/martian/tree/master/status">github.com/google/martian/status</a></li>
 </ul>
-
 <h1 id="building-new-modifiers">Building new modifiers</h1>
-
 <p>There will be times when you want to create a new modifier that covers your specific use case and does some other dynamic operations. Creating more modifiers is a straightforward process and only requires to <code>make</code> the gateway once you have it coded.</p>
-
-<p>Nothing better than an example to demonstrate how to create a new modifier. Our SRE Director (who wasn&rsquo;t familiar with Go) went through the process of creating a new Modifier that would authenticate automatically against the Marvel API adding an API Key, a timestamp and a calculated hash.</p>
-
+<p>Nothing better than an example to demonstrate how to create a new modifier. Our SRE Director (who wasn't familiar with Go) went through the process of creating a new Modifier that would authenticate automatically against the Marvel API adding an API Key, a timestamp and a calculated hash.</p>
 <p>Read it here (contains the source code): <a href="/blog/website-development-as-a-sysadmin/">Martian example: Adding automatic API authentication</a></p>
 
     </section>

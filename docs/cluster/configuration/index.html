@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Setting up a cluster - KrakenD API Gateway</title>
     <meta itemprop="name" content="Setting up a cluster - KrakenD API Gateway">
@@ -22,11 +22,10 @@
 
 <meta property="og:title" content="Setting up a cluster" />
 <meta property="og:description" content="Hardware can fail at any time, and a Gateway is a piece critical enough to have redundancy of the service. Having a cluster of machines operating the service assures high availability.
-KrakenD nodes are stateless and they don&rsquo;t store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything." />
+KrakenD nodes are stateless and they don&#39;t store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/cluster/configuration/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2017-01-21T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-11-02T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -37,7 +36,7 @@ KrakenD nodes are stateless and they don&rsquo;t store data or application state
 
 <meta name="twitter:title" content="Setting up a cluster"/>
 <meta name="twitter:description" content="Hardware can fail at any time, and a Gateway is a piece critical enough to have redundancy of the service. Having a cluster of machines operating the service assures high availability.
-KrakenD nodes are stateless and they don&rsquo;t store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything."/>
+KrakenD nodes are stateless and they don&#39;t store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything."/>
 
 
 
@@ -696,25 +695,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/cluster/c
         
         
 
-        
-
-<p>Hardware can fail at any time, and a Gateway is a piece critical enough to have redundancy of the service. Having a cluster of machines operating the service assures high availability.</p>
-
-<p>KrakenD nodes <strong>are stateless</strong> and they don&rsquo;t store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything.</p>
-
+        <p>Hardware can fail at any time, and a Gateway is a piece critical enough to have redundancy of the service. Having a cluster of machines operating the service assures high availability.</p>
+<p>KrakenD nodes <strong>are stateless</strong> and they don't store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything.</p>
 <h1 id="running-the-cluster">Running the cluster</h1>
-
 <p>Running a cluster of machines is a straightforward process that only requires two conditions:</p>
-
 <ul>
 <li>Having a balancer in front of the machines (e.g., ELB, Haproxy)</li>
 <li>Run two or more KrakenD services</li>
 </ul>
-
 <p>If you are in the cloud, something like an <a href="https://aws.amazon.com/elasticloadbalancing">ELB</a> or equivalent does the job. On-premises users can use <a href="http://www.haproxy.org/">HAProxy</a>. When you have your load balancer in place, register all the KrakenD instances so they can start receiving traffic.</p>
-
 <p>When all the desired nodes of KrakenD run, every instance honors its config and reports the traces and metrics to the services of your choice.</p>
-
 <p>For best practices deploying KrakenD, see <a href="/docs/deploying/best-practices">Deploying KrakenD</a></p>
 
     </section>

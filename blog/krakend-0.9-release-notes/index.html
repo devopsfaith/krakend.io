@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>KrakenD 0.9 released - KrakenD API Gateway</title>
     <meta itemprop="name" content="KrakenD 0.9 released - KrakenD API Gateway">
@@ -24,8 +24,7 @@
 <meta property="og:description" content="Krakend 0.9 release notes" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/blog/krakend-0.9-release-notes/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-04-07T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-04-07T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -276,30 +275,17 @@
             
           </header>
 
-          
-
-<p>It&rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&rsquo;s get started!</p>
-
+          <p>It's been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can't wait! KrakenD 0.9 comes with a series of very demanded features. Let's get started!</p>
 <h5 id="integration-with-amqp">Integration with AMQP</h5>
-
 <p>The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</p>
-
 <p>Read the <a href="/docs/backends/amqp/">AMQP documentation</a>.</p>
-
 <h5 id="traffic-shadowing">Traffic shadowing</h5>
-
 <p>Also known as <strong>traffic mirroring</strong>, the traffic shadowing allows you to <strong>test new backends in production</strong> by sending them copies of the traffic but ignore their responses.</p>
-
 <p>When you add a backend to any of your endpoints as a shadow backend, KrakenD continues to send the requests to all the backends as usual, but the responses from the ones marked as shadowed are ignored and never returned or merged in the response.</p>
-
 <p>This feature was available in 0.8 but only for those using the KrakenD framework as a library to build their own gateway. Now comes out of the box with KrakenD-CE.</p>
-
 <p><a href="/docs/backends/shadow-backends/">How to implement traffic mirroring</a>.</p>
-
 <h2 id="krakend-framework">KrakenD framework</h2>
-
 <p>Summary of the most significant changes:</p>
-
 <ul>
 <li><code>[bugfix]</code> Abort a sequential merge after the first error or incomplete response</li>
 <li><code>[bugfix]</code> Propagate the content length when present</li>
@@ -309,15 +295,10 @@
 <li><code>[performance]</code> Load balancing URL creation improved</li>
 <li><code>[performance]</code> URL creation for sequential merger improved</li>
 </ul>
-
 <p>Link to <a href="https://github.com/devopsfaith/krakend/releases/tag/0.9.0">0.9.0 release notes</a></p>
-
 <h2 id="krakend-api-gateway">KrakenD API Gateway</h2>
-
 <p>The KrakenD API Gateway binary comes with all the framework updates and all the component changes (listed in <a href="https://github.com/devopsfaith/krakend-contrib">krakend-contrib</a>), which is a considerable list!.</p>
-
 <p>The summary of changes is:</p>
-
 <ul>
 <li><code>[feature]</code> AMQP client (producer and consumer)</li>
 <li><code>[feature]</code> Shadow proxy factory added to the proxy factory stack</li>
@@ -329,40 +310,26 @@
 <li><code>[feature]</code> cobra: <code>krakend check</code> exits with a non zero status code when the configuration fails</li>
 <li><code>[feature]</code> usage: timeout added to every request</li>
 </ul>
-
 <p>Link to <a href="https://github.com/devopsfaith/krakend-ce/releases/tag/0.9.0">0.9.0 release notes</a></p>
-
-<p><a href="/download" class="btn btn-secondary"><i class="fa fa-download"></i> Download KrakenD now</a></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --> Download KrakenD now<!-- raw HTML omitted --></p>
 <h2 id="middleware-and-other-features">Middleware and other features</h2>
-
 <p>New middleware, changes and other components for KrakenD worth mentioning.</p>
-
 <p>Developers with large and complex configurations of KrakenD that are already using the <a href="/docs/configuration/flexible-config/">flexible configuration</a> component to split the configuration file into several pieces can now use <strong>Go partial templates</strong> with <code>{{ template }}</code>.</p>
-
 <p>The <a href="https://designer.krakend.io">KrakenDesigner</a> website always shows the latest version of the editor, but now we are bundling it into a <a href="https://hub.docker.com/r/devopsfaith/krakendesigner">Docker image</a> so you can use locally or in your own network the desired version.</p>
-
 <p>Other components upgraded:</p>
-
 <ul>
 <li><code>krakend-ratelimit</code>: Number of iterations reduced and cleanup improvements</li>
 <li><code>krakend-cobra</code>: exit with a non zero status code if krakend check fails</li>
 <li><code>krakend-martian</code>: Add support for the martian status modifier</li>
 </ul>
-
 <p>All the middleware and components are listed in our <a href="https://github.com/devopsfaith/krakend-contrib">krakend-contrib</a> repository.</p>
-
 <h2 id="contributors">Contributors</h2>
-
 <p><strong>Special thanks</strong> to individuals of the open source community who helped us with this release, shown in no particular order:</p>
-
 <ul>
 <li><a href="https://github.com/LiFeAiR">Pavel Mozhchil</a></li>
 <li><a href="https://github.com/TerraSkye">TerraSkye</a></li>
 </ul>
-
 <p>Join now our #krakend channel at <a href="https://invite.slack.golangbridge.org/">Gophers</a> on Slack.</p>
-
 <p>Enjoy KrakenD!</p>
 
 

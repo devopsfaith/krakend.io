@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>API Gateway integration with AMQP messaging - KrakenD API Gateway</title>
     <meta itemprop="name" content="API Gateway integration with AMQP messaging - KrakenD API Gateway">
@@ -26,8 +26,7 @@ The configuration of the queue is a straightforward process. To connect the endp
 The parameters of this integration follow the AMQP specification. To understand what are the implications of a certain parameter, see the AMQP Complete Reference Guide." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/amqp/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-04-05T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-10-13T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -710,38 +709,27 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#consumer">Consumer</a>
-<ul>
-<li><a href="#example">Example</a></li>
-<li><a href="#consumer-settings">Consumer settings</a></li>
-</ul></li>
-<li><a href="#producer">Producer</a>
-<ul>
-<li><a href="#example-1">Example</a></li>
-<li><a href="#producer-settings">Producer settings</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#example">Example</a></li>
+    <li><a href="#consumer-settings">Consumer settings</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#example1">Example</a></li>
+    <li><a href="#producer-settings">Producer settings</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>The AMQP component allows to <strong>send and receive messages to and from a queue</strong> through the API Gateway.</p>
-
+        <p>The AMQP component allows to <strong>send and receive messages to and from a queue</strong> through the API Gateway.</p>
 <p>The configuration of the queue is a straightforward process. To connect the endpoints to the messaging system you only need to include the <code>extra_config</code> key with the namespaces <code>github.com/devopsfaith/krakend-amqp/consume</code> or <code>github.com/devopsfaith/krakend-amqp/produce</code>.</p>
-
 <p>The parameters of this integration follow the AMQP specification. To understand
 what are the implications of a certain parameter, see the <strong><a href="https://www.rabbitmq.com/amqp-0-9-1-reference.html">AMQP Complete Reference Guide</a></strong>.</p>
-
 <p><strong>KrakenD creates both the exchange and the queue for you</strong>.</p>
-
 <p><strong>Common settings</strong></p>
-
 <p>Both the consumers and the producers have this configuration keys in common:</p>
-
 <ul>
 <li><code>name</code> - <em>string</em> as the queue name</li>
 <li><code>exchange</code> - <em>string</em> the exchange name (must have <code>topic</code> type if already exists).</li>
@@ -751,19 +739,12 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <li><code>exclusive</code> - <em>bool</em></li>
 <li><code>no_wait</code> - <em>bool</em></li>
 </ul>
-
 <p>The following configurations demonstrate both the <strong>consumer</strong> and the <strong>producer</strong> to create the whole publish/subscribe pattern.</p>
-
 <h1 id="consumer">Consumer</h1>
-
 <p>The consumer retrieves messages from the queue when a KrakenD endpoint plugs to its AMQP backend. The recommendation is to connect consumers to <code>GET</code> endpoints.</p>
-
 <p>A single endpoint can consume messages from N queues, or can consume N messages from the same queue by adding N backends with the proper queue name.</p>
-
 <h2 id="example">Example</h2>
-
 <p>The needed configuration to run a consumer is:</p>
-
 <pre><code>    &quot;backend&quot;: [
         {
             &quot;host&quot;: [
@@ -785,28 +766,19 @@ what are the implications of a certain parameter, see the <strong><a href="https
             }
         }
 </code></pre>
-
 <h2 id="consumer-settings">Consumer settings</h2>
-
 <p>The full list of parameters for the consumer are:</p>
-
 <ul>
 <li>All the common settings above plus:</li>
 <li><code>prefetch_count</code> - <em>int</em></li>
 <li><code>prefetch_size</code> - <em>int</em></li>
 <li><code>no_local</code> - <em>bool</em></li>
 </ul>
-
 <h1 id="producer">Producer</h1>
-
 <p>The producer publishes messages to the messaging system for your asynchronous consumption. The recommendation is to plug producers to <code>POST</code> endpoints.</p>
-
 <p>Worth mentioning that the producer needs you to pass a body in the request and that the endpoint should declare the <code>headers_to_pass</code> so producers are aware of the headers.</p>
-
-<h2 id="example-1">Example</h2>
-
+<h2 id="example1">Example</h2>
 <p>The needed configuration to run a producer is as follows:</p>
-
 <pre><code>    &quot;endpoint&quot;: &quot;/producer&quot;,
     &quot;headers_to_pass&quot;: [ &quot;...&quot;, &quot;...&quot; ],
     &quot;backend&quot;: [
@@ -829,11 +801,8 @@ what are the implications of a certain parameter, see the <strong><a href="https
             }
         }
 </code></pre>
-
 <h2 id="producer-settings">Producer settings</h2>
-
 <p>The full list of parameters for the producer are:</p>
-
 <ul>
 <li>All the common settings above plus:</li>
 <li><code>prefetch_count</code> - <em>int</em></li>
@@ -841,9 +810,7 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <li><code>mandatory</code> - <em>bool</em></li>
 <li><code>immediate</code> - <em>bool</em></li>
 </ul>
-
 <p>Additionally, these items below are parameter keys that can be present in the endpoint URL and are passed to the producer:</p>
-
 <ul>
 <li><code>exp_key</code> - <em>string</em></li>
 <li><code>reply_to_key</code> - <em>string</em></li>
@@ -851,9 +818,7 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <li><code>priority_key</code> - <em>string</em> - Key of the request parameters that is used as the priority value for the produced message.</li>
 <li><code>routing_key</code> - <em>string</em> - Key of the request parameters that is used as the routing value for the produced message.</li>
 </ul>
-
 <p>For instance, an <code>endpoint</code> URL could be declared as <code>/produce/{a}/{b}/{id}/{prio}/{route}</code> and the producer knows how to map them with a configuration like this:</p>
-
 <pre><code>{
     ...
     &quot;exp_key&quot;:&quot;a&quot;,

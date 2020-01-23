@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -329,7 +329,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/backends/pubsub/</loc>
-    <lastmod>2019-09-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -389,7 +389,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/</loc>
-    <lastmod>2019-10-13T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -618,12 +618,12 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/api2html/</loc>
+    <loc>https://www.krakend.io/categories/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/api2html/</loc>
+    <loc>https://www.krakend.io/tags/api2html/</loc>
     <lastmod>2018-05-10T16:18:25+02:00</lastmod>
   </url>
   

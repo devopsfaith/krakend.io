@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Local Benchmarks - KrakenD API Gateway</title>
     <meta itemprop="name" content="Local Benchmarks - KrakenD API Gateway">
@@ -25,8 +25,7 @@
 <meta property="og:description" content="Performance tests of KrakenD" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/benchmarks/local/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-10-28T00:00:00+00:00" />
 <meta property="article:modified_time" content="2016-10-28T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -697,35 +696,19 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmark
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#tl-dr">TL;DR</a></li>
-<li><a href="#hardware">Hardware</a></li>
-<li><a href="#setup">Setup</a></li>
-<li><a href="#results">Results</a></li>
-<li><a href="#summary">Summary</a></li>
-</ul>
-</nav>
+                <nav id="TableOfContents"></nav>
             </div>
         </div>
         
 
-        
-
-<h1 id="tl-dr">TL;DR</h1>
-
+        <h1 id="tldr">TL;DR</h1>
 <p>Check out the generated <a href="http://www.charted.co/c/301c7e8">graphs</a> or the <a href="#summary">summary</a></p>
-
 <h1 id="hardware">Hardware</h1>
-
 <pre><code>Model MacBook Pro (MacBookPro11,4) - August 2015
 Processor:    Intel Core i7 2,2 GHz
 </code></pre>
-
 <h1 id="setup">Setup</h1>
-
 <p>For this test, we stored this configuration at <code>krakend.json</code></p>
-
 <pre><code>{
   &quot;version&quot;: 1,
   &quot;endpoints&quot;: [
@@ -751,14 +734,10 @@ Processor:    Intel Core i7 2,2 GHz
   &quot;timeout&quot;: &quot;5s&quot;
 }
 </code></pre>
-
 <p>And we started the KrakenD with this cmd:</p>
-
 <pre><code>$ ./krakend run --config krakend.json -d &gt; /dev/null
 </code></pre>
-
 <p>Response from the &lsquo;debug backend&rsquo;:</p>
-
 <pre><code>$ curl -i http://127.0.0.1:8080/__debug/bar
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
@@ -767,9 +746,7 @@ Content-Length: 19
 
 {&quot;message&quot;:&quot;pong&quot;}
 </code></pre>
-
 <p>Response from the KrakenD:</p>
-
 <pre><code>$ curl -i http://127.0.0.1:8080/foo
 HTTP/1.1 200 OK
 Cache-Control: public, max-age=300
@@ -780,9 +757,7 @@ Content-Length: 19
 
 {&quot;message&quot;:&quot;pong&quot;}
 </code></pre>
-
 <h1 id="results">Results</h1>
-
 <pre><code>$ hey -c 200 -n 100000 http://127.0.0.1:8080/foo
 8217 requests done.
 17379 requests done.
@@ -831,10 +806,8 @@ Latency distribution:
   95% in 0.0173 secs
   99% in 0.0212 secs
 </code></pre>
-
 <h1 id="summary">Summary</h1>
-
-<script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=local_100_500_concurrency.csv"></script>
+<!-- raw HTML omitted -->
 
     </section>
 </div>

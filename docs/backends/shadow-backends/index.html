@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Traffic shadowing or mirroring - KrakenD API Gateway</title>
     <meta itemprop="name" content="Traffic shadowing or mirroring - KrakenD API Gateway">
@@ -21,12 +21,11 @@
 
 
 <meta property="og:title" content="Traffic shadowing or mirroring" />
-<meta property="og:description" content="There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&rsquo;s too risky to put it live as there might be issues that impact your end users.
+<meta property="og:description" content="There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&#39;s too risky to put it live as there might be issues that impact your end users.
 The traffic shadowing or traffic mirroring functionality allows you to test new backends in production by sending them copies of the traffic but ignore their responses." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/shadow-backends/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-10-29T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-10-29T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -36,7 +35,7 @@ The traffic shadowing or traffic mirroring functionality allows you to test new 
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Traffic shadowing or mirroring"/>
-<meta name="twitter:description" content="There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&rsquo;s too risky to put it live as there might be issues that impact your end users.
+<meta name="twitter:description" content="There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&#39;s too risky to put it live as there might be issues that impact your end users.
 The traffic shadowing or traffic mirroring functionality allows you to test new backends in production by sending them copies of the traffic but ignore their responses."/>
 
 
@@ -703,38 +702,26 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         
         
 
-        
-
-<p>There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&rsquo;s too risky to put it live as there might be issues that impact your end users.</p>
-
+        <p>There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it's too risky to put it live as there might be issues that impact your end users.</p>
 <p>The <strong>traffic shadowing</strong> or <strong>traffic mirroring</strong> functionality allows you to <strong>test new backends in production</strong> by sending them copies of the traffic but <strong>ignore their responses</strong>.</p>
-
 <p>When you add a backend to any of your endpoints as a <strong>shadow backend</strong>, KrakenD continues to send the requests to all the backends as usual, but the responses from the ones marked as <em>shadow</em> are ignored and never returned or merged in the response.</p>
-
 <p>Mirroring the traffic to your microservices allows you to test your new backend from the interesting perspective of seeing behavior in production. For instance, you could:</p>
-
 <ul>
 <li>Test the application errors by examining its logs</li>
 <li>Test the performance of the application</li>
 <li>Stress a new server</li>
 <li>Retrieve any other interesting data that you can only see when you have something running in production.</li>
 </ul>
-
 <p>To define a backend as a <em>shadow backend</em> you only need to add the flag as follows:</p>
-
 <pre><code>&quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend/proxy&quot;: {
         &quot;shadow&quot;: true
     }
 }
 </code></pre>
-
 <p>With this change, the backend containing the flag enters into production, but KrakenD ignores its responses.</p>
-
 <h1 id="traffic-shadowing-example">Traffic shadowing example</h1>
-
 <p>The following example shows a backend that is changing from <code>v1</code> to <code>v2</code>, but we are still unsure of the effects of doing this change in production, so we want to send a copy of the requests to <code>v2</code> in the first place, but keep the end users receiving the responses from <code>v1</code> only:</p>
-
 <pre><code>{
     &quot;endpoint&quot;: &quot;/user/{id}&quot;,
     &quot;timeout&quot;: &quot;150ms&quot;,
@@ -753,8 +740,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
             }
         }
     ]
-},
-</code></pre>
+},</code></pre>
 
     </section>
 </div>

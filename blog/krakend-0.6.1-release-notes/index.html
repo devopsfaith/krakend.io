@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Krakend 0.6.1 release notes - KrakenD API Gateway</title>
     <meta itemprop="name" content="Krakend 0.6.1 release notes - KrakenD API Gateway">
@@ -24,7 +24,6 @@
 <meta property="og:description" content="Krakend 0.6.1 release notes" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/blog/krakend-0.6.1-release-notes/" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/krakend-0.6.1-release-notes.jpg" />
 <meta property="article:published_time" content="2018-10-04T09:15:49+02:00" />
 <meta property="article:modified_time" content="2018-10-04T09:15:49+02:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -283,35 +282,22 @@
             
           </header>
 
-          
-
-<p>The 0.6.1 release adds <strong>TLS</strong> and enables <strong>HTTP2</strong> and <strong>HTTPS</strong>.</p>
-
-<h2 id="tl-dr">TL;DR</h2>
-
+          <p>The 0.6.1 release adds <strong>TLS</strong> and enables <strong>HTTP2</strong> and <strong>HTTPS</strong>.</p>
+<h2 id="tldr">TL;DR</h2>
 <p>This release <strong>brings HTTP2 and HTTPS to KrakenD</strong>. It also upgrades Go from 1.10 to 1.11 and fixes forwarded query string parameters to backends that are using arrays and repeated variables.</p>
-
 <p>The <a href="http://designer.krakend.io/">KrakenDesigner</a> (UI) is also updated to reflect these changes.</p>
-
 <h2 id="krakend-framework">KrakenD framework</h2>
-
 <p>The KrakenD framework has the following relevant changes:</p>
-
 <ul>
 <li>NEW: Added support for HTTP2/HTTPS</li>
 <li>FIX: query string parameters works now with arrays and repeated variables (e.g.: <code>?a[]=a1&amp;a[]=a2&amp;b=b1&amp;b=b2</code>)</li>
 <li>UPDATE: Added Go 1.11 to the build matrix</li>
 <li>Other minor fixes, <a href="https://github.com/devopsfaith/krakend/compare/0.6.0...0.6.1">compare to 0.6.0</a></li>
 </ul>
-
 <p>Link to <a href="https://github.com/devopsfaith/krakend/releases/tag/0.6.1">0.6.1 release notes</a></p>
-
 <h2 id="krakend-api-gateway">KrakenD API Gateway</h2>
-
 <p>The KrakenD API Gateway binary comes with all the framework updates and component updates listed in the <a href="https://github.com/devopsfaith/krakend-contrib">krakend-contrib</a>.</p>
-
 <p>The summary of changes is:</p>
-
 <ul>
 <li>Updated to Go 1.11</li>
 <li>Specific Mac OSX changes to release homebrew with Go 1.11.</li>
@@ -320,9 +306,7 @@
 <li>Upgraded to KrakenD framework 0.6.1</li>
 <li>Other minor changes, <a href="https://github.com/devopsfaith/krakend-ce/compare/0.6.0...0.6.1">compare to 0.6.0</a></li>
 </ul>
-
 <p>Link to <a href="https://github.com/devopsfaith/krakend-ce/releases/tag/0.6.1">0.6.1 release notes</a></p>
-
 <p>This time we release on Thursday, not Friday as we usually do. Our apologies for breaking the #releaseFriday pattern ¯_(ツ)_/¯</p>
 
 

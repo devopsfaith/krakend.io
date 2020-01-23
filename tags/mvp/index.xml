@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>mvp on KrakenD - Open source API Gateway</title>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
-      <description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
+      <description>As a systems administrator for the past 15 years, I&#39;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&#39;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
 Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description>
     </item>
     

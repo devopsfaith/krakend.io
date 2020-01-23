@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>JSON Web Tokens overview - KrakenD API Gateway</title>
     <meta itemprop="name" content="JSON Web Tokens overview - KrakenD API Gateway">
@@ -25,8 +25,7 @@
 When JWT shields a specific set of endpoints, requests to the API gateway must provide a token. Verification of the token takes place in every request, including the check of the signature and optionally the assurance that its issuer, roles, and audience are sufficient to access the endpoint." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/authorization/jwt-overview/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-11-03T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-11-03T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -696,28 +695,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
         
         
 
-        
-
-<p>The <strong>JSON Web Token</strong> specification is an industry standard to represent claims securely between two parties. The <strong>JWT</strong> is an encoded JSON object that contains key-value pairs of attributes that are signed by a trusted authority.</p>
-
+        <p>The <strong>JSON Web Token</strong> specification is an industry standard to represent claims securely between two parties. The <strong>JWT</strong> is an encoded JSON object that contains key-value pairs of attributes that are signed by a trusted authority.</p>
 <p>When JWT shields a specific set of endpoints, requests to the API gateway must provide a token. Verification of the token takes place in every request, including the check of the signature and optionally the assurance that its issuer, roles, and audience are sufficient to access the endpoint.</p>
-
 <p>Only in the case that the token is valid and passes all the checks, <strong>the user is authorized to access the endpoint</strong> and continue with the request.</p>
-
-<div class="note">
-    <h4><i class="fa fa-sticky-note"></i> New to JWT?</h4>
-    If you are not familiar with JWT yet, read the &ldquo;<a href="https://jwt.io/introduction/">Introduction to JSON Web Tokens</a>&ldquo;
- </div>
-
+<!-- raw HTML omitted -->
 <h2 id="krakend-jwt-implementations">KrakenD JWT implementations</h2>
-
 <p>KrakenD implements both <a href="/docs/authorization/jwt-signing">JWT signing</a> and <a href="/docs/authorization/jwt-validation">JWT validation</a> models to protect endpoints from undesired users that are not entitled to use the information, reinforcing security.</p>
-
 <ul>
 <li><a href="/docs/authorization/jwt-signing">Sign tokens</a> when you have an internal backend generating tokens and want KrakenD to sign them with the private key.</li>
 <li><a href="/docs/authorization/jwt-validation">Validate tokens</a> issued by a third party, ensuring their integrity and proper claims.</li>
 </ul>
-
 <p>Nevertheless, a stateless system like KrakenD <strong>does not issue tokens</strong>.</p>
 
     </section>

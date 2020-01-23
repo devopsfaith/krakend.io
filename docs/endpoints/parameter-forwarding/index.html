@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Parameter forwarding - KrakenD API Gateway</title>
     <meta itemprop="name" content="Parameter forwarding - KrakenD API Gateway">
@@ -26,8 +26,7 @@ The default policy for data forwarding works as follows:
  No query string parameters are forwarded to the backend No headers are forwarded No cookies are forwarded  You can change this behavior according to your needs, and define which elements are allowed to pass." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/parameter-forwarding/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-07-20T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-11-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -701,47 +700,32 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#optional-query-string-forwarding">Optional query string forwarding</a>
-<ul>
-<li><a href="#sending-all-query-string-parameters">Sending all query string parameters</a></li>
-<li><a href="#mandatory-query-string-parameters">Mandatory query string parameters</a></li>
-</ul></li>
-<li><a href="#headers-forwarding">Headers forwarding</a>
-<ul>
-<li><a href="#sending-all-client-headers-to-the-backends">Sending all client headers to the backends</a></li>
-</ul></li>
-<li><a href="#cookies-forwarding">Cookies forwarding</a></li>
-</ul>
+  <ul>
+    <li><a href="#sending-all-query-string-parameters">Sending all query string parameters</a></li>
+    <li><a href="#mandatory-query-string-parameters">Mandatory query string parameters</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#sending-all-client-headers-to-the-backends">Sending all client headers to the backends</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>KrakenD is an API Gateway, and when it comes to forward query strings, cookies, and headers, it <strong>does not behave like a regular proxy</strong> by forwarding parameters to the backend.</p>
-
+        <p>KrakenD is an API Gateway, and when it comes to forward query strings, cookies, and headers, it <strong>does not behave like a regular proxy</strong> by forwarding parameters to the backend.</p>
 <p>The <strong>default policy</strong> for data forwarding works as follows:</p>
-
 <ul>
 <li>No <a href="#query-string-forwarding">query string</a> parameters are forwarded to the backend</li>
 <li>No <a href="#headers-forwarding">headers</a> are forwarded</li>
 <li>No <a href="#cookies-forwarding">cookies</a> are forwarded</li>
 </ul>
-
 <p>You can change this behavior according to your needs, and define which elements are allowed to pass.</p>
-
 <h1 id="optional-query-string-forwarding">Optional query string forwarding</h1>
-
 <p>KrakenD <strong>does not send any query string parameter to the backend by default</strong>, avoiding the pollution of the backends. Meaning that if an endpoint <code>/foo</code> receives the query string <code>/foo?a=1&amp;b=2</code> all its declared backends are not going to see neither <code>a</code> nor <code>b</code>.</p>
-
 <p>The property list <code>querystring_params</code> in the <code>endpoint</code> configuration allows you to declare <strong>optional query string parameters</strong>. When this list exists in the configuration, the forwarding policy behaves like a whitelist: all matching parameters declared in the <code>querystring_params</code> list are forwarded to the backend, and the rest dropped.</p>
-
 <p>Parameters are always optional and the user can pass a subset of them, all, or none.</p>
-
-<p>For instance, let&rsquo;s forward <code>?a=1&amp;b=2</code> to the backends:</p>
-
+<p>For instance, let's forward <code>?a=1&amp;b=2</code> to the backends:</p>
 <pre><code>{
   &quot;version&quot;: 2,
   &quot;endpoints&quot;: [
@@ -763,26 +747,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
   ]
 }
 </code></pre>
-
 <p>With this configuration, given a request like <code>http://krakend:8080/v1/foo?a=1&amp;b=2&amp;evil=here</code>, the backend receives <code>a</code> and <code>b</code>, but <code>evil</code> is missing.</p>
-
 <p>Also, if a request like <code>http://krakend:8080/v1/foo?a=1</code> does not include <code>b</code>, this parameter is simply missing in the backend request as well.</p>
-
 <h2 id="sending-all-query-string-parameters">Sending all query string parameters</h2>
-
 <p>While the default policy prevents from sending unrecognized query string parameters, setting an asterisk <code>*</code> as the parameter name makes the gateway to <strong>forward any query string to the backends</strong>:</p>
-
 <pre><code>&quot;querystring_params&quot;:[  
       &quot;*&quot;
 ]
-</code></pre>
-
-<p>Enabling the wildcard pollutes your backends, as any query string sent by end users or malicious attackers gets through the gateway and impacts the backends behind. Our recommendation is to let the gateway know which are the query strings in the API contract and specify them in the list, even when the list is long, and not use the wildcard. If the decision is to go with the wildcard, make sure your backends can handle abuse attempts from clients.</p>
-
+</code></pre><p>Enabling the wildcard pollutes your backends, as any query string sent by end users or malicious attackers gets through the gateway and impacts the backends behind. Our recommendation is to let the gateway know which are the query strings in the API contract and specify them in the list, even when the list is long, and not use the wildcard. If the decision is to go with the wildcard, make sure your backends can handle abuse attempts from clients.</p>
 <h2 id="mandatory-query-string-parameters">Mandatory query string parameters</h2>
-
 <p>When your backend requires query string parameters and you want to make them <strong>mandatory</strong> in KrakenD, use the <code>{variables}</code> placeholders in the endpoints definition. The variables can be injected in the backends as part of the query string parameters. For instance:</p>
-
 <pre><code>...
 {
         &quot;endpoint&quot;: &quot;/v3/{channel}/foo&quot;,
@@ -794,16 +768,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         ]
 }
 </code></pre>
-
 <p>The parameter is mandatory as if a value for <code>channel</code> is not provided the server replies with a <code>404</code>.</p>
-
 <p>With the configuration above a request to the KrakenD endpoint such as <code>http://krakend/v3/iOS/foo?limit=10&amp;evil=here</code> makes a call to the backend with only the <code>channel</code> query string:</p>
-
 <pre><code>/foo?channel=iOS
 </code></pre>
-
 <p>Nevertheless, the <code>querystring_params</code> could also be added in this configuration, creating a special case of optional and mandatory parameters! You would be passing query strings both hardcoded in the <code>url_pattern</code> and generated from the user input. What happens in this strange case is that if the user passes a single optional query string parameter that is declared in <code>querystring_params</code> then the mandatory value is lost. If the request does not contain any known optional parameter, then the mandatory value is used. For instance:</p>
-
 <pre><code>{
         &quot;endpoint&quot;: &quot;/v3/{channel}/foo&quot;,
         &quot;querystring_params&quot;: [
@@ -818,43 +787,27 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         ]
 }
 </code></pre>
-
 <p>With <code>http://krakend/v3/iOS/foo?limit=10&amp;evil=here</code> the backend receives:</p>
-
 <pre><code>/foo?limit=10
 </code></pre>
-
 <p>No mandatory <code>channel</code> here! Because the optional parameter <code>limit</code> has been declared.</p>
-
 <p>On the other hand, <code>http://krakend/v3/iOS/foo?evil=here</code> produces:</p>
-
 <pre><code> /foo?channel=foo
 </code></pre>
-
 <p>No optional parameter has been passed, so the mandatory one is used.</p>
-
 <p>Read the <a href="/docs/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test query string parameters.</p>
-
 <h1 id="headers-forwarding">Headers forwarding</h1>
-
 <p>KrakenD <strong>does not send client headers to the backend by default</strong>.  Use <code>headers_to_pass</code>.</p>
-
 <p>Declare the list of headers sent by the client that you want to let pass to the backend with the <code>headers_to_pass</code> option.</p>
-
 <p>A client request from a browser or a mobile client usually contains a lot of headers, including cookies. Typical examples of the variety of headers that clients send are <code>Host</code>, <code>Connection</code>, <code>Cache-Control</code>, <code>Cookie</code>&hellip; and a long, long etcetera. The backend usually does not need any of this to return the content.</p>
-
 <p>KrakenD passes only these essential headers to the backends:</p>
-
 <pre><code>Accept-Encoding: gzip
 Host: localhost:8080
 User-Agent: KrakenD Version 1.0.0
 X-Forwarded-For: ::1
 </code></pre>
-
 <p>When you use the <code>headers_to_pass</code>, take into account that any of these headers are replaced with the ones you declare.</p>
-
 <p>An example to pass the <code>User-Agent</code> to the backend:</p>
-
 <pre><code>{
   &quot;version&quot;: 2,
   &quot;endpoints&quot;: [
@@ -875,36 +828,23 @@ X-Forwarded-For: ::1
   ]
 }
 </code></pre>
-
 <p>This setting changes the headers received by the backend to:</p>
-
 <pre><code>Accept-Encoding: gzip
 Host: localhost:8080
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
 X-Forwarded-For: ::1
 </code></pre>
-
 <p>Read the <a href="/docs/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test headers.</p>
-
 <h2 id="sending-all-client-headers-to-the-backends">Sending all client headers to the backends</h2>
-
 <p>While the default policy prevents forwarding unrecognized headers, setting an asterisk <code>*</code> as the parameter name makes the gateway to <strong>forward any header to the backends</strong>, including cookies:</p>
-
 <pre><code>&quot;headers_to_pass&quot;:[  
       &quot;*&quot;
 ]
-</code></pre>
-
-<p>Enabling the wildcard pollutes your backends, as any header sent by end users or malicious attackers gets through the gateway and impacts the backends behind. Our recommendation is to let the gateway know which are the headers in the API contract and specify them in the list, even when the list is long, and not use the wildcard. If the decision is to go with the wildcard, make sure your backends can handle abuse attempts from clients.</p>
-
+</code></pre><p>Enabling the wildcard pollutes your backends, as any header sent by end users or malicious attackers gets through the gateway and impacts the backends behind. Our recommendation is to let the gateway know which are the headers in the API contract and specify them in the list, even when the list is long, and not use the wildcard. If the decision is to go with the wildcard, make sure your backends can handle abuse attempts from clients.</p>
 <h1 id="cookies-forwarding">Cookies forwarding</h1>
-
 <p>A cookie is just some content passing inside the <code>Cookie</code> header. If you want cookies to reach your backend, add the <code>Cookie</code> header under <code>headers_to_pass</code>, just as you would do with any other header.</p>
-
 <p>When doing this, <strong>all your cookies</strong> are sent to all backends inside the endpoint. Use this option wisely!</p>
-
 <p>Example:</p>
-
 <pre><code>{
   &quot;version&quot;: 2,
   &quot;endpoints&quot;: [

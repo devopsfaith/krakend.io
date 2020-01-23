@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>release notes on KrakenD - Open source API Gateway</title>
@@ -27,7 +27,7 @@ KrakenD 1.0 is our announcement to the world that our libraries are now fully es
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/blog/krakend-0.9-release-notes/</guid>
-      <description>It&amp;rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&amp;rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&amp;rsquo;s get started!
+      <description>It&#39;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&#39;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&#39;s get started!
 Integration with AMQP The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</description>
     </item>
     

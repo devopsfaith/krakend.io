@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docker on KrakenD - Open source API Gateway</title>
@@ -17,7 +17,7 @@
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
-      <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&amp;rsquo;s running. The short answer is: No, you can&amp;rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&amp;rsquo;t support such a feature:
+      <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&#39;s running. The short answer is: No, you can&#39;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&#39;t support such a feature:
  Performance: This is the #1 reason, and strong enough.</description>
     </item>
     
@@ -29,8 +29,8 @@
       <guid>https://www.krakend.io/blog/krakend-on-kubernetes/</guid>
       <description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
 We will use for the demonstration Minikube so you cant test it in your own local machine.
-Let&amp;rsquo;s get started!
-Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&amp;rsquo;s quick and easy.</description>
+Let&#39;s get started!
+Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&#39;s quick and easy.</description>
     </item>
     
     <item>

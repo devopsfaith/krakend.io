@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Sequential Proxy - KrakenD API Gateway</title>
     <meta itemprop="name" content="Sequential Proxy - KrakenD API Gateway">
@@ -26,7 +26,6 @@ The sequential proxy allows you to chain backend requests.
 Chaining the requests All you need to enable the sequential proxy is add in the endpoint definition the following configuration:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/sequential-proxy/" />
-
 <meta property="og:image" content="https://www.krakend.io/images/documentation/krakend-sequential-call.png" />
 <meta property="article:published_time" content="2018-11-11T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-26T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -709,16 +708,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         
         
 
-        
-
-<p>The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends concurrently at the same time. However, there are times when you need to <strong>delay a backend call</strong> until you can inject as input the result of a previous call.</p>
-
+        <p>The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends concurrently at the same time. However, there are times when you need to <strong>delay a backend call</strong> until you can inject as input the result of a previous call.</p>
 <p>The sequential proxy allows you to <strong>chain backend requests</strong>.</p>
-
 <h1 id="chaining-the-requests">Chaining the requests</h1>
-
 <p>All you need to enable the sequential proxy is add in the endpoint definition the following configuration:</p>
-
 <pre><code>&quot;endpoint&quot;: &quot;/hotels/{id}&quot;,
 &quot;extra_config&quot;: {
       &quot;github.com/devopsfaith/krakend/proxy&quot;: {
@@ -726,29 +719,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
       }
   }
 </code></pre>
-
 <p>When the sequential proxy is enabled, the <code>url_pattern</code> of every backend can use a new variable that references the <strong>resp</strong>onse of a previous API call. The variable has the following construction:</p>
-
 <pre><code>{resp0_XXXX}
 </code></pre>
-
 <p>Where <code>0</code> is the index of the specific backend you want to access ( <code>backend</code> array), and where <code>XXXX</code> is the attribute name you want to inject from the previous call.</p>
-
 <h2 id="example">Example</h2>
-
-<p>It&rsquo;s easier to understand with the example of the graph:</p>
-
+<p>It's easier to understand with the example of the graph:</p>
 <p>KrakenD calls a backend <code>/hotels/{hotel_id}</code> that returns data for the requested hotel. When we request for the hotel ID <code>25</code> the backend service responds with the hotel data, including a <code>destination_id</code> that is a relationship identifier. The output for <code>GET /hotels/25</code> is like the following:</p>
-
 <pre><code>{
   &quot;hotel_id&quot;: 25,
   &quot;name&quot;: &quot;Hotel California&quot;,
   &quot;destination_id&quot;: 1034
 }
 </code></pre>
-
 <p>KrakenD waits for the response of the backend and looks for the field <code>destination_id</code>. And then injects the value in the next backend call to <code>/destinations/{destination_id}</code>. In this case the next call is <code>GET /destinations/1034</code>, and the response is:</p>
-
 <pre><code>{
   &quot;destination_id&quot;: 1034,
   &quot;destinations&quot;: [
@@ -758,9 +742,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     ]
 }
 </code></pre>
-
 <p>Now KrakenD has both responses from the backends and can merge the data, returning the following object to the user:</p>
-
 <pre><code>{
   &quot;hotel_id&quot;: 25,
   &quot;name&quot;: &quot;Hotel California&quot;,
@@ -772,9 +754,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     ]
 }
 </code></pre>
-
 <p>The configuration needed for this example is:</p>
-
 <pre><code>&quot;endpoint&quot;: &quot;/hotel-destinations/{id}&quot;,
 &quot;backend&quot;: [
     { &lt;--- Index 0
@@ -796,7 +776,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     }
 }
 </code></pre>
-
 <p>The key here is the variable <code>{resp0_destination_id}</code> that refers to <code>destination_id</code> for the backend with index <code>0</code> (first in the list).</p>
 
     </section>

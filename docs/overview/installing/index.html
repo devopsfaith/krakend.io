@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Installing KrakenD - KrakenD API Gateway</title>
     <meta itemprop="name" content="Installing KrakenD - KrakenD API Gateway">
@@ -22,13 +22,11 @@
 
 <meta property="og:title" content="Installing KrakenD" />
 <meta property="og:description" content="KrakenD is a single binary file that does not require any external libraries to work. To install KrakenD choose your operative system in the downloads section or use the Docker image.
- Download KrakenD and  Generate the configuration file
-Just exploring?
+Download KrakenDand Generate the configuration fileJust exploring?
 Use the KrakenD Playground if you want to play with KrakenD without configuring it. The Playground comes with several flavors of KrakenD and a mock API. Everything is ready to start playing, just do a docker-compose up!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/overview/installing/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-07-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-03-11T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -39,8 +37,7 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
 
 <meta name="twitter:title" content="Installing KrakenD"/>
 <meta name="twitter:description" content="KrakenD is a single binary file that does not require any external libraries to work. To install KrakenD choose your operative system in the downloads section or use the Docker image.
- Download KrakenD and  Generate the configuration file
-Just exploring?
+Download KrakenDand Generate the configuration fileJust exploring?
 Use the KrakenD Playground if you want to play with KrakenD without configuring it. The Playground comes with several flavors of KrakenD and a mock API. Everything is ready to start playing, just do a docker-compose up!"/>
 
 
@@ -703,37 +700,24 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#docker">Docker</a></li>
-<li><a href="#mac-os-x">Mac OS X</a></li>
-<li><a href="#linux">Linux</a>
-<ul>
-<li><a href="#centos-and-redhat">CentOS and Redhat</a></li>
-<li><a href="#fedora">Fedora</a></li>
-<li><a href="#debian-and-ubuntu">Debian and Ubuntu</a></li>
-<li><a href="#generic-via-tar-gz">Generic (via <code>tar.gz</code>)</a></li>
-</ul></li>
-<li><a href="#build-krakend-yourself">Build KrakenD yourself</a></li>
-</ul>
+  <ul>
+    <li><a href="#centos-and-redhat">CentOS and Redhat</a></li>
+    <li><a href="#fedora">Fedora</a></li>
+    <li><a href="#debian-and-ubuntu">Debian and Ubuntu</a></li>
+    <li><a href="#generic-via-targz">Generic (via tar.gz)</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>KrakenD is a <strong>single binary file</strong> that does not require any external libraries to work. To install KrakenD choose your operative system in the downloads section or use the Docker image.</p>
-
-<p><a href="/download" class="btn btn-secondary"><i class="fa fa-download"></i> Download KrakenD</a>
+        <p>KrakenD is a <strong>single binary file</strong> that does not require any external libraries to work. To install KrakenD choose your operative system in the downloads section or use the Docker image.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --> Download KrakenD<!-- raw HTML omitted -->
 and
-<a href="http://designer.krakend.io" class="btn btn-secondary"><i class="fa fa-file"></i> Generate the configuration file</a></p>
-
+<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --> Generate the configuration file<!-- raw HTML omitted --></p>
 <p><strong>Just exploring?</strong></p>
-
 <p>Use the <a href="https://github.com/devopsfaith/krakend-playground">KrakenD Playground</a> if you want to play with KrakenD without configuring it. The Playground comes with several flavors of KrakenD and a mock API. Everything is ready to start playing, just do a <code>docker-compose up</code>!</p>
-
 <h1 id="docker">Docker</h1>
-
 <p>If you are already familiar with Docker, the easiest way to get started is by pulling and running the <a href="https://hub.docker.com/r/devopsfaith/krakend/">KrakenD image</a> from the Docker Hub.
 <div class="terminal">
 	<div class="title">
@@ -764,11 +748,8 @@ and
 	</div>
 </div>
 Make sure you have a <code>krakend.json</code> in the current directory with your endpoint definition. You can <a href="http://designer.krakend.io/">generate it here</a></p>
-
 <h1 id="mac-os-x">Mac OS X</h1>
-
 <p>The <a href="https://brew.sh/">Homebrew</a> formula will download the source code, build the formula and link the binary for you. The installation might take a while.</p>
-
 <div class="terminal">
 	<div class="title">
 		Install on Mac via Brew&nbsp;
@@ -797,21 +778,15 @@ Make sure you have a <code>krakend.json</code> in the current directory with you
 		</ul>
 	</div>
 </div>
-
 <p>After the installation completes go to <a href="/docs/overview/usage/">Using KrakenD</a></p>
-
 <h1 id="linux">Linux</h1>
-
 <h2 id="centos-and-redhat">CentOS and Redhat</h2>
-
 <p>The installation process requires following these steps:</p>
-
 <ol>
 <li>Install the repo package</li>
 <li>Install the KrakenD package</li>
 <li>Start the KrakenD service</li>
 </ol>
-
 <p>Paste this in the terminal:
 <div class="terminal">
 	<div class="title">
@@ -857,9 +832,7 @@ Make sure you have a <code>krakend.json</code> in the current directory with you
 		</ul>
 	</div>
 </div></p>
-
 <h2 id="fedora">Fedora</h2>
-
 <p>Paste this in the terminal:
 <div class="terminal">
 	<div class="title">
@@ -905,20 +878,15 @@ Make sure you have a <code>krakend.json</code> in the current directory with you
 		</ul>
 	</div>
 </div></p>
-
 <p>The current KrakenD version will run at least in Centos 7 and Fedora 24</p>
-
 <h2 id="debian-and-ubuntu">Debian and Ubuntu</h2>
-
 <p>The installation process requires following these steps:</p>
-
 <ol>
 <li>Add the key</li>
 <li>Add the repo to the sources.list</li>
 <li>Update your package list</li>
 <li>Install the KrakenD service</li>
 </ol>
-
 <p>Bottom line:
 <div class="terminal">
 	<div class="title">
@@ -972,15 +940,10 @@ Make sure you have a <code>krakend.json</code> in the current directory with you
 		</ul>
 	</div>
 </div></p>
-
 <p>The current KrakenD version will run at least in Debian 8, Debian 9 and Ubuntu 16.x</p>
-
-<h2 id="generic-via-tar-gz">Generic (via <code>tar.gz</code>)</h2>
-
+<h2 id="generic-via-targz">Generic (via <code>tar.gz</code>)</h2>
 <p>You can also <a href="/download">download</a> the <code>tar.gz</code> and decompress it anywhere. Instructions to check the SHA and PGP signature <a href="/docs/overview/verifying-packages">here</a>.</p>
-
 <h1 id="build-krakend-yourself">Build KrakenD yourself</h1>
-
 <p>As KrakenD is open source you can opt for <a href="https://github.com/devopsfaith/krakend-ce">building the binary</a>. The binary you will produce is the same you can get in our download page, only that compiling it yourself always feels good!</p>
 
     </section>

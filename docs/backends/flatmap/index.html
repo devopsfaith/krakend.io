@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Array manipulation - flatmap - KrakenD API Gateway</title>
     <meta itemprop="name" content="Array manipulation - flatmap - KrakenD API Gateway">
@@ -22,12 +22,10 @@
 
 <meta property="og:title" content="Array manipulation - flatmap" />
 <meta property="og:description" content="The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
- Important Use a regular data manipulation operation such as target, blacklist or whitelist whenever it fits as their computational cost is lower.
-The flatmap component makes sense only when you need to manipulate arrays, and not as a general solution for all objects." />
+The flatmap component is part of the krakend proxy operation, so it needs to be included as an extra_config inside the backend configuration. There are two different types of operations you can do:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/flatmap/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-04-05T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-04-05T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -38,8 +36,7 @@ The flatmap component makes sense only when you need to manipulate arrays, and n
 
 <meta name="twitter:title" content="Array manipulation - flatmap"/>
 <meta name="twitter:description" content="The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
- Important Use a regular data manipulation operation such as target, blacklist or whitelist whenever it fits as their computational cost is lower.
-The flatmap component makes sense only when you need to manipulate arrays, and not as a general solution for all objects."/>
+The flatmap component is part of the krakend proxy operation, so it needs to be included as an extra_config inside the backend configuration. There are two different types of operations you can do:"/>
 
 
 
@@ -710,58 +707,36 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#flatmap-configuration">Flatmap configuration</a>
-<ul>
-<li><a href="#operations">Operations</a></li>
-<li><a href="#mixing-flatmap-with-other-manipulation-operations">Mixing flatmap with other manipulation operations</a></li>
-<li><a href="#data-representation-in-args">Data representation in <code>args</code></a>
-<ul>
-<li><a href="#notation-by-example">Notation by example</a>
-<ul>
-<li><a href="#observations">Observations</a></li>
-<li><a href="#representing-some-values">Representing some values</a></li>
-<li><a href="#practical-examples-regarding-operations">Practical examples regarding operations</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#configuration-example">Configuration example</a>
-<ul>
-<li><a href="#what-we-did-here">What we did here?</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#operations">Operations</a></li>
+    <li><a href="#mixing-flatmap-with-other-manipulation-operations">Mixing flatmap with other manipulation operations</a></li>
+    <li><a href="#data-representation-in-args">Data representation in args</a>
+      <ul>
+        <li><a href="#notation-by-example">Notation by example</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#what-we-did-here">What we did here?</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>The flatmap middleware allows you to <strong>manipulate arrays</strong> by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.</p>
-
-<div class="note">
-    <h4><i class="fa fa-sticky-note"></i> Important</h4>
-    <p>Use a regular <a href="/docs/backends/data-manipulation/">data manipulation</a> operation such as <a href="/docs/backends/data-manipulation/#target"><code>target</code></a>, <a href="/docs/backends/data-manipulation/#blacklist"><code>blacklist</code></a> or <a href="/docs/backends/data-manipulation/#whitelist"><code>whitelist</code></a> whenever it fits as their computational cost is lower.</p>
-
-<p>The flatmap component makes sense only when you need to manipulate arrays, and <strong>not as a general solution for all objects</strong>.</p>
-
- </div>
-
+        <p>The flatmap middleware allows you to <strong>manipulate arrays</strong> by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>The flatmap component is part of the krakend proxy operation, so it needs to be included as an <code>extra_config</code> inside the <code>backend</code> configuration. There are two different types of operations you can do:</p>
-
 <ul>
 <li><strong>Moving</strong>, <strong>embedding</strong> or <strong>extracting</strong> items from one place to another (equivalent concepts to <a href="/docs/backends/data-manipulation/#mapping"><code>mapping</code></a> and <a href="/docs/backends/data-manipulation/#whitelist"><code>whitelist</code></a>)</li>
 <li><strong>Deleting</strong> specific items (similar concept to <a href="/docs/backends/data-manipulation/#blacklist"><code>blacklist</code></a>)</li>
 </ul>
-
 <p>Inside the <code>flatmap_filter</code> array, you define the sequence of actions that you want to apply.</p>
-
 <h1 id="flatmap-configuration">Flatmap configuration</h1>
-
 <p>The flatmap filter configuration expects an array with the sequence of operations you want to execute. Every operation is defined with an object containing two properties: <code>type</code> and <code>args</code>.</p>
-
 <p>The component structure is as follows:</p>
-
 <pre><code>    &quot;extra_config&quot;: {
         &quot;github.com/devopsfaith/krakend/proxy&quot;: {
             &quot;flatmap_filter&quot;: [
@@ -777,46 +752,34 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         }
     }
 </code></pre>
-
 <h2 id="operations">Operations</h2>
-
 <p>The two types of operations are defined as follows:</p>
-
 <ul>
 <li><strong>Move</strong>: To move or rename a collection to another.
-
 <ul>
 <li><code>&quot;type&quot;: &quot;move&quot;</code></li>
 <li><code>&quot;args&quot;: [&quot;target_in_collection&quot;, &quot;destination_in_collection&quot;]</code></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Delete</strong>: To remove a collection
-
 <ul>
 <li><code>&quot;type&quot;: &quot;del&quot;</code></li>
 <li><code>&quot;args&quot;: [&quot;target_in_collection_to_delete&quot;]</code></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Both moving and deleting apply to the <strong>last item</strong> in the arguments. For instance, a deletion of <code>a.b.c</code> deletes <code>c</code> and leaves <code>a.b</code> in the response.</p>
-
 <h2 id="mixing-flatmap-with-other-manipulation-operations">Mixing flatmap with other manipulation operations</h2>
-
 <p>When the flatmap filter is enabled, the operations <code>group</code> and <code>target</code> keep their functionality, but <code>whitelist</code>, <code>blacklist</code> and <code>mapping</code> are ignored.</p>
-
 <h2 id="data-representation-in-args">Data representation in <code>args</code></h2>
-
 <p>The format of the arguments (<code>args</code>) to proceed with the operation is very simple. In short, object nesting is represented with <strong>dots</strong>, while the index of an array is represented with a <strong>number</strong> or all its items with <strong>wildcards</strong>. So:</p>
-
 <ul>
 <li>Keys are separated by the dot operator <code>.</code></li>
 <li>The wildcard <code>*</code> matches any kind of key (property name, collection key name or its index)</li>
 <li>A <code>number</code> identifies the Nth-1 member of a collection, being <code>0</code> its first item.</li>
 </ul>
-
 <h3 id="notation-by-example">Notation by example</h3>
-
 <p>We are going to use an elementary JSON structure as an example of data representation, see below:</p>
-
 <pre><code>    {
         &quot;a&quot;: [
             {
@@ -843,21 +806,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         ]
     }
 </code></pre>
-
 <h4 id="observations">Observations</h4>
-
 <p>Notice from this example that&hellip;</p>
-
 <ul>
 <li><code>a</code> and <code>b1</code> contain arrays (<code>[...]</code>) with objects inside.</li>
 <li><code>b2</code>, <code>c</code> and <code>d</code> are basic types</li>
 <li>Since <code>a</code> is an array (<code>&quot;a&quot;: []</code>) we need to use the flatmap component. If it were an object (<code>&quot;a&quot;: {}</code>) we would use <a href="/docs/backends/data-manipulation/">blacklist or whitelist</a></li>
 </ul>
-
 <h4 id="representing-some-values">Representing some values</h4>
-
-<p>Now that we are familiar with the structure let&rsquo;s represent same values:</p>
-
+<p>Now that we are familiar with the structure let's represent same values:</p>
 <table>
 <thead>
 <tr>
@@ -865,44 +822,35 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <th>Value</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>a</code></td>
 <td>The content of <em>a</em>: <code>[{&quot;b1&quot;: [{&quot;c&quot;: 1,&quot;d&quot;: &quot;foo&quot;},{&quot;c&quot;: 2,&quot;d&quot;: &quot;bar&quot;}],&quot;b2&quot;: true}, {&quot;b1&quot;: [{&quot;c&quot;: 3,&quot;d&quot;: &quot;vaz&quot;}]}]</code></td>
 </tr>
-
 <tr>
 <td><code>a.1</code></td>
 <td>Second object of <em>a</em> key: <code>{&quot;b1&quot;: [ { &quot;c&quot;: 3, &quot;d&quot;: &quot;vaz&quot; } ]}</code></td>
 </tr>
-
 <tr>
 <td><code>a.0.b1.0.d</code></td>
 <td><code>foo</code></td>
 </tr>
-
 <tr>
 <td><code>a.1.b1.0.d</code></td>
 <td><code>vaz</code></td>
 </tr>
-
 <tr>
 <td><code>a.*.b1.*.d</code></td>
 <td>3 matches of <code>d</code> in this path: <code>foo</code>, <code>bar</code>, <code>vaz</code></td>
 </tr>
-
 <tr>
 <td><code>a.*.*.*.d</code></td>
 <td>3 matches of <code>d</code> in this path: <code>foo</code>, <code>bar</code>, <code>vaz</code></td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="practical-examples-regarding-operations">Practical examples regarding operations</h4>
-
 <p>Some individual operations <strong>on the example structure above</strong>:</p>
-
 <table>
 <thead>
 <tr>
@@ -912,84 +860,71 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <th>Comments</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.b1.*.d&quot;</code></td>
-<td><i class="fa fa-check ok"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Rename <code>c</code> to <code>d</code></td>
 </tr>
-
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.c&quot;</code></td>
-<td><i class="fa fa-times-circle ko"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Missing level</td>
 </tr>
-
 <tr>
 <td><code>&quot;a.b1.c&quot;</code></td>
 <td><code>&quot;c&quot;</code></td>
-<td><i class="fa fa-times-circle ko"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Missing array after <code>a</code></td>
 </tr>
-
 <tr>
 <td><code>&quot;a.0.b1.0.c&quot;</code></td>
 <td><code>&quot;c&quot;</code></td>
-<td><i class="fa fa-check ok"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Extract only <code>c</code> from the first and first items</td>
 </tr>
-
 <tr>
 <td><code>&quot;a.*.b1.c&quot;</code></td>
 <td><code>&quot;c&quot;</code></td>
-<td><i class="fa fa-times-circle ko"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Incorrect target, <code>b1</code> has an array surrounding <code>c</code></td>
 </tr>
-
 <tr>
 <td><code>&quot;a.*.b1.c&quot;</code></td>
 <td><code>&quot;a.*.b1.*.d.*.e&quot;</code></td>
-<td><i class="fa fa-times-circle ko"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Incorrect target, <code>b1</code> has an array surrounding <code>c</code></td>
 </tr>
-
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.b1.*.c.d.e.f.g&quot;</code></td>
-<td><i class="fa fa-check ok"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Add additional levels</td>
 </tr>
-
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.x.*.c&quot;</code></td>
-<td><i class="fa fa-times-circle ko"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Incorrect, renaming to an element <code>x</code> that is not in the last position</td>
 </tr>
-
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.x.*.c.d.e.f.g&quot;</code></td>
-<td><i class="fa fa-times-circle ko"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Incorrect, renaming to an element <code>x</code> that is not in the last position</td>
 </tr>
-
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.b1.*.d.*.e&quot;</code></td>
-<td><i class="fa fa-times-circle ko"></i></td>
+<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Incorrect, destination path has more wildcards than source path</td>
 </tr>
 </tbody>
 </table>
-
 <h1 id="configuration-example">Configuration example</h1>
-
 <p>The following example demonstrates how to modify a collection doing these operations:</p>
-
 <pre><code>    &quot;extra_config&quot;: {
         &quot;github.com/devopsfaith/krakend/proxy&quot;: {
             &quot;flatmap_filter&quot;: [
@@ -1013,18 +948,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         }
     }
 </code></pre>
-
 <h2 id="what-we-did-here">What we did here?</h2>
-
 <p>There is a sequence of 4 operations in order to:</p>
-
 <ul>
 <li>Extract all <code>students</code> of the <code>43rd</code> school (array starts at 0) and put them under a new property <code>alumni</code></li>
 <li>Get rid of all the remaining schools</li>
 <li>Delete all items with a property <code>password</code> inside the array</li>
 <li>Rename all items with a property <code>PK_ID</code> to <code>id</code></li>
 </ul>
-
 <p>For more examples <a href="https://github.com/devopsfaith/flatmap/blob/master/tree/tree_example_test.go">see the test file</a>.</p>
 
     </section>

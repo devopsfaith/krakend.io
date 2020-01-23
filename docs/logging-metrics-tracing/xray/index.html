@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Exporting traces to AWS X-Ray - KrakenD API Gateway</title>
     <meta itemprop="name" content="Exporting traces to AWS X-Ray - KrakenD API Gateway">
@@ -27,8 +27,7 @@ The following configuration snippet sends data to your X-Ray:
 &quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;xray&quot;: { &quot;version&quot;: &quot;latest&quot;, &quot;region&quot;: &quot;eu-west-1&quot;, &quot;use_env&quot;: false, &quot;access_key_id&quot;: &quot;myaccesskey&quot;, &quot;secret_access_key&quot;: &quot;mysecretkey&quot; }, } }   version: The version of the AWS X-Ray service to use." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/xray/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -708,11 +707,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
         
 
         <p><a href="https://aws.amazon.com/xray/">AWS X-Ray</a> is a service offered by Amazon that provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.</p>
-
 <p>The Opencensus exporter allows you export data to AWS X-Ray. Enabling it only requires you to add the <code>xray</code> exporter in the <a href="/docs/logging-metrics-tracing/opencensus/">opencensus module</a>.</p>
-
 <p>The following configuration snippet sends data to your X-Ray:</p>
-
 <pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
   &quot;exporters&quot;: {
     &quot;xray&quot;: {
@@ -725,15 +721,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
   }
 }
 </code></pre>
-
 <ul>
 <li><code>version</code>: The version of the AWS X-Ray service to use.</li>
 <li><code>region</code>: The AWS geographical region.</li>
-<li><code>use_env</code>: When <code>true</code> the AWS credentials (<code>access_key_id</code> and <code>secret_access_key</code>) are taken from environment vars. Don&rsquo;t specify them then.</li>
+<li><code>use_env</code>: When <code>true</code> the AWS credentials (<code>access_key_id</code> and <code>secret_access_key</code>) are taken from environment vars. Don't specify them then.</li>
 <li><code>access_key_id</code>: Your access key ID provided by Amazon. Needed when <code>use_env</code> is unset or set to <code>false</code>.</li>
 <li><code>secret_access_key</code>: Your secret access key provided by Amazon. Needed when <code>use_env</code> is unset or set to <code>false</code>.</li>
 </ul>
-
 <p>See also the <a href="/docs/logging-metrics-tracing/opencensus/">additional settings</a> of the Opencensus module that can be declared.</p>
 
     </section>

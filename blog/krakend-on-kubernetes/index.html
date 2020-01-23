@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Running the KrakenD API Gateway on Kubernetes - KrakenD API Gateway</title>
     <meta itemprop="name" content="Running the KrakenD API Gateway on Kubernetes - KrakenD API Gateway">
@@ -24,7 +24,6 @@
 <meta property="og:description" content="How to run KrakenD API Gateway on Kubernetes" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/blog/krakend-on-kubernetes/" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/krakend-kubernetes.jpg" />
 <meta property="article:published_time" content="2018-06-06T18:47:03+02:00" />
 <meta property="article:modified_time" content="2018-06-06T18:47:03+02:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -299,18 +298,11 @@
             
           </header>
 
-          
-
-<p>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.</p>
-
+          <p>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.</p>
 <p>We will use for the demonstration <a href="https://github.com/kubernetes/minikube">Minikube</a> so you cant test it in your own local machine.</p>
-
-<p>Let&rsquo;s get started!</p>
-
+<p>Let's get started!</p>
 <h2 id="setting-up-a-local-kubernetes">Setting up a local Kubernetes</h2>
-
-<p>We will run Kubernetes locally thanks to Minikube. Just follow the <a href="https://github.com/kubernetes/minikube">README</a> in the project for the installation and the <em>Quickstart</em> section. Installing minikube it&rsquo;s quick and easy.</p>
-
+<p>We will run Kubernetes locally thanks to Minikube. Just follow the <a href="https://github.com/kubernetes/minikube">README</a> in the project for the installation and the <em>Quickstart</em> section. Installing minikube it's quick and easy.</p>
 <pre><code>$ minikube start
 Starting local Kubernetes v1.7.5 cluster...
 Starting VM...
@@ -321,39 +313,25 @@ Connecting to cluster...
 Setting up kubeconfig...
 Kubectl is now configured to use the cluster.
 </code></pre>
-
 <p>Once Minikube is installed and running you can see the graphical interface with:</p>
-
 <pre><code>$ minikube dashboard
 </code></pre>
-
 <p>Now we are ready and with a Kubernetes ready to start pushing containers!</p>
-
 <h2 id="building-the-docker-images">Building the Docker images</h2>
-
 <p><strong><a href="https://github.com/kpacha/krakend-k8s">Download here</a></strong> all the example files mentioned in this post.</p>
-
 <h3 id="local-backend-your-api">Local Backend (Your API)</h3>
-
 <p>If your API has a container already you can skip this step. Otherwise we will create here a backend API that will provide the data to Krakend. The easiest way to build an ultra-fast backend for our demonstration purposes is to use a server named LWAN. The <a href="https://github.com/devopsfaith/krakend-playground">krakend-playground</a> contains several <a href="https://github.com/devopsfaith/krakend-playground/tree/master/data">dummy responses</a> that we have used in other demos. These static files used for the responses are also included in the example repository.</p>
-
 <p>The backend <code>Dockerfile</code> is under the <code>backend</code> folder and contains these 2 simple lines:</p>
-
 <p><strong>backend/Dockerfile</strong></p>
-
 <pre><code>FROM jaxgeller/lwan
 ADD ./data/. /lwan/wwwroot/.
 </code></pre>
-
 <p>Now we are going to build this image in the same registry Minikube uses. To do so you need to export the required environment variables before building it, as follows:</p>
-
 <pre><code>$ cd backend
 $ eval $(minikube docker-env)
 $ docker build -t fake-api -f Dockerfile .
 </code></pre>
-
 <p>Now the Docker registry associated to Minikube contains the <code>fake-api</code> image. If you have executed the eval the images list should like this:</p>
-
 <pre><code>$ docker images
 REPOSITORY                                 TAG                 IMAGE ID            CREATED              SIZE
 fake-api                                   latest              4db4257837ee        About a minute ago   439MB
@@ -378,15 +356,10 @@ k8s.gcr.io/etcd-amd64                      3.0.17              243830dae7dd     
 k8s.gcr.io/pause-amd64                     3.0                 99e59f495ffa        2 years ago          747kB
 jaxgeller/lwan                             latest              526243cbb205        2 years ago          439MB
 </code></pre>
-
-<p>You will quickly realize the terminal session you are in is not using your docker host, but minikube&rsquo;s.</p>
-
+<p>You will quickly realize the terminal session you are in is not using your docker host, but minikube's.</p>
 <h3 id="krakend">KrakenD</h3>
-
 <p>With your backend ready is time to setup the image for the API gateway, which is also very easy to setup. All it takes is to write the Krakend&rsquo; settings in the <code>krakend.json</code> and add it in the image, as follows:</p>
-
 <p><strong>krakend.json</strong></p>
-
 <pre><code>{
     &quot;version&quot;: 2,
     &quot;name&quot;: &quot;KrakenD on k8s&quot;,
@@ -436,38 +409,24 @@ jaxgeller/lwan                             latest              526243cbb205     
     ]
 }
 </code></pre>
-
-<p>And now let&rsquo;s create the API Gateway image with the configuration. The following <code>Dockerfile</code> is in the root folder.</p>
-
+<p>And now let's create the API Gateway image with the configuration. The following <code>Dockerfile</code> is in the root folder.</p>
 <p><strong>Dockerfile</strong></p>
-
 <pre><code>FROM devopsfaith/krakend
 COPY configuration.json /etc/krakend/krakend.json
 </code></pre>
-
 <p>And this how you build it:</p>
-
 <pre><code>$ docker build -t k8s-krakend:0.0.1 .
 </code></pre>
-
 <h2 id="deploying-in-kubernetes">Deploying in kubernetes</h2>
-
 <p>At this point we have two images ready to use in the Docker registry: the <code>fake-api</code> and the <code>k8s-krakend</code>. We need to deploy them now in k8s.</p>
-
 <h3 id="deploy-the-backend-api-in-k8s">Deploy the backend API in k8s</h3>
-
 <p>With two <code>kubectl</code> calls you can create a kubernetes deployment and a service, so our fake backend is started and published in the service discovery.</p>
-
 <pre><code>$ kubectl run fake-api --image=fake-api:latest --port=8080 --image-pull-policy='Never'
 $ kubectl expose deployment fake-api --type=NodePort
 </code></pre>
-
 <h3 id="deploy-the-api-gateway-in-k8s">Deploy the API gateway in k8s</h3>
-
-<p>With the backend running and the custom image ready, let&rsquo;s go with the YAML way of defining resource creations in kubernetes. Place the KrakenD <code>deployment</code> definition in a file called <code>deployment-definition.yaml</code>:</p>
-
+<p>With the backend running and the custom image ready, let's go with the YAML way of defining resource creations in kubernetes. Place the KrakenD <code>deployment</code> definition in a file called <code>deployment-definition.yaml</code>:</p>
 <p><strong>deployment-definition.yaml</strong></p>
-
 <pre><code>apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -491,11 +450,8 @@ spec:
         command: [ &quot;/usr/bin/krakend&quot; ]
         args: [ &quot;run&quot;, &quot;-d&quot;, &quot;-c&quot;, &quot;/etc/krakend/krakend.json&quot;, &quot;-p&quot;, &quot;8080&quot; ]
 </code></pre>
-
 <p>The KrakenD <code>service</code> definition, in a file called <code>service-definition.yaml</code>:</p>
-
 <p><strong>service-definition.yaml</strong></p>
-
 <pre><code>apiVersion: v1
 kind: Service
 metadata:
@@ -510,28 +466,18 @@ spec:
   selector:
     app: krakend
 </code></pre>
-
 <p>And then register both with the same <code>kubectl</code> command:</p>
-
 <pre><code>$ kubectl create -f deployment-definition.yaml
 $ kubectl create -f service-definition.yaml
 </code></pre>
-
 <p>You are done, both services are now running in Kubernetes!</p>
-
-<p><img class="img-fluid" src="/images/blog/kubernetes-services.png" alt="Kubernetes services"></p>
-
+<!-- raw HTML omitted -->
 <h2 id="testing-the-services">Testing the services</h2>
-
 <p>After exposing the <code>krakend-service</code> you can test it by asking Minikube the assigned URL with:</p>
-
 <pre><code>$ minikube service krakend-service
 </code></pre>
-
-<p>This will open your default browser with the krakend-service. It will return a <code>404</code> as we haven&rsquo;t configured any endpoint in the root <code>/</code>. Keep the URL and let&rsquo;s query the gateway with the endpoints we have defined.</p>
-
+<p>This will open your default browser with the krakend-service. It will return a <code>404</code> as we haven't configured any endpoint in the root <code>/</code>. Keep the URL and let's query the gateway with the endpoints we have defined.</p>
 <p>Check the regular features work as expected:</p>
-
 <pre><code>$ curl -i http://192.168.99.101:32064/combination/10
 HTTP/1.1 200 OK
 Cache-Control: public, max-age=3600
@@ -542,9 +488,7 @@ Transfer-Encoding: chunked
 
 {&quot;address&quot;:{&quot;city&quot;:&quot;Lebsackbury&quot;,&quot;geo&quot;:{&quot;lat&quot;:&quot;-38.2386&quot;,&quot;lng&quot;:&quot;57.2232&quot;},&quot;street&quot;:&quot;Kattie Turnpike&quot;,&quot;suite&quot;:&quot;Suite 198&quot;,&quot;zipcode&quot;:&quot;31428-2261&quot;},&quot;company&quot;:{&quot;bs&quot;:&quot;target end-to-end models&quot;,&quot;catchPhrase&quot;:&quot;Centralized empowering task-force&quot;,&quot;name&quot;:&quot;Hoeger LLC&quot;},&quot;id&quot;:10,&quot;name&quot;:&quot;Clementina DuBuque&quot;,&quot;personal_email&quot;:&quot;Rey.Padberg@karina.biz&quot;,&quot;phone&quot;:&quot;024-648-3804&quot;,&quot;posts&quot;:[{&quot;body&quot;:&quot;libero voluptate eveniet aperiam sed\nsunt placeat suscipit molestias\nsimilique fugit nam natus\nexpedita consequatur consequatur dolores quia eos et placeat&quot;,&quot;id&quot;:91,&quot;title&quot;:&quot;aut amet sed&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;aut et excepturi dicta laudantium sint rerum nihil\nlaudantium et at\na neque minima officia et similique libero et\ncommodi voluptate qui&quot;,&quot;id&quot;:92,&quot;title&quot;:&quot;ratione ex tenetur perferendis&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;dolorem quibusdam ducimus consequuntur dicta aut quo laboriosam\nvoluptatem quis enim recusandae ut sed sunt\nnostrum est odit totam\nsit error sed sunt eveniet provident qui nulla&quot;,&quot;id&quot;:93,&quot;title&quot;:&quot;beatae soluta recusandae&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;aspernatur expedita soluta quo ab ut similique\nexpedita dolores amet\nsed temporibus distinctio magnam saepe deleniti\nomnis facilis nam ipsum natus sint similique omnis&quot;,&quot;id&quot;:94,&quot;title&quot;:&quot;qui qui voluptates illo iste minima&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;earum voluptatem facere provident blanditiis velit laboriosam\npariatur accusamus odio saepe\ncumque dolor qui a dicta ab doloribus consequatur omnis\ncorporis cupiditate eaque assumenda ad nesciunt&quot;,&quot;id&quot;:95,&quot;title&quot;:&quot;id minus libero illum nam ad officiis&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;in non odio excepturi sint eum\nlabore voluptates vitae quia qui et\ninventore itaque rerum\nveniam non exercitationem delectus aut&quot;,&quot;id&quot;:96,&quot;title&quot;:&quot;quaerat velit veniam amet cupiditate aut numquam ut sequi&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;eum non blanditiis soluta porro quibusdam voluptas\nvel voluptatem qui placeat dolores qui velit aut\nvel inventore aut cumque culpa explicabo aliquid at\nperspiciatis est et voluptatem dignissimos dolor itaque sit nam&quot;,&quot;id&quot;:97,&quot;title&quot;:&quot;quas fugiat ut perspiciatis vero provident&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;doloremque ex facilis sit sint culpa\nsoluta assumenda eligendi non ut eius\nsequi ducimus vel quasi\nveritatis est dolores&quot;,&quot;id&quot;:98,&quot;title&quot;:&quot;laboriosam dolor voluptates&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;quo deleniti praesentium dicta non quod\naut est molestias\nmolestias et officia quis nihil\nitaque dolorem quia&quot;,&quot;id&quot;:99,&quot;title&quot;:&quot;temporibus sit alias delectus eligendi possimus magni&quot;,&quot;userId&quot;:10},{&quot;body&quot;:&quot;cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut&quot;,&quot;id&quot;:100,&quot;title&quot;:&quot;at nam consequatur ea labore ea harum&quot;,&quot;userId&quot;:10}],&quot;username&quot;:&quot;Moriah.Stanton&quot;,&quot;website&quot;:&quot;ambrose.net&quot;}
 </code></pre>
-
 <p>Now check the kubernetes out-of-the-box host resolution by requesting data from our <strong>debug</strong> endpoint:</p>
-
 <pre><code>$ curl -i http://192.168.99.101:32064/debug
 HTTP/1.1 200 OK
 Cache-Control: public, max-age=3600
@@ -555,9 +499,7 @@ Content-Length: 18
 
 {&quot;message&quot;:&quot;pong&quot;}
 </code></pre>
-
 <p>Finally, the actual test using the dummy backends:</p>
-
 <pre><code>$ curl -i http://192.168.99.101:32064/splash
 HTTP/1.1 200 OK
 Cache-Control: public, max-age=3600
@@ -569,16 +511,11 @@ Transfer-Encoding: chunked
 {&quot;campaigns&quot;:[{&quot;discounts&quot;:[{&quot;discount&quot;:0.15,&quot;id_product&quot;:1},{&quot;discount&quot;:0.50,&quot;id_product&quot;:2},{&quot;discount&quot;:0.25,&quot;id_product&quot;:3}],&quot;end_date&quot;:&quot;2017/02/15&quot;,&quot;id_campaign&quot;:1,
 ...
 </code></pre>
-
 <p>Hurray!</p>
-
 <h2 id="conclusion">Conclusion</h2>
-
-<p>In this post we have seen how quickly you can get an API Gateway running on Kubernetes without requiring any extra modules nor 3rd party components. In under 5 minutes you can have an ultra-perfomance API Gateway that doesn&rsquo;t require coding the endpoints and that anyone can use.</p>
-
+<p>In this post we have seen how quickly you can get an API Gateway running on Kubernetes without requiring any extra modules nor 3rd party components. In under 5 minutes you can have an ultra-perfomance API Gateway that doesn't require coding the endpoints and that anyone can use.</p>
 <p>Start doing your own experiments now by downloading the <a href="https://github.com/kpacha/krakend-k8s">source code</a> of these examples.</p>
-
-<p>Thanks for reading! If you like our product don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+<p>Thanks for reading! If you like our product don't forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
 
 
           <aside>

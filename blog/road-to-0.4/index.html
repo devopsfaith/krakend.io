@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Road to KrakenD 0.4 - KrakenD API Gateway</title>
     <meta itemprop="name" content="Road to KrakenD 0.4 - KrakenD API Gateway">
@@ -24,7 +24,6 @@
 <meta property="og:description" content="Upcoming changes in the Krakend 0.4 version" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/blog/road-to-0.4/" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/road-work-ahead.jpg" />
 <meta property="article:published_time" content="2017-11-12T12:10:53+02:00" />
 <meta property="article:modified_time" content="2017-11-12T12:10:53+02:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -277,49 +276,29 @@
             
           </header>
 
-          
-
-<p>The next iteration of <a href="https://www.krakend.io">KrakenD</a> is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the <code>0.4</code> release before end of year. The jump from the <code>0.3.9</code> of the binary and the <code>0.3</code> of the framework to the <code>0.4</code> will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: <strong>kill external dependencies with fire</strong>.</p>
-
-<p>Let&rsquo;s go!</p>
-
-<h2 id="goals-for-version-0-4">Goals for version <code>0.4</code></h2>
-
+          <p>The next iteration of <a href="https://www.krakend.io">KrakenD</a> is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the <code>0.4</code> release before end of year. The jump from the <code>0.3.9</code> of the binary and the <code>0.3</code> of the framework to the <code>0.4</code> will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: <strong>kill external dependencies with fire</strong>.</p>
+<p>Let's go!</p>
+<h2 id="goals-for-version-04">Goals for version <code>0.4</code></h2>
 <p>These are the major goals we have set to release this version:</p>
-
 <ol>
 <li>Remove all the external dependencies from the framework</li>
 <li>Standardize the way of creating and adding plug-ins to the framework</li>
 <li>Open source the enterprise components</li>
 </ol>
-
-<h2 id="side-effects">Side-effects</h2>
-
+<h2 id="sideeffects">Side-effects</h2>
 <p>As a side effect to all this refactoring is that existing implementations will require updating the code to fix some <code>import</code> statements. The release keeps all the declared interfaces and exposed structs and functions but the dependencies are now external.</p>
-
 <h2 id="external-dependencies-go-away">External dependencies, go away!</h2>
-
 <p>Having external dependencies in the framework allowed us in the beginning to easily create and add adapters to KrakenD without any effort. We chose this path in the initial implementation of the project and we dragged it until now, and this is a common practice in thousands of projects.</p>
-
 <p>The numbers might not seem scary to you, but the implementation of the last released version of the framework (<code>0.3</code>) depends on 8 third party libs, hurting the project build times and its stability. We wanted to stop adding dependencies to the project and provide a way to have them outside.</p>
-
 <p><strong>The 0.4 version will depend only on the standard lib</strong>. All the adapters will be removed from the project and, in some cases (like the <code>config</code> package), some basic alternative will be provided out-of-the-box. By doing this, the project gets closer to the <code>1.0</code>.</p>
-
-<p>Of course this doesn&rsquo;t mean that the features referenced by those adapters will be removed, they will be included in the final distributed binary and the code will be curated the same way we do with the framework.</p>
-
+<p>Of course this doesn't mean that the features referenced by those adapters will be removed, they will be included in the final distributed binary and the code will be curated the same way we do with the framework.</p>
 <p>So, <strong>where are these components now</strong>?
 All the components are listed in the <a href="https://github.com/devopsfaith/krakend-contrib">krakend-contrib</a> repository. Subscribe to it to follow the complete list of available components and middleware.</p>
-
 <h2 id="transparent-plugins">Transparent plugins</h2>
-
 <p>The <code>0.4</code> release extends the flexibility of the <code>0.3</code> version by adding the <code>encoding.Register</code> and <code>encoding.Get</code> functions to deal with injecting custom encoders, and by standarizing the use of the <code>config.ExtraConfig</code> struct, so each component can define a custom namespace for the extra config it could require.</p>
-
-<p>It&rsquo;s in the roadmap to even create a customizable <code>proxy.Factory</code> implementation using this feature, so more accurate management could be achieved without requiring a single extra code line.</p>
-
-<h2 id="component-changes-in-0-4">Component changes in <code>0.4</code></h2>
-
+<p>It's in the roadmap to even create a customizable <code>proxy.Factory</code> implementation using this feature, so more accurate management could be achieved without requiring a single extra code line.</p>
+<h2 id="component-changes-in-04">Component changes in <code>0.4</code></h2>
 <p>As a continuation of what we explained in the previous post <em><a href="/blog/open-sourcing-enterprise-features/">Why are we open sourcing our Enterprise version?</a></em> the following new components are included in the 0.4 (The <code>X</code> marks those already available at the time of writing)</p>
-
 <pre><code>[X] - ratelimit
 [X] - circuitbreaker
 [X] - oauth2-client
@@ -327,14 +306,10 @@ All the components are listed in the <a href="https://github.com/devopsfaith/kra
 [ ] - security router
 [ ] - cmd package
 </code></pre>
-
 <p>New components added:</p>
-
 <pre><code>[X] - martian
 </code></pre>
-
-<p>And the list of the 8 components that we mentioned before that move to it&rsquo;s dedicated repository:</p>
-
+<p>And the list of the 8 components that we mentioned before that move to it's dedicated repository:</p>
 <pre><code>[X] - config/viper
 [X] - encoding/xml
 [X] - encoding/rss
@@ -344,41 +319,26 @@ All the components are listed in the <a href="https://github.com/devopsfaith/kra
 [ ] - router/negroni
 [ ] - router/gorilla
 </code></pre>
-
 <p>In order to provide an alternative to some basic and common features, these components were extended:</p>
-
 <pre><code>[X] - config
 [X] - encoding
 [X] - logging
 </code></pre>
-
 <p><a href="https://github.com/devopsfaith/krakend-contrib">Full list of external components</a></p>
-
-<h2 id="getting-ready-for-the-0-4">Getting ready for the <code>0.4</code></h2>
-
-<p>Don&rsquo;t panic! All the actual adapters will be moved but not removed.</p>
-
+<h2 id="getting-ready-for-the-04">Getting ready for the <code>0.4</code></h2>
+<p>Don't panic! All the actual adapters will be moved but not removed.</p>
 <p>In order to keep your code working, you just need to change the import section from</p>
-
 <pre><code>import &quot;github.com/devopsfaith/krakend/config/viper&quot;
 </code></pre>
-
 <p>to</p>
-
 <pre><code>import &quot;github.com/devopsfaith/krakend-viper&quot;
 </code></pre>
-
 <p>or run the upgrade script (that we will add to the project) in your repos.</p>
-
 <p>To get the <code>xml</code> and/or the <code>rss</code> encodings, one more thing is required: registering it in your code</p>
-
 <pre><code>xml.Register()
 </code></pre>
-
 <p>Checkout each package for more details about its configuration.</p>
-
 <p>We will announce in <a href="http://twitter.com/devopsfaith">Twitter</a> and in this blog when the new version is released, follow us to stay up to date. Needless to say that we will be happy to review your contributions for the next release by sending your PRs to the <code>0.4-dev</code> branch.</p>
-
 <p>Thanks!</p>
 
 

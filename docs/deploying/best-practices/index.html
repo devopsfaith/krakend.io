@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Deployment best practices - KrakenD API Gateway</title>
     <meta itemprop="name" content="Deployment best practices - KrakenD API Gateway">
@@ -21,15 +21,13 @@
 
 
 <meta property="og:title" content="Deployment best practices" />
-<meta property="og:description" content="This document is a draft
-Setting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.
+<meta property="og:description" content="This document is a draftSetting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.
 Use HTTP2 Enable HTTP2 between your balancer and KrakenD API gateway for the best performance.
 SSL Add your SSL certificate in the load balancer and use internal certificates between the load balancer and KrakenD.
 Enable metrics and logging Make sure you have visibility of what is going on." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/deploying/best-practices/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2017-01-21T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-11-02T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -39,8 +37,7 @@ Enable metrics and logging Make sure you have visibility of what is going on." /
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Deployment best practices"/>
-<meta name="twitter:description" content="This document is a draft
-Setting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.
+<meta name="twitter:description" content="This document is a draftSetting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.
 Use HTTP2 Enable HTTP2 between your balancer and KrakenD API gateway for the best performance.
 SSL Add your SSL certificate in the load balancer and use internal certificates between the load balancer and KrakenD.
 Enable metrics and logging Make sure you have visibility of what is going on."/>
@@ -704,54 +701,30 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/deploying
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#use-http2">Use HTTP2</a></li>
-<li><a href="#ssl">SSL</a></li>
-<li><a href="#enable-metrics-and-logging">Enable metrics and logging</a></li>
-<li><a href="#startup-command">Startup command</a></li>
-<li><a href="#named-configuration">Named configuration</a></li>
-</ul>
-</nav>
+                <nav id="TableOfContents"></nav>
             </div>
         </div>
         
 
-        
-
-<p><span class="badge badge-warning">This document is a draft</span></p>
-
+        <p><!-- raw HTML omitted -->This document is a draft<!-- raw HTML omitted --></p>
 <p>Setting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.</p>
-
 <h1 id="use-http2">Use HTTP2</h1>
-
 <p>Enable HTTP2 between your balancer and KrakenD API gateway for the best performance.</p>
-
 <h1 id="ssl">SSL</h1>
-
 <p>Add your SSL certificate in the load balancer and use <strong>internal certificates</strong> between the load balancer and KrakenD.</p>
-
 <h1 id="enable-metrics-and-logging">Enable metrics and logging</h1>
-
 <p>Make sure you have visibility of what is going on. Choose any of the systems where you can send the metrics and enable them. Enable logging with at least a <code>WARNING</code> level.</p>
-
 <h1 id="startup-command">Startup command</h1>
-
 <p>Redirect the output to <code>/dev/null</code>.  Run the service with</p>
-
 <pre><code>krakend run -c krakend.json &gt;/dev/null 2&gt;&amp;1
 </code></pre>
-
 <h1 id="named-configuration">Named configuration</h1>
-
 <p>Add a <code>name</code> key in the configuration file with useful information so you can identify which specific version your cluster is running. E.g.:</p>
-
 <pre><code>{
     &quot;version&quot;: 2,
     &quot;name&quot;: &quot;Production Cluster rev-db6a182&quot;
 }
 </code></pre>
-
 <p>Whatever type of information you write inside the <code>name</code> is open to your imagination. Any value you write is available in the metrics for inspection.</p>
 
     </section>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Service Discovery with etcd - KrakenD API Gateway</title>
     <meta itemprop="name" content="Service Discovery with etcd - KrakenD API Gateway">
@@ -27,8 +27,7 @@ Enabling etcd To enable the integration add in the root of your configuration fi
 { &#34;version&#34;: 2, &#34;extra_config&#34;: { &#34;github_com/devopsfaith/krakend-etcd&#34;: { &#34;machines&#34;: [ &#34;https://192.168.1.100:4001&#34;, &#34;https://192.168.1.101:4001&#34; ], &#34;dial_timeout&#34;: &#34;5s&#34;, &#34;dial_keepalive&#34;: &#34;30s&#34;, &#34;header_timeout&#34;: &#34;1s&#34;, &#34;cert&#34;: &#34;/path/to/cert&#34;, &#34;key&#34;: &#34;/path/to/cert-private-key&#34;, &#34;cacert&#34;: &#34;/path/to/CA-cert&#34; }  }, ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/service-discovery/etcd/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-09-30T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-02-13T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -709,26 +708,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#enabling-etcd">Enabling etcd</a></li>
-<li><a href="#using-etcd-to-resolve-backends">Using etcd to resolve backends</a></li>
-</ul>
-</nav>
+                <nav id="TableOfContents"></nav>
             </div>
         </div>
         
 
-        
-
-<p>The etcd Service Discovery integration allows you to perform the host resolution using your existing etcd setup.</p>
-
+        <p>The etcd Service Discovery integration allows you to perform the host resolution using your existing etcd setup.</p>
 <p>The integration etcd is controlled by the <a href="https://github.com/devopsfaith/krakend-etcd">krakend-etcd</a> component and adds client and subscriber capabilities for etcd.</p>
-
 <h1 id="enabling-etcd">Enabling etcd</h1>
-
 <p>To enable the integration add in the <strong>root</strong> of your configuration file the necessary settings:</p>
-
 <p><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
 <span class="hl">  <span class="nt">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -736,7 +724,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
 </span><span class="hl">      <span class="nt">&#34;machines&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span><span class="hl">        <span class="s2">&#34;https://192.168.1.100:4001&#34;</span><span class="p">,</span>
 </span><span class="hl">        <span class="s2">&#34;https://192.168.1.101:4001&#34;</span>
-</span><span class="hl">      <span class="p">],</span>
+</span><span class="hl">      <span class="p">]</span><span class="p">,</span>
 </span><span class="hl">      <span class="nt">&#34;dial_timeout&#34;</span><span class="p">:</span> <span class="s2">&#34;5s&#34;</span><span class="p">,</span>
 </span><span class="hl">      <span class="nt">&#34;dial_keepalive&#34;</span><span class="p">:</span> <span class="s2">&#34;30s&#34;</span><span class="p">,</span>
 </span><span class="hl">      <span class="nt">&#34;header_timeout&#34;</span><span class="p">:</span> <span class="s2">&#34;1s&#34;</span><span class="p">,</span>
@@ -744,26 +732,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
 </span><span class="hl">      <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;/path/to/cert-private-key&#34;</span><span class="p">,</span>
 </span><span class="hl">      <span class="nt">&#34;cacert&#34;</span><span class="p">:</span> <span class="s2">&#34;/path/to/CA-cert&#34;</span>
 </span><span class="hl">    <span class="p">}</span>
-</span>  <span class="p">},</span>
-  <span class="err">...</span></code></pre></div>}</p>
-
+</span>  <span class="p">}</span><span class="p">,</span>
+  <span class="err">.</span><span class="err">.</span><span class="err">.</span></code></pre></div>}</p>
 <p>The only mandatory key inside the <code>github_com/devopsfaith/krakend-etcd</code> namespace is <code>machines</code>, so the integration knows where etcd lives. The rest of the keys in the configuration are optional.</p>
-
 <p>The timeouts and keepalive will take the shown values if the keys are missing, and the certificates (<code>cert</code>, <code>key</code>, and <code>cacert</code>) are not needed if you use plain connections.</p>
-
 <p>Now you are able to use <code>etcd</code> with your backends.</p>
-
 <h1 id="using-etcd-to-resolve-backends">Using etcd to resolve backends</h1>
-
 <p>Once the integration has been enabled, add the following keys in the <code>backend</code> section of your configuration. The <code>host</code> key can be skipped if there is another <code>host</code> key in the root level of the configuration.</p>
-
 <ul>
 <li><code>&quot;sd&quot;: &quot;etcd&quot;</code>: To set etcd as the service discovery</li>
 <li><code>&quot;host&quot;: []</code>: The list of all the services you want to resolve</li>
 </ul>
-
 <p>For instance, set the service discovery for an individual backend:</p>
-
 <pre><code>...
 &quot;backend&quot;: [
         {

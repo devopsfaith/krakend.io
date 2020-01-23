@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Edge computing - A story of buses, raspberries, IoT and API gateways - KrakenD API Gateway</title>
     <meta itemprop="name" content="Edge computing - A story of buses, raspberries, IoT and API gateways - KrakenD API Gateway">
@@ -24,15 +24,10 @@
 <meta property="og:description" content="An API Gateway for Edge Computing" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/blog/krakend-on-raspberry/" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/iot_bus.jpg" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/iot/raspberry_run_api_gateway.png" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/iot/perf_test_raspberry.png" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/iot/perf_test_raspberry_1000.png" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/iot/perf_test_raspberry_top.png" />
 <meta property="article:published_time" content="2018-05-01T21:25:00+02:00" />
 <meta property="article:modified_time" content="2018-05-01T21:25:00+02:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -295,69 +290,42 @@
             
           </header>
 
-          
-
-<p>The IoT industry has been running for some years now adding millions of devices into the network. The range of devices and capabilities is very wide and heterogeneous, from small devices powered with a 9-volt battery to track the location of freight shippings traveling the oceans (using platforms like <a href="https://www.sigfox.com">Sigfox</a>) to permanently plugged devices with more powerful computing like a <a href="https://www.raspberrypi.org/">Raspberry Pi</a> where computation cycles are not a problem.</p>
-
-<p>Generally speaking, all these devices collect raw data and send it to the cloud where big data centers process it. In some cases it will trigger events back in the devices that are subscribed to a service. All devices are pretty dumb as they are quite passive and don&rsquo;t process much data, they just send raw data and some even wait for a single service to provide feedback (the smartest devices) and trigger some action.</p>
-
+          <p>The IoT industry has been running for some years now adding millions of devices into the network. The range of devices and capabilities is very wide and heterogeneous, from small devices powered with a 9-volt battery to track the location of freight shippings traveling the oceans (using platforms like <a href="https://www.sigfox.com">Sigfox</a>) to permanently plugged devices with more powerful computing like a <a href="https://www.raspberrypi.org/">Raspberry Pi</a> where computation cycles are not a problem.</p>
+<p>Generally speaking, all these devices collect raw data and send it to the cloud where big data centers process it. In some cases it will trigger events back in the devices that are subscribed to a service. All devices are pretty dumb as they are quite passive and don't process much data, they just send raw data and some even wait for a single service to provide feedback (the smartest devices) and trigger some action.</p>
 <p>The <strong>Edge Computing</strong> philosophy tries to change this paradigm by making IoT devices more autonomous and put under their umbrella logic that was before in the cloud.</p>
-
 <h3 id="disclaimer">Disclaimer</h3>
-
 <p>We are not not in the business of IoT, robotics, or the automotive industry. I am going to deliberately skip the difficult part of making the sensors work. The implementation of the following story requires qualified people manipulating the devices. Do not attempt to run a bus full of children with our gateway in your own neighborhood.</p>
-
 <h2 id="a-fleet-of-buses-running-raspberries">A fleet of buses running Raspberries</h2>
-
-<p>Let&rsquo;s picture a fictional situation and a transportation company, <em>Foggy Whale Bus Inc</em>, which fleets several buses in your local city. Each one of these expensive vehicles are able to automatically collect several metrics thanks to its different sensors, devices and internally installed Raspberry Pi.</p>
-
+<p>Let's picture a fictional situation and a transportation company, <em>Foggy Whale Bus Inc</em>, which fleets several buses in your local city. Each one of these expensive vehicles are able to automatically collect several metrics thanks to its different sensors, devices and internally installed Raspberry Pi.</p>
 <p>Examples of the bus capabilities are:</p>
-
 <ul>
 <li><strong>Knowing vehicle status</strong>: Power/fuel levels, emissions, hours of service, assigned driver, average speed, tire pressure&hellip;</li>
 <li><strong>Reporting service status</strong>: Location, stops, remaining capacity, idle time, timing&hellip;</li>
 <li><strong>Firing events to the central</strong> : Crash, breakdown, driver sickness&hellip;</li>
 <li><strong>Receive external data</strong>: Traffic service, weather conditions&hellip; and of course data from <em>Foggy Whale Bus</em> central.</li>
 </ul>
-
 <p>All the devices&rsquo; data is orchestrated by the Raspberry Pi installed inside the bus. The Raspberry possesses a special software to track the devices, and each device has a different system to report it, like low-range networks (bluetooth, IR, wifi&hellip;) or direct wiring. The software that makes the data ready for KrakenD could be something similar to <a href="https://github.com/xcodersun/eywa">eywa</a>. The Pi also provides connectivity to the Internet via the attached 4G/LTE/3G/HSPA module.</p>
-
 <p>As we want to make the fleet manager happy we offer her a centralized dashboard on premises where we give an unified way to read data from all the buses at once, in real time. In all, this is the idea:</p>
-
-<p><img src="/images/blog/iot/krakend-bus.jpg" alt="The KrakenD Bus" /></p>
-
+<p><img src="/images/blog/iot/krakend-bus.jpg" alt="The KrakenD Bus"></p>
 <p>Placing KrakenD in every bus offers an HTTP API that is accessible via Internet from <em>Foggy Whale Bus Inc</em> premises. KrakenD makes sure the authentication token passed is valid and the request comes from a trusted source. It also decorates and complements the existing data by offering a nice way of representing it a more convenient way, and provides a communication mechanism from and to the central by exposing endpoints. An endpoint that is worth mentioning is the <code>/health</code>, that reveals problems with the bus.</p>
-
 <p>At the same time, the central has another KrakenD that is used to query all buses at the same time and is able to reveal aggregated data in an efficient manner. The KrakenD in the central has another <code>/health</code> endpoint, only that this is the &ldquo;health of the healths&rdquo; and quickly allows to find problems in the fleet and take action with the data (send another bus, notify passengers, etc).</p>
-
-<p>The installation of KrakenD in the central responsible of getting data from all the buses is a regular <a href="https://www.krakend.io/download/">KrakenD</a> installation and is not worth mentioning in this context. The installation in the Raspberry is more relevant to this post, so let&rsquo;s see how to do it.</p>
-
+<p>The installation of KrakenD in the central responsible of getting data from all the buses is a regular <a href="https://www.krakend.io/download/">KrakenD</a> installation and is not worth mentioning in this context. The installation in the Raspberry is more relevant to this post, so let's see how to do it.</p>
 <h2 id="installing-krakend-on-the-raspberry-bus">Installing KrakenD on the Raspberry (bus)</h2>
-
-<p>Now with the pictures clear, let&rsquo;s install KrakenD on the Raspberry, which is the easy part. The Raspberry comes with a small 4-core processor built with the ARM architecture. Fortunately KrakenD is coded in <a href="https://golang.org">Go</a> so it can be compiled in multiple architectures like <code>amd64</code>, <code>386</code>, <code>arm</code>, <code>arm64</code>, <code>s390x</code> or <code>ppc64le</code>. Go is also a language that powers frameworks for robotics, such as <a href="https://gobot.io/">Gobot</a>.</p>
-
+<p>Now with the pictures clear, let's install KrakenD on the Raspberry, which is the easy part. The Raspberry comes with a small 4-core processor built with the ARM architecture. Fortunately KrakenD is coded in <a href="https://golang.org">Go</a> so it can be compiled in multiple architectures like <code>amd64</code>, <code>386</code>, <code>arm</code>, <code>arm64</code>, <code>s390x</code> or <code>ppc64le</code>. Go is also a language that powers frameworks for robotics, such as <a href="https://gobot.io/">Gobot</a>.</p>
 <h3 id="step-1-install-go">Step 1: Install go</h3>
-
-<p>Since today we are not distributing binaries for Raspberry, we will need to compile the code, which isn&rsquo;t a a great deal. The only needed tool to compile the code is to have Go. The easiest way to install Go is to download and decompress it. We are doing it in the <code>/tmp/go</code> folder but you might want to choose a different location if you want to use go permanently.</p>
-
+<p>Since today we are not distributing binaries for Raspberry, we will need to compile the code, which isn't a a great deal. The only needed tool to compile the code is to have Go. The easiest way to install Go is to download and decompress it. We are doing it in the <code>/tmp/go</code> folder but you might want to choose a different location if you want to use go permanently.</p>
 <pre><code>cd /tmp
 wget https://storage.googleapis.com/golang/go1.10.linux-armv6l.tar.gz
 tar xvf go1.10.linux-armv6l.tar.gz
 </code></pre>
-
 <p>Now add go in the <code>$PATH</code> var:</p>
-
 <pre><code>PATH=$PATH:/tmp/go/bin
 GOPATH=$(go env GOPATH)
 PATH=$PATH:$GOPATH/bin/
 </code></pre>
-
 <p>Now typing <code>go</code> should work.</p>
-
 <h3 id="step-2-compile-krakend-for-arm">Step 2: Compile KrakenD for ARM</h3>
-
 <p>The following commands will compile KrakenD for your raspberry. All needed dependencies will be installed via <code>dep</code> which is a Go dependency management tool. You only need to type the following:</p>
-
 <pre><code>go install github.com/golang/dep/cmd/dep
 mkdir -p $GOPATH/src/github.com/devopsfaith/
 cd $GOPATH/src/github.com/devopsfaith/
@@ -365,44 +333,26 @@ git clone https://github.com/devopsfaith/krakend-ce.git
 cd krakend-ce/
 make
 </code></pre>
-
-<p>After <code>make</code> has finished you&rsquo;ll have a new file in the directory named <code>krakend</code>. This file along with your own <code>krakend.json</code> is all you really need, so you can delete everything else and just copy these file in all the devices without installing go or anything. To run KrakenD in <strong>debug</strong> mode run:</p>
-
+<p>After <code>make</code> has finished you'll have a new file in the directory named <code>krakend</code>. This file along with your own <code>krakend.json</code> is all you really need, so you can delete everything else and just copy these file in all the devices without installing go or anything. To run KrakenD in <strong>debug</strong> mode run:</p>
 <pre><code>./krakend run -c krakend.json -d -p 8000 &gt; /dev/null
 </code></pre>
-
 <p>Now KrakenD is running in port :8000 and will gather all the needed information when accessing its endpoints. Through the <a href="http://designer.krakend.io">KrakenDesigner</a> it is possible to create the gateway configuration using a visual tool instead of manually editing the configuration file.</p>
-
 <p>When the service runs you should see something similar to this:</p>
-
-<p><img src="/images/blog/iot/raspberry_run_api_gateway.png" alt="Running the API Gateway" /></p>
-
+<p><img src="/images/blog/iot/raspberry_run_api_gateway.png" alt="Running the API Gateway"></p>
 <h2 id="benchmarking-the-raspberry">Benchmarking the Raspberry</h2>
-
-<p>Although the bus shouldn&rsquo;t be receiving a lot of queries because is meant to be used only from the central, it is a service exposed to the Internet and is always interesting to know what are the limits of this setup. Running KrakenD on a Raspberry PI 2 Model B (year 2015) gave us <strong>more than 700 requests per second</strong> which will suffice the requirements.</p>
-
+<p>Although the bus shouldn't be receiving a lot of queries because is meant to be used only from the central, it is a service exposed to the Internet and is always interesting to know what are the limits of this setup. Running KrakenD on a Raspberry PI 2 Model B (year 2015) gave us <strong>more than 700 requests per second</strong> which will suffice the requirements.</p>
 <p>The tool we always use to generate load is <a href="https://github.com/rakyll/hey">hey</a>:</p>
-
 <p>100 concurrent requests:
-<img src="/images/blog/iot/perf_test_raspberry.png" alt="Running the API Gateway" /></p>
-
+<img src="/images/blog/iot/perf_test_raspberry.png" alt="Running the API Gateway"></p>
 <p>1000 concurrent requests:
-<img src="/images/blog/iot/perf_test_raspberry_1000.png" alt="Running the API Gateway" /></p>
-
-<p>As per the resource consumption, nothing unexpected. We put the hardware close to its limits and the CPU usage was intensive. The raspberry has 4 cores but still we had some margin to grow, although the performance didn&rsquo;t get better.</p>
-
-<p><img src="/images/blog/iot/perf_test_raspberry_top.png" alt="Running the API Gateway" /></p>
-
+<img src="/images/blog/iot/perf_test_raspberry_1000.png" alt="Running the API Gateway"></p>
+<p>As per the resource consumption, nothing unexpected. We put the hardware close to its limits and the CPU usage was intensive. The raspberry has 4 cores but still we had some margin to grow, although the performance didn't get better.</p>
+<p><img src="/images/blog/iot/perf_test_raspberry_top.png" alt="Running the API Gateway"></p>
 <h2 id="summary">Summary</h2>
-
 <p>We have shown practical information on how an API Gateway can be compiled and placed in clients&rsquo; side as a tool to facilitate data gathering and API interaction. Our fictional company has now a connected fleet of buses that provide an API with their status and facilitate their management. We used this example of the <em>Foggy Whale Bus</em> company to show a less obvious use of API Gateways in the daily life, and now is able to serve <strong>+700 requests per second on a $30 hardware</strong> inside every bus.</p>
-
 <p>Building the software in Go gave us the ability to run our application in multiple architectures and scenarios, such as in Raspberry for IoT. The use cases where an API Gateway can be helpful are open to imagination, but we gave you some materials to explore out of the most common ones. Just remember that unless other products, KrakenD can speak several protocols and can communicate with different transport layers (there is a life out of HTTP!) and can be used to create useful APIs for dashboards and kiosks.</p>
-
 <p>Also, due to its small footprint and portability, it can be installed in all kinds of hardware and cloud providers.</p>
-
 <p>Finally, if you want to create a quick site using aggregated data from KrakenD have a look at <a href="http://api2html.com">API2HTML</a>. A simple website builder that converts API data into HTML using simple mustache templates.</p>
-
 <p>The wheels on the bus go round and round, all through the town&hellip;</p>
 
 

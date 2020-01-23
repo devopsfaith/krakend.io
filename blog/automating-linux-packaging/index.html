@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>How we automated our RPM and DEB packaging with Docker - KrakenD API Gateway</title>
     <meta itemprop="name" content="How we automated our RPM and DEB packaging with Docker - KrakenD API Gateway">
@@ -24,7 +24,6 @@
 <meta property="og:description" content="Automating the linux packaging of your own app using docker" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/blog/automating-linux-packaging/" />
-
 <meta property="og:image" content="https://www.krakend.io/images/blog/packed-parcel-deb.jpg" />
 <meta property="article:published_time" content="2017-11-06T12:43:33+02:00" />
 <meta property="article:modified_time" content="2017-11-06T12:43:33+02:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -287,32 +286,19 @@
             
           </header>
 
-          
-
-<p>Everyone loves reaching the maximum number of available platforms for their software but this usually comes at a cost. In this article we will explain how we generated our packaging for Linux in an automated fashion, being faithful to our DevOps dogma.</p>
-
+          <p>Everyone loves reaching the maximum number of available platforms for their software but this usually comes at a cost. In this article we will explain how we generated our packaging for Linux in an automated fashion, being faithful to our DevOps dogma.</p>
 <h2 id="dockerize-all-the-things">Dockerize all the things!</h2>
-
 <p>Our team uses both Ubuntu and MacOS X in desktop machines and KrakenD has been running and behaving in the same way in all the platforms because from day one we decided to run everything on Docker. We use containers for all the software we produce and this is still true for the rest of our tooling (as what we are going to show today).</p>
-
 <p>When it comes to generating RPM or DEB packages, choosing Docker ensures that anyone building or compiling a package will generate a consistent output.</p>
-
-<p>Having Docker as the platform to work on, let&rsquo;s see how to build the packages.</p>
-
+<p>Having Docker as the platform to work on, let's see how to build the packages.</p>
 <h2 id="building-packages-the-easy-way-using-fpm">Building packages the easy way using FPM</h2>
-
-<p>For those who don&rsquo;t know <code>fpm</code>, this is the key piece for the package generation. According to <a href="https://github.com/jordansissel/fpm">their own intro</a>:</p>
-
+<p>For those who don't know <code>fpm</code>, this is the key piece for the package generation. According to <a href="https://github.com/jordansissel/fpm">their own intro</a>:</p>
 <blockquote>
 <p>The goal of fpm is to make it easy and quick to build packages</p>
 </blockquote>
-
 <p><code>fpm</code> is a tool written in <code>Ruby</code> that allows you to create packages for multiple platforms in a very easy way. Examples of the packages you can create are <code>deb</code>, <code>rpm</code>, <code>tar</code> and even Mac OS X .pkg, solaris, freebsd or pacman (ArchLinux).</p>
-
-<p>Let&rsquo;s get started by creating the <code>fpm</code> builder with a <code>Dockerfile</code> to generate the versions <code>deb</code> and <code>rpm</code>, the ones we were most interested in.</p>
-
+<p>Let's get started by creating the <code>fpm</code> builder with a <code>Dockerfile</code> to generate the versions <code>deb</code> and <code>rpm</code>, the ones we were most interested in.</p>
 <p><strong>The <code>Dockerfile</code> for Debian/Ubuntu</strong>:</p>
-
 <pre><code>FROM ubuntu:16.04
 LABEL maintainer=&quot;dortiz@devops.faith&quot;
 
@@ -330,10 +316,7 @@ WORKDIR /tmp/fpm
 
 ENTRYPOINT [ &quot;/usr/local/bin/fpm&quot; ]
 CMD [ &quot;--help&quot; ]
-</code></pre>
-
-<p><strong>The <code>Dockerfile</code> for CentOS/Rhel</strong>:</p>
-
+</code></pre><p><strong>The <code>Dockerfile</code> for CentOS/Rhel</strong>:</p>
 <pre><code>FROM centos:7
 LABEL maintainer=&quot;dortiz@devops.faith&quot;
 
@@ -352,46 +335,29 @@ WORKDIR /tmp/fpm
 
 ENTRYPOINT [ &quot;/usr/local/bin/fpm&quot; ]
 CMD [ &quot;--help&quot; ]
-</code></pre>
-
-<p>Then build it and run it:</p>
-
+</code></pre><p>Then build it and run it:</p>
 <pre><code>$ docker run --rm -it fpm:deb
 Intro:
 
   This is fpm version 1.9.3
-</code></pre>
-
-<p>Notice that the <code>FROM</code> in each one uses a different OS (because fpm still needs rpmbuild, dpkg-deb and other tools).</p>
-
+</code></pre><p>Notice that the <code>FROM</code> in each one uses a different OS (because fpm still needs rpmbuild, dpkg-deb and other tools).</p>
 <p>Now the container is ready to package anything.</p>
-
 <p><strong>Source code:</strong></p>
-
 <ul>
-<li><i class="fab fa-github"></i> <a href="https://github.com/devopsfaith/docker-fpm">Clone and build docker-fpm repository</a></li>
+<li><!-- raw HTML omitted --><!-- raw HTML omitted --> <a href="https://github.com/devopsfaith/docker-fpm">Clone and build docker-fpm repository</a></li>
 <li>Or run the docker <a href="https://hub.docker.com/r/devopsfaith/fpm">fpm containers</a> from Docker Hub.</li>
 </ul>
-
 <h2 id="sign-packages-using-pgp">Sign packages using PGP</h2>
-
 <p>If you want to distribute packages you’ll need to sign them using your PGP key. To do so you need to mount your <code>.pgp</code> directory in the container as a volume, as well as the <code>rpmmacros</code> configuration so the process has everything it needs.</p>
-
 <pre><code>	docker run --rm -it -v &quot;${PWD}/rpmmacros:/root/.rpmmacros&quot; -v $HOME/.gnupg:/root/.gnupg \
 		-v &quot;${PWD}:${DOCKER_WDIR}&quot; -w ${DOCKER_WDIR} ${DOCKER_FPM}:rpm -t rpm ${RPM_OPTS} \
 		--iteration ${RELEASE}.el7 \
 		-C skel/el7 \
 		${FPM_OPTS}
-</code></pre>
-
-<p>The example uses some vars that we haven&rsquo;t seen so far. Keep reading&hellip;</p>
-
+</code></pre><p>The example uses some vars that we haven't seen so far. Keep reading&hellip;</p>
 <h2 id="write-a-makefile">Write a Makefile</h2>
-
 <p>Unless your are OK with having an environment that suffers the <a href="https://en.wikipedia.org/wiki/Diogenes_syndrome">diogenes syndrome</a>, the next problem you want to face is managing what files go in which package version and leaving the house clean after compiling. How convenient is a <code>Makefile</code> to get that!</p>
-
 <p>Makefile variables, example:</p>
-
 <pre><code>VERSION := 0.3.9
 PKGNAME := krakend
 LICENSE := Apache 2.0
@@ -404,10 +370,7 @@ DESC := High performance API gateway. Aggregate, filter, manipulate and add midd
 MAINTAINER := Daniel Ortiz &lt;dortiz@devops.faith&gt;
 DOCKER_WDIR := /tmp/fpm
 DOCKER_FPM := fpm
-</code></pre>
-
-<p>Then every specific option for <code>fpm</code> is also added to the <code>Makefile</code>:</p>
-
+</code></pre><p>Then every specific option for <code>fpm</code> is also added to the <code>Makefile</code>:</p>
 <pre><code>FPM_OPTS=-s dir -v $(VERSION) -n $(PKGNAME) \
   --license &quot;$(LICENSE)&quot; \
   --vendor &quot;$(VENDOR)&quot; \
@@ -430,22 +393,13 @@ RPM_OPTS =--rpm-user $(USER) \
 	--before-remove scripts/prerm.rpm \
   --after-remove scripts/postrm.rpm \
   --rpm-sign
-</code></pre>
-
-<p>Now all the options and variables are controlled inside the Makefile.</p>
-
-<h2 id="pattern-specific-variables">Pattern-specific variables</h2>
-
+</code></pre><p>Now all the options and variables are controlled inside the Makefile.</p>
+<h2 id="patternspecific-variables">Pattern-specific variables</h2>
 <p>A key of success are the pattern-specific variables present in the <code>Makefile</code>. They are used to define a kind of template that can be reused many times (as a function) but with different declarations.</p>
-
-<p>A single platform would be easy to manage: one config file, a couple of scripts (pre and post install) and the systemd configuration. That&rsquo;s it.</p>
-
+<p>A single platform would be easy to manage: one config file, a couple of scripts (pre and post install) and the systemd configuration. That's it.</p>
 <p>For us the problem came when we wanted to generate packages for old versions of Ubuntu/Debian and CentOS/RHEL. Some distributions were using <code>upstart</code> while others created scripts in <code>init.d</code> or needed custom scripts for pre and post installations. Differences never ended.</p>
-
-<p>The use of the pattern-specific variables fixes in a simple way the problem (and using something it&rsquo;s been there for years), this is how we completed the Makefile.</p>
-
+<p>The use of the pattern-specific variables fixes in a simple way the problem (and using something it's been there for years), this is how we completed the Makefile.</p>
 <p>We defined all the files that might be needed during the package creation:</p>
-
 <pre><code>skel/%/etc/init/krakend.conf: krakend.conf
 	mkdir -p &quot;$(dir $@)&quot;
 	cp krakend.conf &quot;$@&quot;
@@ -454,11 +408,8 @@ skel/%/etc/init.d/krakend: krakend.init
 	mkdir -p &quot;$(dir $@)&quot;
 	cp krakend.init &quot;$@&quot;
 
-</code></pre>
-
-<p>When declaring the file using the full path, the directory will be created and the file will be copied inside, generating this way the skeleton for that specific version.
+</code></pre><p>When declaring the file using the full path, the directory will be created and the file will be copied inside, generating this way the skeleton for that specific version.
 In addition, it will save you from having to manually maintain that skel, because it is generated every time is needed, copying the &ldquo;latest&rdquo; available versions of them.</p>
-
 <pre><code>.PHONY: ubuntu-trusty
 ubuntu-trusty: skel/ubuntu-trusty/usr/bin/krakend
 ubuntu-trusty: skel/ubuntu-trusty/etc/krakend/krakend.json
@@ -481,18 +432,11 @@ ubuntu-xenial: skel/ubuntu-xenial/etc/krakend/service.yml
 		--deb-systemd krakend.service \
 		-C skel/ubuntu-xenial \
 		${FPM_OPTS}
-</code></pre>
-
-<h2 id="testing-your-packages">Testing your packages</h2>
-
+</code></pre><h2 id="testing-your-packages">Testing your packages</h2>
 <p>The last step before releasing to the world the packages just created is to test they work properly. There are many ways and strategies to do that and we are not going to show you how, but for us it worked to run a docker container with the OS version we wanted to try and install inside the generated package.</p>
-
 <p>With this done, it is very easy to check that the pre and post installation scripts worked correctly as well as the installation and the service operation.</p>
-
 <p>We did a simple shell script (not being able to invest more time in something elegant and reusable) and a Dockerfile template where the package gets copied and a new container is generated tagged with the version of the package. By specifying the package version as a <code>tag</code> in the docker image, executing <code>docker images</code> will list all the generated packages ready to test!</p>
-
 <p>Dockerfile testing:</p>
-
 <pre><code>FROM ubuntu:16.04
 maintainer dortiz@devops.faith
 
@@ -503,10 +447,7 @@ RUN dpkg -i /$debfile
 EXPOSE 8080
 
 CMD [ &quot;krakend&quot;, &quot;run&quot;, &quot;-d&quot; ]
-</code></pre>
-
-<p>Testing script:</p>
-
+</code></pre><p>Testing script:</p>
 <pre><code>#!/bin/sh
 
 DEB=$1
@@ -515,10 +456,7 @@ VERSION=$3
 cp $DEB tests/ubuntu-xenial/
 docker build --build-arg debfile=$DEB -t test_${TARGET}_${VERSION} tests/ubuntu-xenial
 rm -f tests/ubuntu-xenial/$DEB
-</code></pre>
-
-<p>Makefile:</p>
-
+</code></pre><p>Makefile:</p>
 <pre><code>.PHONY: ubuntu-xenial
 ubuntu-xenial: skel/ubuntu-xenial/usr/bin/krakend
 ubuntu-xenial: skel/ubuntu-xenial/etc/krakend/krakend.json
@@ -529,12 +467,8 @@ ubuntu-xenial: skel/ubuntu-xenial/etc/krakend/service.yml
 		-C skel/ubuntu-xenial \
 		${FPM_OPTS}
 	tests/ubuntu-xenial/test.sh ${PKGNAME}_${VERSION}-${RELEASE}.ubuntu-xenial_${ARCH}.deb ubuntu-xenial ${VERSION}
-</code></pre>
-
-<h2 id="conclusion">Conclusion</h2>
-
+</code></pre><h2 id="conclusion">Conclusion</h2>
 <p>We have seen through several examples how we automated the generation of package files for KrakenD. You can quickly adapt this scripts and containers to your own application and start producing packages in a more automated way. With the combination of the provided Makefile and <code>fpm</code> you will be able to distribute your application to several distributions.</p>
-
 <p>Enjoy!</p>
 
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Metrics middleware - KrakenD API Gateway</title>
     <meta itemprop="name" content="Metrics middleware - KrakenD API Gateway">
@@ -26,8 +26,7 @@ http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your
 { &#34;version&#34;: 2, &#34;extra_config&#34;: { &#34;github_com/devopsfaith/krakend-metrics&#34;: { &#34;collection_time&#34;: &#34;60s&#34;, &#34;proxy_disabled&#34;: false, &#34;router_disabled&#34;: false, &#34;backend_disabled&#34;: false, &#34;endpoint_disabled&#34;: false, &#34;listen_address&#34;: &#34;:8090&#34; },  ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/metrics/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-11-05T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-11-05T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -705,17 +704,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
         
         
 
-        
-
-<p>The metrics <em>middleware</em> offers a new service in a different port and exposes a <code>/__stats/</code> endpoint with the collection of all the KrakenD metrics:</p>
-
+        <p>The metrics <em>middleware</em> offers a new service in a different port and exposes a <code>/__stats/</code> endpoint with the collection of all the KrakenD metrics:</p>
 <pre><code>http://localhost:8080/__stats/
 </code></pre>
-
 <h1 id="enabling-metrics">Enabling metrics</h1>
-
 <p>In order to add metrics to your KrakenD installation add the <code>github_com/devopsfaith/krakend-metrics</code> namespace under <code>extra_config</code> in the root of your configuration file, e.g.:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{</span>
   <span class="s">&#34;version&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
 <span class="hl">  <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -726,18 +719,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 </span><span class="hl">      <span class="s">&#34;backend_disabled&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
 </span><span class="hl">      <span class="s">&#34;endpoint_disabled&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
 </span><span class="hl">      <span class="s">&#34;listen_address&#34;</span><span class="p">:</span> <span class="s">&#34;:8090&#34;</span>
-</span><span class="hl">    <span class="p">},</span>
+</span><span class="hl">    <span class="p">}</span><span class="p">,</span>
 </span>    <span class="o">...</span>
   <span class="p">}</span></code></pre></div>
-
 <p>The options of the <em>middleware</em> are:</p>
-
 <ul>
 <li><code>collection_time</code>: The time window to collect metrics. Defaults to 60 seconds.</li>
 <li><code>proxy_disabled</code>: Skip any metrics happening in the proxy layer (traffic against your backends)</li>
 <li><code>router_disabled</code>:  Skip any metrics happening in the router layer (activity in KrakenD endpoints)</li>
 <li><code>backend_disabled</code>: Skip any metrics happening in the backend layer.</li>
-<li><code>endpoint_disabled</code>: Do not publish the <code>/__stats/</code> endpoint. Metrics won&rsquo;t be accessible via the endpoint but still collected.</li>
+<li><code>endpoint_disabled</code>: Do not publish the <code>/__stats/</code> endpoint. Metrics won't be accessible via the endpoint but still collected.</li>
 <li><code>listen_address</code>: Change the listening address where the metrics endpoint is exposed. It defaults to :8090.</li>
 </ul>
 

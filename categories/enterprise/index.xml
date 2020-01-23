@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Enterprise on KrakenD - Open source API Gateway</title>
@@ -17,7 +17,8 @@
       <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
-      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?</description>
+      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&#39;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
+A look back&amp;hellip; If you are reading this post chances are that you know this already, in short KrakenD is the fastest API Gateway in the market.</description>
     </item>
     
   </channel>

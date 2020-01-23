@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>How we run KrakenD on Javascript with WebAssembly - KrakenD API Gateway</title>
     <meta itemprop="name" content="How we run KrakenD on Javascript with WebAssembly - KrakenD API Gateway">
@@ -24,8 +24,7 @@
 <meta property="og:description" content="A KrakenD in your browser" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/blog/krakend-wasm/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-12-09T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-12-09T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -288,44 +287,27 @@
             
           </header>
 
-          
-
-<p><a href="https://www.krakend.io">KrakenD</a> is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the <a href="https://designer.krakend.io">KrakenDesigner</a> is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.</p>
-
+          <p><a href="https://www.krakend.io">KrakenD</a> is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the <a href="https://designer.krakend.io">KrakenDesigner</a> is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.</p>
 <p>In this post, we are going to explain how we included KrakenD framework components in a <code>.wasm</code> file and how we integrated it into our existing SPA. This is our go code running on javascript.</p>
-
-<p>Let&rsquo;s start!</p>
-
-<h2 id="golang-1-11-and-webassembly">Golang 1.11 and WebAssembly</h2>
-
+<p>Let's start!</p>
+<h2 id="golang-111-and-webassembly">Golang 1.11 and WebAssembly</h2>
 <p>During the last 3 years, the popularity of WebAssembly (and its promise to replace JS) has been increasing at a breakneck pace.</p>
-
-<p>From the project&rsquo;s <a href="https://webassembly.org/">home page</a>:</p>
-
+<p>From the project's <a href="https://webassembly.org/">home page</a>:</p>
 <blockquote>
 <p>WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based virtual machine. Wasm is designed as a portable target for compilation of high-level languages like C/C++/Rust, enabling deployment on the web for client and server applications.</p>
 </blockquote>
-
 <p>The latest release of the golang language comes with an experimental port to WebAssembly.</p>
-
 <h2 id="quick-environment-setup">Quick environment setup</h2>
-
 <p>There are two dependencies in this project, be sure to have both installed correctly in your environment</p>
-
 <ul>
 <li>golang 1.11</li>
 <li>dep 0.5.0</li>
 </ul>
-
-<p>To reproduce the steps we did, let&rsquo;s start with a clean Go project. Copy the JS and HTML already bundled with your golang distribution to your new project.</p>
-
+<p>To reproduce the steps we did, let's start with a clean Go project. Copy the JS and HTML already bundled with your golang distribution to your new project.</p>
 <pre><code>cd myproject/
 $ cp &quot;$(go env GOROOT)/misc/wasm/wasm_exec.js&quot; .
 $ cp &quot;$(go env GOROOT)/misc/wasm/wasm_exec.html&quot; index.html
-</code></pre>
-
-<p>Now add a very simple <code>Makefile</code> that is going to download any dependencies and generate the <code>.wasm</code> file:</p>
-
+</code></pre><p>Now add a very simple <code>Makefile</code> that is going to download any dependencies and generate the <code>.wasm</code> file:</p>
 <pre><code>all: prepare build
 
 prepare:
@@ -333,29 +315,17 @@ prepare:
 
 build:
     GOARCH=wasm GOOS=js go build -o test.wasm main.go
-</code></pre>
-
-<p>Running <code>make</code> is all it takes to generate the <code>test.wasm</code> file, but to get a faster development environment, we&rsquo;ve also used two handy tools:</p>
-
+</code></pre><p>Running <code>make</code> is all it takes to generate the <code>test.wasm</code> file, but to get a faster development environment, we've also used two handy tools:</p>
 <ul>
 <li><a href="https://github.com/cespare/reflex">reflex</a> watches changes in the <code>main.go</code> file and recompiles automatically.</li>
 <li><a href="https://github.com/shurcooL/goexec">goexec</a> helps us launch Go one-liners, that we are using to launch a local web server.</li>
 </ul>
-
 <p>Open a new terminal, move to your project and start the <code>reflex</code> task:</p>
-
 <pre><code>$ reflex -r '^main.go$'  make build
-</code></pre>
-
-<p>We are creating the <code>main.go</code> content in a minute. Now, any changes happening to the main.go file execute a <code>make build</code> every time.</p>
-
+</code></pre><p>We are creating the <code>main.go</code> content in a minute. Now, any changes happening to the main.go file execute a <code>make build</code> every time.</p>
 <p>In a second terminal, move to your project and create the basic local HTTP server for serving the files <code>index.html</code>, <code>wasm_exec.js</code>, and <code>test.wasm</code></p>
-
 <pre><code>$ goexec 'http.ListenAndServe(&quot;:8080&quot;, http.FileServer(http.Dir(&quot;.&quot;)))'
-</code></pre>
-
-<p>It&rsquo;s time to test if everything is properly working. Create a file called <code>main.go</code> with this content:</p>
-
+</code></pre><p>It's time to test if everything is properly working. Create a file called <code>main.go</code> with this content:</p>
 <pre><code>package main
 
 import &quot;fmt&quot;
@@ -363,16 +333,10 @@ import &quot;fmt&quot;
 func main() {
     fmt.Println(&quot;Hello, WebAssembly!&quot;)
 }
-</code></pre>
-
-<p>Open your browser at <a href="http://localhost:8080">http://localhost:8080</a> and click the <code>run</code> button. You should find the <code>Hello, WebAssembly!</code> message in your console.</p>
-
-<p><img src="https://media0.giphy.com/media/JNrWNUUNZlIhG/giphy.gif?cid=3640f6095bf6d25a50506c4677a68f5e" alt="Horray!" /></p>
-
+</code></pre><p>Open your browser at <a href="http://localhost:8080">http://localhost:8080</a> and click the <code>run</code> button. You should find the <code>Hello, WebAssembly!</code> message in your console.</p>
+<p><img src="https://media0.giphy.com/media/JNrWNUUNZlIhG/giphy.gif?cid=3640f6095bf6d25a50506c4677a68f5e" alt="Horray!"></p>
 <h2 id="using-go-libs">Using go libs</h2>
-
-<p>With our environment ready, we can start hacking our way in. So let&rsquo;s create the minimal required code to expose a golang function to the JS space called <code>parse</code>.</p>
-
+<p>With our environment ready, we can start hacking our way in. So let's create the minimal required code to expose a golang function to the JS space called <code>parse</code>.</p>
 <pre><code>package main
 
 import (
@@ -391,17 +355,11 @@ func main() {
 
 	select {}
 }
-</code></pre>
-
-<p>You can test it in the console (after clicking run):</p>
-
+</code></pre><p>You can test it in the console (after clicking run):</p>
 <pre><code>WASM Go Initialized
 &gt; parse(&quot;aaaa&quot;, {a:42,b:true}, [&quot;one&quot;,&quot;two&quot;]);
 [aaaa [object Object] one,two]
-</code></pre>
-
-<p>As we are going to use external dependencies, we&rsquo;ll use the same system as in the KrakenD framework: <code>dep</code>. There are some problems using the versions locked in the framework in our WASM, so you can create a file called <code>Gopkg.toml</code> with the following content:</p>
-
+</code></pre><p>As we are going to use external dependencies, we'll use the same system as in the KrakenD framework: <code>dep</code>. There are some problems using the versions locked in the framework in our WASM, so you can create a file called <code>Gopkg.toml</code> with the following content:</p>
 <pre><code>[[override]]
   name = &quot;github.com/mattn/go-isatty&quot;
   revision = &quot;3fb116b820352b7f0c281308a4d6250c22d94e27&quot;
@@ -422,15 +380,9 @@ func main() {
 [prune]
   go-tests = true
   unused-packages = true
-</code></pre>
-
-<p>With the <code>Gopkg.toml</code> in the root of your project, prepare it by typing</p>
-
+</code></pre><p>With the <code>Gopkg.toml</code> in the root of your project, prepare it by typing</p>
 <pre><code>make prepare
-</code></pre>
-
-<p>The easiest way to create a KrakenD is by using just the framework. Let&rsquo;s alter the <code>parse</code> function so that it dumps the result of the actual KrakenD config parser:</p>
-
+</code></pre><p>The easiest way to create a KrakenD is by using just the framework. Let's alter the <code>parse</code> function so that it dumps the result of the actual KrakenD config parser:</p>
 <pre><code>func parse(i []js.Value) {
 	cfg, err := config.NewParserWithFileReader(func(s string) ([]byte, error) {
 		return []byte(s), nil
@@ -442,16 +394,10 @@ func main() {
 	fmt.Printf(&quot;%d endpoints parsed:\n&quot;, len(cfg.Endpoints))
 	fmt.Printf(&quot;%+v\n&quot;, cfg)
 }
-</code></pre>
-
-<p>So far, so good. We already have a running environment and a clear way to port existent golang code into JS.</p>
-
+</code></pre><p>So far, so good. We already have a running environment and a clear way to port existent golang code into JS.</p>
 <h2 id="building-an-ephemeral-krakend-instance">Building an ephemeral KrakenD instance</h2>
-
 <p>Before digging more in-depth in the function bindings and translations required to consume the golang libs from the JS space, we need some wrapper over the ephemeral KrakenD instances so we can consume them <strong>without starting an HTTP server inside the browser</strong>.</p>
-
 <p>All the <code>router</code> implementations of the framework accept a <code>RunServerFunc</code> and delegate to it the setup of the server for exposing the <code>http.Handler</code> containing the KrakenD instance. So, if we want to avoid the server instantiation and capture the handler, we can create a custom implementation of the <code>client.RunServer</code>. As you can see, we also catch the <code>cancel</code> function of the instance context, so the wrapper can offer a way to close the embedded KrakenD service.</p>
-
 <pre><code>type LocalServer struct {
     close   func()
     handler func(rw http.ResponseWriter, req *http.Request)
@@ -503,10 +449,7 @@ func newServer(cfg string) (*LocalServer, error) {
 
 	return s, nil
 }
-</code></pre>
-
-<p>With the <code>LocalServer</code> ready, we can build the simplest consumer/client with some help from the <code>httptest</code> package:</p>
-
+</code></pre><p>With the <code>LocalServer</code> ready, we can build the simplest consumer/client with some help from the <code>httptest</code> package:</p>
 <pre><code>type Client struct {
 	Server *LocalServer
 }
@@ -521,10 +464,7 @@ func (c Client) Do(req *http.Request) *http.Response {
 func (c *Client) Close() {
 	c.Server.close()
 }
-</code></pre>
-
-<p>Notice we add the header <code>js.fetch:credentials</code> so no cookies are sent with the requests. This is a feature of the golang adapter of the JS <code>fetch</code> function. The comments at the <a href="https://golang.org/src/net/http/roundtrip_js.go">source code</a> of the golang stdlib show the possible values.</p>
-
+</code></pre><p>Notice we add the header <code>js.fetch:credentials</code> so no cookies are sent with the requests. This is a feature of the golang adapter of the JS <code>fetch</code> function. The comments at the <a href="https://golang.org/src/net/http/roundtrip_js.go">source code</a> of the golang stdlib show the possible values.</p>
 <pre><code>// jsFetchMode is a Request.Header map key that, if present,
 // signals that the map entry is actually an option to the Fetch API mode setting.
 // Valid values are: &quot;cors&quot;, &quot;no-cors&quot;, &quot;same-origin&quot;, &quot;navigate&quot;
@@ -540,16 +480,10 @@ const jsFetchMode = &quot;js.fetch:mode&quot;
 //
 // Reference: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters
 const jsFetchCreds = &quot;js.fetch:credentials&quot;
-</code></pre>
-
-<p>And that&rsquo;s all we need to embed a KrakenD instance into a simple client. As a footnote, trying to avoid the CORS validation of the browser will give you the <em>pleasure</em> of meeting the CORB layer.</p>
-
+</code></pre><p>And that's all we need to embed a KrakenD instance into a simple client. As a footnote, trying to avoid the CORS validation of the browser will give you the <em>pleasure</em> of meeting the CORB layer.</p>
 <h2 id="adding-callbacks">Adding callbacks</h2>
-
 <p>Since we are not allowed to return any values from the transpiled functions, we must accept some kind of callback function both for success and for the error case&hellip; you can think about it as if it was some special kind of <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Promise">promise</a> constructor.</p>
-
 <p>With that important point already in mind, we can define the single function we will add to the DOM: <code>parse</code>.</p>
-
 <pre><code>func parse(i []js.Value) {
 	if len(i) &lt; 2 {
 		println(&quot;not enough args&quot;)
@@ -580,12 +514,8 @@ const jsFetchCreds = &quot;js.fetch:credentials&quot;
 
 	i[1].Invoke(client.Value())
 }
-</code></pre>
-
-<p>As you can see, this function defines a logger, creates a JS client of the KrakenD gateway and invokes a callback. The default logger is based on the <code>fmt.Println</code> function but <code>parse</code> also accepts a third param as an error logger.</p>
-
+</code></pre><p>As you can see, this function defines a logger, creates a JS client of the KrakenD gateway and invokes a callback. The default logger is based on the <code>fmt.Println</code> function but <code>parse</code> also accepts a third param as an error logger.</p>
 <p>The <code>newJSClient</code> function creates a JS adapter over the already defined <code>Client</code>.</p>
-
 <pre><code>func newJSClient(cfg string, logger func(string)) (*JSClient, error) {
 	server, err := newServer(cfg)
 	if err != nil {
@@ -602,10 +532,7 @@ type JSClient struct {
 	client *Client
 	logger func(string)
 }
-</code></pre>
-
-<p>The <code>JSClient</code> struct has a single exported method <code>Value</code> so it can generate a JS object with bindings to the <code>Close</code> and <code>Do</code> methods exposed by the <code>Client</code>.</p>
-
+</code></pre><p>The <code>JSClient</code> struct has a single exported method <code>Value</code> so it can generate a JS object with bindings to the <code>Close</code> and <code>Do</code> methods exposed by the <code>Client</code>.</p>
 <pre><code>func (j *JSClient) Value() js.Value {
 	opt := js.Global().Get(&quot;Object&quot;).New()
 
@@ -618,10 +545,7 @@ type JSClient struct {
 func (j *JSClient) close(_ []js.Value) {
 	j.client.Close()
 }
-</code></pre>
-
-<p>The most important part of the <code>JSClient</code> is the <code>test</code> method, where the request is built and dispatched in an independent goroutine. After parsing the response into a JS object, the goroutine executes the injected callback and ends.</p>
-
+</code></pre><p>The most important part of the <code>JSClient</code> is the <code>test</code> method, where the request is built and dispatched in an independent goroutine. After parsing the response into a JS object, the goroutine executes the injected callback and ends.</p>
 <pre><code>func (j *JSClient) test(i []js.Value) {
     // check if there are enough arguments
     if len(i) &lt; 5 {
@@ -672,14 +596,9 @@ func (j *JSClient) close(_ []js.Value) {
         i[4].Invoke(jsResp)
     }()
 }
-</code></pre>
-
-<h2 id="testing-the-krakend-from-js">Testing the KrakenD from JS</h2>
-
-<p>We are not front-end developers, and our skills and knowledge in the domain are very restricted. That&rsquo;s why we thought this should be the most time-consuming part of the project. However, it was not!</p>
-
+</code></pre><h2 id="testing-the-krakend-from-js">Testing the KrakenD from JS</h2>
+<p>We are not front-end developers, and our skills and knowledge in the domain are very restricted. That's why we thought this should be the most time-consuming part of the project. However, it was not!</p>
 <p>We just needed to add this fragment to our template, and we were ready to call the <code>parse</code> function, create a client and test our KrakenD configuration (notice the wasm was renamed and both files placed inside the <code>wasm</code> folder):</p>
-
 <pre><code>&lt;script src='wasm/wasm_exec.js'&gt;&lt;/script&gt;
 &lt;script&gt;
     if (!WebAssembly.instantiateStreaming) { // polyfill
@@ -704,10 +623,7 @@ func (j *JSClient) close(_ []js.Value) {
     });
 
 &lt;/script&gt;
-</code></pre>
-
-<p>The script also defines some globals in order to let the rest of the JS code know when the WASM code is loaded and available. With the callback already in place, we can invoke it from the wasm/go code:</p>
-
+</code></pre><p>The script also defines some globals in order to let the rest of the JS code know when the WASM code is loaded and available. With the callback already in place, we can invoke it from the wasm/go code:</p>
 <pre><code>func main() {
 	fmt.Println(&quot;WASM Go Initialized&quot;)
 
@@ -716,10 +632,7 @@ func (j *JSClient) close(_ []js.Value) {
 
 	select {}
 }
-</code></pre>
-
-<p>The last step is to introduce the following bits of code into the SPA:</p>
-
+</code></pre><p>The last step is to introduce the following bits of code into the SPA:</p>
 <pre><code>$rootScope.krakendPrepare = function() {
 
 	if ( 'undefined' !== typeof krakendClient.close ) {
@@ -749,14 +662,9 @@ $rootScope.runEndpoint = function(requestMethod, requestURL, requestBody, reques
 
     krakendClient.test(requestMethod, requestURL, requestBody, requestHeaders, console.log);
 };
-</code></pre>
-
-<p>Showing the returned values is just a matter of replacing the <code>console.log</code> for the name of the function responsible for binding the response properties with the view fields.</p>
-
+</code></pre><p>Showing the returned values is just a matter of replacing the <code>console.log</code> for the name of the function responsible for binding the response properties with the view fields.</p>
 <h2 id="conclusion">Conclusion</h2>
-
 <p>With very little extra code, we have embedded our essential KrakenD gateway into the browser! We can do the same with almost any existing golang codebase if we follow the lessons learned in this experiment:</p>
-
 <ul>
 <li>since the WASM code is loaded in an async fashion and the main function is blocked by the empty <code>select</code>, we need to notify the JS code when the WASM is ready (before entering the infinite wait).</li>
 <li>golang functions ported to WASM do not return a thing. They should accept callbacks if there is something to pass/return to the caller.</li>
@@ -764,9 +672,7 @@ $rootScope.runEndpoint = function(requestMethod, requestURL, requestBody, reques
 <li>GET and HEAD HTTP requests must have a nil body.</li>
 <li>type conversion between JS and Go are tricky. Manual conversions are very verbose.</li>
 </ul>
-
 <p>You can see it in action at <a href="https://designer.krakend.io">https://designer.krakend.io</a></p>
-
 <p>Thanks for reading! If you like our product, don’t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
 
 

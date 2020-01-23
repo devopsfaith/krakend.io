@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>The `/__debug` endpoint - KrakenD API Gateway</title>
     <meta itemprop="name" content="The `/__debug` endpoint - KrakenD API Gateway">
@@ -26,8 +26,7 @@ The endpoint can be used as a fake backend and is very useful to see the interac
 When developing, add KrakenD itself as another backend using the /__debug/ endpoint so you can see exactly what headers and query string parameters your backends are receiving." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/debug-endpoint/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-11-27T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-11-28T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -700,50 +699,34 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#debug-endpoint-configuration-example">Debug endpoint configuration example</a></li>
-</ul>
-</nav>
+                <nav id="TableOfContents"></nav>
             </div>
         </div>
         
 
-        
-
-<p>The <code>/__debug</code> endpoint is available when you start the server with the <code>-d</code> flag.</p>
-
+        <p>The <code>/__debug</code> endpoint is available when you start the server with the <code>-d</code> flag.</p>
 <p>The endpoint can be used as a <strong>fake backend</strong> and is very useful to see the interaction between the gateway and the backends as its activity is printed in the log using the <code>DEBUG</code> log level .</p>
-
 <p>When developing, add KrakenD itself as another backend using the <code>/__debug/</code> endpoint so you can see exactly what headers and query string parameters your backends are receiving.</p>
-
 <p>The debug endpoint might save you much trouble, as your application might not work when specific headers or parameters are not present. Maybe you are relying upon what your client is sending, but this is not what the gateway is sending. Remember: this is not a proxy.</p>
-
 <p>For instance, your client might be sending a <code>Content-Type</code> or <code>Accept</code> header and these are perhaps necessary for the proper functioning of your backend, but unless these are recognized headers by the gateway (they are in <code>headers_to_pass</code>), they are not going to reach the backend ever. Seeing the specific headers and parameters in the log clears all the doubts, and you can reproduce the call and conditions easily.</p>
-
 <h1 id="debug-endpoint-configuration-example">Debug endpoint configuration example</h1>
-
 <p>The following configuration demonstrates how to test what headers and query string parameters are sent and received by the backends by using the <code>/__debug</code> endpoint.</p>
-
 <p>We are going to test the following endpoints:</p>
-
 <ul>
 <li><code>/default-behavior</code>: No client headers, query string or cookies forwarded.</li>
 <li><code>/optional-params</code>: Forwards known parameters and headers
-
 <ul>
 <li>Recognizes <code>a</code> and <code>b</code> as a query string</li>
 <li>Recognizes <code>User-Agent</code> and <code>Accept</code> as forwarded headers</li>
-</ul></li>
+</ul>
+</li>
 <li><code>/mandatory/{variable}</code>: The query string parameters taken from a variable in the endpoint or other query string parameters</li>
 </ul>
-
 <p>To test it right now, save the content of this file in a <code>krakend-test.json</code> and start the server with the <code>-d</code> flag:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
-  <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;http://127.0.0.1:8080&#34;</span><span class="p">],</span>
+  <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;http://127.0.0.1:8080&#34;</span><span class="p">]</span><span class="p">,</span>
   <span class="nt">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/default-behavior&#34;</span><span class="p">,</span>
@@ -752,23 +735,23 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
           <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/__debug/default&#34;</span>
         <span class="p">}</span>
       <span class="p">]</span>
-    <span class="p">},</span>
+    <span class="p">}</span><span class="p">,</span>
     <span class="p">{</span>
       <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/optional-params&#34;</span><span class="p">,</span>
       <span class="nt">&#34;querystring_params&#34;</span><span class="p">:</span> <span class="p">[</span>
           <span class="s2">&#34;a&#34;</span><span class="p">,</span>
           <span class="s2">&#34;b&#34;</span>
-        <span class="p">],</span>
+        <span class="p">]</span><span class="p">,</span>
       <span class="nt">&#34;headers_to_pass&#34;</span><span class="p">:</span> <span class="p">[</span>
           <span class="s2">&#34;User-Agent&#34;</span><span class="p">,</span>
           <span class="s2">&#34;Accept&#34;</span>
-        <span class="p">],</span>
+        <span class="p">]</span><span class="p">,</span>
       <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
           <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/__debug/optional&#34;</span>
         <span class="p">}</span>
       <span class="p">]</span>
-    <span class="p">},</span>
+    <span class="p">}</span><span class="p">,</span>
     <span class="p">{</span>
       <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/mandatory/{variable}&#34;</span><span class="p">,</span>
       <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
@@ -779,9 +762,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre></div>
-
 <p>Start the server:</p>
-
 <div class="terminal">
 	<div class="title">
 		Run KrakenD with debug mode&nbsp;
@@ -810,11 +791,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 		</ul>
 	</div>
 </div>
-
 <p>Now we can test that the endpoints behave as expected:</p>
-
 <p><strong>Default behavior:</strong></p>
-
 <div class="terminal">
 	<div class="title">
 		Ignore query strings by default&nbsp;
@@ -843,20 +821,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 		</ul>
 	</div>
 </div>
-
 <p>In the KrakenD log, we can see that <code>a</code>, <code>b</code>, and <code>c</code> do not appear in the backend call, neither its headers. The <code>curl</code> command automatically sends the <code>Accept</code> and <code>User-Agent</code> headers but they are not in the backend call either, instead we see the KrakenD User-Agent as set by the gateway:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Method</span><span class="p">:</span> <span class="nx">GET</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">URL</span><span class="p">:</span> <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
-<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[]</span>
-<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[{</span><span class="nx">param</span> <span class="o">/</span><span class="k">default</span><span class="p">}]</span>
-<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">1.0.0</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:[::</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:[</span><span class="nx">gzip</span><span class="p">]]</span>
+<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="p">]</span>
+<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[</span><span class="p">{</span><span class="nx">param</span> <span class="o">/</span><span class="k">default</span><span class="p">}</span><span class="p">]</span>
+<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:</span><span class="p">[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">1.0</span><span class="mf">.0</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:</span><span class="p">[</span><span class="p">:</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:</span><span class="p">[</span><span class="nx">gzip</span><span class="p">]</span><span class="p">]</span>
 </span><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Body</span><span class="p">:</span>
-<span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">118.543</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
-</span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">565.971</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="k">default</span><span class="o">-</span><span class="nx">behavior</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>
-
-<p>Now let&rsquo;s repeat the same request but to the <code>/optional-params</code> endpoint:</p>
-
+<span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">118.543</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">:</span><span class="p">:</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
+</span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">565.971</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">:</span><span class="p">:</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="k">default</span><span class="o">-</span><span class="nx">behavior</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>
+<p>Now let's repeat the same request but to the <code>/optional-params</code> endpoint:</p>
 <div class="terminal">
 	<div class="title">
 		Recognized and forwarded query strings&nbsp;
@@ -885,20 +859,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 		</ul>
 	</div>
 </div>
-
 <p>In the KrakenD log we can see now that the <code>User-Agent</code> and <code>Accept</code> are present (as they are implicitly sent by curl), and that <code>a</code> and <code>b</code> are reaching the backend (but not <code>c</code>):</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Method</span><span class="p">:</span> <span class="nx">GET</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">URL</span><span class="p">:</span> <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="nx">optional</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span>
-<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">a</span><span class="p">:[</span><span class="mi">1</span><span class="p">]</span> <span class="nx">b</span><span class="p">:[</span><span class="mi">2</span><span class="p">]]</span>
-<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[{</span><span class="nx">param</span> <span class="o">/</span><span class="nx">optional</span><span class="p">}]</span>
-<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:[</span><span class="nx">curl</span><span class="o">/</span><span class="mf">7.54.0</span><span class="p">]</span> <span class="nx">Accept</span><span class="p">:[</span><span class="o">*/*</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:[::</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:[</span><span class="nx">gzip</span><span class="p">]]</span>
+<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">a</span><span class="p">:</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="nx">b</span><span class="p">:</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">]</span>
+<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[</span><span class="p">{</span><span class="nx">param</span> <span class="o">/</span><span class="nx">optional</span><span class="p">}</span><span class="p">]</span>
+<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:</span><span class="p">[</span><span class="nx">curl</span><span class="o">/</span><span class="mf">7.54</span><span class="mf">.0</span><span class="p">]</span> <span class="nx">Accept</span><span class="p">:</span><span class="p">[</span><span class="o">*</span><span class="o">/</span><span class="o">*</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:</span><span class="p">[</span><span class="p">:</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:</span><span class="p">[</span><span class="nx">gzip</span><span class="p">]</span><span class="p">]</span>
 </span><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Body</span><span class="p">:</span>
-<span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">23</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">122.507</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="nx">optional</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span>
-</span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">23</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">542.483</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">optional</span><span class="o">-</span><span class="nx">params</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>
-
-<p>Finally, let&rsquo;s note what happens when you inject mandatory query strings in the backend definition, the <code>/mandatory/{variable}</code> endpoint:</p>
-
+<span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">23</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">122.507</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">:</span><span class="p">:</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="nx">optional</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span>
+</span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">23</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">542.483</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">:</span><span class="p">:</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">optional</span><span class="o">-</span><span class="nx">params</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>
+<p>Finally, let's note what happens when you inject mandatory query strings in the backend definition, the <code>/mandatory/{variable}</code> endpoint:</p>
 <div class="terminal">
 	<div class="title">
 		Mandatory query strings&nbsp;
@@ -927,17 +897,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 		</ul>
 	</div>
 </div>
-
 <p>As we can see, the backend includes the <code>?mandatory=foo</code> variable that was written manually in the backend definition:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Method</span><span class="p">:</span> <span class="nx">GET</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">URL</span><span class="p">:</span> <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="nx">qs</span><span class="err">?</span><span class="nx">mandatory</span><span class="p">=</span><span class="nx">foo</span>
-<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">mandatory</span><span class="p">:[</span><span class="nx">foo</span><span class="p">]]</span>
-<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[{</span><span class="nx">param</span> <span class="o">/</span><span class="nx">qs</span><span class="p">}]</span>
-<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:[::</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:[</span><span class="nx">gzip</span><span class="p">]</span> <span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">0.7.0</span><span class="p">]]</span>
+<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">mandatory</span><span class="p">:</span><span class="p">[</span><span class="nx">foo</span><span class="p">]</span><span class="p">]</span>
+<span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[</span><span class="p">{</span><span class="nx">param</span> <span class="o">/</span><span class="nx">qs</span><span class="p">}</span><span class="p">]</span>
+<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:</span><span class="p">[</span><span class="p">:</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:</span><span class="p">[</span><span class="nx">gzip</span><span class="p">]</span> <span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:</span><span class="p">[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">0.7</span><span class="mf">.0</span><span class="p">]</span><span class="p">]</span>
 </span><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Body</span><span class="p">:</span>
-<span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">28</span> <span class="o">-</span> <span class="mi">19</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">19</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">210.434</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="nx">qs</span><span class="err">?</span><span class="nx">mandatory</span><span class="p">=</span><span class="nx">foo</span>
-</span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">28</span> <span class="o">-</span> <span class="mi">19</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">19</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>    <span class="mf">1.975103</span><span class="nx">ms</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">mandatory</span><span class="o">/</span><span class="nx">foo</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>
+<span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">28</span> <span class="o">-</span> <span class="mi">19</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">19</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">210.434</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">:</span><span class="p">:</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="nx">qs</span><span class="err">?</span><span class="nx">mandatory</span><span class="p">=</span><span class="nx">foo</span>
+</span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">28</span> <span class="o">-</span> <span class="mi">19</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">19</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>    <span class="mf">1.975103</span><span class="nx">ms</span> <span class="p">|</span>             <span class="p">:</span><span class="p">:</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">mandatory</span><span class="o">/</span><span class="nx">foo</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>
 
     </section>
 </div>

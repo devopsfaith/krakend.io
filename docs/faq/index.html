@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Frequently Asked Questions - KrakenD API Gateway</title>
     <meta itemprop="name" content="Frequently Asked Questions - KrakenD API Gateway">
@@ -25,8 +25,7 @@
 <meta property="og:description" content="Frequently Asked Questions" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/faq/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-10-26T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-09-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -698,103 +697,69 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/faq.md">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#i-am-getting-a-200-status-when-the-backend-returns-a-201">I am getting a <code>200</code> status when the backend returns a <code>201</code></a>
-<ul>
-<li><a href="#explanation">Explanation</a></li>
-</ul></li>
-<li><a href="#i-am-getting-a-500-status-when-the-backend-returns-anything-but-200-201-or-redirects">I am getting a <code>500</code> status when the backend returns anything but <code>200</code>, <code>201</code> or redirects</a>
-<ul>
-<li><a href="#explanation-1">Explanation</a></li>
-</ul></li>
-<li><a href="#i-am-seeing-frequent-503-errors-in-the-logs">I am seeing frequent <code>503</code> errors in the logs</a>
-<ul>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#i-am-having-empty-responses">I am having empty responses</a>
-<ul>
-<li><a href="#solution-to-cuts-by-timeout">Solution to cuts by timeout</a></li>
-<li><a href="#solution-to-invalid-responses">Solution to invalid responses.</a></li>
-</ul></li>
-<li><a href="#reserved-endpoints">Reserved endpoints</a></li>
-</ul>
+  <ul>
+    <li><a href="#explanation">Explanation</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#explanation1">Explanation</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution-to-cuts-by-timeout">Solution to cuts by timeout</a></li>
+    <li><a href="#solution-to-invalid-responses">Solution to invalid responses.</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<h1 id="i-am-getting-a-200-status-when-the-backend-returns-a-201">I am getting a <code>200</code> status when the backend returns a <code>201</code></h1>
-
+        <h1 id="i-am-getting-a-200-status-when-the-backend-returns-a-201">I am getting a <code>200</code> status when the backend returns a <code>201</code></h1>
 <p>E.g:</p>
-
 <pre><code>2017/01/19 - 10:31:27 | 200 |    1.134431ms | ::1 |   POST     /users
 </code></pre>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>By default, the gateway will always send an HTTP status 200 if the backend returns a 200 or a 201. You can inject your own HTTPStatusHandler implementation if you need a different behavior. Check this <a href="https://github.com/devopsfaith/krakend/issues/102#issuecomment-373657911">issue comment</a> for more details.</p>
-
 <h1 id="i-am-getting-a-500-status-when-the-backend-returns-anything-but-200-201-or-redirects">I am getting a <code>500</code> status when the backend returns anything but <code>200</code>, <code>201</code> or redirects</h1>
-
 <p>E.g:</p>
-
 <pre><code>2017/01/19 - 10:31:37 | 500 |    1.007191ms | ::1 |   POST     /users_ko
 </code></pre>
-
-<h2 id="explanation-1">Explanation</h2>
-
+<h2 id="explanation1">Explanation</h2>
 <p>By default, the gateway will always send an HTTP status 500 if the backend returns any status above 400. You can inject your own HTTPStatusHandler implementation if you need a different behavior. Check this <a href="https://github.com/devopsfaith/krakend/issues/102#issuecomment-373657911">issue comment</a> for more details.</p>
-
 <h1 id="i-am-seeing-frequent-503-errors-in-the-logs">I am seeing frequent <code>503</code> errors in the logs</h1>
-
 <p>E.g:</p>
-
 <pre><code>2016/11/13 - 18:01:18 | 200 |    5.352143ms | ::1 |   GET     /frontpage
 2016/11/13 - 18:01:18 | 503 |       5.662µs | ::1 |   GET     /frontpage
 2016/11/13 - 18:01:18 | 503 |       5.662µs | ::1 |   GET     /frontpage
 </code></pre>
-
 <p>The <code>maxRate</code> setting defines the maximum number of requests allowed in a single second to an endpoint or backend. When this number is reached, subsequent connections are rejected with a <code>503</code> error. This limitation is optional and is usually set to avoid hammering your own backends and compromising their stability.</p>
-
 <h2 id="solution">Solution</h2>
-
 <p>Increase the <code>maxRate</code> number or disable it (<code>maxRate = 0</code>). This setting can be set globally for all the endpoints,
 or overridden individually per endpoint.</p>
-
 <p>Remember: failing fast is always better than overloading your infrastructure and degrading the quality of your entire services.</p>
-
 <h1 id="i-am-having-empty-responses">I am having empty responses</h1>
-
 <p>The main reasons for having responses are:</p>
-
 <ul>
 <li><strong>Timeout</strong> when connecting the backend. The KrakenD service will cut the connection and will return an empty response if the backend does not respond in the time you set through the <code>timeout</code> variable. This variable is usually written in a magnitude of <strong>milliseconds</strong>.</li>
 <li><strong>Invalid JSON/XML</strong>. When the backend received a malformed object as response and could not decode it.</li>
 </ul>
-
 <p>See the solutions below.</p>
-
 <h2 id="solution-to-cuts-by-timeout">Solution to cuts by timeout</h2>
-
 <p>Whenever possible add caching layers in your backends, scale the infrastructure, etc. so that can answer requests in a
 decent time. Increasing the <code>timeout</code> variable is an option but should be always <strong>your last option</strong>. If your
 backends are not able to respond in a short time think that when you increment the timeout what you really do is
 to block connections waiting for the backend. The memory consumption will increase and the number of connections you can
 open is finite. In a gateway, your focus should be freeing the connections as soon as possible.</p>
-
 <p>Values above <code>2000ms</code> are not recommended.</p>
-
 <h2 id="solution-to-invalid-responses">Solution to invalid responses.</h2>
-
 <p>Make sure your backend sources return valid Json/Xml/&hellip; data. Try any online service to check the validity and format
 of the returned content. If the response of your API is a collection, e.g: response comes inside brackets <code>[]</code>, then make sure to mark the option <code>Treat the response as a collection, not an object.</code> in the form.</p>
-
 <h1 id="reserved-endpoints">Reserved endpoints</h1>
-
 <p>The following names cannot be used as endpoint names as they are reserved:</p>
-
 <pre><code>/__debug/
 /__stats/
 /favicon.ico

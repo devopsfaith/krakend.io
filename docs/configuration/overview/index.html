@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>KrakenD&#39;s configuration file(s) - KrakenD API Gateway</title>
     <meta itemprop="name" content="KrakenD&#39;s configuration file(s) - KrakenD API Gateway">
@@ -26,8 +26,7 @@ The name krakend.json is just an alias, a convention, that we use everywhere. Yo
 Provided this simple configuration mechanism, the versioning and automation are very convenient. Any change in the API Gateway is always under the version control system, and the code controls the state of the gateway." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/configuration/overview/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-07-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-10-20T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -685,7 +684,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 </a>
 
 
-<h1 class="main-title">KrakenD&rsquo;s configuration file(s)</h1>
+<h1 class="main-title">KrakenD's configuration file(s)</h1>
 
 
 
@@ -700,89 +699,49 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#generating-the-configuration-file-s">Generating the configuration file(s)</a></li>
-<li><a href="#supported-file-formats">Supported file formats</a></li>
-<li><a href="#validating-the-syntax-of-the-configuration-file">Validating the syntax of the configuration file</a></li>
-</ul>
-</nav>
+                <nav id="TableOfContents"></nav>
             </div>
         </div>
         
 
-        
-
-<p>All the configuration that the KrakenD server needs to start and operate is a single configuration file. This file is referred to as <code>krakend.json</code> through all the documentation.</p>
-
+        <p>All the configuration that the KrakenD server needs to start and operate is a single configuration file. This file is referred to as <code>krakend.json</code> through all the documentation.</p>
 <p>The name <code>krakend.json</code> is just <strong>an alias</strong>, a convention, that we use everywhere. Your real configuration file can have any name, be stored anywhere, or split in many pieces.</p>
-
 <p>Provided this simple configuration mechanism, the <strong>versioning and automation are very convenient</strong>. Any change in the API Gateway is always under the version control system, and the code controls the state of the gateway.</p>
-
-<div class="note">
-    <h4><i class="fa fa-sticky-note"></i> Configuration using multiple files</h4>
-    If your configuration file is too large or repetitive, it can be split into several files using a templating system. See the <a href="/docs/configuration/flexible-config">flexible configuration documentation</a> for more information on this feature.
- </div>
-
-<h1 id="generating-the-configuration-file-s">Generating the configuration file(s)</h1>
-
+<!-- raw HTML omitted -->
+<h1 id="generating-the-configuration-files">Generating the configuration file(s)</h1>
 <p>The configuration file can be written from scratch or reuse another existing file as a base, but the easiest way to write your first configuration file is by simply using the online configuration editor <a href="https://designer.krakend.io/">KrakenDesigner</a>.</p>
-
-<p>The KrakenDesigner is a simple javascript application that helps you understand the capabilities of the API Gateway and helps you set the different values for all the different options. Using this option you don&rsquo;t need to learn and write from scratch all the attribute names. The configuration file can be downloaded at any time and loaded again to resume the edition.</p>
-
+<p>The KrakenDesigner is a simple javascript application that helps you understand the capabilities of the API Gateway and helps you set the different values for all the different options. Using this option you don't need to learn and write from scratch all the attribute names. The configuration file can be downloaded at any time and loaded again to resume the edition.</p>
 <p>The Kraken Designer is a <strong>pure static</strong> page that <strong>does not send any of your configuration elsewhere</strong>, and as it happens with all our software, is also open sourced and you can download it and run it in your own web server. See the <a href="https://github.com/devopsfaith/krakendesigner">Krakendesigner</a> repository.</p>
-
-<p><a class="btn btn-secondary btn-circle" href="https://designer.krakend.io/">Generate configuration now</a></p>
-
+<p><!-- raw HTML omitted -->Generate configuration now<!-- raw HTML omitted --></p>
 <h1 id="supported-file-formats">Supported file formats</h1>
-
 <p>The configuration file can be written as <code>.json</code>, <code>.toml</code>, <code>.yaml</code>, <code>.yml</code>, <code>.properties</code>, <code>.props</code>, <code>.prop</code> or <code>.hcl</code>. For more information and recommendations see <a href="/docs/configuration/supported-formats/">supported file formats</a>.</p>
-
 <h1 id="validating-the-syntax-of-the-configuration-file">Validating the syntax of the configuration file</h1>
-
 <p>Validate the syntax (not the logic) of your configuration file using the <code>krakend check</code> command:</p>
-
-<div class="terminal">
-    <div class="title">
-        &nbsp;
-    </div>
-    <div class="output">
-        <ul>
-            
-            
-                
-                
-            
-                
-                 
-                    
-                    
-                    <li><span class="prompt"></span>krakend&nbsp;check&nbsp;--config&nbsp;./krakend.toml&nbsp;--debug&nbsp;</li>
-                    
-                
-            
-                
-                 
-                    
-                    
-                    <li>Syntax&nbsp;OK!&nbsp;</li>
-                    
-                
-            
-                
-                 
-                    
-                    
-                
-            
-        </ul>
-    </div>
-</div>
-
-<p>When the syntax is correct, you&rsquo;ll see the message <code>Syntax OK!</code>, otherwise the error is shown.</p>
-
+<!-- raw HTML omitted -->
+<pre><code>                &lt;li&gt;&lt;span class=&quot;prompt&quot;&gt;&lt;/span&gt;krakend&amp;nbsp;check&amp;nbsp;--config&amp;nbsp;./krakend.toml&amp;nbsp;--debug&amp;nbsp;&lt;/li&gt;
+				
+			
+		
+			
+			 
+				
+				
+                &lt;li&gt;Syntax&amp;nbsp;OK!&amp;nbsp;&lt;/li&gt;
+				
+			
+		
+			
+			 
+				
+				
+			
+		
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<p>When the syntax is correct, you'll see the message <code>Syntax OK!</code>, otherwise the error is shown.</p>
 <p>You can also start the service directly as this is done right before the server starts.</p>
-
 <p>Read more about <a href="/docs/commands/check/"><code>krakend check</code></a></p>
 
     </section>

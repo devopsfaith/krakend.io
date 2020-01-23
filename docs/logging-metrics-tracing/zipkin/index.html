@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Exporting traces to Zipkin - KrakenD API Gateway</title>
     <meta itemprop="name" content="Exporting traces to Zipkin - KrakenD API Gateway">
@@ -27,8 +27,7 @@ The following configuration snippet sends data to your Zipkin:
 &quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;zipkin&quot;: { &quot;collector_url&quot;: &quot;http://192.168.99.100:9411/api/v2/spans&quot;, &quot;service_name&quot;: &quot;krakend&quot; }, } }   collector_url is the URL (including port and path) where your Zipkin is accepting the spans service_name the service name registered in Zipkin  See also the additional settings of the Opencensus module that can be declared." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/zipkin/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -708,11 +707,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
         
 
         <p><a href="https://zipkin.io/">Zipkin</a> is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures.</p>
-
 <p>The Opencensus exporter allows you export data to Zipkin. Enabling it only requires you to add the <code>zipkin</code> exporter in the <a href="/docs/logging-metrics-tracing/opencensus/">opencensus module</a>.</p>
-
 <p>The following configuration snippet sends data to your Zipkin:</p>
-
 <pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
   &quot;exporters&quot;: {
     &quot;zipkin&quot;: {
@@ -722,12 +718,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
   }
 }
 </code></pre>
-
 <ul>
 <li><code>collector_url</code> is the URL (including port and path) where your Zipkin is accepting the spans</li>
 <li><code>service_name</code> the service name registered in Zipkin</li>
 </ul>
-
 <p>See also the <a href="/docs/logging-metrics-tracing/opencensus/">additional settings</a> of the Opencensus module that can be declared.</p>
 
     </section>

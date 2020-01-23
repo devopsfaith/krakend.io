@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Integration with AWS Lambda functions - KrakenD API Gateway</title>
     <meta itemprop="name" content="Integration with AWS Lambda functions - KrakenD API Gateway">
@@ -26,7 +26,6 @@ The payload that is sent to the Lambda function comes from the request and depen
  Method GET: The payload contains all the parameters of the request. Non-GET methods: The payload is defined by the content of the body in the request." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/lambda/" />
-
 <meta property="og:image" content="https://www.krakend.io/images/krakend-lambda.png" />
 <meta property="article:published_time" content="2018-11-11T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-11-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -714,41 +713,29 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#lambda-configuration">Lambda configuration</a>
-<ul>
-<li><a href="#authentication">Authentication</a></li>
-</ul></li>
-<li><a href="#examples">Examples</a>
-<ul>
-<li><a href="#associate-a-lambda-to-a-backend">Associate a lambda to a backend</a></li>
-<li><a href="#take-the-lambda-from-the-url">Take the lambda from the URL</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#authentication">Authentication</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#associate-a-lambda-to-a-backend">Associate a lambda to a backend</a></li>
+    <li><a href="#take-the-lambda-from-the-url">Take the lambda from the URL</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>The Lambda integration allows you to <strong>invoke Amazon Lambda functions</strong> on a KrakenD endpoint call. The content returned by the lambda function can be treated and manipulated as any other backend.</p>
-
+        <p>The Lambda integration allows you to <strong>invoke Amazon Lambda functions</strong> on a KrakenD endpoint call. The content returned by the lambda function can be treated and manipulated as any other backend.</p>
 <p>The <strong>payload</strong> that is sent to the Lambda function comes from the request and depends on the method used by the <code>endpoint</code>:</p>
-
 <ul>
 <li>Method <code>GET</code>: The payload contains all the parameters of the request.</li>
 <li>Non-<code>GET</code> methods: The payload is defined by the content of the <strong>body</strong> in the request.</li>
 </ul>
-
-<p>You don&rsquo;t need to set an Amazon API Gateway in the middle as KrakenD does this job for you.</p>
-
+<p>You don't need to set an Amazon API Gateway in the middle as KrakenD does this job for you.</p>
 <h1 id="lambda-configuration">Lambda configuration</h1>
-
 <p>The inclusion requires you to add the code in the <code>extra_config</code> of your <code>backend</code> section, using the <code>github.com/devopsfaith/krakend-lambda</code> namespace.</p>
-
 <p>The supported parameters are:</p>
-
 <ul>
 <li><code>function_name</code>: Name of the lambda function as saved in the AWS service.</li>
 <li><code>function_param_name</code>: The endpoint <code>{placeholder}</code> that sets the function name. You have to choose between <code>function_name</code> and <code>function_param_name</code> but not both.</li>
@@ -756,19 +743,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <li><code>max_retries</code>: Maximum times you want to execute the function until you have a successful response.</li>
 <li><code>endpoint</code>: An optional parameter to customize the Lambda endpoint to call. Useful when Localstack is used for testing.</li>
 </ul>
-
 <h2 id="authentication">Authentication</h2>
-
 <p>The KrakenD machine needs to have the AWS credentials in the default file, <code>~/.aws/credentials</code>.</p>
-
 <p>When setting the credentials make sure that the lamdba is callable within the KrakenD box with the credentials provided. This translates in having an IAM user with a policy and execution role that let you invoke the function.</p>
-
 <h1 id="examples">Examples</h1>
-
 <h2 id="associate-a-lambda-to-a-backend">Associate a lambda to a backend</h2>
-
 <p>When the KrakenD endpoint is attached to the same Lambda, use this configuration:</p>
-
 <pre><code>&quot;backend&quot;: [
 {
     &quot;github.com/devopsfaith/krakend-lambda&quot;: {
@@ -778,11 +758,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     }
 }
 </code></pre>
-
 <h2 id="take-the-lambda-from-the-url">Take the lambda from the URL</h2>
-
 <p>When the name of the Lambda to depends on a parameter passed in the endpoint, use this configuration instead:</p>
-
 <pre><code>&quot;endpoint&quot;: &quot;/call-a-lambda/{lambda},
 &quot;backend&quot;: [
 {
@@ -793,9 +770,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     }
 }
 </code></pre>
-
 <p>In this example, the <code>function_param_name</code> is telling us which is the placeholder in the endpoint setting the lambda. In this case, <code>{lambda}</code>.</p>
-
 <p>Following the code, a call <code>GET /call-a-lambda/my-lambda</code> would produce a call to the <code>my-lambda</code> function in AWS.</p>
 
     </section>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Enabling TLS for HTTPS and HTTP/2 - KrakenD API Gateway</title>
     <meta itemprop="name" content="Enabling TLS for HTTPS and HTTP/2 - KrakenD API Gateway">
@@ -22,11 +22,10 @@
 
 <meta property="og:title" content="Enabling TLS for HTTPS and HTTP/2" />
 <meta property="og:description" content="There are two different strategies when using TLS over KrakenD:
- Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted." />
+ Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&#39;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/service-settings/tls/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-02-22T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-02-22T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -37,7 +36,7 @@
 
 <meta name="twitter:title" content="Enabling TLS for HTTPS and HTTP/2"/>
 <meta name="twitter:description" content="There are two different strategies when using TLS over KrakenD:
- Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted."/>
+ Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&#39;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted."/>
 
 
 
@@ -698,31 +697,19 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#simple-configuration-for-tls">Simple configuration for TLS</a></li>
-<li><a href="#full-configuration-for-tls">Full configuration for TLS</a></li>
-</ul>
-</nav>
+                <nav id="TableOfContents"></nav>
             </div>
         </div>
         
 
-        
-
-<p>There are two different strategies when using TLS over KrakenD:</p>
-
+        <p>There are two different strategies when using TLS over KrakenD:</p>
 <ul>
 <li>Use TLS for HTTPS and HTTP/2 in KrakenD</li>
 <li>Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)</li>
 </ul>
-
-<p>In case you want to enable TLS in KrakenD you need to add a <code>tls</code> key at service level (configuration&rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens <strong>only using TLS</strong>, and no traffic to plain HTTP is accepted.</p>
-
+<p>In case you want to enable TLS in KrakenD you need to add a <code>tls</code> key at service level (configuration's file root) with at least the public key and the private key. When you add TLS, KrakenD listens <strong>only using TLS</strong>, and no traffic to plain HTTP is accepted.</p>
 <h1 id="simple-configuration-for-tls">Simple configuration for TLS</h1>
-
 <p>To start KrakenD with TLS you need to generate the certificate and provide both the public and the private key:</p>
-
 <pre><code>{
   &quot;version&quot;: 2,
   &quot;tls&quot;: {
@@ -731,28 +718,32 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
   }
 }
 </code></pre>
-
 <h1 id="full-configuration-for-tls">Full configuration for TLS</h1>
-
 <p>All the accepted options of the TLS configuration are:</p>
-
 <ul>
 <li><code>public_key</code>: Absolute path to the public key, or relative to the current working directory (CWD)</li>
 <li><code>private_key</code>: Absolute path to the private key, or relative to the current working directory (CWD)</li>
 </ul>
-
 <p>Plus these optional:</p>
-
 <ul>
-<li><code>disabled</code> (boolean): A temporary flag to disable TLS (e.g: while in development)</li>
-<li><code>min_version</code> (string): Minimum TLS version (one of <code>SSL3.0</code>, <code>TLS10</code>, <code>TLS11</code> or <code>TLS12</code>)</li>
-<li><code>max_version</code> (string): Maximum TLS version (one of <code>SSL3.0</code>, <code>TLS10</code>, <code>TLS11</code> or <code>TLS12</code>)</li>
-<li><code>curve_preferences</code> (integer array): The list of all the identifiers for the curve preferences (use <code>23</code> for CurveP256, <code>24</code> for CurveP384 or <code>25</code> for CurveP521)</li>
-<li><code>prefer_server_cipher_suites</code> (boolean): Enforces the use of one of the cipher suites offered by the server, instead of going with the suite proposed by the client.</li>
-
-<li><p><code>cipher_suites</code> (integer array): The list of cipher suites (see below).
+<li>
+<p><code>disabled</code> (boolean): A temporary flag to disable TLS (e.g: while in development)</p>
+</li>
+<li>
+<p><code>min_version</code> (string): Minimum TLS version (one of <code>SSL3.0</code>, <code>TLS10</code>, <code>TLS11</code> or <code>TLS12</code>)</p>
+</li>
+<li>
+<p><code>max_version</code> (string): Maximum TLS version (one of <code>SSL3.0</code>, <code>TLS10</code>, <code>TLS11</code> or <code>TLS12</code>)</p>
+</li>
+<li>
+<p><code>curve_preferences</code> (integer array): The list of all the identifiers for the curve preferences (use <code>23</code> for CurveP256, <code>24</code> for CurveP384 or <code>25</code> for CurveP521)</p>
+</li>
+<li>
+<p><code>prefer_server_cipher_suites</code> (boolean): Enforces the use of one of the cipher suites offered by the server, instead of going with the suite proposed by the client.</p>
+</li>
+<li>
+<p><code>cipher_suites</code> (integer array): The list of cipher suites (see below).
 The list of cipher suites with its values is:</p>
-
 <ul>
 <li><code>5</code>: TLS_RSA_WITH_RC4_128_SHA</li>
 <li><code>10</code>: TLS_RSA_WITH_3DES_EDE_CBC_SHA</li>
@@ -776,7 +767,8 @@ The list of cipher suites with its values is:</p>
 <li><code>49196</code>: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384</li>
 <li><code>52392</code>: TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305</li>
 <li><code>52393</code>: TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
     </section>

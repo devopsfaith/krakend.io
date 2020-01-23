@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>The Circuit Breaker - KrakenD API Gateway</title>
     <meta itemprop="name" content="The Circuit Breaker - KrakenD API Gateway">
@@ -21,12 +21,10 @@
 
 
 <meta property="og:title" content="The Circuit Breaker" />
-<meta property="og:description" content="To keep KrakenD responsive and resilient, we added a Circuit Breaker middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems, by preventing too many requests to fail due to timeouts, etc." />
+<meta property="og:description" content="To keep KrakenD responsive and resilient, we added a Circuit Breaker middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems by preventing too many requests to fail due to timeouts, etc." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/circuit-breaker/" />
-
 <meta property="og:image" content="https://www.krakend.io/images/documentation/circuit-breaker.png" />
-
 <meta property="og:image" content="https://www.krakend.io/images/documentation/circuit-breaker-states.png" />
 <meta property="article:published_time" content="2016-07-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-10-22T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -37,7 +35,7 @@
 <meta name="twitter:image" content="https://www.krakend.io/images/documentation/circuit-breaker.png"/>
 
 <meta name="twitter:title" content="The Circuit Breaker"/>
-<meta name="twitter:description" content="To keep KrakenD responsive and resilient, we added a Circuit Breaker middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems, by preventing too many requests to fail due to timeouts, etc."/>
+<meta name="twitter:description" content="To keep KrakenD responsive and resilient, we added a Circuit Breaker middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems by preventing too many requests to fail due to timeouts, etc."/>
 
 
 
@@ -709,82 +707,59 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#how-it-works">How it works</a></li>
-<li><a href="#configuring-a-circuit-breaker">Configuring a circuit breaker</a></li>
-</ul>
-</nav>
+                <nav id="TableOfContents"></nav>
             </div>
         </div>
         
 
-        
-
-<p>To keep KrakenD responsive and resilient, we added a <strong>Circuit Breaker</strong> middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems, by preventing too many requests to fail due to timeouts, etc.</p>
-
-<p>The <strong>Circuit Breaker</strong> is a very simple <strong>state machine</strong> in the middle of the request and response that monitors all
+        <p>To keep KrakenD responsive and resilient, we added a <strong>Circuit Breaker</strong> middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems by preventing too many requests to fail due to timeouts, etc.</p>
+<p>The <strong>Circuit Breaker</strong> is a straightforward <strong>state machine</strong> in the middle of the request and response that monitors all
 the failures of your backend and when they reach a configured threshold the circuit breaker will prevent sending more
 traffic to the suffering backend.</p>
-
 <p>The Circuit Breaker is a protection measure for your stack and avoids cascading failures.</p>
-
 <h1 id="how-it-works">How it works</h1>
-
 <p>The Circuit Breaker retains the state of the connections to your backend(s) over a series of requests
 and when it sees the configured number of <strong>consecutive failures</strong> (<code>maxErrors</code>) in a given time interval (<code>interval</code>)
-it stops all the interaction with the backend for the next N seconds (the <code>timeout</code>). After waiting for this time window the system will allow a single connection to trial the system again: if it fails it will wait N seconds more again, and if it succeeds it will return to the normal state and the system is considered healthy.</p>
-
+it stops all the interaction with the backend for the next N seconds (the <code>timeout</code>). After waiting for this time window, the system will allow a single connection to trial the system again: if it fails, it will wait N seconds more again, and if it succeeds, it will return to the normal state, and the system is considered healthy.</p>
 <p>The circuit breaker works with three different internal states, and the easiest way to imagine it is like in an electrical circuit:</p>
-
 <table>
 <thead>
 <tr>
 <th>Circuit Breaker</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td><img src="/images/documentation/circuit-breaker.png" alt="Krakend logo" /></td>
+<td><img src="/images/documentation/circuit-breaker.png" alt="Krakend logo"></td>
 </tr>
 </tbody>
 </table>
-
 <ul>
-<li><code>CLOSED</code>: This is the normal state. When the circuit is closed the, the electricity flows uninterrupted and the connection to the backend is allowed.</li>
+<li><code>CLOSED</code>: This is the normal state. When the circuit is closed, the electricity flows uninterrupted, and the connection to the backend is allowed.</li>
 <li><code>OPEN</code>: No connection to the backend is allowed when the circuit is open.</li>
 <li><code>HALF-OPEN</code>: When the system has seen repeated problems, only the necessary connection to test the backend is allowed.</li>
 </ul>
-
 <p>And this is the way the states change:</p>
-
 <table>
 <thead>
 <tr>
 <th>Circuit Breaker transitions</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td><img src="/images/documentation/circuit-breaker-states.png" alt="Krakend logo" /></td>
+<td><img src="/images/documentation/circuit-breaker-states.png" alt="Krakend logo"></td>
 </tr>
 </tbody>
 </table>
-
 <ul>
 <li><code>CLOSED</code>: In the initial state, the system is healthy and sending connections to the backend.</li>
-<li><code>OPEN</code>: When a consecutive number of supported errors from the backend (<code>maxErrors</code>)  is reached, the system changes to <code>OPEN</code> and no further connections are sent to the backend. The system will stay in <code>OPEN</code> state for N seconds ( the <code>timeout</code>).</li>
-<li><code>HALF-OPEN</code>: After the timeout, it changes to this state and allows one connection to pass. If the connection succeeds the state changes to <code>CLOSED</code> and the backend is considered to be healthy again. But if it fails, it switches back to <code>OPEN</code> for another timeout.</li>
+<li><code>OPEN</code>: When a consecutive number of supported errors from the backend (<code>maxErrors</code>) is reached, the system changes to <code>OPEN</code> and no further connections are sent to the backend. The system will stay in <code>OPEN</code> state for N seconds ( the <code>timeout</code>).</li>
+<li><code>HALF-OPEN</code>: After the timeout, it changes to this state and allows one connection to pass. If the connection succeeds, the state changes to <code>CLOSED</code>, and the backend is considered to be healthy again. But if it fails, it switches back to <code>OPEN</code> for another timeout.</li>
 </ul>
-
 <h1 id="configuring-a-circuit-breaker">Configuring a circuit breaker</h1>
-
 <p>The Circuit Breaker is available by default in KrakenD thanks to the <a href="https://github.com/devopsfaith/krakend-circuitbreaker">circuit breaker middleware</a>. As all additional middlewares, you need to set its values in its own namespace <code>github.com/devopsfaith/krakend-circuitbreaker/gobreaker</code> inside the <code>extra_config</code> key.</p>
-
-<p>The following configuration is an example on how to add circuit breaker capabilities to a backend:</p>
-
+<p>The following configuration is an example of how to add circuit breaker capabilities to a backend:</p>
 <pre><code>&quot;endpoints&quot;: [
 {
     &quot;endpoint&quot;: &quot;/myendpoint&quot;,

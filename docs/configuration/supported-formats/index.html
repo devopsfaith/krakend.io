@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>KrakenD file supported formats - KrakenD API Gateway</title>
     <meta itemprop="name" content="KrakenD file supported formats - KrakenD API Gateway">
@@ -27,8 +27,7 @@ Validate the syntax (not the logic) with krakend check
 Why choosing json? You are free to choose YAML, TOML or any of the other formats at your best convenience. But have in mind the following logic when choosing a file format other than json." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/configuration/supported-formats/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-07-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-10-28T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -700,10 +699,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
         
         
 
-        
-
-<p>The expected configuration file format by default is <code>json</code>, but KrakenD can parse different formats if one of the following extensions is found:</p>
-
+        <p>The expected configuration file format by default is <code>json</code>, but KrakenD can parse different formats if one of the following extensions is found:</p>
 <ul>
 <li><code>.json</code></li>
 <li><code>.toml</code></li>
@@ -714,20 +710,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 <li><code>.prop</code></li>
 <li><code>.hcl</code></li>
 </ul>
-
 <p>Nevertheless, <strong>our recommendation is to choose <code>JSON</code></strong>.</p>
-
 <p>Validate the syntax (not the logic) with <a href="/docs/commands/check/"><code>krakend check</code></a></p>
-
 <h1 id="why-choosing-json">Why choosing json?</h1>
-
 <p>You are free to choose <code>YAML</code>, <code>TOML</code> or any of the other formats at your best convenience. But have in mind the following logic when choosing a file format other than <code>json</code>.</p>
-
 <p><strong>Using the UI</strong>: If you intend to generate or edit your configuration file using the <a href="https://designer.krakend.io">KrakenDesigner</a>, the input and output are always a <code>.json</code> file.</p>
-
 <p><strong>Flexible Configuration</strong>: If you want to split the configuration file into different pieces or use variables inside the configuration, the <a href="/docs/configuration/flexible-config/">flexible configuration</a> needs <code>JSON</code>.</p>
-
-<p><strong>Documentation</strong>: All our examples in the documentation and repositories are today shown in <code>JSON</code> format, so it&rsquo;s always more convenient to reuse snippets of code.</p>
+<p><strong>Documentation</strong>: All our examples in the documentation and repositories are today shown in <code>JSON</code> format, so it's always more convenient to reuse snippets of code.</p>
 
     </section>
 </div>

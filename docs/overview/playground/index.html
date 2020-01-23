@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>The KrakenD Playground - KrakenD API Gateway</title>
     <meta itemprop="name" content="The KrakenD Playground - KrakenD API Gateway">
@@ -25,8 +25,7 @@
 <meta property="og:description" content="Start playing with KrakenD through a ready-to-use complete environment -  gateway, backend, client and several use cases." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/overview/playground/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-09-13T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-09-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -702,30 +701,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
         
         
 
-        
-
-<p>If you are new to KrakenD, a quick way to get started is to make use of the <a href="https://github.com/devopsfaith/krakend-playground">KrakenD Playground</a>.</p>
-
+        <p>If you are new to KrakenD, a quick way to get started is to make use of the <a href="https://github.com/devopsfaith/krakend-playground">KrakenD Playground</a>.</p>
 <p>The KrakenD Playground is a <strong>Docker Compose</strong> environment that puts together the necessary pieces to let you play with KrakenD in a working environment.</p>
-
 <p>As KrakenD is an API gateway, we have also added to the environment an API (backend) to feed the gateway and a website to make use of the data. With the KrakenD Playground, you can see the different pieces that take place in the API Gateway use cases.</p>
-
 <h1 id="an-environment-ready-to-use">An environment ready to use!</h1>
-
 <p>The KrakenD Playground can be started with <code>docker-compose up</code> and then fire up your browser, <code>curl</code>, Postman, httpie or anything else you use to interact with the services.</p>
-
 <p>When starting the Docker compose you will have:</p>
-
 <ul>
 <li>The KrakenD API Gateway, on port 8080</li>
 <li>A client consuming data from the gateway, on port 3000</li>
 <li>A backend simulating API responses on port 8000</li>
 <li>Plus a <a href="https://www.jaegertracing.io/">Jaeger</a> where traces are sent on port 16686</li>
 </ul>
-
 <p>Have a look at the <code>docker-compose.yml</code> file to understand how these services interact together, and also at the <code>krakend.json</code> file to find out what endpoints are exposed.</p>
-
-<p>If you&rsquo;d like to see more examples, please let us know or open an <a href="https://github.com/devopsfaith/krakend-playground/issues">issue</a>!</p>
+<p>If you'd like to see more examples, please let us know or open an <a href="https://github.com/devopsfaith/krakend-playground/issues">issue</a>!</p>
 
     </section>
 </div>

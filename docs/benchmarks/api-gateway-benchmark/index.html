@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Comparison of KrakenD vs other products in the market (Benchmark) - KrakenD API Gateway</title>
     <meta itemprop="name" content="Comparison of KrakenD vs other products in the market (Benchmark) - KrakenD API Gateway">
@@ -25,8 +25,7 @@
 <meta property="og:description" content="Performance tests of KrakenD" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/benchmarks/api-gateway-benchmark/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-10-28T00:00:00+00:00" />
 <meta property="article:modified_time" content="2016-10-28T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -698,62 +697,45 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmark
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#tldr">TLDR;</a></li>
-<li><a href="#hardware">Hardware</a></li>
-<li><a href="#setup">Setup</a></li>
-<li><a href="#results">Results</a>
-<ul>
-<li><a href="#test-00">Test 00</a></li>
-<li><a href="#test-01">Test 01</a>
-<ul>
-<li><a href="#krakend">KrakenD</a></li>
-<li><a href="#vulcand">Vulcand</a></li>
-<li><a href="#kong">Kong</a></li>
-<li><a href="#tyk">Tyk</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#summary">Summary</a>
-<ul>
-<li><a href="#requests-per-second">Requests per second</a></li>
-<li><a href="#response-time-distribution">Response time distribution</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#test-00">Test 00</a></li>
+    <li><a href="#test-01">Test 01</a>
+      <ul>
+        <li><a href="#krakend">KrakenD</a></li>
+        <li><a href="#vulcand">Vulcand</a></li>
+        <li><a href="#kong">Kong</a></li>
+        <li><a href="#tyk">Tyk</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#requests-per-second">Requests per second</a></li>
+    <li><a href="#response-time-distribution">Response time distribution</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>We wanted to compare our own product with other similar products in the market. In order to do so we used the same
+        <p>We wanted to compare our own product with other similar products in the market. In order to do so we used the same
 environment and conditions and tested the following products:</p>
-
 <ul>
 <li>Kong</li>
 <li>Vulcand</li>
 <li>Tyk</li>
 <li>KrakenD</li>
 </ul>
-
 <p>For the benchmarks, we based the tests on the benchmarking project <a href="https://github.com/varnish/api-gateway-benchmarks">varnish/api-gateway-benchmarks</a>.</p>
-
 <p><strong>At the time of writing, KrakenD does not support auth features, so we just did the benchmark with <em>test01</em></strong></p>
-
 <h1 id="tldr">TLDR;</h1>
-
 <p>Check out the generated graphs (<a href="http://www.charted.co/c/1db8eb2">throughput</a> and <a href="http://www.charted.co/c/2940d33">responses</a>) or the <a href="#summary">summary</a></p>
-
 <h1 id="hardware">Hardware</h1>
-
 <pre><code>Model MacBook Pro (MacBookPro11,4) - August 2015
 Processor:    Intel Core i7 2,2 GHz
 </code></pre>
-
 <h1 id="setup">Setup</h1>
-
 <p>For this test, we stored this configuration at <code>krakend.json</code></p>
-
 <pre><code>{
   &quot;version&quot;: 1,
   &quot;host&quot;: [
@@ -798,9 +780,7 @@ Processor:    Intel Core i7 2,2 GHz
   &quot;timeout&quot;: &quot;5s&quot;
 }
 </code></pre>
-
 <p>And we started the environment as described in the <a href="https://github.com/varnish/api-gateway-benchmarks/blob/master/README.md#deployment-example">README</a></p>
-
 <pre><code>$ cd deployment/vagrant
 $ vagrant up
 
@@ -820,11 +800,8 @@ $ vagrant ssh consumer
 [vagrant@consumer boom]$ /usr/local/bin/test00
 [vagrant@consumer boom]$ /usr/local/bin/test01
 </code></pre>
-
 <h1 id="results">Results</h1>
-
 <h2 id="test-00">Test 00</h2>
-
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test00
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -862,11 +839,8 @@ Latency distribution:
   95% in 0.0233 secs.
   99% in 0.0333 secs.
 </code></pre>
-
 <h2 id="test-01">Test 01</h2>
-
 <h3 id="krakend">KrakenD</h3>
-
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test01
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -904,9 +878,7 @@ Latency distribution:
   95% in 0.0469 secs.
   99% in 0.0771 secs.
 </code></pre>
-
 <h3 id="vulcand">Vulcand</h3>
-
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test01
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -944,9 +916,7 @@ Latency distribution:
   95% in 0.0733 secs.
   99% in 0.2057 secs.
 </code></pre>
-
 <h3 id="kong">Kong</h3>
-
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test01
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -984,9 +954,7 @@ Latency distribution:
   95% in 0.1076 secs.
   99% in 0.2355 secs.
 </code></pre>
-
 <h3 id="tyk">Tyk</h3>
-
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test01
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -1024,18 +992,12 @@ Latency distribution:
   95% in 0.9231 secs.
   99% in 2.1054 secs.
 </code></pre>
-
 <h1 id="summary">Summary</h1>
-
 <h2 id="requests-per-second">Requests per second</h2>
-
-<script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=api-gateway-benchmark_test01_rps.csv"></script>
-
+<!-- raw HTML omitted -->
 <h2 id="response-time-distribution">Response time distribution</h2>
-
 <p><em>Time in milliseconds</em></p>
-
-<script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=api-gateway-benchmark_test01_resp_time.csv"></script>
+<!-- raw HTML omitted -->
 
     </section>
 </div>

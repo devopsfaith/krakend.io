@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Case-studies on KrakenD - Open source API Gateway</title>
@@ -31,7 +31,7 @@ Using KrakenD provides secure external connections with OAuth.</description>
       <description>Veepee is the European flash sales leader with 72M of members, and Privalia its strategic brand for Spain, Italy, Brazil, and Mexico.
 Privalia, with +13M members, evolved their customer care solution from an in-house solution to a Salesforce integration with their internal systems.
 Before KrakenD, the main challenge of Veepee was to integrate Salesforce with multiple microservices and handle authorization, security, and aggregation in the middle layers.
-KrakenD solved this challenge with out of the box features, keeping Privalia&amp;rsquo;s logic separated, and decoupled from Salesforce.</description>
+KrakenD solved this challenge with out of the box features, keeping Privalia&#39;s logic separated, and decoupled from Salesforce.</description>
     </item>
     
     <item>
@@ -42,7 +42,7 @@ KrakenD solved this challenge with out of the box features, keeping Privalia&amp
       <guid>https://www.krakend.io/case-study/i2s/</guid>
       <description>GFI is one of the most high-performing IT and digital service companies in the market. Their insurance branch i2S has software solutions installed in nearly 50 insurance companies (Life and Non-life) and several pension fund management societies.
 KrakenD is the entry point to consume all the micro-services in a controlled way and helps create an insurance-related product, covering many aspects, from legal to finance and actuarial.
-KrakenD unifies and aggregates the responses of all the underlying Java microservices, and injects custom middleware for insurance&amp;rsquo;s particular use case.</description>
+KrakenD unifies and aggregates the responses of all the underlying Java microservices, and injects custom middleware for insurance&#39;s particular use case.</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@ KrakenD API Gateway helped Open Room to reduce the latency of all queries by gro
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/case-study/adevinta/</guid>
-      <description>Adevinta handles a vast amount of traffic, as it operates marketplaces with an average of 1.5 billion visits every month. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
+      <description>Adevinta handles a vast amount of traffic, as it operates marketplaces with an average of 1.5 billion visits every month. The adoption of KrakenD&#39;s technology in production started in early 2017 and has been running since then.
 Adevinta was investigating how to get more performance in their company-wide solution related to images streaming. The existing application was having performance issues, and it was needed to start looking for possible solutions to serve all the marketplaces better.</description>
     </item>
     
@@ -72,7 +72,7 @@ Adevinta was investigating how to get more performance in their company-wide sol
       <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/case-study/pearson/</guid>
-      <description>Pearson has trusted KrakenD as its API Gateway solution for the Parent App, which provides parents with a wide range of resources, including podcasts, infographics, quizzes, and checklists, to support their children&amp;rsquo;s progress in learning.
+      <description>Pearson has trusted KrakenD as its API Gateway solution for the Parent App, which provides parents with a wide range of resources, including podcasts, infographics, quizzes, and checklists, to support their children&#39;s progress in learning.
 KrakenD API Gateway offers the endpoints to the Parent App and sits between end-users and the Pearson services, which provide all the data that KrakenD aggregates to supply the use case.
 KrakenD handles OAuth with HMAC security and implements minor custom middlewares to fit the desired end-user consumption of the services.</description>
     </item>
@@ -96,8 +96,8 @@ As the business developed rapidly, Dusdusan.com needs to keep improving its plat
       <guid>https://www.krakend.io/case-study/mailru/</guid>
       <description>Delivery Club, a Mail.ru brand, is the largest online food delivery platform in Russia, moving food from thousands of restaurants to homes in more than 100 cities.
 Delivery Club processes +30,000 orders per day, 72% of which are made from mobile devices.
-The technology is built using a modernized microservices architecture with around 20 services, including KrakenD API Gateway that sits between end users and Delivery Club&amp;rsquo;s services.
-KrakenD&amp;rsquo;s main duty is processing ingoing and outgoing traffic making sure that user sessions are properly authorized when needed, and discarding malicious activity and hacking attempts.</description>
+The technology is built using a modernized microservices architecture with around 20 services, including KrakenD API Gateway that sits between end users and Delivery Club&#39;s services.
+KrakenD&#39;s main duty is processing ingoing and outgoing traffic making sure that user sessions are properly authorized when needed, and discarding malicious activity and hacking attempts.</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@ KrakenD&amp;rsquo;s main duty is processing ingoing and outgoing traffic making 
       
       <guid>https://www.krakend.io/case-study/letgo/</guid>
       <description>Letgo is the biggest and fastest-growing app for buying and selling locally.
-Letgo is both a desktop application (SPA) and a mobile application with native implementations for every OS. As Letgo&amp;rsquo;s organization is large, the UI experience of each client is handled by a different team.
+Letgo is both a desktop application (SPA) and a mobile application with native implementations for every OS. As Letgo&#39;s organization is large, the UI experience of each client is handled by a different team.
 Letgo uses different clusters of KrakenD API Gateway per client, allowing each team to have its customized views of merged data. The API contract used in every device is preserved and respected even when the backends need to change their specification.</description>
     </item>
     
@@ -119,7 +119,7 @@ Letgo uses different clusters of KrakenD API Gateway per client, allowing each t
       <guid>https://www.krakend.io/case-study/icontainers/</guid>
       <description>iContainers is an ocean freight forwarder that allows you to compare, book, manage, and track maritime shipments in real-time without intermediaries.
 As importers and exporters combine more than 500,000 rates and maritime transport routes from different providers, KrakenD plays the role of a Backend for Frontend in several SPAs. Some examples are the back-office, the partners portal, or the pricing API.
-KrakenD&amp;rsquo;s primary duty in all these cases is to provide a reliable way to fetch data from multiple providers and APIs and merge the results of all the services into useful endpoints.</description>
+KrakenD&#39;s primary duty in all these cases is to provide a reliable way to fetch data from multiple providers and APIs and merge the results of all the services into useful endpoints.</description>
     </item>
     
   </channel>

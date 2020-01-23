@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>OAuth 2.0 Client Credentials - KrakenD API Gateway</title>
     <meta itemprop="name" content="OAuth 2.0 Client Credentials - KrakenD API Gateway">
@@ -26,8 +26,7 @@ The client credentials authorize KrakenD, as the client, to access the protected
 Successfully setting the client credentials for a backend means that KrakenD can get the protected content, but the endpoint offered to the end-user is going to be public unless you protect it with JWT." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/authorization/client-credentials/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-03-21T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-03-21T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -707,30 +706,17 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#configuring-oauth2-client-credentials">Configuring OAuth2 Client Credentials</a></li>
-<li><a href="#auth0-integration">Auth0 integration</a></li>
-</ul>
-</nav>
+                <nav id="TableOfContents"></nav>
             </div>
         </div>
         
 
-        
-
-<p>Through the <strong>OAuth 2.0 Client Credentials Grant</strong> KrakenD can request to your authorization server an access token to reach protected resources.</p>
-
+        <p>Through the <strong>OAuth 2.0 Client Credentials Grant</strong> KrakenD can request to your authorization server an access token to reach protected resources.</p>
 <p>The client credentials <strong>authorize KrakenD, as the client, to access the protected resources</strong>. Do not confuse this with authorizing an end-user (see <a href="/docs/authorization/jwt-overview">JWT</a> instead).</p>
-
 <p>Successfully setting the client credentials for a backend means that KrakenD can get the protected content, but the endpoint offered to the end-user is going to be public unless you protect it with JWT.</p>
-
 <h1 id="configuring-oauth2-client-credentials">Configuring OAuth2 Client Credentials</h1>
-
 <p>To access a protected resource using client-credentials add under every <code>backend</code> the appropriate <code>extra_config</code>.</p>
-
 <p>The namespace used is <code>&quot;github.com/devopsfaith/krakend-oauth2-clientcredentials&quot;</code>. Sample configuration below:</p>
-
 <pre><code>{
   &quot;endpoint&quot;: &quot;/endpoint&quot;,
   &quot;backend&quot;: [
@@ -750,9 +736,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
   ]
 }
 </code></pre>
-
 <p>The settings of this component are:</p>
-
 <ul>
 <li><code>client_id</code> <em>string</em>: The Client ID provided to the Auth server</li>
 <li><code>client_secret</code> <em>string</em>: The secret string provided to the Auth server</li>
@@ -760,11 +744,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <li><code>scopes</code>: <em>string,optional</em> A comma separated list of scopes needed, e.g.: <code>scopeA,scopeB</code></li>
 <li><code>endpoint_params</code> <em>list,optional</em>: Any additional parameters that you want to include <strong>in the payload</strong> when requesting the token. For instance, it is frequent to add the <code>audience</code> request parameter that denotes the target API for which the token should be issued.</li>
 </ul>
-
 <h1 id="auth0-integration">Auth0 integration</h1>
-
 <p>The following example demonstrates a complete configuration to fulfill the requirements of <a href="https://auth0.com/">Auth0</a>. It is essentially the same configuration we have shown above, but with some additions, explained after the code:</p>
-
 <pre><code>{
     &quot;endpoint&quot;: &quot;/endpoint&quot;,
     &quot;backend&quot;: [
@@ -801,9 +782,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
     ]
 }
 </code></pre>
-
 <p>The code above works with Auth0. The differences with the basic example are:</p>
-
 <ul>
 <li>The id and the secret are passed as <code>endpoint_params</code>, as auth0 ignores the auth header and expects the credentials sent as JSON data or form body.</li>
 <li>The <code>Accept</code> header is needed when sending a request to auth0. The <code>krakend-martian</code> component modifies the request to the backend to do that.</li>

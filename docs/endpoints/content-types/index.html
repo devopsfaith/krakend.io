@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Response content types - KrakenD API Gateway</title>
     <meta itemprop="name" content="Response content types - KrakenD API Gateway">
@@ -26,8 +26,7 @@ Supported encodings The gateway can work with several content types, even allowi
  json: The endpoint always return a response in JSON format to the client." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/content-types/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-04-14T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-03-08T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -701,43 +700,32 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#supported-encodings">Supported encodings</a></li>
-<li><a href="#using-other-routers-from-the-framework">Using other routers from the framework</a>
-<ul>
-<li><a href="#gin">Gin</a></li>
-<li><a href="#mux-based">Mux-based</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#gin">Gin</a></li>
+    <li><a href="#muxbased">Mux-based</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>KrakenD supports sending responses back to the client using content types other than JSON. The list of supported content types depends on the router package used.</p>
-
+        <p>KrakenD supports sending responses back to the client using content types other than JSON. The list of supported content types depends on the router package used.</p>
 <h1 id="supported-encodings">Supported encodings</h1>
-
 <p>The gateway can work with several content types, even allowing your clients to choose how to consume the content. The following <code>output_encoding</code> strategies are available to choose for every an endpoint:</p>
-
 <ul>
 <li><code>json</code>: The endpoint always return a response in JSON format to the client.</li>
 <li><code>negotiate</code>: Allows the client to choose by parsing its <code>Accept</code> header. KrakenD can return:
-
 <ul>
 <li>JSON</li>
 <li>XML</li>
 <li>RSS</li>
 <li>YAML.</li>
-</ul></li>
+</ul>
+</li>
 <li><code>string</code>: Treat the whole response as a simple string</li>
 <li><code>no-op</code>: No encoding, no decoding. <a href="/docs/endpoints/no-op/">See its documentation</a>.</li>
 </ul>
-
 <p>Each endpoint declaration is able to define which encoder should be used, as shown in this example. By default, when the <code>output_encoding</code> is omitted, KrakenD falls back to JSON:</p>
-
 <pre><code>...
 &quot;endpoints&quot;: [
 {
@@ -768,28 +756,19 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 }
 ...
 </code></pre>
-
 <p>Notice that endpoint <code>/c</code> uses JSON as no encoding has been defined.</p>
-
 <h1 id="using-other-routers-from-the-framework">Using other routers from the framework</h1>
-
 <p>If instead of the KrakenD API Gateway (KrakenD-CE), which uses internally the gin router, you decide to build your own gateway using the KrakenD framework, the following routers and output encodings are available:</p>
-
 <h2 id="gin">Gin</h2>
-
 <p>The gin-based KrakenD router includes these output encodings:</p>
-
 <ul>
 <li><code>json</code></li>
 <li><code>string</code></li>
 <li><code>negotiate</code></li>
 <li><code>no-op</code></li>
 </ul>
-
-<h2 id="mux-based">Mux-based</h2>
-
+<h2 id="muxbased">Mux-based</h2>
 <p>The mux based routers supported by the KrakenD framework are:</p>
-
 <ul>
 <li>Mux</li>
 <li>Gorilla</li>
@@ -797,9 +776,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li>Chi</li>
 <li>httptreemux</li>
 </ul>
-
 <p>and they include these output encodings:</p>
-
 <ul>
 <li><code>json</code></li>
 <li><code>string</code></li>

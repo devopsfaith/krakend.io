@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Exporting logs, metrics, and traces to several providers - KrakenD API Gateway</title>
     <meta itemprop="name" content="Exporting logs, metrics, and traces to several providers - KrakenD API Gateway">
@@ -26,8 +26,7 @@ You will be interested in Opencensus when you want to see data in one of its sup
 &quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;prometheus&quot;: { &quot;port&quot;: 9091 &quot;namespace&quot;: &quot;krakend&quot; } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/opencensus/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -705,12 +704,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
         
         
 
-        
-
-<p>The Opencensus exporter is a single component that allows you to export data to multiple providers, both open source and privative.</p>
-
+        <p>The Opencensus exporter is a single component that allows you to export data to multiple providers, both open source and privative.</p>
 <p>You will be interested in Opencensus when you want to see data in one of its supported <code>exporters</code>. For instance, you might want to send metrics to Prometheus. That would be as easy as adding this snippet in the root level of your <code>krakend.json</code> file:</p>
-
 <pre><code>&quot;extra_config&quot;: {
     &quot;github_com/devopsfaith/krakend-opencensus&quot;: {
         &quot;exporters&quot;: {
@@ -722,13 +717,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
     }
 }
 </code></pre>
-
 <h1 id="configuration">Configuration</h1>
-
 <p>The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration. Every exporter has its own configuration and this described in its own section.</p>
-
 <p>By default, <strong>all exporters sample the 100% of the requests received every second</strong>, but this can be changed by specifying more configuration:</p>
-
 <pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
   &quot;sample_rate&quot;: 100,
   &quot;reporting_period&quot;: 1,
@@ -743,17 +734,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
   }
 }
 </code></pre>
-
 <ul>
-<li><code>sample_rate</code> is the percentage of sampled requests. A value of <code>100</code> means that all requests are exported (100%). If you are processing a huge amount of traffic you might want to sample only a part of what&rsquo;s going on.</li>
+<li><code>sample_rate</code> is the percentage of sampled requests. A value of <code>100</code> means that all requests are exported (100%). If you are processing a huge amount of traffic you might want to sample only a part of what's going on.</li>
 <li><code>reporting_period</code> is the number of <strong>seconds</strong> passing between reports</li>
 <li><code>exporters</code> is a key-value with all the exporters you want to use. See each exporter configuration for the underlying keys.</li>
 <li><code>enabled_layers</code> let you specify what data you want to export. All layers are enabled by default:
-
 <ul>
 <li>Use <code>backend</code> to report the activity between KrakenD and your services</li>
 <li>Use <code>router</code> to report the activity between end-users and KrakenD</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
     </section>

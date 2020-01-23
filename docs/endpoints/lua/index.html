@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.60.0" />
 
     <title>Transformations using Lua scripting - KrakenD API Gateway</title>
     <meta itemprop="name" content="Transformations using Lua scripting - KrakenD API Gateway">
@@ -25,8 +25,7 @@
 If you are more familiar with Lua than Go, this module can help you solve exceptional cases that need solution using a little bit of scripting. The introduction of Lua scripts in your Gateway does not require to recompile KrakenD, but unlike Go, Lua scripts are interpreted in real-time." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/lua/" />
-
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
@@ -708,44 +707,35 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
-<ul>
-<li><a href="#configuration">Configuration</a></li>
-<li><a href="#supported-lua-types-cheatsheet">Supported Lua types (cheatsheet)</a>
-<ul>
-<li><a href="#proxy-type"><code>proxy</code> type</a>
-<ul>
-<li><a href="#request">Request</a></li>
-<li><a href="#response">Response</a></li>
-</ul></li>
-<li><a href="#router-type"><code>router</code> type</a>
-<ul>
-<li><a href="#ctx">ctx</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#additional-helpers-cheatsheet">Additional helpers (cheatsheet)</a>
-<ul>
-<li><a href="#table"><code>table</code></a></li>
-<li><a href="#list"><code>list</code></a></li>
-<li><a href="#http-response"><code>http_response</code></a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#proxy-type">proxy type</a>
+      <ul>
+        <li><a href="#request">Request</a></li>
+        <li><a href="#response">Response</a></li>
+      </ul>
+    </li>
+    <li><a href="#router-type">router type</a>
+      <ul>
+        <li><a href="#ctx">ctx</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#table">table</a></li>
+    <li><a href="#list">list</a></li>
+    <li><a href="#httpresponse">http_response</a></li>
+  </ul>
 </nav>
             </div>
         </div>
         
 
-        
-
-<p>Scripting with Lua is an additional choice to extend your business logic, and is compatible with the rest of options such as <a href="/docs/endpoints/common-expression-language-cel/">CEL</a>, <a href="/docs/endpoints/martian/">Martian</a>, or other Go plugins and middlewares.</p>
-
+        <p>Scripting with Lua is an additional choice to extend your business logic, and is compatible with the rest of options such as <a href="/docs/endpoints/common-expression-language-cel/">CEL</a>, <a href="/docs/endpoints/martian/">Martian</a>, or other Go plugins and middlewares.</p>
 <p>If you are more familiar with Lua than Go, this module can help you solve exceptional cases that need solution using a little bit of scripting. The introduction of Lua scripts in your Gateway does not require to recompile KrakenD, but unlike Go, Lua scripts are interpreted in real-time.</p>
-
 <p>For performance-first users, a Go plugin delivers better results than a Lua script.</p>
-
 <h1 id="configuration">Configuration</h1>
-
 <p>KrakenD looks for the lua scripts in the root folder where krakend is running. You need to specify in the configuration which lua scripts are going to be loaded in Krakend, as well as several options. The <code>extra_config</code> can be set at <code>endpoint</code> level or <code>backend</code> level.</p>
-
 <pre><code>&quot;extra_config&quot;: {
       &quot;github.com/devopsfaith/krakend-lua&quot;: {
         &quot;sources&quot;: [&quot;file1.lua&quot;],
@@ -759,7 +749,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
       }
 }
 </code></pre>
-
 <ul>
 <li><code>sources</code>: An array with all the files that will be processed</li>
 <li><code>md5</code>: (optional) The md5sum of each file that must match the one found in the disk. Used to make sure that the file has not been modified by a 3rd party.</li>
@@ -767,29 +756,19 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>live</code>: Live reload of the script in every execution</li>
 <li><code>skip_next</code>: only to be set when in a <code>backend</code> section, skips the query to the next backend.</li>
 </ul>
-
 <h1 id="supported-lua-types-cheatsheet">Supported Lua types (cheatsheet)</h1>
-
 <p>When running Lua scripts on KrakenD, there are two different types you can use in their coding. Depending on the place of the pipe you want to place the script you can use a <code>proxy</code> type or a <code>router</code> type:</p>
-
 <pre><code>End User &lt;--[router]--&gt; KrakenD &lt;--[proxy]--&gt; Services
 </code></pre>
-
 <p>These two types are described as follows:</p>
-
 <ul>
 <li>Router: The router layer is what happens between the end-user and KrakenD</li>
 <li>Proxy: The proxy layer is between KrakenD and your services</li>
 </ul>
-
 <h2 id="proxy-type"><code>proxy</code> type</h2>
-
 <p>Use this type when you need to intercept requests and responses between KrakenD and your services.</p>
-
 <h3 id="request">Request</h3>
-
 <p>Scripts that need to modify a request that KrakenD is about to do against the backend services.</p>
-
 <ul>
 <li><code>load</code> (<em>Static</em>)</li>
 <li><code>method</code> (<em>Dynamic</em>)</li>
@@ -800,13 +779,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>headers</code> (<em>Dynamic</em>)</li>
 <li><code>body</code> (<em>Dynamic</em>)</li>
 </ul>
-
 <p>Example: Access the request getter with <code>req:url()</code> and the setter with <code>req:url(&quot;foo&quot;)</code>.</p>
-
 <h3 id="response">Response</h3>
-
 <p>Scripts that need to modify a request that KrakenD is about to get from the backend services.</p>
-
 <ul>
 <li><code>load</code> (<em>Static</em>)</li>
 <li><code>isComplete</code> (<em>Dynamic</em>)</li>
@@ -815,13 +790,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>headers</code> (<em>Dynamic</em>)</li>
 <li><code>body</code> (<em>Dynamic</em>)</li>
 </ul>
-
 <h2 id="router-type"><code>router</code> type</h2>
-
 <p>Use this type when you need to script the router layer, traffic between end-users and KrakenD.</p>
-
 <h3 id="ctx">ctx</h3>
-
 <ul>
 <li><code>load</code> (<em>Static</em>)</li>
 <li><code>method</code> (<em>Dynamic</em>)</li>
@@ -831,29 +802,21 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>headers</code> (<em>Dynamic</em>)</li>
 <li><code>body</code> (<em>Dynamic</em>)</li>
 </ul>
-
 <h1 id="additional-helpers-cheatsheet">Additional helpers (cheatsheet)</h1>
-
 <p>The following helpers are available in your scripts:</p>
-
 <h2 id="table"><code>table</code></h2>
-
 <ul>
 <li><code>get</code> (<em>Dynamic</em>)</li>
 <li><code>set</code> (<em>Dynamic</em>)</li>
 <li><code>len</code> (<em>Dynamic</em>)</li>
 </ul>
-
 <h2 id="list"><code>list</code></h2>
-
 <ul>
 <li><code>get</code> (<em>Dynamic</em>)</li>
 <li><code>set</code> (<em>Dynamic</em>)</li>
 <li><code>len</code> (<em>Dynamic</em>)</li>
 </ul>
-
-<h2 id="http-response"><code>http_response</code></h2>
-
+<h2 id="httpresponse"><code>http_response</code></h2>
 <ul>
 <li><code>new</code> (<em>Static</em>)</li>
 <li><code>statusCode</code> (<em>Dynamic</em>)</li>
