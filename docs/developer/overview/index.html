@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Developer Tools - KrakenD API Gateway</title>
     <meta itemprop="name" content="Developer Tools - KrakenD API Gateway">
@@ -699,8 +699,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/developer
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#krakendmemviz">krakend-memviz</a></li>
-    <li><a href="#krakendspew">krakend-spew</a></li>
+    <li><a href="#krakend-memviz">krakend-memviz</a></li>
+    <li><a href="#krakend-spew">krakend-spew</a></li>
   </ul>
 </nav>
             </div>
@@ -716,9 +716,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/developer
 <p>The <a href="https://github.com/devopsfaith/krakend-config2dot">config2dot</a> is a tool to create graphs automatically after reading your configuration file <code>krakend.json</code>.</p>
 <!-- raw HTML omitted -->
 <h1 id="debugging-the-activity">Debugging the activity</h1>
-<h2 id="krakendmemviz">krakend-memviz</h2>
+<h2 id="krakend-memviz">krakend-memviz</h2>
 <p>Adds a <a href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)">DOT</a> file exporter of request/response snapshots to your proxy stack for debug and development purposes. Do not use this in production as it will kill your performance.</p>
-<h2 id="krakendspew">krakend-spew</h2>
+<h2 id="krakend-spew">krakend-spew</h2>
 <p>Dumps every entity seen in the pipe: requests and responses passing through thew whole stack. Do not use this in production as it will kill your performance.</p>
 <p>Dumps are stored in files like <code>&lt;pipe&gt;_&lt;base64_endpoint/backend_name&gt;_&lt;timestamp&gt;.txt</code>. E.g:</p>
 <pre><code>$ ls

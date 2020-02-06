@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>How we automated our RPM and DEB packaging with Docker - KrakenD API Gateway</title>
     <meta itemprop="name" content="How we automated our RPM and DEB packaging with Docker - KrakenD API Gateway">
@@ -394,7 +394,7 @@ RPM_OPTS =--rpm-user $(USER) \
   --after-remove scripts/postrm.rpm \
   --rpm-sign
 </code></pre><p>Now all the options and variables are controlled inside the Makefile.</p>
-<h2 id="patternspecific-variables">Pattern-specific variables</h2>
+<h2 id="pattern-specific-variables">Pattern-specific variables</h2>
 <p>A key of success are the pattern-specific variables present in the <code>Makefile</code>. They are used to define a kind of template that can be reused many times (as a function) but with different declarations.</p>
 <p>A single platform would be easy to manage: one config file, a couple of scripts (pre and post install) and the systemd configuration. That's it.</p>
 <p>For us the problem came when we wanted to generate packages for old versions of Ubuntu/Debian and CentOS/RHEL. Some distributions were using <code>upstart</code> while others created scripts in <code>init.d</code> or needed custom scripts for pre and post installations. Differences never ended.</p>

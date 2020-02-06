@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Proxying directly to the backends with `no-op` - KrakenD API Gateway</title>
     <meta itemprop="name" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
@@ -700,8 +700,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <nav id="TableOfContents">
   <ul>
     <li><a href="#key-concepts">Key concepts</a></li>
-    <li><a href="#when-to-use-noop">When to use no-op</a></li>
-    <li><a href="#how-to-use-noop">How to use no-op</a></li>
+    <li><a href="#when-to-use-no-op">When to use no-op</a></li>
+    <li><a href="#how-to-use-no-op">How to use no-op</a></li>
     <li><a href="#example">Example</a></li>
   </ul>
 </nav>
@@ -710,7 +710,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         
 
         <p>KrakenD <code>no-op</code> (<strong>no-operation</strong>), is a special type of <strong>encoding</strong> that behaves as a <strong>proxy</strong> by passing the client's request to the backend <em><strong>as is</strong></em>, and vice-versa.</p>
-<h1 id="using-noop-to-proxy-requests">Using <code>no-op</code> to proxy requests</h1>
+<h1 id="using-no-op-to-proxy-requests">Using <code>no-op</code> to proxy requests</h1>
 <p>When setting <code>no-op</code>, KrakenD does not inspect the request <code>body</code> or manipulates it in any way. Instead, when a request to a <code>no-op</code> endpoint is received, KrakenD directly forwards it to the backend without doing any operation with it.</p>
 <p>The <em>proxy pipe</em> (this is from KrakenD to backend) is marked to do no-operation, meaning that KrakenD does not aggregate content, filter, manipulate or any of the other functionalities performed during this pipe. It's also important to notice that only a <strong>single backend</strong> is accepted, as the merge operation happens during the <em>proxy pipe</em>.</p>
 <p>Employing the same principle, when the backend produces the response, it's passed back to the client <em>as is</em>, preserving its form: body, headers, status codes and such.</p>
@@ -726,14 +726,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li>The body cannot be changed and is set solely by the backend</li>
 <li><code>1:1</code> relationship between endpoint-backend (one backend per endpoint).</li>
 </ul>
-<h2 id="when-to-use-noop">When to use <code>no-op</code></h2>
+<h2 id="when-to-use-no-op">When to use <code>no-op</code></h2>
 <p>Use <code>no-op</code> when you need to <strong>couple the client with a specific backend without any KrakenD manipulation</strong>.</p>
 <p>Examples:</p>
 <ul>
 <li>You want to set a <code>Cookie</code> to the client directly from the backend.</li>
 <li>You need to keep the headers of the backend as is.</li>
 </ul>
-<h2 id="how-to-use-noop">How to use <code>no-op</code></h2>
+<h2 id="how-to-use-no-op">How to use <code>no-op</code></h2>
 <p>To declare endpoints that go directly to the backend as they are you need to define the <code>no-op</code> encoding <strong>both</strong> in the <code>endpoint</code> <strong>and</strong> the <code>backend</code> section, specifically:</p>
 <ul>
 <li>Add <code>&quot;output_encoding&quot;: &quot;no-op&quot;</code> in the <code>endpoint</code> section</li>

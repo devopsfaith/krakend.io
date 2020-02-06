@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Understanding the configuration file - KrakenD API Gateway</title>
     <meta itemprop="name" content="Understanding the configuration file - KrakenD API Gateway">
@@ -702,7 +702,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
                 <nav id="TableOfContents">
   <ul>
     <li><a href="#the-endpoints-structure">The endpoints structure</a></li>
-    <li><a href="#the-extraconfig-structure">The extra_config structure</a></li>
+    <li><a href="#the-extra_config-structure">The extra_config structure</a></li>
     <li><a href="#example-file">Example file</a></li>
   </ul>
 </nav>
@@ -749,7 +749,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
   ]
 </code></pre>
 <p>This declares and endpoint <code>/v1/foo-bar</code> which is the result of merging the responses from <code>/foo</code> and <code>/bar</code>.</p>
-<h2 id="the-extraconfig-structure">The <code>extra_config</code> structure</h2>
+<h2 id="the-extra_config-structure">The <code>extra_config</code> structure</h2>
 <p>When a component is registered, its associated configuration is taken from the <code>extra_config</code> (if any).</p>
 <p>The <code>extra_config</code> can appear on different levels, and this depends entirely on every component. An <code>extra_config</code> in the root level of the file usually sets values at a service level, and this affects the gateway globally. On the other hand, some components seek the <code>extra_config</code> key inside an <code>endpoint</code> definition or a <code>backend</code> definition, as its functionality is specific to the backend or the endpoint behavior only. For instance, you might want to set a rate limit only to a specific endpoint or backend.</p>
 <p>It's the responsibility of each external component to define a <strong>namespace</strong> that will be used as the key to retrieve the configuration. For instance, the <a href="https://github.com/devopsfaith/krakend-gologging">gologging middleware</a> expects to find a key <code>github_com/devopsfaith/krakend-gologging</code>:

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Security - KrakenD API Gateway</title>
     <meta itemprop="name" content="Security - KrakenD API Gateway">
@@ -710,8 +710,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
   <ul>
     <li><a href="#restrict-connections-by-host">Restrict connections by host</a></li>
     <li><a href="#clickjacking-protection">Clickjacking protection</a></li>
-    <li><a href="#mimesniffing-prevention">MIME-Sniffing prevention</a></li>
-    <li><a href="#crosssite-scripting-xss-protection">Cross-site scripting (XSS) protection</a></li>
+    <li><a href="#mime-sniffing-prevention">MIME-Sniffing prevention</a></li>
+    <li><a href="#cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</a></li>
   </ul>
 
   <ul>
@@ -760,10 +760,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>KrakenD follow the OWASP's recommendations by adding a frame-breaking strategy.</p>
 <p>You can add an <code>X-Frame-Options</code> header using <code>custom_frame_options_value</code> with the value of <code>DENY</code> (default behavior) or even set your custom value.</p>
 <p>Check the <a href="https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet#X-Frame-Options_Header_Types">OWASP Clickjacking cheat sheet</a> for more details about the header and its recommended values.</p>
-<h2 id="mimesniffing-prevention">MIME-Sniffing prevention</h2>
+<h2 id="mime-sniffing-prevention">MIME-Sniffing prevention</h2>
 <p>Use <code>content_type_nosniff</code></p>
 <p>Enabling this feature will prevent the user's browser from interpreting files as something else than declared by the content type in the HTTP headers.</p>
-<h2 id="crosssite-scripting-xss-protection">Cross-site scripting (XSS) protection</h2>
+<h2 id="cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</h2>
 <p>Use <code>browser_xss_filter</code></p>
 <p>This feature enables the <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">Cross-site scripting (XSS)</a> filter in the user's browser.</p>
 <h1 id="https">HTTPS</h1>

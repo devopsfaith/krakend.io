@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Reloading the Krakend configuration with Reflex and Docker - KrakenD API Gateway</title>
     <meta itemprop="name" content="Reloading the Krakend configuration with Reflex and Docker - KrakenD API Gateway">
@@ -295,7 +295,7 @@
 </ul>
 <p>We could keep going, but with just this in mind, it's clear that KrakenD won't support a feature were you can push the new configuration at runtime. But we heard you! So we have built a small solution to automate the KrakenD reloading task, at least in development.</p>
 <p>Check <a href="https://github.com/devopsfaith/krakend-config-watcher/">the Github repository for the code used</a> in this post.</p>
-<h2 id="enters-krakendconfigwatcher-mode">Enters <code>krakend:config-watcher</code> mode</h2>
+<h2 id="enters-krakendconfig-watcher-mode">Enters <code>krakend:config-watcher</code> mode</h2>
 <p>We have published a new Docker tag <code>:config-watcher</code> in the existing <a href="https://hub.docker.com/r/devopsfaith/krakend/">KrakenD Docker</a>, you can get it with:</p>
 <pre><code>docker pull devopsfaith/krakend:config-watcher
 </code></pre>

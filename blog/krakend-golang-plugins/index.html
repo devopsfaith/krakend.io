@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>How to work with Golang plugins and KrakenD - KrakenD API Gateway</title>
     <meta itemprop="name" content="How to work with Golang plugins and KrakenD - KrakenD API Gateway">
@@ -332,7 +332,7 @@ var pluginOpener = plugin.Open
 </code></pre>
 <p>We decided that delegating the registering logic to the plugins would give us a better decoupling (the good old <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC </a> principle). After scaning and filtering the contents of the <strong>plugins</strong> folder, the <code>Load</code> function just calls <code>plugin.Open</code> wrapping the possible errors and panics. Currently it doesn't use the returned <code>*plugin.Plugin</code> for lookups. Check the <a href="https://godoc.org/github.com/devopsfaith/krakend/plugin">documentation</a> for more details.</p>
 <p>This is the <a href="https://github.com/devopsfaith/krakend/pull/87">Pull Request</a> with all the required changes for the framework.</p>
-<h2 id="tuning-the-krakendce-distribution">Tuning the KrakenD-CE distribution</h2>
+<h2 id="tuning-the-krakend-ce-distribution">Tuning the KrakenD-CE distribution</h2>
 <p>In order to load the plugins before starting the gateway, the <code>executor.go</code> script needs to be extended with this code block:</p>
 <pre><code>...
     if &quot;&quot; != os.Getenv(&quot;KRAKEND_ENABLE_PLUGINS&quot;) &amp;&amp; cfg.Plugin != nil {

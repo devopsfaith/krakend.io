@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Flexible configuration - KrakenD API Gateway</title>
     <meta itemprop="name" content="Flexible configuration - KrakenD API Gateway">
@@ -717,7 +717,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
         <li><a href="#insert-values-from-settings-files">Insert values from settings files</a></li>
         <li><a href="#insert-structures-from-settings-files">Insert structures from settings files</a></li>
         <li><a href="#include-an-external-file">Include an external file</a></li>
-        <li><a href="#include-and-process-a-subtemplate">Include and process a sub-template</a></li>
+        <li><a href="#include-and-process-a-sub-template">Include and process a sub-template</a></li>
       </ul>
     </li>
     <li><a href="#testing-the-configuration">Testing the configuration</a></li>
@@ -798,7 +798,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 <pre><code>{{ include &quot;partial_file_name.txt&quot; }}
 </code></pre>
 <p><strong>The content inside the partial template is not parsed</strong>, and is inserted <em>as is</em> in plain text. The file is assumed to live inside the directory defined in <code>FC_PARTIALS</code> and can have any name and extension.</p>
-<h3 id="include-and-process-a-subtemplate">Include and process a sub-template</h3>
+<h3 id="include-and-process-a-sub-template">Include and process a sub-template</h3>
 <p>While the <code>include</code> is only meant to paste the content of a plain text file, the <code>template</code> gives you all the power of Go templating (<a href="https://golang.org/pkg/text/template/">documentation</a>). The syntax is as follows:</p>
 <pre><code>{{ template &quot;template_name.tmpl&quot; context }}
 </code></pre>

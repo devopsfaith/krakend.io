@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Response manipulation - KrakenD API Gateway</title>
     <meta itemprop="name" content="Response manipulation - KrakenD API Gateway">
@@ -723,7 +723,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>KrakenD manipulations are measured in <code>nanoseconds</code>, you can find the benchmark for every response manipulation in the <a href="https://github.com/devopsfaith/krakend/blob/master/docs/BENCHMARKS.md#response-manipulation">benchmarks</a></p>
 <p>The following manipulations are available by default:</p>
 <h1 id="merging">Merging</h1>
-<p>When you create KrakenD endpoints, if a specific endpoint feeds from 2 or more backend sources (APIs), they will be automatically merged in a single response to the client. For instance, imagine you have 3 different API services exposing the resources <code>/a`,</code>/b<code>, and </code>/c<code>and you want to expose them all together in the KrakenD endpoint</code>/abc`. This is what you would get:</p>
+<p>When you create KrakenD endpoints, if a specific endpoint feeds from 2 or more backend sources (APIs), they will be automatically merged in a single response to the client. For instance, imagine you have 3 different API services exposing the resources <code>/a</code>,<code>/b</code>, and <code>/c</code> and you want to expose them all together in the KrakenD endpoint <code>/abc</code>. This is what you would get:</p>
 <p><!-- raw HTML omitted --></p>
 <p>The merge operation is implemented in a way where user experience and responsiveness goes first. It does its <em>best effort</em> to get all the required parts from the involved backends and returning the composed object as soon as possible.</p>
 <p>By simply adding several backends into an endpoint, you get the merge operation automatically.</p>
@@ -871,7 +871,7 @@ There are a number of different reasons you might want to use this functionality
 <p>It is frequent in many API implementations that the important data is always encapsulated inside a generic field like <code>data</code>, <code>response</code> or <code>content</code>, as there are other fields showing the status code and other metadata. Sometimes we neither want to let the client handle with this nor drag this first level container through all the configuration.</p>
 <p>When setting a <code>target</code> in your backend, these generic containers (the target) disappear and all content extracted to the root as it never existed. As this capturing takes place before other options like whitelist or mapping, you can't forget about and manipulate data as.</p>
 <p>See <a href="/docs/backends/data-manipulation#target">target documentation</a></p>
-<h1 id="collection-or-array-manipulation">Collection -or Array- manipulation</h1>
+<h1 id="collection--or-array--manipulation">Collection -or Array- manipulation</h1>
 <p>KrakenD expects all backends to return objects in the response. There are times when the whole response of the backend comes inside an array, and other times when you need to do operations over fields that are arrays themselves.</p>
 <p>In any case, manipulations over arrays work differently than the objects.</p>
 <p>See <a href="/docs/backends/data-manipulation#collections">collections documentation</a></p>

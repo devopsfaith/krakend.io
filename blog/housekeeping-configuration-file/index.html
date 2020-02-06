@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Doing housekeeping on your KrakenD configuration file - KrakenD API Gateway</title>
     <meta itemprop="name" content="Doing housekeeping on your KrakenD configuration file - KrakenD API Gateway">
@@ -285,19 +285,19 @@
 <p>Maybe you just copied fragments from here and there, and now you have a working configuration. In any case, after tinkering with the designer or any other way, you might have a file full of default values that have no practical impact in the configuration. For instance, the designer lets you see that a <code>&quot;method&quot;: &quot;GET&quot;</code> might be converted into a <code>&quot;method&quot;:&quot;PUT&quot;</code>, but when not stated, a <code>GET</code> is assumed. With this in mind, it's time to delete unnecessary settings and enjoy a cleaner and more optimized file.</p>
 <h2 id="settings-you-can-safely-delete-from-your-configuration">Settings you can safely delete from your configuration</h2>
 <p>If your configuration presents any of the following attributes with the <strong>exact value</strong> we are showing, it's safe to delete them.</p>
-<h3 id="outputencoding-json"><code>&quot;output_encoding&quot;: &quot;json&quot;</code></h3>
+<h3 id="output_encoding-json"><code>&quot;output_encoding&quot;: &quot;json&quot;</code></h3>
 <p>By default KrakenD outputs all its endpoints in <code>json</code> format, no matter what the client asks for. If this is enough for you, remove this line. <a href="/docs/endpoints/content-types/">More information on output encoding</a></p>
-<h3 id="concurrentcalls-1"><code>&quot;concurrent_calls&quot;: 1</code></h3>
+<h3 id="concurrent_calls-1"><code>&quot;concurrent_calls&quot;: 1</code></h3>
 <p>The concurrent requests technique improves the response times and decreases error rates by requesting the same information multiple times, taking the fastest successful response and canceling the pending ones.</p>
 <p>As this is an aggressive option that does not fit all infrastructures, KrakenD takes the conservative option: one call to the endpoint, one request per backend.</p>
 <p>Want real user experience improvement? Set it to <code>3</code>. <a href="/docs/backends/concurrent-requests/">Concurrent calls docs</a>.</p>
-<h3 id="disablehostsanitize-false"><code>&quot;disable_host_sanitize&quot;: false</code></h3>
+<h3 id="disable_host_sanitize-false"><code>&quot;disable_host_sanitize&quot;: false</code></h3>
 <p>The host sanitization is automatically performed when connecting to a backend. A case where you don't want the host sanitized is when your backends are found using <a href="/docs/service-discovery/overview/">Service Discovery</a>. Not using SD? Out!</p>
 <h3 id="sd-static"><code>&quot;sd&quot;: &quot;static&quot;</code></h3>
 <p>SD stands for service discovery, and when the value is <code>static</code> it means that the hostnames of your backends are resolved using the internal machine settings, using its DNS settings, <code>resolv.conf</code> configuration or any other internal system that could lead you to ping the name without additional help. A host like <code>http(s)://your.dns</code> is a typical <code>static</code> resolution.</p>
 <h3 id="encoding-json"><code>&quot;encoding&quot;: &quot;json&quot;</code></h3>
 <p>As it happens with the output encoding to return data to the user, when connecting to the backends KrakenD assumes that their response will be in JSON format. Unless they are returning other formats like XML or RSS, or you are proxying to them, you don't need this attribute in the configuration.</p>
-<h3 id="extraconfig">`&quot;extra_config&rdquo;:</h3>
+<h3 id="extra_config-">`&quot;extra_config&rdquo;:</h3>
 <p>The additional configuration of the different plugins, middlewares, and other surrounding components, it's necessary only when you want to provide specific settings for them. An empty <code>extra_config</code> without declaring a namespace, it's just noise.</p>
 <h3 id="port-8080"><code>&quot;port&quot;: 8080</code></h3>
 <p>We went through a deep brainstorming session to find the most original port in the Internet era, and we decided that our listening port would be <code>8080</code>. Usually, the gateway will live behind a balancer that exposes to the world whatever port you like, so it doesn't matter what port KrakenD is listening unless is conflicting with something else. If <code>8080</code> is fine for you, remove the line.</p>

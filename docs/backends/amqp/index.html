@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>API Gateway integration with AMQP messaging - KrakenD API Gateway</title>
     <meta itemprop="name" content="API Gateway integration with AMQP messaging - KrakenD API Gateway">
@@ -715,7 +715,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
   </ul>
 
   <ul>
-    <li><a href="#example1">Example</a></li>
+    <li><a href="#example-1">Example</a></li>
     <li><a href="#producer-settings">Producer settings</a></li>
   </ul>
 </nav>
@@ -777,7 +777,7 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <h1 id="producer">Producer</h1>
 <p>The producer publishes messages to the messaging system for your asynchronous consumption. The recommendation is to plug producers to <code>POST</code> endpoints.</p>
 <p>Worth mentioning that the producer needs you to pass a body in the request and that the endpoint should declare the <code>headers_to_pass</code> so producers are aware of the headers.</p>
-<h2 id="example1">Example</h2>
+<h2 id="example-1">Example</h2>
 <p>The needed configuration to run a producer is as follows:</p>
 <pre><code>    &quot;endpoint&quot;: &quot;/producer&quot;,
     &quot;headers_to_pass&quot;: [ &quot;...&quot;, &quot;...&quot; ],

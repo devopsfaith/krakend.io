@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.60.0" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     <title>Road to KrakenD 0.4 - KrakenD API Gateway</title>
     <meta itemprop="name" content="Road to KrakenD 0.4 - KrakenD API Gateway">
@@ -285,7 +285,7 @@
 <li>Standardize the way of creating and adding plug-ins to the framework</li>
 <li>Open source the enterprise components</li>
 </ol>
-<h2 id="sideeffects">Side-effects</h2>
+<h2 id="side-effects">Side-effects</h2>
 <p>As a side effect to all this refactoring is that existing implementations will require updating the code to fix some <code>import</code> statements. The release keeps all the declared interfaces and exposed structs and functions but the dependencies are now external.</p>
 <h2 id="external-dependencies-go-away">External dependencies, go away!</h2>
 <p>Having external dependencies in the framework allowed us in the beginning to easily create and add adapters to KrakenD without any effort. We chose this path in the initial implementation of the project and we dragged it until now, and this is a common practice in thousands of projects.</p>
