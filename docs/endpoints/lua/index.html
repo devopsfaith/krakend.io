@@ -737,14 +737,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <h1 id="configuration">Configuration</h1>
 <p>KrakenD looks for the lua scripts in the root folder where krakend is running. You need to specify in the configuration which lua scripts are going to be loaded in Krakend, as well as several options. The <code>extra_config</code> can be set at <code>endpoint</code> level or <code>backend</code> level.</p>
 <pre><code>&quot;extra_config&quot;: {
-      &quot;github.com/devopsfaith/krakend-lua&quot;: {
+      &quot;github.com/devopsfaith/krakend-lua/proxy&quot;: {
         &quot;sources&quot;: [&quot;file1.lua&quot;],
         &quot;md5&quot;: {
           &quot;file1.lua&quot;: &quot;49ae50f58e35f4821ad4550e1a4d1de0&quot;
         },
-        &quot;pre&quot;: &quot;pre&quot;,
-        &quot;post&quot;: &quot;post&quot;,
+        &quot;pre&quot;: &quot;lua code to execute for pre&quot;,
+        &quot;post&quot;: &quot;lua code to execute for post&quot;,
         &quot;live&quot;: false,
+        &quot;allow_open_libs&quot;: false,
         &quot;skip_next&quot;: true
       }
 }
@@ -754,8 +755,21 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>md5</code>: (optional) The md5sum of each file that must match the one found in the disk. Used to make sure that the file has not been modified by a 3rd party.</li>
 <li><code>pre</code> and <code>post</code> contain the code to start the execution in every step. <code>post</code> is only available in the <code>backend</code> section.</li>
 <li><code>live</code>: Live reload of the script in every execution</li>
+<li><code>allow_open_libs</code>: The regular lua libraries are not open by default, as an efficiency point. But if you need to use the lua libraries (for file io for example), then set this to true.  If not present, default value is false.</li>
 <li><code>skip_next</code>: only to be set when in a <code>backend</code> section, skips the query to the next backend.</li>
 </ul>
+<h1 id="namespace-component-name">Namespace (component name)</h1>
+<p>There are three namespaces that are used for the lua component.</p>
+<p>Under the <code>endpoint</code> section use the namespaces (these are described in the next section):</p>
+<pre><code>&quot;github.com/devopsfaith/krakend-lua/proxy&quot;
+
+and
+
+&quot;github.com/devopsfaith/krakend-lua/router&quot;
+</code></pre>
+<p>Under the <code>backend</code> use the name space:</p>
+<pre><code>&quot;github.com/devopsfaith/krakend-lua/proxy/backend&quot;
+</code></pre>
 <h1 id="supported-lua-types-cheatsheet">Supported Lua types (cheatsheet)</h1>
 <p>When running Lua scripts on KrakenD, there are two different types you can use in their coding. Depending on the place of the pipe you want to place the script you can use a <code>proxy</code> type or a <code>router</code> type:</p>
 <pre><code>End User &lt;--[router]--&gt; KrakenD &lt;--[proxy]--&gt; Services
@@ -823,6 +837,36 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>headers</code> (<em>Dynamic</em>)</li>
 <li><code>body</code> (<em>Dynamic</em>)</li>
 </ul>
+<h1 id="sequence-of-execution">Sequence of execution</h1>
+<p>Request sequence:</p>
+<ol>
+<li>Router  &ldquo;source&rdquo; files</li>
+<li>Router  &ldquo;pre&rdquo; logic</li>
+<li>Proxy   &ldquo;source&rdquo; files</li>
+<li>Proxy   &ldquo;pre&rdquo; logic</li>
+<li>Backend &ldquo;source&rdquo; files</li>
+<li>Backend &ldquo;pre&rdquo; logic</li>
+</ol>
+<p>The returned response then goes through:</p>
+<ol start="7">
+<li>Backend &ldquo;post&rdquo; logic</li>
+<li>Proxy   &ldquo;post&rdquo; logic</li>
+</ol>
+<h1 id="examples">Examples</h1>
+<p>For the endpoint section:</p>
+<pre><code>&quot;extra_config&quot;: {
+      &quot;github.com/devopsfaith/krakend-lua/proxy&quot;: {
+        &quot;pre&quot;: &quot;print('Lua proxy!'); local r = request.load(); r:header('X-from-lua', '1234');&quot;,
+      }
+}
+</code></pre>
+<p>For the backend section:</p>
+<pre><code>&quot;extra_config&quot;: {
+      &quot;github.com/devopsfaith/krakend-lua/proxy/backend&quot;: {
+        &quot;pre&quot;: &quot;print('Showing body from backend-pre logic'); local r = request.load(); print(r:body('')); &quot;,
+      }
+}
+</code></pre>
 
     </section>
 </div>
