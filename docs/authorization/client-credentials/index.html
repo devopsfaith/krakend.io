@@ -782,11 +782,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
     ]
 }
 </code></pre>
-<p>The code above works with Auth0. The differences with the basic example are:</p>
-<ul>
-<li>The id and the secret are passed as <code>endpoint_params</code>, as auth0 ignores the auth header and expects the credentials sent as JSON data or form body.</li>
-<li>The <code>Accept</code> header is needed when sending a request to auth0. The <code>krakend-martian</code> component modifies the request to the backend to do that.</li>
-</ul>
+<p>The code above works with Auth0. The difference with the basic example is the way both the id and the secret are passed as <code>endpoint_params</code>, as auth0 ignores the auth header and expects the credentials sent as JSON data or form body.</p>
 
     </section>
 </div>
