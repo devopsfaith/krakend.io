@@ -60,7 +60,7 @@ The default policy for data forwarding works as follows:
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		<i class="fa fa-bell"></i> KrakenD 1.1 with Kafka integration is out!. <a href="/blog/krakend-1.1-release-notes/">Release notes</a>.
 		 
 	</p>
 </div>
@@ -249,11 +249,19 @@ The default policy for data forwarding works as follows:
                 <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/creating-endpoints/" class="nav-link children ">Creating endpoints</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/rate-limit/" class="nav-link children ">Rate Limits</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/response-manipulation/" class="nav-link children ">Response manipulation</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -325,10 +333,6 @@ The default policy for data forwarding works as follows:
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/circuit-breaker/" class="nav-link children ">Circuit Breaker</a>
-                    </li>
-                    
-                    <li class="nav-item child">
-                        <a href="/docs/backends/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -612,7 +616,7 @@ The default policy for data forwarding works as follows:
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
                 </ul>
@@ -701,12 +705,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#sending-all-query-string-parameters">Sending all query string parameters</a></li>
-    <li><a href="#mandatory-query-string-parameters">Mandatory query string parameters</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#sending-all-client-headers-to-the-backends">Sending all client headers to the backends</a></li>
+    <li><a href="#optional-query-string-forwarding">Optional query string forwarding</a>
+      <ul>
+        <li><a href="#sending-all-query-string-parameters">Sending all query string parameters</a></li>
+        <li><a href="#mandatory-query-string-parameters">Mandatory query string parameters</a></li>
+      </ul>
+    </li>
+    <li><a href="#headers-forwarding">Headers forwarding</a>
+      <ul>
+        <li><a href="#sending-all-client-headers-to-the-backends">Sending all client headers to the backends</a></li>
+      </ul>
+    </li>
+    <li><a href="#cookies-forwarding">Cookies forwarding</a></li>
   </ul>
 </nav>
             </div>
@@ -721,7 +731,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li>No <a href="#cookies-forwarding">cookies</a> are forwarded</li>
 </ul>
 <p>You can change this behavior according to your needs, and define which elements are allowed to pass.</p>
-<h1 id="optional-query-string-forwarding">Optional query string forwarding</h1>
+<h2 id="optional-query-string-forwarding">Optional query string forwarding</h2>
 <p>KrakenD <strong>does not send any query string parameter to the backend by default</strong>, avoiding the pollution of the backends. Meaning that if an endpoint <code>/foo</code> receives the query string <code>/foo?a=1&amp;b=2</code> all its declared backends are not going to see neither <code>a</code> nor <code>b</code>.</p>
 <p>The property list <code>querystring_params</code> in the <code>endpoint</code> configuration allows you to declare <strong>optional query string parameters</strong>. When this list exists in the configuration, the forwarding policy behaves like a whitelist: all matching parameters declared in the <code>querystring_params</code> list are forwarded to the backend, and the rest dropped.</p>
 <p>Parameters are always optional and the user can pass a subset of them, all, or none.</p>
@@ -749,13 +759,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 </code></pre>
 <p>With this configuration, given a request like <code>http://krakend:8080/v1/foo?a=1&amp;b=2&amp;evil=here</code>, the backend receives <code>a</code> and <code>b</code>, but <code>evil</code> is missing.</p>
 <p>Also, if a request like <code>http://krakend:8080/v1/foo?a=1</code> does not include <code>b</code>, this parameter is simply missing in the backend request as well.</p>
-<h2 id="sending-all-query-string-parameters">Sending all query string parameters</h2>
+<h3 id="sending-all-query-string-parameters">Sending all query string parameters</h3>
 <p>While the default policy prevents from sending unrecognized query string parameters, setting an asterisk <code>*</code> as the parameter name makes the gateway to <strong>forward any query string to the backends</strong>:</p>
 <pre><code>&quot;querystring_params&quot;:[  
       &quot;*&quot;
 ]
 </code></pre><p>Enabling the wildcard pollutes your backends, as any query string sent by end users or malicious attackers gets through the gateway and impacts the backends behind. Our recommendation is to let the gateway know which are the query strings in the API contract and specify them in the list, even when the list is long, and not use the wildcard. If the decision is to go with the wildcard, make sure your backends can handle abuse attempts from clients.</p>
-<h2 id="mandatory-query-string-parameters">Mandatory query string parameters</h2>
+<h3 id="mandatory-query-string-parameters">Mandatory query string parameters</h3>
 <p>When your backend requires query string parameters and you want to make them <strong>mandatory</strong> in KrakenD, use the <code>{variables}</code> placeholders in the endpoints definition. The variables can be injected in the backends as part of the query string parameters. For instance:</p>
 <pre><code>...
 {
@@ -796,14 +806,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 </code></pre>
 <p>No optional parameter has been passed, so the mandatory one is used.</p>
 <p>Read the <a href="/docs/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test query string parameters.</p>
-<h1 id="headers-forwarding">Headers forwarding</h1>
+<h2 id="headers-forwarding">Headers forwarding</h2>
 <p>KrakenD <strong>does not send client headers to the backend by default</strong>.  Use <code>headers_to_pass</code>.</p>
 <p>Declare the list of headers sent by the client that you want to let pass to the backend with the <code>headers_to_pass</code> option.</p>
 <p>A client request from a browser or a mobile client usually contains a lot of headers, including cookies. Typical examples of the variety of headers that clients send are <code>Host</code>, <code>Connection</code>, <code>Cache-Control</code>, <code>Cookie</code>&hellip; and a long, long etcetera. The backend usually does not need any of this to return the content.</p>
 <p>KrakenD passes only these essential headers to the backends:</p>
 <pre><code>Accept-Encoding: gzip
 Host: localhost:8080
-User-Agent: KrakenD Version 1.0.0
+User-Agent: KrakenD Version 1.1.0
 X-Forwarded-For: ::1
 </code></pre>
 <p>When you use the <code>headers_to_pass</code>, take into account that any of these headers are replaced with the ones you declare.</p>
@@ -835,13 +845,13 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (
 X-Forwarded-For: ::1
 </code></pre>
 <p>Read the <a href="/docs/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test headers.</p>
-<h2 id="sending-all-client-headers-to-the-backends">Sending all client headers to the backends</h2>
+<h3 id="sending-all-client-headers-to-the-backends">Sending all client headers to the backends</h3>
 <p>While the default policy prevents forwarding unrecognized headers, setting an asterisk <code>*</code> as the parameter name makes the gateway to <strong>forward any header to the backends</strong>, including cookies:</p>
 <pre><code>&quot;headers_to_pass&quot;:[  
       &quot;*&quot;
 ]
 </code></pre><p>Enabling the wildcard pollutes your backends, as any header sent by end users or malicious attackers gets through the gateway and impacts the backends behind. Our recommendation is to let the gateway know which are the headers in the API contract and specify them in the list, even when the list is long, and not use the wildcard. If the decision is to go with the wildcard, make sure your backends can handle abuse attempts from clients.</p>
-<h1 id="cookies-forwarding">Cookies forwarding</h1>
+<h2 id="cookies-forwarding">Cookies forwarding</h2>
 <p>A cookie is just some content passing inside the <code>Cookie</code> header. If you want cookies to reach your backend, add the <code>Cookie</code> header under <code>headers_to_pass</code>, just as you would do with any other header.</p>
 <p>When doing this, <strong>all your cookies</strong> are sent to all backends inside the endpoint. Use this option wisely!</p>
 <p>Example:</p>
@@ -954,7 +964,7 @@ X-Forwarded-For: ::1
         </div>
         <div class="row copyright">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2019 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017-2020 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="col-md-7 hidden-xs">
                 <span class="float-right">

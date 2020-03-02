@@ -60,7 +60,7 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		<i class="fa fa-bell"></i> KrakenD 1.1 with Kafka integration is out!. <a href="/blog/krakend-1.1-release-notes/">Release notes</a>.
 		 
 	</p>
 </div>
@@ -249,11 +249,19 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                 <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/creating-endpoints/" class="nav-link children ">Creating endpoints</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/rate-limit/" class="nav-link children ">Rate Limits</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/response-manipulation/" class="nav-link children ">Response manipulation</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -325,10 +333,6 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/circuit-breaker/" class="nav-link children ">Circuit Breaker</a>
-                    </li>
-                    
-                    <li class="nav-item child">
-                        <a href="/docs/backends/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -612,7 +616,7 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
                 </ul>
@@ -826,7 +830,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">URL</span><span class="p">:</span> <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="p">]</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[</span><span class="p">{</span><span class="nx">param</span> <span class="o">/</span><span class="k">default</span><span class="p">}</span><span class="p">]</span>
-<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:</span><span class="p">[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">1.0</span><span class="mf">.0</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:</span><span class="p">[</span><span class="p">:</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:</span><span class="p">[</span><span class="nx">gzip</span><span class="p">]</span><span class="p">]</span>
+<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:</span><span class="p">[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">1.1</span><span class="mf">.0</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:</span><span class="p">[</span><span class="p">:</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:</span><span class="p">[</span><span class="nx">gzip</span><span class="p">]</span><span class="p">]</span>
 </span><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Body</span><span class="p">:</span>
 <span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">118.543</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">:</span><span class="p">:</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
 </span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">565.971</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">:</span><span class="p">:</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="k">default</span><span class="o">-</span><span class="nx">behavior</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>
@@ -995,7 +999,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         <div class="row copyright">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2019 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017-2020 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="col-md-7 hidden-xs">
                 <span class="float-right">

@@ -6,10 +6,21 @@
     <description>Recent content in release notes on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/tags/release-notes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KrakenD 1.1 with Kafka integration released</title>
+      <link>https://www.krakend.io/blog/krakend-1.1-release-notes/</link>
+      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-1.1-release-notes/</guid>
+      <description>The KrakenD team is pleased to announce the release of KrakenD 1.1. You can get it packaged from the download page.
+Some of the highlights include:
+ Kafka integration Extended Docker image Added Telemetry for Azure Monitor More performance improvements  Kafka integration From now on, users of Apache Kafka can publish and subscribe from KrakenD. The Kafka integration saves you from writing application logic to interact with the streaming platform and let the gateway be an active player in the event architecture pattern.</description>
+    </item>
     
     <item>
       <title>KrakenD 1.0 announcement</title>

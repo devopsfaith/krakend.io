@@ -23,7 +23,7 @@
 <meta property="og:title" content="Verifying packages (PGP and SHA256)" />
 <meta property="og:description" content="How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&#39;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server." />
+$ gpg --verify krakend_1.1.0_amd64.tar.gz.asc krakend_1.1.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&#39;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/overview/verifying-packages/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -38,7 +38,7 @@ $ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Si
 <meta name="twitter:title" content="Verifying packages (PGP and SHA256)"/>
 <meta name="twitter:description" content="How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&#39;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server."/>
+$ gpg --verify krakend_1.1.0_amd64.tar.gz.asc krakend_1.1.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&#39;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server."/>
 
 
 
@@ -60,7 +60,7 @@ $ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Si
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		<i class="fa fa-bell"></i> KrakenD 1.1 with Kafka integration is out!. <a href="/blog/krakend-1.1-release-notes/">Release notes</a>.
 		 
 	</p>
 </div>
@@ -249,11 +249,19 @@ $ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Si
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/creating-endpoints/" class="nav-link children ">Creating endpoints</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/rate-limit/" class="nav-link children ">Rate Limits</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/response-manipulation/" class="nav-link children ">Response manipulation</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -325,10 +333,6 @@ $ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Si
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/circuit-breaker/" class="nav-link children ">Circuit Breaker</a>
-                    </li>
-                    
-                    <li class="nav-item child">
-                        <a href="/docs/backends/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -612,7 +616,7 @@ $ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz gpg: Si
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
                 </ul>
@@ -699,8 +703,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 
         <p>How to make sure what you are downloading is legit.</p>
 <h1 id="pgp">PGP</h1>
-<p>We will check the detached signature <a href="http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz.asc">PGP</a> against our package <a href="http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz">KrakenD</a>.</p>
-<pre><code>$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz
+<p>We will check the detached signature <a href="http://repo.krakend.io/bin/krakend_1.1.0_amd64.tar.gz.asc">PGP</a> against our package <a href="http://repo.krakend.io/bin/krakend_1.1.0_amd64.tar.gz">KrakenD</a>.</p>
+<pre><code>$ gpg --verify krakend_1.1.0_amd64.tar.gz.asc krakend_1.1.0_amd64.tar.gz
 gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2
 gpg: Can't check signature: public key not found
 </code></pre>
@@ -713,7 +717,7 @@ gpg: Total number processed: 1
 gpg:							 imported: 1	(RSA: 1)
 </code></pre>
 <p>Now you can verify the signature of the package:</p>
-<pre><code>$ gpg --verify krakend_1.0.0_amd64.tar.gz.asc krakend_1.0.0_amd64.tar.gz
+<pre><code>$ gpg --verify krakend_1.1.0_amd64.tar.gz.asc krakend_1.1.0_amd64.tar.gz
 gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2
 gpg: Good signature from &quot;Devops Faith Package Manager &lt;packages@devops.faith&gt;&quot;
 gpg: WARNING: This key is not certified with a trusted signature!
@@ -721,11 +725,11 @@ gpg:					There is no indication that the signature belongs to the owner.
 Primary key fingerprint: 5B27 0F2E 01E3 75FD 9D56  35E2 5DE6 FD69 8AD6 FDD2
 </code></pre>
 <h1 id="sha256">SHA256</h1>
-<p>To make sure the binary downloaded matches our SHA256 ensure the next 2 commands produce the same <a href="http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz.sha256">SHA</a> output.</p>
+<p>To make sure the binary downloaded matches our SHA256 ensure the next 2 commands produce the same <a href="http://repo.krakend.io/bin/krakend_1.1.0_amd64.tar.gz.sha256">SHA</a> output.</p>
 <pre><code># Your downloaded file
-$ shasum -a 256 -b krakend_1.0.0_amd64.tar.gz
+$ shasum -a 256 -b krakend_1.1.0_amd64.tar.gz
 # Our SHA256
-$ curl http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz.sha256
+$ curl http://repo.krakend.io/bin/krakend_1.1.0_amd64.tar.gz.sha256
 </code></pre>
 
     </section>
@@ -816,7 +820,7 @@ $ curl http://repo.krakend.io/bin/krakend_1.0.0_amd64.tar.gz.sha256
         </div>
         <div class="row copyright">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2019 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017-2020 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="col-md-7 hidden-xs">
                 <span class="float-right">

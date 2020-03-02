@@ -25,7 +25,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.krakend.io/docs/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
-<meta property="og:updated_time" content="2019-10-07T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:updated_time" content="2020-02-26T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -55,7 +55,7 @@
     
 <div class="announcement">
 	<p>
-		<i class="fa fa-bell"></i> KrakenD 1.0 is here!. Read our <a href="/blog/announcing-krakend-1.0/">announcement</a>.
+		<i class="fa fa-bell"></i> KrakenD 1.1 with Kafka integration is out!. <a href="/blog/krakend-1.1-release-notes/">Release notes</a>.
 		 
 	</p>
 </div>
@@ -244,11 +244,19 @@
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/creating-endpoints/" class="nav-link children ">Creating endpoints</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/rate-limit/" class="nav-link children ">Rate Limits</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/response-manipulation/" class="nav-link children ">Response manipulation</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -320,10 +328,6 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/backends/circuit-breaker/" class="nav-link children ">Circuit Breaker</a>
-                    </li>
-                    
-                    <li class="nav-item child">
-                        <a href="/docs/backends/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -607,7 +611,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing plugins</a>
+                        <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
                 </ul>
@@ -695,7 +699,14 @@
         <td>
             <a href="https://www.krakend.io/docs/backends/pubsub/">Using publisher/subscribe as backends</a> <em></em>
         </td>
-        <td>Sun, Nov 24, 2019</td>
+        <td>Sun, Mar 1, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/endpoints/creating-endpoints/">How to create KrakenD endpoints</a> <em></em>
+        </td>
+        <td>Wed, Feb 26, 2020</td>
     </tr>
     
     <tr>
@@ -894,13 +905,6 @@
         <td>Fri, Feb 22, 2019</td>
     </tr>
     
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/endpoints/no-op/">Proxying directly to the backends with `no-op`</a> <em></em>
-        </td>
-        <td>Fri, Feb 22, 2019</td>
-    </tr>
-    
 </table>
 
 <table class="table table-bordered">
@@ -1084,7 +1088,7 @@
         </div>
         <div class="row copyright">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2019 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017-2020 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="col-md-7 hidden-xs">
                 <span class="float-right">
