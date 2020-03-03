@@ -634,7 +634,8 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
       
       <guid>https://www.krakend.io/docs/backends/flatmap/</guid>
       <description>The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
-The flatmap component is part of the krakend proxy operation, so it needs to be included as an extra_config inside the backend configuration. There are two different types of operations you can do:</description>
+ Important Use a regular data manipulation operation such as target, blacklist or whitelist whenever it fits as their computational cost is lower.
+The flatmap component makes sense only when you need to manipulate arrays, and not as a general solution for all objects.</description>
     </item>
     
     <item>

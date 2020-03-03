@@ -746,8 +746,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>200 different customers (with different IPs) hitting the limited KrakenD endpoint are allowed to generate total traffic of:</p>
 <pre><code>200 IPs x 10 req/s = 2000req/s
 </code></pre>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> A note on performance</h4>
+	<p>Limiting endpoints per user makes KrakenD keep in memory counters for the two dimensions: <em>endpoints x clients</em>.</p>
+<p>The <code>clientMaxRate</code> drops the performance as every incoming client needs tracking. Even counters are small in data it's easy to end up with several millions of counters.  Make sure to do your math every time.</p>
+
+ </div>
 <p>The absence of <code>clientMaxRate</code> in the configuration or <code>&quot;clientMaxRate&quot;: 0</code> is the equivalent to no limitation.</p>
 <h2 id="client-identification-strategies">Client identification strategies</h2>
 <p>Two <strong>client identification strategies</strong> are available:</p>

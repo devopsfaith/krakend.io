@@ -702,7 +702,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
         <p>The <strong>JSON Web Token</strong> specification is an industry standard to represent claims securely between two parties. The <strong>JWT</strong> is an encoded JSON object that contains key-value pairs of attributes that are signed by a trusted authority.</p>
 <p>When JWT shields a specific set of endpoints, requests to the API gateway must provide a token. Verification of the token takes place in every request, including the check of the signature and optionally the assurance that its issuer, roles, and audience are sufficient to access the endpoint.</p>
 <p>Only in the case that the token is valid and passes all the checks, <strong>the user is authorized to access the endpoint</strong> and continue with the request.</p>
-<!-- raw HTML omitted -->
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> New to JWT?</h4>
+	If you are not familiar with JWT yet, read the &ldquo;<a href="https://jwt.io/introduction/">Introduction to JSON Web Tokens</a>&rdquo;
+ </div>
 <h2 id="krakend-jwt-implementations">KrakenD JWT implementations</h2>
 <p>KrakenD implements both <a href="/docs/authorization/jwt-signing">JWT signing</a> and <a href="/docs/authorization/jwt-validation">JWT validation</a> models to protect endpoints from undesired users that are not entitled to use the information, reinforcing security.</p>
 <ul>

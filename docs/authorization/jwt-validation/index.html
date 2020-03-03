@@ -773,25 +773,28 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 </div>
 <strong>And cookies?</strong> Yes, you can also send the validation token in a <strong>cookie</strong>.</p>
 <p>We consider a JWT token to be valid when is well formed, signed by a recognized issuer, unexpired, with some claims and is not marked as <a href="/docs/authorization/revoking-tokens">revoked</a>.</p>
-<!-- raw HTML omitted -->
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> A note on JWT generation</h4>
+	When you generate tokens for end-users, make sure to set a <strong>low expiration</strong>. Tokens are supposed to have short lives and are recommended to expire in minutes or hours.
+ </div>
 <h1 id="basic-jwt-validation">Basic JWT validation</h1>
 <p>The JWT validation is per endpoint and must be present inside every endpoint definition needing it. If several endpoints are going to require JWT validation consider using the <a href="/docs/configuration/flexible-config/">flexible configuration</a> to avoid repetitive declarations.</p>
 <p>Enable the JWT validation by adding the namespace <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> inside the <code>extra_config</code> of the desired <code>endpoint</code>.</p>
 <p>For instance, to protect the endpoint <code>/protected/resource</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{</span>
-    <span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;/protected/resource&#34;</span><span class="p">,</span>
-    <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="hl">        <span class="s">&#34;github.com/devopsfaith/krakend-jose/validator&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class="hl">            <span class="s">&#34;alg&#34;</span><span class="p">:</span> <span class="s">&#34;RS256&#34;</span><span class="p">,</span>
-</span><span class="hl">            <span class="s">&#34;audience&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#34;http://api.example.com&#34;</span><span class="p">]</span><span class="p">,</span>
-</span><span class="hl">            <span class="s">&#34;roles_key&#34;</span><span class="p">:</span> <span class="s">&#34;http://api.example.com/custom/roles&#34;</span><span class="p">,</span>
-</span><span class="hl">            <span class="s">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#34;user&#34;</span><span class="p">,</span> <span class="s">&#34;admin&#34;</span><span class="p">]</span><span class="p">,</span>
-</span><span class="hl">            <span class="s">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s">&#34;https://albert-test.auth0.com/.well-known/jwks.json&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
+    <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/protected/resource&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="hl">        <span class="nt">&#34;github.com/devopsfaith/krakend-jose/validator&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hl">            <span class="nt">&#34;alg&#34;</span><span class="p">:</span> <span class="s2">&#34;RS256&#34;</span><span class="p">,</span>
+</span><span class="hl">            <span class="nt">&#34;audience&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;http://api.example.com&#34;</span><span class="p">]</span><span class="p">,</span>
+</span><span class="hl">            <span class="nt">&#34;roles_key&#34;</span><span class="p">:</span> <span class="s2">&#34;http://api.example.com/custom/roles&#34;</span><span class="p">,</span>
+</span><span class="hl">            <span class="nt">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;admin&#34;</span><span class="p">]</span><span class="p">,</span>
+</span><span class="hl">            <span class="nt">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://albert-test.auth0.com/.well-known/jwks.json&#34;</span>
 </span><span class="hl">        <span class="p">}</span>
 </span>    <span class="p">}</span><span class="p">,</span>
-    <span class="s">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-        <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;/&#34;</span>
+        <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span>
         <span class="p">}</span>
     <span class="p">]</span>
 <span class="p">}</span></code></pre></div>
@@ -820,31 +823,33 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 </ul>
 <p>For the full list of recognized algorithms and cipher suites scroll down to the end of the document.</p>
 <p>The following example contains every single option available:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;/foo&#34;</span>
-<span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="hl">    <span class="s">&#34;github.com/devopsfaith/krakend-jose/validator&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span><span class="hl">        <span class="s">&#34;alg&#34;</span><span class="p">:</span> <span class="s">&#34;RS256&#34;</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s">&#34;https://url/to/jwks.json&#34;</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;cache&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;audience&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span><span class="hl">            <span class="s">&#34;audience1&#34;</span>
-</span><span class="hl">        <span class="p">]</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;roles_key&#34;</span><span class="p">:</span> <span class="s">&#34;department&#34;</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span><span class="hl">            <span class="s">&#34;sales&#34;</span><span class="p">,</span>
-</span><span class="hl">            <span class="s">&#34;development&#34;</span>
-</span><span class="hl">        <span class="p">]</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;issuer&#34;</span><span class="p">:</span> <span class="s">&#34;http://my.api.com&#34;</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;cookie_key&#34;</span><span class="p">:</span> <span class="s">&#34;TOKEN&#34;</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;disable_jwk_security&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;jwk_fingerprints&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span><span class="hl">            <span class="s">&#34;S3Jha2VuRCBpcyB0aGUgYmVzdCBnYXRld2F5LCBhbmQgeW91IGtub3cgaXQ==&#34;</span>
-</span><span class="hl">        <span class="p">]</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;cipher_suites&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span><span class="hl">            <span class="mi">10</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">53</span>
-</span><span class="hl">        <span class="p">]</span>
-</span><span class="hl">    <span class="p">}</span>
-</span><span class="p">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
+<span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/foo&#34;</span>
+<span class="s2">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;github.com/devopsfaith/krakend-jose/validator&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;alg&#34;</span><span class="p">:</span> <span class="s2">&#34;RS256&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://url/to/jwks.json&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;cache&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&#34;audience&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&#34;audience1&#34;</span>
+        <span class="p">]</span><span class="p">,</span>
+        <span class="nt">&#34;roles_key&#34;</span><span class="p">:</span> <span class="s2">&#34;department&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&#34;sales&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;development&#34;</span>
+        <span class="p">]</span><span class="p">,</span>
+        <span class="nt">&#34;issuer&#34;</span><span class="p">:</span> <span class="s2">&#34;http://my.api.com&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;cookie_key&#34;</span><span class="p">:</span> <span class="s2">&#34;TOKEN&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;disable_jwk_security&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&#34;jwk_fingerprints&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&#34;S3Jha2VuRCBpcyB0aGUgYmVzdCBnYXRld2F5LCBhbmQgeW91IGtub3cgaXQ==&#34;</span>
+        <span class="p">]</span><span class="p">,</span>
+        <span class="nt">&#34;cipher_suites&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="mi">10</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">53</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <h1 id="a-complete-running-example">A complete running example</h1>
 <p>The <a href="/docs/overview/playground/">KrakenD Playground</a> demonstrates how to protect endpoints using JWT and includes an example ready to use using a <a href="https://auth0.com/docs/applications/spa">Single Page Application from Auth0</a>. To try it, <a href="https://github.com/devopsfaith/krakend-playground">clone the playground</a> and follow the README.</p>
 <h1 id="supported-hashing-algorithms-and-cipher-suites">Supported hashing algorithms and cipher suites</h1>

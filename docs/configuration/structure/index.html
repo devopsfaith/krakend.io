@@ -732,26 +732,27 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 <h2 id="the-endpoints-structure">The <code>endpoints</code> structure</h2>
 <p>Inside the <code>endpoints</code>, you declare an array with every <code>endpoint</code> (the URL) the gateway offers. For each endpoint, you need to declare at least a <code>backend</code> - the place where the data is-.</p>
 <p>It looks like this:</p>
-<pre><code>&quot;endpoints&quot;: [
-    {
-      &quot;endpoint&quot;: &quot;/v1/foo-bar&quot;,
-      &quot;backend&quot;: [
-        {
-          &quot;url_pattern&quot;: &quot;/foo&quot;,
-          &quot;host&quot;: [
-            &quot;https://my.api.com&quot;
-          ]
-        },
-        {
-          &quot;url_pattern&quot;: &quot;/bar&quot;,
-          &quot;host&quot;: [
-            &quot;https://my.api.com&quot;
-          ]
-        }
-      ]
-    }
-  ]
-</code></pre>
+<div class="highlight"><pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
+    <span class="nt">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/v1/foo-bar&#34;</span><span class="p">,</span>
+          <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/foo&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;https://my.api.com&#34;</span>
+              <span class="p">]</span>
+            <span class="p">}</span><span class="p">,</span>
+            <span class="p">{</span>
+              <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/bar&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;https://my.api.com&#34;</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
 <p>This declares and endpoint <code>/v1/foo-bar</code> which is the result of merging the responses from <code>/foo</code> and <code>/bar</code>.</p>
 <h2 id="the-extra_config-structure">The <code>extra_config</code> structure</h2>
 <p>When a component is registered, its associated configuration is taken from the <code>extra_config</code> (if any).</p>

@@ -716,7 +716,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         <p>Sometimes you might want to reuse a previous response of a backend instead of asking for the same information over the network again. In this cases, it is possible to enable <strong>in-memory</strong> caching for the desired backend responses.</p>
 <p>This caching technique applies to traffic between KrakenD and your microservices endpoints only and is not a caching system for the end-user endpoints. To enable the cache, you only need to add in the configuration file the <code>httpcache</code> middleware.</p>
 <p>When enabled all connections for the configured backend are cached in-memory for the amount of time retrieved from the <code>Cache-Control</code> header of the response.</p>
-<!-- raw HTML omitted -->
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> Performance notice!</h4>
+	This option can increase the load and memory consumption heavily as KrakenD needs to keep in memory all the returned data during the expiration period. Use wisely!
+ </div>
 <p>If you enable this module, you are required to be very aware of the response sizes, caching times and the hit-rate of the calls.</p>
 <p>Enable the caching of the backend services in the <code>backend</code> section of your <code>krakend.json</code> with the middleware:</p>
 <pre><code>&quot;github.com/devopsfaith/krakend-httpcache&quot;: {}
