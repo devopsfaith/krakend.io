@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Deployment best practices - KrakenD API Gateway</title>
     <meta itemprop="name" content="Deployment best practices - KrakenD API Gateway">
@@ -21,15 +21,14 @@
 
 
 <meta property="og:title" content="Deployment best practices" />
-<meta property="og:description" content="This document is a draftSetting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.
-Use HTTP2 Enable HTTP2 between your balancer and KrakenD API gateway for the best performance.
-SSL Add your SSL certificate in the load balancer and use internal certificates between the load balancer and KrakenD.
-Enable metrics and logging Make sure you have visibility of what is going on." />
+<meta property="og:description" content="Setting up a cluster of KrakenD instances is a straightforward process, but here are some not so obvious recommendations to get a good start.
+Use blue/green or similar deployment strategy As it happens with Apache, Nginx, Mysql, and the vast majority of services, changing the configuration requires a restart. When deploying new changes, use a technique like blue/green deployment or similar.
+This scenario can be automated and is available in all major cloud providers." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/deploying/best-practices/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2017-01-21T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-11-02T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2020-03-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -37,10 +36,9 @@ Enable metrics and logging Make sure you have visibility of what is going on." /
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Deployment best practices"/>
-<meta name="twitter:description" content="This document is a draftSetting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.
-Use HTTP2 Enable HTTP2 between your balancer and KrakenD API gateway for the best performance.
-SSL Add your SSL certificate in the load balancer and use internal certificates between the load balancer and KrakenD.
-Enable metrics and logging Make sure you have visibility of what is going on."/>
+<meta name="twitter:description" content="Setting up a cluster of KrakenD instances is a straightforward process, but here are some not so obvious recommendations to get a good start.
+Use blue/green or similar deployment strategy As it happens with Apache, Nginx, Mysql, and the vast majority of services, changing the configuration requires a restart. When deploying new changes, use a technique like blue/green deployment or similar.
+This scenario can be automated and is available in all major cloud providers."/>
 
 
 
@@ -705,31 +703,68 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/deploying
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents"></nav>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#use-bluegreen-or-similar-deployment-strategy">Use blue/green or similar deployment strategy</a></li>
+    <li><a href="#use-docker-and-immutable-containers">Use Docker and immutable containers</a></li>
+    <li><a href="#place-a-balancer-in-front-of-krakend">Place a balancer in front of KrakenD</a></li>
+    <li><a href="#use-http2">Use HTTP2</a></li>
+    <li><a href="#ssl">SSL</a></li>
+    <li><a href="#enable-metrics-and-logging">Enable metrics and logging</a></li>
+    <li><a href="#startup-command">Startup command</a></li>
+    <li><a href="#named-configuration">Named configuration</a></li>
+    <li><a href="#add-metadata-and-your-company-attributes">Add metadata and your company attributes</a></li>
+  </ul>
+</nav>
             </div>
         </div>
         
 
-        <p><!-- raw HTML omitted -->This document is a draft<!-- raw HTML omitted --></p>
-<p>Setting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.</p>
-<h1 id="use-http2">Use HTTP2</h1>
+        <hr>
+<p>Setting up a cluster of KrakenD instances is a straightforward process, but here are some not so obvious recommendations to get a good start.</p>
+<h2 id="use-bluegreen-or-similar-deployment-strategy">Use blue/green or similar deployment strategy</h2>
+<p>As it happens with Apache, Nginx, Mysql, and the vast majority of services, changing the configuration requires a restart. When deploying new changes, use a technique like blue/green deployment or similar.</p>
+<p>This scenario can be automated and is available in all major cloud providers. The idea is that you spin up new machines with the latest configuration and then shift the traffic from the old instances to the new ones.</p>
+<p>This methodology ensures that there is no downtime when applying changes. On-premises installations can make a similar approach as well.</p>
+<h2 id="use-docker-and-immutable-containers">Use Docker and immutable containers</h2>
+<p>Creating an immutable Docker image with your desired configuration takes a few seconds in your CI/CD pipeline. Create a <code>Dockerfile</code> with at least the following code and deploy the resulting image in production:</p>
+<pre><code>FROM devopsfaith/krakend
+
+COPY krakend.json /etc/krakend/krakend.json
+</code></pre>
+<h2 id="place-a-balancer-in-front-of-krakend">Place a balancer in front of KrakenD</h2>
+<p>Put a load balancer in front of KrakenD to distribute traffic between the different nodes of the cluster (Kubernetes already does this for you). Use always at least two krakend instances for High Availability.</p>
+<h2 id="use-http2">Use HTTP2</h2>
 <p>Enable HTTP2 between your balancer and KrakenD API gateway for the best performance.</p>
-<h1 id="ssl">SSL</h1>
-<p>Add your SSL certificate in the load balancer and use <strong>internal certificates</strong> between the load balancer and KrakenD.</p>
-<h1 id="enable-metrics-and-logging">Enable metrics and logging</h1>
+<h2 id="ssl">SSL</h2>
+<p>Add your public SSL certificate in the load balancer and use <strong>internal certificates</strong> (or even no certificates at all -termination-) between the load balancer and KrakenD.</p>
+<h2 id="enable-metrics-and-logging">Enable metrics and logging</h2>
 <p>Make sure you have visibility of what is going on. Choose any of the systems where you can send the metrics and enable them. Enable logging with at least a <code>WARNING</code> level.</p>
-<h1 id="startup-command">Startup command</h1>
-<p>Redirect the output to <code>/dev/null</code>.  Run the service with</p>
+<h2 id="startup-command">Startup command</h2>
+<p>Redirecting the output to <code>/dev/null</code> gives you more performance.  Run the service with:</p>
 <pre><code>krakend run -c krakend.json &gt;/dev/null 2&gt;&amp;1
 </code></pre>
-<h1 id="named-configuration">Named configuration</h1>
-<p>Add a <code>name</code> key in the configuration file with useful information so you can identify which specific version your cluster is running. E.g.:</p>
+<h2 id="named-configuration">Named configuration</h2>
+<p>Add a <code>name</code> key in the configuration file with useful information so you can identify which specific version your cluster is running. Whatever type of information you write inside the <code>name</code> is open to your imagination. Any value you write is available in the metrics for inspection.</p>
+<p>E.g.:</p>
 <pre><code>{
     &quot;version&quot;: 2,
     &quot;name&quot;: &quot;Production Cluster rev-db6a182&quot;
 }
 </code></pre>
-<p>Whatever type of information you write inside the <code>name</code> is open to your imagination. Any value you write is available in the metrics for inspection.</p>
+<p><strong>During the build in the pipeline</strong>, it might be a good idea to <strong>replace the content</strong> of the <code>name</code> attribute by a content showing the deployed version (the short SHA from the commit maybe).</p>
+<h2 id="add-metadata-and-your-company-attributes">Add metadata and your company attributes</h2>
+<p>KrakenD <strong>ignores anything that it doesn&rsquo;t recognize</strong> in the configuration as its own. Meaning that your <code>krakend.json</code> (or whatever format you use) is open to include additional metadata and fields that make sense to your company. Use it to add your meta language, tags, comments, bot integrations, etc. for better integration with your CI/CD system, deployment process, or just better comprehension of the file in the future.</p>
+<p>If you add new attributes to the configuration file, make sure they don&rsquo;t collide with new features in the future.</p>
+<p>For instance, we are adding a <code>@comment</code> field in the following configuration. This attribute is ignored by KrakenD:</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/cookies&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;headers_to_pass&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;Cookie&#34;</span> <span class="p">],</span>
+<span class="hl">    <span class="nt">&#34;@comment&#34;</span><span class="p">:</span> <span class="s2">&#34;At this early stage of the implementation, we still need to send cookies to the backend.&#34;</span><span class="p">,</span>
+</span>    <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/srv/legacy&#34;</span>
+    <span class="p">}]</span>
+<span class="p">}</span></code></pre></div>
 
     </section>
 </div>

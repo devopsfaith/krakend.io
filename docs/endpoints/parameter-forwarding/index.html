@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Parameter forwarding - KrakenD API Gateway</title>
     <meta itemprop="name" content="Parameter forwarding - KrakenD API Gateway">
@@ -735,7 +735,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>KrakenD <strong>does not send any query string parameter to the backend by default</strong>, avoiding the pollution of the backends. Meaning that if an endpoint <code>/foo</code> receives the query string <code>/foo?a=1&amp;b=2</code> all its declared backends are not going to see neither <code>a</code> nor <code>b</code>.</p>
 <p>The property list <code>querystring_params</code> in the <code>endpoint</code> configuration allows you to declare <strong>optional query string parameters</strong>. When this list exists in the configuration, the forwarding policy behaves like a whitelist: all matching parameters declared in the <code>querystring_params</code> list are forwarded to the backend, and the rest dropped.</p>
 <p>Parameters are always optional and the user can pass a subset of them, all, or none.</p>
-<p>For instance, let's forward <code>?a=1&amp;b=2</code> to the backends:</p>
+<p>For instance, let&rsquo;s forward <code>?a=1&amp;b=2</code> to the backends:</p>
 <pre><code>{
   &quot;version&quot;: 2,
   &quot;endpoints&quot;: [

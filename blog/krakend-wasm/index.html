@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>How we run KrakenD on Javascript with WebAssembly - KrakenD API Gateway</title>
     <meta itemprop="name" content="How we run KrakenD on Javascript with WebAssembly - KrakenD API Gateway">
@@ -289,10 +289,10 @@
 
           <p><a href="https://www.krakend.io">KrakenD</a> is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the <a href="https://designer.krakend.io">KrakenDesigner</a> is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.</p>
 <p>In this post, we are going to explain how we included KrakenD framework components in a <code>.wasm</code> file and how we integrated it into our existing SPA. This is our go code running on javascript.</p>
-<p>Let's start!</p>
+<p>Let&rsquo;s start!</p>
 <h2 id="golang-111-and-webassembly">Golang 1.11 and WebAssembly</h2>
 <p>During the last 3 years, the popularity of WebAssembly (and its promise to replace JS) has been increasing at a breakneck pace.</p>
-<p>From the project's <a href="https://webassembly.org/">home page</a>:</p>
+<p>From the project&rsquo;s <a href="https://webassembly.org/">home page</a>:</p>
 <blockquote>
 <p>WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based virtual machine. Wasm is designed as a portable target for compilation of high-level languages like C/C++/Rust, enabling deployment on the web for client and server applications.</p>
 </blockquote>
@@ -303,7 +303,7 @@
 <li>golang 1.11</li>
 <li>dep 0.5.0</li>
 </ul>
-<p>To reproduce the steps we did, let's start with a clean Go project. Copy the JS and HTML already bundled with your golang distribution to your new project.</p>
+<p>To reproduce the steps we did, let&rsquo;s start with a clean Go project. Copy the JS and HTML already bundled with your golang distribution to your new project.</p>
 <pre><code>cd myproject/
 $ cp &quot;$(go env GOROOT)/misc/wasm/wasm_exec.js&quot; .
 $ cp &quot;$(go env GOROOT)/misc/wasm/wasm_exec.html&quot; index.html
@@ -315,7 +315,7 @@ prepare:
 
 build:
     GOARCH=wasm GOOS=js go build -o test.wasm main.go
-</code></pre><p>Running <code>make</code> is all it takes to generate the <code>test.wasm</code> file, but to get a faster development environment, we've also used two handy tools:</p>
+</code></pre><p>Running <code>make</code> is all it takes to generate the <code>test.wasm</code> file, but to get a faster development environment, we&rsquo;ve also used two handy tools:</p>
 <ul>
 <li><a href="https://github.com/cespare/reflex">reflex</a> watches changes in the <code>main.go</code> file and recompiles automatically.</li>
 <li><a href="https://github.com/shurcooL/goexec">goexec</a> helps us launch Go one-liners, that we are using to launch a local web server.</li>
@@ -325,7 +325,7 @@ build:
 </code></pre><p>We are creating the <code>main.go</code> content in a minute. Now, any changes happening to the main.go file execute a <code>make build</code> every time.</p>
 <p>In a second terminal, move to your project and create the basic local HTTP server for serving the files <code>index.html</code>, <code>wasm_exec.js</code>, and <code>test.wasm</code></p>
 <pre><code>$ goexec 'http.ListenAndServe(&quot;:8080&quot;, http.FileServer(http.Dir(&quot;.&quot;)))'
-</code></pre><p>It's time to test if everything is properly working. Create a file called <code>main.go</code> with this content:</p>
+</code></pre><p>It&rsquo;s time to test if everything is properly working. Create a file called <code>main.go</code> with this content:</p>
 <pre><code>package main
 
 import &quot;fmt&quot;
@@ -336,7 +336,7 @@ func main() {
 </code></pre><p>Open your browser at <a href="http://localhost:8080">http://localhost:8080</a> and click the <code>run</code> button. You should find the <code>Hello, WebAssembly!</code> message in your console.</p>
 <p><img src="https://media0.giphy.com/media/JNrWNUUNZlIhG/giphy.gif?cid=3640f6095bf6d25a50506c4677a68f5e" alt="Horray!"></p>
 <h2 id="using-go-libs">Using go libs</h2>
-<p>With our environment ready, we can start hacking our way in. So let's create the minimal required code to expose a golang function to the JS space called <code>parse</code>.</p>
+<p>With our environment ready, we can start hacking our way in. So let&rsquo;s create the minimal required code to expose a golang function to the JS space called <code>parse</code>.</p>
 <pre><code>package main
 
 import (
@@ -359,7 +359,7 @@ func main() {
 <pre><code>WASM Go Initialized
 &gt; parse(&quot;aaaa&quot;, {a:42,b:true}, [&quot;one&quot;,&quot;two&quot;]);
 [aaaa [object Object] one,two]
-</code></pre><p>As we are going to use external dependencies, we'll use the same system as in the KrakenD framework: <code>dep</code>. There are some problems using the versions locked in the framework in our WASM, so you can create a file called <code>Gopkg.toml</code> with the following content:</p>
+</code></pre><p>As we are going to use external dependencies, we&rsquo;ll use the same system as in the KrakenD framework: <code>dep</code>. There are some problems using the versions locked in the framework in our WASM, so you can create a file called <code>Gopkg.toml</code> with the following content:</p>
 <pre><code>[[override]]
   name = &quot;github.com/mattn/go-isatty&quot;
   revision = &quot;3fb116b820352b7f0c281308a4d6250c22d94e27&quot;
@@ -382,7 +382,7 @@ func main() {
   unused-packages = true
 </code></pre><p>With the <code>Gopkg.toml</code> in the root of your project, prepare it by typing</p>
 <pre><code>make prepare
-</code></pre><p>The easiest way to create a KrakenD is by using just the framework. Let's alter the <code>parse</code> function so that it dumps the result of the actual KrakenD config parser:</p>
+</code></pre><p>The easiest way to create a KrakenD is by using just the framework. Let&rsquo;s alter the <code>parse</code> function so that it dumps the result of the actual KrakenD config parser:</p>
 <pre><code>func parse(i []js.Value) {
 	cfg, err := config.NewParserWithFileReader(func(s string) ([]byte, error) {
 		return []byte(s), nil
@@ -480,7 +480,7 @@ const jsFetchMode = &quot;js.fetch:mode&quot;
 //
 // Reference: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters
 const jsFetchCreds = &quot;js.fetch:credentials&quot;
-</code></pre><p>And that's all we need to embed a KrakenD instance into a simple client. As a footnote, trying to avoid the CORS validation of the browser will give you the <em>pleasure</em> of meeting the CORB layer.</p>
+</code></pre><p>And that&rsquo;s all we need to embed a KrakenD instance into a simple client. As a footnote, trying to avoid the CORS validation of the browser will give you the <em>pleasure</em> of meeting the CORB layer.</p>
 <h2 id="adding-callbacks">Adding callbacks</h2>
 <p>Since we are not allowed to return any values from the transpiled functions, we must accept some kind of callback function both for success and for the error case&hellip; you can think about it as if it was some special kind of <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Promise">promise</a> constructor.</p>
 <p>With that important point already in mind, we can define the single function we will add to the DOM: <code>parse</code>.</p>
@@ -597,7 +597,7 @@ func (j *JSClient) close(_ []js.Value) {
     }()
 }
 </code></pre><h2 id="testing-the-krakend-from-js">Testing the KrakenD from JS</h2>
-<p>We are not front-end developers, and our skills and knowledge in the domain are very restricted. That's why we thought this should be the most time-consuming part of the project. However, it was not!</p>
+<p>We are not front-end developers, and our skills and knowledge in the domain are very restricted. That&rsquo;s why we thought this should be the most time-consuming part of the project. However, it was not!</p>
 <p>We just needed to add this fragment to our template, and we were ready to call the <code>parse</code> function, create a client and test our KrakenD configuration (notice the wasm was renamed and both files placed inside the <code>wasm</code> folder):</p>
 <pre><code>&lt;script src='wasm/wasm_exec.js'&gt;&lt;/script&gt;
 &lt;script&gt;

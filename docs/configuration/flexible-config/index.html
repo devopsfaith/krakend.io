@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Flexible configuration - KrakenD API Gateway</title>
     <meta itemprop="name" content="Flexible configuration - KrakenD API Gateway">
@@ -746,13 +746,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 <h1 id="usage">Usage</h1>
 <p>The activation of the package works via environment variables when running krakend, as follows:</p>
 <ul>
-<li><code>FC_ENABLE=1</code> to let KrakenD know that you are using Flexible Configuration. You can use <code>1</code> or any other value (but  <code>0</code> won't disable it!). The file passed with the <code>-c</code> flag is the base template.</li>
+<li><code>FC_ENABLE=1</code> to let KrakenD know that you are using Flexible Configuration. You can use <code>1</code> or any other value (but  <code>0</code> won&rsquo;t disable it!). The file passed with the <code>-c</code> flag is the base template.</li>
 <li><code>FC_SETTINGS=dirname</code>: The path to the directory with all the settings files.</li>
-<li><code>FC_PARTIALS=dirname</code>: The path to the directory with the partial files included in the configuration file. Partial files DON'T EVALUATE, they are only inserted in the placeholder.</li>
+<li><code>FC_PARTIALS=dirname</code>: The path to the directory with the partial files included in the configuration file. Partial files DON&rsquo;T EVALUATE, they are only inserted in the placeholder.</li>
 <li><code>FC_TEMPLATES=dirname</code>: The path to the directory with the sub-templates included in the configuration file. These are evaluated using the Go templating system.</li>
 <li><code>FC_OUT</code>: For debugging purposes, saves the resulting configuration of processing the flexible configuration in the given filename. Otherwise, the final file is not visible.</li>
 </ul>
-<p>For instance, let's assume you decided to organize your configuration as follows:</p>
+<p>For instance, let&rsquo;s assume you decided to organize your configuration as follows:</p>
 <pre><code>.
 └── config
    ├── krakend.json
@@ -809,7 +809,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 <p>The template <code>template_name.tmpl</code> is executed and processed. The value of <code>context</code> is passed in the template as the context, meaning that the sub-template can access it using the dot <code>{{ . }}</code>. This context variable could be an object, such as <code>{{ template &quot;environment&quot; .db.label }}</code>, but it can also be another type, like a string: ``{{ template &ldquo;environment&rdquo; &ldquo;production&rdquo; }}`.</p>
 <p>Go templates allow you to introduce handy stuff like conditionals or loops and allow you to create powerful configurations.</p>
 <h2 id="testing-the-configuration">Testing the configuration</h2>
-<p>As the configuration is now composed of several pieces, it's easy to make a mistake at some point. Test the syntax of all the files is good with the <code>krakend check</code> command and pay attention to the output to verify there aren't any errors.</p>
+<p>As the configuration is now composed of several pieces, it&rsquo;s easy to make a mistake at some point. Test the syntax of all the files is good with the <code>krakend check</code> command and pay attention to the output to verify there aren&rsquo;t any errors.</p>
 <p>You might also want to use the flag <code>FC_OUT</code> to write the content of the final file in a known path, so you can check its contents:</p>
 <pre><code>FC_ENABLE=1 \
 FC_SETTINGS=&quot;$PWD/config/settings&quot; \
@@ -881,11 +881,11 @@ krakend check -d -c &quot;$PWD/config/krakend.json&quot;
 <p>Have a look at the highlighted lines:</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go">    <span class="p">{</span>
         <span class="s">&#34;version&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-<span class="hl">        <span class="s">&#34;port&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">{</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">port</span> <span class="p">}</span><span class="p">}</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">extra_config</span> <span class="p">}</span><span class="p">}</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;host&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">default_hosts</span> <span class="p">}</span><span class="p">}</span><span class="p">,</span>
+<span class="hl">        <span class="s">&#34;port&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">port</span> <span class="p">}},</span>
+</span><span class="hl">        <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">extra_config</span> <span class="p">}},</span>
+</span><span class="hl">        <span class="s">&#34;host&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">default_hosts</span> <span class="p">}},</span>
 </span>        <span class="s">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
-<span class="hl">            <span class="p">{</span><span class="p">{</span> <span class="k">range</span> <span class="p">.</span><span class="nx">endpoint</span><span class="p">.</span><span class="nx">example_group</span> <span class="p">}</span><span class="p">}</span>
+<span class="hl">            <span class="p">{{</span> <span class="k">range</span> <span class="p">.</span><span class="nx">endpoint</span><span class="p">.</span><span class="nx">example_group</span> <span class="p">}}</span>
 </span>            <span class="p">{</span>
 <span class="hl">            <span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;{{ .endpoint }}&#34;</span><span class="p">,</span>
 </span>            <span class="s">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
@@ -893,15 +893,15 @@ krakend check -d -c &quot;$PWD/config/krakend.json&quot;
 <span class="hl">                    <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;{{ .backend }}&#34;</span>
 </span>                <span class="p">}</span>
             <span class="p">]</span>
-            <span class="p">}</span><span class="p">,</span>
-<span class="hl">            <span class="p">{</span><span class="p">{</span> <span class="nx">end</span> <span class="p">}</span><span class="p">}</span>
+            <span class="p">},</span>
+<span class="hl">            <span class="p">{{</span> <span class="nx">end</span> <span class="p">}}</span>
 </span>            <span class="p">{</span>
             <span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;/limited-endpoint&#34;</span><span class="p">,</span>
             <span class="s">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;/v1/slow-backend&#34;</span><span class="p">,</span>
                     <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="hl">                        <span class="p">{</span><span class="p">{</span> <span class="nx">include</span> <span class="s">&#34;rate_limit_backend.tmpl&#34;</span> <span class="p">}</span><span class="p">}</span>
+<span class="hl">                        <span class="p">{{</span> <span class="nx">include</span> <span class="s">&#34;rate_limit_backend.tmpl&#34;</span> <span class="p">}}</span>
 </span>                    <span class="p">}</span>
                 <span class="p">}</span>
                 <span class="p">]</span>

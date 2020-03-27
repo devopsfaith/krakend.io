@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Website development as a sysadmin - KrakenD API Gateway</title>
     <meta itemprop="name" content="Website development as a sysadmin - KrakenD API Gateway">
@@ -304,7 +304,7 @@
             
           </header>
 
-          <p>As a systems administrator for the past 15 years, I'm not very used to web development as this kind of work has been usually done by other colleagues in every company I've worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.</p>
+          <p>As a systems administrator for the past 15 years, I&rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.</p>
 <p>Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information. This API is used in this exercise, <a href="https://developer.marvel.com/">get your own key</a>.</p>
 <p>My first reaction when I initially though about this problem was to start the project in python, writing the code to do the requests, authenticating to the API, parsing the responses and generating the HTML output. Everything in the same service. This is the &ldquo;classical&rdquo; way of developing and the code became dirty very fast as I am an inexperienced programmer. Doing the API authentication was also painful and I wanted a more generic and reusable code.</p>
 <p>Being part of KrakenD, I decided to revisit this exercise using KrakenD to do the requests, authentication, parsing, filtering and merging the responses for me.</p>
@@ -319,9 +319,9 @@
 <li><code>hash</code>: an md5 of timestamp + private key + public key.</li>
 </ul>
 <p>You can also see this modifier source code in <a href="https://github.com/taik0/marvelapi-martian_querystring">github</a>.</p>
-<p>At the time I created this query string modifier <strong>we didn't had <a href="https://www.krakend.io/blog/krakend-golang-plugins/">plugins</a></strong> so I needed to recomplile KrakenD to add a custom modifier like this one.</p>
+<p>At the time I created this query string modifier <strong>we didn&rsquo;t had <a href="https://www.krakend.io/blog/krakend-golang-plugins/">plugins</a></strong> so I needed to recomplile KrakenD to add a custom modifier like this one.</p>
 <h3 id="setting-up-krakend">Setting up KrakenD</h3>
-<p>To add the custom modifier to KrakenD it's only needed to create a file like this one in the root of the <a href="https://github.com/devopsfaith/krakend-ce">KrakenD-CE</a> repository:</p>
+<p>To add the custom modifier to KrakenD it&rsquo;s only needed to create a file like this one in the root of the <a href="https://github.com/devopsfaith/krakend-ce">KrakenD-CE</a> repository:</p>
 <p><em>marvel.go:</em></p>
 <pre><code>package main
 
@@ -418,7 +418,7 @@ Check also the <code>whitelist</code> and <code>mapping</code> sections where I 
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre><h3 id="api2html-configuration">api2html configuration</h3>
-<p>Notice that the backend URL it's KrakenD service, not Marvel API.</p>
+<p>Notice that the backend URL it&rsquo;s KrakenD service, not Marvel API.</p>
 <pre><code>{
 	&quot;templates&quot;:{
 		&quot;character&quot;: &quot;character.mustache&quot;
@@ -469,7 +469,7 @@ api2html_1  | [GIN-debug] Listening and serving HTTP on :8080
 <pre><code>docker run -it --rm -v $PWD:/tmp -w /tmp devopsfaith/api2html skel create blog
 </code></pre><p>and a more complete example will be generated in <code>example/blog</code>.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>One of the most important lessons I learned building this, apart from golang coding and some application building, is that you need to know the tools you are using as much as possible since we tend to over-complicate things and rebuild pieces that someone already did (exclude from this exercises/katas to understand better a technology) and knowing what a tool can and can't do helps a lot!</p>
+<p>One of the most important lessons I learned building this, apart from golang coding and some application building, is that you need to know the tools you are using as much as possible since we tend to over-complicate things and rebuild pieces that someone already did (exclude from this exercises/katas to understand better a technology) and knowing what a tool can and can&rsquo;t do helps a lot!</p>
 <p>So read documentation, test, play, build something, read a bit more and try again!</p>
 
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Security - KrakenD API Gateway</title>
     <meta itemprop="name" content="Security - KrakenD API Gateway">
@@ -712,15 +712,21 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#restrict-connections-by-host">Restrict connections by host</a></li>
-    <li><a href="#clickjacking-protection">Clickjacking protection</a></li>
-    <li><a href="#mime-sniffing-prevention">MIME-Sniffing prevention</a></li>
-    <li><a href="#cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#http-strict-transport-security-hsts">HTTP Strict Transport Security (HSTS)</a></li>
-    <li><a href="#http-public-key-pinning-hpkp">HTTP Public Key Pinning (HPKP)</a></li>
+    <li><a href="#general-security">General security</a>
+      <ul>
+        <li><a href="#restrict-connections-by-host">Restrict connections by host</a></li>
+        <li><a href="#clickjacking-protection">Clickjacking protection</a></li>
+        <li><a href="#mime-sniffing-prevention">MIME-Sniffing prevention</a></li>
+        <li><a href="#cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</a></li>
+      </ul>
+    </li>
+    <li><a href="#https">HTTPS</a>
+      <ul>
+        <li><a href="#http-strict-transport-security-hsts">HTTP Strict Transport Security (HSTS)</a></li>
+        <li><a href="#http-public-key-pinning-hpkp">HTTP Public Key Pinning (HPKP)</a></li>
+      </ul>
+    </li>
+    <li><a href="#oauth2">OAuth2</a></li>
   </ul>
 </nav>
             </div>
@@ -753,39 +759,39 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
   }
 </code></pre>
 <p>See below the different options described in this configuration file.</p>
-<h1 id="general-security">General security</h1>
-<h2 id="restrict-connections-by-host">Restrict connections by host</h2>
+<h2 id="general-security">General security</h2>
+<h3 id="restrict-connections-by-host">Restrict connections by host</h3>
 <p>Use <code>allowed_hosts</code></p>
 <p>Define a whitelist of hosts that KrakenD should accept requests to.</p>
 <p>When a request hits KrakenD, it will confirm if the value of the <code>Host</code> HTTP header is in the whitelist. If so, it will further process the request. If the host is not in the whitelist, KrakenD will simply reject the request.</p>
 <p>The list must contain the fully qualified domain names that are allowed, along with the origin port. When the list is empty accepts any host.</p>
-<h2 id="clickjacking-protection">Clickjacking protection</h2>
+<h3 id="clickjacking-protection">Clickjacking protection</h3>
 <p>Use <code>frame_deny</code></p>
-<p>KrakenD follow the OWASP's recommendations by adding a frame-breaking strategy.</p>
+<p>KrakenD follow the OWASP&rsquo;s recommendations by adding a frame-breaking strategy.</p>
 <p>You can add an <code>X-Frame-Options</code> header using <code>custom_frame_options_value</code> with the value of <code>DENY</code> (default behavior) or even set your custom value.</p>
 <p>Check the <a href="https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet#X-Frame-Options_Header_Types">OWASP Clickjacking cheat sheet</a> for more details about the header and its recommended values.</p>
-<h2 id="mime-sniffing-prevention">MIME-Sniffing prevention</h2>
+<h3 id="mime-sniffing-prevention">MIME-Sniffing prevention</h3>
 <p>Use <code>content_type_nosniff</code></p>
-<p>Enabling this feature will prevent the user's browser from interpreting files as something else than declared by the content type in the HTTP headers.</p>
-<h2 id="cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</h2>
+<p>Enabling this feature will prevent the user&rsquo;s browser from interpreting files as something else than declared by the content type in the HTTP headers.</p>
+<h3 id="cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</h3>
 <p>Use <code>browser_xss_filter</code></p>
-<p>This feature enables the <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">Cross-site scripting (XSS)</a> filter in the user's browser.</p>
-<h1 id="https">HTTPS</h1>
-<h2 id="http-strict-transport-security-hsts">HTTP Strict Transport Security (HSTS)</h2>
+<p>This feature enables the <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">Cross-site scripting (XSS)</a> filter in the user&rsquo;s browser.</p>
+<h2 id="https">HTTPS</h2>
+<h3 id="http-strict-transport-security-hsts">HTTP Strict Transport Security (HSTS)</h3>
 <p>Use <code>sts_seconds</code></p>
 <p>OWASP defines the HSTS as</p>
 <blockquote>
 <p>HTTP Strict Transport Security (HSTS) is a web security policy mechanism which helps to protect websites against protocol downgrade attacks and cookie hijacking. It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and never via the insecure HTTP protocol. HSTS is an IETF standards track protocol and is specified in RFC 6797. A server implements an HSTS policy by supplying a header (Strict-Transport-Security) over an HTTPS connection (HSTS headers over HTTP are ignored).</p>
 </blockquote>
 <p>Enable this policy by setting the max-age of the Strict-Transport-Security header. Setting to <code>0</code> disables HSTS. Use the <code>sts_seconds</code> setting.</p>
-<h2 id="http-public-key-pinning-hpkp">HTTP Public Key Pinning (HPKP)</h2>
+<h3 id="http-public-key-pinning-hpkp">HTTP Public Key Pinning (HPKP)</h3>
 <p>Use <code>hpkp_public_key</code></p>
 <p>OWASP defines the HPKP as</p>
 <blockquote>
 <p>HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).</p>
 </blockquote>
 <p><strong>This feature must be used with caution because there is a risk that hosts may make themselves unavailable by pinning to a set of public key hashes that becomes invalid.</strong></p>
-<h1 id="oauth2">OAuth2</h1>
+<h2 id="oauth2">OAuth2</h2>
 <p>KrakenD supports the client credentials grant.</p>
 <p>Use this feature if you need to authorize the KrakenD to access your backend services.</p>
 <p>See the specific docs for <a href="/docs/authorization/client-credentials/">OAuth2 Client Credentials</a></p>

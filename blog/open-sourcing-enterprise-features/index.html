@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Open sourcing all enterprise components - KrakenD API Gateway</title>
     <meta itemprop="name" content="Open sourcing all enterprise components - KrakenD API Gateway">
@@ -262,7 +262,7 @@
                 open source
             </a>
             
-            <li><em class="reading-time">4 min read</em></li>
+            <li><em class="reading-time">5 min read</em></li>
         </ul>
     </div>
 </div>
@@ -274,11 +274,12 @@
             
           </header>
 
-          <p>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don't miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?</p>
+          <p>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?</p>
 <h2 id="a-look-back">A look back&hellip;</h2>
-<p>If you are reading this post chances are that you know this already, in short KrakenD is the <strong>fastest API Gateway in the market</strong>. It's built in <a href="https://golang.org/">Go programming language</a> while following best practices and designed with performance in mind. But don't take it for granted, we encourage you go run your own <a href="https://www.krakend.io/docs/benchmarks/overview/">benchmarks</a> against your APIs.</p>
-<p>KrakenD is developed by <a href="http://devops.faith">Devops Faith</a>. We are a small group of engineers helping companies solve complex problems. Since we're all engineers here, our marketing skills are on a similar level to our skills in butterfly sexing. So we decided to communicate this big change in our product with this only <a href="https://twitter.com/devopsfaith/status/917122967573749760">tweet</a>:</p>
-<!-- raw HTML omitted -->
+<p>If you are reading this post chances are that you know this already, in short KrakenD is the <strong>fastest API Gateway in the market</strong>. It&rsquo;s built in <a href="https://golang.org/">Go programming language</a> while following best practices and designed with performance in mind. But don&rsquo;t take it for granted, we encourage you go run your own <a href="https://www.krakend.io/docs/benchmarks/overview/">benchmarks</a> against your APIs.</p>
+<p>KrakenD is developed by <a href="http://devops.faith">Devops Faith</a>. We are a small group of engineers helping companies solve complex problems. Since we&rsquo;re all engineers here, our marketing skills are on a similar level to our skills in butterfly sexing. So we decided to communicate this big change in our product with this only <a href="https://twitter.com/devopsfaith/status/917122967573749760">tweet</a>:</p>
+<blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"><p lang="en" dir="ltr">KrakenD goes full open source! We will be publishing all our components of the Enterprise version, first one here <a href="https://t.co/fDE1qzjbAc">https://t.co/fDE1qzjbAc</a></p>&mdash; Devops Faith (@devopsfaith) <a href="https://twitter.com/devopsfaith/status/917122967573749760?ref_src=twsrc%5Etfw">October 8, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 <p>Today with this post I will extend a little bit this short announcement.</p>
 <h2 id="krakend-open-source-krakend-free-and-krakend-enterprise-what-da">KrakenD open source, KrakenD free and KrakenD Enterprise. What Da?</h2>
 <p>When we started this adventure, we made a distinction between the <strong>commercial KrakenD</strong> products - the downloadable binary versions that have been commercialized only for a few months - and the <strong>Open Source KrakenD framework</strong> that we use ourselves as the foundations of all products.</p>
@@ -294,11 +295,11 @@
 <p>On the other hand, the <strong>Enterprise product</strong> will orbit around the <strong>centralized management</strong> of KrakenD clusters and will also offer a <strong>hosted solution</strong> (SaaS) for those customers not willing to deploy themselves Krakend.</p>
 <p>In addition to that, what we are not changing is that we will continue giving paid support, consultancy and expert development as this model has been working well for us.</p>
 <h2 id="so-what-is-exactly-open-sourced">So, what is exactly open sourced?</h2>
-<p>Unlike Netflix we won't be releasing all episodes in the first season. We will progressively release the enterprise components in our <a href="https://github.com/devopsfaith/krakend">KrakenD Github page</a> when they are core, or on its own repository if they are not essential functionality of a <strong>pure API Gateway</strong>.</p>
+<p>Unlike Netflix we won&rsquo;t be releasing all episodes in the first season. We will progressively release the enterprise components in our <a href="https://github.com/devopsfaith/krakend">KrakenD Github page</a> when they are core, or on its own repository if they are not essential functionality of a <strong>pure API Gateway</strong>.</p>
 <p>A lot of components and middlewares will be going out, and time will bring even more. Here is a preview (non-limited) of functionalities that we will be releasing soon, do not take this sample as an accurate roadmap:</p>
 <ul>
-<li><a href="https://github.com/devopsfaith/krakend-ratelimit">Rate limit</a> (<!-- raw HTML omitted --><!-- raw HTML omitted --> published!)</li>
-<li><a href="https://github.com/devopsfaith/krakend-circuitbreaker">Circuit breaker</a> (<!-- raw HTML omitted --><!-- raw HTML omitted --> published!)</li>
+<li><a href="https://github.com/devopsfaith/krakend-ratelimit">Rate limit</a> (<i class="fa fa-check"></i> published!)</li>
+<li><a href="https://github.com/devopsfaith/krakend-circuitbreaker">Circuit breaker</a> (<i class="fa fa-check"></i> published!)</li>
 <li>OAuth2 client credentials grant</li>
 <li>Metrics proxy and router</li>
 <li>Security router
@@ -318,7 +319,7 @@
 </ul>
 <h2 id="summing-up">Summing up</h2>
 <p>We had crossed thoughts for a long time and we had a lot of internal debate. With this change you might even think we are shooting ourselves in the foot. Maybe. But we are certain of this is better for the community and also for the product and its satellite middlewares as they will grow faster this way.</p>
-<p>We will announce via <a href="https://github.com/devopsfaith">Twitter</a> when we publish new components, but make sure at least to <!-- raw HTML omitted --><!-- raw HTML omitted --> <strong>star</strong> (thanks!!!) the project. Even better if you also <strong>watch</strong> it to get the notifications, and super if you decide to <!-- raw HTML omitted --><!-- raw HTML omitted --> <strong>fork</strong> it and contribute.</p>
+<p>We will announce via <a href="https://github.com/devopsfaith">Twitter</a> when we publish new components, but make sure at least to <i class="fa fa-star"></i> <strong>star</strong> (thanks!!!) the project. Even better if you also <strong>watch</strong> it to get the notifications, and super if you decide to <i class="fa fa-code-fork"></i> <strong>fork</strong> it and contribute.</p>
 <p>Thanks for watching! :)</p>
 
 

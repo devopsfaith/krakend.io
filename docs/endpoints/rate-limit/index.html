@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Endpoint rate limiting - KrakenD API Gateway</title>
     <meta itemprop="name" content="Endpoint rate limiting - KrakenD API Gateway">
@@ -712,12 +712,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-if-the-maxrate-limit-is-reached">What if the maxRate limit is reached?</a></li>
+    <li><a href="#what-if-the-maxrate-limit-is-reached">What if the <code>maxRate</code> limit is reached?</a></li>
   </ul>
 
   <ul>
     <li><a href="#client-identification-strategies">Client identification strategies</a></li>
-    <li><a href="#what-if-the-clientmaxrate-limit-is-reached">What if the clientMaxRate limit is reached?</a></li>
+    <li><a href="#what-if-the-clientmaxrate-limit-is-reached">What if the <code>clientMaxRate</code> limit is reached?</a></li>
   </ul>
 </nav>
             </div>
@@ -749,14 +749,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <div class="note">
     <h4><i class="fa fa-sticky-note"></i> A note on performance</h4>
 	<p>Limiting endpoints per user makes KrakenD keep in memory counters for the two dimensions: <em>endpoints x clients</em>.</p>
-<p>The <code>clientMaxRate</code> drops the performance as every incoming client needs tracking. Even counters are small in data it's easy to end up with several millions of counters.  Make sure to do your math every time.</p>
+<p>The <code>clientMaxRate</code> drops the performance as every incoming client needs tracking. Even counters are small in data it&rsquo;s easy to end up with several millions of counters.  Make sure to do your math every time.</p>
 
  </div>
 <p>The absence of <code>clientMaxRate</code> in the configuration or <code>&quot;clientMaxRate&quot;: 0</code> is the equivalent to no limitation.</p>
 <h2 id="client-identification-strategies">Client identification strategies</h2>
 <p>Two <strong>client identification strategies</strong> are available:</p>
 <ul>
-<li><code>&quot;strategy&quot;: &quot;ip&quot;</code> When the restrictions apply to the client's IP, and every IP is considered to be a different user.</li>
+<li><code>&quot;strategy&quot;: &quot;ip&quot;</code> When the restrictions apply to the client&rsquo;s IP, and every IP is considered to be a different user.</li>
 <li><code>&quot;strategy&quot;: &quot;header&quot;</code> When the criteria for identifying a user comes from the value of a <code>key</code> inside the header. With this strategy, the <code>key</code> must also be present.
 <ul>
 <li>E.g., set <code>&quot;key&quot;: &quot;X-TOKEN&quot;</code> to use the <code>X-TOKEN</code> header as the unique user identifier.</li>

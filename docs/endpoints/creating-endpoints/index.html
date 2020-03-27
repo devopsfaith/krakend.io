@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>How to create KrakenD endpoints - KrakenD API Gateway</title>
     <meta itemprop="name" content="How to create KrakenD endpoints - KrakenD API Gateway">
@@ -22,8 +22,8 @@
 
 <meta property="og:title" content="How to create KrakenD endpoints" />
 <meta property="og:description" content="KrakenD endpoints are the essential part of KrakenD as they are what your end users consume.
-See Understanding the configuration file if you haven&#39;t read it yet.
-To create an endpoint you only need to add an endpoint object under the endpoints list with the resource you want to expose. If no method is declared, it&#39;s assumed to be read-only (GET).
+See Understanding the configuration file if you haven&rsquo;t read it yet.
+To create an endpoint you only need to add an endpoint object under the endpoints list with the resource you want to expose. If no method is declared, it&rsquo;s assumed to be read-only (GET).
 The endpoints section looks like this:
 &quot;endpoints&quot;: [ { &quot;endpoint&quot;: &quot;/v1/foo&quot;, &quot;method&quot;: &quot;GET&quot;, &quot;backend&quot;: [ { &quot;url_pattern&quot;: &quot;/bar&quot;, &quot;method&quot;: &quot;GET&quot;, &quot;host&quot;: [ &quot;https://api." />
 <meta property="og:type" content="article" />
@@ -39,8 +39,8 @@ The endpoints section looks like this:
 
 <meta name="twitter:title" content="How to create KrakenD endpoints"/>
 <meta name="twitter:description" content="KrakenD endpoints are the essential part of KrakenD as they are what your end users consume.
-See Understanding the configuration file if you haven&#39;t read it yet.
-To create an endpoint you only need to add an endpoint object under the endpoints list with the resource you want to expose. If no method is declared, it&#39;s assumed to be read-only (GET).
+See Understanding the configuration file if you haven&rsquo;t read it yet.
+To create an endpoint you only need to add an endpoint object under the endpoints list with the resource you want to expose. If no method is declared, it&rsquo;s assumed to be read-only (GET).
 The endpoints section looks like this:
 &quot;endpoints&quot;: [ { &quot;endpoint&quot;: &quot;/v1/foo&quot;, &quot;method&quot;: &quot;GET&quot;, &quot;backend&quot;: [ { &quot;url_pattern&quot;: &quot;/bar&quot;, &quot;method&quot;: &quot;GET&quot;, &quot;host&quot;: [ &quot;https://api."/>
 
@@ -724,8 +724,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         
 
         <p>KrakenD endpoints are the essential part of KrakenD as they are what your end users consume.</p>
-<p>See <a href="/docs/configuration/structure/">Understanding the configuration file</a> if you haven't read it yet.</p>
-<p>To create an endpoint you only need to add an <strong>endpoint object</strong> under the <code>endpoints</code> list with the resource you want to expose. If no <code>method</code> is declared, it's assumed to be read-only (<code>GET</code>).</p>
+<p>See <a href="/docs/configuration/structure/">Understanding the configuration file</a> if you haven&rsquo;t read it yet.</p>
+<p>To create an endpoint you only need to add an <strong>endpoint object</strong> under the <code>endpoints</code> list with the resource you want to expose. If no <code>method</code> is declared, it&rsquo;s assumed to be read-only (<code>GET</code>).</p>
 <p>The endpoints section looks like this:</p>
 <pre><code>&quot;endpoints&quot;: [
 {
@@ -743,7 +743,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 }
 ]
 </code></pre>
-<p>The previous example exposes to the clients a <code>GET /v1/foo</code> and takes the data from your existing backend <code>https://api.mybackend.com&quot;/bar</code>. As there is no other additional configuration, the data won't be manipulated.</p>
+<p>The previous example exposes to the clients a <code>GET /v1/foo</code> and takes the data from your existing backend <code>https://api.mybackend.com&quot;/bar</code>. As there is no other additional configuration, the data won&rsquo;t be manipulated.</p>
 <h2 id="attributes">Attributes</h2>
 <p>The <strong>endpoint object</strong> accepts the following attributes:</p>
 <ul>
@@ -795,7 +795,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
   ...
 }
 </code></pre>
-<p>The previous endpoint will accept requests like <code>/user/123</code> or <code>/user/A-B-C</code> or anything else while it does not contain another slash. A request like <code>/user/1/2</code> won't be recognized by this endpoint. For such scenario you need to declare <code>/user/{first}/{second}</code>.</p>
+<p>The previous endpoint will accept requests like <code>/user/123</code> or <code>/user/A-B-C</code> or anything else while it does not contain another slash. A request like <code>/user/1/2</code> won&rsquo;t be recognized by this endpoint. For such scenario you need to declare <code>/user/{first}/{second}</code>.</p>
 <h3 id="colliding-routes">Colliding routes</h3>
 <p>KrakenD router is based on httprouter, offering a brutal performance. Nevertheless this design decision comes with the following considerations:</p>
 <ul>

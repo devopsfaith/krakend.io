@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Sequential Proxy - KrakenD API Gateway</title>
     <meta itemprop="name" content="Sequential Proxy - KrakenD API Gateway">
@@ -714,7 +714,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
         <p>The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends concurrently at the same time. However, there are times when you need to <strong>delay a backend call</strong> until you can inject as input the result of a previous call.</p>
 <p>The sequential proxy allows you to <strong>chain backend requests</strong>.</p>
-<h1 id="chaining-the-requests">Chaining the requests</h1>
+<h2 id="chaining-the-requests">Chaining the requests</h2>
 <p>All you need to enable the sequential proxy is add in the endpoint definition the following configuration:</p>
 <pre><code>&quot;endpoint&quot;: &quot;/hotels/{id}&quot;,
 &quot;extra_config&quot;: {
@@ -728,7 +728,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 </code></pre>
 <p>Where <code>0</code> is the index of the specific backend you want to access ( <code>backend</code> array), and where <code>XXXX</code> is the attribute name you want to inject from the previous call.</p>
 <h2 id="example">Example</h2>
-<p>It's easier to understand with the example of the graph:</p>
+<p>It&rsquo;s easier to understand with the example of the graph:</p>
 <p>KrakenD calls a backend <code>/hotels/{hotel_id}</code> that returns data for the requested hotel. When we request for the hotel ID <code>25</code> the backend service responds with the hotel data, including a <code>destination_id</code> that is a relationship identifier. The output for <code>GET /hotels/25</code> is like the following:</p>
 <pre><code>{
   &quot;hotel_id&quot;: 25,

@@ -17,7 +17,7 @@
       <pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate>
       
       <guid>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</guid>
-      <description>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&#39;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</description>
+      <description>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&amp;rsquo;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</description>
     </item>
     
     <item>
@@ -28,8 +28,8 @@
       <guid>https://www.krakend.io/blog/krakend-on-kubernetes/</guid>
       <description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
 We will use for the demonstration Minikube so you cant test it in your own local machine.
-Let&#39;s get started!
-Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&#39;s quick and easy.</description>
+Let&amp;rsquo;s get started!
+Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&amp;rsquo;s quick and easy.</description>
     </item>
     
     <item>
@@ -38,7 +38,7 @@ Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube.
       <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
-      <description>As a systems administrator for the past 15 years, I&#39;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&#39;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
+      <description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
 Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description>
     </item>
     
@@ -58,7 +58,7 @@ Generally speaking, all these devices collect raw data and send it to the cloud 
       <pubDate>Fri, 06 Apr 2018 23:46:25 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/deploying-an-api-gateway/</guid>
-      <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&#39;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
+      <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&amp;rsquo;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
     </item>
     
     <item>
@@ -68,7 +68,7 @@ Generally speaking, all these devices collect raw data and send it to the cloud 
       
       <guid>https://www.krakend.io/blog/what-is-an-api-gateway/</guid>
       <description>The more we talk to people about API gateways, the more we have come to realize that the term means different things to different people, and more specifically we see a growing trend where developers (but mostly managers) expect an API gateway to be able to perform miracles, usually a long way away from its intended use.
-It&#39;s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.</description>
+It&amp;rsquo;s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.</description>
     </item>
     
   </channel>

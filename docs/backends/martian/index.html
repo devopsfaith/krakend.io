@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Modify requests and responses with Martian - KrakenD API Gateway</title>
     <meta itemprop="name" content="Modify requests and responses with Martian - KrakenD API Gateway">
@@ -747,7 +747,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 }
 </code></pre>
 <h2 id="modifier-configuration">Modifier configuration</h2>
-<p>In the examples below, you'll find that all modifiers have a configuration key named <code>scope</code>. The scope indicates when to apply the modifier, it can be an array containing <code>request</code>, <code>response</code>, or both. The rest of the keys in every modifier depends on the modifier itself.</p>
+<p>In the examples below, you&rsquo;ll find that all modifiers have a configuration key named <code>scope</code>. The scope indicates when to apply the modifier, it can be an array containing <code>request</code>, <code>response</code>, or both. The rest of the keys in every modifier depends on the modifier itself.</p>
 <h1 id="transform-headers">Transform headers</h1>
 <p>The <code>header.Modifier</code> injects a header with a specific value. For instance, the following configuration adds a header <code>X-Martian</code> both in the request and the response.</p>
 <pre><code>&quot;endpoint&quot;: &quot;/foo&quot;,
@@ -846,7 +846,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 </code></pre>
 <h1 id="all-martian-modifiers-verifiers-and-filters">All Martian modifiers, verifiers and filters</h1>
 <p>The Martian library comes with <a href="https://github.com/google/martian">+25 modifiers</a> you can use, we are not listing all the options in the documentation. Instead, we provided the modifiers that are key when using Martian.</p>
-<p>For the complete list of modifiers and usage see <a href="https://github.com/google/martian">Google's Martian repository</a>. These are the packages included in KrakenD-CE:</p>
+<p>For the complete list of modifiers and usage see <a href="https://github.com/google/martian">Google&rsquo;s Martian repository</a>. These are the packages included in KrakenD-CE:</p>
 <ul>
 <li><a href="https://github.com/google/martian/tree/master/body">github.com/google/martian/body</a></li>
 <li><a href="https://github.com/google/martian/tree/master/cookie">github.com/google/martian/cookie</a></li>
@@ -860,7 +860,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 </ul>
 <h1 id="building-new-modifiers">Building new modifiers</h1>
 <p>There will be times when you want to create a new modifier that covers your specific use case and does some other dynamic operations. Creating more modifiers is a straightforward process and only requires to <code>make</code> the gateway once you have it coded.</p>
-<p>Nothing better than an example to demonstrate how to create a new modifier. Our SRE Director (who wasn't familiar with Go) went through the process of creating a new Modifier that would authenticate automatically against the Marvel API adding an API Key, a timestamp and a calculated hash.</p>
+<p>Nothing better than an example to demonstrate how to create a new modifier. Our SRE Director (who wasn&rsquo;t familiar with Go) went through the process of creating a new Modifier that would authenticate automatically against the Marvel API adding an API Key, a timestamp and a calculated hash.</p>
 <p>Read it here (contains the source code): <a href="/blog/website-development-as-a-sysadmin/">Martian example: Adding automatic API authentication</a></p>
 
     </section>

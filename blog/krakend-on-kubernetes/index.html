@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Running the KrakenD API Gateway on Kubernetes - KrakenD API Gateway</title>
     <meta itemprop="name" content="Running the KrakenD API Gateway on Kubernetes - KrakenD API Gateway">
@@ -300,9 +300,9 @@
 
           <p>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.</p>
 <p>We will use for the demonstration <a href="https://github.com/kubernetes/minikube">Minikube</a> so you cant test it in your own local machine.</p>
-<p>Let's get started!</p>
+<p>Let&rsquo;s get started!</p>
 <h2 id="setting-up-a-local-kubernetes">Setting up a local Kubernetes</h2>
-<p>We will run Kubernetes locally thanks to Minikube. Just follow the <a href="https://github.com/kubernetes/minikube">README</a> in the project for the installation and the <em>Quickstart</em> section. Installing minikube it's quick and easy.</p>
+<p>We will run Kubernetes locally thanks to Minikube. Just follow the <a href="https://github.com/kubernetes/minikube">README</a> in the project for the installation and the <em>Quickstart</em> section. Installing minikube it&rsquo;s quick and easy.</p>
 <pre><code>$ minikube start
 Starting local Kubernetes v1.7.5 cluster...
 Starting VM...
@@ -356,7 +356,7 @@ k8s.gcr.io/etcd-amd64                      3.0.17              243830dae7dd     
 k8s.gcr.io/pause-amd64                     3.0                 99e59f495ffa        2 years ago          747kB
 jaxgeller/lwan                             latest              526243cbb205        2 years ago          439MB
 </code></pre>
-<p>You will quickly realize the terminal session you are in is not using your docker host, but minikube's.</p>
+<p>You will quickly realize the terminal session you are in is not using your docker host, but minikube&rsquo;s.</p>
 <h3 id="krakend">KrakenD</h3>
 <p>With your backend ready is time to setup the image for the API gateway, which is also very easy to setup. All it takes is to write the Krakend&rsquo; settings in the <code>krakend.json</code> and add it in the image, as follows:</p>
 <p><strong>krakend.json</strong></p>
@@ -409,7 +409,7 @@ jaxgeller/lwan                             latest              526243cbb205     
     ]
 }
 </code></pre>
-<p>And now let's create the API Gateway image with the configuration. The following <code>Dockerfile</code> is in the root folder.</p>
+<p>And now let&rsquo;s create the API Gateway image with the configuration. The following <code>Dockerfile</code> is in the root folder.</p>
 <p><strong>Dockerfile</strong></p>
 <pre><code>FROM devopsfaith/krakend
 COPY configuration.json /etc/krakend/krakend.json
@@ -425,7 +425,7 @@ COPY configuration.json /etc/krakend/krakend.json
 $ kubectl expose deployment fake-api --type=NodePort
 </code></pre>
 <h3 id="deploy-the-api-gateway-in-k8s">Deploy the API gateway in k8s</h3>
-<p>With the backend running and the custom image ready, let's go with the YAML way of defining resource creations in kubernetes. Place the KrakenD <code>deployment</code> definition in a file called <code>deployment-definition.yaml</code>:</p>
+<p>With the backend running and the custom image ready, let&rsquo;s go with the YAML way of defining resource creations in kubernetes. Place the KrakenD <code>deployment</code> definition in a file called <code>deployment-definition.yaml</code>:</p>
 <p><strong>deployment-definition.yaml</strong></p>
 <pre><code>apiVersion: apps/v1
 kind: Deployment
@@ -471,12 +471,12 @@ spec:
 $ kubectl create -f service-definition.yaml
 </code></pre>
 <p>You are done, both services are now running in Kubernetes!</p>
-<!-- raw HTML omitted -->
+<p><img src="/images/blog/kubernetes-services.png" alt="Kubernetes services"></p>
 <h2 id="testing-the-services">Testing the services</h2>
 <p>After exposing the <code>krakend-service</code> you can test it by asking Minikube the assigned URL with:</p>
 <pre><code>$ minikube service krakend-service
 </code></pre>
-<p>This will open your default browser with the krakend-service. It will return a <code>404</code> as we haven't configured any endpoint in the root <code>/</code>. Keep the URL and let's query the gateway with the endpoints we have defined.</p>
+<p>This will open your default browser with the krakend-service. It will return a <code>404</code> as we haven&rsquo;t configured any endpoint in the root <code>/</code>. Keep the URL and let&rsquo;s query the gateway with the endpoints we have defined.</p>
 <p>Check the regular features work as expected:</p>
 <pre><code>$ curl -i http://192.168.99.101:32064/combination/10
 HTTP/1.1 200 OK
@@ -513,9 +513,9 @@ Transfer-Encoding: chunked
 </code></pre>
 <p>Hurray!</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>In this post we have seen how quickly you can get an API Gateway running on Kubernetes without requiring any extra modules nor 3rd party components. In under 5 minutes you can have an ultra-perfomance API Gateway that doesn't require coding the endpoints and that anyone can use.</p>
+<p>In this post we have seen how quickly you can get an API Gateway running on Kubernetes without requiring any extra modules nor 3rd party components. In under 5 minutes you can have an ultra-perfomance API Gateway that doesn&rsquo;t require coding the endpoints and that anyone can use.</p>
 <p>Start doing your own experiments now by downloading the <a href="https://github.com/kpacha/krakend-k8s">source code</a> of these examples.</p>
-<p>Thanks for reading! If you like our product don't forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+<p>Thanks for reading! If you like our product don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
 
 
           <aside>

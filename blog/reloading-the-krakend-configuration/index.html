@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Reloading the Krakend configuration with Reflex and Docker - KrakenD API Gateway</title>
     <meta itemprop="name" content="Reloading the Krakend configuration with Reflex and Docker - KrakenD API Gateway">
@@ -286,14 +286,14 @@
             
           </header>
 
-          <p>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it's running. The short answer is: No, you can't. You must restart the server. And although we might have something to alleviate this, let us explain first why we don't support such a feature:</p>
+          <p>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&rsquo;s running. The short answer is: No, you can&rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&rsquo;t support such a feature:</p>
 <ul>
 <li><strong>Performance</strong>: This is the #1 reason, and strong enough. <strong>KrakenD is focused on performance</strong>, we never take choices lightly. All decision process from beginning to end, the pipes, are built at start up time and when it finishes starts serving the traffic. This means KrakenD will do this job only once and there is no need to calculate routes or what to do when serving. This makes a huge difference.</li>
 <li><strong>Simplicity</strong>: Because we believe an API contract must go under the version control system and after that be released (and through CI/CD if possible), but never altered at runtime by throwing curls or whatever. Are you familiar with <a href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">POLA</a>?</li>
 <li><strong>Consistency</strong>: Imagine yourself distributing configuration updates in an ecosystem like the one KrakenD is offering: <strong>independent, non-coordinated and state-less</strong>. It would require you to develop consistency strategies that are far out of the scope of an API Gateway. And not to mention that this would come with some restrictions making the hot-reload feature less attractive and the system very error-prone.</li>
 <li><strong>Why us?</strong>: You never demanded such a feature in Varnish, Apache, Nginx or any other major service. All of them are reloaded when configuration changes, and the Internet is still running.</li>
 </ul>
-<p>We could keep going, but with just this in mind, it's clear that KrakenD won't support a feature were you can push the new configuration at runtime. But we heard you! So we have built a small solution to automate the KrakenD reloading task, at least in development.</p>
+<p>We could keep going, but with just this in mind, it&rsquo;s clear that KrakenD won&rsquo;t support a feature were you can push the new configuration at runtime. But we heard you! So we have built a small solution to automate the KrakenD reloading task, at least in development.</p>
 <p>Check <a href="https://github.com/devopsfaith/krakend-config-watcher/">the Github repository for the code used</a> in this post.</p>
 <h2 id="enters-krakendconfig-watcher-mode">Enters <code>krakend:config-watcher</code> mode</h2>
 <p>We have published a new Docker tag <code>:config-watcher</code> in the existing <a href="https://hub.docker.com/r/devopsfaith/krakend/">KrakenD Docker</a>, you can get it with:</p>
@@ -301,7 +301,7 @@
 </code></pre>
 <p>This image starts the service from the <code>reflex</code> watcher.</p>
 <p><strong>What is reflex?</strong></p>
-<p><a href="https://github.com/cespare/reflex">Reflex</a> is a small tool that watches a directory and reruns a command when certain files change (e.g using a regexp). Since it's written in golang it has no dependencies. Take the opportunity to look to this amazing tool!</p>
+<p><a href="https://github.com/cespare/reflex">Reflex</a> is a small tool that watches a directory and reruns a command when certain files change (e.g using a regexp). Since it&rsquo;s written in golang it has no dependencies. Take the opportunity to look to this amazing tool!</p>
 <p>By having reflex as the entrypoint when the configuration changes KrakenD is reloaded. This is very convenient while you are developing as it allows you to test new changes without having to restart manually and making the process less tedious.</p>
 <h3 id="pull-it-or-build-it-yourself">Pull it or build it yourself</h3>
 <p>This is the <a href="https://github.com/devopsfaith/krakend-config-watcher/blob/master/Dockerfile"><code>Dockerfile</code></a> that generates our config-watcher image today:</p>
@@ -327,16 +327,16 @@ KRAKEND_CFG=${KRAKEND_CONFIG:-krakend.json}
 cd /etc/krakend
 /usr/bin/reflex -g &quot;$KRAKEND_CFG&quot; -s  -- /usr/bin/krakend run -c /etc/krakend/${KRAKEND_CFG} -d
 </code></pre><p>It executes reflex with the file pattern to look for (in the same directory) and launches the command as a service.
-If you don't want to use Docker, you can just use the entrypoint.sh as start script.</p>
-<h2 id="lets-develop-running-the-docker-image">Let's develop! Running the Docker image</h2>
+If you don&rsquo;t want to use Docker, you can just use the entrypoint.sh as start script.</p>
+<h2 id="lets-develop-running-the-docker-image">Let&rsquo;s develop! Running the Docker image</h2>
 <p>To run the container you need to mount a volume with your configuration file mapped to the <code>/etc/krakend</code> directory. Optionally you can pass the environment variable <code>KRAKEND_CONFIG</code> if the configuration file you are using is not named <code>krakend.json</code>.</p>
 <p>Example:</p>
 <pre><code>docker run -it --rm -v $PWD:/etc/krakend -e KRAKEND_CONFIG=krakend.json devopsfaith/krakend:config-watcher
-</code></pre><p><strong>IMPORTANT</strong>: The volume needs to be shared as a directory, and not as a file because the changes wouldn't be notified inside the container (<em>it's a Docker thing</em>)</p>
+</code></pre><p><strong>IMPORTANT</strong>: The volume needs to be shared as a directory, and not as a file because the changes wouldn&rsquo;t be notified inside the container (<em>it&rsquo;s a Docker thing</em>)</p>
 <p>Now play with your configuration file as much as you want, KrakenD will be restarted every time!</p>
 <p><img src="/images/blog/config-test.png" alt="config-test" title="config-watcher"></p>
 <h2 id="conclusion">Conclusion</h2>
-<p>We don't support hot reloading in production, but we have shared this blog post to help you test your KrakenD configurations while you are developing. We also hope you discovered an amazing tools like Reflex or have given you ideas of the kind of stuff you can do with Docker.</p>
+<p>We don&rsquo;t support hot reloading in production, but we have shared this blog post to help you test your KrakenD configurations while you are developing. We also hope you discovered an amazing tools like Reflex or have given you ideas of the kind of stuff you can do with Docker.</p>
 <p>Just try to keep it simple!
 Thanks for reading! If you like our product don’t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
 

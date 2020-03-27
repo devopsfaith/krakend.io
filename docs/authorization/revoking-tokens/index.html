@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Revoking valid tokens - KrakenD API Gateway</title>
     <meta itemprop="name" content="Revoking valid tokens - KrakenD API Gateway">
@@ -709,7 +709,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#additional-resources">Additional resources</a></li>
+    <li><a href="#why-bloomfilters">Why bloomfilters?</a>
+      <ul>
+        <li><a href="#additional-resources">Additional resources</a></li>
+      </ul>
+    </li>
+    <li><a href="#expiring-tokens-in-a-cluster">Expiring tokens in a cluster</a></li>
   </ul>
 </nav>
             </div>
@@ -717,7 +722,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
         
 
         <p>The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to <strong>revoke tokens that are supposed to be still valid</strong>.</p>
-<p>Examples of revoking a valid token could be that an administrator of your application decides that a user can't longer login into the system, or you want to force the renegotiation of the tokens for a subset or all the users because you are not going to wait for the expiration.</p>
+<p>Examples of revoking a valid token could be that an administrator of your application decides that a user can&rsquo;t longer login into the system, or you want to force the renegotiation of the tokens for a subset or all the users because you are not going to wait for the expiration.</p>
 <p>KrakenD integrates the <a href="https://github.com/devopsfaith/bloomfilter">bloomfilter</a> component that allows you to store in an optimized way tokens to revoke on the subsequent requests. When the bloomfilter is activated, the tokens are checked against the bloomfilter as if it were a blacklist, and if the token of the user matches de bloomfilter, the access is not permitted.</p>
 <p>The bloomfilter component brings the following functionalities:</p>
 <ul>
@@ -725,16 +730,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <li>Manage tokens through an RPC interface, both individually or in batch.</li>
 <li>Check tokens and discard access on positives</li>
 </ul>
-<h1 id="why-bloomfilters">Why bloomfilters?</h1>
+<h2 id="why-bloomfilters">Why bloomfilters?</h2>
 <p>The Bloomfilters are ideal for supporting massive rejection of tokens with very little memory consumption. For instance, 100 million tokens of any size consume around 0.5GB RAM (with a rate of false positives of 1 in 999,925,224 tokens), and lookups are completed in constant time (k number of hashes). These numbers are impossible to get with a key-value or a relational database.</p>
 <p>The tokens are in-memory, directly in the rejecter interface, so the system is quick resolving the match.</p>
-<h2 id="additional-resources">Additional resources</h2>
+<h3 id="additional-resources">Additional resources</h3>
 <p>If you want to learn bloomfilters by example, have a look at the following resources:</p>
 <ul>
 <li><a href="https://llimllib.github.io/bloomfilter-tutorial/">Bloomfilter tutorial</a></li>
 <li><a href="https://hur.st/bloomfilter/?n=1000000&amp;p=1.0E-9&amp;m=&amp;k=">Bloomfilter calculator</a></li>
 </ul>
-<h1 id="expiring-tokens-in-a-cluster">Expiring tokens in a cluster</h1>
+<h2 id="expiring-tokens-in-a-cluster">Expiring tokens in a cluster</h2>
 <p>All KrakenD nodes are stateless and act individually. Every node needs to receive the RPC notification about any tokens that need insertion in every local bloomfilter. The bloomfilter gets updated while the service is running, but the the level of synchronization between the nodes depends on how you push them in the cluster. The system is <strong>eventually consistent</strong>.</p>
 <p>The bloomfilter management is brought to you by the component, but you still need to implement the administration part that serves as the source of these tokens and the pushing of them (e.g., a queue and a consumer).</p>
 

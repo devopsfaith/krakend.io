@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Exporting logs, metrics, and traces to several providers - KrakenD API Gateway</title>
     <meta itemprop="name" content="Exporting logs, metrics, and traces to several providers - KrakenD API Gateway">
@@ -721,7 +721,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
     }
 }
 </code></pre>
-<h1 id="configuration">Configuration</h1>
+<h2 id="configuration">Configuration</h2>
 <p>The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration. Every exporter has its own configuration and this described in its own section.</p>
 <p>By default, <strong>all exporters sample the 100% of the requests received every second</strong>, but this can be changed by specifying more configuration:</p>
 <pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
@@ -739,7 +739,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 }
 </code></pre>
 <ul>
-<li><code>sample_rate</code> is the percentage of sampled requests. A value of <code>100</code> means that all requests are exported (100%). If you are processing a huge amount of traffic you might want to sample only a part of what's going on.</li>
+<li><code>sample_rate</code> is the percentage of sampled requests. A value of <code>100</code> means that all requests are exported (100%). If you are processing a huge amount of traffic you might want to sample only a part of what&rsquo;s going on.</li>
 <li><code>reporting_period</code> is the number of <strong>seconds</strong> passing between reports</li>
 <li><code>exporters</code> is a key-value with all the exporters you want to use. See each exporter configuration for the underlying keys.</li>
 <li><code>enabled_layers</code> let you specify what data you want to export. All layers are enabled by default:

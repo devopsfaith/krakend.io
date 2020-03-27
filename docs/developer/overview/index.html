@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Developer Tools - KrakenD API Gateway</title>
     <meta itemprop="name" content="Developer Tools - KrakenD API Gateway">
@@ -21,7 +21,7 @@
 
 
 <meta property="og:title" content="Developer Tools" />
-<meta property="og:description" content="This document is a draftThere are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and never in production
+<meta property="og:description" content="There are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and never in production
 Hot reload the configuration A Docker image using Reflex watches the configuration directory and reloads KrakenD when the configuration changes. This is very convenient while you are developing as it allows you to test new changes without having to restart manually and making the process less tedious." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/developer/overview/" />
@@ -35,7 +35,7 @@ Hot reload the configuration A Docker image using Reflex watches the configurati
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Developer Tools"/>
-<meta name="twitter:description" content="This document is a draftThere are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and never in production
+<meta name="twitter:description" content="There are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and never in production
 Hot reload the configuration A Docker image using Reflex watches the configuration directory and reloads KrakenD when the configuration changes. This is very convenient while you are developing as it allows you to test new changes without having to restart manually and making the process less tedious."/>
 
 
@@ -703,26 +703,31 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/developer
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#krakend-memviz">krakend-memviz</a></li>
-    <li><a href="#krakend-spew">krakend-spew</a></li>
+    <li><a href="#hot-reload-the-configuration">Hot reload the configuration</a></li>
+    <li><a href="#generate-graphs-from-configuration">Generate graphs from configuration</a></li>
+    <li><a href="#debugging-the-activity">Debugging the activity</a>
+      <ul>
+        <li><a href="#krakend-memviz">krakend-memviz</a></li>
+        <li><a href="#krakend-spew">krakend-spew</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
             </div>
         </div>
         
 
-        <p><!-- raw HTML omitted -->This document is a draft<!-- raw HTML omitted --></p>
-<p>There are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and <strong>never in production</strong></p>
-<h1 id="hot-reload-the-configuration">Hot reload the configuration</h1>
+        <p>There are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and <strong>never in production</strong></p>
+<h2 id="hot-reload-the-configuration">Hot reload the configuration</h2>
 <p>A Docker image using Reflex watches the configuration directory and reloads KrakenD when the configuration changes. This is very convenient while you are developing as it allows you to test new changes without having to restart manually and making the process less tedious.</p>
 <p><a href="https://www.krakend.io/blog/reloading-the-krakend-configuration/">More information in our blog post</a></p>
-<h1 id="generate-graphs-from-configuration">Generate graphs from configuration</h1>
+<h2 id="generate-graphs-from-configuration">Generate graphs from configuration</h2>
 <p>The <a href="https://github.com/devopsfaith/krakend-config2dot">config2dot</a> is a tool to create graphs automatically after reading your configuration file <code>krakend.json</code>.</p>
-<!-- raw HTML omitted -->
-<h1 id="debugging-the-activity">Debugging the activity</h1>
-<h2 id="krakend-memviz">krakend-memviz</h2>
+<p><img src="https://github.com/devopsfaith/krakend-config2dot/blob/master/docs/config_1.png?raw=true" alt="Config2Dot example"></p>
+<h2 id="debugging-the-activity">Debugging the activity</h2>
+<h3 id="krakend-memviz">krakend-memviz</h3>
 <p>Adds a <a href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)">DOT</a> file exporter of request/response snapshots to your proxy stack for debug and development purposes. Do not use this in production as it will kill your performance.</p>
-<h2 id="krakend-spew">krakend-spew</h2>
+<h3 id="krakend-spew">krakend-spew</h3>
 <p>Dumps every entity seen in the pipe: requests and responses passing through thew whole stack. Do not use this in production as it will kill your performance.</p>
 <p>Dumps are stored in files like <code>&lt;pipe&gt;_&lt;base64_endpoint/backend_name&gt;_&lt;timestamp&gt;.txt</code>. E.g:</p>
 <pre><code>$ ls

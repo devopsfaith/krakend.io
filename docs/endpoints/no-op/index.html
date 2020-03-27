@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Proxying directly to the backends with `no-op` - KrakenD API Gateway</title>
     <meta itemprop="name" content="Proxying directly to the backends with `no-op` - KrakenD API Gateway">
@@ -21,7 +21,7 @@
 
 
 <meta property="og:title" content="Proxying directly to the backends with `no-op`" />
-<meta property="og:description" content="KrakenD no-op (no-operation), is a special type of encoding that behaves as a proxy by passing the client&#39;s request to the backend as is, and vice-versa.
+<meta property="og:description" content="KrakenD no-op (no-operation), is a special type of encoding that behaves as a proxy by passing the client&rsquo;s request to the backend as is, and vice-versa.
 Using no-op to proxy requests When setting no-op, KrakenD does not inspect the request body or manipulates it in any way. Instead, when a request to a no-op endpoint is received, KrakenD directly forwards it to the backend without doing any operation with it." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/no-op/" />
@@ -35,7 +35,7 @@ Using no-op to proxy requests When setting no-op, KrakenD does not inspect the r
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Proxying directly to the backends with `no-op`"/>
-<meta name="twitter:description" content="KrakenD no-op (no-operation), is a special type of encoding that behaves as a proxy by passing the client&#39;s request to the backend as is, and vice-versa.
+<meta name="twitter:description" content="KrakenD no-op (no-operation), is a special type of encoding that behaves as a proxy by passing the client&rsquo;s request to the backend as is, and vice-versa.
 Using no-op to proxy requests When setting no-op, KrakenD does not inspect the request body or manipulates it in any way. Instead, when a request to a no-op endpoint is received, KrakenD directly forwards it to the backend without doing any operation with it."/>
 
 
@@ -703,9 +703,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
+    <li><a href="#using-no-op-to-proxy-requests">Using <code>no-op</code> to proxy requests</a></li>
     <li><a href="#key-concepts">Key concepts</a></li>
-    <li><a href="#when-to-use-no-op">When to use no-op</a></li>
-    <li><a href="#how-to-use-no-op">How to use no-op</a></li>
+    <li><a href="#when-to-use-no-op">When to use <code>no-op</code></a></li>
+    <li><a href="#how-to-use-no-op">How to use <code>no-op</code></a></li>
     <li><a href="#example">Example</a></li>
   </ul>
 </nav>
@@ -713,11 +714,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         
 
-        <p>KrakenD <code>no-op</code> (<strong>no-operation</strong>), is a special type of <strong>encoding</strong> that behaves as a <strong>proxy</strong> by passing the client's request to the backend <em><strong>as is</strong></em>, and vice-versa.</p>
-<h1 id="using-no-op-to-proxy-requests">Using <code>no-op</code> to proxy requests</h1>
+        <p>KrakenD <code>no-op</code> (<strong>no-operation</strong>), is a special type of <strong>encoding</strong> that behaves as a <strong>proxy</strong> by passing the client&rsquo;s request to the backend <em><strong>as is</strong></em>, and vice-versa.</p>
+<h2 id="using-no-op-to-proxy-requests">Using <code>no-op</code> to proxy requests</h2>
 <p>When setting <code>no-op</code>, KrakenD does not inspect the request <code>body</code> or manipulates it in any way. Instead, when a request to a <code>no-op</code> endpoint is received, KrakenD directly forwards it to the backend without doing any operation with it.</p>
-<p>The <em>proxy pipe</em> (this is from KrakenD to backend) is marked to do no-operation, meaning that KrakenD does not aggregate content, filter, manipulate or any of the other functionalities performed during this pipe. It's also important to notice that only a <strong>single backend</strong> is accepted, as the merge operation happens during the <em>proxy pipe</em>.</p>
-<p>Employing the same principle, when the backend produces the response, it's passed back to the client <em>as is</em>, preserving its form: body, headers, status codes and such.</p>
+<p>The <em>proxy pipe</em> (this is from KrakenD to backend) is marked to do no-operation, meaning that KrakenD does not aggregate content, filter, manipulate or any of the other functionalities performed during this pipe. It&rsquo;s also important to notice that only a <strong>single backend</strong> is accepted, as the merge operation happens during the <em>proxy pipe</em>.</p>
+<p>Employing the same principle, when the backend produces the response, it&rsquo;s passed back to the client <em>as is</em>, preserving its form: body, headers, status codes and such.</p>
 <p>On the other hand, the <em>router pipe</em>&lsquo;s features (from client to KrakenD) remain unaltered, meaning that for instance you can still rate-limit your end-users or require JWT authorization to name a few examples.</p>
 <h2 id="key-concepts">Key concepts</h2>
 <p>The <strong>key concepts</strong> of <code>no-op</code> are:</p>
@@ -743,16 +744,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li>Add <code>&quot;output_encoding&quot;: &quot;no-op&quot;</code> in the <code>endpoint</code> section</li>
 <li>Add <code>&quot;encoding&quot;: &quot;no-op&quot;</code> in the <code>backend</code> section</li>
 </ul>
-<p>When using the no-op encoding remember that the endpoint can only have <strong>one backend</strong> as KrakenD is not going to inspect or manipulate the response (no merging happens). Also, other pipe options like the concurrent requests, the circuit breaker, or the backend rate-limit specific to the proxy pipe aren't available (but still have endpoint rate limit -&gt; router pipe).</p>
+<p>When using the no-op encoding remember that the endpoint can only have <strong>one backend</strong> as KrakenD is not going to inspect or manipulate the response (no merging happens). Also, other pipe options like the concurrent requests, the circuit breaker, or the backend rate-limit specific to the proxy pipe aren&rsquo;t available (but still have endpoint rate limit -&gt; router pipe).</p>
 <h2 id="example">Example</h2>
-<p>The following snippet shows an endpoint that is passed to the backend as is. Notice that both the endpoint and the backend have a <code>no-op</code> encoding. The backend is using KrakenD's debug endpoint to capture the request in the console:</p>
+<p>The following snippet shows an endpoint that is passed to the backend as is. Notice that both the endpoint and the backend have a <code>no-op</code> encoding. The backend is using KrakenD&rsquo;s debug endpoint to capture the request in the console:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/auth/login&#34;</span><span class="p">,</span>
 <span class="hl">    <span class="nt">&#34;output_encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;no-op&#34;</span><span class="p">,</span>
 </span>    <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
 <span class="hl">            <span class="nt">&#34;encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;no-op&#34;</span><span class="p">,</span>
-</span>            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;localhost:8080&#34;</span> <span class="p">]</span><span class="p">,</span>
+</span>            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;localhost:8080&#34;</span> <span class="p">],</span>
             <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/__debug/login&#34;</span>
         <span class="p">}</span>
     <span class="p">]</span>

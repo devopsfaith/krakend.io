@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Throttling overview - KrakenD API Gateway</title>
     <meta itemprop="name" content="Throttling overview - KrakenD API Gateway">
@@ -705,7 +705,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#rate-limiting-a-cluster">Rate limiting a cluster</a></li>
+    <li><a href="#types-of-rate-limits">Types of rate limits</a>
+      <ul>
+        <li><a href="#rate-limiting-a-cluster">Rate limiting a cluster</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-circuit-breaker">The Circuit Breaker</a></li>
+    <li><a href="#timeouts-and-idle-connections">Timeouts and Idle Connections</a></li>
   </ul>
 </nav>
             </div>
@@ -720,20 +726,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
 <li>Create a simple QoS strategy for your API</li>
 </ul>
 <p>The rate limits are complementary to the <a href="/docs/backends/circuit-breaker">Circuit Breaker</a> feature.</p>
-<h1 id="types-of-rate-limits">Types of rate limits</h1>
+<h2 id="types-of-rate-limits">Types of rate limits</h2>
 <p>There are two different layers where the rate limiting applies:</p>
 <ol>
 <li><strong><a href="/docs/endpoints/rate-limit/">Router layer</a></strong>: Sets a maximum throughput to end-users hitting KrakenD endpoints.</li>
 <li><strong><a href="/docs/backends/rate-limit/">Proxy layer</a></strong>: Sets a maximum throughput between KrakenD and your backend services</li>
 </ol>
 <p>To deep dive in the code see the <a href="https://github.com/devopsfaith/krakend-ratelimit">rate-limiting middleware</a></p>
-<h2 id="rate-limiting-a-cluster">Rate limiting a cluster</h2>
+<h3 id="rate-limiting-a-cluster">Rate limiting a cluster</h3>
 <p>As KrakenD is a stateless API Gateway and does not have any centralization, <strong>the limits apply individually to each running instance of KrakenD</strong>. For instance, if you limit an endpoint to 100 reqs/s in the <code>krakend.json</code> and you have a cluster deployed with 3 instances of KrakenD, then your ecosystem is limiting to 300 reqs/s. If you add a 4th node, then you are increasing this limit to 400 reqs/s.</p>
-<h1 id="the-circuit-breaker">The Circuit Breaker</h1>
+<h2 id="the-circuit-breaker">The Circuit Breaker</h2>
 <p>The <strong>Circuit Breaker</strong> is a <strong>state machine</strong> between the request and the response that observes the failures of the backends. When a backend seems to be failing, KrakenD ceases to send more traffic to avoid stressing the suffering backend until it is considered recovered.</p>
 <p>The Circuit Breaker is an automatic protection measure for your stack and avoids cascade failures.</p>
 <p>See the <a href="/docs/backends/circuit-breaker/">Circuit Breaker</a></p>
-<h1 id="timeouts-and-idle-connections">Timeouts and Idle Connections</h1>
+<h2 id="timeouts-and-idle-connections">Timeouts and Idle Connections</h2>
 <p>KrakenD allows you to fine-tune timeouts both for the HTTP server and the HTTP client used to access your backends. As per the IDLE connections, having a high number of them to every backend, it affects directly to the performance of the proxy layer.</p>
 <ul>
 <li>See <a href="/docs/throttling/timeouts/">Timeouts</a></li>

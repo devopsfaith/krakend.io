@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Enabling TLS for HTTPS and HTTP/2 - KrakenD API Gateway</title>
     <meta itemprop="name" content="Enabling TLS for HTTPS and HTTP/2 - KrakenD API Gateway">
@@ -22,7 +22,7 @@
 
 <meta property="og:title" content="Enabling TLS for HTTPS and HTTP/2" />
 <meta property="og:description" content="There are two different strategies when using TLS over KrakenD:
- Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&#39;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted." />
+ Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/service-settings/tls/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -36,7 +36,7 @@
 
 <meta name="twitter:title" content="Enabling TLS for HTTPS and HTTP/2"/>
 <meta name="twitter:description" content="There are two different strategies when using TLS over KrakenD:
- Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&#39;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted."/>
+ Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted."/>
 
 
 
@@ -711,7 +711,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
 <li>Use TLS for HTTPS and HTTP/2 in KrakenD</li>
 <li>Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)</li>
 </ul>
-<p>In case you want to enable TLS in KrakenD you need to add a <code>tls</code> key at service level (configuration's file root) with at least the public key and the private key. When you add TLS, KrakenD listens <strong>only using TLS</strong>, and no traffic to plain HTTP is accepted.</p>
+<p>In case you want to enable TLS in KrakenD you need to add a <code>tls</code> key at service level (configuration&rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens <strong>only using TLS</strong>, and no traffic to plain HTTP is accepted.</p>
 <h1 id="simple-configuration-for-tls">Simple configuration for TLS</h1>
 <p>To start KrakenD with TLS you need to generate the certificate and provide both the public and the private key:</p>
 <pre><code>{

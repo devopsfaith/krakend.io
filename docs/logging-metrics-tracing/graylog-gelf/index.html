@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Graylog and the GELF format - KrakenD API Gateway</title>
     <meta itemprop="name" content="Graylog and the GELF format - KrakenD API Gateway">
@@ -716,7 +716,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <li><code>address</code>: The address (including the port) of your Graylog cluster (or any other service that receives GELF inputs).</li>
 <li><code>enable_tcp</code>: Set to <code>false</code> (recommended) to use UDP. When using TCP performance might be affected.</li>
 </ul>
-<h1 id="enabling-gelf">Enabling GELF</h1>
+<h2 id="enabling-gelf">Enabling GELF</h2>
 <p>Add the <code>krakend-gelf</code> integration in the root level of your <code>krakend.json</code>, inside the <code>extra_config</code> section. <strong>The <code>gologging</code> needs to be enabled too</strong>.</p>
 <p>For instance:</p>
 <pre><code>&quot;extra_config&quot;: {

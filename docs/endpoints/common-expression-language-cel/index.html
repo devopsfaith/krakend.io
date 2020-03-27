@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway</title>
     <meta itemprop="name" content="Checking requests and responses with the Common Expression Language (CEL) - KrakenD API Gateway">
@@ -22,7 +22,7 @@
 
 <meta property="og:title" content="Checking requests and responses with the Common Expression Language (CEL)" />
 <meta property="og:description" content="There are times when you might want to include additional logic in the gateway to decide if a request has to be fulfilled or not.
-The Common Expression Language (CEL) middleware enables Google&#39;s CEL spec which implements common semantics for expression evaluation, and is a very simple and powerful option to have full control during requests and responses.
+The Common Expression Language (CEL) middleware enables Google&rsquo;s CEL spec which implements common semantics for expression evaluation, and is a very simple and powerful option to have full control during requests and responses.
 When the CEL component is enabled, any amount of expressions to check both requests and responses can be set." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/common-expression-language-cel/" />
@@ -37,7 +37,7 @@ When the CEL component is enabled, any amount of expressions to check both reque
 
 <meta name="twitter:title" content="Checking requests and responses with the Common Expression Language (CEL)"/>
 <meta name="twitter:description" content="There are times when you might want to include additional logic in the gateway to decide if a request has to be fulfilled or not.
-The Common Expression Language (CEL) middleware enables Google&#39;s CEL spec which implements common semantics for expression evaluation, and is a very simple and powerful option to have full control during requests and responses.
+The Common Expression Language (CEL) middleware enables Google&rsquo;s CEL spec which implements common semantics for expression evaluation, and is a very simple and powerful option to have full control during requests and responses.
 When the CEL component is enabled, any amount of expressions to check both requests and responses can be set."/>
 
 
@@ -730,7 +730,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         <p>There are times when you might want to include <strong>additional logic</strong> in the gateway
 to decide if a request has to be fulfilled or not.</p>
 <p>The <a href="https://github.com/devopsfaith/krakend-cel">Common Expression Language (CEL)</a>
-middleware enables Google's <a href="https://github.com/google/cel-spec">CEL spec</a>
+middleware enables Google&rsquo;s <a href="https://github.com/google/cel-spec">CEL spec</a>
 which implements common semantics for expression evaluation, and is a very
 simple and powerful option to have full control during requests and responses.</p>
 <p>When the CEL component is enabled, any amount of expressions to check both requests and responses can be set.</p>
@@ -777,7 +777,7 @@ variable to access its metadata. For instance:</p>
 <pre><code>has(JWT.user_id) &amp;&amp; has(JWT.enabled_days) &amp;&amp; (timestamp(now).getDayOfWeek() in JWT.enabled_days)
 </code></pre>
 <p>This example checks that the JWT token contains the metadata <code>user_id</code> and
-<code>enabled_days</code> with the macro <code>has()</code>, and then checks that today's weekday  is
+<code>enabled_days</code> with the macro <code>has()</code>, and then checks that today&rsquo;s weekday  is
 within one of the allowed days to see the endpoint.</p>
 <h1 id="cel-syntax">CEL Syntax</h1>
 <p>See the <a href="https://github.com/google/cel-spec/blob/master/doc/langdef.md">language definition</a></p>

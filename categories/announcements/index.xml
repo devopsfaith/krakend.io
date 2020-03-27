@@ -38,7 +38,7 @@ KrakenD 1.0 is our announcement to the world that our libraries are now fully es
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/blog/krakend-0.9-release-notes/</guid>
-      <description>It&#39;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&#39;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&#39;s get started!
+      <description>It&amp;rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&amp;rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&amp;rsquo;s get started!
 Integration with AMQP The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</description>
     </item>
     
@@ -124,7 +124,7 @@ KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The 
       <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
-      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&#39;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
+      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
 A look back&amp;hellip; If you are reading this post chances are that you know this already, in short KrakenD is the fastest API Gateway in the market.</description>
     </item>
     

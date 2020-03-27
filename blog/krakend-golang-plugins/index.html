@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>How to work with Golang plugins and KrakenD - KrakenD API Gateway</title>
     <meta itemprop="name" content="How to work with Golang plugins and KrakenD - KrakenD API Gateway">
@@ -287,18 +287,18 @@
           </header>
 
           <p>The release of <a href="https://golang.org/doc/go1.8#plugin">golang 1.8</a> more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.</p>
-<p>We'd like to share our experience and details on how we enhanced our products to support golang plugins.</p>
+<p>We&rsquo;d like to share our experience and details on how we enhanced our products to support golang plugins.</p>
 <h2 id="why-would-anyone-use-plugins-in-go">Why would anyone use plugins in Go?</h2>
 <p>The <em>plugin</em> concept is widely known and supported in several programming languages and environments. It gives third-party developers the ability to extend applications, adding new features or customizing behaviors, without touching a single line of the core application, while avoiding recompilation.</p>
 <p>Our distribution of <a href="https://github.com/devopsfaith/krakend-ce">KrakenD (aka, KrakenD-CE)</a> today includes a series of extra middleware living in <a href="https://github.com/devopsfaith/krakend-contrib">separate repositories</a> that are compiled and included in the final binary of KrakenD-CE.</p>
 <p>As owners of the product, we have to decide what kind of middleware to include by default in the final distribution, but we understand that our reasoned decision not to include something might not fit your particular interests. Our compromise is to have a pure API Gateway with the best possible performance, and some features will always drop out by their nature and will never join the krakend-ce. This forces users to import this middleware and compile the final binary themselves.</p>
-<p>Here's a practical example: if you wanted to include the <a href="https://github.com/devopsfaith/krakend-newrelic">New Relic instrumentation middleware</a> to see metrics in your panel, then you would have to fork the KrakenD-CE repository, import the package, add the middleware in the pipe factory and compile the project. While that's no big deal, it would be much easier to just put a file in a folder and start the server, wouldn't it?</p>
-<p><em>If you're wondering why the NR module is not included in our distribution (yet?) it's because adding the agent into the gateway has a high impact in terms of performance and memory consumption, so until the maintainer fixes this issue, it's out.</em></p>
+<p>Here&rsquo;s a practical example: if you wanted to include the <a href="https://github.com/devopsfaith/krakend-newrelic">New Relic instrumentation middleware</a> to see metrics in your panel, then you would have to fork the KrakenD-CE repository, import the package, add the middleware in the pipe factory and compile the project. While that&rsquo;s no big deal, it would be much easier to just put a file in a folder and start the server, wouldn&rsquo;t it?</p>
+<p><em>If you&rsquo;re wondering why the NR module is not included in our distribution (yet?) it&rsquo;s because adding the agent into the gateway has a high impact in terms of performance and memory consumption, so until the maintainer fixes this issue, it&rsquo;s out.</em></p>
 <h2 id="good-news-and-bad-news">Good news and bad news</h2>
 <p>The good news is that with plugins we can give a lot of power to KrakenD without jumping into a discussion about whether this specific set of features should go inside the distribution or not (or at least, a less heated discussion).</p>
 <p>The bad news is that as the official documentation says <em>&ldquo;Plugin support is currently only available on Linux&rdquo;</em>. Although 99.9% of users deploy in production in a Linux box or a linux container, right now KrakenD is multiplatform but plugins are not.</p>
 <h2 id="tuning-the-krakend-framework">Tuning the KrakenD framework</h2>
-<p>Let's get our hands dirty and take look at an example of the Go code you need to support plugins.</p>
+<p>Let&rsquo;s get our hands dirty and take look at an example of the Go code you need to support plugins.</p>
 <p>For the initial iteration, we just added a new config section and a single <code>plugin</code> package.</p>
 <p>Here is the definition of the new config <code>struct</code> added in the <code>ServiceConfig</code>:</p>
 <pre><code>type Plugin struct {
@@ -330,7 +330,7 @@
 // pluginOpener keeps the plugin open function in a var for easy testing
 var pluginOpener = plugin.Open
 </code></pre>
-<p>We decided that delegating the registering logic to the plugins would give us a better decoupling (the good old <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC </a> principle). After scaning and filtering the contents of the <strong>plugins</strong> folder, the <code>Load</code> function just calls <code>plugin.Open</code> wrapping the possible errors and panics. Currently it doesn't use the returned <code>*plugin.Plugin</code> for lookups. Check the <a href="https://godoc.org/github.com/devopsfaith/krakend/plugin">documentation</a> for more details.</p>
+<p>We decided that delegating the registering logic to the plugins would give us a better decoupling (the good old <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC </a> principle). After scaning and filtering the contents of the <strong>plugins</strong> folder, the <code>Load</code> function just calls <code>plugin.Open</code> wrapping the possible errors and panics. Currently it doesn&rsquo;t use the returned <code>*plugin.Plugin</code> for lookups. Check the <a href="https://godoc.org/github.com/devopsfaith/krakend/plugin">documentation</a> for more details.</p>
 <p>This is the <a href="https://github.com/devopsfaith/krakend/pull/87">Pull Request</a> with all the required changes for the framework.</p>
 <h2 id="tuning-the-krakend-ce-distribution">Tuning the KrakenD-CE distribution</h2>
 <p>In order to load the plugins before starting the gateway, the <code>executor.go</code> script needs to be extended with this code block:</p>
@@ -348,7 +348,7 @@ var pluginOpener = plugin.Open
 <p>Because the plugin feature is still experimental, it should be enabled both in the configuration file and in the <code>KRAKEND_ENABLE_PLUGINS</code> env_var.</p>
 <p>This is the complete <a href="https://github.com/devopsfaith/krakend-ce/pull/9">Pull Request</a>.</p>
 <h2 id="writing-plugins">Writing plugins</h2>
-<p>As required by the <code>plugin</code> Golang package, plugins should have a <code>main</code> package so their <code>main</code> function won't ever be called.</p>
+<p>As required by the <code>plugin</code> Golang package, plugins should have a <code>main</code> package so their <code>main</code> function won&rsquo;t ever be called.</p>
 <p>The <a href="https://github.com/kpacha/martian-components/blob/master/krakend-plugin/elastic-search/plugin.go">Elastic Search martian plugin</a> is a very clear example of how to bundle the plugins and the KrakenD-CE binary via the <code>krakend-martian</code> package and without using the martian lib in the plugin in order to avoid flag collisions.</p>
 <p>This is all the code required for the plugin:</p>
 <pre><code>package main
@@ -374,16 +374,16 @@ func main() {
 </code></pre>
 <p>And place the generated plugins into your plugin folder, so the KrakenD can load them in runtime.</p>
 <h2 id="word-of-advice">Word of advice</h2>
-<p>These are the caveats we've found so far in our experiments, but almost all cases can be avoided with some workarounds:</p>
+<p>These are the caveats we&rsquo;ve found so far in our experiments, but almost all cases can be avoided with some workarounds:</p>
 <h3 id="dependency-versions">Dependency versions</h3>
-<p>Shared libraries between the application and the plugins should have the same version or the plugin won't be loaded. Using vendors might help limiting the friction and avoid problems but in some cases this is just not possible.</p>
+<p>Shared libraries between the application and the plugins should have the same version or the plugin won&rsquo;t be loaded. Using vendors might help limiting the friction and avoid problems but in some cases this is just not possible.</p>
 <h3 id="flag-collisions">Flag collisions</h3>
 <p>If the plugin or its dependencies redeclare a flag used by the application (or its dependencies) the plugin will panic.</p>
 <h3 id="vendored-packages">Vendored packages</h3>
-<p>If your application or your plugin use any kind of dependency vendoring system, the vendored packages will be usually renamed to <code>path/to/your_app/vendor/path/to/dependency</code>. So it won't be accessible from your plugins.</p>
+<p>If your application or your plugin use any kind of dependency vendoring system, the vendored packages will be usually renamed to <code>path/to/your_app/vendor/path/to/dependency</code>. So it won&rsquo;t be accessible from your plugins.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>In this post we have seen the benefits of using plugins and how to use them in your application. Even if they are only supported in Linux, it's a very convenient way to extend functionality, especially those that aren't used in all cases and are more rare.</p>
-<p>Thanks for reading! If you like our product don't forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+<p>In this post we have seen the benefits of using plugins and how to use them in your application. Even if they are only supported in Linux, it&rsquo;s a very convenient way to extend functionality, especially those that aren&rsquo;t used in all cases and are more rare.</p>
+<p>Thanks for reading! If you like our product don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
 
 
           <aside>

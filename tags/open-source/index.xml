@@ -38,7 +38,7 @@ KrakenD 1.0 is our announcement to the world that our libraries are now fully es
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/blog/krakend-0.9-release-notes/</guid>
-      <description>It&#39;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&#39;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&#39;s get started!
+      <description>It&amp;rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&amp;rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&amp;rsquo;s get started!
 Integration with AMQP The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</description>
     </item>
     
@@ -103,7 +103,7 @@ The Krakend Playground and the KrakenDesigner (UI) is also updated.</description
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
-      <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&#39;s running. The short answer is: No, you can&#39;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&#39;t support such a feature:
+      <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&amp;rsquo;s running. The short answer is: No, you can&amp;rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&amp;rsquo;t support such a feature:
  Performance: This is the #1 reason, and strong enough.</description>
     </item>
     
@@ -125,8 +125,8 @@ This release focuses heavily on metrics and its export options to different back
       <guid>https://www.krakend.io/blog/krakend-on-kubernetes/</guid>
       <description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
 We will use for the demonstration Minikube so you cant test it in your own local machine.
-Let&#39;s get started!
-Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&#39;s quick and easy.</description>
+Let&amp;rsquo;s get started!
+Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&amp;rsquo;s quick and easy.</description>
     </item>
     
     <item>
@@ -135,7 +135,7 @@ Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube.
       <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
-      <description>As a systems administrator for the past 15 years, I&#39;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&#39;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
+      <description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
 Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description>
     </item>
     
@@ -156,7 +156,7 @@ Generally speaking, all these devices collect raw data and send it to the cloud 
       
       <guid>https://www.krakend.io/blog/krakend-golang-plugins/</guid>
       <description>The release of golang 1.8 more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.
-We&#39;d like to share our experience and details on how we enhanced our products to support golang plugins.
+We&amp;rsquo;d like to share our experience and details on how we enhanced our products to support golang plugins.
 Why would anyone use plugins in Go? The plugin concept is widely known and supported in several programming languages and environments.</description>
     </item>
     
@@ -166,7 +166,7 @@ Why would anyone use plugins in Go? The plugin concept is widely known and suppo
       <pubDate>Fri, 06 Apr 2018 23:46:25 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/deploying-an-api-gateway/</guid>
-      <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&#39;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
+      <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&amp;rsquo;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
     </item>
     
     <item>
@@ -188,7 +188,7 @@ KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The 
       
       <guid>https://www.krakend.io/blog/what-is-an-api-gateway/</guid>
       <description>The more we talk to people about API gateways, the more we have come to realize that the term means different things to different people, and more specifically we see a growing trend where developers (but mostly managers) expect an API gateway to be able to perform miracles, usually a long way away from its intended use.
-It&#39;s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.</description>
+It&amp;rsquo;s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.</description>
     </item>
     
     <item>
@@ -206,7 +206,7 @@ It&#39;s as if the API Gateway is the new unicorn that will solve all problems a
       <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
-      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&#39;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
+      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
 A look back&amp;hellip; If you are reading this post chances are that you know this already, in short KrakenD is the fastest API Gateway in the market.</description>
     </item>
     

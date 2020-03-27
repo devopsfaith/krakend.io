@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>JWT Signing - KrakenD API Gateway</title>
     <meta itemprop="name" content="JWT Signing - KrakenD API Gateway">
@@ -21,7 +21,7 @@
 
 
 <meta property="og:title" content="JWT Signing" />
-<meta property="og:description" content="The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&#39;t need to trust an external source to keep it for you." />
+<meta property="og:description" content="The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&rsquo;t need to trust an external source to keep it for you." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/authorization/jwt-signing/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -34,7 +34,7 @@
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="JWT Signing"/>
-<meta name="twitter:description" content="The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&#39;t need to trust an external source to keep it for you."/>
+<meta name="twitter:description" content="The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&rsquo;t need to trust an external source to keep it for you."/>
 
 
 
@@ -706,14 +706,21 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents"></nav>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#basic-jwt-signing">Basic JWT signing</a></li>
+    <li><a href="#a-complete-running-example">A complete running example</a></li>
+    <li><a href="#jwt-signing-settings">JWT signing settings</a></li>
+  </ul>
+</nav>
             </div>
         </div>
         
 
-        <p>The JWT signing component is meant to create an <strong>endpoint wrapper</strong> that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don't need to trust an external source to keep it for you.</p>
+        <p>The JWT signing component is meant to create an <strong>endpoint wrapper</strong> that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&rsquo;t need to trust an external source to keep it for you.</p>
 <p>The <strong>JOSE component</strong> is responsible for signing tokens.</p>
-<h1 id="requirements">Requirements</h1>
+<h2 id="requirements">Requirements</h2>
 <p>You need a backend -not KrakenD- that exposes an endpoint able to <strong>issues tokens</strong>, and another endpoint for <strong>refreshing tokens</strong>.</p>
 <p>For instance your backend could have an endpoint like <code>/token-issuer</code>, that when receives the right <code>POST</code> parameters able to identify the user returns something like this:</p>
 <pre><code>curl -X POST --data '{&quot;user&quot;:&quot;john&quot;,&quot;pass&quot;:&quot;doe&quot;}' https://backend/token-issuer
@@ -736,22 +743,22 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
     &quot;exp&quot;: 1735689600
 }
 </code></pre>
-<h1 id="basic-jwt-signing">Basic JWT signing</h1>
+<h2 id="basic-jwt-signing">Basic JWT signing</h2>
 <p>When your application knows how to issue tokens, you can sign them before passing them to the user automatically in the gateway. To achieve that, instead of publishing our internal backend that generates plain tokens under <code>/token-issuer</code>, we only expose via KrakenD a new endpoint named <code>/token</code> (choose your name). This endpoint forwards the data received in the <code>POST</code> (as chosen in the example) and returns a signed token when the backend replies.</p>
 <p>For instance, from the plain token above we want to sign the keys <code>&quot;access_token&quot;</code> and <code>&quot;refresh_token&quot;</code> so nobody can modify its contents. We need a configuration like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;/token&#34;</span><span class="p">,</span>
 <span class="s">&#34;method&#34;</span><span class="p">:</span> <span class="s">&#34;POST&#34;</span><span class="p">,</span>
 <span class="s">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
 <span class="p">{</span>
-    <span class="s">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#34;https://backend&#34;</span> <span class="p">]</span><span class="p">,</span>
+    <span class="s">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#34;https://backend&#34;</span> <span class="p">],</span>
     <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;/token-issuer&#34;</span>
 <span class="p">}</span>
-<span class="hl"><span class="p">]</span><span class="p">,</span>
+<span class="hl"><span class="p">],</span>
 </span><span class="hl"><span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span><span class="hl">    <span class="s">&#34;github.com/devopsfaith/krakend-jose/signer&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span><span class="hl">        <span class="s">&#34;alg&#34;</span><span class="p">:</span> <span class="s">&#34;HS256&#34;</span><span class="p">,</span>
 </span><span class="hl">        <span class="s">&#34;kid&#34;</span><span class="p">:</span> <span class="s">&#34;sim2&#34;</span><span class="p">,</span>
-</span><span class="hl">        <span class="s">&#34;keys-to-sign&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#34;access_token&#34;</span><span class="p">,</span> <span class="s">&#34;refresh_token&#34;</span><span class="p">]</span><span class="p">,</span>
+</span><span class="hl">        <span class="s">&#34;keys-to-sign&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#34;access_token&#34;</span><span class="p">,</span> <span class="s">&#34;refresh_token&#34;</span><span class="p">],</span>
 </span><span class="hl">        <span class="s">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s">&#34;http://backend/jwk/symmetric.json&#34;</span>
 </span><span class="hl">    <span class="p">}</span>
 </span><span class="p">}</span>
@@ -764,9 +771,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 &quot;refresh_token&quot;: &quot;eyJhbGciOiJIUzI1NiIsImtpZCI6InNcdTIifQ.eyJhdWQiOiJodHRwOi8vYXBpLmV4YW1wbGUuY29tIiwiZXhwIjoxNzM1Njg5NjAwLCJpf1MiOiJodHRwczovL2tyYWtlbmQuaW8iLCJqdGkiOiJtbmIyM3Zjf1J0NzU2eXVcd21uMTI4NzZidmN4OThlcnR5dWlvcCIsInN1YiI6IjEyMzQ1Njc4OTBxd2VydHl1aW8ifQ.4v36tuYHe4E9gCVO-_asuXfzSzoJdoR0NJfVQdVKidw&quot;
 }
 </code></pre>
-<h1 id="a-complete-running-example">A complete running example</h1>
+<h2 id="a-complete-running-example">A complete running example</h2>
 <p>The <a href="/docs/overview/playground/">KrakenD Playground</a> demonstrates how to sign tokens in the <code>/token</code> endpoint and includes an example ready to use. To try it, <a href="https://github.com/devopsfaith/krakend-playground">clone the playground</a> and follow the README.</p>
-<h1 id="jwt-signing-settings">JWT signing settings</h1>
+<h2 id="jwt-signing-settings">JWT signing settings</h2>
 <p>The following settings are available to sign JWT:</p>
 <ul>
 <li><code>alg</code>: <em>recognized string</em>. The hashing algorithm used by the issuer. Usually <code>RS256</code>.</li>
@@ -779,7 +786,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <li><code>full</code>: <em>boolean</em>. Use JSON format instead of the compact form JWT is giving.</li>
 <li><code>disable_jwk_security</code>: <em>boolean</em>. When <code>true</code>, disables security of the JWK client and allows insecure connections (plain HTTP) to download the keys.</li>
 <li><code>jwk_fingerprints</code>: <em>string list</em>. A list of fingerprints (the unique identifier of the certificate) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.</li>
-<li><code>cipher_suites</code>: <em>integers list</em>. Override the default cipher suites. Unless you have a legacy JWK, you don't need to add this value.</li>
+<li><code>cipher_suites</code>: <em>integers list</em>. Override the default cipher suites. Unless you have a legacy JWK, you don&rsquo;t need to add this value.</li>
 </ul>
 <p>The following example contains every single option available:</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
@@ -793,15 +800,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 </span><span class="hl">          <span class="s">&#34;keys-to-sign&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span><span class="hl">            <span class="s">&#34;access_token&#34;</span><span class="p">,</span>
 </span><span class="hl">            <span class="s">&#34;refresh_token&#34;</span>
-</span><span class="hl">          <span class="p">]</span><span class="p">,</span>
+</span><span class="hl">          <span class="p">],</span>
 </span><span class="hl">          <span class="s">&#34;kid&#34;</span><span class="p">:</span> <span class="s">&#34;sim2&#34;</span><span class="p">,</span>
 </span><span class="hl">          <span class="s">&#34;cipher_suites&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span><span class="hl">            <span class="mi">5</span><span class="p">,</span>
 </span><span class="hl">            <span class="mi">10</span>
-</span><span class="hl">          <span class="p">]</span><span class="p">,</span>
+</span><span class="hl">          <span class="p">],</span>
 </span><span class="hl">          <span class="s">&#34;jwk_fingerprints&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span><span class="hl">            <span class="s">&#34;S3Jha2VuRCBpcyB0aGUgYmVzdCBnYXRld2F5LCBhbmQgeW91IGtub3cgaXQ==&#34;</span>
-</span><span class="hl">          <span class="p">]</span><span class="p">,</span>
+</span><span class="hl">          <span class="p">],</span>
 </span><span class="hl">          <span class="s">&#34;full&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
 </span><span class="hl">          <span class="s">&#34;disable_jwk_security&#34;</span><span class="p">:</span> <span class="kc">true</span>
 </span><span class="hl">        <span class="p">}</span>

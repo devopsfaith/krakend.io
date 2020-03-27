@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Writing custom plugins - KrakenD API Gateway</title>
     <meta itemprop="name" content="Writing custom plugins - KrakenD API Gateway">
@@ -21,8 +21,8 @@
 
 
 <meta property="og:title" content="Writing custom plugins" />
-<meta property="og:description" content="KrakenD&#39;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&#39;s always tempting to start writing code but the majority of scenarios do not require writing any. Existing modules, middleware, and plugins suffice almost everyone&#39;s needs.
-It&#39;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code." />
+<meta property="og:description" content="KrakenD&rsquo;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&rsquo;s always tempting to start writing code but the majority of scenarios do not require writing any. Existing modules, middleware, and plugins suffice almost everyone&rsquo;s needs.
+It&rsquo;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/extending/writing-plugins/" />
 <meta property="og:image" content="https://www.krakend.io/images/extensible.png" />
@@ -36,8 +36,8 @@ It&#39;s important to remark, that if you want to do complex business logic chec
 <meta name="twitter:image" content="https://www.krakend.io/images/extensible.png"/>
 
 <meta name="twitter:title" content="Writing custom plugins"/>
-<meta name="twitter:description" content="KrakenD&#39;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&#39;s always tempting to start writing code but the majority of scenarios do not require writing any. Existing modules, middleware, and plugins suffice almost everyone&#39;s needs.
-It&#39;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code."/>
+<meta name="twitter:description" content="KrakenD&rsquo;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&rsquo;s always tempting to start writing code but the majority of scenarios do not require writing any. Existing modules, middleware, and plugins suffice almost everyone&rsquo;s needs.
+It&rsquo;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code."/>
 
 
 
@@ -708,30 +708,31 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#writing-and-injecting-plugins">Writing and injecting plugins</a>
+    <li><a href="#where-to-start-customizing">Where to start customizing</a></li>
+    <li><a href="#approaches-to-extend-krakend">Approaches to extend KrakenD</a></li>
+    <li><a href="#sequence-of-requests-and-responses">Sequence of requests and responses</a>
       <ul>
-        <li><a href="#writing-proxy-plugins-http-client">Writing proxy plugins (http client)</a></li>
-        <li><a href="#writing-router-plugins-http-handler">Writing router plugins (http handler)</a></li>
-        <li><a href="#writing-your-custom-middleware">Writing your custom middleware</a></li>
+        <li><a href="#writing-and-injecting-plugins">Writing and injecting plugins</a></li>
       </ul>
     </li>
+    <li><a href="#ask-the-community">Ask the community</a></li>
   </ul>
 </nav>
             </div>
         </div>
         
 
-        <p>KrakenD's modular design allows you to extend its functionality by adding your custom code. As an engineer, it's always tempting to start writing code but <strong>the majority of scenarios do not require writing any</strong>. Existing modules, middleware, and plugins suffice almost everyone's needs.</p>
-<p>It's important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code. Examples are the <a href="/docs/endpoints/common-expression-language-cel/">expression language</a>, <a href="/docs/endpoints/martian/">Martian transformations</a>, or <a href="/docs/endpoints/lua/">Lua scripting</a>.</p>
-<p>Let's get you started building custom code!</p>
-<h1 id="where-to-start-customizing">Where to start customizing</h1>
+        <p>KrakenD&rsquo;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&rsquo;s always tempting to start writing code but <strong>the majority of scenarios do not require writing any</strong>. Existing modules, middleware, and plugins suffice almost everyone&rsquo;s needs.</p>
+<p>It&rsquo;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code. Examples are the <a href="/docs/endpoints/common-expression-language-cel/">expression language</a>, <a href="/docs/endpoints/martian/">Martian transformations</a>, or <a href="/docs/endpoints/lua/">Lua scripting</a>.</p>
+<p>Let&rsquo;s get you started building custom code!</p>
+<h2 id="where-to-start-customizing">Where to start customizing</h2>
 <p>The word plugin appears in many places over the Internet, but when we talk about plugins we refer to <strong><a href="https://golang.org/pkg/plugin/">Go plugins</a></strong>.</p>
 <p><code>middleware != plugin</code></p>
 <p>KrakenD API Gateway is a composition of a framework and many other pieces and repositories that compile in a single, final, binary. We refer to these pieces as <strong>middleware</strong>, <strong>components</strong>, <strong>modules</strong>, or <strong>packages</strong> <code>¯\_(ツ)_/¯</code>.</p>
 <p><strong>A plugin is a soft-linked library</strong>, thus a separated <code>.so</code> file, that when running in conjunction with KrakenD can participate in the processing.</p>
 <p>Plugins and middlewares are close concepts but do not confuse them. The middleware compiles inside the KrakenD binary while plugins compile in <strong>another binary</strong>.</p>
 <p>Plugins allow you to &ldquo;drag and drop&rdquo; custom functionality into KrakenD but still use the official binaries. Custom middlewares require compiling your version of KrakenD.</p>
-<h1 id="approaches-to-extend-krakend">Approaches to extend KrakenD</h1>
+<h2 id="approaches-to-extend-krakend">Approaches to extend KrakenD</h2>
 <p>Either you write plugins, or you write middleware. These are the three options:</p>
 <ol>
 <li>Write and inject a plugin in the router layer</li>
@@ -751,7 +752,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <ul>
 <li>Write your custom middleware.</li>
 </ul>
-<h1 id="sequence-of-requests-and-responses">Sequence of requests and responses</h1>
+<h2 id="sequence-of-requests-and-responses">Sequence of requests and responses</h2>
 <p>A recommended read before going any further is &ldquo;<a href="/docs/extending/the-big-picture/#the-important-packages">Understanding the big picture</a>&quot;, and specially identify the important packages.</p>
 <p>In a nutshell, the sequence of a request-response is as follows:</p>
 <ol>
@@ -760,35 +761,35 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <li>The <code>proxy</code> pipe fetches the data for all the requests, manipulates, aggregates&hellip; and returns the context to the <code>router</code>.</li>
 <li>The <code>router</code> converts back the proxy response into an HTTP response.</li>
 </ol>
-<h2 id="writing-and-injecting-plugins">Writing and injecting plugins</h2>
+<h3 id="writing-and-injecting-plugins">Writing and injecting plugins</h3>
 <p>The sequence described above can be seen in the following diagram. Notice the two blue spots:</p>
 <ul>
 <li>The http handler (router)</li>
 <li>The http client (proxy)</li>
 </ul>
-<!-- raw HTML omitted -->
+<p><img src="/images/documentation/krakend-plugins.png" alt="Krakend Plugins"></p>
 <p>The blue spots indicate the places where you can register your custom plugins.</p>
 <p>Compile your plugin with <code>go build -buildmode=plugin -o yourplugin.so</code> and then reference them in the configuration file. For instance:</p>
 <pre><code>&quot;github_com/devopsfaith/krakend/transport/http/server/handler&quot;: {
    &quot;name&quot;: &quot;your-plugin&quot;
 }
 </code></pre>
-<h3 id="writing-proxy-plugins-http-client">Writing proxy plugins (http client)</h3>
+<h4 id="writing-proxy-plugins-http-client">Writing proxy plugins (http client)</h4>
 <p>Find a <em>hello world</em> example with the simplest custom plugin in the <a href="https://godoc.org/github.com/devopsfaith/krakend/transport/http/client/plugin">godoc documentation</a>.</p>
 <p><strong>HTTP client</strong> plugins execute in the proxy layer. They allow you to intercept, transform, and manipulate the requests before they hit your backend services.</p>
 <p>Writing an HTTP client requires to implement the <a href="https://github.com/devopsfaith/krakend/tree/master/transport/http/client/plugin">plugin client interface</a>. After doing this, your plugin registers itself on KrakenD during startup time.</p>
 <p>A more complete example of this type of plugin that the basic plugin above can be found in the article <a href="/blog/krakend-grpc-gateway-plugin/">gRPC-gateway as a KrakenD plugin</a>, which builds a gRPC-gateway to connect to your backends. Go through the article and linked sources to get your plugin working.</p>
-<h3 id="writing-router-plugins-http-handler">Writing router plugins (http handler)</h3>
+<h4 id="writing-router-plugins-http-handler">Writing router plugins (http handler)</h4>
 <p>Find a <em>hello world</em> example with the simplest custom plugin in the <a href="https://godoc.org/github.com/devopsfaith/krakend/transport/http/server/plugin">godoc documentation</a></p>
 <p>The router layer receives the user requests. You can intercept the request before KrakenD gets it to do any transformation or operation you want.</p>
 <p>Writing an http handler plugin requires you to implement the <a href="https://github.com/devopsfaith/krakend/tree/master/transport/http/server/plugin">plugin server interface</a>.</p>
-<h3 id="writing-your-custom-middleware">Writing your custom middleware</h3>
+<h4 id="writing-your-custom-middleware">Writing your custom middleware</h4>
 <p>The last option is to write code and compile it along with KrakenD. When writing your custom code, the usual choice is to fork the <a href="https://github.com/devopsfaith/krakend-ce">KrakenD-CE</a> repository.</p>
 <p>The KrakenD-CE repository is the one assembling all the blocks and manages the dependencies (including the <a href="https://github.com/devopsfaith/krakend">KrakenD Framework</a>), and lets you effortlessly include your company customizations.</p>
 <p>The small drawback of this approach is that you need to maintain your custom version, which differs from our official binaries.</p>
 <p>There are many examples of different modules, included in KrakenD-CE and not on our <a href="https://github.com/devopsfaith/krakend-contrib">contributions list</a>.</p>
 <p>A relaxed start to build a component KrakenD is our article &ldquo;<a href="/blog/website-development-as-a-sysadmin/">Website development as a sysadmin&rdquo;</a> where you can find custom code to add automatic API authentication against a backend.</p>
-<h1 id="ask-the-community">Ask the community</h1>
+<h2 id="ask-the-community">Ask the community</h2>
 <p>Finally, we recommend you joining our <a href="/support">Slack channel</a> and explain what you are trying to do. Probably there is someone who was in your situation before, and you might even get a free code snippet!</p>
 
     </section>

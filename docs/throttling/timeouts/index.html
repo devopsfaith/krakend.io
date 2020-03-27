@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Timeouts - KrakenD API Gateway</title>
     <meta itemprop="name" content="Timeouts - KrakenD API Gateway">
@@ -707,16 +707,22 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#global-timeout">Global timeout</a></li>
-    <li><a href="#endpoint-specific-timeout">Endpoint-specific timeout</a></li>
-    <li><a href="#what-happens-when-the-timeout-is-reached">What happens when the timeout is reached?</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#http-read-timeout">HTTP Read Timeout</a></li>
-    <li><a href="#http-write-timeout">HTTP Write Timeout</a></li>
-    <li><a href="#http-idle-timeout">HTTP Idle Timeout</a></li>
-    <li><a href="#http-read-header-timeout">HTTP Read Header Timeout</a></li>
+    <li><a href="#pipe-timeouts">Pipe timeouts</a>
+      <ul>
+        <li><a href="#global-timeout">Global timeout</a></li>
+        <li><a href="#endpoint-specific-timeout">Endpoint-specific timeout</a></li>
+        <li><a href="#what-happens-when-the-timeout-is-reached">What happens when the timeout is reached?</a></li>
+      </ul>
+    </li>
+    <li><a href="#http-request-timeouts">HTTP Request timeouts</a>
+      <ul>
+        <li><a href="#http-read-timeout">HTTP Read Timeout</a></li>
+        <li><a href="#http-write-timeout">HTTP Write Timeout</a></li>
+        <li><a href="#http-idle-timeout">HTTP Idle Timeout</a></li>
+        <li><a href="#http-read-header-timeout">HTTP Read Header Timeout</a></li>
+      </ul>
+    </li>
+    <li><a href="#time-units">Time units</a></li>
   </ul>
 </nav>
             </div>
@@ -729,9 +735,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
 <li><strong>The duration of the whole pipe</strong> (from user request to user response)</li>
 <li><strong>The HTTP request related timeouts</strong></li>
 </ul>
-<p>Additionally, you can control the number of <strong>maximum IDLE connections</strong>.</p>
-<h1 id="pipe-timeouts">Pipe timeouts</h1>
-<h2 id="global-timeout">Global timeout</h2>
+<p>Additionally, you can control the number of <a href="/docs/throttling/max-idle-connections/"><strong>maximum IDLE connections</strong></a>.</p>
+<h2 id="pipe-timeouts">Pipe timeouts</h2>
+<h3 id="global-timeout">Global timeout</h3>
 <p>The <code>timeout</code> key in the <code>krakend.json</code> at the root level is used in the first place to apply a <strong>default timeout</strong> for the <strong>whole duration of the pipe</strong> (and not only the connection to the backends). The timeout takes into account all the time involved between the request, the fetching of the data, manipulation and any other middleware. You can see it is an end-user timeout.</p>
 <pre><code>{
   &quot;version&quot;: 2,
@@ -739,7 +745,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
    ...
 }
 </code></pre>
-<h2 id="endpoint-specific-timeout">Endpoint-specific timeout</h2>
+<h3 id="endpoint-specific-timeout">Endpoint-specific timeout</h3>
 <p>Even the <code>timeout</code> value in the root level sets a default timeout for all the endpoints, you can override it later on any specific endpoints.</p>
 <p>To do so, just place it inside the desired endpoint:</p>
 <pre><code>{
@@ -756,20 +762,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
 }
 </code></pre>
 <p>The example above will use 1 second timeout for the <code>/splash</code> endpoint and 2000 milliseconds for all the other endpoints.</p>
-<h2 id="what-happens-when-the-timeout-is-reached">What happens when the timeout is reached?</h2>
+<h3 id="what-happens-when-the-timeout-is-reached">What happens when the timeout is reached?</h3>
 <p>When the timeout for a pipe is reached, the request is canceled and the user receives an HTTP status code <code>500 Internal Server Error</code></p>
-<h1 id="http-request-timeouts">HTTP Request timeouts</h1>
+<h2 id="http-request-timeouts">HTTP Request timeouts</h2>
 <p>In addition to the timeouts for the whole pipe, you can configure the specific HTTP layer timeouts.
 All the settings below work just like the pipeline timeouts. If you place this values in an endpoint, they will override the global setting.</p>
-<h2 id="http-read-timeout">HTTP Read Timeout</h2>
+<h3 id="http-read-timeout">HTTP Read Timeout</h3>
 <p>Maximum duration for reading the entire HTTP request, including the body.</p>
-<p>This timeout does not let Handlers make per-request decisions on each request body's acceptable deadline.</p>
+<p>This timeout does not let Handlers make per-request decisions on each request body&rsquo;s acceptable deadline.</p>
 <pre><code>{
     &quot;version&quot;: 2,
     &quot;read_timeout&quot;: &quot;1s&quot;
 }
 </code></pre>
-<h2 id="http-write-timeout">HTTP Write Timeout</h2>
+<h3 id="http-write-timeout">HTTP Write Timeout</h3>
 <p>Maximum duration before timing out writes of the response.</p>
 <p>It is reset whenever a new request header is read. Like HTTP Read Timeout, it does not let Handlers make decisions on a per-request basis.</p>
 <pre><code>{
@@ -777,7 +783,7 @@ All the settings below work just like the pipeline timeouts. If you place this v
     &quot;write_timeout&quot;: &quot;0s&quot;  (no timeout)
 }
 </code></pre>
-<h2 id="http-idle-timeout">HTTP Idle Timeout</h2>
+<h3 id="http-idle-timeout">HTTP Idle Timeout</h3>
 <p>Maximum amount of time to wait for the next request when keep-alives are enabled.</p>
 <p>If IdleTimeout is zero, the value of ReadTimeout is used. If both are zero, ReadHeaderTimeout is used.</p>
 <pre><code>{
@@ -785,15 +791,15 @@ All the settings below work just like the pipeline timeouts. If you place this v
     &quot;idle_timeout&quot;: &quot;0s&quot;  (no timeout)
 }
 </code></pre>
-<h2 id="http-read-header-timeout">HTTP Read Header Timeout</h2>
+<h3 id="http-read-header-timeout">HTTP Read Header Timeout</h3>
 <p>Amount of time allowed to read request headers.</p>
-<p>The connection's read deadline is reset after reading the headers and the Handler can decide what is considered too slow for the body.</p>
+<p>The connection&rsquo;s read deadline is reset after reading the headers and the Handler can decide what is considered too slow for the body.</p>
 <pre><code>{
     &quot;version&quot;: 2,
     &quot;read_header_timeout&quot;: &quot;10ms&quot;
 }
 </code></pre>
-<h1 id="time-units">Time units</h1>
+<h2 id="time-units">Time units</h2>
 <p>The time units you can use to specify timeouts are integers (not <em>floats</em>) using any of these units:</p>
 <ul>
 <li>Nanoseconds: <code>ns</code></li>

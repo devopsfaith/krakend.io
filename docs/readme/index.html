@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title> - KrakenD API Gateway</title>
     <meta itemprop="name" content=" - KrakenD API Gateway">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="KrakenD Documentation All the documentation uses Markdown syntax and the site is generated using Hugo. After your contribution this repository will be used to compile all the documentation.
 If you want to use a server to browse this pages, although not necessary, you can copy the folder inside the content directory in any Hugo installation.
 Contribute! Feel free to fork this repository and contribute to a better KrakenD documentation.
-If you&#39;d like to add a new language please open an issue before doing the work as we will need to add the support before it is visible." />
+If you&rsquo;d like to add a new language please open an issue before doing the work as we will need to add the support before it is visible." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/readme/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -39,7 +39,7 @@ If you&#39;d like to add a new language please open an issue before doing the wo
 <meta name="twitter:description" content="KrakenD Documentation All the documentation uses Markdown syntax and the site is generated using Hugo. After your contribution this repository will be used to compile all the documentation.
 If you want to use a server to browse this pages, although not necessary, you can copy the folder inside the content directory in any Hugo installation.
 Contribute! Feel free to fork this repository and contribute to a better KrakenD documentation.
-If you&#39;d like to add a new language please open an issue before doing the work as we will need to add the support before it is visible."/>
+If you&rsquo;d like to add a new language please open an issue before doing the work as we will need to add the support before it is visible."/>
 
 
 
@@ -714,8 +714,120 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/README.md
 <p>If you want to use a server to browse this pages, although not necessary, you can copy the folder inside the <code>content</code> directory in any Hugo installation.</p>
 <h1 id="contribute">Contribute!</h1>
 <p>Feel free to fork this repository and contribute to a better KrakenD documentation.</p>
-<p>If you'd like to add a new language please open an issue before doing the work as we will need to add the support before it is visible.</p>
+<p>If you&rsquo;d like to add a new language please open an issue before doing the work as we will need to add the support before it is visible.</p>
 <p>Thanks for improving the docs!</p>
+<h1 id="helpers-when-writing">Helpers when writing</h1>
+<p>Besides from the regular Markdown to write content, there are a few shortcodes to help you style the documentation:</p>
+<p><strong>Add a yellow note</strong>:</p>
+<p>For important notes, and things that need special, attention:</p>
+<pre><code><div class="note">
+    <h4><i class="fa fa-sticky-note"></i> A note on JWT generation</h4>
+	<pre><code>Some big yellow block with a note
+</code></pre>
+ </div>
+</code></pre>
+<p><strong>Show terminal output</strong>:</p>
+<p>The CSS will prepend a dollar sign <code>$</code> in the first line.</p>
+<pre><code><div class="terminal">
+	<div class="title">
+		Title of the box&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>&nbsp;&nbsp;&nbsp;&nbsp;docker&nbsp;build&nbsp;-t&nbsp;mykrakend&nbsp;.&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;Sending&nbsp;build&nbsp;context&nbsp;to&nbsp;Docker&nbsp;daemon&nbsp;&nbsp;&nbsp;5.12kB&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;Step&nbsp;1/2&nbsp;:&nbsp;FROM&nbsp;devopsfaith/krakend&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;c7e33ec819c0&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;Step&nbsp;2/2&nbsp;:&nbsp;COPY&nbsp;krakend.json&nbsp;/etc/krakend/krakend.json&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;703818e9de3a&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;Successfully&nbsp;built&nbsp;703818e9de3a&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;Successfully&nbsp;tagged&nbsp;mykrakend:latest&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
+</code></pre>
+<p><strong>Highlight some code</strong>:</p>
+<p>Most of the code is just idented with a tab and Markdown renders it properly as a <code>&lt;pre&gt;</code> tag and we prefer not to colorize it much. Nevertheless this can be done with the following shortcode:</p>
+<pre><code><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span> <span class="nt">&#34;a&#34;</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+    </code></pre></div>
+</code></pre>
+<p>You can also highlight a line, specific lines <code>6 7</code>, or a range <code>6-8</code>:</p>
+<pre><code><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go">    <span class="kn">package</span> <span class="nx">krakend</span>
+
+    <span class="kn">import</span> <span class="p">(</span>
+        <span class="s">&#34;github.com/devopsfaith/krakend/logging&#34;</span>
+        <span class="nx">client</span> <span class="s">&#34;github.com/devopsfaith/krakend/transport/http/client/plugin&#34;</span>
+<span class="hl">        <span class="nx">server</span> <span class="s">&#34;github.com/devopsfaith/krakend/transport/http/server/plugin&#34;</span>
+</span><span class="hl">    <span class="p">)</span>
+</span>    </code></pre></div>
+</code></pre>
 
     </section>
 </div>

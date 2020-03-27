@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>KrakenD Benchmarks on AWS - KrakenD API Gateway</title>
     <meta itemprop="name" content="KrakenD Benchmarks on AWS - KrakenD API Gateway">
@@ -702,16 +702,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmark
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#proxy-test-on-t2micro">Proxy test on t2.micro</a></li>
-    <li><a href="#aggregate-test-on-t2micro">Aggregate test on t2.micro</a></li>
-    <li><a href="#proxy-test-on-t2medium">Proxy test on t2.medium</a></li>
-    <li><a href="#aggregate-test-on-t2medium">Aggregate test on t2.medium</a></li>
-    <li><a href="#proxy-test-on-m4large">Proxy test on m4.large</a></li>
-    <li><a href="#aggregate-test-on-m4large">Aggregate test on m4.large</a></li>
-    <li><a href="#proxy-test-on-c4xlarge">Proxy test on c4.xlarge</a></li>
-    <li><a href="#aggregate-test-on-c4xlarge">Aggregate test on c4.xlarge</a></li>
-    <li><a href="#proxy-test-on-c42xlarge">Proxy test on c4.2xlarge</a></li>
-    <li><a href="#aggregate-test-on-c42xlarge">Aggregate test on c4.2xlarge</a></li>
+    <li><a href="#proxy-test-on-t2micro">Proxy test on <code>t2.micro</code></a></li>
+    <li><a href="#aggregate-test-on-t2micro">Aggregate test on <code>t2.micro</code></a></li>
+    <li><a href="#proxy-test-on-t2medium">Proxy test on <code>t2.medium</code></a></li>
+    <li><a href="#aggregate-test-on-t2medium">Aggregate test on <code>t2.medium</code></a></li>
+    <li><a href="#proxy-test-on-m4large">Proxy test on <code>m4.large</code></a></li>
+    <li><a href="#aggregate-test-on-m4large">Aggregate test on <code>m4.large</code></a></li>
+    <li><a href="#proxy-test-on-c4xlarge">Proxy test on <code>c4.xlarge</code></a></li>
+    <li><a href="#aggregate-test-on-c4xlarge">Aggregate test on <code>c4.xlarge</code></a></li>
+    <li><a href="#proxy-test-on-c42xlarge">Proxy test on <code>c4.2xlarge</code></a></li>
+    <li><a href="#aggregate-test-on-c42xlarge">Aggregate test on <code>c4.2xlarge</code></a></li>
     <li><a href="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
@@ -884,7 +884,7 @@ After running the test, the <code>hey</code> output is <a href="https://github.c
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_aggregate.csv"></script>
 
 <h2 id="conclusions">Conclusions</h2>
-<p>During all the tests we did, the instances of type <code>c4</code> always showed a stable behavior while the <code>m4</code> types didn't offer
+<p>During all the tests we did, the instances of type <code>c4</code> always showed a stable behavior while the <code>m4</code> types didn&rsquo;t offer
 a proportional increase in the performance and the variance of the responses is too high.</p>
 <p>The instances <code>micro</code> provide nice figures of rps and latency for a good money. It looks like they suffer a little bit
 more in the aggregated tests but in general it is a good choice.</p>
@@ -896,9 +896,9 @@ credit the instance will perform worst.</p>
 <li>If you expect high and continued load with complex use cases (intensive aggregation and manipulation) <code>c4.2xlarge</code> is worth it</li>
 <li>If you want to maintain quality of service with high load but a relative simple app, <code>c4.xlarge</code></li>
 <li>For low to moderate loads use <code>micro</code> or a cluster of micros.</li>
-<li>We wouldn't choose <code>m4</code> in any scenario for the money/performance.</li>
+<li>We wouldn&rsquo;t choose <code>m4</code> in any scenario for the money/performance.</li>
 </ul>
-<p>Look at the numbers and the use case you'll have in order to choose the right solution for you. And more importantly, do the tests
+<p>Look at the numbers and the use case you&rsquo;ll have in order to choose the right solution for you. And more importantly, do the tests
 using your own data. This is a reference to contrast your own tests.</p>
 
     </section>

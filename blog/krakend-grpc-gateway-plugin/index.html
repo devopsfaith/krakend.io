@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>gRPC-gateway as a KrakenD plugin - KrakenD API Gateway</title>
     <meta itemprop="name" content="gRPC-gateway as a KrakenD plugin - KrakenD API Gateway">
@@ -287,12 +287,12 @@
           </header>
 
           <p><em>image from the official <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway repository</a></em></p>
-<p>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we'll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</p>
+<p>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&rsquo;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</p>
 <p>This article begins with some introduction to gRPC services and how to build some demos using the available definitions. If you are already familiar with gRPC and created a grpc-gateway, you can skip the first sections and jump directly to <a href="#finishing-the-grpc-gateway">Finishing the gRPC-gateway</a></p>
-<p><strong>Disclaimer</strong>: this is not a gRPC intro. If you don't know anything about it, consider reading the <a href="https://grpc-ecosystem.github.io/grpc-gateway/">project site</a> before going any further.</p>
+<p><strong>Disclaimer</strong>: this is not a gRPC intro. If you don&rsquo;t know anything about it, consider reading the <a href="https://grpc-ecosystem.github.io/grpc-gateway/">project site</a> before going any further.</p>
 <h2 id="grpc-backends-and-gateway">gRPC backends and gateway</h2>
 <h3 id="service-definitions">Service definitions</h3>
-<p>We'll use two of the examples of the gRPC project: <code>helloworld</code> and <code>routeguide</code>. So we can start by adding their definitions to the <code>protos</code> folder.</p>
+<p>We&rsquo;ll use two of the examples of the gRPC project: <code>helloworld</code> and <code>routeguide</code>. So we can start by adding their definitions to the <code>protos</code> folder.</p>
 <p>Since we want to consume these services also using JSON, we must create the proper definitions (or annotations), so the gRPC-gateway code can be generated. Check the <a href="https://cloud.google.com/endpoints/docs/grpc-service-config/reference/rpc/google.api#httprule">documentation</a> for more details.</p>
 <p><code>helloworld.yml</code></p>
 <pre><code> type: google.api.Service
@@ -322,7 +322,7 @@
 ├── routeguide.proto
 └── routeguide.yml
 </code></pre><h3 id="generating-the-code">Generating the code</h3>
-<p>As described in the <a href="https://grpc-ecosystem.github.io/grpc-gateway/docs/grpcapiconfiguration.html">project documentation</a>, we'll need to follow some simple steps:</p>
+<p>As described in the <a href="https://grpc-ecosystem.github.io/grpc-gateway/docs/grpcapiconfiguration.html">project documentation</a>, we&rsquo;ll need to follow some simple steps:</p>
 <ul>
 <li>generate the grpc bindings</li>
 <li>generate the grpc-gateway bindings</li>
@@ -390,7 +390,7 @@ echo &quot;services generated&quot;
 <li><a href="https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/routeguide/main.go">https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/routeguide/main.go</a></li>
 </ul>
 <h2 id="finishing-the-grpc-gateway">Finishing the gRPC-gateway</h2>
-<p>To get your grpc-gateway up and running, we'll need two essential things:</p>
+<p>To get your grpc-gateway up and running, we&rsquo;ll need two essential things:</p>
 <ul>
 <li>Create the gateway http.Handler</li>
 <li>Create and start the server using that handler</li>
@@ -616,9 +616,9 @@ Content-Length: 139
 </code></pre><p>It works!</p>
 <p>Here, the <a href="https://github.com/kpacha/krakend-grpc-gateway-post">code for this post</a></p>
 <h2 id="summary">Summary</h2>
-<p>In this article, we shared our explorations in the golang plugins area. We've split the custom code required for building our gRPC-gateway into separated components for later reuse of one of them. Introducing just a few lines of code, we've shown how to integrate any golang component exposing an <code>http.Handler</code> into the KrakenD-CE as a backend.</p>
+<p>In this article, we shared our explorations in the golang plugins area. We&rsquo;ve split the custom code required for building our gRPC-gateway into separated components for later reuse of one of them. Introducing just a few lines of code, we&rsquo;ve shown how to integrate any golang component exposing an <code>http.Handler</code> into the KrakenD-CE as a backend.</p>
 <p>Did you make it this far? Do you have questions or comments? Consider joining now our #krakend channel at <a href="https://invite.slack.golangbridge.org/">Gophers</a> on Slack.</p>
-<p>Thanks for reading! If you like our product, don't forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+<p>Thanks for reading! If you like our product, don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
 <p>Enjoy KrakenD!</p>
 
 

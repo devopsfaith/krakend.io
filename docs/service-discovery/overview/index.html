@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Service Discovery overview - KrakenD API Gateway</title>
     <meta itemprop="name" content="Service Discovery overview - KrakenD API Gateway">
@@ -701,13 +701,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents"></nav>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#static-resolution">Static resolution</a></li>
+    <li><a href="#dns-srv">DNS SRV</a></li>
+    <li><a href="#etcd">etcd</a></li>
+    <li><a href="#eureka">Eureka</a></li>
+  </ul>
+</nav>
             </div>
         </div>
         
 
         <p>Service discovery enables clients to detect and locate services on your enterprise network automatically. Instead of defining a static list of IPs or hostnames pointing to your backends, you can use a service discovery provider and let KrakenD interact with it to get the hosts dynamically.</p>
-<h1 id="static-resolution">Static resolution</h1>
+<h2 id="static-resolution">Static resolution</h2>
 <p>The <code>static</code> resolution is the default service discovery choice. It uses a list of hosts declared in the configuration file and KrakenD must be able to reach them directly by hostname, DNS or IP. All the necessary connections are load balanced between all the servers in the list.</p>
 <p>Using <code>&quot;sd&quot;: &quot;static&quot;</code> in the configuration file is optional.</p>
 <pre><code>&quot;backend&quot;: [
@@ -720,15 +727,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
 		]
 	}
 ]
-</code></pre><h1 id="dns-srv">DNS SRV</h1>
+</code></pre><h2 id="dns-srv">DNS SRV</h2>
 <p>A typical Service Discovery integration for KrakenD is to use <code>DNS SRV</code>. It is a market standard used by many other systems work such as <strong>Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd</strong>, and more.</p>
 <p>The most typical setup is KrakenD + <a href="https://www.consul.io/">Consul</a> (see <a href="https://www.consul.io/docs/agent/dns.html#standard-lookup">standard lookup</a>).</p>
 <p>See <a href="/docs/service-discovery/dns-srv/">DNS SRV service discovery</a></p>
-<h1 id="etcd">etcd</h1>
+<h2 id="etcd">etcd</h2>
 <p>KrakenD can watch the values of the keys in an etcd installation and reconfigure itself when they change.</p>
 <p>The integration with etcd allows you to set up your distributed key-value store and configure details such as the timeouts, keep-alive, and certificates.</p>
 <p>See <a href="/docs/service-discovery/etcd/">etcd service discovery</a></p>
-<h1 id="eureka">Eureka</h1>
+<h2 id="eureka">Eureka</h2>
 <p>There is support for the Netflix Eureka client. The package is an open source contribution via <a href="https://www.schibsted.com/">Schibsted</a> engineers.</p>
 <p>See <a href="/docs/service-discovery/eureka/">Eureka service discovery</a></p>
 

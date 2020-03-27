@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Road to KrakenD 0.4 - KrakenD API Gateway</title>
     <meta itemprop="name" content="Road to KrakenD 0.4 - KrakenD API Gateway">
@@ -277,7 +277,7 @@
           </header>
 
           <p>The next iteration of <a href="https://www.krakend.io">KrakenD</a> is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the <code>0.4</code> release before end of year. The jump from the <code>0.3.9</code> of the binary and the <code>0.3</code> of the framework to the <code>0.4</code> will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: <strong>kill external dependencies with fire</strong>.</p>
-<p>Let's go!</p>
+<p>Let&rsquo;s go!</p>
 <h2 id="goals-for-version-04">Goals for version <code>0.4</code></h2>
 <p>These are the major goals we have set to release this version:</p>
 <ol>
@@ -291,12 +291,12 @@
 <p>Having external dependencies in the framework allowed us in the beginning to easily create and add adapters to KrakenD without any effort. We chose this path in the initial implementation of the project and we dragged it until now, and this is a common practice in thousands of projects.</p>
 <p>The numbers might not seem scary to you, but the implementation of the last released version of the framework (<code>0.3</code>) depends on 8 third party libs, hurting the project build times and its stability. We wanted to stop adding dependencies to the project and provide a way to have them outside.</p>
 <p><strong>The 0.4 version will depend only on the standard lib</strong>. All the adapters will be removed from the project and, in some cases (like the <code>config</code> package), some basic alternative will be provided out-of-the-box. By doing this, the project gets closer to the <code>1.0</code>.</p>
-<p>Of course this doesn't mean that the features referenced by those adapters will be removed, they will be included in the final distributed binary and the code will be curated the same way we do with the framework.</p>
+<p>Of course this doesn&rsquo;t mean that the features referenced by those adapters will be removed, they will be included in the final distributed binary and the code will be curated the same way we do with the framework.</p>
 <p>So, <strong>where are these components now</strong>?
 All the components are listed in the <a href="https://github.com/devopsfaith/krakend-contrib">krakend-contrib</a> repository. Subscribe to it to follow the complete list of available components and middleware.</p>
 <h2 id="transparent-plugins">Transparent plugins</h2>
 <p>The <code>0.4</code> release extends the flexibility of the <code>0.3</code> version by adding the <code>encoding.Register</code> and <code>encoding.Get</code> functions to deal with injecting custom encoders, and by standarizing the use of the <code>config.ExtraConfig</code> struct, so each component can define a custom namespace for the extra config it could require.</p>
-<p>It's in the roadmap to even create a customizable <code>proxy.Factory</code> implementation using this feature, so more accurate management could be achieved without requiring a single extra code line.</p>
+<p>It&rsquo;s in the roadmap to even create a customizable <code>proxy.Factory</code> implementation using this feature, so more accurate management could be achieved without requiring a single extra code line.</p>
 <h2 id="component-changes-in-04">Component changes in <code>0.4</code></h2>
 <p>As a continuation of what we explained in the previous post <em><a href="/blog/open-sourcing-enterprise-features/">Why are we open sourcing our Enterprise version?</a></em> the following new components are included in the 0.4 (The <code>X</code> marks those already available at the time of writing)</p>
 <pre><code>[X] - ratelimit
@@ -309,7 +309,7 @@ All the components are listed in the <a href="https://github.com/devopsfaith/kra
 <p>New components added:</p>
 <pre><code>[X] - martian
 </code></pre>
-<p>And the list of the 8 components that we mentioned before that move to it's dedicated repository:</p>
+<p>And the list of the 8 components that we mentioned before that move to it&rsquo;s dedicated repository:</p>
 <pre><code>[X] - config/viper
 [X] - encoding/xml
 [X] - encoding/rss
@@ -326,7 +326,7 @@ All the components are listed in the <a href="https://github.com/devopsfaith/kra
 </code></pre>
 <p><a href="https://github.com/devopsfaith/krakend-contrib">Full list of external components</a></p>
 <h2 id="getting-ready-for-the-04">Getting ready for the <code>0.4</code></h2>
-<p>Don't panic! All the actual adapters will be moved but not removed.</p>
+<p>Don&rsquo;t panic! All the actual adapters will be moved but not removed.</p>
 <p>In order to keep your code working, you just need to change the import section from</p>
 <pre><code>import &quot;github.com/devopsfaith/krakend/config/viper&quot;
 </code></pre>

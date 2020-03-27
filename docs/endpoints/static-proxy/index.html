@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Static Proxy - Adding static/stub data - KrakenD API Gateway</title>
     <meta itemprop="name" content="Static Proxy - Adding static/stub data - KrakenD API Gateway">
@@ -701,7 +701,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents"></nav>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#static-response-strategies">Static response strategies</a></li>
+    <li><a href="#handling-collisions">Handling collisions</a></li>
+    <li><a href="#adding-static-responses">Adding static responses</a></li>
+    <li><a href="#static-proxy-example">Static proxy example</a></li>
+  </ul>
+</nav>
             </div>
         </div>
         
@@ -710,12 +717,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>A typical scenario is <strong>when some backend fails</strong> and the endpoint becomes incomplete, but you prefer to provide a <strong>stub response</strong> for that part instead. When your application cannot handle well the degraded response, the static data comes handy.</p>
 <p>Another example scenario is to create an endpoint pointing to an unfinished backend where <strong>its functionality is not in production yet</strong>, but your client application needs to go ahead the backend developers and start using the static responses.</p>
 <p>There are many other scenarios, and this is why KrakenD offers several <strong>strategies</strong> that you can use to decide whether to inject static data or not. In any case, remember that the primary goal of this feature is to support corner-cases related to clients not ready to deal with gracefully degraded responses.</p>
-<h1 id="static-response-strategies">Static response strategies</h1>
+<h2 id="static-response-strategies">Static response strategies</h2>
 <p>The supported strategies to inject static data are the following:</p>
 <ul>
 <li><code>always</code>: Injects the static data in the response no matter what.</li>
 <li><code>success</code>: Injects the data when all the backends did not fail.</li>
-<li><code>complete</code>: Injects the data when there weren't any errors, all backends gave a response, and the responses merged successfully</li>
+<li><code>complete</code>: Injects the data when there weren&rsquo;t any errors, all backends gave a response, and the responses merged successfully</li>
 <li><code>errored</code>: Injects the data when some backend failed, returning an explicit error.</li>
 <li><code>incomplete</code>: When some backend did not reach the merge operation (timeout or another reason).</li>
 </ul>
@@ -726,10 +733,10 @@ func staticIfErroredMatch(_ *Response, err error) bool  { return err != nil }
 func staticIfCompleteMatch(r *Response, err error) bool { return err == nil &amp;&amp; r != nil &amp;&amp; r.IsComplete }
 func staticIfIncompleteMatch(r *Response, _ error) bool { return r == nil || !r.IsComplete }
 </code></pre>
-<h1 id="handling-collisions">Handling collisions</h1>
+<h2 id="handling-collisions">Handling collisions</h2>
 <p>The static proxy is processed <strong>after</strong> all the backend merging has occurred, meaning that if your static data has keys that are colliding with the existing responses, these are overwritten.</p>
-<p>The static data always has a priority as it's the last computed part. When an endpoint aggregates data from multiple sources, if a <code>group</code> for each backend is not used, then all the responses are merged straight into the root. The static data makes the merge in the root as well, so be cautious when setting the content of <code>data</code>, to make sure you are not replacing valuable information.</p>
-<h1 id="adding-static-responses">Adding static responses</h1>
+<p>The static data always has a priority as it&rsquo;s the last computed part. When an endpoint aggregates data from multiple sources, if a <code>group</code> for each backend is not used, then all the responses are merged straight into the root. The static data makes the merge in the root as well, so be cautious when setting the content of <code>data</code>, to make sure you are not replacing valuable information.</p>
+<h2 id="adding-static-responses">Adding static responses</h2>
 <p>To add a static response add under any <code>endpoint</code> an <code>extra_config</code> entry as follows:</p>
 <pre><code>&quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend/proxy&quot;: {
@@ -742,8 +749,8 @@ func staticIfIncompleteMatch(r *Response, _ error) bool { return r == nil || !r.
     }
 }
 </code></pre>
-<p>Inside the <code>strategy</code> key choose the strategy that fits your use case (one of <code>always</code>, <code>success</code>, <code>complete</code>, <code>errored</code>or <code>incomplete</code>), and inside <code>data</code> you need to add the JSON object as it's returned.</p>
-<h1 id="static-proxy-example">Static proxy example</h1>
+<p>Inside the <code>strategy</code> key choose the strategy that fits your use case (one of <code>always</code>, <code>success</code>, <code>complete</code>, <code>errored</code>or <code>incomplete</code>), and inside <code>data</code> you need to add the JSON object as it&rsquo;s returned.</p>
+<h2 id="static-proxy-example">Static proxy example</h2>
 <p>The following <code>/static</code> endpoint returns <code>{&quot;errored&quot;: {&quot;foo&quot;: 42, &quot;bar&quot;: &quot;foobar&quot;} }</code> when the backend returned errors.</p>
 <p>Notice two things in the example trying to avoid collisions.  First, each backend uses a <code>group</code>, so when the backend works correctly, its response is inside a key &ldquo;foo&rdquo; or &ldquo;bar&rdquo;. Using this strategy if &ldquo;foo&rdquo; and &ldquo;bar&rdquo; use the same keys there is no problem.</p>
 <p>Secondly, when one of the 2 backends fail, it creates a new group &ldquo;oh-snap&rdquo; (see <code>data</code>).</p>

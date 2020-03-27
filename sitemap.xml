@@ -63,6 +63,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/service-discovery/dns-srv/</loc>
+    <lastmod>2019-02-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/extending/writing-plugins/</loc>
     <lastmod>2019-01-15T00:00:00+00:00</lastmod>
   </url>
@@ -89,7 +94,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/deploying/best-practices/</loc>
-    <lastmod>2018-11-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -120,11 +125,6 @@
   <url>
     <loc>https://www.krakend.io/docs/backends/data-manipulation/</loc>
     <lastmod>2019-05-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/docs/service-discovery/dns-srv/</loc>
-    <lastmod>2019-02-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -394,17 +394,12 @@
   
   <url>
     <loc>https://www.krakend.io/docs/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/krakend/</loc>
     <lastmod>2020-02-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -540,6 +535,11 @@
   <url>
     <loc>https://www.krakend.io/tags/webassembly/</loc>
     <lastmod>2018-12-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/</loc>
+    <lastmod>2018-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -749,7 +749,6 @@
   
   <url>
     <loc>https://www.krakend.io/docs/readme/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

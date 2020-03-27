@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Logging - Syslog, stdout and GELF - KrakenD API Gateway</title>
     <meta itemprop="name" content="Logging - Syslog, stdout and GELF - KrakenD API Gateway">
@@ -710,15 +710,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#improved-logging-with-gologging">Improved logging with gologging.</a></li>
-    <li><a href="#enabling-gologging">Enabling gologging</a>
+    <li><a href="#extending-the-logging-capabilities">Extending the logging capabilities</a>
       <ul>
-        <li><a href="#set-the-reporting-level">Set the reporting level</a></li>
-        <li><a href="#write-to-syslog-or-stdout">Write to Syslog or Stdout</a></li>
-        <li><a href="#add-a-prefix-to-all-lines">Add a prefix to all lines</a></li>
-        <li><a href="#predefined-and-customs-formats">Predefined and customs formats</a></li>
+        <li><a href="#improved-logging-with-gologging">Improved logging with <code>gologging</code>.</a></li>
+        <li><a href="#enabling-gologging">Enabling <code>gologging</code></a></li>
       </ul>
     </li>
+    <li><a href="#logstash">Logstash</a></li>
   </ul>
 </nav>
             </div>
@@ -726,9 +724,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
         
 
         <p>When the service starts, if no logging configuration is set, all the log events are sent to the <strong>standard output</strong> using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is <code>DEBUG</code> and adds no prefix to the logs.</p>
-<h1 id="extending-the-logging-capabilities">Extending the logging capabilities</h1>
+<h2 id="extending-the-logging-capabilities">Extending the logging capabilities</h2>
 <p>Different logging components allow you to extend the logging functionality, such as sending the events to the <strong>syslog</strong>, choosing the verbosity level or use the <strong>Graylog Extended Log Format (GELF)</strong>. In addition to this, a lot of exporters are available to send your logs out.</p>
-<h2 id="improved-logging-with-gologging">Improved logging with <code>gologging</code>.</h2>
+<h3 id="improved-logging-with-gologging">Improved logging with <code>gologging</code>.</h3>
 <p>The component <code>gologging</code> extends the default logging capabilities with the following capabilities:</p>
 <ul>
 <li>Option to write to the stdout</li>
@@ -737,7 +735,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <li>Select the reporting level</li>
 <li>Option to use a predefined or custom format</li>
 </ul>
-<h2 id="enabling-gologging">Enabling <code>gologging</code></h2>
+<h3 id="enabling-gologging">Enabling <code>gologging</code></h3>
 <p>To enjoy the extended logging capabilitites the component needs to be added in the <code>krakend.json</code> configuration. Add its namespace in the <code>extra_config</code> at the root level:</p>
 <pre><code>{
   &quot;version&quot;: 2,
@@ -753,7 +751,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
   }
 </code></pre>
 <p>The snippet above shows the four options you can configure, explained below.</p>
-<h3 id="set-the-reporting-level">Set the <em>reporting level</em></h3>
+<h4 id="set-the-reporting-level">Set the <em>reporting level</em></h4>
 <p>Define the severity you would like to see in the logs with <code>level</code>. The recognized options from more to less verbosity are:</p>
 <ul>
 <li><code>DEBUG</code></li>
@@ -762,19 +760,19 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <li><code>ERROR</code></li>
 <li><code>CRITICAL</code></li>
 </ul>
-<h3 id="write-to-syslog-or-stdout">Write to Syslog or Stdout</h3>
+<h4 id="write-to-syslog-or-stdout">Write to Syslog or Stdout</h4>
 <p>For each log event triggered, the output can write to the <strong>syslog</strong>, the <strong>stdout</strong>, or both. The accepted values are a boolean. When true, the log writes in the selected target:</p>
 <ul>
 <li><code>&quot;syslog&quot;: true</code></li>
 <li><code>&quot;stdout&quot;: true</code></li>
 </ul>
-<h3 id="add-a-prefix-to-all-lines">Add a prefix to all lines</h3>
+<h4 id="add-a-prefix-to-all-lines">Add a prefix to all lines</h4>
 <p>Besides, you might want to choose to add a string to every logged line, so you can quickly filter messages with external tools later.</p>
 <ul>
 <li><code>&quot;prefix&quot;: &quot;[ANY STRING]&quot;</code></li>
 </ul>
-<h3 id="predefined-and-customs-formats">Predefined and customs formats</h3>
-<p>If you want to follow other patterns for logging, you're able to.</p>
+<h4 id="predefined-and-customs-formats">Predefined and customs formats</h4>
+<p>If you want to follow other patterns for logging, you&rsquo;re able to.</p>
 <ul>
 <li><code>&quot;format&quot;: &quot;custom&quot;</code></li>
 </ul>
@@ -784,12 +782,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <li><code>logstash</code></li>
 <li><code>custom</code></li>
 </ul>
-<p>If you select the <code>custom</code> format, you'll be able to use the <code>custom_format</code> field:</p>
+<p>If you select the <code>custom</code> format, you&rsquo;ll be able to use the <code>custom_format</code> field:</p>
 <ul>
 <li><code>&quot;custom_format&quot;: &quot;%{message}&quot;</code></li>
 </ul>
 <p>The pattern to use is the same as the <a href="https://github.com/op/go-logging/blob/master/format.go#L156">go-logging library</a></p>
-<h1 id="logstash">Logstash</h1>
+<h2 id="logstash">Logstash</h2>
 <p>If you want to log using the Logstash standard via stdout, you have to add the <code>krakend-logstash</code> integration in the
 root level of your <code>krakend.json</code>, inside the <code>extra_config</code> section. <strong>The <code>gologging</code> needs to be enabled too</strong>.</p>
 <p>For instance:</p>

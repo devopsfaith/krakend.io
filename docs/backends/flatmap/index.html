@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Array manipulation - flatmap - KrakenD API Gateway</title>
     <meta itemprop="name" content="Array manipulation - flatmap - KrakenD API Gateway">
@@ -716,7 +716,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
   <ul>
     <li><a href="#operations">Operations</a></li>
     <li><a href="#mixing-flatmap-with-other-manipulation-operations">Mixing flatmap with other manipulation operations</a></li>
-    <li><a href="#data-representation-in-args">Data representation in args</a>
+    <li><a href="#data-representation-in-args">Data representation in <code>args</code></a>
       <ul>
         <li><a href="#notation-by-example">Notation by example</a></li>
       </ul>
@@ -824,7 +824,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <li>Since <code>a</code> is an array (<code>&quot;a&quot;: []</code>) we need to use the flatmap component. If it were an object (<code>&quot;a&quot;: {}</code>) we would use <a href="/docs/backends/data-manipulation/">blacklist or whitelist</a></li>
 </ul>
 <h4 id="representing-some-values">Representing some values</h4>
-<p>Now that we are familiar with the structure let's represent same values:</p>
+<p>Now that we are familiar with the structure let&rsquo;s represent same values:</p>
 <table>
 <thead>
 <tr>
@@ -874,61 +874,61 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.b1.*.d&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-check ok"></i></td>
 <td>Rename <code>c</code> to <code>d</code></td>
 </tr>
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.c&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-times-circle ko"></i></td>
 <td>Missing level</td>
 </tr>
 <tr>
 <td><code>&quot;a.b1.c&quot;</code></td>
 <td><code>&quot;c&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-times-circle ko"></i></td>
 <td>Missing array after <code>a</code></td>
 </tr>
 <tr>
 <td><code>&quot;a.0.b1.0.c&quot;</code></td>
 <td><code>&quot;c&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-check ok"></i></td>
 <td>Extract only <code>c</code> from the first and first items</td>
 </tr>
 <tr>
 <td><code>&quot;a.*.b1.c&quot;</code></td>
 <td><code>&quot;c&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-times-circle ko"></i></td>
 <td>Incorrect target, <code>b1</code> has an array surrounding <code>c</code></td>
 </tr>
 <tr>
 <td><code>&quot;a.*.b1.c&quot;</code></td>
 <td><code>&quot;a.*.b1.*.d.*.e&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-times-circle ko"></i></td>
 <td>Incorrect target, <code>b1</code> has an array surrounding <code>c</code></td>
 </tr>
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.b1.*.c.d.e.f.g&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-check ok"></i></td>
 <td>Add additional levels</td>
 </tr>
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.x.*.c&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-times-circle ko"></i></td>
 <td>Incorrect, renaming to an element <code>x</code> that is not in the last position</td>
 </tr>
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.x.*.c.d.e.f.g&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-times-circle ko"></i></td>
 <td>Incorrect, renaming to an element <code>x</code> that is not in the last position</td>
 </tr>
 <tr>
 <td><code>&quot;a.*.b1.*.c&quot;</code></td>
 <td><code>&quot;a.*.b1.*.d.*.e&quot;</code></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+<td><i class="fa fa-times-circle ko"></i></td>
 <td>Incorrect, destination path has more wildcards than source path</td>
 </tr>
 </tbody>

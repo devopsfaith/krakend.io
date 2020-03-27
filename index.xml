@@ -6,7 +6,7 @@
     <description>Recent content on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 16 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -29,7 +29,7 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
       
       <guid>https://www.krakend.io/docs/extending/the-big-picture/</guid>
       <description>Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
-The KrakenD rules Let&#39;s start with the rules followed to code KrakenD, as they answer to architectural design questions:
+The KrakenD rules Let&amp;rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:
  Reactive is key Reactive is key (yes, it is very very important) Failing fast is better than succeeding slow (say it one more time!</description>
     </item>
     
@@ -72,8 +72,8 @@ Provided this simple configuration mechanism, the versioning and automation are 
       
       <guid>https://www.krakend.io/docs/endpoints/creating-endpoints/</guid>
       <description>KrakenD endpoints are the essential part of KrakenD as they are what your end users consume.
-See Understanding the configuration file if you haven&#39;t read it yet.
-To create an endpoint you only need to add an endpoint object under the endpoints list with the resource you want to expose. If no method is declared, it&#39;s assumed to be read-only (GET).
+See Understanding the configuration file if you haven&amp;rsquo;t read it yet.
+To create an endpoint you only need to add an endpoint object under the endpoints list with the resource you want to expose. If no method is declared, it&amp;rsquo;s assumed to be read-only (GET).
 The endpoints section looks like this:
 &amp;quot;endpoints&amp;quot;: [ { &amp;quot;endpoint&amp;quot;: &amp;quot;/v1/foo&amp;quot;, &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/bar&amp;quot;, &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;, &amp;quot;host&amp;quot;: [ &amp;quot;https://api.</description>
     </item>
@@ -107,7 +107,7 @@ KrakenD cluster benefits Having a KrakenD cluster provides these immediate benef
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/benchmarks/overview/</guid>
-      <description>KrakenD, the ultra performer API Gateway An API Gateway is a component that needs to deliver really fast, as it is an added layer in the infrastructure. KrakenD was built with performance in mind. In this page and inner pages, you&#39;ll find several tests we did to measure the performance. We also invite you to do them for yourself!
+      <description>KrakenD, the ultra performer API Gateway An API Gateway is a component that needs to deliver really fast, as it is an added layer in the infrastructure. KrakenD was built with performance in mind. In this page and inner pages, you&amp;rsquo;ll find several tests we did to measure the performance. We also invite you to do them for yourself!
 TL;DR: Benchmark results ~18,000 requests/second on an ordinary laptop.
 The following table summarizes different performance tests using Amazon EC2 virtual instances and an example with a laptop.</description>
     </item>
@@ -140,7 +140,18 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
       
       <guid>https://www.krakend.io/docs/service-settings/tls/</guid>
       <description>There are two different strategies when using TLS over KrakenD:
- Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&#39;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted.</description>
+ Use TLS for HTTPS and HTTP/2 in KrakenD Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)  In case you want to enable TLS in KrakenD you need to add a tls key at service level (configuration&amp;rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens only using TLS, and no traffic to plain HTTP is accepted.</description>
+    </item>
+    
+    <item>
+      <title>SD with DNS SRV (e.g. Consul)</title>
+      <link>https://www.krakend.io/docs/service-discovery/dns-srv/</link>
+      <pubDate>Wed, 13 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/service-discovery/dns-srv/</guid>
+      <description>The DNS SRV is a market standard used by systems such as Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd, and more.
+To integrate Consul as the Service Discovery or any other DNS SRV compatible systems you only need to set two keys:
+ &amp;quot;sd&amp;quot;: &amp;quot;dns&amp;quot;: To set service discovery = DNS SRV &amp;quot;host&amp;quot;: []: The list of all the names providing the resolution  These keys need to be added in the backend section of your configuration.</description>
     </item>
     
     <item>
@@ -149,8 +160,8 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
       <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/extending/writing-plugins/</guid>
-      <description>KrakenD&#39;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&#39;s always tempting to start writing code but the majority of scenarios do not require writing any. Existing modules, middleware, and plugins suffice almost everyone&#39;s needs.
-It&#39;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code.</description>
+      <description>KrakenD&amp;rsquo;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&amp;rsquo;s always tempting to start writing code but the majority of scenarios do not require writing any. Existing modules, middleware, and plugins suffice almost everyone&amp;rsquo;s needs.
+It&amp;rsquo;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code.</description>
     </item>
     
     <item>
@@ -179,7 +190,7 @@ Extending the logging capabilities Different logging components allow you to ext
       <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/rate-limit/</guid>
-      <description>No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&#39;s one, but it&#39;s declared directly in the backend section instead of the endpoint.
+      <description>No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&amp;rsquo;s one, but it&amp;rsquo;s declared directly in the backend section instead of the endpoint.
 This parameter is defined at the krakend.json configuration file as follows:
 ... { &amp;quot;endpoint&amp;quot;: &amp;quot;/products/{cat_id}&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;host&amp;quot;: [ &amp;quot;http://some.api.com/&amp;quot; ], &amp;quot;url_pattern&amp;quot;: &amp;quot;/catalog/category/{cat_id}.</description>
     </item>
@@ -190,8 +201,8 @@ This parameter is defined at the krakend.json configuration file as follows:
       <pubDate>Fri, 21 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/configuration/structure/</guid>
-      <description>All KrakenD behavior depends on the krakend.json file, so being familiar with the structure of this file it&#39;s essential.
-Configuration file structure There are a large number of options you can put in this file, let&#39;s focus now only on the structure:
+      <description>All KrakenD behavior depends on the krakend.json file, so being familiar with the structure of this file it&amp;rsquo;s essential.
+Configuration file structure There are a large number of options you can put in this file, let&amp;rsquo;s focus now only on the structure:
 { &amp;quot;version&amp;quot;: 2, &amp;quot;endpoints&amp;quot;: [...] &amp;quot;extra_config&amp;quot;: {...} ... }   version: The KrakenD file format. Current version is 2, use 1 only for old KrakenD releases (0.3.9 and below).</description>
     </item>
     
@@ -201,10 +212,9 @@ Configuration file structure There are a large number of options you can put in 
       <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/deploying/best-practices/</guid>
-      <description>This document is a draftSetting up a cluster of KrakenD instances is a straightforward process but here are some recommendations to get a good start.
-Use HTTP2 Enable HTTP2 between your balancer and KrakenD API gateway for the best performance.
-SSL Add your SSL certificate in the load balancer and use internal certificates between the load balancer and KrakenD.
-Enable metrics and logging Make sure you have visibility of what is going on.</description>
+      <description>Setting up a cluster of KrakenD instances is a straightforward process, but here are some not so obvious recommendations to get a good start.
+Use blue/green or similar deployment strategy As it happens with Apache, Nginx, Mysql, and the vast majority of services, changing the configuration requires a restart. When deploying new changes, use a technique like blue/green deployment or similar.
+This scenario can be automated and is available in all major cloud providers.</description>
     </item>
     
     <item>
@@ -213,7 +223,7 @@ Enable metrics and logging Make sure you have visibility of what is going on.</d
       <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/developer/overview/</guid>
-      <description>This document is a draftThere are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and never in production
+      <description>There are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and never in production
 Hot reload the configuration A Docker image using Reflex watches the configuration directory and reloads KrakenD when the configuration changes. This is very convenient while you are developing as it allows you to test new changes without having to restart manually and making the process less tedious.</description>
     </item>
     
@@ -224,7 +234,7 @@ Hot reload the configuration A Docker image using Reflex watches the configurati
       
       <guid>https://www.krakend.io/docs/cluster/configuration/</guid>
       <description>Hardware can fail at any time, and a Gateway is a piece critical enough to have redundancy of the service. Having a cluster of machines operating the service assures high availability.
-KrakenD nodes are stateless and they don&#39;t store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything.</description>
+KrakenD nodes are stateless and they don&amp;rsquo;t store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything.</description>
     </item>
     
     <item>
@@ -234,7 +244,7 @@ KrakenD nodes are stateless and they don&#39;t store data or application state t
       
       <guid>https://www.krakend.io/docs/commands/check/</guid>
       <description>The krakend check command validates the passed configuration. Since KrakenD does not implement a strict parsing, typos in the config file could be shadowed. In order to validate your config completely, it is recommended to use the --debug flag.
-Usage of KrakenD check&amp;nbsp;   ./krakend&amp;nbsp;check&amp;nbsp;-h&amp;nbsp; &amp;nbsp; `7MMF&#39;&amp;nbsp;`YMM&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&#34;&#34;&#34;Yb.&amp;nbsp; 	MM&amp;nbsp;&amp;nbsp;&amp;nbsp;.M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Yb.&amp;nbsp; 	MM&amp;nbsp;.d&#34;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7Mb,od8&amp;nbsp;,6&#34;Yb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;,MP&#39;.gP&#34;Ya&amp;nbsp;`7MMpMMMb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Mb&amp;nbsp; 	MMMMM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&#39;&amp;nbsp;&#34;&#39;8)&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;;Y&amp;nbsp;&amp;nbsp;,M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;Yb&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp; 	MM&amp;nbsp;&amp;nbsp;VMA&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,pm9MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM;Mm&amp;nbsp;&amp;nbsp;8M&#34;&#34;&#34;&#34;&#34;&#34;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,MP&amp;nbsp; 	MM&amp;nbsp;&amp;nbsp;&amp;nbsp;`MM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;8M&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;`Mb.YM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,dP&#39;&amp;nbsp; .JMML.&amp;nbsp;&amp;nbsp;&amp;nbsp;MMb..JMML.&amp;nbsp;&amp;nbsp;`Moo9^Yo..JMML.&amp;nbsp;YA.`Mbmmd&#39;.JMML&amp;nbsp;&amp;nbsp;JMML..JMMmmmdP&#39;&amp;nbsp; _______________________________________________________________________&amp;nbsp; &amp;nbsp; &amp;nbsp; Version:&amp;nbsp;1.1.1&amp;nbsp; &amp;nbsp; Validates&amp;nbsp;that&amp;nbsp;the&amp;nbsp;active&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;has&amp;nbsp;a&amp;nbsp;valid&amp;nbsp;syntax&amp;nbsp;to&amp;nbsp;run&amp;nbsp;the&amp;nbsp;service.&amp;nbsp; Change&amp;nbsp;the&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;by&amp;nbsp;using&amp;nbsp;the&amp;nbsp;--config&amp;nbsp;flag&amp;nbsp; &amp;nbsp; Usage:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;[flags]&amp;nbsp; &amp;nbsp; Aliases:&amp;nbsp; check,&amp;nbsp;validate&amp;nbsp; &amp;nbsp; Examples:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;-d&amp;nbsp;-c&amp;nbsp;config.</description>
+Usage of KrakenD check&amp;nbsp;   ./krakend&amp;nbsp;check&amp;nbsp;-h&amp;nbsp; &amp;nbsp; `7MMF&#39;&amp;nbsp;`YMM&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&#34;&#34;&#34;Yb.&amp;nbsp; MM&amp;nbsp;&amp;nbsp;&amp;nbsp;.M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Yb.&amp;nbsp; MM&amp;nbsp;.d&#34;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7Mb,od8&amp;nbsp;,6&#34;Yb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;,MP&#39;.gP&#34;Ya&amp;nbsp;`7MMpMMMb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Mb&amp;nbsp; MMMMM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&#39;&amp;nbsp;&#34;&#39;8)&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;;Y&amp;nbsp;&amp;nbsp;,M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;Yb&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp; MM&amp;nbsp;&amp;nbsp;VMA&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,pm9MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM;Mm&amp;nbsp;&amp;nbsp;8M&#34;&#34;&#34;&#34;&#34;&#34;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,MP&amp;nbsp; MM&amp;nbsp;&amp;nbsp;&amp;nbsp;`MM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;8M&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;`Mb.YM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,dP&#39;&amp;nbsp; .JMML.&amp;nbsp;&amp;nbsp;&amp;nbsp;MMb..JMML.&amp;nbsp;&amp;nbsp;`Moo9^Yo..JMML.&amp;nbsp;YA.`Mbmmd&#39;.JMML&amp;nbsp;&amp;nbsp;JMML..JMMmmmd&amp;nbsp; _______________________________________________________________________&amp;nbsp; &amp;nbsp; Version:&amp;nbsp;1.1.1&amp;nbsp; &amp;nbsp; Validates&amp;nbsp;that&amp;nbsp;the&amp;nbsp;active&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;has&amp;nbsp;a&amp;nbsp;valid&amp;nbsp;syntax&amp;nbsp;to&amp;nbsp;run&amp;nbsp;the&amp;nbsp;service.&amp;nbsp; Change&amp;nbsp;the&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;by&amp;nbsp;using&amp;nbsp;the&amp;nbsp;--config&amp;nbsp;flag&amp;nbsp; &amp;nbsp; Usage:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;[flags]&amp;nbsp; &amp;nbsp; Aliases:&amp;nbsp; check,&amp;nbsp;validate&amp;nbsp; &amp;nbsp; Examples:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;-d&amp;nbsp;-c&amp;nbsp;config.json&amp;nbsp; &amp;nbsp; Flags:&amp;nbsp; -h,&amp;nbsp;--help&amp;nbsp;&amp;nbsp;&amp;nbsp;help&amp;nbsp;for&amp;nbsp;check&amp;nbsp; &amp;nbsp; Global&amp;nbsp;Flags:&amp;nbsp; -c,&amp;nbsp;--config&amp;nbsp;string&amp;nbsp;&amp;nbsp;&amp;nbsp;Path&amp;nbsp;to&amp;nbsp;the&amp;nbsp;configuration&amp;nbsp;filename&amp;nbsp; -d,&amp;nbsp;--debug&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Enable&amp;nbsp;the&amp;nbsp;debug&amp;nbsp;    Passing a path to the config file is required</description>
     </item>
     
     <item>
@@ -267,19 +277,8 @@ Benchmark Setup This set of benchmarks have been running on different AWS EC2 in
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/data-manipulation/</guid>
-      <description>Filtering When you offer a KrakenD endpoint you can decide to show only a subset of the fields coming from the backends&amp;rsquo; response or alter the structure of the content provided. There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&#39;s bandwidth and increase load and render times.
+      <description>Filtering When you offer a KrakenD endpoint you can decide to show only a subset of the fields coming from the backends&amp;rsquo; response or alter the structure of the content provided. There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&amp;rsquo;s bandwidth and increase load and render times.
 There are two different strategies you can use to filter content:</description>
-    </item>
-    
-    <item>
-      <title>SD with DNS SRV (e.g. Consul)</title>
-      <link>https://www.krakend.io/docs/service-discovery/dns-srv/</link>
-      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/docs/service-discovery/dns-srv/</guid>
-      <description>The DNS SRV is a market standard used by systems such as Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd, and more.
-To integrate Consul as the Service Discovery or any other DNS SRV compatible systems you only need to set two keys:
- &amp;quot;sd&amp;quot;: &amp;quot;dns&amp;quot;: To set service discovery = DNS SRV &amp;quot;host&amp;quot;: []: The list of all the names providing the resolution  These keys need to be added in the backend section of your configuration.</description>
     </item>
     
     <item>
@@ -376,7 +375,8 @@ Enabling etcd To enable the integration add in the root of your configuration fi
       
       <guid>https://www.krakend.io/docs/overview/installing/</guid>
       <description>KrakenD is a single binary file that does not require any external libraries to work. To install KrakenD choose your operative system in the downloads section or use the Docker image.
-Download KrakenDand Generate the configuration fileJust exploring?
+ Download KrakenD and  Generate the configuration file
+Just exploring?
 Use the KrakenD Playground if you want to play with KrakenD without configuring it. The Playground comes with several flavors of KrakenD and a mock API. Everything is ready to start playing, just do a docker-compose up!</description>
     </item>
     
@@ -396,7 +396,7 @@ The Opencensus exporters allow you to send traces to several of these open sourc
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/authorization/jwt-signing/</guid>
-      <description>The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&#39;t need to trust an external source to keep it for you.</description>
+      <description>The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&amp;rsquo;t need to trust an external source to keep it for you.</description>
     </item>
     
     <item>
@@ -416,7 +416,7 @@ The default policy for data forwarding works as follows:
       <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/overview/usage/</guid>
-      <description>From an operations point of view KrakenD, is very simple to use. It only requires you to pass the path the configuration file (which defines behaviors and endpoints). Additionally, you can enable the debug with the -d flag, and that&#39;s pretty much everything.
+      <description>From an operations point of view KrakenD, is very simple to use. It only requires you to pass the path the configuration file (which defines behaviors and endpoints). Additionally, you can enable the debug with the -d flag, and that&amp;rsquo;s pretty much everything.
 TL;DR  Generate a configuration file with your endpoints definition. The easier way to generate it is using the designer Check the syntax of your krakend.json is good Syntax checking&amp;nbsp;   krakend&amp;nbsp;check&amp;nbsp;--config&amp;nbsp;krakend.</description>
     </item>
     
@@ -437,7 +437,7 @@ When using concurrent requests, the backend services must be able to handle an a
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/service-discovery/eureka/</guid>
-      <description>Users of the Netflix&#39;s service Eureka have a couple of user contributed integrations available listed in our krakend-contrib repository.
+      <description>Users of the Netflix&amp;rsquo;s service Eureka have a couple of user contributed integrations available listed in our krakend-contrib repository.
 The integrations are not bundled with KrakenD-CE releases but they can be added to the project and make a custom build without difficulties.
  schibsted/krakend-eureka: The Eureka client Schibsted has been running in production since 2017. joaoqalves/krakend-eureka: A Eureka client contributed by João Alves  </description>
     </item>
@@ -483,7 +483,7 @@ The setup of GELF is straightforward and requires only to set two parameters:
       
       <guid>https://www.krakend.io/docs/authorization/revoking-tokens/</guid>
       <description>The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to revoke tokens that are supposed to be still valid.
-Examples of revoking a valid token could be that an administrator of your application decides that a user can&#39;t longer login into the system, or you want to force the renegotiation of the tokens for a subset or all the users because you are not going to wait for the expiration.</description>
+Examples of revoking a valid token could be that an administrator of your application decides that a user can&amp;rsquo;t longer login into the system, or you want to force the renegotiation of the tokens for a subset or all the users because you are not going to wait for the expiration.</description>
     </item>
     
     <item>
@@ -581,7 +581,7 @@ You will be interested in Opencensus when you want to see data in one of its sup
       <pubDate>Fri, 22 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/endpoints/no-op/</guid>
-      <description>KrakenD no-op (no-operation), is a special type of encoding that behaves as a proxy by passing the client&#39;s request to the backend as is, and vice-versa.
+      <description>KrakenD no-op (no-operation), is a special type of encoding that behaves as a proxy by passing the client&amp;rsquo;s request to the backend as is, and vice-versa.
 Using no-op to proxy requests When setting no-op, KrakenD does not inspect the request body or manipulates it in any way. Instead, when a request to a no-op endpoint is received, KrakenD directly forwards it to the backend without doing any operation with it.</description>
     </item>
     
@@ -602,7 +602,7 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
       <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/shadow-backends/</guid>
-      <description>There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&#39;s too risky to put it live as there might be issues that impact your end users.
+      <description>There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&amp;rsquo;s too risky to put it live as there might be issues that impact your end users.
 The traffic shadowing or traffic mirroring functionality allows you to test new backends in production by sending them copies of the traffic but ignore their responses.</description>
     </item>
     
@@ -667,7 +667,7 @@ The following configuration snippet sends data to your InfluxDB:
       
       <guid>https://www.krakend.io/docs/endpoints/common-expression-language-cel/</guid>
       <description>There are times when you might want to include additional logic in the gateway to decide if a request has to be fulfilled or not.
-The Common Expression Language (CEL) middleware enables Google&#39;s CEL spec which implements common semantics for expression evaluation, and is a very simple and powerful option to have full control during requests and responses.
+The Common Expression Language (CEL) middleware enables Google&amp;rsquo;s CEL spec which implements common semantics for expression evaluation, and is a very simple and powerful option to have full control during requests and responses.
 When the CEL component is enabled, any amount of expressions to check both requests and responses can be set.</description>
     </item>
     
@@ -810,7 +810,7 @@ The following configuration snippet sends data to your X-Ray:
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/detailed-errors/</guid>
-      <description>When you are willing to manipulate or aggregate data, KrakenD&#39;s policy regarding errors and status codes is to hide from the client any backend details. The philosophy behind this is that clients have to be decoupled from its underlying services.
+      <description>When you are willing to manipulate or aggregate data, KrakenD&amp;rsquo;s policy regarding errors and status codes is to hide from the client any backend details. The philosophy behind this is that clients have to be decoupled from its underlying services.
 If in the other hand, your endpoint connects to a single backend with no manipulation, use the no-op encoding which returns the response to the client as is, preserving its form: body, headers, status codes and such.</description>
     </item>
     
@@ -857,7 +857,7 @@ Using KrakenD provides secure external connections with OAuth.</description>
       <description>Veepee is the European flash sales leader with 72M of members, and Privalia its strategic brand for Spain, Italy, Brazil, and Mexico.
 Privalia, with +13M members, evolved their customer care solution from an in-house solution to a Salesforce integration with their internal systems.
 Before KrakenD, the main challenge of Veepee was to integrate Salesforce with multiple microservices and handle authorization, security, and aggregation in the middle layers.
-KrakenD solved this challenge with out of the box features, keeping Privalia&#39;s logic separated, and decoupled from Salesforce.</description>
+KrakenD solved this challenge with out of the box features, keeping Privalia&amp;rsquo;s logic separated, and decoupled from Salesforce.</description>
     </item>
     
     <item>
@@ -878,7 +878,7 @@ KrakenD 1.0 is our announcement to the world that our libraries are now fully es
       <guid>https://www.krakend.io/case-study/i2s/</guid>
       <description>GFI is one of the most high-performing IT and digital service companies in the market. Their insurance branch i2S has software solutions installed in nearly 50 insurance companies (Life and Non-life) and several pension fund management societies.
 KrakenD is the entry point to consume all the micro-services in a controlled way and helps create an insurance-related product, covering many aspects, from legal to finance and actuarial.
-KrakenD unifies and aggregates the responses of all the underlying Java microservices, and injects custom middleware for insurance&#39;s particular use case.</description>
+KrakenD unifies and aggregates the responses of all the underlying Java microservices, and injects custom middleware for insurance&amp;rsquo;s particular use case.</description>
     </item>
     
     <item>
@@ -898,7 +898,7 @@ KrakenD API Gateway helped Open Room to reduce the latency of all queries by gro
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/case-study/adevinta/</guid>
-      <description>Adevinta handles a vast amount of traffic, as it operates marketplaces with an average of 1.5 billion visits every month. The adoption of KrakenD&#39;s technology in production started in early 2017 and has been running since then.
+      <description>Adevinta handles a vast amount of traffic, as it operates marketplaces with an average of 1.5 billion visits every month. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
 Adevinta was investigating how to get more performance in their company-wide solution related to images streaming. The existing application was having performance issues, and it was needed to start looking for possible solutions to serve all the marketplaces better.</description>
     </item>
     
@@ -908,7 +908,7 @@ Adevinta was investigating how to get more performance in their company-wide sol
       <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/case-study/pearson/</guid>
-      <description>Pearson has trusted KrakenD as its API Gateway solution for the Parent App, which provides parents with a wide range of resources, including podcasts, infographics, quizzes, and checklists, to support their children&#39;s progress in learning.
+      <description>Pearson has trusted KrakenD as its API Gateway solution for the Parent App, which provides parents with a wide range of resources, including podcasts, infographics, quizzes, and checklists, to support their children&amp;rsquo;s progress in learning.
 KrakenD API Gateway offers the endpoints to the Parent App and sits between end-users and the Pearson services, which provide all the data that KrakenD aggregates to supply the use case.
 KrakenD handles OAuth with HMAC security and implements minor custom middlewares to fit the desired end-user consumption of the services.</description>
     </item>
@@ -932,8 +932,8 @@ As the business developed rapidly, Dusdusan.com needs to keep improving its plat
       <guid>https://www.krakend.io/case-study/mailru/</guid>
       <description>Delivery Club, a Mail.ru brand, is the largest online food delivery platform in Russia, moving food from thousands of restaurants to homes in more than 100 cities.
 Delivery Club processes +30,000 orders per day, 72% of which are made from mobile devices.
-The technology is built using a modernized microservices architecture with around 20 services, including KrakenD API Gateway that sits between end users and Delivery Club&#39;s services.
-KrakenD&#39;s main duty is processing ingoing and outgoing traffic making sure that user sessions are properly authorized when needed, and discarding malicious activity and hacking attempts.</description>
+The technology is built using a modernized microservices architecture with around 20 services, including KrakenD API Gateway that sits between end users and Delivery Club&amp;rsquo;s services.
+KrakenD&amp;rsquo;s main duty is processing ingoing and outgoing traffic making sure that user sessions are properly authorized when needed, and discarding malicious activity and hacking attempts.</description>
     </item>
     
     <item>
@@ -943,7 +943,7 @@ KrakenD&#39;s main duty is processing ingoing and outgoing traffic making sure t
       
       <guid>https://www.krakend.io/case-study/letgo/</guid>
       <description>Letgo is the biggest and fastest-growing app for buying and selling locally.
-Letgo is both a desktop application (SPA) and a mobile application with native implementations for every OS. As Letgo&#39;s organization is large, the UI experience of each client is handled by a different team.
+Letgo is both a desktop application (SPA) and a mobile application with native implementations for every OS. As Letgo&amp;rsquo;s organization is large, the UI experience of each client is handled by a different team.
 Letgo uses different clusters of KrakenD API Gateway per client, allowing each team to have its customized views of merged data. The API contract used in every device is preserved and respected even when the backends need to change their specification.</description>
     </item>
     
@@ -953,7 +953,7 @@ Letgo uses different clusters of KrakenD API Gateway per client, allowing each t
       <pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate>
       
       <guid>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</guid>
-      <description>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&#39;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</description>
+      <description>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&amp;rsquo;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</description>
     </item>
     
     <item>
@@ -962,7 +962,7 @@ Letgo uses different clusters of KrakenD API Gateway per client, allowing each t
       <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/blog/housekeeping-configuration-file/</guid>
-      <description>Starting your krakend.json configuration from scratch and writing every attribute in a blank editor might be a difficult and time consuming task, and that&#39;s why we have the KrakenDesigner.
+      <description>Starting your krakend.json configuration from scratch and writing every attribute in a blank editor might be a difficult and time consuming task, and that&amp;rsquo;s why we have the KrakenDesigner.
 KrakenDesigner is an aid tool to generate KrakenD configurations for the uninitiated audience. It produces a verbose output of the configuration file and explicitly writes unneeded attributes to let you see that a specific configuration option exists. These attributes I am mentioning are not necessary because they contain default values and the server is not going to alter its behavior.</description>
     </item>
     
@@ -972,7 +972,7 @@ KrakenDesigner is an aid tool to generate KrakenD configurations for the uniniti
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/blog/krakend-0.9-release-notes/</guid>
-      <description>It&#39;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&#39;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&#39;s get started!
+      <description>It&amp;rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&amp;rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&amp;rsquo;s get started!
 Integration with AMQP The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</description>
     </item>
     
@@ -1024,7 +1024,7 @@ On the metrics side, we can now send structured events using GELF to your Graylo
       <guid>https://www.krakend.io/case-study/icontainers/</guid>
       <description>iContainers is an ocean freight forwarder that allows you to compare, book, manage, and track maritime shipments in real-time without intermediaries.
 As importers and exporters combine more than 500,000 rates and maritime transport routes from different providers, KrakenD plays the role of a Backend for Frontend in several SPAs. Some examples are the back-office, the partners portal, or the pricing API.
-KrakenD&#39;s primary duty in all these cases is to provide a reliable way to fetch data from multiple providers and APIs and merge the results of all the services into useful endpoints.</description>
+KrakenD&amp;rsquo;s primary duty in all these cases is to provide a reliable way to fetch data from multiple providers and APIs and merge the results of all the services into useful endpoints.</description>
     </item>
     
     <item>
@@ -1086,7 +1086,7 @@ The Krakend Playground and the KrakenDesigner (UI) is also updated.</description
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/reloading-the-krakend-configuration/</guid>
-      <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&#39;s running. The short answer is: No, you can&#39;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&#39;t support such a feature:
+      <description>A recurrent question when we go around is if KrakenD configuration can be hot-reloaded, this is changing endpoints, backends, or any other configuration of the gateway while it&amp;rsquo;s running. The short answer is: No, you can&amp;rsquo;t. You must restart the server. And although we might have something to alleviate this, let us explain first why we don&amp;rsquo;t support such a feature:
  Performance: This is the #1 reason, and strong enough.</description>
     </item>
     
@@ -1108,8 +1108,8 @@ This release focuses heavily on metrics and its export options to different back
       <guid>https://www.krakend.io/blog/krakend-on-kubernetes/</guid>
       <description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
 We will use for the demonstration Minikube so you cant test it in your own local machine.
-Let&#39;s get started!
-Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&#39;s quick and easy.</description>
+Let&amp;rsquo;s get started!
+Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&amp;rsquo;s quick and easy.</description>
     </item>
     
     <item>
@@ -1118,7 +1118,7 @@ Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube.
       <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
-      <description>As a systems administrator for the past 15 years, I&#39;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&#39;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
+      <description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
 Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description>
     </item>
     
@@ -1139,7 +1139,7 @@ Generally speaking, all these devices collect raw data and send it to the cloud 
       
       <guid>https://www.krakend.io/blog/krakend-golang-plugins/</guid>
       <description>The release of golang 1.8 more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.
-We&#39;d like to share our experience and details on how we enhanced our products to support golang plugins.
+We&amp;rsquo;d like to share our experience and details on how we enhanced our products to support golang plugins.
 Why would anyone use plugins in Go? The plugin concept is widely known and supported in several programming languages and environments.</description>
     </item>
     
@@ -1149,7 +1149,7 @@ Why would anyone use plugins in Go? The plugin concept is widely known and suppo
       <pubDate>Fri, 06 Apr 2018 23:46:25 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/deploying-an-api-gateway/</guid>
-      <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&#39;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
+      <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&amp;rsquo;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
     </item>
     
     <item>
@@ -1171,7 +1171,7 @@ KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The 
       
       <guid>https://www.krakend.io/blog/what-is-an-api-gateway/</guid>
       <description>The more we talk to people about API gateways, the more we have come to realize that the term means different things to different people, and more specifically we see a growing trend where developers (but mostly managers) expect an API gateway to be able to perform miracles, usually a long way away from its intended use.
-It&#39;s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.</description>
+It&amp;rsquo;s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.</description>
     </item>
     
     <item>
@@ -1199,7 +1199,7 @@ Dockerize all the things! Our team uses both Ubuntu and MacOS X in desktop machi
       <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
       
       <guid>https://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
-      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&#39;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
+      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
 A look back&amp;hellip; If you are reading this post chances are that you know this already, in short KrakenD is the fastest API Gateway in the market.</description>
     </item>
     
@@ -1258,7 +1258,7 @@ I am getting a 500 status when the backend returns anything but 200, 201 or redi
       <guid>https://www.krakend.io/docs/overview/verifying-packages/</guid>
       <description>How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&#39;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
+$ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
     </item>
     
     <item>
@@ -1270,7 +1270,7 @@ $ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Si
       <description>KrakenD Documentation All the documentation uses Markdown syntax and the site is generated using Hugo. After your contribution this repository will be used to compile all the documentation.
 If you want to use a server to browse this pages, although not necessary, you can copy the folder inside the content directory in any Hugo installation.
 Contribute! Feel free to fork this repository and contribute to a better KrakenD documentation.
-If you&#39;d like to add a new language please open an issue before doing the work as we will need to add the support before it is visible.</description>
+If you&amp;rsquo;d like to add a new language please open an issue before doing the work as we will need to add the support before it is visible.</description>
     </item>
     
   </channel>

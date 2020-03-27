@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.67.1" />
 
     <title>Verifying packages (PGP and SHA256) - KrakenD API Gateway</title>
     <meta itemprop="name" content="Verifying packages (PGP and SHA256) - KrakenD API Gateway">
@@ -23,7 +23,7 @@
 <meta property="og:title" content="Verifying packages (PGP and SHA256)" />
 <meta property="og:description" content="How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&#39;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server." />
+$ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/overview/verifying-packages/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -38,7 +38,7 @@ $ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Si
 <meta name="twitter:title" content="Verifying packages (PGP and SHA256)"/>
 <meta name="twitter:description" content="How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&#39;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server."/>
+$ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server."/>
 
 
 
@@ -708,7 +708,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2
 gpg: Can't check signature: public key not found
 </code></pre>
-<p>We don't have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</p>
+<p>We don&rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</p>
 <pre><code>$ gpg --keyserver keyserver.ubuntu.com --recv-key 5DE6FD698AD6FDD2
 gpg: requesting key 5DE6FD698AD6FDD2 from hkp server keyserver.ubuntu.com
 gpg: trustdb created
