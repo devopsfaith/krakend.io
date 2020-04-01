@@ -814,7 +814,7 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <li><code>mandatory</code> - <em>bool</em></li>
 <li><code>immediate</code> - <em>bool</em></li>
 </ul>
-<p>Additionally, these items below are parameter keys that can be present in the endpoint URL and are passed to the producer:</p>
+<p>Additionally, these items below are parameter keys that can be present in the endpoint URL and are passed to the producer (notice the capitalization of the first letter of the param names at the configuration):</p>
 <ul>
 <li><code>exp_key</code> - <em>string</em></li>
 <li><code>reply_to_key</code> - <em>string</em></li>
@@ -825,11 +825,11 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <p>For instance, an <code>endpoint</code> URL could be declared as <code>/produce/{a}/{b}/{id}/{prio}/{route}</code> and the producer knows how to map them with a configuration like this:</p>
 <pre><code>{
     ...
-    &quot;exp_key&quot;:&quot;a&quot;,
-    &quot;reply_to_key&quot;:&quot;b&quot;,
-    &quot;msg_id_key&quot;:&quot;id&quot;,
-    &quot;priority_key&quot;:&quot;prio&quot;,
-    &quot;routing_key&quot;:&quot;route&quot;
+    &quot;exp_key&quot;:&quot;A&quot;,
+    &quot;reply_to_key&quot;:&quot;B&quot;,
+    &quot;msg_id_key&quot;:&quot;Id&quot;,
+    &quot;priority_key&quot;:&quot;Prio&quot;,
+    &quot;routing_key&quot;:&quot;Route&quot;
 }
 </code></pre>
 
