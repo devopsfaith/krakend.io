@@ -332,9 +332,9 @@ http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/authorization/jwt-validation/</guid>
-      <description>The JWT validation shields any amount of desired endpoints, forcing requests to the API gateway to provide a token issued by a third party. Verification of the token takes place in every request, including the check of the signature and optionally the assurance that its issuer, roles, and audience are sufficient to access the endpoint.
-The JOSE component is responsible for validating the tokens.
-A typical request requiring JWT validation includes in the Authorization header a bearer with the token: &amp;nbsp;   GET&amp;nbsp;/resource&amp;nbsp;HTTP/1.</description>
+      <description>The JWT validation protects endpoints from public usage, forcing calls to the API gateway to provide a valid token to access its contents.
+The generation of the token itself has to be driven by a third party, although the user calls can be proxied through KrakenD. If you don&amp;rsquo;t have an identity server yet you still can sign tokens through KrakenD
+The internal component responsible for validating tokens is called krakend-jose.</description>
     </item>
     
     <item>
@@ -396,7 +396,8 @@ The Opencensus exporters allow you to send traces to several of these open sourc
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/authorization/jwt-signing/</guid>
-      <description>The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&amp;rsquo;t need to trust an external source to keep it for you.</description>
+      <description>The JWT signing component creates a wrapper for your login endpoint that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.
+The primary usage for this component is in migrations from monolith to microservices, or in ecosystems where there is no Identity server yet, as it allows the immediate adoption of signed JSON Web Tokens without the need to implement a new service.</description>
     </item>
     
     <item>
@@ -477,13 +478,13 @@ The setup of GELF is straightforward and requires only to set two parameters:
     </item>
     
     <item>
-      <title>Revoking valid tokens</title>
+      <title>Revoking valid tokens with a Bloom filter</title>
       <link>https://www.krakend.io/docs/authorization/revoking-tokens/</link>
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/authorization/revoking-tokens/</guid>
-      <description>The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to revoke tokens that are supposed to be still valid.
-Examples of revoking a valid token could be that an administrator of your application decides that a user can&amp;rsquo;t longer login into the system, or you want to force the renegotiation of the tokens for a subset or all the users because you are not going to wait for the expiration.</description>
+      <description>The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to revoke JWT tokens that are still valid.
+When are you going to need this? Examples of situations where you might need to revoke perfectly legit tokens: As a user, I want to log me out of all my devices. As an administrator, I want to kick out someone from the platform.</description>
     </item>
     
     <item>

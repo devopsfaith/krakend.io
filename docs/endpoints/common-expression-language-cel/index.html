@@ -15,7 +15,7 @@
     
 
     
-    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
+    <meta itemprop="image" content="">
     
 
 
@@ -26,14 +26,14 @@ The Common Expression Language (CEL) middleware enables Google&rsquo;s CEL spec 
 When the CEL component is enabled, any amount of expressions to check both requests and responses can be set." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/common-expression-language-cel/" />
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta property="og:image" content="https://www.krakend.io/images/documentation/krakend-cel.png" />
 <meta property="article:published_time" content="2019-01-24T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-01-24T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2020-03-29T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/documentation/krakend-cel.png"/>
 
 <meta name="twitter:title" content="Checking requests and responses with the Common Expression Language (CEL)"/>
 <meta name="twitter:description" content="There are times when you might want to include additional logic in the gateway to decide if a request has to be fulfilled or not.
@@ -699,6 +699,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <h1 class="main-title">Checking requests and responses with the Common Expression Language (CEL)</h1>
 
+    <p class="main-image">
+        <img src="/images/documentation/krakend-cel.png" />
+    </p>
+
 
 
                 </section>
@@ -714,11 +718,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#cel-variables">CEL variables</a>
+    <li><a href="#configuration">Configuration</a></li>
+    <li><a href="#adding-logic-in-the-requests-and-responses">Adding logic in the requests and responses.</a>
       <ul>
-        <li><a href="#requests">Requests</a></li>
-        <li><a href="#responses">Responses</a></li>
-        <li><a href="#jwt-rejecter">JWT rejecter</a></li>
+        <li><a href="#variables-for-requests">Variables for requests</a></li>
+        <li><a href="#variables-for-responses">Variables for responses</a></li>
+        <li><a href="#variables-for-the-jwt-rejecter">Variables for the JWT rejecter</a></li>
+      </ul>
+    </li>
+    <li><a href="#cel-syntax-and-examples">CEL Syntax and examples</a>
+      <ul>
+        <li><a href="#example-discard-an-invalid-request-before-reaching-the-backend">Example: Discard an invalid request before reaching the backend</a></li>
+        <li><a href="#example-check-if-the-backend-response-has-a-specific-field-or-abort">Example: Check if the backend response has a specific field or abort</a></li>
+        <li><a href="#example-time-based-access">Example: Time-based access</a></li>
+        <li><a href="#example-use-custom-data-from-jwt-payload">Example: Use custom data from JWT payload</a></li>
       </ul>
     </li>
   </ul>
@@ -727,42 +740,63 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         
 
-        <p>There are times when you might want to include <strong>additional logic</strong> in the gateway
-to decide if a request has to be fulfilled or not.</p>
+        <p>There are times when you might want to include <strong>additional logic</strong> in the gateway to decide if a request has to be fulfilled or not.</p>
 <p>The <a href="https://github.com/devopsfaith/krakend-cel">Common Expression Language (CEL)</a>
 middleware enables Google&rsquo;s <a href="https://github.com/google/cel-spec">CEL spec</a>
 which implements common semantics for expression evaluation, and is a very
 simple and powerful option to have full control during requests and responses.</p>
 <p>When the CEL component is enabled, any amount of expressions to check both requests and responses can be set.</p>
-<p>Then, during runtime, when an expression returns <code>false</code>, KrakenD does not return the content as the condition has failed. Otherwise, if all expressions returned <code>true</code> the content is served.</p>
-<p>The CEL expressions have similar syntax to expressions in C/C++/Java/JavaScript and evaluate to a boolean condition. For instance:</p>
+<p>Then, during runtime, when an expression returns <code>false</code>, KrakenD does not return the content as the condition has failed. Otherwise, if all expressions returned <code>true</code>, the content is served.</p>
+<p>The CEL expressions have a similar syntax to expressions in C/C++/Java/JavaScript and evaluate to a boolean condition. For instance:</p>
 <pre><code>'::1' in req_headers['X-Forwarded-For']
 </code></pre>
-<p>This expression checks that the request header <code>X-Forwarded-For</code> contains the string <code>::1</code> (request comes from localhost).</p>
-<p>CEL expressions can be used both during the <strong>request</strong> or the <strong>response</strong> of
-the <strong>backends</strong> and the <strong>endpoints</strong>. The flow is:</p>
+<p>This expression checks that the request header array <code>X-Forwarded-For</code> contains an item with a value matching <code>::1</code> (request comes from localhost).</p>
+<p>CEL expressions can be used in five different places: during the <strong>request</strong> and the <strong>response</strong> of both <strong>backends</strong> and <strong>endpoints</strong> (see the blue dots in the image), and in the router layer as a JWT rejecter. The flow is:</p>
+<p><img src="/images/documentation/krakend-cel.png" alt="The 5 CEL places"></p>
 <ul>
-<li>Request endpoint evaluation</li>
-<li>Request backend evaluation (N times)</li>
-<li>Response backend evaluation (N times)</li>
-<li>Response endpoint evaluation (can evaluate all merged data)</li>
+<li><strong>JWT</strong> evaluation</li>
+<li><strong>Endpoint request</strong> evaluation</li>
+<li><strong>Backend request</strong> evaluation (per N backends)</li>
+<li><strong>Backend response</strong> evaluation (per N backends)</li>
+<li><strong>Endpoint response</strong> evaluation (can evaluate all merged data)</li>
 </ul>
-<h1 id="adding-logic-in-the-request">Adding logic in the request</h1>
-<p>If you want to add some logic to decide whether or not to continue serving the request
-to an endpoint or proxy to the next backend not, use a <code>req_*</code> variable.</p>
-<h2 id="cel-variables">CEL variables</h2>
-<p>The following data is injected to the CEL evaluator for its inspection:</p>
-<h3 id="requests">Requests</h3>
+<h2 id="configuration">Configuration</h2>
+<p>The CEL component goes inside the <code>extra_config</code> of your <code>endpoints</code> or your <code>backend</code> using the namespace <code>github.com/devopsfaith/krakend-cel</code>.</p>
+<p>Depending on the place where you put the <code>extra_config</code>, the expressions will be checked at the <code>endpoint</code> level, or the <code>backend</code> level.</p>
+<p>For instance, you might want to reject users that do not adhere to some criteria related to the content in their JWT token. There is no reason to delay this check, and you would place the check at the endpoint level, right before hitting any backend. In another scenario, you might want to make sure that the response of a specific backend contains a must-have field; that configuration would go under the <code>backend</code> section, and isolated from the rest of sibling backends under the same endpoint umbrella.</p>
+<p>The configuration is as follows:</p>
+<pre><code>&quot;extra_config&quot;:{
+  &quot;github.com/devopsfaith/krakend-cel&quot;: [
+    {
+      &quot;check_expr&quot;: &quot;CONDITION1 &amp;&amp; CONDITION2&quot;
+    }
+  ]
+}
+</code></pre>
+<ul>
+<li><code>check_expr</code>: The expression that evaluates as a boolean, you can write any conditional. If all stacked conditions are <em>true</em> the request continues, <em>false</em>, it fails to retrieve data from the token, the request, or the response. The expressions can use a set of <strong>variables</strong>, shown in the sections below.</li>
+</ul>
+<h2 id="adding-logic-in-the-requests-and-responses">Adding logic in the requests and responses.</h2>
+<p>There are three different ways to access the metadata of requests and responses to decide whether or not to continue serving the user command.</p>
+<ul>
+<li>Use a <code>req_</code> variable to access <strong>request</strong> data.</li>
+<li>Use a <code>resp_</code> variable to access <strong>response</strong> data.</li>
+<li>Use the <code>JWT</code> variable to access the <strong>payload of the JWT</strong>.</li>
+</ul>
+<p>See the data that is injected to the CEL evaluator for its inspection below.</p>
+<h3 id="variables-for-requests">Variables for requests</h3>
+<p>The following variables can be used inside the <code>check_expr</code>:</p>
 <ul>
 <li><code>req_method</code>: What is the method of this endpoint, e.g.: <code>GET</code></li>
 <li><code>req_path</code>: The path used to access this endpoing, e.g: : <code>/foo</code></li>
 <li><code>req_params</code>: Object with all the parameters sent with the request, e.g:
-<code>req_params.foo.var</code></li>
+<code>req_params.Foo.var</code>. Notice that <strong>parameters capitalize the first letter</strong></li>
 <li><code>req_headers</code>: Array with all the headers received, e.g: <code>req_headers['X-Forwarded-For']</code></li>
 <li><code>now</code>: An object containing the current timestamp, e.g:
 <code>timestamp(now).getDayOfWeek()</code></li>
 </ul>
-<h3 id="responses">Responses</h3>
+<h3 id="variables-for-responses">Variables for responses</h3>
+<p>The following variables can be used inside the <code>check_expr</code>:</p>
 <ul>
 <li><code>resp_completed</code>: Boolean whether all the data has been successfully
 retrieved</li>
@@ -771,7 +805,7 @@ retrieved</li>
 <li><code>resp_data</code>: An object with all the data captured in the response</li>
 <li><code>now</code>: An object containing the current timestamp</li>
 </ul>
-<h3 id="jwt-rejecter">JWT rejecter</h3>
+<h3 id="variables-for-the-jwt-rejecter">Variables for the JWT rejecter</h3>
 <p>CEL expressions can also be used during the JWT token validation. Use the <code>JWT</code>
 variable to access its metadata. For instance:</p>
 <pre><code>has(JWT.user_id) &amp;&amp; has(JWT.enabled_days) &amp;&amp; (timestamp(now).getDayOfWeek() in JWT.enabled_days)
@@ -779,8 +813,79 @@ variable to access its metadata. For instance:</p>
 <p>This example checks that the JWT token contains the metadata <code>user_id</code> and
 <code>enabled_days</code> with the macro <code>has()</code>, and then checks that today&rsquo;s weekday  is
 within one of the allowed days to see the endpoint.</p>
-<h1 id="cel-syntax">CEL Syntax</h1>
-<p>See the <a href="https://github.com/google/cel-spec/blob/master/doc/langdef.md">language definition</a></p>
+<h2 id="cel-syntax-and-examples">CEL Syntax and examples</h2>
+<p>See the CEL <a href="https://github.com/google/cel-spec/blob/master/doc/langdef.md">language definition</a> for the full list of supported options.</p>
+<p>The following example snippets demonstrate how to check requests and responses.</p>
+<h3 id="example-discard-an-invalid-request-before-reaching-the-backend">Example: Discard an invalid request before reaching the backend</h3>
+<p>The following example demonstrates how to reject a user request that does not fulfill a specific expression, checking at the endpoint level that when <code>/nick/{nick}</code> is called, a constraining format applies. More specifically, the example requires that the parameter <code>{nick}</code> matches the expression <code>k.*</code>:</p>
+<pre><code>&quot;endpoints&quot;: [
+    {
+      &quot;endpoint&quot;: &quot;/nick/{nick}&quot;,
+      &quot;extra_config&quot;:{
+        &quot;github.com/devopsfaith/krakend-cel&quot;: [
+          {
+            &quot;check_expr&quot;: &quot;req_params.Nick.matches('k.*')&quot;
+          }
+        ]
+      },
+      &quot;backend&quot;: [{...}]
+    }
+</code></pre>
+<p>With this configuration, any request to <code>/nick/kate</code> or <code>/nick/kevin</code> will make it to the backend, while a request to <code>/nick/ray</code> will be immediately rejected.</p>
+<h3 id="example-check-if-the-backend-response-has-a-specific-field-or-abort">Example: Check if the backend response has a specific field or abort</h3>
+<p>This example can be copy/pasted into your configuration as it connects to an existing external API. The CEL validation happens at the backend level. After the backend has been queried, the CEL expression checks that a field <code>website</code> exists inside the response body. If the user does not have the field, the call to the endpoint will fail:</p>
+<pre><code>&quot;endpoints&quot;: [
+{
+  &quot;endpoint&quot;: &quot;/nick/{nick}&quot;,
+  &quot;backend&quot;: [
+    {
+      &quot;host&quot;: [
+        &quot;https://api.bitbucket.org&quot;
+      ],
+      &quot;url_pattern&quot;: &quot;/2.0/users/{nick}&quot;,
+      &quot;whitelist&quot;: [
+        &quot;display_name&quot;,
+        &quot;website&quot;
+      ],
+      &quot;group&quot;: &quot;bitbucket&quot;,
+      &quot;extra_config&quot;:{
+        &quot;github.com/devopsfaith/krakend-cel&quot;: [
+          {
+            &quot;check_expr&quot;: &quot;'website' in resp_data.bitbucket&quot;
+          }
+        ]
+      }
+    }
+  ]
+}
+</code></pre>
+<p>Also, notice how we are accessing a <code>bitbucket</code> element in the data, which is a new attribute added by KrakenD thanks to the <code>group</code> functionality (it does not exist in the origin API). The point here is that the CEL evaluation is applied <strong>after</strong> KrakenD has processed the backend.</p>
+<h3 id="example-time-based-access">Example: Time-based access</h3>
+<p>Because we engineers prefer not to paged over the weekends when backends go down, let&rsquo;s close the access to them during the weekend, so they are 100% operational :)</p>
+<pre><code>{
+  &quot;endpoint&quot;: &quot;/weekdays&quot;,
+  &quot;extra_config&quot;:{
+    &quot;github.com/devopsfaith/krakend-cel&quot;: [
+      {
+        &quot;check_expr&quot;: &quot;(timestamp(now).getDayOfWeek() + 6) % 7 &lt;= 4&quot;
+      }
+    ]
+}
+</code></pre>
+<p>Note: The function <code>getDayOfWeek()</code> starts at <code>0</code> (Sunday), so the only days with a <code>mod &lt;=4 </code> are 0 and 6.</p>
+<h3 id="example-use-custom-data-from-jwt-payload">Example: Use custom data from JWT payload</h3>
+<p>Let&rsquo;s say that the JWT token the user sent contains an attribute named <code>enabled_days</code> in its payload. This attribute lists all the integers representing which days the resource can be accessed:</p>
+<pre><code>{
+  &quot;endpoint&quot;: &quot;/combination/{id}&quot;,
+  &quot;extra_config&quot;:{
+    &quot;github.com/devopsfaith/krakend-cel&quot;: [
+      {
+        &quot;check_expr&quot;: &quot;has(JWT.user_id) &amp;&amp; has(JWT.enabled_days) &amp;&amp; (timestamp(now).getDayOfWeek() in JWT.enabled_days)&quot;
+      }
+    ]
+}
+</code></pre>
+<p>The expression checks that the JWT token has both the <code>user_id</code> and the <code>enabled_days</code> and that today is a valid day.</p>
 
     </section>
 </div>

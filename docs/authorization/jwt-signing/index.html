@@ -15,26 +15,28 @@
     
 
     
-    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
+    <meta itemprop="image" content="">
     
 
 
 
 <meta property="og:title" content="JWT Signing" />
-<meta property="og:description" content="The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&rsquo;t need to trust an external source to keep it for you." />
+<meta property="og:description" content="The JWT signing component creates a wrapper for your login endpoint that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.
+The primary usage for this component is in migrations from monolith to microservices, or in ecosystems where there is no Identity server yet, as it allows the immediate adoption of signed JSON Web Tokens without the need to implement a new service." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/authorization/jwt-signing/" />
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta property="og:image" content="https://www.krakend.io/images/krakend-signer-flow.png" />
 <meta property="article:published_time" content="2018-11-03T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-11-03T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2020-03-29T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/krakend-signer-flow.png"/>
 
 <meta name="twitter:title" content="JWT Signing"/>
-<meta name="twitter:description" content="The JWT signing component is meant to create an endpoint wrapper that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&rsquo;t need to trust an external source to keep it for you."/>
+<meta name="twitter:description" content="The JWT signing component creates a wrapper for your login endpoint that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.
+The primary usage for this component is in migrations from monolith to microservices, or in ecosystems where there is no Identity server yet, as it allows the immediate adoption of signed JSON Web Tokens without the need to implement a new service."/>
 
 
 
@@ -693,6 +695,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 
 <h1 class="main-title">JWT Signing</h1>
 
+    <p class="main-image">
+        <img src="/images/krakend-signer-flow.png" />
+    </p>
+
 
 
                 </section>
@@ -708,34 +714,37 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#how-does-it-work">How does it work</a></li>
     <li><a href="#basic-jwt-signing">Basic JWT signing</a></li>
-    <li><a href="#a-complete-running-example">A complete running example</a></li>
     <li><a href="#jwt-signing-settings">JWT signing settings</a></li>
+    <li><a href="#how-to-generate-a-jwt-token">How to generate a JWT token</a></li>
+    <li><a href="#live-running-example">Live running example</a></li>
   </ul>
 </nav>
             </div>
         </div>
         
 
-        <p>The JWT signing component is meant to create an <strong>endpoint wrapper</strong> that returns signed tokens when your application returns plain text tokens. The tokens return to the user signed with your secret key, that can be kept in the gateway or a trusted machine. With the token signing, you are in control of the private key, and you don&rsquo;t need to trust an external source to keep it for you.</p>
+        <p>The JWT signing component creates a <strong>wrapper for your login endpoint</strong> that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.</p>
+<p>The primary usage for this component is in <strong>migrations from monolith to microservices</strong>, or in ecosystems where there is no Identity server yet, as it allows the immediate adoption of signed JSON Web Tokens without the need to implement a new service.</p>
 <p>The <strong>JOSE component</strong> is responsible for signing tokens.</p>
-<h2 id="requirements">Requirements</h2>
-<p>You need a backend -not KrakenD- that exposes an endpoint able to <strong>issues tokens</strong>, and another endpoint for <strong>refreshing tokens</strong>.</p>
-<p>For instance your backend could have an endpoint like <code>/token-issuer</code>, that when receives the right <code>POST</code> parameters able to identify the user returns something like this:</p>
-<pre><code>curl -X POST --data '{&quot;user&quot;:&quot;john&quot;,&quot;pass&quot;:&quot;doe&quot;}' https://backend/token-issuer
+<h2 id="how-does-it-work">How does it work</h2>
+<p>Your backend needs to implement an endpoint to <strong>issues tokens</strong>, and optionally another endpoint for <strong>refreshing tokens</strong>. If you don&rsquo;t have them yet, you need to adapt the existing functionality to support them, but don&rsquo;t be overwhelmed; you only need to return a payload with JSON content after the login instead of setting the cookie session.</p>
+<p>When KrakenD receives the JSON payload, it signs the selected group of claims with your secret key. The secret key can be kept in the gateway or URL-downloaded from a trusted machine that you own. With the token signing, you are in control of the private key, and you don&rsquo;t need to trust an external service to keep it for you.</p>
+<p>For instance, your backend could have an endpoint like <code>/token-issuer</code> that when receives the right combination of username and password via <code>POST</code> can identify the user and, instead of setting the session, returns an output like this:</p>
+<pre><code>curl -X POST --data '{&quot;user&quot;:&quot;john&quot;,&quot;pass&quot;:&quot;doe&quot;}' https://your-backend/token-issuer
 {
     &quot;access_token&quot;: {
-        &quot;aud&quot;: &quot;http://api.example.com&quot;,
-        &quot;iss&quot;: &quot;https://myapp.example.com&quot;,
+        &quot;aud&quot;: &quot;https://your.krakend.io&quot;,
+        &quot;iss&quot;: &quot;https://your-backend&quot;,
         &quot;sub&quot;: &quot;1234567890qwertyuio&quot;,
         &quot;jti&quot;: &quot;mnb23vcsrt756yuiomnbvcx98ertyuiop&quot;,
         &quot;roles&quot;: [&quot;role_a&quot;, &quot;role_b&quot;],
         &quot;exp&quot;: 1735689600
     },
     &quot;refresh_token&quot;: {
-        &quot;aud&quot;: &quot;http://api.example.com&quot;,
-        &quot;iss&quot;: &quot;https://myapp.example.com&quot;,
+        &quot;aud&quot;: &quot;https://your.krakend.io&quot;,
+        &quot;iss&quot;: &quot;https://your-backend&quot;,
         &quot;sub&quot;: &quot;1234567890qwertyuio&quot;,
         &quot;jti&quot;: &quot;mnb23vcsrt756yuiomn12876bvcx98ertyuiop&quot;,
         &quot;exp&quot;: 1735689600
@@ -743,8 +752,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
     &quot;exp&quot;: 1735689600
 }
 </code></pre>
+<p>Besides these example keys, the payload can contain any other elements you might need.</p>
+<p>If you come from a classic login system, based on cookie sessions, you&rsquo;ll realize that adapting your <code>/login</code> to this output is straightforward. See <a href="#how-to-generate-a-jwt-token">how to generate a token</a> at the end of the document for more details.</p>
 <h2 id="basic-jwt-signing">Basic JWT signing</h2>
-<p>When your application knows how to issue tokens, you can sign them before passing them to the user automatically in the gateway. To achieve that, instead of publishing our internal backend that generates plain tokens under <code>/token-issuer</code>, we only expose via KrakenD a new endpoint named <code>/token</code> (choose your name). This endpoint forwards the data received in the <code>POST</code> (as chosen in the example) and returns a signed token when the backend replies.</p>
+<p>Your backend application knows how to issue tokens now, so the gateway can sign them before passing to the user. To achieve that, instead of publishing our internal backend that generates plain tokens under <code>/token-issuer</code>, we only expose via KrakenD a new endpoint named <code>/token</code> (choose your name). This endpoint forwards the data received in the <code>POST</code> (as selected in the example) and returns a signed token when the backend replies.</p>
 <p>For instance, from the plain token above we want to sign the keys <code>&quot;access_token&quot;</code> and <code>&quot;refresh_token&quot;</code> so nobody can modify its contents. We need a configuration like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;/token&#34;</span><span class="p">,</span>
 <span class="s">&#34;method&#34;</span><span class="p">:</span> <span class="s">&#34;POST&#34;</span><span class="p">,</span>
@@ -759,11 +770,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 </span><span class="hl">        <span class="s">&#34;alg&#34;</span><span class="p">:</span> <span class="s">&#34;HS256&#34;</span><span class="p">,</span>
 </span><span class="hl">        <span class="s">&#34;kid&#34;</span><span class="p">:</span> <span class="s">&#34;sim2&#34;</span><span class="p">,</span>
 </span><span class="hl">        <span class="s">&#34;keys-to-sign&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#34;access_token&#34;</span><span class="p">,</span> <span class="s">&#34;refresh_token&#34;</span><span class="p">],</span>
-</span><span class="hl">        <span class="s">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s">&#34;http://backend/jwk/symmetric.json&#34;</span>
-</span><span class="hl">    <span class="p">}</span>
-</span><span class="p">}</span>
+</span><span class="hl">        <span class="s">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s">&#34;http://your-backend/jwk/symmetric.json&#34;</span><span class="p">,</span>
+</span><span class="hl">        <span class="s">&#34;disable_jwk_security&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span>    <span class="p">}</span>
+<span class="p">}</span>
 <span class="o">...</span></code></pre></div>
-<p>Notice that a <a href="https://tools.ietf.org/html/rfc7517#appendix-C.1">JSON Web key</a> is provided to sign the content. Generate your key and save in a secure place.</p>
+<p>Notice that a <a href="https://tools.ietf.org/html/rfc7517#appendix-C.1">JSON Web key</a> <code>jwk-url</code> is provided to sign the content. Generate your key and save it in a secure place.</p>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> Non-secure example</h4>
+	The examples on this page add a <code>disable_jwk_security</code> flag because the <code>jwk-url</code> references an URL with an insecure protocol HTTP. When going to production <strong>serve your JWK under HTTPS</strong> instead and add the rest of security options in the configuration.
+ </div>
 <p>What happens here is that the user requests a <code>/token</code> to the gateway and the issuing is delegated to the backend. The response of the backend with the plain token is signed using your private JWK. And then the user receives the signed token, e.g:</p>
 <pre><code>{
 &quot;access_token&quot;: &quot;eyJhbGciOiJIUzI1NiIsImtpZCI6InNcdTIifQ.eyJhdWQiOiJodHRwOi8vYXBpLmV4YW1wbGUuY29tIiwiZXhwIjoxNzM1Njg5NjAwLCJpf1MiOiJodHRwczovL2tyYWtlbmQuaW8iLCJqdGkiOiJtbmIyM3Zjf1J0NzU2eXVcd21uYnZjeDk4ZXJ0eXVcd3AiLCJyb2xlcyI6WyJyb2xlX2EiLCJyb2xlX2IiXSwif1ViIjoiMTIzNDU2Nzg5MHF3ZXJ0eXVcdyJ9.htgbhantGcv6zrN1i43Rl58q1sokh3lzuFgzfenI0Rk&quot;,
@@ -771,22 +787,24 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 &quot;refresh_token&quot;: &quot;eyJhbGciOiJIUzI1NiIsImtpZCI6InNcdTIifQ.eyJhdWQiOiJodHRwOi8vYXBpLmV4YW1wbGUuY29tIiwiZXhwIjoxNzM1Njg5NjAwLCJpf1MiOiJodHRwczovL2tyYWtlbmQuaW8iLCJqdGkiOiJtbmIyM3Zjf1J0NzU2eXVcd21uMTI4NzZidmN4OThlcnR5dWlvcCIsInN1YiI6IjEyMzQ1Njc4OTBxd2VydHl1aW8ifQ.4v36tuYHe4E9gCVO-_asuXfzSzoJdoR0NJfVQdVKidw&quot;
 }
 </code></pre>
-<h2 id="a-complete-running-example">A complete running example</h2>
-<p>The <a href="/docs/overview/playground/">KrakenD Playground</a> demonstrates how to sign tokens in the <code>/token</code> endpoint and includes an example ready to use. To try it, <a href="https://github.com/devopsfaith/krakend-playground">clone the playground</a> and follow the README.</p>
 <h2 id="jwt-signing-settings">JWT signing settings</h2>
 <p>The following settings are available to sign JWT:</p>
 <ul>
 <li><code>alg</code>: <em>recognized string</em>. The hashing algorithm used by the issuer. Usually <code>RS256</code>.</li>
 <li><code>jwk-url</code>: <em>string</em>. The URL to the JWK endpoint with the private keys used to sign the token.</li>
-<li><code>kid</code>: <em>string</em>. The key ID member purpose is to match a specific key, as the jwk-url might contain several keys.</li>
-<li><code>keys-to-sign</code>: <em>string list</em>. List of all the specific keys that need signing.</li>
+<li><code>kid</code>: <em>string</em>. The key ID purpose is to match a specific key, as the jwk-url might contain several keys (see <a href="/docs/authorization/jwt-validation/">JWT validation</a>)</li>
+<li><code>keys-to-sign</code>: <em>string list</em>. List of all the specific keys that need signing (e.g., <code>refresh_token</code> and <code>access_token</code>).</li>
 </ul>
-<p><strong>Optional</strong>:</p>
+<p><strong>Optional fields</strong>:</p>
 <ul>
 <li><code>full</code>: <em>boolean</em>. Use JSON format instead of the compact form JWT is giving.</li>
-<li><code>disable_jwk_security</code>: <em>boolean</em>. When <code>true</code>, disables security of the JWK client and allows insecure connections (plain HTTP) to download the keys.</li>
-<li><code>jwk_fingerprints</code>: <em>string list</em>. A list of fingerprints (the unique identifier of the certificate) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.</li>
+<li><code>disable_jwk_security</code>: <em>boolean</em>. When <code>true</code>, disables security of the JWK client and allows insecure connections (plain HTTP) to download the keys. Not recommended for production.</li>
+</ul>
+<p><strong>Security enforcement</strong>:</p>
+<ul>
+<li><code>jwk_fingerprints</code>: <em>string list</em>. A list of fingerprints (the unique identifier of the certificate) for certificate pinning and avoid man in the middle attacks. Add fingerprints in <code>base64</code> format.</li>
 <li><code>cipher_suites</code>: <em>integers list</em>. Override the default cipher suites. Unless you have a legacy JWK, you don&rsquo;t need to add this value.</li>
+<li><code>jwk_local_ca</code>: <em>string</em>. Path to the certificate of the CA that verifies a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).</li>
 </ul>
 <p>The following example contains every single option available:</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
@@ -796,7 +814,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
       <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
 <span class="hl">        <span class="s">&#34;github.com/devopsfaith/krakend-jose/signer&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span><span class="hl">          <span class="s">&#34;alg&#34;</span><span class="p">:</span> <span class="s">&#34;HS256&#34;</span><span class="p">,</span>
-</span><span class="hl">          <span class="s">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s">&#34;http://backend/jwk/symmetric.json&#34;</span><span class="p">,</span>
+</span><span class="hl">          <span class="s">&#34;jwk-url&#34;</span><span class="p">:</span> <span class="s">&#34;http://your-backend/jwk/symmetric.json&#34;</span><span class="p">,</span>
 </span><span class="hl">          <span class="s">&#34;keys-to-sign&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span><span class="hl">            <span class="s">&#34;access_token&#34;</span><span class="p">,</span>
 </span><span class="hl">            <span class="s">&#34;refresh_token&#34;</span>
@@ -815,6 +833,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 </span>      <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">]</span></code></pre></div>
+<h2 id="how-to-generate-a-jwt-token">How to generate a JWT token</h2>
+<p>Essentially, what you need to adopt JWT in your backend is to adapt your existing <code>/login</code> function (maybe passing an additional <code>?token=true</code> flag), so when a user logs in, instead of setting the session in a cookie, you return the JSON Web Token for KrakenD to sign.</p>
+<p>The token is no more than a JSON output adhering to the <a href="https://tools.ietf.org/html/rfc7519">JWT standard</a>.</p>
+<p>There are a lot of <strong>open source libraries to generate JWT tokens</strong> in all major languages. Use them or write the JSON output directly with a simple template.</p>
+<p>Here is a <a href="https://github.com/devopsfaith/krakend-playground/blob/master/data/token.json">dummy token</a> for you to check how it looks like.</p>
+<h2 id="live-running-example">Live running example</h2>
+<p>The <a href="/docs/overview/playground/">KrakenD Playground</a> demonstrates how to sign tokens in the <code>/token</code> endpoint and includes an example ready to use. To try it, <a href="https://github.com/devopsfaith/krakend-playground">clone the playground</a> and follow the README.</p>
 
     </section>
 </div>
