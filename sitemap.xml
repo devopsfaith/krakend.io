@@ -378,17 +378,42 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/announcements/</loc>
-    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/blog/</loc>
-    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/</loc>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/categories/enterprise/</loc>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/categories/krakend/</loc>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/blog/usage-stats-march-2020/</loc>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/open-source/</loc>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/</loc>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/categories/announcements/</loc>
     <lastmod>2020-02-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -398,27 +423,12 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/categories/krakend/</loc>
-    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/blog/krakend-1.1-release-notes/</loc>
     <lastmod>2020-02-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/open-source/</loc>
-    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/tags/release-notes/</loc>
-    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/</loc>
     <lastmod>2020-02-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -705,11 +715,6 @@
   <url>
     <loc>https://www.krakend.io/tags/packaging/</loc>
     <lastmod>2017-11-06T12:43:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/categories/enterprise/</loc>
-    <lastmod>2017-10-22T19:01:33+02:00</lastmod>
   </url>
   
   <url>

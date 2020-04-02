@@ -6,10 +6,28 @@
     <description>Recent content in Categories on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Enterprise</title>
+      <link>https://www.krakend.io/categories/enterprise/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/categories/enterprise/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KrakenD</title>
+      <link>https://www.krakend.io/categories/krakend/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/categories/krakend/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Announcements</title>
@@ -17,15 +35,6 @@
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/categories/announcements/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>KrakenD</title>
-      <link>https://www.krakend.io/categories/krakend/</link>
-      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/categories/krakend/</guid>
       <description></description>
     </item>
     
@@ -89,15 +98,6 @@
       <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
       
       <guid>https://www.krakend.io/categories/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Enterprise</title>
-      <link>https://www.krakend.io/categories/enterprise/</link>
-      <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/categories/enterprise/</guid>
       <description></description>
     </item>
     
