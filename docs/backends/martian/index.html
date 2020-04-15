@@ -749,21 +749,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <li><strong>Verifiers</strong>: Track network traffic against expectations</li>
 </ul>
 <h2 id="transforming-requests-and-responses">Transforming requests and responses</h2>
-<p>Add martian modifiers in your configuration under the <code>extra_config</code> of any <code>endpoint</code> using the namespace <code>github.com/devopsfaith/krakend-martian</code>.</p>
+<p>Add martian modifiers in your configuration under the <code>extra_config</code> of any <code>backend</code> using the namespace <code>github.com/devopsfaith/krakend-martian</code>.</p>
 <p>Your configuration has to look as follows:</p>
-<pre><code>&quot;endpoint&quot;: &quot;/foo&quot;,
-&quot;extra_config&quot;: {
+<pre><code>&quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
         // modifier configuration here
     }
 }
 </code></pre>
+<p>See the possibilities and examples below.</p>
 <h3 id="modifier-configuration">Modifier configuration</h3>
 <p>In the examples below, you&rsquo;ll find that all modifiers have a configuration key named <code>scope</code>. The scope indicates when to apply the modifier, it can be an array containing <code>request</code>, <code>response</code>, or both. The rest of the keys in every modifier depends on the modifier itself.</p>
 <h2 id="transform-headers">Transform headers</h2>
 <p>The <code>header.Modifier</code> injects a header with a specific value. For instance, the following configuration adds a header <code>X-Martian</code> both in the request and the response.</p>
-<pre><code>&quot;endpoint&quot;: &quot;/foo&quot;,
-&quot;extra_config&quot;: {
+<pre><code>&quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
         &quot;header.Modifier&quot;: {
           &quot;scope&quot;: [&quot;request&quot;, &quot;response&quot;],
@@ -788,8 +787,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 </code></pre>
 <h2 id="transform-the-url">Transform the URL</h2>
 <p>The <code>url.Modifier</code> allows you to change settings in the URL. For instance:</p>
-<pre><code>&quot;endpoint&quot;: &quot;/foo&quot;,
-&quot;extra_config&quot;: {
+<pre><code>&quot;extra_config&quot;: {
     &quot;github.com/devopsfaith/krakend-martian&quot;: {
         &quot;url.Modifier&quot;: {
           &quot;scope&quot;: [&quot;request&quot;],
