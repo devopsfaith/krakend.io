@@ -21,9 +21,9 @@
 
 
 <meta property="og:title" content="Security" />
-<meta property="og:description" content="KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at endpoint level or service (root) level, depending on the item.
+<meta property="og:description" content="KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at service (root) level.
 The following example describes the options explained later in this article:
-&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-httpsecure&quot;: { &quot;allowed_hosts&quot;: [ &quot;host.known.com:443&quot; ], &quot;ssl_proxy_headers&quot;: { &quot;X-Forwarded-Proto&quot;: &quot;https&quot; }, &quot;ssl_redirect&quot;: true, &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;, &quot;ssl_port&quot;: &quot;443&quot;, &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;, &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;, &quot;sts_seconds&quot;: 300, &quot;sts_include_subdomains&quot;: true, &quot;frame_deny&quot;: true, &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example." />
+&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-httpsecure&quot;: { &quot;allowed_hosts&quot;: [ &quot;host.known.com:443&quot; ], &quot;ssl_proxy_headers&quot;: { &quot;X-Forwarded-Proto&quot;: &quot;https&quot; }, &quot;ssl_redirect&quot;: true, &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;, &quot;ssl_port&quot;: &quot;443&quot;, &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;, &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;, &quot;sts_seconds&quot;: 300, &quot;sts_include_subdomains&quot;: true, &quot;frame_deny&quot;: true, &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example.com&quot;, &quot;hpkp_public_key&quot;: &quot;pin-sha256=\&quot;base64==\&quot;; max-age=expireTime [; includeSubDomains][; report-uri=\&quot;reportURI\&quot;]&quot;, &quot;content_type_nosniff&quot;: true, &quot;browser_xss_filter&quot;: true, &quot;content_security_policy&quot;: &quot;default-src &#39;self&#39;;&quot; }  See below the different options described in this configuration file." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/security/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -36,9 +36,9 @@ The following example describes the options explained later in this article:
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Security"/>
-<meta name="twitter:description" content="KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at endpoint level or service (root) level, depending on the item.
+<meta name="twitter:description" content="KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at service (root) level.
 The following example describes the options explained later in this article:
-&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-httpsecure&quot;: { &quot;allowed_hosts&quot;: [ &quot;host.known.com:443&quot; ], &quot;ssl_proxy_headers&quot;: { &quot;X-Forwarded-Proto&quot;: &quot;https&quot; }, &quot;ssl_redirect&quot;: true, &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;, &quot;ssl_port&quot;: &quot;443&quot;, &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;, &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;, &quot;sts_seconds&quot;: 300, &quot;sts_include_subdomains&quot;: true, &quot;frame_deny&quot;: true, &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example."/>
+&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-httpsecure&quot;: { &quot;allowed_hosts&quot;: [ &quot;host.known.com:443&quot; ], &quot;ssl_proxy_headers&quot;: { &quot;X-Forwarded-Proto&quot;: &quot;https&quot; }, &quot;ssl_redirect&quot;: true, &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;, &quot;ssl_port&quot;: &quot;443&quot;, &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;, &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;, &quot;sts_seconds&quot;: 300, &quot;sts_include_subdomains&quot;: true, &quot;frame_deny&quot;: true, &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example.com&quot;, &quot;hpkp_public_key&quot;: &quot;pin-sha256=\&quot;base64==\&quot;; max-age=expireTime [; includeSubDomains][; report-uri=\&quot;reportURI\&quot;]&quot;, &quot;content_type_nosniff&quot;: true, &quot;browser_xss_filter&quot;: true, &quot;content_security_policy&quot;: &quot;default-src &#39;self&#39;;&quot; }  See below the different options described in this configuration file."/>
 
 
 
@@ -733,7 +733,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         
 
-        <p>KrakenD has implemented several security strategies, controlled via <a href="https://github.com/devopsfaith/krakend-httpsecure">krakend-httpsecure</a>. To enable them you only need to add the <code>extra_config</code> at <code>endpoint</code> level or service (root) level, depending on the item.</p>
+        <p>KrakenD has implemented several security strategies, controlled via <a href="https://github.com/devopsfaith/krakend-httpsecure">krakend-httpsecure</a>. To enable them you only need to add the <code>extra_config</code> at service (root) level.</p>
 <p>The following example describes the options explained later in this article:</p>
 <pre><code>&quot;extra_config&quot;: {
   &quot;github_com/devopsfaith/krakend-httpsecure&quot;: {
