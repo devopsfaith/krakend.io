@@ -709,18 +709,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#building-state">Building state</a></li>
-    <li><a href="#working-state">Working state</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#the-config-package">The <code>config</code> package</a></li>
-    <li><a href="#the-router-package">The <code>router</code> package</a></li>
-    <li><a href="#the-proxy-package">The <code>proxy</code> package</a>
+    <li><a href="#the-krakend-rules">The KrakenD rules</a></li>
+    <li><a href="#krakend-internal-states">KrakenD internal states</a>
       <ul>
-        <li><a href="#middlewares-available">Middlewares available</a></li>
-        <li><a href="#proxies-available">Proxies available</a></li>
-        <li><a href="#other-components-of-the-proxy-package">Other components of the <code>proxy</code> package</a></li>
+        <li><a href="#building-state">Building state</a></li>
+        <li><a href="#working-state">Working state</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-important-packages">The important packages</a>
+      <ul>
+        <li><a href="#the-config-package">The <code>config</code> package</a></li>
+        <li><a href="#the-router-package">The <code>router</code> package</a></li>
+        <li><a href="#the-proxy-package">The <code>proxy</code> package</a></li>
       </ul>
     </li>
   </ul>
@@ -730,7 +730,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
         
 
         <p>Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.</p>
-<h1 id="the-krakend-rules">The KrakenD rules</h1>
+<h2 id="the-krakend-rules">The KrakenD rules</h2>
 <p>Let&rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:</p>
 <ul>
 <li><a href="http://www.reactivemanifesto.org/">Reactive is key</a></li>
@@ -740,9 +740,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <li>Everything is pluggable</li>
 <li>Each request must be processed in its request-scoped context</li>
 </ul>
-<h1 id="krakend-internal-states">KrakenD internal states</h1>
+<h2 id="krakend-internal-states">KrakenD internal states</h2>
 <p>When you start KrakenD, the system goes through two different internal states: <strong>building</strong> and <strong>working</strong>. Let&rsquo;s see what happens in every state.</p>
-<h2 id="building-state">Building state</h2>
+<h3 id="building-state">Building state</h3>
 <p>The building state administers the service start-up and prepares the system before it can start receiving traffic. During the building state, three things happen:</p>
 <ul>
 <li>Parsing of the configuration to fix the system behavior</li>
@@ -751,10 +751,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 </ul>
 <p>A <code>pipe</code> is a function that receives a request message, processes it, and produces the response message and an error. The KrakenD router binds the pipes to the selected transport layer (e.g., HTTP, gRPC).</p>
 <p>When the building state finishes, the KrakenD service is not going to need to calculate any route or lookup for the associated handler function, as all the mapping is direct in-memory.</p>
-<h2 id="working-state">Working state</h2>
+<h3 id="working-state">Working state</h3>
 <p>The working state is when the system is ready and can process the requests. When they arrive, the <code>router</code> already has the mapping of the request with the handler function and triggers the pipe execution. The <code>proxy</code> is the step of the pipe that manipulates, aggregates, and does other data handling for the rest of the process.</p>
 <p>As the handler functions are in the previous step, <strong>KrakenD doesn&rsquo;t penalize the performance depending on the number of endpoints or the possible cardinality</strong> of the URIs requested by the users.</p>
-<h1 id="the-important-packages">The important packages</h1>
+<h2 id="the-important-packages">The important packages</h2>
 <p>The KrakenD framework is composed of a set of packages designed as building blocks for creating pipes and processors between an exposed endpoint and one or several API resources served by your backends.</p>
 <center>
 ![KrakenD packages](/images/documentation/config-router-proxy-packages.png)
@@ -767,15 +767,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 </ol>
 <p>The rest of the packages of the framework contain some helpers and adapters for additional tasks, like encoding, logging or service discovery.</p>
 <p>Additionally, the KrakenD-CE bundles a lot of middleware and components that are in its scope and package. These packages and others are listed in our <a href="https://github.com/devopsfaith/krakend-contrib">KrakenD Contrib</a> repository.</p>
-<h2 id="the-config-package">The <code>config</code> package</h2>
+<h3 id="the-config-package">The <code>config</code> package</h3>
 <p>The <code>config</code> package contains the structs required for the service description.</p>
 <p>The <code>ServiceConfig</code> struct defines the entire service. Initialize it before using it to be sure that all parameters are normalized and default values are applied.</p>
 <p>The <code>config</code> package also defines an interface for a file config parser and a parser based on the <a href="https://github.com/spf13/viper">Viper</a> library.</p>
-<h2 id="the-router-package">The <code>router</code> package</h2>
+<h3 id="the-router-package">The <code>router</code> package</h3>
 <p>The <code>router</code> package contains an interface and several implementations for the KrakenD router layer using the <code>mux</code> router from the <code>net/http</code> and the <code>httprouter</code> wrapped in the <code>gin</code> framework.</p>
 <p>The router layer is responsible for setting up the HTTP(S) services, binding the endpoints defined at the <code>ServiceConfig</code> struct and transforming the HTTP request into proxy requests before delegating the task to the inner layer (proxy). Once the internal proxy layer returns a proxy response, the router layer converts it into a proper HTTP response and sends it to the user.</p>
 <p>This layer can be easily extended to use any HTTP router, framework or middleware of your choice. Adding transport layer adapters for other protocols (Thrift, gRPC, AMQP, NATS, and others) is in the roadmap. As always, PRs are welcome!</p>
-<h2 id="the-proxy-package">The <code>proxy</code> package</h2>
+<h3 id="the-proxy-package">The <code>proxy</code> package</h3>
 <p>The <code>proxy</code> package is where most of the KrakenD components and features are. It defines two important interfaces, designed to be stacked:</p>
 <ul>
 <li><em>Proxy</em> is a function that converts a given context and request into a response.</li>
@@ -784,7 +784,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <p>This layer transforms the request received from the outer layer (router) into a single or several requests to your backend services, processes the responses and returns a single response.</p>
 <p>Middlewares generates custom proxies that are chained depending on the workflow defined in the configuration until each possible branch ends in a transport-related proxy. Every one of these generated proxies can transform the input or even clone it several times and pass it or them to the next element in the chain. Finally, they can also modify the received response or responses adding all kinds of features to the generated pipe.</p>
 <p>The KrakenD framework provides a default implementation of the proxy stack factory.</p>
-<h3 id="middlewares-available">Middlewares available</h3>
+<h4 id="middlewares-available">Middlewares available</h4>
 <ul>
 <li>The <code>balancing</code> middleware uses some strategy for selecting a backend host to query.</li>
 <li>The <code>concurrent</code> middleware improves the QoS by sending several concurrent requests to the next step of the chain and returning the first successful response using a timeout for canceling the generated workload.</li>
@@ -792,11 +792,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <li>The <code>merging</code> middleware is a fork-and-join middleware. It is intended to split the process of the request into several concurrent processes, each one against a different backend, and to merge all the received responses from those created pipes into a single one. It applies a timeout, as the <code>concurrent</code> one does.</li>
 <li>The <code>http</code> middleware completes the received proxy request by replacing the parameters extracted from the user request in the defined <code>URLPattern</code>.</li>
 </ul>
-<h3 id="proxies-available">Proxies available</h3>
+<h4 id="proxies-available">Proxies available</h4>
 <ul>
 <li>The <code>http</code> proxy translates a proxy request into an HTTP one, sends it to the backend API using an <code>HTTPClientFactory</code>, decodes the returned HTTP response with a <code>Decoder</code>, manipulates the response data with an <code>EntityFormatter</code> and returns it to the caller.</li>
 </ul>
-<h3 id="other-components-of-the-proxy-package">Other components of the <code>proxy</code> package</h3>
+<h4 id="other-components-of-the-proxy-package">Other components of the <code>proxy</code> package</h4>
 <p>The <code>proxy</code> package also defines the <code>EntityFormatter</code>, the block responsible for enabling a powerful and fast response manipulation.</p>
 
     </section>

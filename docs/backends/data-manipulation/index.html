@@ -703,49 +703,49 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#blacklist">Blacklist</a>
+    <li><a href="#filtering">Filtering</a>
       <ul>
-        <li><a href="#nested-fields-dot-operator">Nested fields (dot operator)</a></li>
-        <li><a href="#blacklist-example">Blacklist example</a></li>
+        <li><a href="#blacklist">Blacklist</a></li>
+        <li><a href="#whitelist">Whitelist</a></li>
+        <li><a href="#whitelist-or-blacklist">Whitelist or blacklist?</a></li>
       </ul>
     </li>
-    <li><a href="#whitelist">Whitelist</a>
+    <li><a href="#grouping">Grouping</a>
       <ul>
-        <li><a href="#whitelist-example">Whitelist example</a></li>
+        <li><a href="#grouping-example">Grouping example</a></li>
       </ul>
     </li>
-    <li><a href="#whitelist-or-blacklist">Whitelist or blacklist?</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#grouping-example">Grouping example</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#mapping-example">Mapping example:</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#capturing-a-target-example">Capturing a target example</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#when-the-backend-response-is-inside-an-array">When the Backend response is inside an array</a></li>
-    <li><a href="#when-you-need-to-manipulate-arrays">When you need to manipulate arrays</a></li>
+    <li><a href="#mapping">Mapping</a>
+      <ul>
+        <li><a href="#mapping-example">Mapping example:</a></li>
+      </ul>
+    </li>
+    <li><a href="#target">Target</a>
+      <ul>
+        <li><a href="#capturing-a-target-example">Capturing a target example</a></li>
+      </ul>
+    </li>
+    <li><a href="#collections">Collections</a>
+      <ul>
+        <li><a href="#when-the-backend-response-is-inside-an-array">When the Backend response is inside an array</a></li>
+        <li><a href="#when-you-need-to-manipulate-arrays">When you need to manipulate arrays</a></li>
+      </ul>
+    </li>
+    <li><a href="#manipulations-with-lua">Manipulations with Lua</a></li>
   </ul>
 </nav>
             </div>
         </div>
         
 
-        <h1 id="filtering">Filtering</h1>
+        <h2 id="filtering">Filtering</h2>
 <p>When you offer a KrakenD endpoint you can decide to show only a subset of the fields coming from the backends&rsquo; response or alter the structure of the content provided. There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&rsquo;s bandwidth and increase load and render times.</p>
 <p>There are two different strategies you can use to filter content:</p>
 <ul>
 <li><strong>Blacklist</strong></li>
 <li><strong>Whitelist</strong></li>
 </ul>
-<h2 id="blacklist">Blacklist</h2>
+<h3 id="blacklist">Blacklist</h3>
 <p>The blacklist filter can be read as the <em>don&rsquo;t show this</em> filter. KrakenD will remove from the response all matching fields defined in the list, and the ones that do not match will be revealed. Use the blacklist to exclude some fields in the response.</p>
 <p>To blacklist a field from the response add under the desired <code>endpoint</code> configuration an <code>blacklist</code> array with all the fields you don&rsquo;t want to show. E.g.:</p>
 <pre><code>&quot;blacklist&quot;: [
@@ -753,7 +753,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
   &quot;CVV&quot;
 ]
 </code></pre>
-<h3 id="nested-fields-dot-operator">Nested fields (dot operator)</h3>
+<h4 id="nested-fields-dot-operator">Nested fields (dot operator)</h4>
 <p>The blacklisted fields of your choice can also be a nested field. Use a <strong>dot</strong> as the level separator. For instance the <code>a1</code> field in the following JSON response <code>{ &quot;a&quot;: { &quot;a1&quot;: 1 } }</code> can be blacklisted as <code>a.a1</code>.</p>
 <p>Also worth mentioning, the operator works with <strong>objects only</strong> and not with arrays. When working with collections <code>[]</code>, see the special case <a href="/docs/backends/flatmap/">manipulating arrays</a>.</p>
 <p>For instance, <code>{ &quot;a&quot;: [ { &quot;a1&quot;: 1 } ] }</code> can&rsquo;t be blacklisted as <code>a.a1</code> because <code>a1</code> is inside an array.</p>
@@ -761,7 +761,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     <h4><i class="fa fa-sticky-note"></i> Working with arrays</h4>
 	Blacklist and whitelist filters expect objects. When working with collections, see the <a href="/docs/backends/flatmap/">flatmap approach</a>
  </div>
-<h3 id="blacklist-example">Blacklist example</h3>
+<h4 id="blacklist-example">Blacklist example</h4>
 <p>We will use the <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a> fake API so you can see live the output of the backend.</p>
 <p>We want to set up a KrakenD endpoint that returns the <strong>posts for a specific user</strong>, but we&rsquo;ve seen that the <a href="https://jsonplaceholder.typicode.com/posts/1">backend response</a> contains too much data since our use case do not need the <code>body</code> and <code>userId</code> fields and we want a lighter and faster response.</p>
 <p>The KrakenD endpoint to accept URLs like<code>/posts/1</code> is defined as follows:</p>
@@ -789,10 +789,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 }
 </code></pre>
 <p><a href="https://jsonplaceholder.typicode.com/posts/1">Compared with the backend response</a> you&rsquo;ll see that the fields <code>body</code> and <code>userId</code> are no longer there.</p>
-<h2 id="whitelist">Whitelist</h2>
+<h3 id="whitelist">Whitelist</h3>
 <p>The blacklist filter can be read as the <em>only show this</em> filter. When you set a whitelist KrakenD will include in the endpoint response only those fields that match exactly with your choice. Use the whitelist to strictly define the fields you want to show in the response.</p>
 <p>The whitelisted fields of your choice can also be nested field. Use a <strong>dot</strong> as the level separator. For instance the <code>a1</code> field in the following JSON response <code>{ &quot;a&quot;: { &quot;a1&quot;: 1 } }</code> can be whitelisted as <code>a.a1</code>.</p>
-<h3 id="whitelist-example">Whitelist example</h3>
+<h4 id="whitelist-example">Whitelist example</h4>
 <p>We will repeat the same exercise we did in the blacklist to get the same output. We only want to get the <code>id</code> and <code>title</code> fields from the backend.</p>
 <pre><code>{
   &quot;endpoint&quot;: &quot;/posts/{user}&quot;,
@@ -818,14 +818,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 }
 </code></pre>
 <p>Just exactly as we did with the blacklist.</p>
-<h2 id="whitelist-or-blacklist">Whitelist or blacklist?</h2>
+<h3 id="whitelist-or-blacklist">Whitelist or blacklist?</h3>
 <p>When filtering you need to choose between the blacklist and the whitelist. The two operations cannot coexist as their behaviors are contradictory. Nothing stops you to play for a while and see what happens if you mix them, but make sure it&rsquo;s only experimentation!</p>
 <p>From the performance point of view, blacklist is slightly fastest than whitelist.</p>
-<h1 id="grouping">Grouping</h1>
+<h2 id="grouping">Grouping</h2>
 <p>KrakenD is able to group your backend responses inside different objects. In other words, when you set a <code>group</code> attribute for a backend, instead of placing all the response attributes in the root of the response, KrakenD creates a new key and places the response inside.</p>
 <p>Encapsulating backend responses inside each own group is especially interesting when different backend responses can have colliding key names (e.g: all responses contain an <code>id</code> with different values).</p>
 <p>When grouping different backend responses <strong>don&rsquo;t share the same group name</strong>, as the slowest backend would overwrite the response with the same group. Group names are supposed to be unique for each backend in the same endpoint but this is not enforced.</p>
-<h2 id="grouping-example">Grouping example</h2>
+<h3 id="grouping-example">Grouping example</h3>
 <p>The following code is an endpoint that gets data from two different backends but one of the responses is encapsulated inside the field <code>last_post</code>.</p>
 <pre><code>{
   &quot;endpoint&quot;: &quot;/users/{user}&quot;,
@@ -878,10 +878,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
   }
 }
 </code></pre>
-<h1 id="mapping">Mapping</h1>
+<h2 id="mapping">Mapping</h2>
 <p>Mapping, or also known as <strong>renaming</strong>, let you change the name of the fields of the generated responses, so your composed response would be as close to your use case as possible without changing a line on any backend.</p>
 <p>In the <code>mapping</code> section map the original field name with the desired name.</p>
-<h2 id="mapping-example">Mapping example:</h2>
+<h3 id="mapping-example">Mapping example:</h3>
 <p>Instead of showing the <code>email</code> field we want to name it <code>personal_email</code>:</p>
 <pre><code>{
   &quot;endpoint&quot;: &quot;/users/{user}&quot;,
@@ -924,11 +924,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
   }
 }
 </code></pre>
-<h1 id="target">Target</h1>
+<h2 id="target">Target</h2>
 <p>It is frequent in many API implementations that the desired data is always encapsulated inside a generic field like <code>data</code> or <code>content</code> and you don&rsquo;t want to have this level included in your responses.</p>
 <p>Use capturing when you want to capture the content inside these generic containers and extract it to the root as it never existed and when you want to work with other manipulation options. Capture takes place before other options like whitelist or mapping.</p>
 <p>The capturing option uses the attribute <code>target</code> in the configuration file.</p>
-<h2 id="capturing-a-target-example">Capturing a target example</h2>
+<h3 id="capturing-a-target-example">Capturing a target example</h3>
 <p>Given a backend endpoint with this kind of responses containing a level <code>data</code>:</p>
 <pre><code>{
   &quot;apiVersion&quot;:&quot;2.0&quot;,
@@ -962,13 +962,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     &quot;items&quot;:[]
 }
 </code></pre>
-<h1 id="collections">Collections</h1>
+<h2 id="collections">Collections</h2>
 <p>Working with collections (or arrays) is a special manipulation case. There are two different scenarios regarding collections:</p>
 <ul>
 <li>When the whole backend response is inside an array instead of an object</li>
 <li>When you want to manipulate collections (e.g.: a path like <code>data.item[N].property</code>)</li>
 </ul>
-<h2 id="when-the-backend-response-is-inside-an-array">When the Backend response is inside an array</h2>
+<h3 id="when-the-backend-response-is-inside-an-array">When the Backend response is inside an array</h3>
 <p>KrakenD expects all backends to return an object as the response. For instance, a JSON response containing an object comes encapsulated in curly braces <code>{}</code>. E.g.:</p>
 <pre><code>{ &quot;a&quot;: true, &quot;b&quot;: false }
 </code></pre><p>When your API does not return an object but a collection (<code>[]</code> or array) you need to declare it explicitly with <code>&quot;is_collection&quot;: true</code> so that KrakenD can convert it to an object for further manipulation. An example of a JSON collection response is:</p>
@@ -1009,10 +1009,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
       ...
     }
 }
-</code></pre><h2 id="when-you-need-to-manipulate-arrays">When you need to manipulate arrays</h2>
+</code></pre><h3 id="when-you-need-to-manipulate-arrays">When you need to manipulate arrays</h3>
 <p>All the data manipulation operations (such as whitelist, blacklist, etc) expect to find objects in the response. When an object is nested inside another object you can filter directly, but when there are arrays in the equation KrakenD needs to flatten the structure.</p>
 <p>See <a href="/docs/backends/flatmap">flatmap documentation</a></p>
-<h1 id="manipulations-with-lua">Manipulations with Lua</h1>
+<h2 id="manipulations-with-lua">Manipulations with Lua</h2>
 <p>Backends response can be transformed using Lua scripting.</p>
 <p>See <a href="/docs/endpoints/lua/">Lua scripts</a> documentation</p>
 

@@ -702,20 +702,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmark
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#test-00">Test 00</a></li>
-    <li><a href="#test-01">Test 01</a>
+    <li><a href="#hardware">Hardware</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#results">Results</a>
       <ul>
-        <li><a href="#krakend">KrakenD</a></li>
-        <li><a href="#vulcand">Vulcand</a></li>
-        <li><a href="#kong">Kong</a></li>
-        <li><a href="#tyk">Tyk</a></li>
+        <li><a href="#test-00">Test 00</a></li>
+        <li><a href="#test-01">Test 01</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#requests-per-second">Requests per second</a></li>
-    <li><a href="#response-time-distribution">Response time distribution</a></li>
+    <li><a href="#summary">Summary</a>
+      <ul>
+        <li><a href="#requests-per-second">Requests per second</a></li>
+        <li><a href="#response-time-distribution">Response time distribution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
             </div>
@@ -732,13 +732,11 @@ environment and conditions and tested the following products:</p>
 </ul>
 <p>For the benchmarks, we based the tests on the benchmarking project <a href="https://github.com/varnish/api-gateway-benchmarks">varnish/api-gateway-benchmarks</a>.</p>
 <p><strong>At the time of writing, KrakenD does not support auth features, so we just did the benchmark with <em>test01</em></strong></p>
-<h1 id="tldr">TLDR;</h1>
-<p>Check out the generated graphs (<a href="http://www.charted.co/c/1db8eb2">throughput</a> and <a href="http://www.charted.co/c/2940d33">responses</a>) or the <a href="#summary">summary</a></p>
-<h1 id="hardware">Hardware</h1>
+<h2 id="hardware">Hardware</h2>
 <pre><code>Model MacBook Pro (MacBookPro11,4) - August 2015
 Processor:    Intel Core i7 2,2 GHz
 </code></pre>
-<h1 id="setup">Setup</h1>
+<h2 id="setup">Setup</h2>
 <p>For this test, we stored this configuration at <code>krakend.json</code></p>
 <pre><code>{
   &quot;version&quot;: 1,
@@ -804,8 +802,8 @@ $ vagrant ssh consumer
 [vagrant@consumer boom]$ /usr/local/bin/test00
 [vagrant@consumer boom]$ /usr/local/bin/test01
 </code></pre>
-<h1 id="results">Results</h1>
-<h2 id="test-00">Test 00</h2>
+<h2 id="results">Results</h2>
+<h3 id="test-00">Test 00</h3>
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test00
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -843,8 +841,8 @@ Latency distribution:
   95% in 0.0233 secs.
   99% in 0.0333 secs.
 </code></pre>
-<h2 id="test-01">Test 01</h2>
-<h3 id="krakend">KrakenD</h3>
+<h3 id="test-01">Test 01</h3>
+<h4 id="krakend">KrakenD</h4>
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test01
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -882,7 +880,7 @@ Latency distribution:
   95% in 0.0469 secs.
   99% in 0.0771 secs.
 </code></pre>
-<h3 id="vulcand">Vulcand</h3>
+<h4 id="vulcand">Vulcand</h4>
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test01
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -920,7 +918,7 @@ Latency distribution:
   95% in 0.0733 secs.
   99% in 0.2057 secs.
 </code></pre>
-<h3 id="kong">Kong</h3>
+<h4 id="kong">Kong</h4>
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test01
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -958,7 +956,7 @@ Latency distribution:
   95% in 0.1076 secs.
   99% in 0.2355 secs.
 </code></pre>
-<h3 id="tyk">Tyk</h3>
+<h4 id="tyk">Tyk</h4>
 <pre><code>[vagrant@consumer ~]$ /usr/local/bin/test01
 100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
 
@@ -996,11 +994,11 @@ Latency distribution:
   95% in 0.9231 secs.
   99% in 2.1054 secs.
 </code></pre>
-<h1 id="summary">Summary</h1>
-<h2 id="requests-per-second">Requests per second</h2>
+<h2 id="summary">Summary</h2>
+<h3 id="requests-per-second">Requests per second</h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=api-gateway-benchmark_test01_rps.csv"></script>
 
-<h2 id="response-time-distribution">Response time distribution</h2>
+<h3 id="response-time-distribution">Response time distribution</h3>
 <p><em>Time in milliseconds</em></p>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=api-gateway-benchmark_test01_resp_time.csv"></script>
 

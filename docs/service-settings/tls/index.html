@@ -701,7 +701,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents"></nav>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#simple-configuration-for-tls">Simple configuration for TLS</a></li>
+    <li><a href="#full-configuration-for-tls">Full configuration for TLS</a></li>
+  </ul>
+</nav>
             </div>
         </div>
         
@@ -712,7 +717,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
 <li>Use a balancer with TLS termination in front of KrakenD (e.g., ELB, HAproxy)</li>
 </ul>
 <p>In case you want to enable TLS in KrakenD you need to add a <code>tls</code> key at service level (configuration&rsquo;s file root) with at least the public key and the private key. When you add TLS, KrakenD listens <strong>only using TLS</strong>, and no traffic to plain HTTP is accepted.</p>
-<h1 id="simple-configuration-for-tls">Simple configuration for TLS</h1>
+<h2 id="simple-configuration-for-tls">Simple configuration for TLS</h2>
 <p>To start KrakenD with TLS you need to generate the certificate and provide both the public and the private key:</p>
 <pre><code>{
   &quot;version&quot;: 2,
@@ -722,7 +727,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
   }
 }
 </code></pre>
-<h1 id="full-configuration-for-tls">Full configuration for TLS</h1>
+<h2 id="full-configuration-for-tls">Full configuration for TLS</h2>
 <p>All the accepted options of the TLS configuration are:</p>
 <ul>
 <li><code>public_key</code>: Absolute path to the public key, or relative to the current working directory (CWD)</li>

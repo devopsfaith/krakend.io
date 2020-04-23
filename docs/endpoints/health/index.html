@@ -709,7 +709,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li>Use a <a href="/docs/backends/martian/">static Martian modifier</a> and serve any static file as <code>/health</code>.</li>
 <li>Pass the <code>/health</code> to another backend (although you are checking the backend, not KrakenD)</li>
 </ul>
-<h1 id="how-to-add-a-health-endpoint-with-stub-data">How to add a <code>/health</code> endpoint with stub data</h1>
+<h2 id="how-to-add-a-health-endpoint-with-stub-data">How to add a <code>/health</code> endpoint with stub data</h2>
 <p>The easiest option is to use the <a href="/docs/endpoints/static-proxy/">static proxy</a> functionality. With this technique, we are going to add an endpoint that uses an unreachable (and fake) backend. As the data can&rsquo;t be fetched from KrakenD, the strategy <code>always</code> is going to make sure we return the desired static data that we want.</p>
 <pre><code>{
     &quot;version&quot;: 2,

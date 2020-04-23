@@ -700,18 +700,23 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmark
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents"></nav>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#hardware">Hardware</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
             </div>
         </div>
         
 
-        <h1 id="tldr">TL;DR</h1>
-<p>Check out the generated <a href="http://www.charted.co/c/301c7e8">graphs</a> or the <a href="#summary">summary</a></p>
-<h1 id="hardware">Hardware</h1>
+        <h2 id="hardware">Hardware</h2>
 <pre><code>Model MacBook Pro (MacBookPro11,4) - August 2015
 Processor:    Intel Core i7 2,2 GHz
 </code></pre>
-<h1 id="setup">Setup</h1>
+<h2 id="setup">Setup</h2>
 <p>For this test, we stored this configuration at <code>krakend.json</code></p>
 <pre><code>{
   &quot;version&quot;: 1,
@@ -761,7 +766,7 @@ Content-Length: 19
 
 {&quot;message&quot;:&quot;pong&quot;}
 </code></pre>
-<h1 id="results">Results</h1>
+<h2 id="results">Results</h2>
 <pre><code>$ hey -c 200 -n 100000 http://127.0.0.1:8080/foo
 8217 requests done.
 17379 requests done.
@@ -810,7 +815,7 @@ Latency distribution:
   95% in 0.0173 secs
   99% in 0.0212 secs
 </code></pre>
-<h1 id="summary">Summary</h1>
+<h2 id="summary">Summary</h2>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=local_100_500_concurrency.csv"></script>
 
 

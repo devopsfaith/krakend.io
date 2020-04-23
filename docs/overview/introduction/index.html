@@ -713,12 +713,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 <p>Check our original <strong><a href="//www.slideshare.net/AlbertLombarte1/krakend-api-gateway">KrakenD presentation slides</a></strong> at <a href="//www.slideshare.net/AlbertLombarte1/krakend-api-gateway">Slideshare</a></p>
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/HjibH0SPFxNhb7" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 <p><small>Having trouble? Open in <a href="//www.slideshare.net/AlbertLombarte1/krakend-api-gateway">Slideshare</a></small></p>
-<h1 id="why-an-api-gateway">Why an API Gateway?</h1>
+<h2 id="why-an-api-gateway">Why an API Gateway?</h2>
 <p>When consumers of API content (especially in microservices) query backend services, the implementations suffer a lot of complexity and burden with the sizes and complexity of their microservices responses.</p>
 <p>KrakenD is an <strong>API Gateway</strong> that sits between the client and all the source servers, adding a new layer that removes all the complexity to the clients, providing them only the information that the UI needs.</p>
 <p>KrakenD acts as an <strong>aggregator</strong> of many sources into single endpoints and allows you to group, wrap, transform and shrink responses. Additionally, it supports a myriad of middleware and plugins that allow you to extend the functionality, such as adding OAuth authorization or security layers (SSL, certificates, HTTP Strict Transport Security, Clickjacking protection, HTTP Public Key Pinning, MIME-sniffing prevention, XSS protection).</p>
 <p>KrakenD is written in <a href="https://golang.org/">Go</a> with support for multiple platforms and is based on the <a href="https://github.com/devopsfaith/krakend">KrakenD framework</a>.</p>
-<h2 id="a-practical-example">A practical example</h2>
+<h3 id="a-practical-example">A practical example</h3>
 <p>A mobile developer needs to construct a single front page that requires data from several calls to their backend services, e.g:</p>
 <pre><code>1) api.store.server/products
 2) api.store.server/marketing-promos

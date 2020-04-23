@@ -688,7 +688,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <p class="docs-metadata">
     
     
-        <i class="fa fa-star ml-2"></i> Requires version >= <span class="version">0.9</span>
+        <i class="fa fa-star"></i> Requires version >= <span class="version">0.9</span>
     
 </p>
 
@@ -724,7 +724,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 }
 </code></pre>
 <p>With this change, the backend containing the flag enters into production, but KrakenD ignores its responses.</p>
-<h1 id="traffic-shadowing-example">Traffic shadowing example</h1>
+<h2 id="traffic-shadowing-example">Traffic shadowing example</h2>
 <p>The following example shows a backend that is changing from <code>v1</code> to <code>v2</code>, but we are still unsure of the effects of doing this change in production, so we want to send a copy of the requests to <code>v2</code> in the first place, but keep the end users receiving the responses from <code>v1</code> only:</p>
 <pre><code>{
     &quot;endpoint&quot;: &quot;/user/{id}&quot;,

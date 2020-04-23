@@ -710,7 +710,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents"></nav>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#comparison-of-maxrate-vs-clientmaxrate">Comparison of <code>maxRate</code> vs <code>clientMaxRate</code></a></li>
+  </ul>
+</nav>
             </div>
         </div>
         
@@ -741,7 +745,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <li><code>maxRate</code>: Maximum requests per second you want to accept in this backend.</li>
 <li><code>capacity</code>: The capacity according to the <a href="https://en.wikipedia.org/wiki/Token_bucket">token bucket algorithm</a> with a <code>bucket capacity == tokens added per second</code> so KrakenD is able to allow some bursting on the request rates. Recommended value is capacity==maxRate</li>
 </ul>
-<h1 id="comparison-of-maxrate-vs-clientmaxrate">Comparison of <code>maxRate</code> vs <code>clientMaxRate</code></h1>
+<h2 id="comparison-of-maxrate-vs-clientmaxrate">Comparison of <code>maxRate</code> vs <code>clientMaxRate</code></h2>
 <p>The <code>maxRate</code> (available both in router and proxy layers) is an absolute number where you have the exact control over how much traffic you are allowing to hit the backend or endpoint. In an eventual DDoS, the <code>maxRate</code> can help in a way since it won&rsquo;t accept more traffic than allowed. But on the other hand a single host could abuse the system taking a big percentage of that quota.</p>
 <p>The <code>clientMaxRate</code> is a limit per client and it won&rsquo;t help you if you just want to control the total traffic, as
 the total traffic supported by the backend or endpoint depends on the number of different requesting clients. A DDoS will then happily pass through, but on the other hand, you can keep any particular abuser limited to its quota.</p>

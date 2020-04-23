@@ -700,6 +700,19 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
     <section class="col-md-12">
         
         
+        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
+            <div class="shadow rounded pb-2">
+                <h6 class="header rounded-top">On this page</h6>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#generating-the-configuration-files">Generating the configuration file(s)</a></li>
+    <li><a href="#supported-file-formats">Supported file formats</a></li>
+    <li><a href="#validating-the-syntax-of-the-configuration-file">Validating the syntax of the configuration file</a></li>
+  </ul>
+</nav>
+            </div>
+        </div>
+        
 
         <p>All the configuration that the KrakenD server needs to start and operate is a single configuration file. This file is referred to as <code>krakend.json</code> through all the documentation.</p>
 <p>The name <code>krakend.json</code> is just <strong>an alias</strong>, a convention, that we use everywhere. Your real configuration file can have any name, be stored anywhere, or split in many pieces.</p>
@@ -708,14 +721,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
     <h4><i class="fa fa-sticky-note"></i> Configuration using multiple files</h4>
 	If your configuration file is too large or repetitive, it can be split into several files using a templating system. See the <a href="/docs/configuration/flexible-config">flexible configuration documentation</a> for more information on this feature.
  </div>
-<h1 id="generating-the-configuration-files">Generating the configuration file(s)</h1>
+<h2 id="generating-the-configuration-files">Generating the configuration file(s)</h2>
 <p>The configuration file can be written from scratch or reuse another existing file as a base, but the easiest way to write your first configuration file is by simply using the online configuration editor <a href="https://designer.krakend.io/">KrakenDesigner</a>.</p>
 <p>The KrakenDesigner is a simple javascript application that helps you understand the capabilities of the API Gateway and helps you set the different values for all the different options. Using this option you don&rsquo;t need to learn and write from scratch all the attribute names. The configuration file can be downloaded at any time and loaded again to resume the edition.</p>
 <p>The Kraken Designer is a <strong>pure static</strong> page that <strong>does not send any of your configuration elsewhere</strong>, and as it happens with all our software, is also open sourced and you can download it and run it in your own web server. See the <a href="https://github.com/devopsfaith/krakendesigner">Krakendesigner</a> repository.</p>
 <p><a class="btn btn-secondary btn-circle" href="https://designer.krakend.io/">Generate configuration now</a></p>
-<h1 id="supported-file-formats">Supported file formats</h1>
-<p>The configuration file can be written as <code>.json</code>, <code>.toml</code>, <code>.yaml</code>, <code>.yml</code>, <code>.properties</code>, <code>.props</code>, <code>.prop</code> or <code>.hcl</code>. For more information and recommendations see <a href="/docs/configuration/supported-formats/">supported file formats</a>.</p>
-<h1 id="validating-the-syntax-of-the-configuration-file">Validating the syntax of the configuration file</h1>
+<h2 id="supported-file-formats">Supported file formats</h2>
+<p>Through all the documentation we refer to the configuration file as the <code>krakend.json</code> file, but the configuration file can be written using <code>.json</code>, <code>.toml</code>, <code>.yaml</code>, <code>.yml</code>, <code>.properties</code>, <code>.props</code>, <code>.prop</code> or <code>.hcl</code>. For more information and recommendations see <a href="/docs/configuration/supported-formats/">supported file formats</a>.</p>
+<h2 id="validating-the-syntax-of-the-configuration-file">Validating the syntax of the configuration file</h2>
 <p>Validate the syntax (not the logic) of your configuration file using the <code>krakend check</code> command:</p>
 <div class="terminal">
 	<div class="title">

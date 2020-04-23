@@ -692,7 +692,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         <a href="https://github.com/devopsfaith/krakend-amqp"><i class="fab fa-github"></i> Source code</a> for this component
     
     
-        <i class="fa fa-star ml-2"></i> Requires version >= <span class="version">0.9</span>
+        <i class="fa fa-star"></i> Requires version >= <span class="version">0.9</span>
     
 </p>
 
@@ -714,13 +714,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#example">Example</a></li>
-    <li><a href="#consumer-settings">Consumer settings</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#example-1">Example</a></li>
-    <li><a href="#producer-settings">Producer settings</a></li>
+    <li><a href="#consumer">Consumer</a>
+      <ul>
+        <li><a href="#example">Example</a></li>
+        <li><a href="#consumer-settings">Consumer settings</a></li>
+      </ul>
+    </li>
+    <li><a href="#producer">Producer</a>
+      <ul>
+        <li><a href="#example-1">Example</a></li>
+        <li><a href="#producer-settings">Producer settings</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
             </div>
@@ -744,10 +749,10 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <li><code>no_wait</code> - <em>bool</em></li>
 </ul>
 <p>The following configurations demonstrate both the <strong>consumer</strong> and the <strong>producer</strong> to create the whole publish/subscribe pattern.</p>
-<h1 id="consumer">Consumer</h1>
+<h2 id="consumer">Consumer</h2>
 <p>The consumer retrieves messages from the queue when a KrakenD endpoint plugs to its AMQP backend. The recommendation is to connect consumers to <code>GET</code> endpoints.</p>
 <p>A single endpoint can consume messages from N queues, or can consume N messages from the same queue by adding N backends with the proper queue name.</p>
-<h2 id="example">Example</h2>
+<h3 id="example">Example</h3>
 <p>The needed configuration to run a consumer is:</p>
 <pre><code>    &quot;backend&quot;: [
         {
@@ -770,7 +775,7 @@ what are the implications of a certain parameter, see the <strong><a href="https
             }
         }
 </code></pre>
-<h2 id="consumer-settings">Consumer settings</h2>
+<h3 id="consumer-settings">Consumer settings</h3>
 <p>The full list of parameters for the consumer are:</p>
 <ul>
 <li>All the common settings above plus:</li>
@@ -778,10 +783,10 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <li><code>prefetch_size</code> - <em>int</em></li>
 <li><code>no_local</code> - <em>bool</em></li>
 </ul>
-<h1 id="producer">Producer</h1>
+<h2 id="producer">Producer</h2>
 <p>The producer publishes messages to the messaging system for your asynchronous consumption. The recommendation is to plug producers to <code>POST</code> endpoints.</p>
 <p>Worth mentioning that the producer needs you to pass a body in the request and that the endpoint should declare the <code>headers_to_pass</code> so producers are aware of the headers.</p>
-<h2 id="example-1">Example</h2>
+<h3 id="example-1">Example</h3>
 <p>The needed configuration to run a producer is as follows:</p>
 <pre><code>    &quot;endpoint&quot;: &quot;/producer&quot;,
     &quot;headers_to_pass&quot;: [ &quot;...&quot;, &quot;...&quot; ],
@@ -805,7 +810,7 @@ what are the implications of a certain parameter, see the <strong><a href="https
             }
         }
 </code></pre>
-<h2 id="producer-settings">Producer settings</h2>
+<h3 id="producer-settings">Producer settings</h3>
 <p>The full list of parameters for the producer are:</p>
 <ul>
 <li>All the common settings above plus:</li>

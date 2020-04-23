@@ -201,9 +201,9 @@ This parameter is defined at the krakend.json configuration file as follows:
       <pubDate>Fri, 21 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/configuration/structure/</guid>
-      <description>All KrakenD behavior depends on the krakend.json file, so being familiar with the structure of this file it&amp;rsquo;s essential.
+      <description>All KrakenD behavior depends on the krakend.json file (other formats supported), so being familiar with the structure of the configuration file it&amp;rsquo;s essential.
 Configuration file structure There are a large number of options you can put in this file, let&amp;rsquo;s focus now only on the structure:
-{ &amp;quot;version&amp;quot;: 2, &amp;quot;endpoints&amp;quot;: [...] &amp;quot;extra_config&amp;quot;: {...} ... }   version: The KrakenD file format. Current version is 2, use 1 only for old KrakenD releases (0.3.9 and below).</description>
+{ &amp;quot;version&amp;quot;: 2, &amp;quot;endpoints&amp;quot;: [...] &amp;quot;extra_config&amp;quot;: {...} ... }   version: The KrakenD file format. Current version is 2, use 1 only for old KrakenD releases (0.</description>
     </item>
     
     <item>
@@ -256,7 +256,7 @@ Usage of KrakenD check&amp;nbsp;   ./krakend&amp;nbsp;check&amp;nbsp;-h&amp;nbsp
       <description>We wanted to compare our own product with other similar products in the market. In order to do so we used the same environment and conditions and tested the following products:
  Kong Vulcand Tyk KrakenD  For the benchmarks, we based the tests on the benchmarking project varnish/api-gateway-benchmarks.
 At the time of writing, KrakenD does not support auth features, so we just did the benchmark with test01
-TLDR; Check out the generated graphs (throughput and responses) or the summary</description>
+Hardware Model MacBook Pro (MacBookPro11,4) - August 2015 Processor: Intel Core i7 2,2 GHz  Setup For this test, we stored this configuration at krakend.</description>
     </item>
     
     <item>
@@ -265,8 +265,7 @@ TLDR; Check out the generated graphs (throughput and responses) or the summary</
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/benchmarks/aws/</guid>
-      <description>TL;DR Check out the generated graphs or the conclusions
-The following numbers show the execution results for the KrakenD benchmarks on Amazon EC2 machines.
+      <description>The following numbers show the execution results for the KrakenD benchmarks on Amazon EC2 machines.
 Benchmark Setup This set of benchmarks have been running on different AWS EC2 instances. Each individual test consists of spinning up 3 different machines, being:
  A web server: A LWAN web server using an instance c4.xlarge. This is the &amp;ldquo;fake API&amp;rdquo; where KrakenD will take the data The HTTP load generator: The machine actually running the load test.</description>
     </item>
@@ -310,8 +309,7 @@ At the router level, you can set the rate limit for endpoints based on:</descrip
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/benchmarks/local/</guid>
-      <description>TL;DR Check out the generated graphs or the summary
-Hardware Model MacBook Pro (MacBookPro11,4) - August 2015 Processor: Intel Core i7 2,2 GHz  Setup For this test, we stored this configuration at krakend.json
+      <description>Hardware Model MacBook Pro (MacBookPro11,4) - August 2015 Processor: Intel Core i7 2,2 GHz  Setup For this test, we stored this configuration at krakend.json
 { &amp;quot;version&amp;quot;: 1, &amp;quot;endpoints&amp;quot;: [ { &amp;quot;endpoint&amp;quot;: &amp;quot;/foo&amp;quot;, &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/__debug/bar&amp;quot;, &amp;quot;host&amp;quot;: [ &amp;quot;http://127.0.0.1:8080&amp;quot; ] } ], &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;, &amp;quot;max_rate&amp;quot;: 100000 } ], &amp;quot;oauth&amp;quot;: { &amp;quot;disable&amp;quot;: true }, &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;, &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot; }  And we started the KrakenD with this cmd:</description>
     </item>
     
@@ -635,8 +633,7 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
       
       <guid>https://www.krakend.io/docs/backends/flatmap/</guid>
       <description>The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
- Important Use a regular data manipulation operation such as target, blacklist or whitelist whenever it fits as their computational cost is lower.
-The flatmap component makes sense only when you need to manipulate arrays, and not as a general solution for all objects.</description>
+Flatmap configuration The flatmap component is part of the krakend proxy operation, so it needs to be included as an extra_config inside the backend configuration. The namespace is github.com/devopsfaith/krakend/proxy.</description>
     </item>
     
     <item>
@@ -745,7 +742,7 @@ The following configuration snippet sends data to your Jaeger:
       <guid>https://www.krakend.io/docs/overview/krakend-vs-krakend-ce/</guid>
       <description>If you had a quick look at our git repositories, you might be confused at first, as we have a repository named krakend and another one named krakend-ce.
 Difference between KrakenD, KrakenD-CE, and Enterprise TL;DR;
- KrakenD is a framework KrakenD-CE is an API Gateway ready to use KrakenD Enterprise are our professional services to businesses  KrakenD framework KrakenD (repo) is an open-source project created by @devopsfaith to accelerate the creation of custom API Gateways.</description>
+ KrakenD is a framework KrakenD-CE is our open-source API Gateway ready to use KrakenD Enterprise are our professional software and services to businesses  KrakenD framework KrakenD (repo) is an open-source project created by @devopsfaith to accelerate the creation of custom API Gateways.</description>
     </item>
     
     <item>

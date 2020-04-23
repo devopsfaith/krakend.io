@@ -702,27 +702,31 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/benchmark
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#proxy-test-on-t2micro">Proxy test on <code>t2.micro</code></a></li>
-    <li><a href="#aggregate-test-on-t2micro">Aggregate test on <code>t2.micro</code></a></li>
-    <li><a href="#proxy-test-on-t2medium">Proxy test on <code>t2.medium</code></a></li>
-    <li><a href="#aggregate-test-on-t2medium">Aggregate test on <code>t2.medium</code></a></li>
-    <li><a href="#proxy-test-on-m4large">Proxy test on <code>m4.large</code></a></li>
-    <li><a href="#aggregate-test-on-m4large">Aggregate test on <code>m4.large</code></a></li>
-    <li><a href="#proxy-test-on-c4xlarge">Proxy test on <code>c4.xlarge</code></a></li>
-    <li><a href="#aggregate-test-on-c4xlarge">Aggregate test on <code>c4.xlarge</code></a></li>
-    <li><a href="#proxy-test-on-c42xlarge">Proxy test on <code>c4.2xlarge</code></a></li>
-    <li><a href="#aggregate-test-on-c42xlarge">Aggregate test on <code>c4.2xlarge</code></a></li>
-    <li><a href="#conclusions">Conclusions</a></li>
+    <li><a href="#benchmark-setup">Benchmark Setup</a></li>
+    <li><a href="#krakend-configuration-for-all-tests">KrakenD Configuration for all tests</a></li>
+    <li><a href="#results">Results</a>
+      <ul>
+        <li><a href="#proxy-test-on-t2micro">Proxy test on <code>t2.micro</code></a></li>
+        <li><a href="#aggregate-test-on-t2micro">Aggregate test on <code>t2.micro</code></a></li>
+        <li><a href="#proxy-test-on-t2medium">Proxy test on <code>t2.medium</code></a></li>
+        <li><a href="#aggregate-test-on-t2medium">Aggregate test on <code>t2.medium</code></a></li>
+        <li><a href="#proxy-test-on-m4large">Proxy test on <code>m4.large</code></a></li>
+        <li><a href="#aggregate-test-on-m4large">Aggregate test on <code>m4.large</code></a></li>
+        <li><a href="#proxy-test-on-c4xlarge">Proxy test on <code>c4.xlarge</code></a></li>
+        <li><a href="#aggregate-test-on-c4xlarge">Aggregate test on <code>c4.xlarge</code></a></li>
+        <li><a href="#proxy-test-on-c42xlarge">Proxy test on <code>c4.2xlarge</code></a></li>
+        <li><a href="#aggregate-test-on-c42xlarge">Aggregate test on <code>c4.2xlarge</code></a></li>
+        <li><a href="#conclusions">Conclusions</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
             </div>
         </div>
         
 
-        <h1 id="tldr">TL;DR</h1>
-<p>Check out the generated <a href="http://www.charted.co/c/227df90">graphs</a> or the <a href="#conclusions">conclusions</a></p>
-<p>The following numbers show the execution results for the KrakenD benchmarks on <a href="https://aws.amazon.com/ec2/">Amazon EC2</a> machines.</p>
-<h1 id="benchmark-setup">Benchmark Setup</h1>
+        <p>The following numbers show the execution results for the KrakenD benchmarks on <a href="https://aws.amazon.com/ec2/">Amazon EC2</a> machines.</p>
+<h2 id="benchmark-setup">Benchmark Setup</h2>
 <p>This set of benchmarks have been running on different AWS EC2 instances. Each individual test consists of spinning up 3 different machines, being:</p>
 <ul>
 <li><strong>A web server</strong>: A <a href="https://lwan.ws/">LWAN</a> web server using an instance <code>c4.xlarge</code>. This is the &ldquo;fake API&rdquo; where KrakenD will take the data</li>
@@ -773,7 +777,7 @@ After running the test, the <code>hey</code> output is <a href="https://github.c
 </tr>
 </tbody>
 </table>
-<h1 id="krakend-configuration-for-all-tests">KrakenD Configuration for all tests</h1>
+<h2 id="krakend-configuration-for-all-tests">KrakenD Configuration for all tests</h2>
 <p>The configuration for the load test was stored in the <code>krakend.json</code> file, as follows:</p>
 <pre><code>{
   &quot;version&quot;: 1,
@@ -852,38 +856,38 @@ After running the test, the <code>hey</code> output is <a href="https://github.c
 		</ul>
 	</div>
 </div></p>
-<h1 id="results">Results</h1>
-<h2 id="proxy-test-on-t2micro">Proxy test on <code>t2.micro</code></h2>
+<h2 id="results">Results</h2>
+<h3 id="proxy-test-on-t2micro">Proxy test on <code>t2.micro</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_test01.csv"></script>
 
-<h2 id="aggregate-test-on-t2micro">Aggregate test on <code>t2.micro</code></h2>
+<h3 id="aggregate-test-on-t2micro">Aggregate test on <code>t2.micro</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_aggregate.csv"></script>
 
-<h2 id="proxy-test-on-t2medium">Proxy test on <code>t2.medium</code></h2>
+<h3 id="proxy-test-on-t2medium">Proxy test on <code>t2.medium</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_test01.csv"></script>
 
-<h2 id="aggregate-test-on-t2medium">Aggregate test on <code>t2.medium</code></h2>
+<h3 id="aggregate-test-on-t2medium">Aggregate test on <code>t2.medium</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_aggregate.csv"></script>
 
-<h2 id="proxy-test-on-m4large">Proxy test on <code>m4.large</code></h2>
+<h3 id="proxy-test-on-m4large">Proxy test on <code>m4.large</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_test01.csv"></script>
 
-<h2 id="aggregate-test-on-m4large">Aggregate test on <code>m4.large</code></h2>
+<h3 id="aggregate-test-on-m4large">Aggregate test on <code>m4.large</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_aggregate.csv"></script>
 
-<h2 id="proxy-test-on-c4xlarge">Proxy test on <code>c4.xlarge</code></h2>
+<h3 id="proxy-test-on-c4xlarge">Proxy test on <code>c4.xlarge</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_test01.csv"></script>
 
-<h2 id="aggregate-test-on-c4xlarge">Aggregate test on <code>c4.xlarge</code></h2>
+<h3 id="aggregate-test-on-c4xlarge">Aggregate test on <code>c4.xlarge</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_aggregate.csv"></script>
 
-<h2 id="proxy-test-on-c42xlarge">Proxy test on <code>c4.2xlarge</code></h2>
+<h3 id="proxy-test-on-c42xlarge">Proxy test on <code>c4.2xlarge</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_test01.csv"></script>
 
-<h2 id="aggregate-test-on-c42xlarge">Aggregate test on <code>c4.2xlarge</code></h2>
+<h3 id="aggregate-test-on-c42xlarge">Aggregate test on <code>c4.2xlarge</code></h3>
 <script type="application/javascript" src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_aggregate.csv"></script>
 
-<h2 id="conclusions">Conclusions</h2>
+<h3 id="conclusions">Conclusions</h3>
 <p>During all the tests we did, the instances of type <code>c4</code> always showed a stable behavior while the <code>m4</code> types didn&rsquo;t offer
 a proportional increase in the performance and the variance of the responses is too high.</p>
 <p>The instances <code>micro</code> provide nice figures of rps and latency for a good money. It looks like they suffer a little bit

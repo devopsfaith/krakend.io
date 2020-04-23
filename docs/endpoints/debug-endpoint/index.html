@@ -703,7 +703,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
             <div class="shadow rounded pb-2">
                 <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents"></nav>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#debug-endpoint-configuration-example">Debug endpoint configuration example</a></li>
+  </ul>
+</nav>
             </div>
         </div>
         
@@ -713,7 +717,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>When developing, add KrakenD itself as another backend using the <code>/__debug/</code> endpoint so you can see exactly what headers and query string parameters your backends are receiving.</p>
 <p>The debug endpoint might save you much trouble, as your application might not work when specific headers or parameters are not present. Maybe you are relying upon what your client is sending, but this is not what the gateway is sending. Remember: this is not a proxy.</p>
 <p>For instance, your client might be sending a <code>Content-Type</code> or <code>Accept</code> header and these are perhaps necessary for the proper functioning of your backend, but unless these are recognized headers by the gateway (they are in <code>headers_to_pass</code>), they are not going to reach the backend ever. Seeing the specific headers and parameters in the log clears all the doubts, and you can reproduce the call and conditions easily.</p>
-<h1 id="debug-endpoint-configuration-example">Debug endpoint configuration example</h1>
+<h2 id="debug-endpoint-configuration-example">Debug endpoint configuration example</h2>
 <p>The following configuration demonstrates how to test what headers and query string parameters are sent and received by the backends by using the <code>/__debug</code> endpoint.</p>
 <p>We are going to test the following endpoints:</p>
 <ul>

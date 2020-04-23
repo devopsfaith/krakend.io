@@ -705,8 +705,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#gin">Gin</a></li>
-    <li><a href="#mux-based">Mux-based</a></li>
+    <li><a href="#supported-encodings">Supported encodings</a></li>
+    <li><a href="#using-other-routers-from-the-framework">Using other routers from the framework</a>
+      <ul>
+        <li><a href="#gin">Gin</a></li>
+        <li><a href="#mux-based">Mux-based</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
             </div>
@@ -714,7 +719,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         
 
         <p>KrakenD supports sending responses back to the client using content types other than JSON. The list of supported content types depends on the router package used.</p>
-<h1 id="supported-encodings">Supported encodings</h1>
+<h2 id="supported-encodings">Supported encodings</h2>
 <p>The gateway can work with several content types, even allowing your clients to choose how to consume the content. The following <code>output_encoding</code> strategies are available to choose for every an endpoint:</p>
 <ul>
 <li><code>json</code>: The endpoint always return a response in JSON format to the client.</li>
@@ -761,9 +766,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 ...
 </code></pre>
 <p>Notice that endpoint <code>/c</code> uses JSON as no encoding has been defined.</p>
-<h1 id="using-other-routers-from-the-framework">Using other routers from the framework</h1>
+<h2 id="using-other-routers-from-the-framework">Using other routers from the framework</h2>
 <p>If instead of the KrakenD API Gateway (KrakenD-CE), which uses internally the gin router, you decide to build your own gateway using the KrakenD framework, the following routers and output encodings are available:</p>
-<h2 id="gin">Gin</h2>
+<h3 id="gin">Gin</h3>
 <p>The gin-based KrakenD router includes these output encodings:</p>
 <ul>
 <li><code>json</code></li>
@@ -771,7 +776,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>negotiate</code></li>
 <li><code>no-op</code></li>
 </ul>
-<h2 id="mux-based">Mux-based</h2>
+<h3 id="mux-based">Mux-based</h3>
 <p>The mux based routers supported by the KrakenD framework are:</p>
 <ul>
 <li>Mux</li>
@@ -786,6 +791,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>string</code></li>
 <li><code>no-op</code></li>
 </ul>
+<p>See the list of <a href="https://github.com/devopsfaith/krakend/tree/master/router">supported routers</a>.</p>
 
     </section>
 </div>

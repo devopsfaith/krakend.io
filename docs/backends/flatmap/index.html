@@ -22,8 +22,7 @@
 
 <meta property="og:title" content="Array manipulation - flatmap" />
 <meta property="og:description" content="The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
- Important Use a regular data manipulation operation such as target, blacklist or whitelist whenever it fits as their computational cost is lower.
-The flatmap component makes sense only when you need to manipulate arrays, and not as a general solution for all objects." />
+Flatmap configuration The flatmap component is part of the krakend proxy operation, so it needs to be included as an extra_config inside the backend configuration. The namespace is github.com/devopsfaith/krakend/proxy." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/flatmap/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -37,8 +36,7 @@ The flatmap component makes sense only when you need to manipulate arrays, and n
 
 <meta name="twitter:title" content="Array manipulation - flatmap"/>
 <meta name="twitter:description" content="The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
- Important Use a regular data manipulation operation such as target, blacklist or whitelist whenever it fits as their computational cost is lower.
-The flatmap component makes sense only when you need to manipulate arrays, and not as a general solution for all objects."/>
+Flatmap configuration The flatmap component is part of the krakend proxy operation, so it needs to be included as an extra_config inside the backend configuration. The namespace is github.com/devopsfaith/krakend/proxy."/>
 
 
 
@@ -692,7 +690,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         <a href="https://github.com/devopsfaith/flatmap"><i class="fab fa-github"></i> Source code</a> for this component
     
     
-        <i class="fa fa-star ml-2"></i> Requires version >= <span class="version">0.9</span>
+        <i class="fa fa-star"></i> Requires version >= <span class="version">0.9</span>
     
 </p>
 
@@ -714,6 +712,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
+    <li><a href="#flatmap-configuration">Flatmap configuration</a></li>
     <li><a href="#operations">Operations</a></li>
     <li><a href="#mixing-flatmap-with-other-manipulation-operations">Mixing flatmap with other manipulation operations</a></li>
     <li><a href="#data-representation-in-args">Data representation in <code>args</code></a>
@@ -721,10 +720,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         <li><a href="#notation-by-example">Notation by example</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#what-we-did-here">What we did here?</a></li>
+    <li><a href="#configuration-example">Configuration example</a></li>
   </ul>
 </nav>
             </div>
@@ -732,20 +728,21 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         
 
         <p>The flatmap middleware allows you to <strong>manipulate arrays</strong> by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.</p>
-<div class="note">
-    <h4><i class="fa fa-sticky-note"></i> Important</h4>
-	<p>Use a regular <a href="/docs/backends/data-manipulation/">data manipulation</a> operation such as <a href="/docs/backends/data-manipulation/#target"><code>target</code></a>, <a href="/docs/backends/data-manipulation/#blacklist"><code>blacklist</code></a> or <a href="/docs/backends/data-manipulation/#whitelist"><code>whitelist</code></a> whenever it fits as their computational cost is lower.</p>
-<p>The flatmap component makes sense only when you need to manipulate arrays, and <strong>not as a general solution for all objects</strong>.</p>
-
- </div>
-<p>The flatmap component is part of the krakend proxy operation, so it needs to be included as an <code>extra_config</code> inside the <code>backend</code> configuration. There are two different types of operations you can do:</p>
+<h2 id="flatmap-configuration">Flatmap configuration</h2>
+<p>The flatmap component is part of the krakend proxy operation, so it needs to be included as an <code>extra_config</code> inside the <code>backend</code> configuration. The namespace is <code>github.com/devopsfaith/krakend/proxy</code>.</p>
+<p>There are two different types of operations you can do:</p>
 <ul>
 <li><strong>Moving</strong>, <strong>embedding</strong> or <strong>extracting</strong> items from one place to another (equivalent concepts to <a href="/docs/backends/data-manipulation/#mapping"><code>mapping</code></a> and <a href="/docs/backends/data-manipulation/#whitelist"><code>whitelist</code></a>)</li>
 <li><strong>Deleting</strong> specific items (similar concept to <a href="/docs/backends/data-manipulation/#blacklist"><code>blacklist</code></a>)</li>
 </ul>
 <p>Inside the <code>flatmap_filter</code> array, you define the sequence of actions that you want to apply.</p>
-<h1 id="flatmap-configuration">Flatmap configuration</h1>
-<p>The flatmap filter configuration expects an array with the sequence of operations you want to execute. Every operation is defined with an object containing two properties: <code>type</code> and <code>args</code>.</p>
+<p><div class="note">
+    <h4><i class="fa fa-sticky-note"></i> Important</h4>
+	<p>Use a regular <a href="/docs/backends/data-manipulation/">data manipulation</a> operation such as <a href="/docs/backends/data-manipulation/#target"><code>target</code></a>, <a href="/docs/backends/data-manipulation/#blacklist"><code>blacklist</code></a> or <a href="/docs/backends/data-manipulation/#whitelist"><code>whitelist</code></a> whenever it fits as their computational cost is lower.</p>
+<p>The flatmap component makes sense only when you need to manipulate arrays, and <strong>not as a general solution for all objects</strong>.</p>
+
+ </div>
+The flatmap filter configuration expects an array with the sequence of operations you want to execute. Every operation is defined with an object containing two properties: <code>type</code> and <code>args</code>.</p>
 <p>The component structure is as follows:</p>
 <pre><code>    &quot;extra_config&quot;: {
         &quot;github.com/devopsfaith/krakend/proxy&quot;: {
@@ -933,7 +930,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 </tr>
 </tbody>
 </table>
-<h1 id="configuration-example">Configuration example</h1>
+<h2 id="configuration-example">Configuration example</h2>
 <p>The following example demonstrates how to modify a collection doing these operations:</p>
 <pre><code>    &quot;extra_config&quot;: {
         &quot;github.com/devopsfaith/krakend/proxy&quot;: {
@@ -958,7 +955,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         }
     }
 </code></pre>
-<h2 id="what-we-did-here">What we did here?</h2>
+<p><strong>What did we do here?</strong></p>
 <p>There is a sequence of 4 operations in order to:</p>
 <ul>
 <li>Extract all <code>students</code> of the <code>43rd</code> school (array starts at 0) and put them under a new property <code>alumni</code></li>

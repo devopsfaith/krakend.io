@@ -712,12 +712,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-if-the-maxrate-limit-is-reached">What if the <code>maxRate</code> limit is reached?</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#client-identification-strategies">Client identification strategies</a></li>
-    <li><a href="#what-if-the-clientmaxrate-limit-is-reached">What if the <code>clientMaxRate</code> limit is reached?</a></li>
+    <li><a href="#endpoint-rate-limit-maxrate">Endpoint rate limit (<code>maxRate</code>)</a>
+      <ul>
+        <li><a href="#what-if-the-maxrate-limit-is-reached">What if the <code>maxRate</code> limit is reached?</a></li>
+      </ul>
+    </li>
+    <li><a href="#endpoint-rate-limit-per-client-clientmaxrate">Endpoint rate limit per client (<code>clientMaxRate</code>)</a>
+      <ul>
+        <li><a href="#client-identification-strategies">Client identification strategies</a></li>
+        <li><a href="#what-if-the-clientmaxrate-limit-is-reached">What if the <code>clientMaxRate</code> limit is reached?</a></li>
+      </ul>
+    </li>
+    <li><a href="#example-of--clientmaxrate-and-maxrate-together">Example of  <code>clientMaxRate</code> and <code>maxRate</code> together.</a></li>
   </ul>
 </nav>
             </div>
@@ -731,13 +737,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li>Maximum number of requests an endpoint accepts in a second (<code>maxRate</code>)</li>
 <li>Maximum number of requests an endpoint accepts <strong>per client</strong> (<code>clientMaxRate</code>)</li>
 </ol>
-<h1 id="endpoint-rate-limit-maxrate">Endpoint rate limit (<code>maxRate</code>)</h1>
+<h2 id="endpoint-rate-limit-maxrate">Endpoint rate limit (<code>maxRate</code>)</h2>
 <p>Enable this option when you want to set the maximum requests an endpoint can handle within a window of 1 second.</p>
 <p>When set, every KrakenD instance keeps in-memory an updated counter with the number of requests processed per second in that endpoint.</p>
 <p>The absence of <code>maxRate</code> in the configuration or <code>&quot;maxRate&quot;: 0</code> is the equivalent to no limitation.</p>
-<h2 id="what-if-the-maxrate-limit-is-reached">What if the <code>maxRate</code> limit is reached?</h2>
+<h3 id="what-if-the-maxrate-limit-is-reached">What if the <code>maxRate</code> limit is reached?</h3>
 <p>If API users reach the established limit in the endpoint, then KrakenD starts rejecting requests. Users see an HTTP status code <code>503 Service Unavailable</code>.</p>
-<h1 id="endpoint-rate-limit-per-client-clientmaxrate">Endpoint rate limit per client (<code>clientMaxRate</code>)</h1>
+<h2 id="endpoint-rate-limit-per-client-clientmaxrate">Endpoint rate limit per client (<code>clientMaxRate</code>)</h2>
 <p>The rate per client works similarly to <code>maxRate</code>, but the <code>clientMaxRate</code> establishes a <em>user quota</em>.</p>
 <p>Instead of counting all the connections to the endpoint the <code>clientMaxRate</code> keeps a counter for every client and endpoint. Have in mind that every KrakenD instance keeps its counters in memory for <strong>every single client</strong>.</p>
 <p><strong>Example</strong>:</p>
@@ -753,7 +759,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
  </div>
 <p>The absence of <code>clientMaxRate</code> in the configuration or <code>&quot;clientMaxRate&quot;: 0</code> is the equivalent to no limitation.</p>
-<h2 id="client-identification-strategies">Client identification strategies</h2>
+<h3 id="client-identification-strategies">Client identification strategies</h3>
 <p>Two <strong>client identification strategies</strong> are available:</p>
 <ul>
 <li><code>&quot;strategy&quot;: &quot;ip&quot;</code> When the restrictions apply to the client&rsquo;s IP, and every IP is considered to be a different user.</li>
@@ -763,9 +769,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 </ul>
 </li>
 </ul>
-<h2 id="what-if-the-clientmaxrate-limit-is-reached">What if the <code>clientMaxRate</code> limit is reached?</h2>
+<h3 id="what-if-the-clientmaxrate-limit-is-reached">What if the <code>clientMaxRate</code> limit is reached?</h3>
 <p>If an API user (IP or header strategies) reaches the established limit in the endpoint, then KrakenD starts to reject requests to that specific client. The user sees an HTTP status code <code>429 Too Many Requests</code>.</p>
-<h1 id="example-of--clientmaxrate-and-maxrate-together">Example of  <code>clientMaxRate</code> and <code>maxRate</code> together.</h1>
+<h2 id="example-of--clientmaxrate-and-maxrate-together">Example of  <code>clientMaxRate</code> and <code>maxRate</code> together.</h2>
 <p>The following example demonstrates a configuration with several endpoints, each one setting different limits:</p>
 <ul>
 <li>A <code>/happy-hour</code> endpoint with unlimited usage as it sets <code>0</code>.</li>
