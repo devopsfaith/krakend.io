@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.67.1" />
 
-    <title>Exporting metrics, logs and events to Google Stackdriver - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Exporting metrics, logs and events to Google Stackdriver - KrakenD API Gateway">
+    <title>Security - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Security - KrakenD API Gateway">
 
     
-    <meta property="description" content="Exporting metrics, logs and events to Google Stackdriver - KrakenD API Gateway">
-    <meta itemprop="description" content="Exporting metrics, logs and events to Google Stackdriver - KrakenD API Gateway">
+    <meta property="description" content="Security - KrakenD API Gateway">
+    <meta itemprop="description" content="Security - KrakenD API Gateway">
     
 
     
@@ -20,27 +20,25 @@
 
 
 
-<meta property="og:title" content="Exporting metrics, logs and events to Google Stackdriver" />
-<meta property="og:description" content="Google Stackdriver aggregates metrics, logs, and events from infrastructure, giving developers and operators a rich set of observable signals that speed root-cause analysis and reduce mean time to resolution (MTTR).
-The Opencensus exporter allows you export data to Google Stackdriver. Enabling it only requires you to add the stackdriver exporter in the opencensus module.
-The following configuration snippet sends data to your X-Ray:
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;stackdriver&quot;: { &quot;project_id&quot;: &quot;my-krakend-project&quot;, &quot;metrics_prefix&quot;: &quot;krakend&quot;, &quot;default_labels&quot;: { &quot;env&quot;: &quot;production&quot; } } } }   project_id: The identifier of your Google Cloud project." />
+<meta property="og:title" content="Security" />
+<meta property="og:description" content="KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at service (root) level.
+The following example describes the options explained later in this article:
+&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-httpsecure&quot;: { &quot;allowed_hosts&quot;: [ &quot;host.known.com:443&quot; ], &quot;ssl_proxy_headers&quot;: { &quot;X-Forwarded-Proto&quot;: &quot;https&quot; }, &quot;ssl_redirect&quot;: true, &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;, &quot;ssl_port&quot;: &quot;443&quot;, &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;, &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;, &quot;sts_seconds&quot;: 300, &quot;sts_include_subdomains&quot;: true, &quot;frame_deny&quot;: true, &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example.com&quot;, &quot;hpkp_public_key&quot;: &quot;pin-sha256=\&quot;base64==\&quot;; max-age=expireTime [; includeSubDomains][; report-uri=\&quot;reportURI\&quot;]&quot;, &quot;content_type_nosniff&quot;: true, &quot;browser_xss_filter&quot;: true, &quot;content_security_policy&quot;: &quot;default-src &#39;self&#39;;&quot; }  See below the different options described in this configuration file." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/stackdriver/" />
+<meta property="og:url" content="https://www.krakend.io/docs/service-settings/security/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
-<meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-09-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:published_time" content="2016-09-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-02T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="Exporting metrics, logs and events to Google Stackdriver"/>
-<meta name="twitter:description" content="Google Stackdriver aggregates metrics, logs, and events from infrastructure, giving developers and operators a rich set of observable signals that speed root-cause analysis and reduce mean time to resolution (MTTR).
-The Opencensus exporter allows you export data to Google Stackdriver. Enabling it only requires you to add the stackdriver exporter in the opencensus module.
-The following configuration snippet sends data to your X-Ray:
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;stackdriver&quot;: { &quot;project_id&quot;: &quot;my-krakend-project&quot;, &quot;metrics_prefix&quot;: &quot;krakend&quot;, &quot;default_labels&quot;: { &quot;env&quot;: &quot;production&quot; } } } }   project_id: The identifier of your Google Cloud project."/>
+<meta name="twitter:title" content="Security"/>
+<meta name="twitter:description" content="KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at service (root) level.
+The following example describes the options explained later in this article:
+&quot;extra_config&quot;: { &quot;github_com/devopsfaith/krakend-httpsecure&quot;: { &quot;allowed_hosts&quot;: [ &quot;host.known.com:443&quot; ], &quot;ssl_proxy_headers&quot;: { &quot;X-Forwarded-Proto&quot;: &quot;https&quot; }, &quot;ssl_redirect&quot;: true, &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;, &quot;ssl_port&quot;: &quot;443&quot;, &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;, &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;, &quot;sts_seconds&quot;: 300, &quot;sts_include_subdomains&quot;: true, &quot;frame_deny&quot;: true, &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example.com&quot;, &quot;hpkp_public_key&quot;: &quot;pin-sha256=\&quot;base64==\&quot;; max-age=expireTime [; includeSubDomains][; report-uri=\&quot;reportURI\&quot;]&quot;, &quot;content_type_nosniff&quot;: true, &quot;browser_xss_filter&quot;: true, &quot;content_security_policy&quot;: &quot;default-src &#39;self&#39;;&quot; }  See below the different options described in this configuration file."/>
 
 
 
@@ -58,7 +56,7 @@ The following configuration snippet sends data to your X-Ray:
 <link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
 </head>
 
-<body class="krakend page-8ac5003eef949774d9b8e5ce380df326">
+<body class="krakend page-8a5160060f5691d81613037587c1e154">
     
 <div class="announcement">
 	<p>
@@ -224,19 +222,19 @@ The following configuration snippet sends data to your X-Ray:
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-3" role="button" aria-expanded="false"
-                aria-controls="menu-3" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-3" role="button" aria-expanded="true"
+                aria-controls="menu-3" class="nav-link parent active">
                 Service settings
             </a>
-            <div class="collapse" id="menu-3">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-3">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/service-settings/security/" class="nav-link children ">Security</a>
+                        <a href="/docs/service-settings/security/" class="nav-link children active">Security</a>
                     </li>
                     
                 </ul>
@@ -478,12 +476,12 @@ The following configuration snippet sends data to your X-Ray:
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="true"
-                aria-controls="menu-9" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-9" role="button" aria-expanded="false"
+                aria-controls="menu-9" class="nav-link parent">
                 Logging, metrics and tracing
             </a>
-            <div class="collapse show" id="menu-9">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-9">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/logging/" class="nav-link children ">Logging</a>
@@ -530,7 +528,7 @@ The following configuration snippet sends data to your X-Ray:
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/logging-metrics-tracing/stackdriver/" class="nav-link children active">Google Stackdriver</a>
+                        <a href="/docs/logging-metrics-tracing/stackdriver/" class="nav-link children ">Google Stackdriver</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -685,19 +683,19 @@ The following configuration snippet sends data to your X-Ray:
                 <section class="content-header">
                     
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-metrics-tracing/stackdriver.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-settings/security.md">
     Edit this page
 </a>
 
 <p class="docs-metadata">
     
-        <a href="https://github.com/devopsfaith/krakend-opencensus"><i class="fab fa-github"></i> Source code</a> for this component
+        <a href="https://github.com/devopsfaith/krakend-httpsecure"><i class="fab fa-github"></i> Source code</a> for this component
     
     
 </p>
 
 
-<h1 class="main-title">Exporting metrics, logs and events to Google Stackdriver</h1>
+<h1 class="main-title">Security</h1>
 
 
 
@@ -709,28 +707,94 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
     <section class="col-md-12">
         
         
+        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
+            <div class="shadow rounded pb-2">
+                <h6 class="header rounded-top">On this page</h6>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#general-security">General security</a>
+      <ul>
+        <li><a href="#restrict-connections-by-host">Restrict connections by host</a></li>
+        <li><a href="#clickjacking-protection">Clickjacking protection</a></li>
+        <li><a href="#mime-sniffing-prevention">MIME-Sniffing prevention</a></li>
+        <li><a href="#cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</a></li>
+      </ul>
+    </li>
+    <li><a href="#https">HTTPS</a>
+      <ul>
+        <li><a href="#http-strict-transport-security-hsts">HTTP Strict Transport Security (HSTS)</a></li>
+        <li><a href="#http-public-key-pinning-hpkp">HTTP Public Key Pinning (HPKP)</a></li>
+      </ul>
+    </li>
+    <li><a href="#oauth2">OAuth2</a></li>
+  </ul>
+</nav>
+            </div>
+        </div>
+        
 
-        <p><a href="https://cloud.google.com/stackdriver/">Google Stackdriver</a> aggregates metrics, logs, and events from infrastructure, giving developers and operators a rich set of observable signals that speed root-cause analysis and reduce mean time to resolution (MTTR).</p>
-<p>The Opencensus exporter allows you export data to Google Stackdriver. Enabling it only requires you to add the <code>stackdriver</code> exporter in the <a href="/docs/logging-metrics-tracing/opencensus/">opencensus module</a>.</p>
-<p>The following configuration snippet sends data to your X-Ray:</p>
-<pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
-  &quot;exporters&quot;: {
-   &quot;stackdriver&quot;: {
-      &quot;project_id&quot;: &quot;my-krakend-project&quot;,
-      &quot;metrics_prefix&quot;: &quot;krakend&quot;,
-      &quot;default_labels&quot;: {
-        &quot;env&quot;: &quot;production&quot;
-      }
-    }
+        <p>KrakenD has implemented several security strategies, controlled via <a href="https://github.com/devopsfaith/krakend-httpsecure">krakend-httpsecure</a>. To enable them you only need to add the <code>extra_config</code> at service (root) level.</p>
+<p>The following example describes the options explained later in this article:</p>
+<pre><code>&quot;extra_config&quot;: {
+  &quot;github_com/devopsfaith/krakend-httpsecure&quot;: {
+    &quot;allowed_hosts&quot;: [
+      &quot;host.known.com:443&quot;
+    ],
+    &quot;ssl_proxy_headers&quot;: {
+      &quot;X-Forwarded-Proto&quot;: &quot;https&quot;
+    },
+    &quot;ssl_redirect&quot;: true,
+    &quot;ssl_host&quot;: &quot;ssl.host.domain&quot;,
+    &quot;ssl_port&quot;: &quot;443&quot;,
+    &quot;ssl_certificate&quot;: &quot;/path/to/cert&quot;,
+    &quot;ssl_private_key&quot;: &quot;/path/to/key&quot;,
+    &quot;sts_seconds&quot;: 300,
+    &quot;sts_include_subdomains&quot;: true,
+    &quot;frame_deny&quot;: true,
+    &quot;custom_frame_options_value&quot;: &quot;ALLOW-FROM https://example.com&quot;,
+    &quot;hpkp_public_key&quot;: &quot;pin-sha256=\&quot;base64==\&quot;; max-age=expireTime [; includeSubDomains][; report-uri=\&quot;reportURI\&quot;]&quot;,
+    &quot;content_type_nosniff&quot;: true,
+    &quot;browser_xss_filter&quot;: true,
+    &quot;content_security_policy&quot;: &quot;default-src 'self';&quot;
   }
-}
 </code></pre>
-<ul>
-<li><code>project_id</code>: The identifier of your Google Cloud project.</li>
-<li><code>metrics_prefix</code>: A prefix that you can add to all your metrics for better organization.</li>
-<li><code>default_labels</code>: Enter here any label that will be assigned by default to the reported metric so you can filter later on Stack Driver. In the example we set a label <code>env</code> with the value <code>production</code>.</li>
-</ul>
-<p>See also the <a href="/docs/logging-metrics-tracing/opencensus/">additional settings</a> of the Opencensus module that can be declared.</p>
+<p>See below the different options described in this configuration file.</p>
+<h2 id="general-security">General security</h2>
+<h3 id="restrict-connections-by-host">Restrict connections by host</h3>
+<p>Use <code>allowed_hosts</code></p>
+<p>Define a whitelist of hosts that KrakenD should accept requests to.</p>
+<p>When a request hits KrakenD, it will confirm if the value of the <code>Host</code> HTTP header is in the whitelist. If so, it will further process the request. If the host is not in the whitelist, KrakenD will simply reject the request.</p>
+<p>The list must contain the fully qualified domain names that are allowed, along with the origin port. When the list is empty accepts any host.</p>
+<h3 id="clickjacking-protection">Clickjacking protection</h3>
+<p>Use <code>frame_deny</code></p>
+<p>KrakenD follow the OWASP&rsquo;s recommendations by adding a frame-breaking strategy.</p>
+<p>You can add an <code>X-Frame-Options</code> header using <code>custom_frame_options_value</code> with the value of <code>DENY</code> (default behavior) or even set your custom value.</p>
+<p>Check the <a href="https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet#X-Frame-Options_Header_Types">OWASP Clickjacking cheat sheet</a> for more details about the header and its recommended values.</p>
+<h3 id="mime-sniffing-prevention">MIME-Sniffing prevention</h3>
+<p>Use <code>content_type_nosniff</code></p>
+<p>Enabling this feature will prevent the user&rsquo;s browser from interpreting files as something else than declared by the content type in the HTTP headers.</p>
+<h3 id="cross-site-scripting-xss-protection">Cross-site scripting (XSS) protection</h3>
+<p>Use <code>browser_xss_filter</code></p>
+<p>This feature enables the <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">Cross-site scripting (XSS)</a> filter in the user&rsquo;s browser.</p>
+<h2 id="https">HTTPS</h2>
+<h3 id="http-strict-transport-security-hsts">HTTP Strict Transport Security (HSTS)</h3>
+<p>Use <code>sts_seconds</code></p>
+<p>OWASP defines the HSTS as</p>
+<blockquote>
+<p>HTTP Strict Transport Security (HSTS) is a web security policy mechanism which helps to protect websites against protocol downgrade attacks and cookie hijacking. It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and never via the insecure HTTP protocol. HSTS is an IETF standards track protocol and is specified in RFC 6797. A server implements an HSTS policy by supplying a header (Strict-Transport-Security) over an HTTPS connection (HSTS headers over HTTP are ignored).</p>
+</blockquote>
+<p>Enable this policy by setting the max-age of the Strict-Transport-Security header. Setting to <code>0</code> disables HSTS. Use the <code>sts_seconds</code> setting.</p>
+<h3 id="http-public-key-pinning-hpkp">HTTP Public Key Pinning (HPKP)</h3>
+<p>Use <code>hpkp_public_key</code></p>
+<p>OWASP defines the HPKP as</p>
+<blockquote>
+<p>HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).</p>
+</blockquote>
+<p><strong>This feature must be used with caution because there is a risk that hosts may make themselves unavailable by pinning to a set of public key hashes that becomes invalid.</strong></p>
+<h2 id="oauth2">OAuth2</h2>
+<p>KrakenD supports the client credentials grant.</p>
+<p>Use this feature if you need to authorize the KrakenD to access your backend services.</p>
+<p>See the specific docs for <a href="/docs/authorization/client-credentials/">OAuth2 Client Credentials</a></p>
 
     </section>
 </div>

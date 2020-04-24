@@ -499,10 +499,10 @@ Pipe timeouts Global timeout The timeout key in the krakend.</description>
     
     <item>
       <title>Security</title>
-      <link>https://www.krakend.io/docs/endpoints/security/</link>
+      <link>https://www.krakend.io/docs/service-settings/security/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/endpoints/security/</guid>
+      <guid>https://www.krakend.io/docs/service-settings/security/</guid>
       <description>KrakenD has implemented several security strategies, controlled via krakend-httpsecure. To enable them you only need to add the extra_config at service (root) level.
 The following example describes the options explained later in this article:
 &amp;quot;extra_config&amp;quot;: { &amp;quot;github_com/devopsfaith/krakend-httpsecure&amp;quot;: { &amp;quot;allowed_hosts&amp;quot;: [ &amp;quot;host.known.com:443&amp;quot; ], &amp;quot;ssl_proxy_headers&amp;quot;: { &amp;quot;X-Forwarded-Proto&amp;quot;: &amp;quot;https&amp;quot; }, &amp;quot;ssl_redirect&amp;quot;: true, &amp;quot;ssl_host&amp;quot;: &amp;quot;ssl.host.domain&amp;quot;, &amp;quot;ssl_port&amp;quot;: &amp;quot;443&amp;quot;, &amp;quot;ssl_certificate&amp;quot;: &amp;quot;/path/to/cert&amp;quot;, &amp;quot;ssl_private_key&amp;quot;: &amp;quot;/path/to/key&amp;quot;, &amp;quot;sts_seconds&amp;quot;: 300, &amp;quot;sts_include_subdomains&amp;quot;: true, &amp;quot;frame_deny&amp;quot;: true, &amp;quot;custom_frame_options_value&amp;quot;: &amp;quot;ALLOW-FROM https://example.com&amp;quot;, &amp;quot;hpkp_public_key&amp;quot;: &amp;quot;pin-sha256=\&amp;quot;base64==\&amp;quot;; max-age=expireTime [; includeSubDomains][; report-uri=\&amp;quot;reportURI\&amp;quot;]&amp;quot;, &amp;quot;content_type_nosniff&amp;quot;: true, &amp;quot;browser_xss_filter&amp;quot;: true, &amp;quot;content_security_policy&amp;quot;: &amp;quot;default-src &#39;self&#39;;&amp;quot; }  See below the different options described in this configuration file.</description>
