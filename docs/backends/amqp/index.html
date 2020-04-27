@@ -819,7 +819,7 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <li><code>mandatory</code> - <em>bool</em></li>
 <li><code>immediate</code> - <em>bool</em></li>
 </ul>
-<p>Additionally, these items below are parameter keys that can be present in the endpoint URL and are passed to the producer (notice the capitalization of the first letter of the param names at the configuration):</p>
+<p>Additionally, these items below are parameter keys that can be present in the endpoint URL and are passed to the producer. Parameters need <strong>capitalization on the first letter</strong>.</p>
 <ul>
 <li><code>exp_key</code> - <em>string</em></li>
 <li><code>reply_to_key</code> - <em>string</em></li>
@@ -827,6 +827,10 @@ what are the implications of a certain parameter, see the <strong><a href="https
 <li><code>priority_key</code> - <em>string</em> - Key of the request parameters that is used as the priority value for the produced message.</li>
 <li><code>routing_key</code> - <em>string</em> - Key of the request parameters that is used as the routing value for the produced message.</li>
 </ul>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> Parameters&#39; first character uppercased</h4>
+	Notice the capitalization of the first letter of the parameter names at the configuration below. For instance, when an endpoint parameter is defined as <code>{route}</code>, define it in the config as <code>Route</code>.
+ </div>
 <p>For instance, an <code>endpoint</code> URL could be declared as <code>/produce/{a}/{b}/{id}/{prio}/{route}</code> and the producer knows how to map them with a configuration like this:</p>
 <pre><code>{
     ...
