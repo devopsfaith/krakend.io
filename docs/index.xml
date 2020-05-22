@@ -722,7 +722,7 @@ The parameters of this integration follow the AMQP specification. To understand 
       <description>Jaeger is an open source, end-to-end distributed tracing system that allows you to monitor and troubleshoot transactions in complex distributed systems.
 The Opencensus exporter allows you export data to Jaeger. Enabling it only requires you to add the jaeger exporter in the opencensus module.
 The following configuration snippet sends data to your Jaeger:
-&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;jaeger&amp;quot;: { &amp;quot;endpoint&amp;quot;: &amp;quot;http://192.168.99.100:14268&amp;quot;, &amp;quot;serviceName&amp;quot;:&amp;quot;krakend&amp;quot; }, } }   endpoint is the URL (including port) where your Jaeger is serviceName the service name registered in Jaeger  See also the additional settings of the Opencensus module that can be declared.</description>
+&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;jaeger&amp;quot;: { &amp;quot;endpoint&amp;quot;: &amp;quot;http://192.168.99.100:14268&amp;quot;, &amp;quot;service_name&amp;quot;:&amp;quot;krakend&amp;quot; }, } }   endpoint is the URL (including port) where your Jaeger is serviceName the service name registered in Jaeger  See also the additional settings of the Opencensus module that can be declared.</description>
     </item>
     
     <item>
