@@ -302,6 +302,10 @@ If in the other hand, your endpoint connects to a single backend with no manipul
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -690,6 +694,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 
 
 
+
                 </section>
                 <section class="content">
                     
@@ -712,6 +717,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         </div>
         
 
+   
         <p>When you are willing to manipulate or aggregate data, KrakenD&rsquo;s policy regarding errors and status codes is to <strong>hide from the client any backend details</strong>. The philosophy behind this is that clients have to be decoupled from its underlying services.</p>
 <p>If in the other hand, your endpoint connects to a single backend with no manipulation, <a href="/docs/endpoints/no-op">use the <code>no-op</code> encoding</a> which returns the response to the client <em>as is</em>, preserving its form: body, headers, status codes and such.</p>
 <p>You can override the default policy of hiding backend error details.</p>

@@ -304,6 +304,10 @@ The payload that is sent to the Lambda function comes from the request and depen
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -699,6 +703,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 
 <h1 class="main-title">Integration with AWS Lambda functions</h1>
 
+
     <p class="main-image">
         <img src="/images/krakend-lambda.png" />
     </p>
@@ -731,6 +736,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         </div>
         
 
+   
         <p>The Lambda integration allows you to <strong>invoke Amazon Lambda functions</strong> on a KrakenD endpoint call. The content returned by the lambda function can be treated and manipulated as any other backend.</p>
 <p>The <strong>payload</strong> that is sent to the Lambda function comes from the request and depends on the method used by the <code>endpoint</code>:</p>
 <ul>

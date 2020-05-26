@@ -304,6 +304,10 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -697,6 +701,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <h1 class="main-title">Sequential Proxy</h1>
 
+
     <p class="main-image">
         <img src="/images/documentation/krakend-sequential-call.png" />
     </p>
@@ -712,6 +717,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         
         
 
+   
         <p>The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends concurrently at the same time. However, there are times when you need to <strong>delay a backend call</strong> until you can inject as input the result of a previous call.</p>
 <p>The sequential proxy allows you to <strong>chain backend requests</strong>.</p>
 <h2 id="chaining-the-requests">Chaining the requests</h2>

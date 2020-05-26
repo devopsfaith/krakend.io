@@ -304,6 +304,10 @@ The internal component responsible for validating tokens is called krakend-jose.
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -699,6 +703,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 
 
 
+
                 </section>
                 <section class="content">
                     
@@ -736,6 +741,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
         </div>
         
 
+   
         <p>The JWT validation <strong>protects endpoints from public usage</strong>, forcing calls to the API gateway to provide a valid token to access its contents.</p>
 <p>The generation of the token itself has to be <strong>driven by a third party</strong>, although the user calls can be proxied through KrakenD. If you don&rsquo;t have an identity server yet you still can <a href="/docs/authorization/jwt-signing/">sign tokens through KrakenD</a></p>
 <p>The internal component responsible for validating tokens is called <strong>krakend-jose</strong>.</p>

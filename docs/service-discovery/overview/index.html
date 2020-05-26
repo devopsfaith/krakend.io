@@ -302,6 +302,10 @@ Static resolution The static resolution is the default service discovery choice.
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -690,6 +694,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
 
 
 
+
                 </section>
                 <section class="content">
                     
@@ -713,6 +718,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
         </div>
         
 
+   
         <p>Service discovery enables clients to detect and locate services on your enterprise network automatically. Instead of defining a static list of IPs or hostnames pointing to your backends, you can use a service discovery provider and let KrakenD interact with it to get the hosts dynamically.</p>
 <h2 id="static-resolution">Static resolution</h2>
 <p>The <code>static</code> resolution is the default service discovery choice. It uses a list of hosts declared in the configuration file and KrakenD must be able to reach them directly by hostname, DNS or IP. All the necessary connections are load balanced between all the servers in the list.</p>

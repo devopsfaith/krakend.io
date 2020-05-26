@@ -309,6 +309,10 @@ When using concurrent requests, the backend services must be able to handle an a
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -695,6 +699,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 <h1 class="main-title">Concurrent Requests</h1>
 
+
     <p class="main-image">
         <img src="/images/documentation/concurrency/CDF_happy_vs_sad.png" />
     </p>
@@ -726,6 +731,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         
 
+   
         <p>The concurrent requests are an excellent technique to <strong>improve the response times and decrease error rates</strong> by requesting in parallel the same information multiple times. When the first backend returns the information, the remaining threads are canceled.</p>
 <p>It depends a lot on your configuration, but <strong>improving response times by a 75%</strong> or more with the same application you are using today is not something rare.</p>
 <p>When using concurrent requests, the backend services must be able to handle an additional load. If this is the case, and your requests are idempotent, then you can use <code>concurrent_calls</code> as follows:</p>

@@ -302,6 +302,10 @@ This caching technique applies to traffic between KrakenD and your microservices
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -697,6 +701,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 
 
 
+
                 </section>
                 <section class="content">
                     
@@ -713,6 +718,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         </div>
         
 
+   
         <p>Sometimes you might want to reuse a previous response of a backend instead of asking for the same information over the network again. In this cases, it is possible to enable <strong>in-memory</strong> caching for the desired backend responses.</p>
 <p>This caching technique applies to traffic between KrakenD and your microservices endpoints only and is not a caching system for the end-user endpoints. To enable the cache, you only need to add in the configuration file the <code>httpcache</code> middleware.</p>
 <p>When enabled all connections for the configured backend are cached in-memory for the amount of time retrieved from the <code>Cache-Control</code> header of the response.</p>

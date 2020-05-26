@@ -304,6 +304,10 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -692,6 +696,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 
 
+
                 </section>
                 <section class="content">
                     
@@ -712,6 +717,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         
 
+   
         <p>The <code>/__debug</code> endpoint is available when you start the server with the <code>-d</code> flag.</p>
 <p>The endpoint can be used as a <strong>fake backend</strong> and is very useful to see the interaction between the gateway and the backends as its activity is printed in the log using the <code>DEBUG</code> log level .</p>
 <p>When developing, add KrakenD itself as another backend using the <code>/__debug/</code> endpoint so you can see exactly what headers and query string parameters your backends are receiving.</p>

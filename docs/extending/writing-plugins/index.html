@@ -303,6 +303,10 @@ It&rsquo;s important to remark, that if you want to do complex business logic ch
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -689,6 +693,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 
 <h1 class="main-title">Writing custom plugins</h1>
 
+
     <p class="main-image">
         <img src="/images/extensible.png" />
     </p>
@@ -722,6 +727,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
         </div>
         
 
+   
         <p>KrakenD&rsquo;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&rsquo;s always tempting to start writing code but <strong>the majority of scenarios do not require writing any</strong>. Existing modules, middleware, and plugins suffice almost everyone&rsquo;s needs.</p>
 <p>It&rsquo;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code. Examples are the <a href="/docs/endpoints/common-expression-language-cel/">expression language</a>, <a href="/docs/backends/martian/">Martian transformations</a>, or <a href="/docs/endpoints/lua/">Lua scripting</a>.</p>
 <p>Let&rsquo;s get you started building custom code!</p>

@@ -301,6 +301,10 @@
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -694,6 +698,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 
 <h1 class="main-title">The Circuit Breaker</h1>
 
+
     <p class="main-image">
         <img src="/images/documentation/circuit-breaker.png" />
     </p>
@@ -721,6 +726,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         </div>
         
 
+   
         <p>To keep KrakenD responsive and resilient, we added a <strong>Circuit Breaker</strong> middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems by preventing too many requests to fail due to timeouts, etc.</p>
 <p>The <strong>Circuit Breaker</strong> is a straightforward <strong>state machine</strong> in the middle of the request and response that monitors all
 the failures of your backend and when they reach a configured threshold the circuit breaker will prevent sending more

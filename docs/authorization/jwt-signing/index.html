@@ -302,6 +302,10 @@ The primary usage for this component is in migrations from monolith to microserv
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -695,6 +699,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 
 <h1 class="main-title">JWT Signing</h1>
 
+
     <p class="main-image">
         <img src="/images/krakend-signer-flow.png" />
     </p>
@@ -725,6 +730,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
         </div>
         
 
+   
         <p>The JWT signing component creates a <strong>wrapper for your login endpoint</strong> that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.</p>
 <p>The primary usage for this component is in <strong>migrations from monolith to microservices</strong>, or in ecosystems where there is no Identity server yet, as it allows the immediate adoption of signed JSON Web Tokens without the need to implement a new service.</p>
 <p>The <strong>JOSE component</strong> is responsible for signing tokens.</p>

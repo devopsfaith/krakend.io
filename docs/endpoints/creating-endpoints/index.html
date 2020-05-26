@@ -308,6 +308,10 @@ The endpoints section looks like this:
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -696,6 +700,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 
 
 
+
                 </section>
                 <section class="content">
                     
@@ -723,6 +728,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         
 
+   
         <p>KrakenD endpoints are the essential part of KrakenD as they are what your end users consume.</p>
 <p>See <a href="/docs/configuration/structure/">Understanding the configuration file</a> if you haven&rsquo;t read it yet.</p>
 <p>To create an endpoint you only need to add an <strong>endpoint object</strong> under the <code>endpoints</code> list with the resource you want to expose. If no <code>method</code> is declared, it&rsquo;s assumed to be read-only (<code>GET</code>).</p>

@@ -302,6 +302,10 @@ The traffic shadowing or traffic mirroring functionality allows you to test new 
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -697,6 +701,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 
 
 
+
                 </section>
                 <section class="content">
                     
@@ -706,6 +711,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         
         
 
+   
         <p>There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it&rsquo;s too risky to put it live as there might be issues that impact your end users.</p>
 <p>The <strong>traffic shadowing</strong> or <strong>traffic mirroring</strong> functionality allows you to <strong>test new backends in production</strong> by sending them copies of the traffic but <strong>ignore their responses</strong>.</p>
 <p>When you add a backend to any of your endpoints as a <strong>shadow backend</strong>, KrakenD continues to send the requests to all the backends as usual, but the responses from the ones marked as <em>shadow</em> are ignored and never returned or merged in the response.</p>

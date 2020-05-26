@@ -304,6 +304,10 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
                         <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -699,6 +703,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 
 
 
+
                 </section>
                 <section class="content">
                     
@@ -708,6 +713,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
         
         
 
+   
         <p><a href="https://prometheus.io/">Prometheus</a> is an open-source systems monitoring and alerting toolkit.</p>
 <p>The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the <code>prometheus</code> exporter. Specify the <code>port</code> on which Prometheus is running, the <code>namespace</code> (optional), and Prometheus will start receiving the data.</p>
 <pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
