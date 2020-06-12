@@ -57,12 +57,12 @@ KrakenD API Gateway helped Open Room to reduce the latency of all queries by gro
     </item>
     
     <item>
-      <title>Benchmarking API Gateways to deliver the fastest image service</title>
+      <title>KrakenD as a Zuul replacement</title>
       <link>https://www.krakend.io/case-study/adevinta/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/case-study/adevinta/</guid>
-      <description>Adevinta handles a vast amount of traffic, as it operates marketplaces with an average of 1.5 billion visits every month. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
+      <description>Adevinta Spain handles a vast amount of traffic, as it operates marketplaces with 18 million active users. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
 Adevinta was investigating how to get more performance in their company-wide solution related to images streaming. The existing application was having performance issues, and it was needed to start looking for possible solutions to serve all the marketplaces better.</description>
     </item>
     
