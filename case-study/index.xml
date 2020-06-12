@@ -63,7 +63,8 @@ KrakenD API Gateway helped Open Room to reduce the latency of all queries by gro
       
       <guid>https://www.krakend.io/case-study/adevinta/</guid>
       <description>Adevinta Spain handles a vast amount of traffic, as it operates marketplaces with 18 million active users. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
-Adevinta was investigating how to get more performance in their company-wide solution related to images streaming. The existing application was having performance issues, and it was needed to start looking for possible solutions to serve all the marketplaces better.</description>
+Adevinta was investigating how to get more performance in their company-wide solution, and how to provide autonomy to non backend teams.
+After several weeks of research, stress-tests and benchmarking several products in the market, Adevinta decided to choose KrakenD as the api gateway engine.</description>
     </item>
     
     <item>
