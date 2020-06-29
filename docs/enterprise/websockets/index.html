@@ -24,7 +24,7 @@
 <meta property="og:description" content="KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
 KrakenD has the capability of multiplexing. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/endpoints/websockets/" />
+<meta property="og:url" content="https://www.krakend.io/docs/enterprise/websockets/" />
 <meta property="og:image" content="https://www.krakend.io/images/documentation/krakend-websockets.png" />
 <meta property="article:published_time" content="2020-05-25T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-05-25T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
@@ -52,9 +52,10 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
 <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16" />
 <link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
-<body class="krakend page-87cc2f1835871d659100a409d2fe044a">
+<body class="krakend page-a7f272992abe83f1a2e4980892341c81">
     
 <div class="announcement">
 	<p>
@@ -124,6 +125,14 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                 
                 <div class="sidebar ml-3 mb-3">
     <h6 class="header">Documentation</h6>
+    <div class="input-group mb-3">
+        <input type="text" id="search-input" class="form-control" placeholder="Search in docs">
+        <div class="input-group-append">
+            <span class="input-group-text bg-white" id="basic-addon1">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
     <ul class="nav menu">
 
         
@@ -303,7 +312,7 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/websockets/" class="nav-link children active">WebSockets</a>
+                        <a href="/docs/enterprise/websockets/" class="nav-link children active">WebSockets</a>
                     </li>
                     
                 </ul>
@@ -685,7 +694,7 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                 <section class="content-header">
                     
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints/websockets.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/enterprise/websockets.md">
     Edit this page
 </a>
 
@@ -990,6 +999,14 @@ if (!doNotTrack) {
 	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
 </script>
     
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+        apiKey: '970b810ede7ea631d56739b20e9b348f',
+        indexName: 'krakend',
+        inputSelector: '#search-input',
+        debug: false
+        });
+    </script>
 </body>
 
 </html>

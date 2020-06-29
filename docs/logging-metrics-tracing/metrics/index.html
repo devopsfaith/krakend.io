@@ -54,6 +54,7 @@ http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your
 <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16" />
 <link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
 <body class="krakend page-72fe675b2a52e6b82cce8b208d707e56">
@@ -126,6 +127,14 @@ http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your
                 
                 <div class="sidebar ml-3 mb-3">
     <h6 class="header">Documentation</h6>
+    <div class="input-group mb-3">
+        <input type="text" id="search-input" class="form-control" placeholder="Search in docs">
+        <div class="input-group-append">
+            <span class="input-group-text bg-white" id="basic-addon1">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
     <ul class="nav menu">
 
         
@@ -305,7 +314,7 @@ http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                        <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
                     </li>
                     
                 </ul>
@@ -898,6 +907,14 @@ if (!doNotTrack) {
 	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
 </script>
     
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+        apiKey: '970b810ede7ea631d56739b20e9b348f',
+        indexName: 'krakend',
+        inputSelector: '#search-input',
+        debug: false
+        });
+    </script>
 </body>
 
 </html>

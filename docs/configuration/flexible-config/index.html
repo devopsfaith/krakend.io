@@ -52,6 +52,7 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
 <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16" />
 <link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
 <body class="krakend page-691479631144295d48ee6fda94f11df8">
@@ -124,6 +125,14 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
                 
                 <div class="sidebar ml-3 mb-3">
     <h6 class="header">Documentation</h6>
+    <div class="input-group mb-3">
+        <input type="text" id="search-input" class="form-control" placeholder="Search in docs">
+        <div class="input-group-append">
+            <span class="input-group-text bg-white" id="basic-addon1">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
     <ul class="nav menu">
 
         
@@ -303,7 +312,7 @@ When the Flexible Configuration is enabled, KrakenD assumes that your configurat
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/websockets/" class="nav-link children ">WebSockets</a>
+                        <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
                     </li>
                     
                 </ul>
@@ -781,7 +790,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 <p>These are all the syntax possibilities:</p>
 <ul>
 <li><code>{{ .file.key }}</code>: Insert the value of a <code>key</code> in a settings <code>file</code></li>
-<li><code>{{ marshall .file.key }}</code>: Insert a JSON structure under a <code>key</code> in a settings <code>file</code></li>
+<li><code>{{ marshal .file.key }}</code>: Insert a JSON structure under a <code>key</code> in a settings <code>file</code></li>
 <li><code>{{ include &quot;file.txt&quot; }}</code>: Replace with the complete content of the <code>file.txt</code></li>
 <li><code>{{ template &quot;file.tmpl&quot; context }}</code>: Process the Go template <code>file.tmpl</code> passing in its dot (<code>{{ . }}</code>) the <code>context</code></li>
 </ul>
@@ -799,7 +808,7 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 <p>You can access particular settings like using this syntax: <code>{{ .db.host }}</code>.</p>
 <p>The first name after the dot is the name of the file, and then the element in the structure you want to access. The example would write <code>192.168.1.23</code> where you wrote the placeholder.</p>
 <h4 id="insert-structures-from-settings-files">Insert structures from settings files</h4>
-<p>When instead of a single value you need to insert a <strong>JSON structure</strong> (several elements), you need to use <code>marshall</code>.</p>
+<p>When instead of a single value you need to insert a <strong>JSON structure</strong> (several elements), you need to use <code>marshal</code>.</p>
 <pre><code>{{ marshal .db }}
 </code></pre>
 <p>The example would write the entire content of the <code>db.json</code> file.</p>
@@ -1084,6 +1093,14 @@ if (!doNotTrack) {
 	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
 </script>
     
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+        apiKey: '970b810ede7ea631d56739b20e9b348f',
+        indexName: 'krakend',
+        inputSelector: '#search-input',
+        debug: false
+        });
+    </script>
 </body>
 
 </html>
