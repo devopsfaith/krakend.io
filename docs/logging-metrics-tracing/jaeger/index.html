@@ -24,7 +24,7 @@
 <meta property="og:description" content="Jaeger is an open source, end-to-end distributed tracing system that allows you to monitor and troubleshoot transactions in complex distributed systems.
 The Opencensus exporter allows you export data to Jaeger. Enabling it only requires you to add the jaeger exporter in the opencensus module.
 The following configuration snippet sends data to your Jaeger:
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;jaeger&quot;: { &quot;endpoint&quot;: &quot;http://192.168.99.100:14268&quot;, &quot;service_name&quot;:&quot;krakend&quot; }, } }   endpoint is the URL (including port) where your Jaeger is service_name the service name registered in Jaeger  See also the additional settings of the Opencensus module that can be declared." />
+&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;jaeger&quot;: { &quot;endpoint&quot;: &quot;http://192.168.99.100:14268/api/traces&quot;, &quot;service_name&quot;:&quot;krakend&quot; }, } }   endpoint is the URL (including port) where your Jaeger is service_name the service name registered in Jaeger  See also the additional settings of the Opencensus module that can be declared." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/jaeger/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -40,7 +40,7 @@ The following configuration snippet sends data to your Jaeger:
 <meta name="twitter:description" content="Jaeger is an open source, end-to-end distributed tracing system that allows you to monitor and troubleshoot transactions in complex distributed systems.
 The Opencensus exporter allows you export data to Jaeger. Enabling it only requires you to add the jaeger exporter in the opencensus module.
 The following configuration snippet sends data to your Jaeger:
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;jaeger&quot;: { &quot;endpoint&quot;: &quot;http://192.168.99.100:14268&quot;, &quot;service_name&quot;:&quot;krakend&quot; }, } }   endpoint is the URL (including port) where your Jaeger is service_name the service name registered in Jaeger  See also the additional settings of the Opencensus module that can be declared."/>
+&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;jaeger&quot;: { &quot;endpoint&quot;: &quot;http://192.168.99.100:14268/api/traces&quot;, &quot;service_name&quot;:&quot;krakend&quot; }, } }   endpoint is the URL (including port) where your Jaeger is service_name the service name registered in Jaeger  See also the additional settings of the Opencensus module that can be declared."/>
 
 
 
@@ -731,7 +731,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <pre><code>&quot;github_com/devopsfaith/krakend-opencensus&quot;: {
   &quot;exporters&quot;: {
     &quot;jaeger&quot;: {
-        &quot;endpoint&quot;: &quot;http://192.168.99.100:14268&quot;,
+        &quot;endpoint&quot;: &quot;http://192.168.99.100:14268/api/traces&quot;,
         &quot;service_name&quot;:&quot;krakend&quot;
     },
   }
