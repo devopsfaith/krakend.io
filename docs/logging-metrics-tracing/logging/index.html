@@ -804,7 +804,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 <p>The pattern to use is the same as the <a href="https://github.com/op/go-logging/blob/master/format.go#L156">go-logging library</a></p>
 <h2 id="logstash">Logstash</h2>
 <p>If you want to log using the Logstash standard via stdout, you have to add the <code>krakend-logstash</code> integration in the
-root level of your <code>krakend.json</code>, inside the <code>extra_config</code> section. <strong>The <code>gologging</code> needs to be enabled too</strong>.</p>
+root level of your <code>krakend.json</code>, inside the <code>extra_config</code> section. <strong>The <code>gologging</code> needs to be enabled too (but the format should be <code>default</code>)</strong>.</p>
 <p>For instance:</p>
 <pre><code>&quot;extra_config&quot;: {
   &quot;github_com/devopsfaith/krakend-logstash&quot;: {
@@ -814,8 +814,7 @@ root level of your <code>krakend.json</code>, inside the <code>extra_config</cod
     &quot;level&quot;: &quot;INFO&quot;,
     &quot;prefix&quot;: &quot;[KRAKEND]&quot;,
     &quot;syslog&quot;: false,
-    &quot;stdout&quot;: true,
-    &quot;format&quot;: &quot;logstash&quot;
+    &quot;stdout&quot;: true
   }
 }
 </code></pre>
