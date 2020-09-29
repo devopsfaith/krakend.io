@@ -1233,6 +1233,24 @@ A look back&amp;hellip; If you are reading this post chances are that you know t
     </item>
     
     <item>
+      <title>Enterprise subscription</title>
+      <link>https://www.krakend.io/checkout/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/checkout/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Failed to process the payment</title>
+      <link>https://www.krakend.io/checkout-cancelled/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/checkout-cancelled/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>KrakenD API Gateway features</title>
       <link>https://www.krakend.io/features/</link>
       <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
@@ -1256,6 +1274,15 @@ A look back&amp;hellip; If you are reading this post chances are that you know t
       <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
       
       <guid>https://www.krakend.io/designer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Subscription registered!</title>
+      <link>https://www.krakend.io/checkout-success/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/checkout-success/</guid>
       <description></description>
     </item>
     

@@ -20,6 +20,7 @@
 
 
 
+
 <meta property="og:title" content="Maximum IDLE connections" />
 <meta property="og:description" content="Having a high number of IDLE connections to every backend affects directly to the performance of the proxy layer. This is why you can control the number using the max_idle_connections setting. For instance:
 { &quot;version&quot;: 2, &quot;max_idle_connections&quot;: 150, ... }  KrakenD will close connections sitting idle in a &ldquo;keep-alive&rdquo; state when max_idle_connections is reached. If no value is set in the configuration file, KrakenD will use 250 by default." />

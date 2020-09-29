@@ -732,6 +732,8 @@
     <lastmod>2016-10-26T18:23:05+02:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>https://www.krakend.io/features/</loc>
     <lastmod>2016-10-26T18:23:05+02:00</lastmod>
@@ -746,6 +748,7 @@
     <loc>https://www.krakend.io/designer/</loc>
     <lastmod>2016-10-26T18:23:05+02:00</lastmod>
   </url>
+  
   
   <url>
     <loc>https://www.krakend.io/docs/faq/</loc>
@@ -762,3 +765,6 @@
   </url>
   
 </urlset>
+{/* Template modified to include the "private" conditional and avoid indexing of certain pages.
+Original template at https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/_default/sitemap.xml
+*/}
