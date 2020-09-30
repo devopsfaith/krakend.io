@@ -132,7 +132,9 @@
 <div class="container my-5">
 	<div id="error-message"></div>
 
-	<p>Please choose the period you agreed to subscribe for. The LICENSE file in your servers need to be changed on the expiration of every selected period. The subscription is renewed automatically at the end of the period unless otherwise notified.</p>
+	<p>Please choose the period you agreed to subscribe for. The LICENSE file in your servers need to be changed on the
+		expiration of every selected period. The subscription is renewed automatically at the end of the period unless
+		otherwise notified.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -142,8 +144,8 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>Quarterly payment<br/>
-				<small><em>(Does not support Instana monitoring)</em></small></td>
+				<td>Quarterly payment<br />
+					<small><em>(Does not support Instana monitoring)</em></small></td>
 				<td><button class="btn btn-secondary" id="checkout-button-price_1GxxqHJAH7K8zYx8i0Cm3kYf" role="link"
 						type="button">
 						Quarterly
@@ -183,8 +185,34 @@
 				
 				
 				
-				successUrl: 'https://www.brutale.net/checkout/success',
-				cancelUrl: 'https://www.brutale.net/checkout/canceled',
+				successUrl: 'https://www.krakend.io/checkout-success/',
+				cancelUrl: 'https://www.krakend.io/checkout-cancelled/',
+			})
+				.then(function (result) {
+					if (result.error) {
+						
+						
+						var displayError = document.getElementById('error-message');
+						displayError.textContent = result.error.message;
+					}
+				});
+		});
+
+
+		var yearly = document.getElementById('checkout-button-price_1GxxsLJAH7K8zYx8Sg5EZPAU');
+		yearly.addEventListener('click', function () {
+			
+			
+			stripe.redirectToCheckout({
+				lineItems: [{ price: 'price_1GxxsLJAH7K8zYx8Sg5EZPAU', quantity: 1 }],
+				mode: 'subscription',
+				
+				
+				
+				
+				
+				successUrl: 'https://www.krakend.io/checkout-success/',
+				cancelUrl: 'https://www.krakend.io/checkout-cancelled/',
 			})
 				.then(function (result) {
 					if (result.error) {
@@ -197,31 +225,6 @@
 		});
 	})();
 
-	var yearly = document.getElementById('checkout-button-price_1GxxsLJAH7K8zYx8Sg5EZPAU');
-	yearly.addEventListener('click', function () {
-		
-		
-		stripe.redirectToCheckout({
-			lineItems: [{ price: 'price_1GxxsLJAH7K8zYx8Sg5EZPAU', quantity: 1 }],
-			mode: 'subscription',
-			
-			
-			
-			
-			
-			successUrl: 'https://www.brutale.net/checkout/success',
-			cancelUrl: 'https://www.brutale.net/checkout/canceled',
-		})
-			.then(function (result) {
-				if (result.error) {
-					
-					
-					var displayError = document.getElementById('error-message');
-					displayError.textContent = result.error.message;
-				}
-			});
-	});
-}) ();
 </script>
 			
 
