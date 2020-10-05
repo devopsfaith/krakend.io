@@ -19,7 +19,7 @@
       <guid>https://www.krakend.io/blog/krakend-1.2-release-notes/</guid>
       <description>The KrakenD team is pleased to announce the release of KrakenD 1.2. You can get it packaged from the download page.
 Some of the highlights include:
- Removed the wording whitelist and blacklist from all our products (#BlackLivesMatter) Datadog integration Array manipulation available after merging multiple backends KRAKEND_-like environment vars to override configuration A lot of small features and bugfixes   KrakenD framework Summary of the most significant changes:</description>
+ Added a /__health endpoint Removed the wording whitelist and blacklist from all our products (#BlackLivesMatter) Datadog integration Array manipulation available after merging multiple backends KRAKEND_-like environment vars to override configuration A lot of small features and bugfixes   KrakenD framework Summary of the most significant changes:</description>
     </item>
     
     <item>

@@ -870,9 +870,8 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
       <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/endpoints/health/</guid>
-      <description>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need an HTTP endpoint like /health or /ping in systems like Kubernetes, you can do it in different ways.
-Although there is no opinionated health check implementation in KrakenD, the result can be achieved using different strategies.
-Some of them can be:</description>
+      <description>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need an HTTP endpoint in systems like Kubernetes, use /__health.
+The /__health endpoint The health endpoint in KrakenD works out of the box without adding any configuration in the server. Just point your checks to /__health and you&amp;rsquo;ll have a 200 response code from KrakenD when the system is running, e.</description>
     </item>
     
     <item>

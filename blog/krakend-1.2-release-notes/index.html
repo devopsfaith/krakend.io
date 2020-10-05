@@ -262,7 +262,7 @@
                 release notes
             </a>
             
-            <li><em class="reading-time">2 min read</em></li>
+            <li><em class="reading-time">3 min read</em></li>
         </ul>
     </div>
 </div>
@@ -272,6 +272,7 @@
           <p>The KrakenD team is pleased to announce the release of <strong>KrakenD 1.2</strong>. You can get it packaged from the <a href="/download">download page</a>.</p>
 <p>Some of the highlights include:</p>
 <ul>
+<li>Added a <code>/__health</code> endpoint</li>
 <li>Removed the wording <code>whitelist</code> and <code>blacklist</code> from all our products (#BlackLivesMatter)</li>
 <li>Datadog integration</li>
 <li>Array manipulation available after merging multiple backends</li>
@@ -284,7 +285,7 @@
 <ul>
 <li><code>[feature]</code> Flatmap (array manipulation) now also at endpoint level</li>
 <li><code>[bugfix]</code> Removed wording with racist connotations <code>whitelist</code> and <code>blacklist</code>. Now using <code>allow</code> and <code>deny</code> instead.</li>
-<li><code>[feature]</code> Add go 1.14.x to the build matrix in tests</li>
+<li><code>[feature]</code> Upgrade go to 1.15.</li>
 <li><code>[feature]</code> support for the append operation added</li>
 <li><code>[feature]</code> Added a new supported encoding <a href="/docs/backends/supported-encodings"><code>safejson</code></a></li>
 <li><code>[feature]</code> support for nested targets added</li>
@@ -292,9 +293,13 @@
 <li><code>[bugfix]</code> Do not copy nil readers on <code>no-op</code></li>
 <li><code>[bugfix]</code> Nested sequential params</li>
 <li><code>[feature]</code> Clone also the request body in the CloneRequest method</li>
-<li><code>[feature]</code> <code>__debug/</code> endpoint accepts now any method</li>
+<li><code>[feature]</code> <code>/__debug/</code> endpoint accepts now any method</li>
 <li><code>[feature]</code> Use the weight of the SRV record to generate the list of hosts when resolving a service name</li>
 <li><code>[feature]</code> Decompress gzipped responses before parsing them</li>
+<li><code>[feature]</code> Added a <code>/__health</code> endpoint</li>
+<li><code>[feature]</code> Ability to use collections in sequential proxy as input (collection filters)</li>
+<li><code>[feature]</code> Support using JWT claims as backend url params</li>
+<li><code>[feature]</code> Mutual TLS between KrakenD and clients added</li>
 </ul>
 <p>Link to <a href="https://github.com/devopsfaith/krakend-ce/releases/tag/v1.2.0">1.2.0 release notes</a></p>
 <h2 id="krakend-api-gateway">KrakenD API Gateway</h2>
@@ -302,6 +307,8 @@
 <p>The summary of changes is:</p>
 <ul>
 <li><code>[bugfix]</code> Check that headers aren&rsquo;t <code>nil</code> on Lua scripts</li>
+<li><code>[bugfix]</code> Pub/sub module ignores empty hosts</li>
+<li><code>[feature]</code> Lua scripts can now send custom errors</li>
 <li><code>[feature]</code> The <code>RunServer</code> can be injected into the executor builder</li>
 <li><code>[tests]</code> Integration test for CORS with auto-redirects added</li>
 <li><code>[feature]</code> CORS mw for gin removed and added as a RunServer wrapper so it&rsquo;s always executed</li>
@@ -311,9 +318,12 @@
 <li><code>[feature]</code> Configuration can be overriden with <code>KRAKEND_</code>-like environment vars</li>
 <li><code>[feature]</code> Integration with Datadog</li>
 <li><code>[feature]</code> Add ca-certificates as dependency on debian</li>
-<li><code>[feature]</code> Allow &ldquo;sequential proxy&rdquo; work with POST, PUT and DELETE if there are only GET methods before (thanks to <a href="https://github.com/Alphyron">Alphyron</a>)</li>
+<li><code>[feature]</code> Allow &ldquo;sequential proxy&rdquo; to work with a POST, PUT and DELETE if there are only GET methods before (thanks to <a href="https://github.com/Alphyron">Alphyron</a>)</li>
+<li><code>[feature]</code> Updated CEL engine with more features</li>
+<li><code>[feature]</code> Added a label <code>name</code> to circuit breakers to identify activity from different circuits in the logs and traces.</li>
+<li><code>[feature]</code> XML encoder supports now ISO-8859-1 encoding (in addition to UTF8)</li>
 </ul>
-<p>Link to <a href="https://github.com/devopsfaith/krakend-ce/releases/tag/1.2.0">1.2.0 release notes</a></p>
+<p>Link to <a href="https://github.com/devopsfaith/krakend-ce/releases/tag/v1.2.0">1.2.0 release notes</a></p>
 <p><a href="/download" class="btn btn-secondary"><i class="fa fa-download"></i> Download KrakenD now</a></p>
 <p>Join now our #krakend channel at <a href="https://invite.slack.golangbridge.org/">Gophers</a> on Slack.</p>
 <p>Enjoy KrakenD!</p>
