@@ -185,7 +185,7 @@ Merging When you create KrakenD endpoints, if a specific endpoint feeds from 2 o
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -194,6 +194,10 @@ Merging When you create KrakenD endpoints, if a specific endpoint feeds from 2 o
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -236,6 +240,10 @@ Merging When you create KrakenD endpoints, if a specific endpoint feeds from 2 o
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -306,11 +314,15 @@ Merging When you create KrakenD endpoints, if a specific endpoint feeds from 2 o
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -522,6 +534,10 @@ Merging When you create KrakenD endpoints, if a specific endpoint feeds from 2 o
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -873,8 +889,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&rsquo;s bandwidth and increase load and render times.</p>
 <p>There are two different strategies you can use to filter content:</p>
 <ul>
-<li><strong><a href="/docs/backends/data-manipulation#blacklist">Blacklist</a></strong></li>
-<li><strong><a href="/docs/backends/data-manipulation#whitelist">Whitelist</a></strong></li>
+<li><strong><a href="/docs/backends/data-manipulation#deny">Deny list</a></strong></li>
+<li><strong><a href="/docs/backends/data-manipulation#allow">Allow list</a></strong></li>
 </ul>
 <p>See <a href="/docs/backends/data-manipulation#filtering">filtering documentation</a></p>
 <h2 id="grouping">Grouping</h2>
@@ -887,7 +903,7 @@ There are a number of different reasons you might want to use this functionality
 <p>See <a href="/docs/backends/data-manipulation#mapping">mapping documentation</a></p>
 <h2 id="target-or-capturing">Target (or capturing)</h2>
 <p>It is frequent in many API implementations that the important data is always encapsulated inside a generic field like <code>data</code>, <code>response</code> or <code>content</code>, as there are other fields showing the status code and other metadata. Sometimes we neither want to let the client handle with this nor drag this first level container through all the configuration.</p>
-<p>When setting a <code>target</code> in your backend, these generic containers (the target) disappear and all content extracted to the root as it never existed. As this capturing takes place before other options like whitelist or mapping, you can&rsquo;t forget about and manipulate data as.</p>
+<p>When setting a <code>target</code> in your backend, these generic containers (the target) disappear and all content extracted to the root as it never existed. As this capturing takes place before other options like <code>allow</code> or <code>mapping</code>, you don&rsquo;t need to use nesting.</p>
 <p>See <a href="/docs/backends/data-manipulation#target">target documentation</a></p>
 <h2 id="collection--or-array--manipulation">Collection -or Array- manipulation</h2>
 <p>KrakenD expects all backends to return objects in the response. There are times when the whole response of the backend comes inside an array, and other times when you need to do operations over fields that are arrays themselves.</p>

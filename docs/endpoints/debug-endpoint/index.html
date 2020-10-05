@@ -183,7 +183,7 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -192,6 +192,10 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -234,6 +238,10 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -304,11 +312,15 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -520,6 +532,10 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -843,7 +859,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">URL</span><span class="p">:</span> <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Query</span><span class="p">:</span> <span class="kd">map</span><span class="p">[]</span>
 <span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Params</span><span class="p">:</span> <span class="p">[{</span><span class="nx">param</span> <span class="o">/</span><span class="k">default</span><span class="p">}]</span>
-<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">1.1.1</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:[::</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:[</span><span class="nx">gzip</span><span class="p">]]</span>
+<span class="hl"><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Headers</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:[</span><span class="nx">KrakenD</span> <span class="nx">Version</span> <span class="mf">1.2.0</span><span class="p">]</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="p">:[::</span><span class="mi">1</span><span class="p">]</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:[</span><span class="nx">gzip</span><span class="p">]]</span>
 </span><span class="nx">DEBUG</span><span class="p">:</span> <span class="nx">Body</span><span class="p">:</span>
 <span class="hl"><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">118.543</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="nx">__debug</span><span class="o">/</span><span class="k">default</span>
 </span><span class="p">[</span><span class="nx">GIN</span><span class="p">]</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">27</span> <span class="o">-</span> <span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span> <span class="p">|</span> <span class="mi">200</span> <span class="p">|</span>     <span class="mf">565.971</span><span class="nx">µs</span> <span class="p">|</span>             <span class="p">::</span><span class="mi">1</span> <span class="p">|</span> <span class="nx">GET</span>      <span class="o">/</span><span class="k">default</span><span class="o">-</span><span class="nx">behavior</span><span class="err">?</span><span class="nx">a</span><span class="p">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">=</span><span class="mi">2</span><span class="o">&amp;</span><span class="nx">c</span><span class="p">=</span><span class="mi">3</span></code></pre></div>

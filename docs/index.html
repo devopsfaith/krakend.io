@@ -26,7 +26,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.krakend.io/docs/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
-<meta property="og:updated_time" content="2020-05-25T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:updated_time" content="2020-07-24T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -178,7 +178,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -187,6 +187,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -229,6 +233,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -299,11 +307,15 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -518,6 +530,10 @@
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/zipkin/" class="nav-link children ">Zipkin</a>
                     </li>
                     
@@ -704,6 +720,69 @@
     
     <tr>
         <td>
+            <a href="https://www.krakend.io/docs/endpoints/health/">Adding a health check endpoint (ping)</a> <em></em>
+        </td>
+        <td>Fri, Sep 18, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/logging-metrics-tracing/datadog/">Exporting traces to Datadog</a> <em></em>
+        </td>
+        <td>Fri, Jul 24, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/backends/flatmap/">Array manipulation - flatmap</a> <em></em>
+        </td>
+        <td>Fri, Jul 24, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/backends/data-manipulation/">Data manipulation</a> <em></em>
+        </td>
+        <td>Fri, Jul 24, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/backends/supported-encodings/">Supported backend encodings</a> <em></em>
+        </td>
+        <td>Sun, Jul 12, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/endpoints/json-schema/">Validating the body with the JSON Schema integration</a> <em></em>
+        </td>
+        <td>Fri, Jul 10, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/configuration/environment-vars/">Overriding the configuration with environment vars</a> <em></em>
+        </td>
+        <td>Fri, Jul 10, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/service-settings/cors/">Enabling Cross Origin Resource Sharing (CORS)</a> <em></em>
+        </td>
+        <td>Fri, Jul 10, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <a href="https://www.krakend.io/docs/throttling/botdetector/">Control of bot traffic</a> <em></em>
+        </td>
+        <td>Fri, Jul 10, 2020</td>
+    </tr>
+    
+    <tr>
+        <td>
             <a href="https://www.krakend.io/docs/enterprise/websockets/">Handling WebSockets connections</a> <em></em>
         </td>
         <td>Mon, May 25, 2020</td>
@@ -763,13 +842,6 @@
             <a href="https://www.krakend.io/docs/backends/amqp/">API Gateway integration with AMQP messaging</a> <em></em>
         </td>
         <td>Sun, Oct 13, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/endpoints/health/">Adding a health endpoint</a> <em></em>
-        </td>
-        <td>Mon, Oct 7, 2019</td>
     </tr>
     
     <tr>
@@ -854,62 +926,6 @@
             <a href="https://www.krakend.io/docs/logging-metrics-tracing/opencensus/">Exporting logs, metrics, and traces to several providers</a> <em></em>
         </td>
         <td>Sun, Sep 15, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/logging-metrics-tracing/logstash/">Logstash</a> <em></em>
-        </td>
-        <td>Sun, Sep 15, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/logging-metrics-tracing/graylog-gelf/">Graylog and the GELF format</a> <em></em>
-        </td>
-        <td>Sun, Sep 15, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/logging-metrics-tracing/tracing/">Tracing</a> <em></em>
-        </td>
-        <td>Sun, Sep 15, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/throttling/botdetector/">Control of bot traffic</a> <em></em>
-        </td>
-        <td>Sun, Sep 15, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/service-settings/security/">Security</a> <em></em>
-        </td>
-        <td>Mon, Sep 2, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/backends/data-manipulation/">Data manipulation</a> <em></em>
-        </td>
-        <td>Fri, May 3, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/backends/flatmap/">Array manipulation - flatmap</a> <em></em>
-        </td>
-        <td>Fri, Apr 5, 2019</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <a href="https://www.krakend.io/docs/authorization/client-credentials/">OAuth 2.0 Client Credentials</a> <em></em>
-        </td>
-        <td>Thu, Mar 21, 2019</td>
     </tr>
     
 </table>

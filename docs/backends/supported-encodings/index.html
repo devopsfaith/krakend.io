@@ -22,15 +22,14 @@
 
 
 <meta property="og:title" content="Supported backend encodings" />
-<meta property="og:description" content="KrakenD can parse responses from mixed backends that are using several content types or encodings, such as:
- JSON XML RSS Treat as string  Additionally the special case No-op (proxy) is available but cannot be used to merge content.
-Each backend declaration can set a different encoder to process the responses, and still, KrakenD can transparently work with the mixed content returning a unified encoding in the endpoint.
-The following example demonstrates how an endpoint /abc is feeding on three different services and urls /a, /b, and /c and aggregates their responses:" />
+<meta property="og:description" content="Setting the encoding is an important part of the backend definition, as it informs KrakenD how to parse the responses of your services.
+Each backend can reply with a different encoding and KrakenD does not have any problem working with mixed encodings at the same time. You can use the following encoding in each backend section:
+ json safejson xml rss string no-op  Notice that all values are in lower case." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/supported-encodings/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-04-14T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-03-08T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2020-07-12T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -38,10 +37,9 @@ The following example demonstrates how an endpoint /abc is feeding on three diff
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Supported backend encodings"/>
-<meta name="twitter:description" content="KrakenD can parse responses from mixed backends that are using several content types or encodings, such as:
- JSON XML RSS Treat as string  Additionally the special case No-op (proxy) is available but cannot be used to merge content.
-Each backend declaration can set a different encoder to process the responses, and still, KrakenD can transparently work with the mixed content returning a unified encoding in the endpoint.
-The following example demonstrates how an endpoint /abc is feeding on three different services and urls /a, /b, and /c and aggregates their responses:"/>
+<meta name="twitter:description" content="Setting the encoding is an important part of the backend definition, as it informs KrakenD how to parse the responses of your services.
+Each backend can reply with a different encoding and KrakenD does not have any problem working with mixed encodings at the same time. You can use the following encoding in each backend section:
+ json safejson xml rss string no-op  Notice that all values are in lower case."/>
 
 
 
@@ -185,7 +183,7 @@ The following example demonstrates how an endpoint /abc is feeding on three diff
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -194,6 +192,10 @@ The following example demonstrates how an endpoint /abc is feeding on three diff
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -236,6 +238,10 @@ The following example demonstrates how an endpoint /abc is feeding on three diff
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -306,11 +312,15 @@ The following example demonstrates how an endpoint /abc is feeding on three diff
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -525,6 +535,10 @@ The following example demonstrates how an endpoint /abc is feeding on three diff
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/zipkin/" class="nav-link children ">Zipkin</a>
                     </li>
                     
@@ -712,15 +726,58 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         
 
    
-        <p>KrakenD can parse responses from mixed backends that are using several content types or encodings, such as:</p>
+        <p>Setting the <code>encoding</code> is an important part of the backend definition, as it informs KrakenD how to parse the responses of your services.</p>
+<p>Each backend can reply with a different encoding and KrakenD does not have any problem working with mixed encodings at the same time. You can use the following <code>encoding</code> in each <code>backend</code> section:</p>
 <ul>
-<li>JSON</li>
-<li>XML</li>
-<li>RSS</li>
-<li>Treat as string</li>
+<li><code>json</code></li>
+<li><code>safejson</code></li>
+<li><code>xml</code></li>
+<li><code>rss</code></li>
+<li><code>string</code></li>
+<li><code>no-op</code></li>
 </ul>
-<p>Additionally the special case <a href="/docs/endpoints/no-op/">No-op (proxy)</a> is available but cannot be used to merge content.</p>
+<p>Notice that all values are in <strong>lower case</strong>. Unknown values for <code>encoding</code> or no value at all, is treated as <code>json</code>.</p>
 <p>Each backend declaration can set a different encoder to process the responses, and still, KrakenD can transparently work with the mixed content returning a unified encoding in the endpoint.</p>
+<h2 id="how-to-choose-the-backend-encoding">How to choose the backend encoding?</h2>
+<p>Follow this table to determine how to treat your backend content:</p>
+<table>
+<thead>
+<tr>
+<th>The backend returns&hellip;</th>
+<th>Then use encoding&hellip;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON inside an object (<code>{}</code>)</td>
+<td><code>json</code></td>
+</tr>
+<tr>
+<td>JSON inside an array/collection (<code>[]</code>)</td>
+<td><code>json</code> with <code>&quot;is_collection&quot;: true</code></td>
+</tr>
+<tr>
+<td>JSON with variable types</td>
+<td><code>safejson</code></td>
+</tr>
+<tr>
+<td>XML</td>
+<td><code>xml</code></td>
+</tr>
+<tr>
+<td>RSS</td>
+<td><code>rss</code></td>
+</tr>
+<tr>
+<td>Not an object, but a string</td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td>Nevermind, just proxy</td>
+<td><code>no-op</code> (<a href="/docs/endpoints/no-op/">read how</a>)</td>
+</tr>
+</tbody>
+</table>
 <p>The following example demonstrates how an endpoint <code>/abc</code> is feeding on three different services and urls  <code>/a</code>, <code>/b</code>, and <code>/c</code> and aggregates their responses:</p>
 <pre><code>...
 &quot;endpoints&quot;: [

@@ -183,7 +183,7 @@ The following example describes the options explained later in this article:
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -192,6 +192,10 @@ The following example describes the options explained later in this article:
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -234,6 +238,10 @@ The following example describes the options explained later in this article:
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -304,11 +312,15 @@ The following example describes the options explained later in this article:
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -520,6 +532,10 @@ The following example describes the options explained later in this article:
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -771,8 +787,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
 <h2 id="general-security">General security</h2>
 <h3 id="restrict-connections-by-host">Restrict connections by host</h3>
 <p>Use <code>allowed_hosts</code></p>
-<p>Define a whitelist of hosts that KrakenD should accept requests to.</p>
-<p>When a request hits KrakenD, it will confirm if the value of the <code>Host</code> HTTP header is in the whitelist. If so, it will further process the request. If the host is not in the whitelist, KrakenD will simply reject the request.</p>
+<p>Define a list of hosts that KrakenD should accept requests to.</p>
+<p>When a request hits KrakenD, it will confirm if the value of the <code>Host</code> HTTP header is in the list. If so, it will further process the request. If the host is not in the allowed hosts list, KrakenD will simply reject the request.</p>
 <p>The list must contain the fully qualified domain names that are allowed, along with the origin port. When the list is empty accepts any host.</p>
 <h3 id="clickjacking-protection">Clickjacking protection</h3>
 <p>Use <code>frame_deny</code></p>

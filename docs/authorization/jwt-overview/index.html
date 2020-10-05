@@ -181,7 +181,7 @@ When JWT shields a specific set of endpoints, requests to the API gateway must p
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -190,6 +190,10 @@ When JWT shields a specific set of endpoints, requests to the API gateway must p
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -232,6 +236,10 @@ When JWT shields a specific set of endpoints, requests to the API gateway must p
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -302,11 +310,15 @@ When JWT shields a specific set of endpoints, requests to the API gateway must p
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -521,6 +533,10 @@ When JWT shields a specific set of endpoints, requests to the API gateway must p
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/zipkin/" class="nav-link children ">Zipkin</a>
                     </li>
                     
@@ -721,7 +737,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <li><a href="/docs/authorization/jwt-signing">Sign tokens</a> when you have no identity server yet (like a classic monolithic application with a <code>/login</code> endpoint) and let KrakenD take care of the token signing with the private key.</li>
 <li><a href="/docs/authorization/jwt-validation">Validate tokens</a> issued by a third party or the <a href="/docs/authorization/jwt-signing">JWT signing middleware</a>, ensuring their integrity and proper claims.</li>
 </ul>
-<p>A stateless system like KrakenD <strong>does not issue tokens</strong>, this is the responsability of your backend or identity server.</p>
+<p>A stateless system like KrakenD <strong>does not issue tokens</strong>, this is the responsibility of your backend or identity server.</p>
 
     </section>
 </div>

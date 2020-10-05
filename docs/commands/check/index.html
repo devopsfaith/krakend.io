@@ -180,7 +180,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -189,6 +189,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -231,6 +235,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -301,11 +309,15 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -517,6 +529,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -825,7 +841,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>Version:&nbsp;1.1.1&nbsp;</li>
+					<li>Version:&nbsp;1.2.0&nbsp;</li>
 					
 				
 			
@@ -1108,7 +1124,7 @@ in the config file could be shadowed. In order to validate your config completel
                         &quot;https://api.github.com&quot;
                     ],
                     &quot;url_pattern&quot;: &quot;/&quot;,
-                    &quot;whitelist&quot;: [
+                    &quot;allow&quot;: [
                         &quot;authorizations_url&quot;,
                         &quot;code_search_url&quot;
                     ],
@@ -1173,7 +1189,7 @@ in the config file could be shadowed. In order to validate your config completel
                     &quot;url_pattern&quot;: &quot;/user/schedule/{id}.rss&quot;,
                     &quot;encoding&quot;: &quot;rss&quot;,
                     &quot;group&quot;: &quot;schedule&quot;,
-                    &quot;whitelist&quot;: [&quot;items&quot;, &quot;title&quot;],
+                    &quot;allow&quot;: [&quot;items&quot;, &quot;title&quot;],
                     &quot;extra_config&quot;: {
                         &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
                             &quot;maxRate&quot;: 1,
@@ -1193,7 +1209,7 @@ in the config file could be shadowed. In order to validate your config completel
                     &quot;url_pattern&quot;: &quot;/user/{id}.rss&quot;,
                     &quot;encoding&quot;: &quot;rss&quot;,
                     &quot;group&quot;: &quot;available&quot;,
-                    &quot;whitelist&quot;: [&quot;items&quot;, &quot;title&quot;],
+                    &quot;allow&quot;: [&quot;items&quot;, &quot;title&quot;],
                     &quot;extra_config&quot;: {
                         &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
                             &quot;maxRate&quot;: 2,

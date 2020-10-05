@@ -183,7 +183,7 @@ When the CEL component is enabled, any amount of expressions to check both reque
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -192,6 +192,10 @@ When the CEL component is enabled, any amount of expressions to check both reque
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -234,6 +238,10 @@ When the CEL component is enabled, any amount of expressions to check both reque
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -304,11 +312,15 @@ When the CEL component is enabled, any amount of expressions to check both reque
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -520,6 +532,10 @@ When the CEL component is enabled, any amount of expressions to check both reque
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -785,6 +801,10 @@ simple and powerful option to have full control during requests and responses.</
 <ul>
 <li><code>check_expr</code>: The expression that evaluates as a boolean, you can write any conditional. If all stacked conditions are <em>true</em> the request continues, <em>false</em>, it fails to retrieve data from the token, the request, or the response. The expressions can use a set of <strong>variables</strong>, shown in the sections below.</li>
 </ul>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> A note on client headers</h4>
+	When <strong>client headers</strong> are needed, remember to add them under <a href="/docs/endpoints/parameter-forwarding/#headers-forwarding"><code>headers_to_pass</code></a> as KrakenD does not forward headers to the backends unless declared in the list.
+ </div>
 <h2 id="adding-logic-in-the-requests-and-responses">Adding logic in the requests and responses.</h2>
 <p>There are three different ways to access the metadata of requests and responses to decide whether or not to continue serving the user command.</p>
 <ul>
@@ -797,7 +817,7 @@ simple and powerful option to have full control during requests and responses.</
 <p>The following variables can be used inside the <code>check_expr</code>:</p>
 <ul>
 <li><code>req_method</code>: What is the method of this endpoint, e.g.: <code>GET</code></li>
-<li><code>req_path</code>: The path used to access this endpoing, e.g: : <code>/foo</code></li>
+<li><code>req_path</code>: The path used to access this endpoint, e.g: : <code>/foo</code></li>
 <li><code>req_params</code>: Object with all the parameters sent with the request, e.g:
 <code>req_params.Foo.var</code>. Notice that <strong>parameters capitalize the first letter</strong></li>
 <li><code>req_headers</code>: Array with all the headers received, e.g: <code>req_headers['X-Forwarded-For']</code></li>
@@ -852,7 +872,7 @@ within one of the allowed days to see the endpoint.</p>
         &quot;https://api.bitbucket.org&quot;
       ],
       &quot;url_pattern&quot;: &quot;/2.0/users/{nick}&quot;,
-      &quot;whitelist&quot;: [
+      &quot;allow&quot;: [
         &quot;display_name&quot;,
         &quot;website&quot;
       ],

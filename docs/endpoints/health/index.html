@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.67.1" />
 
-    <title>Adding a health endpoint - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Adding a health endpoint - KrakenD API Gateway">
+    <title>Adding a health check endpoint (ping) - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Adding a health check endpoint (ping) - KrakenD API Gateway">
 
     
-    <meta property="description" content="Adding a health endpoint - KrakenD API Gateway">
-    <meta itemprop="description" content="Adding a health endpoint - KrakenD API Gateway">
+    <meta property="description" content="Adding a health check endpoint (ping) - KrakenD API Gateway">
+    <meta itemprop="description" content="Adding a health check endpoint (ping) - KrakenD API Gateway">
     
 
     
@@ -21,25 +21,25 @@
 
 
 
-<meta property="og:title" content="Adding a health endpoint" />
-<meta property="og:description" content="If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need to have an HTTP endpoint like /health or /ping in systems like Kubernetes, you can do it in different ways.
-Although there is no default health check implementation, the result can be achieved using different strategies. For instance:
- Add a /health endpoint in the configuration with stub data (see example below) Enable the /__debug/ endpoint with your desired log level and use it as the health check." />
+<meta property="og:title" content="Adding a health check endpoint (ping)" />
+<meta property="og:description" content="If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need an HTTP endpoint like /health or /ping in systems like Kubernetes, you can do it in different ways.
+Although there is no opinionated health check implementation in KrakenD, the result can be achieved using different strategies.
+Some of them can be:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/health/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-10-07T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-10-07T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2020-09-18T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="Adding a health endpoint"/>
-<meta name="twitter:description" content="If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need to have an HTTP endpoint like /health or /ping in systems like Kubernetes, you can do it in different ways.
-Although there is no default health check implementation, the result can be achieved using different strategies. For instance:
- Add a /health endpoint in the configuration with stub data (see example below) Enable the /__debug/ endpoint with your desired log level and use it as the health check."/>
+<meta name="twitter:title" content="Adding a health check endpoint (ping)"/>
+<meta name="twitter:description" content="If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need an HTTP endpoint like /health or /ping in systems like Kubernetes, you can do it in different ways.
+Although there is no opinionated health check implementation in KrakenD, the result can be achieved using different strategies.
+Some of them can be:"/>
 
 
 
@@ -183,7 +183,7 @@ Although there is no default health check implementation, the result can be achi
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -192,6 +192,10 @@ Although there is no default health check implementation, the result can be achi
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -234,6 +238,10 @@ Although there is no default health check implementation, the result can be achi
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -304,11 +312,15 @@ Although there is no default health check implementation, the result can be achi
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children active">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children active">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -523,6 +535,10 @@ Although there is no default health check implementation, the result can be achi
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/zipkin/" class="nav-link children ">Zipkin</a>
                     </li>
                     
@@ -695,7 +711,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 </a>
 
 
-<h1 class="main-title">Adding a health endpoint</h1>
+<h1 class="main-title">Adding a health check endpoint (ping)</h1>
 
 
 
@@ -710,45 +726,109 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         
 
    
-        <p>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need to have an HTTP endpoint like <code>/health</code> or <code>/ping</code> in systems like Kubernetes, you can do it in different ways.</p>
-<p>Although there is no default health check implementation, the result can be achieved using different strategies. For instance:</p>
+        <p>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a <strong>TCP port check</strong>. If, on the other hand, you need an <strong>HTTP endpoint</strong> like <code>/health</code> or <code>/ping</code> in systems like Kubernetes, you can do it in different ways.</p>
+<p>Although there is no opinionated health check implementation in KrakenD, <strong>the result can be achieved using different strategies</strong>.</p>
+<p>Some of them can be:</p>
 <ul>
-<li>Add a <code>/health</code> endpoint in the configuration with <a href="/docs/endpoints/static-proxy/">stub data</a> (see example below)</li>
-<li>Enable the <code>/__debug/</code> endpoint with your desired log level and use it as the health check.</li>
-<li>Use a <a href="/docs/backends/martian/">static Martian modifier</a> and serve any static file as <code>/health</code>.</li>
+<li>Add a <code>/health</code> endpoint in the configuration with <a href="/docs/endpoints/static-proxy/">stub data</a></li>
+<li>Use the <code>/__debug/</code> endpoint with your desired log level as the health check.</li>
+<li>Serve a static file through the <a href="/docs/backends/martian/">static Martian modifier</a> as <code>/health</code>.</li>
 <li>Pass the <code>/health</code> to another backend (although you are checking the backend, not KrakenD)</li>
 </ul>
-<h2 id="how-to-add-a-health-endpoint-with-stub-data">How to add a <code>/health</code> endpoint with stub data</h2>
-<p>The easiest option is to use the <a href="/docs/endpoints/static-proxy/">static proxy</a> functionality. With this technique, we are going to add an endpoint that uses an unreachable (and fake) backend. As the data can&rsquo;t be fetched from KrakenD, the strategy <code>always</code> is going to make sure we return the desired static data that we want.</p>
-<pre><code>{
-    &quot;version&quot;: 2,
-    &quot;port&quot;: 8080,
-    &quot;endpoints&quot;: [
-    {
-        &quot;endpoint&quot;: &quot;/health&quot;,
-        &quot;extra_config&quot;: {
-        &quot;github.com/devopsfaith/krakend/proxy&quot;: {
-            &quot;static&quot;: {
-            &quot;data&quot;: {
-                &quot;status&quot;: &quot;OK&quot;
-            },
-            &quot;strategy&quot;: &quot;always&quot;
-            }
-        }
-        },
-        &quot;backend&quot;: [
-        {
-            &quot;url_pattern&quot;: &quot;/&quot;,
-            &quot;host&quot;: [
-                &quot;http://fake-backend&quot;
-            ]
-        }
-        ]
-    }
-    ]
-}
-</code></pre>
-<p>In the previous example we are returning a <code>{ &quot;status&quot;: &quot;OK&quot; }</code> every time the <code>/health</code> endpoint is called:</p>
+<p>See examples below.</p>
+<h2 id="simple-health-endpoint">Simple <code>/health</code> endpoint</h2>
+<p>A very simple option to add a health option is to create a <strong>KrakenD endpoint that connects to itself</strong> as the backend, going through the router and proxy layers. The configuration would look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span>
+        <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+        <span class="nt">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/health&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/__debug/health&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;http://localhost:8080&#34;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span></code></pre></div>
+<p>Notice that the listening <code>port</code> in the configuration and the <code>host</code> in the backend (8080) match.</p>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> When starting the server...</h4>
+	Make sure you pass the <code>-d</code> flag to start KrakenD to enable the <a href="/docs/endpoints/debug-endpoint/"><code>/__debug</code> endpoint</a>. It&rsquo;s <strong>perfectly safe</strong> in production, as it returns a <em>ping-pong</em> answer, and nothing else
+ </div>
+<p>The response content of the <code>/health</code> endpoint is:</p>
+<div class="terminal">
+	<div class="title">
+		k8s check endpoint&nbsp;
+	</div>
+	<div class="output">
+		<ul>
+			
+			
+				
+				
+			
+				
+				 
+					
+					
+					<li><span class="prompt"></span>curl&nbsp;http://localhost:8080/health&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>{"ping":"pong"}&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+				
+			
+		</ul>
+	</div>
+</div>
+<p>You can customize this response with stub data.</p>
+<h2 id="how-to-add-a-health-endpoint-with-a-custom-response">How to add a <code>/health</code> endpoint with a custom response</h2>
+<p>An additional setting to the configuration above is to add the <a href="/docs/endpoints/static-proxy/">static proxy</a> functionality wich allows you to return stub data. With its strategy <code>always</code> we are going to make sure that we always return the <code>data</code> we have declared in the configuration.</p>
+<p>When using this strategy, the backend can be a fake host (then you don&rsquo;t need to start KrakenD with <code>-d</code>), as KrakenD returns the static <code>data</code> every time.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span>
+        <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+        <span class="nt">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/health&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;github.com/devopsfaith/krakend/proxy&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;static&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="hl">                    <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;OK&#34;</span>
+</span>                <span class="p">},</span>
+                <span class="nt">&#34;strategy&#34;</span><span class="p">:</span> <span class="s2">&#34;always&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;http://fake-backend&#34;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span></code></pre></div>
+<p>The response content of the <code>/health</code> endpoint is:</p>
 <div class="terminal">
 	<div class="title">
 		k8s check endpoint&nbsp;

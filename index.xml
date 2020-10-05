@@ -39,9 +39,8 @@ The KrakenD rules Let&amp;rsquo;s start with the rules followed to code KrakenD,
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/overview/</guid>
-      <description>The concept of &amp;ldquo;backend&amp;rdquo; references to the origin servers providing the necessary data to populate your endpoints.
-A backend can be any server inside our outside your networks as long it is reachable by KrakenD. For instance, you can create endpoints that are fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook or any other service.
-The backends are declared inside every endpoint using the backend key.</description>
+      <description>The concept of backend references to the origin servers providing the necessary data to populate your endpoints. A backend can be something as your HTTP-based API, a Lambda function, or a Kafka queue to name a few examples.
+A backend can be any server inside our outside your network, as long it is reachable by KrakenD. For instance, you can create endpoints that are fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook or any other service.</description>
     </item>
     
     <item>
@@ -144,7 +143,7 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
     </item>
     
     <item>
-      <title>SD with DNS SRV (e.g. Consul)</title>
+      <title>SD with DNS SRV (e.g., Consul, k8s)</title>
       <link>https://www.krakend.io/docs/service-discovery/dns-srv/</link>
       <pubDate>Wed, 13 Feb 2019 00:00:00 +0000</pubDate>
       
@@ -223,7 +222,7 @@ This scenario can be automated and is available in all major cloud providers.</d
       <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/developer/overview/</guid>
-      <description>There are some resources that make your life easier when developing with KrakenD. These tools are ment to be used only in development and never in production
+      <description>There are some resources that make your life easier when developing with KrakenD. These tools are meant to be used only in development and never in production
 Hot reload the configuration A Docker image using Reflex watches the configuration directory and reloads KrakenD when the configuration changes. This is very convenient while you are developing as it allows you to test new changes without having to restart manually and making the process less tedious.</description>
     </item>
     
@@ -244,7 +243,7 @@ KrakenD nodes are stateless and they don&amp;rsquo;t store data or application s
       
       <guid>https://www.krakend.io/docs/commands/check/</guid>
       <description>The krakend check command validates the passed configuration. Since KrakenD does not implement a strict parsing, typos in the config file could be shadowed. In order to validate your config completely, it is recommended to use the --debug flag.
-Usage of KrakenD check&amp;nbsp;   ./krakend&amp;nbsp;check&amp;nbsp;-h&amp;nbsp; &amp;nbsp; `7MMF&#39;&amp;nbsp;`YMM&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&#34;&#34;&#34;Yb.&amp;nbsp; MM&amp;nbsp;&amp;nbsp;&amp;nbsp;.M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Yb.&amp;nbsp; MM&amp;nbsp;.d&#34;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7Mb,od8&amp;nbsp;,6&#34;Yb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;,MP&#39;.gP&#34;Ya&amp;nbsp;`7MMpMMMb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Mb&amp;nbsp; MMMMM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&#39;&amp;nbsp;&#34;&#39;8)&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;;Y&amp;nbsp;&amp;nbsp;,M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;Yb&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp; MM&amp;nbsp;&amp;nbsp;VMA&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,pm9MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM;Mm&amp;nbsp;&amp;nbsp;8M&#34;&#34;&#34;&#34;&#34;&#34;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,MP&amp;nbsp; MM&amp;nbsp;&amp;nbsp;&amp;nbsp;`MM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;8M&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;`Mb.YM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,dP&#39;&amp;nbsp; .JMML.&amp;nbsp;&amp;nbsp;&amp;nbsp;MMb..JMML.&amp;nbsp;&amp;nbsp;`Moo9^Yo..JMML.&amp;nbsp;YA.`Mbmmd&#39;.JMML&amp;nbsp;&amp;nbsp;JMML..JMMmmmd&amp;nbsp; _______________________________________________________________________&amp;nbsp; &amp;nbsp; Version:&amp;nbsp;1.1.1&amp;nbsp; &amp;nbsp; Validates&amp;nbsp;that&amp;nbsp;the&amp;nbsp;active&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;has&amp;nbsp;a&amp;nbsp;valid&amp;nbsp;syntax&amp;nbsp;to&amp;nbsp;run&amp;nbsp;the&amp;nbsp;service.&amp;nbsp; Change&amp;nbsp;the&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;by&amp;nbsp;using&amp;nbsp;the&amp;nbsp;--config&amp;nbsp;flag&amp;nbsp; &amp;nbsp; Usage:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;[flags]&amp;nbsp; &amp;nbsp; Aliases:&amp;nbsp; check,&amp;nbsp;validate&amp;nbsp; &amp;nbsp; Examples:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;-d&amp;nbsp;-c&amp;nbsp;config.json&amp;nbsp; &amp;nbsp; Flags:&amp;nbsp; -h,&amp;nbsp;--help&amp;nbsp;&amp;nbsp;&amp;nbsp;help&amp;nbsp;for&amp;nbsp;check&amp;nbsp; &amp;nbsp; Global&amp;nbsp;Flags:&amp;nbsp; -c,&amp;nbsp;--config&amp;nbsp;string&amp;nbsp;&amp;nbsp;&amp;nbsp;Path&amp;nbsp;to&amp;nbsp;the&amp;nbsp;configuration&amp;nbsp;filename&amp;nbsp; -d,&amp;nbsp;--debug&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Enable&amp;nbsp;the&amp;nbsp;debug&amp;nbsp;    Passing a path to the config file is required</description>
+Usage of KrakenD check&amp;nbsp;   ./krakend&amp;nbsp;check&amp;nbsp;-h&amp;nbsp; &amp;nbsp; `7MMF&#39;&amp;nbsp;`YMM&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7MM&#34;&#34;&#34;Yb.&amp;nbsp; MM&amp;nbsp;&amp;nbsp;&amp;nbsp;.M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Yb.&amp;nbsp; MM&amp;nbsp;.d&#34;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`7Mb,od8&amp;nbsp;,6&#34;Yb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;,MP&#39;.gP&#34;Ya&amp;nbsp;`7MMpMMMb.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`Mb&amp;nbsp; MMMMM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&#39;&amp;nbsp;&#34;&#39;8)&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;;Y&amp;nbsp;&amp;nbsp;,M&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;Yb&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp; MM&amp;nbsp;&amp;nbsp;VMA&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,pm9MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM;Mm&amp;nbsp;&amp;nbsp;8M&#34;&#34;&#34;&#34;&#34;&#34;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,MP&amp;nbsp; MM&amp;nbsp;&amp;nbsp;&amp;nbsp;`MM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;8M&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;`Mb.YM.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MM&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;,dP&#39;&amp;nbsp; .JMML.&amp;nbsp;&amp;nbsp;&amp;nbsp;MMb..JMML.&amp;nbsp;&amp;nbsp;`Moo9^Yo..JMML.&amp;nbsp;YA.`Mbmmd&#39;.JMML&amp;nbsp;&amp;nbsp;JMML..JMMmmmd&amp;nbsp; _______________________________________________________________________&amp;nbsp; &amp;nbsp; Version:&amp;nbsp;1.2.0&amp;nbsp; &amp;nbsp; Validates&amp;nbsp;that&amp;nbsp;the&amp;nbsp;active&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;has&amp;nbsp;a&amp;nbsp;valid&amp;nbsp;syntax&amp;nbsp;to&amp;nbsp;run&amp;nbsp;the&amp;nbsp;service.&amp;nbsp; Change&amp;nbsp;the&amp;nbsp;configuration&amp;nbsp;file&amp;nbsp;by&amp;nbsp;using&amp;nbsp;the&amp;nbsp;--config&amp;nbsp;flag&amp;nbsp; &amp;nbsp; Usage:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;[flags]&amp;nbsp; &amp;nbsp; Aliases:&amp;nbsp; check,&amp;nbsp;validate&amp;nbsp; &amp;nbsp; Examples:&amp;nbsp; krakend&amp;nbsp;check&amp;nbsp;-d&amp;nbsp;-c&amp;nbsp;config.json&amp;nbsp; &amp;nbsp; Flags:&amp;nbsp; -h,&amp;nbsp;--help&amp;nbsp;&amp;nbsp;&amp;nbsp;help&amp;nbsp;for&amp;nbsp;check&amp;nbsp; &amp;nbsp; Global&amp;nbsp;Flags:&amp;nbsp; -c,&amp;nbsp;--config&amp;nbsp;string&amp;nbsp;&amp;nbsp;&amp;nbsp;Path&amp;nbsp;to&amp;nbsp;the&amp;nbsp;configuration&amp;nbsp;filename&amp;nbsp; -d,&amp;nbsp;--debug&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Enable&amp;nbsp;the&amp;nbsp;debug&amp;nbsp;    Passing a path to the config file is required</description>
     </item>
     
     <item>
@@ -276,8 +275,8 @@ Benchmark Setup This set of benchmarks have been running on different AWS EC2 in
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/data-manipulation/</guid>
-      <description>Filtering When you offer a KrakenD endpoint you can decide to show only a subset of the fields coming from the backends&amp;rsquo; response or alter the structure of the content provided. There are a number of different reasons you might want to use this functionality, but we strongly encourage you to use it to save user&amp;rsquo;s bandwidth and increase load and render times.
-There are two different strategies you can use to filter content:</description>
+      <description>This page describes the most basic options to manipulate the content you receive from the backend before delivering it to the client.
+Filtering When you offer a KrakenD endpoint, you can decide whether to return all the fields from the backend (default behavior) or specify which ones are allowed through an allow or deny list. You might want to use this functionality for many different reasons. Still, we strongly encourage you to consider using it frequently to save the user&amp;rsquo;s bandwidth, provide the client what is needed, and decrease the load and render times.</description>
     </item>
     
     <item>
@@ -311,6 +310,16 @@ At the router level, you can set the rate limit for endpoints based on:</descrip
       <guid>https://www.krakend.io/docs/benchmarks/local/</guid>
       <description>Hardware Model MacBook Pro (MacBookPro11,4) - August 2015 Processor: Intel Core i7 2,2 GHz  Setup For this test, we stored this configuration at krakend.json
 { &amp;quot;version&amp;quot;: 1, &amp;quot;endpoints&amp;quot;: [ { &amp;quot;endpoint&amp;quot;: &amp;quot;/foo&amp;quot;, &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;, &amp;quot;backend&amp;quot;: [ { &amp;quot;url_pattern&amp;quot;: &amp;quot;/__debug/bar&amp;quot;, &amp;quot;host&amp;quot;: [ &amp;quot;http://127.0.0.1:8080&amp;quot; ] } ], &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;, &amp;quot;max_rate&amp;quot;: 100000 } ], &amp;quot;oauth&amp;quot;: { &amp;quot;disable&amp;quot;: true }, &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;, &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot; }  And we started the KrakenD with this cmd:</description>
+    </item>
+    
+    <item>
+      <title>Enabling Cross Origin Resource Sharing (CORS)</title>
+      <link>https://www.krakend.io/docs/service-settings/cors/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/service-settings/cors/</guid>
+      <description>When KrakenD endpoints are consumed from a browser, you might need to enable the Cross-Origin Resource Sharing (CORS) module as browsers restrict cross-origin HTTP requests initiated from scripts.
+When the Cross-Origin Resource Sharing (CORS) configuration is enabled, KrakenD uses additional HTTP headers to tell browsers that they can use resources from a different origin (domain, protocol, or port). For instance, you will need this configuration if your web page is hosted at https://domain-a.</description>
     </item>
     
     <item>
@@ -465,6 +474,17 @@ When developing, add KrakenD itself as another backend using the /__debug/ endpo
     </item>
     
     <item>
+      <title>Overriding the configuration with environment vars</title>
+      <link>https://www.krakend.io/docs/configuration/environment-vars/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/configuration/environment-vars/</guid>
+      <description>When KrakenD runs, all the behavior is loaded from the configuration file. For each configuration value that isn&amp;rsquo;t nested (meaning first-level properties of the configuration), you can override its value with an environment variable.
+All configuration environment variables must have the prefix KRAKEND_ and declared in uppercase. The variable name after the prefix must match the property in the configuration value.
+For instance, take the following krakend.json configuration as an example:</description>
+    </item>
+    
+    <item>
       <title>Graylog and the GELF format</title>
       <link>https://www.krakend.io/docs/logging-metrics-tracing/graylog-gelf/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
@@ -514,10 +534,9 @@ The following example describes the options explained later in this article:
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/supported-encodings/</guid>
-      <description>KrakenD can parse responses from mixed backends that are using several content types or encodings, such as:
- JSON XML RSS Treat as string  Additionally the special case No-op (proxy) is available but cannot be used to merge content.
-Each backend declaration can set a different encoder to process the responses, and still, KrakenD can transparently work with the mixed content returning a unified encoding in the endpoint.
-The following example demonstrates how an endpoint /abc is feeding on three different services and urls /a, /b, and /c and aggregates their responses:</description>
+      <description>Setting the encoding is an important part of the backend definition, as it informs KrakenD how to parse the responses of your services.
+Each backend can reply with a different encoding and KrakenD does not have any problem working with mixed encodings at the same time. You can use the following encoding in each backend section:
+ json safejson xml rss string no-op  Notice that all values are in lower case.</description>
     </item>
     
     <item>
@@ -632,8 +651,8 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
       <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/flatmap/</guid>
-      <description>The flatmap middleware allows you to manipulate arrays by flattening and expanding array structures to objects and vice versa. The process is automatically done by the flatmap component, letting you to concentrate on the type of operation you want to execute.
-Flatmap configuration The flatmap component is part of the krakend proxy operation, so it needs to be included as an extra_config inside the backend configuration. The namespace is github.com/devopsfaith/krakend/proxy.</description>
+      <description>The flatmap middleware allows you to manipulate collections (or arrays, or lists, you name it). While the basic manipulation operations allow you to work directly with objects, the collections require a different approach: the flatmap component.
+When working with lists, KrakenD needs to flatten and expand array structures to objects to operate with them, and vice versa. This process is automatically done by the flatmap component, letting you concentrate only on the type of operation you want to execute.</description>
     </item>
     
     <item>
@@ -678,6 +697,18 @@ When the CEL component is enabled, any amount of expressions to check both reque
       <description>The krakend-martian component allows you to transform requests and responses through a simple DSL definition in the configuration file. Martian works perfectly in combination with CEL verifications.
 Use Martian when you want to intercept the request of the end-user and make modifications before passing the content to the backends. Also, the other way around, transform the backends response before passing it to the user.
 Martian is mighty and gives you endless possibilities to control what is going in and out the gateway.</description>
+    </item>
+    
+    <item>
+      <title>Exporting traces to Datadog</title>
+      <link>https://www.krakend.io/docs/logging-metrics-tracing/datadog/</link>
+      <pubDate>Fri, 24 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/logging-metrics-tracing/datadog/</guid>
+      <description>Datadog is a monitoring and security platform for developers, IT operations teams and business in the cloud.
+Datadog configuration The Opencensus exporter allows you export data to Datadog. Enabling it only requires you to add the datadog exporter in the opencensus module.
+The following configuration snippet sends data to your Datadog:
+ &amp;quot;extra_config&amp;quot;: { &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;datadog&amp;quot;: { &amp;quot;tags&amp;quot;: [ &amp;quot;gw&amp;quot; ], &amp;quot;global_tags&amp;quot;: [ &amp;quot;prod&amp;quot; ], &amp;quot;disable_count_per_buckets&amp;quot;: true, &amp;quot;trace_address&amp;quot;: &amp;quot;localhost:8126&amp;quot;, &amp;quot;stats_address&amp;quot;: &amp;quot;localhost:8125&amp;quot;, &amp;quot;namespace&amp;quot;: &amp;quot;krakend&amp;quot;, &amp;quot;service&amp;quot;: &amp;quot;gateway&amp;quot; } } } }   tags (list) specifies a set of global tags to attach to each metric global_tags (list) GlobalTags holds a set of tags that will automatically be applied to all exported spans.</description>
     </item>
     
     <item>
@@ -746,17 +777,6 @@ Difference between KrakenD, KrakenD-CE, and Enterprise TL;DR;
     </item>
     
     <item>
-      <title>Adding a health endpoint</title>
-      <link>https://www.krakend.io/docs/endpoints/health/</link>
-      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/docs/endpoints/health/</guid>
-      <description>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need to have an HTTP endpoint like /health or /ping in systems like Kubernetes, you can do it in different ways.
-Although there is no default health check implementation, the result can be achieved using different strategies. For instance:
- Add a /health endpoint in the configuration with stub data (see example below) Enable the /__debug/ endpoint with your desired log level and use it as the health check.</description>
-    </item>
-    
-    <item>
       <title>Exporting traces to AWS X-Ray</title>
       <link>https://www.krakend.io/docs/logging-metrics-tracing/xray/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
@@ -803,6 +823,16 @@ The following configuration snippet sends data to your X-Ray:
     </item>
     
     <item>
+      <title>Validating the body with the JSON Schema integration</title>
+      <link>https://www.krakend.io/docs/endpoints/json-schema/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/json-schema/</guid>
+      <description>KrakenD endpoints receiving a JSON object in its body can apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields&amp;rsquo; values.
+When the validation fails, KrakenD returns to the user a status code 400 (Bad Request), and only if it succeeds, the backend receives the request.</description>
+    </item>
+    
+    <item>
       <title>Returning the details of backend errors</title>
       <link>https://www.krakend.io/docs/backends/detailed-errors/</link>
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
@@ -821,7 +851,7 @@ If in the other hand, your endpoint connects to a single backend with no manipul
       <description>Opencensus can export data to the system logger as another exporter.
 Enabling it only requires you to add the logger exporter in the opencensus module.
 The following configuration snippet enables the logger:
-&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;logger&amp;quot;: { &amp;quot;stats&amp;quot;: true, &amp;quot;spans&amp;quot;: true } } }   stats: Whether to log the statistics or not spans: Wether to log the spans or not  See also the additional settings of the Opencensus module that can be declared.</description>
+&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;logger&amp;quot;: { &amp;quot;stats&amp;quot;: true, &amp;quot;spans&amp;quot;: true } } }   stats: Whether to log the statistics or not spans: Whether to log the spans or not  See also the additional settings of the Opencensus module that can be declared.</description>
     </item>
     
     <item>
@@ -832,6 +862,28 @@ The following configuration snippet enables the logger:
       <guid>https://www.krakend.io/docs/enterprise/websockets/</guid>
       <description>KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
 KrakenD has the capability of multiplexing. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients.</description>
+    </item>
+    
+    <item>
+      <title>Adding a health check endpoint (ping)</title>
+      <link>https://www.krakend.io/docs/endpoints/health/</link>
+      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/health/</guid>
+      <description>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need an HTTP endpoint like /health or /ping in systems like Kubernetes, you can do it in different ways.
+Although there is no opinionated health check implementation in KrakenD, the result can be achieved using different strategies.
+Some of them can be:</description>
+    </item>
+    
+    <item>
+      <title>KrakenD 1.2.0 released</title>
+      <link>https://www.krakend.io/blog/krakend-1.2-release-notes/</link>
+      <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-1.2-release-notes/</guid>
+      <description>The KrakenD team is pleased to announce the release of KrakenD 1.2. You can get it packaged from the download page.
+Some of the highlights include:
+ Removed the wording whitelist and blacklist from all our products (#BlackLivesMatter) Datadog integration Array manipulation available after merging multiple backends KRAKEND_-like environment vars to override configuration A lot of small features and bugfixes   KrakenD framework Summary of the most significant changes:</description>
     </item>
     
     <item>
@@ -1305,7 +1357,7 @@ I am getting a 500 status when the backend returns anything but 200, 201 or redi
       <guid>https://www.krakend.io/docs/overview/verifying-packages/</guid>
       <description>How to make sure what you are downloading is legit.
 PGP We will check the detached signature PGP against our package KrakenD.
-$ gpg --verify krakend_1.1.1_amd64.tar.gz.asc krakend_1.1.1_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
+$ gpg --verify krakend_1.2.0_amd64.tar.gz.asc krakend_1.2.0_amd64.tar.gz gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2 gpg: Can&#39;t check signature: public key not found  We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.</description>
     </item>
     
     <item>

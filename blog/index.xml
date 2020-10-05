@@ -6,10 +6,21 @@
     <description>Recent content in Blogs on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KrakenD 1.2.0 released</title>
+      <link>https://www.krakend.io/blog/krakend-1.2-release-notes/</link>
+      <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-1.2-release-notes/</guid>
+      <description>The KrakenD team is pleased to announce the release of KrakenD 1.2. You can get it packaged from the download page.
+Some of the highlights include:
+ Removed the wording whitelist and blacklist from all our products (#BlackLivesMatter) Datadog integration Array manipulation available after merging multiple backends KRAKEND_-like environment vars to override configuration A lot of small features and bugfixes   KrakenD framework Summary of the most significant changes:</description>
+    </item>
     
     <item>
       <title>KrakenD Usage Stats - March 2020</title>

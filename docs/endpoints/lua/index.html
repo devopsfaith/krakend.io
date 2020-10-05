@@ -181,7 +181,7 @@ If you are more familiar with Lua than Go, this module can help you solve except
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -190,6 +190,10 @@ If you are more familiar with Lua than Go, this module can help you solve except
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -232,6 +236,10 @@ If you are more familiar with Lua than Go, this module can help you solve except
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -302,11 +310,15 @@ If you are more familiar with Lua than Go, this module can help you solve except
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -518,6 +530,10 @@ If you are more familiar with Lua than Go, this module can help you solve except
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -771,6 +787,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>allow_open_libs</code>: The regular lua libraries are not open by default, as an efficiency point. But if you need to use the lua libraries (for file io for example), then set this to true.  If not present, default value is false.</li>
 <li><code>skip_next</code>: only to be set when in a <code>backend</code> section, skips the query to the next backend.</li>
 </ul>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> A note on client headers</h4>
+	When <strong>client headers</strong> are needed, remember to add them under <a href="/docs/endpoints/parameter-forwarding/#headers-forwarding"><code>headers_to_pass</code></a> as KrakenD does not forward headers to the backends unless declared in the list.
+ </div>
 <h2 id="namespaces-component-name">Namespaces (component name)</h2>
 <p>There are three namespaces that are used for the lua component.</p>
 <p>Under the <code>endpoint</code> section use the namespaces (these are described in the next section):</p>

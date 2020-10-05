@@ -183,7 +183,7 @@ The default policy for data forwarding works as follows:
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -192,6 +192,10 @@ The default policy for data forwarding works as follows:
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -234,6 +238,10 @@ The default policy for data forwarding works as follows:
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -304,11 +312,15 @@ The default policy for data forwarding works as follows:
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -520,6 +532,10 @@ The default policy for data forwarding works as follows:
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -742,7 +758,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>You can change this behavior according to your needs, and define which elements are allowed to pass.</p>
 <h2 id="optional-query-string-forwarding">Optional query string forwarding</h2>
 <p>KrakenD <strong>does not send any query string parameter to the backend by default</strong>, avoiding the pollution of the backends. Meaning that if an endpoint <code>/foo</code> receives the query string <code>/foo?a=1&amp;b=2</code> all its declared backends are not going to see neither <code>a</code> nor <code>b</code>.</p>
-<p>The property list <code>querystring_params</code> in the <code>endpoint</code> configuration allows you to declare <strong>optional query string parameters</strong>. When this list exists in the configuration, the forwarding policy behaves like a whitelist: all matching parameters declared in the <code>querystring_params</code> list are forwarded to the backend, and the rest dropped.</p>
+<p>The property list <code>querystring_params</code> in the <code>endpoint</code> configuration allows you to declare <strong>optional query string parameters</strong>. When this list exists in the configuration, the forwarding policy behaves like an allow list: all matching parameters declared in the <code>querystring_params</code> list are forwarded to the backend, and the rest dropped.</p>
 <p>Parameters are always optional and the user can pass a subset of them, all, or none.</p>
 <p>For instance, let&rsquo;s forward <code>?a=1&amp;b=2</code> to the backends:</p>
 <pre><code>{
@@ -822,7 +838,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>KrakenD passes only these essential headers to the backends:</p>
 <pre><code>Accept-Encoding: gzip
 Host: localhost:8080
-User-Agent: KrakenD Version 1.1.1
+User-Agent: KrakenD Version 1.2.0
 X-Forwarded-For: ::1
 </code></pre>
 <p>When you use the <code>headers_to_pass</code>, take into account that any of these headers are replaced with the ones you declare.</p>

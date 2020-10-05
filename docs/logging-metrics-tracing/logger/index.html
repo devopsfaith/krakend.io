@@ -25,7 +25,7 @@
 <meta property="og:description" content="Opencensus can export data to the system logger as another exporter.
 Enabling it only requires you to add the logger exporter in the opencensus module.
 The following configuration snippet enables the logger:
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;logger&quot;: { &quot;stats&quot;: true, &quot;spans&quot;: true } } }   stats: Whether to log the statistics or not spans: Wether to log the spans or not  See also the additional settings of the Opencensus module that can be declared." />
+&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;logger&quot;: { &quot;stats&quot;: true, &quot;spans&quot;: true } } }   stats: Whether to log the statistics or not spans: Whether to log the spans or not  See also the additional settings of the Opencensus module that can be declared." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging-metrics-tracing/logger/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
@@ -41,7 +41,7 @@ The following configuration snippet enables the logger:
 <meta name="twitter:description" content="Opencensus can export data to the system logger as another exporter.
 Enabling it only requires you to add the logger exporter in the opencensus module.
 The following configuration snippet enables the logger:
-&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;logger&quot;: { &quot;stats&quot;: true, &quot;spans&quot;: true } } }   stats: Whether to log the statistics or not spans: Wether to log the spans or not  See also the additional settings of the Opencensus module that can be declared."/>
+&quot;github_com/devopsfaith/krakend-opencensus&quot;: { &quot;exporters&quot;: { &quot;logger&quot;: { &quot;stats&quot;: true, &quot;spans&quot;: true } } }   stats: Whether to log the statistics or not spans: Whether to log the spans or not  See also the additional settings of the Opencensus module that can be declared."/>
 
 
 
@@ -185,7 +185,7 @@ The following configuration snippet enables the logger:
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -194,6 +194,10 @@ The following configuration snippet enables the logger:
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -236,6 +240,10 @@ The following configuration snippet enables the logger:
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -306,11 +314,15 @@ The following configuration snippet enables the logger:
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -525,6 +537,10 @@ The following configuration snippet enables the logger:
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/zipkin/" class="nav-link children ">Zipkin</a>
                     </li>
                     
@@ -733,7 +749,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging-m
 </code></pre>
 <ul>
 <li><code>stats</code>: Whether to log the statistics or not</li>
-<li><code>spans</code>: Wether to log the spans or not</li>
+<li><code>spans</code>: Whether to log the spans or not</li>
 </ul>
 <p>See also the <a href="/docs/logging-metrics-tracing/opencensus/">additional settings</a> of the Opencensus module that can be declared.</p>
 

@@ -54,7 +54,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/throttling/botdetector/</loc>
-    <lastmod>2019-09-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -124,7 +124,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/backends/data-manipulation/</loc>
-    <lastmod>2019-05-03T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -140,6 +140,11 @@
   <url>
     <loc>https://www.krakend.io/docs/benchmarks/local/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/service-settings/cors/</loc>
+    <lastmod>2020-07-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -213,6 +218,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/configuration/environment-vars/</loc>
+    <lastmod>2020-07-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/logging-metrics-tracing/graylog-gelf/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
@@ -234,7 +244,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/backends/supported-encodings/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -289,7 +299,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/backends/flatmap/</loc>
-    <lastmod>2019-04-05T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -310,6 +320,11 @@
   <url>
     <loc>https://www.krakend.io/docs/backends/martian/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/logging-metrics-tracing/datadog/</loc>
+    <lastmod>2020-07-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -343,11 +358,6 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/endpoints/health/</loc>
-    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/docs/logging-metrics-tracing/xray/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
@@ -368,6 +378,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/endpoints/json-schema/</loc>
+    <lastmod>2020-07-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/backends/detailed-errors/</loc>
     <lastmod>2019-10-02T00:00:00+00:00</lastmod>
   </url>
@@ -383,27 +398,57 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/</loc>
-    <lastmod>2020-05-25T00:00:00+00:00</lastmod>
+    <loc>https://www.krakend.io/docs/endpoints/health/</loc>
+    <lastmod>2020-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/categories/announcements/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/blog/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/categories/enterprise/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/krakend/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/blog/krakend-1.2-release-notes/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/open-source/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/release-notes/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/</loc>
+    <lastmod>2020-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/categories/enterprise/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -413,27 +458,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/open-source/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/categories/announcements/</loc>
-    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/blog/krakend-1.1-release-notes/</loc>
-    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/release-notes/</loc>
     <lastmod>2020-02-26T00:00:00+00:00</lastmod>
   </url>
   

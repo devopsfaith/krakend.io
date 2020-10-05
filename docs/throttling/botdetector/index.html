@@ -28,7 +28,7 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
 <meta property="og:url" content="https://www.krakend.io/docs/throttling/botdetector/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-botdetector.png" />
 <meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-09-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2020-07-10T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -181,7 +181,7 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -190,6 +190,10 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -232,6 +236,10 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -302,11 +310,15 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -518,6 +530,10 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -739,14 +755,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
    
         <p>The <strong>bot detector</strong> module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.</p>
 <p>Bots are detected by inspecting the <code>User-Agent</code> and comparing its value with a set of configuration rules provided by you. The bot detector module <strong>does not set any initial rules</strong>, meaning that is up to you to decide the best rules for your use case, and choose how restrictive or permissive you are with bots.</p>
-<p>As the bot detector module is flexible in its configuration, you can use it for other purposes than just discarding bots. For instance, you could set a whitelist rule for your mobile application <code>User-Agent</code> which would be allowed to interact with KrakenD and discard the rest of the traffic.</p>
+<p>As the bot detector module is flexible in its configuration, you can use it for other purposes than just discarding bots. For instance, you could set an allow rule for your mobile application <code>User-Agent</code> which would be allowed to interact with KrakenD and discard the rest of the traffic.</p>
 <h2 id="configuring-bot-rules">Configuring bot rules</h2>
 <p>The configuration rules of the bot detector have to be included inside the <code>extra_config</code>'s namespace <code>github_com/devopsfaith/krakend-botdetector</code> at the root level of your <code>krakend.json</code> file.</p>
 <p>For instance:</p>
 <pre><code>&quot;extra_config&quot;: {
     &quot;github_com/devopsfaith/krakend-botdetector&quot;: {
-        &quot;whitelist&quot;: [&quot;MyAndroidClient/1.0&quot;, &quot;Pingdom.com_bot_version_1.1&quot;],
-        &quot;blacklist&quot;: [&quot;a&quot;, &quot;b&quot;],
+        &quot;allow&quot;: [&quot;MyAndroidClient/1.0&quot;, &quot;Pingdom.com_bot_version_1.1&quot;],
+        &quot;deny&quot;: [&quot;a&quot;, &quot;b&quot;],
         &quot;patterns&quot;: [
             &quot;(Pingdom.com_bot_version_).*&quot;,
             &quot;(facebookexternalhit)/.*&quot;
@@ -757,19 +773,23 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
 </code></pre>
 <p>The available configuration options in the bot detector module are:</p>
 <ul>
-<li><code>whitelist</code>: An array with EXACT MATCHES of trusted user agents that can connect.</li>
-<li><code>blacklist</code>: An array of EXACT MATCHES of undesired bots, to reject immediately.</li>
+<li><code>allow</code>: An array with EXACT MATCHES of trusted user agents that can connect.</li>
+<li><code>deny</code>: An array of EXACT MATCHES of undesired bots, to reject immediately.</li>
 <li><code>patterns</code>: An array with all the <strong>regular expressions</strong> that define bots. Matching bots are rejected.</li>
 <li><code>cacheSize</code>: Size of the LRU cache that helps speed the bot detection.</li>
 </ul>
-<p>Notice that the <code>whitelist</code> and the <code>blacklist</code> do not expect regular expressions, but <strong>literal strings</strong>. The purpose of this design is to get the best performance as comparing a literal string is much faster than evaluating a regular expression.</p>
+<p>Notice that the <code>allow</code> and the <code>deny</code> do not expect regular expressions, but <strong>literal strings</strong>. The purpose of this design is to get the best performance as comparing a literal string is much faster than evaluating a regular expression.</p>
 <p>On the other hand, the <code>patterns</code> attribute expects regular expressions. The syntax is the same general syntax used by Perl, Python, and other languages. More precisely, it is the syntax accepted by <a href="https://golang.org/s/re2syntax">RE2</a></p>
-<p>The order of evaluation of the rules is sequential in this order: <code>whitelist</code> -&gt; <code>blacklist</code> -&gt; <code>patterns</code>. When a user agent matches in any of the former evaluations, the execution ends, and the connection is accepted (whitelist) or rejected (blacklist and patterns).</p>
+<p>The order of evaluation of the rules is sequential in this order: <code>allow</code> -&gt; <code>deny</code> -&gt; <code>patterns</code>. When a user agent matches in any of the former evaluations, the execution ends, and the connection is accepted (allow) or rejected (deny and patterns).</p>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> Renamed attributes</h4>
+	Prior to KrakenD 1.2 the terms <code>whitelist</code> and <code>blacklist</code> were used, please upgrade your configuration with the new terms <code>allow</code> and <code>deny</code> as the next version will not understand them.
+ </div>
 <h3 id="building-your-bot-rules">Building your bot rules</h3>
 <p>Fighting against spam, spiders, scrapping, theft, and bots is a problematic matter. There are different angles you can choose to combat it using the bot detection module.</p>
 <p>Maybe you want to have a <a href="https://github.com/ua-parser/uap-core/blob/master/regexes.yaml">massive list</a> of regular expressions of bots that are troubling you, and caching enabled.</p>
 <p>Or perhaps you only require a single negative pattern that discards anything that you don&rsquo;t know is legit.</p>
-<p>Whatever rules you decide to set in place, remember than whitelisting and blacklisting are faster but are inflexible and require you to set the exact user-agent. On the other hand, regular expressions are very convenient, but the cost of evaluating them is higher in comparison.</p>
+<p>Whatever rules you decide to set in place, remember than allowing and denying are faster but are inflexible and require you to set the exact user-agent. On the other hand, regular expressions are very convenient, but the cost of evaluating them is higher in comparison.</p>
 <h3 id="caching">Caching</h3>
 <p>Evaluating every user agent against a <strong>substantial list of patterns</strong> can be a time-consuming operation. Even when we are talking about a few milliseconds, you can enable caching by setting <code>cacheSize</code> and avoid reprocessing User-Agents checked before. Every millisecond counts!</p>
 <p>The LRU caching system is in-memory and does not require running a separate set of servers, thus reducing the operation pain. There are neither cache expiration times, nor explicit cache evictions. When/if the cache is full, the least recently used (LRU) element is automatically replaced with the new one. An order of magnitude of megabytes should be enough to save the different User-Agent requests and combinations.</p>

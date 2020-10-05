@@ -180,7 +180,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -189,6 +189,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -231,6 +235,10 @@
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -301,11 +309,15 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -520,6 +532,10 @@
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/zipkin/" class="nav-link children ">Zipkin</a>
                     </li>
                     
@@ -717,7 +733,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#storing-blacklisted-tokens-using-the-bloom-filter">Storing blacklisted tokens using the bloom filter</a>
+    <li><a href="#storing-blocked-tokens-using-the-bloom-filter">Storing blocked tokens using the bloom filter</a>
       <ul>
         <li><a href="#bloom-filter-client">Bloom filter client</a></li>
         <li><a href="#bloom-filter-performance">Bloom filter performance</a></li>
@@ -745,13 +761,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 As a user, I want to log me out of all my devices.
 As an administrator, I want to kick out someone from the platform.
 As a software releaser, my new backend version requires new fields in the tokens, and I want all my sessions renegotiated again, or all users of a specific app (Android, iOS, Web app, etc.) has to be invalidated.</p>
-<h2 id="storing-blacklisted-tokens-using-the-bloom-filter">Storing blacklisted tokens using the bloom filter</h2>
+<h2 id="storing-blocked-tokens-using-the-bloom-filter">Storing blocked tokens using the bloom filter</h2>
 <p>KrakenD integrates the <a href="https://github.com/devopsfaith/bloomfilter">bloom filter</a> component that allows you to store in an optimized way tokens to revoke on the subsequent requests.</p>
-<p>When you enable the bloom filter, it inspects the payload of incoming JWT tokens to check if any of the configured fields in <code>TokenKeys</code> contains a blacklisted value. And if a blacklister is found, access is not permitted.</p>
+<p>When you enable the bloom filter, it inspects the payload of incoming JWT tokens to check if any of the configured fields in <code>TokenKeys</code> contains a blocked value. And if a blocked is found, access is not permitted.</p>
 <p>The bloom filter component brings the following functionalities:</p>
 <ul>
-<li>Hold blacklisted tokens in memory</li>
-<li>Propagate blacklisted elements through an RPC interface</li>
+<li>Hold blocked tokens in memory</li>
+<li>Propagate blocked elements through an RPC interface</li>
 <li>Check tokens and discard access on positives</li>
 </ul>
 <h3 id="bloom-filter-client">Bloom filter client</h3>
@@ -811,7 +827,7 @@ As a software releaser, my new backend version requires new fields in the tokens
 <p>All KrakenD nodes are stateless and act individually; they don&rsquo;t synchronize. Every node needs to receive the RPC notification about any tokens that need insertion in every local bloom filter.</p>
 <p>The bloom filter gets updated while the service is running, but the level of synchronization between the nodes depends on your push strategy to the different members of the cluster. KrakenD uses conflict-free replicated data types (CRDT) so you can replicate the data across multiple computers in a network without coordination between the replicas, and where it is always mathematically possible to resolve inconsistencies which might result.</p>
 <p>The resulting system is <strong>eventually consistent</strong>.</p>
-<p>The bloom filter management is brought to you by the component, and for the administration part the client offers the necessary tools to adapt the gateway to your scenario. The implentation very much depends on what you want to achieve.</p>
+<p>The bloom filter management is brought to you by the component, and for the administration part the client offers the necessary tools to adapt the gateway to your scenario. The implementation very much depends on what you want to achieve.</p>
 <h3 id="additional-resources">Additional resources</h3>
 <p>If you want to learn bloomfilters by example, have a look at the following resources:</p>
 <ul>

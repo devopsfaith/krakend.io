@@ -183,7 +183,7 @@ Martian is mighty and gives you endless possibilities to control what is going i
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/configuration/structure/" class="nav-link children ">File structure</a>
+                        <a href="/docs/configuration/structure/" class="nav-link children ">The configuration file</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -192,6 +192,10 @@ Martian is mighty and gives you endless possibilities to control what is going i
                     
                     <li class="nav-item child">
                         <a href="/docs/configuration/supported-formats/" class="nav-link children ">Supported file formats</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/configuration/environment-vars/" class="nav-link children ">Environment vars</a>
                     </li>
                     
                 </ul>
@@ -234,6 +238,10 @@ Martian is mighty and gives you endless possibilities to control what is going i
                     
                     <li class="nav-item child">
                         <a href="/docs/service-settings/tls/" class="nav-link children ">TLS</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/service-settings/cors/" class="nav-link children ">CORS</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -304,11 +312,15 @@ Martian is mighty and gives you endless possibilities to control what is going i
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/health/" class="nav-link children ">Health endpoint</a>
+                        <a href="/docs/endpoints/json-schema/" class="nav-link children ">JSON Schema validation</a>
                     </li>
                     
                     <li class="nav-item child">
                         <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/health/" class="nav-link children ">Healthcheck</a>
                     </li>
                     
                 </ul>
@@ -520,6 +532,10 @@ Martian is mighty and gives you endless possibilities to control what is going i
                     
                     <li class="nav-item child">
                         <a href="/docs/logging-metrics-tracing/influxdb/" class="nav-link children ">InfluxDB</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/logging-metrics-tracing/datadog/" class="nav-link children ">Datadog</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -767,6 +783,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 }
 </code></pre>
 <p>See the possibilities and examples below.</p>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> A note on client headers</h4>
+	When <strong>client headers</strong> are needed, remember to add them under <a href="/docs/endpoints/parameter-forwarding/#headers-forwarding"><code>headers_to_pass</code></a> as KrakenD does not forward headers to the backends unless declared in the list.
+ </div>
 <h3 id="modifier-configuration">Modifier configuration</h3>
 <p>In the examples below, you&rsquo;ll find that all modifiers have a configuration key named <code>scope</code>. The scope indicates when to apply the modifier, it can be an array containing <code>request</code>, <code>response</code>, or both. The rest of the keys in every modifier depends on the modifier itself.</p>
 <h2 id="transform-headers">Transform headers</h2>
