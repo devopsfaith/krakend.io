@@ -154,17 +154,17 @@
                         </tr>
                         <tr>
                             <td>
-                                    <a href="http://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz">
+                                    <a href="https://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz">
                                         <i class="fab fa-linux"></i>
                                     </a>
                             </td>
                             <td>
                                 <p>Linux generic</p>
-                                <em>64 bits</em> - <a href="http://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz">
+                                <em>64 bits</em> - <a href="https://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz">
                                     Download tgz</a> |
-                                <a href="http://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.sha256"
+                                <a href="https://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.sha256"
                                     class="sha"> SHA</a> |
-                                <a href="http://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.asc"
+                                <a href="https://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.asc"
                                     class="sha"> PGP</a>
                             </td>
                         </tr>
@@ -292,7 +292,7 @@
                     <p>Paste the following lines in the terminal:</p>
                     <pre>
 apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
-echo "deb http://repo.krakend.io/apt stable main" | tee /etc/apt/sources.list.d/krakend.list
+echo "deb https://repo.krakend.io/apt stable main" | tee /etc/apt/sources.list.d/krakend.list
 apt-get update
 apt-get install -y krakend</pre>
                     <p>What these commands are doing:</p>
@@ -305,7 +305,7 @@ apt-get install -y krakend</pre>
                     <p>The process has been tested on Debian 8, Debian 9, Ubuntu 16.x and Ubuntu 18.x</p>
                     <p>We changed the tool and the pgp key we use to create this repository, if you find this error:</p>
                       <pre>
-E: Repository 'http://repo.krakend.io/apt stable InRelease' changed its 'Origin' value from '' to 'repo.krakend.io'
+E: Repository 'https://repo.krakend.io/apt stable InRelease' changed its 'Origin' value from '' to 'repo.krakend.io'
                       </pre>
                         Run one of this commands:
                         <pre>
@@ -335,7 +335,7 @@ apt-get update --allow-releaseinfo-change
                 <div class="modal-body">
                     <p>Paste the following lines in the terminal:</p>
                     <pre>
-rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
+rpm -Uvh https://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
 yum install -y krakend
 systemctl start krakend</pre>
                     <p>What these commands are doing:</p>
@@ -348,7 +348,7 @@ systemctl start krakend</pre>
                     <h4>Fedora only</h4>
                     <p>Since fedora has deprecated <code>yum</code> in favor of <code>dnf</code>, you must
                         replace one for the other (btw, <code>dnf</code> will start your KrakenD service):</p>
-                    <pre>rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
+                    <pre>rpm -Uvh https://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
 dnf install -y krakend
 systemctl start krakend</pre>
 

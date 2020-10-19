@@ -728,7 +728,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
    
         <p>How to make sure what you are downloading is legit.</p>
 <h2 id="pgp">PGP</h2>
-<p>We will check the detached signature <a href="http://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.asc">PGP</a> against our package <a href="http://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz">KrakenD</a>.</p>
+<p>We will check the detached signature <a href="https://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.asc">PGP</a> against our package <a href="https://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz">KrakenD</a>.</p>
 <pre><code>$ gpg --verify krakend_1.2.0_amd64.tar.gz.asc krakend_1.2.0_amd64.tar.gz
 gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2
 gpg: Can't check signature: public key not found
@@ -750,11 +750,11 @@ gpg:					There is no indication that the signature belongs to the owner.
 Primary key fingerprint: 5B27 0F2E 01E3 75FD 9D56  35E2 5DE6 FD69 8AD6 FDD2
 </code></pre>
 <h2 id="sha256">SHA256</h2>
-<p>To make sure the binary downloaded matches our SHA256 ensure the next 2 commands produce the same <a href="http://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.sha256">SHA</a> output.</p>
+<p>To make sure the binary downloaded matches our SHA256 ensure the next 2 commands produce the same <a href="https://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.sha256">SHA</a> output.</p>
 <pre><code>## Your downloaded file
 $ shasum -a 256 -b krakend_1.2.0_amd64.tar.gz
 ## Our SHA256
-$ curl http://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.sha256
+$ curl https://repo.krakend.io/bin/krakend_1.2.0_amd64.tar.gz.sha256
 </code></pre>
 
     </section>
