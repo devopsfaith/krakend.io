@@ -274,6 +274,10 @@ This caching technique applies to traffic between KrakenD and your microservices
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/status-codes/" class="nav-link children ">Status Codes</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
@@ -640,6 +644,10 @@ This caching technique applies to traffic between KrakenD and your microservices
                         <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/plugin-tools/" class="nav-link children ">Plugin validation tools</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -737,7 +745,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         </div>
         
 
-   
+
         <p>Sometimes you might want to reuse a previous response of a backend instead of asking for the same information over the network again. In this cases, it is possible to enable <strong>in-memory</strong> caching for the desired backend responses.</p>
 <p>This caching technique applies to traffic between KrakenD and your microservices endpoints only and is not a caching system for the end-user endpoints. To enable the cache, you only need to add in the configuration file the <code>httpcache</code> middleware.</p>
 <p>When enabled all connections for the configured backend are cached in-memory for the amount of time retrieved from the <code>Cache-Control</code> header of the response.</p>
@@ -812,7 +820,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
                     <h6>by Devops Faith</h6>
                     <ul class="list-unstyled">
                         
-                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://devops.faith">Devops Faith</a></li>
                         <li><a href="https://www.krakend.io/blog/">Blog</a></li>
                         <li><a href="https://medium.com/devops-faith">Medium</a></li>
                         <li><a href="mailto:support@devops.faith">Contact Us</a></li>

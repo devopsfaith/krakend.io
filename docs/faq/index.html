@@ -273,6 +273,10 @@
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/status-codes/" class="nav-link children ">Status Codes</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
@@ -639,6 +643,10 @@
                         <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/plugin-tools/" class="nav-link children ">Plugin validation tools</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -754,7 +762,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/faq.md">
         </div>
         
 
-   
+
         <h2 id="i-am-getting-a-200-status-when-the-backend-returns-a-201">I am getting a <code>200</code> status when the backend returns a <code>201</code></h2>
 <p>E.g:</p>
 <pre><code>2017/01/19 - 10:31:27 | 200 |    1.134431ms | ::1 |   POST     /users
@@ -797,8 +805,9 @@ open is finite. In a gateway, your focus should be freeing the connections as so
 of the returned content. If the response of your API is a collection, e.g: response comes inside brackets <code>[]</code>, then make sure to mark the option <code>Treat the response as a collection, not an object.</code> in the form.</p>
 <h2 id="reserved-endpoints">Reserved endpoints</h2>
 <p>The following names cannot be used as endpoint names as they are reserved:</p>
-<pre><code>/__debug/
-/__stats/
+<pre><code>/__debug
+/__stats
+/__health
 /favicon.ico
 </code></pre>
 
@@ -850,7 +859,7 @@ of the returned content. If the response of your API is a collection, e.g: respo
                     <h6>by Devops Faith</h6>
                     <ul class="list-unstyled">
                         
-                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://devops.faith">Devops Faith</a></li>
                         <li><a href="https://www.krakend.io/blog/">Blog</a></li>
                         <li><a href="https://medium.com/devops-faith">Medium</a></li>
                         <li><a href="mailto:support@devops.faith">Contact Us</a></li>

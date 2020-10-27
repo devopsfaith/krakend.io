@@ -274,6 +274,10 @@ A typical scenario is when some backend fails and the endpoint becomes incomplet
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/status-codes/" class="nav-link children ">Status Codes</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
@@ -640,6 +644,10 @@ A typical scenario is when some backend fails and the endpoint becomes incomplet
                         <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/plugin-tools/" class="nav-link children ">Plugin validation tools</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -737,7 +745,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         
 
-   
+
         <p>The <strong>static proxy</strong> is an aid to clients dealing with incomplete and other types of degraded responses. When enabled, the static proxy <strong>injects static data</strong> in the final response when the behavior of a backend falls in the selected <strong>strategy</strong>.</p>
 <p>A typical scenario is <strong>when some backend fails</strong> and the endpoint becomes incomplete, but you prefer to provide a <strong>stub response</strong> for that part instead. When your application cannot handle well the degraded response, the static data comes handy.</p>
 <p>Another example scenario is to create an endpoint pointing to an unfinished backend where <strong>its functionality is not in production yet</strong>, but your client application needs to go ahead the backend developers and start using the static responses.</p>
@@ -862,7 +870,7 @@ func staticIfIncompleteMatch(r *Response, _ error) bool { return r == nil || !r.
                     <h6>by Devops Faith</h6>
                     <ul class="list-unstyled">
                         
-                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://devops.faith">Devops Faith</a></li>
                         <li><a href="https://www.krakend.io/blog/">Blog</a></li>
                         <li><a href="https://medium.com/devops-faith">Medium</a></li>
                         <li><a href="mailto:support@devops.faith">Contact Us</a></li>

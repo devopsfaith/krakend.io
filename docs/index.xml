@@ -6,7 +6,7 @@
     <description>Recent content in Docs on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/docs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -323,6 +323,16 @@ When the Cross-Origin Resource Sharing (CORS) configuration is enabled, KrakenD 
     </item>
     
     <item>
+      <title>Plugin and dependencies validator</title>
+      <link>https://www.krakend.io/docs/extending/plugin-tools/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/extending/plugin-tools/</guid>
+      <description>The plugin validator is an online tool that allows you to find problems with your plugin dependencies. Go plugins are strict on which versions of libraries you can use, so it&amp;rsquo;s important to make sure that your dependencies are compatible with the selected KrakenD versions.
+Access the online plugin validation tools The plugin validator checks your go.sum file to find problems and reports all associated problems. From which Go version is supported, to which individual libraries will conflict during runtime.</description>
+    </item>
+    
+    <item>
       <title>Metrics middleware</title>
       <link>https://www.krakend.io/docs/logging-metrics-tracing/metrics/</link>
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
@@ -372,7 +382,7 @@ Enabling etcd To enable the integration add in the root of your configuration fi
       <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/backends/circuit-breaker/</guid>
-      <description>To keep KrakenD responsive and resilient, we added a Circuit Breaker middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems by preventing too many requests to fail due to timeouts, etc.</description>
+      <description>To keep KrakenD responsive and resilient, we added a Circuit Breaker middleware on several processing pipe points. Thanks to this component, when KrakenD demands more throughput than your actual API stack can deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems by preventing too many requests to fail due to timeouts, etc.</description>
     </item>
     
     <item>
@@ -385,6 +395,16 @@ Enabling etcd To enable the integration add in the root of your configuration fi
  Download KrakenD and  Generate the configuration file
 Just exploring?
 Use the KrakenD Playground if you want to play with KrakenD without configuring it. The Playground comes with several flavors of KrakenD and a mock API. Everything is ready to start playing, just do a docker-compose up!</description>
+    </item>
+    
+    <item>
+      <title>KrakenD Status Codes</title>
+      <link>https://www.krakend.io/docs/endpoints/status-codes/</link>
+      <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/endpoints/status-codes/</guid>
+      <description>When consuming content through KrakenD, the status code returned to the client depends on the chosen configuration. Three different approaches impact status codes:
+ Use KrakenD regular endpoints to get the status codes as designed by KrakenD Return the status code as provided by your backend server (see the no-op encoding) Use custom logic to set specific status codes  Default status codes of KrakenD endpoints Unless the no-op encoding is set, the following status codes are the default behavior of any KrakenD endpoint.</description>
     </item>
     
     <item>

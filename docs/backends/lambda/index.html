@@ -276,6 +276,10 @@ The payload that is sent to the Lambda function comes from the request and depen
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/status-codes/" class="nav-link children ">Status Codes</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
@@ -642,6 +646,10 @@ The payload that is sent to the Lambda function comes from the request and depen
                         <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/plugin-tools/" class="nav-link children ">Plugin validation tools</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -755,7 +763,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         </div>
         
 
-   
+
         <p>The Lambda integration allows you to <strong>invoke Amazon Lambda functions</strong> on a KrakenD endpoint call. The content returned by the lambda function can be treated and manipulated as any other backend.</p>
 <p>The <strong>payload</strong> that is sent to the Lambda function comes from the request and depends on the method used by the <code>endpoint</code>:</p>
 <ul>
@@ -793,14 +801,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 &quot;backend&quot;: [
 {
     &quot;github.com/devopsfaith/krakend-lambda&quot;: {
-        &quot;function_param_name&quot;: &quot;lambda&quot;,
+        &quot;function_param_name&quot;: &quot;Lambda&quot;,
         &quot;region&quot;: &quot;us-west1&quot;,
         &quot;max_retries&quot;: 1
     }
 }
 </code></pre>
 <p>In this example, the <code>function_param_name</code> is telling us which is the placeholder in the endpoint setting the lambda. In this case, <code>{lambda}</code>.</p>
-<p>Following the code, a call <code>GET /call-a-lambda/my-lambda</code> would produce a call to the <code>my-lambda</code> function in AWS.</p>
+<p>Following the code, a call <code>GET /call-a-lambda/my-lambda</code> would produce a call to the <code>My-lambda</code> function in AWS.</p>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> Parameters&#39; first character uppercased</h4>
+	Notice the capitalization of the first letter of the parameter names at the configuration above. For instance, when an endpoint parameter is defined as <code>{route}</code>, define it in the config as <code>Route</code>.
+ </div>
 
     </section>
 </div>
@@ -850,7 +862,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
                     <h6>by Devops Faith</h6>
                     <ul class="list-unstyled">
                         
-                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://devops.faith">Devops Faith</a></li>
                         <li><a href="https://www.krakend.io/blog/">Blog</a></li>
                         <li><a href="https://medium.com/devops-faith">Medium</a></li>
                         <li><a href="mailto:support@devops.faith">Contact Us</a></li>

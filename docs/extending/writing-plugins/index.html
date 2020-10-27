@@ -275,6 +275,10 @@ It&rsquo;s important to remark, that if you want to do complex business logic ch
                     </li>
                     
                     <li class="nav-item child">
+                        <a href="/docs/endpoints/status-codes/" class="nav-link children ">Status Codes</a>
+                    </li>
+                    
+                    <li class="nav-item child">
                         <a href="/docs/endpoints/concurrent-requests/" class="nav-link children ">Concurrent Requests</a>
                     </li>
                     
@@ -641,6 +645,10 @@ It&rsquo;s important to remark, that if you want to do complex business logic ch
                         <a href="/docs/extending/writing-plugins/" class="nav-link children active">Writing custom plugins</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/plugin-tools/" class="nav-link children ">Plugin validation tools</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -746,7 +754,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
         </div>
         
 
-   
+
         <p>KrakenD&rsquo;s modular design allows you to extend its functionality by adding your custom code. As an engineer, it&rsquo;s always tempting to start writing code but <strong>the majority of scenarios do not require writing any</strong>. Existing modules, middleware, and plugins suffice almost everyone&rsquo;s needs.</p>
 <p>It&rsquo;s important to remark, that if you want to do complex business logic checks and transformations, aside from the core functionality, there is specific scripting designed for that without compiling Go code. Examples are the <a href="/docs/endpoints/common-expression-language-cel/">expression language</a>, <a href="/docs/backends/martian/">Martian transformations</a>, or <a href="/docs/endpoints/lua/">Lua scripting</a>.</p>
 <p>Let&rsquo;s get you started building custom code!</p>
@@ -814,6 +822,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <p>The small drawback of this approach is that you need to maintain your custom version, which differs from our official binaries.</p>
 <p>There are many examples of different modules, included in KrakenD-CE and not on our <a href="https://github.com/devopsfaith/krakend-contrib">contributions list</a>.</p>
 <p>A relaxed start to build a component KrakenD is our article &ldquo;<a href="/blog/website-development-as-a-sysadmin/">Website development as a sysadmin&rdquo;</a> where you can find custom code to add automatic API authentication against a backend.</p>
+<h4 id="validate-your-plugin">Validate your plugin</h4>
+<p>Make sure your plugin uses the libraries and versions required by the chosen KrakenD Version:</p>
+<p><a class="btn btn-secondary btn-lg" href="http://plugin-tools.krakend.io/validate">Go to plugin validator</a></p>
 <h2 id="ask-the-community">Ask the community</h2>
 <p>Finally, we recommend you joining our <a href="/support">Slack channel</a> and explain what you are trying to do. Probably there is someone who was in your situation before, and you might even get a free code snippet!</p>
 
@@ -865,7 +876,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
                     <h6>by Devops Faith</h6>
                     <ul class="list-unstyled">
                         
-                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://devops.faith">Devops Faith</a></li>
                         <li><a href="https://www.krakend.io/blog/">Blog</a></li>
                         <li><a href="https://medium.com/devops-faith">Medium</a></li>
                         <li><a href="mailto:support@devops.faith">Contact Us</a></li>

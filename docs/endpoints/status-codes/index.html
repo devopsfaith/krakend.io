@@ -6,38 +6,38 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.67.1" />
 
-    <title>Handling WebSockets connections - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Handling WebSockets connections - KrakenD API Gateway">
+    <title>KrakenD Status Codes - KrakenD API Gateway</title>
+    <meta itemprop="name" content="KrakenD Status Codes - KrakenD API Gateway">
 
     
-    <meta property="description" content="Handling WebSockets connections - KrakenD API Gateway">
-    <meta itemprop="description" content="Handling WebSockets connections - KrakenD API Gateway">
+    <meta property="description" content="KrakenD Status Codes - KrakenD API Gateway">
+    <meta itemprop="description" content="KrakenD Status Codes - KrakenD API Gateway">
     
 
     
-    <meta itemprop="image" content="/images/documentation/krakend-websockets.png" />
+    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
     
 
 
 
 
-<meta property="og:title" content="Handling WebSockets connections" />
-<meta property="og:description" content="KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
-KrakenD has the capability of multiplexing. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients." />
+<meta property="og:title" content="KrakenD Status Codes" />
+<meta property="og:description" content="When consuming content through KrakenD, the status code returned to the client depends on the chosen configuration. Three different approaches impact status codes:
+ Use KrakenD regular endpoints to get the status codes as designed by KrakenD Return the status code as provided by your backend server (see the no-op encoding) Use custom logic to set specific status codes  Default status codes of KrakenD endpoints Unless the no-op encoding is set, the following status codes are the default behavior of any KrakenD endpoint." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/enterprise/websockets/" />
-<meta property="og:image" content="https://www.krakend.io/images/documentation/krakend-websockets.png" />
-<meta property="article:published_time" content="2020-05-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-05-25T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/docs/endpoints/status-codes/" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta property="article:published_time" content="2020-10-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-19T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.krakend.io/images/documentation/krakend-websockets.png"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="Handling WebSockets connections"/>
-<meta name="twitter:description" content="KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
-KrakenD has the capability of multiplexing. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients."/>
+<meta name="twitter:title" content="KrakenD Status Codes"/>
+<meta name="twitter:description" content="When consuming content through KrakenD, the status code returned to the client depends on the chosen configuration. Three different approaches impact status codes:
+ Use KrakenD regular endpoints to get the status codes as designed by KrakenD Return the status code as provided by your backend server (see the no-op encoding) Use custom logic to set specific status codes  Default status codes of KrakenD endpoints Unless the no-op encoding is set, the following status codes are the default behavior of any KrakenD endpoint."/>
 
 
 
@@ -56,7 +56,7 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
-<body class="krakend page-a7f272992abe83f1a2e4980892341c81">
+<body class="krakend page-d2f211b5119a0dd75e577533ff240a06">
     
     <div class="top-bar">
   <div class="container my-2">
@@ -274,7 +274,7 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/endpoints/status-codes/" class="nav-link children ">Status Codes</a>
+                        <a href="/docs/endpoints/status-codes/" class="nav-link children active">Status Codes</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -318,7 +318,7 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/enterprise/websockets/" class="nav-link children active">WebSockets</a>
+                        <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -712,21 +712,13 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                 <section class="content-header">
                     
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/enterprise/websockets.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints/status-codes.md">
     Edit this page
 </a>
 
 
-<h1 class="main-title">Handling WebSockets connections</h1>
+<h1 class="main-title">KrakenD Status Codes</h1>
 
-    <p class="alert alert-info">
-        <strong>This feature requires</strong> <span class="badge badge-secondary">KrakenD Enterprise Edition</span>
-    </p>
-
-
-    <p class="main-image">
-        <img src="/images/documentation/krakend-websockets.png" />
-    </p>
 
 
 
@@ -738,128 +730,72 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/enterpris
     <section class="col-md-12">
         
         
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-  <ul>
-    <li><a href="#broadcast-vs-directed-communication">Broadcast vs. directed communication.</a></li>
-    <li><a href="#message-format">Message format</a>
-      <ul>
-        <li><a href="#krakend-message-for-the-backend">KrakenD message for the backend</a></li>
-        <li><a href="#backend-message-for-krakend">Backend message for KrakenD</a></li>
-      </ul>
-    </li>
-    <li><a href="#configuration">Configuration</a></li>
-    <li><a href="#handshaking">Handshaking</a>
-      <ul>
-        <li><a href="#connectivity-issues">Connectivity issues</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-            </div>
-        </div>
-        
 
 
-        <p>KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.</p>
-<p>KrakenD has the capability of <strong>multiplexing</strong>. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients.</p>
-<p>The backend decides whether to send the responses to a specific set of client(s) or to broadcast to everyone. This decision depends on the <strong>message format</strong></p>
-<h2 id="broadcast-vs-directed-communication">Broadcast vs. directed communication.</h2>
-<p>No matter how many clients connect to KrakenD through WebSockets, that KrakenD keeps <strong>one connection with the backend server</strong> (as depicted above). For instance, you might have 1000 concurrent users in a chat room, with 1000 sockets opened against KrakenD, but KrakenD still communicates with your backend using one channel.</p>
-<p>Depending on your business type, you might have two different needs to communicate with the users connected to the gateway:</p>
+        <p>When consuming content through KrakenD, the status code returned to the client depends on the chosen configuration. Three different approaches impact status codes:</p>
 <ul>
-<li>Send a message to all your clients (<strong>broadcast</strong>)</li>
-<li>Send a message only to some user(s) (<strong>directed communication</strong>)</li>
+<li>Use KrakenD regular endpoints to get the status codes as designed by KrakenD</li>
+<li>Return the status code as provided by your backend server (see the <a href="/docs/endpoints/no-op/"><code>no-op</code> encoding</a>)</li>
+<li>Use custom logic to set specific status codes</li>
 </ul>
-<p>By default, unrecognized messages received by KrakenD do broadcast to all clients. The <strong>message format</strong> allows you to specify how you would like KrakenD to process your backend responses (broadcast to all connected users, or just to a specific session).</p>
-<h2 id="message-format">Message format</h2>
-<p>The message format is the mechanism used by KrakenD to determine if a message needs broadcasting or addressing a specific set of clients.</p>
-<p>The recognized message format for the bidirectional communication is a JSON object with the following fields:</p>
+<h2 id="default-status-codes-of-krakend-endpoints">Default status codes of KrakenD endpoints</h2>
+<p>Unless the <code>no-op</code> encoding is set, the following status codes are the default behavior of any KrakenD endpoint.</p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200 OK</code></td>
+<td><strong>At least</strong> one backend returned a 200 or 201 status code on time. Completeness information provided by the <code>X-Krakend-Completed</code> header</td>
+</tr>
+<tr>
+<td><code>404 Not Found</code></td>
+<td>The requested endpoint is not configured on KrakenD</td>
+</tr>
+<tr>
+<td><code>400 Bad Request</code></td>
+<td>Client made a malformed request, i.e. <a href="/docs/endpoints/json-schema/">json-schema</a> validation failed</td>
+</tr>
+<tr>
+<td><code>401 Unauthorized</code></td>
+<td>Client sent an invalid JWT token or its claims</td>
+</tr>
+<tr>
+<td><code>403 Forbidden</code></td>
+<td>The user is allowed to use the API, but not the resource, e.g.: Insufficient JWT <a href="/docs/authorization/jwt-validation">role</a>, or <a href="/docs/throttling/botdetector/">bot detector</a> banned it</td>
+</tr>
+<tr>
+<td><code>429 Too Many Requests</code></td>
+<td>The client reached the rate limit for the endpoint</td>
+</tr>
+<tr>
+<td><code>503 Service Unavailable</code></td>
+<td>All clients together reached the configured global rate limit for the endpoint</td>
+</tr>
+<tr>
+<td><code>500 Internal Server Error</code></td>
+<td>Default error code, and in general, when backends return any status above <code>400</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="why-does-krakend-treat-errors-like-a-500-internal-server-error-by-default">Why does KrakenD treat errors like a <code>500 Internal Server Error</code> by default?</h3>
+<p>In most cases, when there isn&rsquo;t a happy path, you&rsquo;ll see KrakenD returning a <code>500 Internal Server Error</code>. When KrakenD needs to combine in the final gateway response, there is no way to properly distinguish the status code from the backend and the one from the gateway itself. That&rsquo;s why all errors external to KrakenD are translated into a <code>500 Internal Server Error</code>.</p>
+<p>To offer a gracefully degraded service when some backends fail, we leave the decision to the client on what to do by adding the header <code>X-Krakend-Completed: false</code> (some backends succeeded, others don&rsquo;t) and also by adding the <a href="/docs/backends/detailed-errors/">detailed errors</a> feature.</p>
+<h2 id="returning-the-status-codes-of-the-backend">Returning the status codes of the backend</h2>
+<p>If what you need is returning the content of a backend service <em>as is</em>, then the <a href="/docs/endpoints/no-op/">no-op encoding</a> will proxy the client call to the backend service without any manipulation. When the backend produces the response, it&rsquo;s passed back to the client, preserving its form: body, headers, status codes, and such.</p>
+<p>An exception to this behavior is <code>30x</code> responses, which will be followed by the gateway even with <code>no-op</code> encoding. If your backend returns a <code>301</code> the client won&rsquo;t follow it, but the gateway.</p>
+<h2 id="returning-other-status-codes">Returning other status codes</h2>
+<p>Default status codes can be overridden per endpoint, following different implementations.</p>
 <ul>
-<li><code>body</code>: Mandatory. A <strong>base64</strong> representation of the content.</li>
-<li><code>session</code>: The session is a filter to determine who is the sender or the receiver of a message.</li>
-<li><code>url</code>: The affected KrakenD endpoint.</li>
+<li><strong><a href="/docs/endpoints/no-op/">Using no-operation</a></strong>: When your call is not idempotent (i.e., a write operation), and you want the client to receive whatever the backend is responding.</li>
+<li><strong><a href="/docs/endpoints/lua/">Using a Lua script</a></strong>: To write in the configuration any logic, you need to evaluate and return a <code>custom_error</code>, with any status code of your choice.</li>
+<li>As <code>custom_error</code> will end the pipe execution. If you just want to alter the status code, you can (in a no-op pipe) use the <code>statusCode</code> dynamic helper on the response.</li>
+<li><strong>Injecting your own <a href="https://github.com/devopsfaith/krakend/issues/102#issuecomment-373657911">HTTPStatusHandler</a></strong></li>
 </ul>
-<h3 id="krakend-message-for-the-backend">KrakenD message for the backend</h3>
-<p>When the client interacts with KrakenD, the gateway sends messages to the backend with a structure like the following:</p>
-<pre><code>{ 
-    &quot;url&quot;: &quot;/chat/krakend&quot;,
-    &quot;session&quot;: { 
-        &quot;uuid&quot;: &quot;0b251b07-5611-49e5-b69f-cf2cb8d339d6&quot;,
-        &quot;Room&quot;:&quot;krakend&quot;,
-    },
-    &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
-}
-</code></pre>
-<p>The client sent what you can see in the <code>body</code> (<em>&ldquo;Hello World!&quot;</em> base64 encoded).</p>
-<p>The rest of the fields are contextual metadata for your convenience, so the backend can determine who is doing the call and from which originating endpoint.</p>
-<p>Essential observations on the example above are:</p>
-<ul>
-<li>The <code>body</code> is <strong>base64</strong> encoded.</li>
-<li>The <code>session</code> contains information about the client making the request. At least you always receive an <code>uuid</code> which is a randomly assigned by KrakenD to the client when a new session starts.</li>
-<li>If your endpoint contains placeholders (e.g., as in <code>/chat/{room}</code>), the placeholder parameters are available under <code>session</code>, but using the first letter uppercased. In this example, <code>Room</code> holds the value of <code>{room}</code>).</li>
-</ul>
-<h3 id="backend-message-for-krakend">Backend message for KrakenD</h3>
-<p>The return from your WS backend needs to use the expected format if you don&rsquo;t want to broadcast it.</p>
-<p>The response <code>body</code> is mandatory, and KrakenD forwards to all connected clients matching the filters you pass. If you don&rsquo;t pass any filters, then we are talking about broadcasting. The filters are a combination of the <code>session</code> and the <code>url</code>.</p>
-<p>If for instance, you only want to communicate with a specific user, you would have an answer like this one:</p>
-<pre><code>{
-    &quot;session&quot;: { &quot;uuid&quot;: &quot;0b251b07-5611-49e5-b69f-cf2cb8d339d6&quot;},
-    &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
-}
-</code></pre>
-<p>If you want to communicate with all users connected to an endpoint, then you could use:</p>
-<pre><code>{
-    &quot;url&quot;: &quot;/chat/krakend&quot;,
-    &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
-}
-</code></pre>
-<p>And a broadcast:</p>
-<pre><code>{
-    &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
-}
-</code></pre>
-<p>Notice that when the JSON fields <code>url</code> or <code>session</code> exist, the <code>body</code> is sent to the specific subgroup instead of being broadcasted.</p>
-<h2 id="configuration">Configuration</h2>
-<p>The configuration to enable WebSockets is straightforward; the only requirement is to include the <code>github.com/devopsfaith/krakend-websocket</code> namespace at the <code>endpoint</code> level, and that you declare one backend host (and only one) using the <code>ws://</code> or <code>wss://</code> schema.</p>
-<p>The flag <code>&quot;disable_host_sanitize&quot;: true</code> is also necessary for the backend.</p>
-<p>Here there is an example:</p>
-<pre><code>{
-  &quot;endpoint&quot;: &quot;/chat/{room}&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/ws&quot;,
-      &quot;disable_host_sanitize&quot;: true,
-      &quot;host&quot;: [ &quot;ws://localhost:8081&quot; ]
-    }
-  ],
-  &quot;extra_config&quot;:{
-    &quot;github.com/devopsfaith/krakend-websocket&quot;: true
-  }
-}
-</code></pre>
-<h2 id="handshaking">Handshaking</h2>
-<p>The WS protocol consists of an opening handshake followed by basic message framing, layered over TCP.</p>
-<p>The handshake process is straightforward but necessary for KrakenD to determine if the backend server is alive. It&rsquo;s managed by KrakenD itself, and it consists in nothing else than opening a WebSocket against the backend server and trying to find a response (like a ping/pong). We can simplify it as:</p>
-<pre><code>krakend =&gt; {&quot;msg&quot;:&quot;KrakenD WS proxy starting&quot;}
-backend =&gt; OK
-</code></pre>
-<p>After the successful handshake, KrakenD is ready to start serving and communicating with WS.</p>
-<h3 id="connectivity-issues">Connectivity issues</h3>
-<p>The nature of WebSocket connections is that they have kind of a &ldquo;state&rdquo; and use a lasting connection. There are implications to be aware of when connectivity issues or downtimes arise.</p>
-<p><strong>Issues during startup</strong>:
-The most visible problem of all. If, for whatever reason, the WebSocket on the backend server is not available <strong>during KrakenD startup</strong>, KrakenD won&rsquo;t start. This event shows in the console with a <em>CRITICAL</em> message like this one:</p>
-<pre><code>[KRAKEND] 2018/12/26 - 12:31:24.708 ▶ CRITIC websocket.Dial ws://localhost:8081/ws: dial tcp [::1]:8081: connect: connection refused
-</code></pre>
-<p>If KrakenD relies on WebSocket communication, make sure that the backends are alive when KrakenD starts, or otherwise, the gateway won&rsquo;t.</p>
-<p><strong>During regular operation</strong>:
-If, on the other hand, the handshake succeeded, but at a given point in time, the backend server with the WS dies, the affected endpoint becomes non-operational.</p>
-<p>All clients connected to KrakenD during the downtime of your backend&rsquo;s WebSocket keep their connection with KrakenD, despite the fact that KrakenD is unable to pass any data from/to the backend server. The error indicating this behavior is:</p>
-<pre><code>[KRAKEND] 2018/12/26 - 15:34:07.178 ▶ WARNIN WS client: EOF
-</code></pre>
-<p>Even after the backend service has resumed its service, the affected endpoint(s) won&rsquo;t be fully available. The connection remains unstable until the KrakenD service is restarted again with a successful connection. So in the case of backend downtime, the recommended course of action is to restart or redeploy KrakenD to minimize issues.</p>
 
     </section>
 </div>

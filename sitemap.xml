@@ -148,13 +148,18 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/extending/plugin-tools/</loc>
+    <lastmod>2019-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/logging-metrics-tracing/metrics/</loc>
     <lastmod>2018-11-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/docs/authorization/jwt-validation/</loc>
-    <lastmod>2020-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -169,12 +174,17 @@
   
   <url>
     <loc>https://www.krakend.io/docs/backends/circuit-breaker/</loc>
-    <lastmod>2018-10-22T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/docs/overview/installing/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/endpoints/status-codes/</loc>
+    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -329,7 +339,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/endpoints/lua/</loc>
-    <lastmod>2019-09-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -403,6 +413,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/</loc>
+    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/categories/announcements/</loc>
     <lastmod>2020-10-05T00:00:00+00:00</lastmod>
   </url>
@@ -439,11 +454,6 @@
   
   <url>
     <loc>https://www.krakend.io/tags/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/docs/</loc>
     <lastmod>2020-10-05T00:00:00+00:00</lastmod>
   </url>
   

@@ -28,7 +28,7 @@ If you are more familiar with Lua than Go, this module can help you solve except
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/lua/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-09-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2020-10-19T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -271,6 +271,10 @@ If you are more familiar with Lua than Go, this module can help you solve except
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/response-manipulation/" class="nav-link children ">Response manipulation</a>
+                    </li>
+                    
+                    <li class="nav-item child">
+                        <a href="/docs/endpoints/status-codes/" class="nav-link children ">Status Codes</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -640,6 +644,10 @@ If you are more familiar with Lua than Go, this module can help you solve except
                         <a href="/docs/extending/writing-plugins/" class="nav-link children ">Writing custom plugins</a>
                     </li>
                     
+                    <li class="nav-item child">
+                        <a href="/docs/extending/plugin-tools/" class="nav-link children ">Plugin validation tools</a>
+                    </li>
+                    
                 </ul>
             </div>
             
@@ -749,6 +757,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         <li><a href="#table"><code>table</code></a></li>
         <li><a href="#list"><code>list</code></a></li>
         <li><a href="#http_response"><code>http_response</code></a></li>
+        <li><a href="#custom_error"><code>custom_error</code></a></li>
       </ul>
     </li>
     <li><a href="#sequence-of-execution">Sequence of execution</a></li>
@@ -759,10 +768,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         
 
-   
+
         <p>Scripting with Lua is an additional choice to extend your business logic, and is compatible with the rest of options such as <a href="/docs/endpoints/common-expression-language-cel/">CEL</a>, <a href="/docs/backends/martian/">Martian</a>, or other Go plugins and middlewares.</p>
 <p>If you are more familiar with Lua than Go, this module can help you solve exceptional cases that need solution using a little bit of scripting. The introduction of Lua scripts in your Gateway does not require to recompile KrakenD, but unlike Go, Lua scripts are interpreted in real-time.</p>
-<p>For performance-first users, a Go plugin delivers better results than a Lua script.</p>
+<p>For performance-first users, a Go plugin delivers much better results than a Lua script.</p>
 <h2 id="configuration">Configuration</h2>
 <p>KrakenD looks for the lua scripts in the root folder where krakend is running. You need to specify in the configuration which lua scripts are going to be loaded in Krakend, as well as several options. The <code>extra_config</code> can be set at <code>endpoint</code> level or <code>backend</code> level.</p>
 <pre><code>&quot;extra_config&quot;: {
@@ -869,6 +878,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>headers</code> (<em>Dynamic</em>)</li>
 <li><code>body</code> (<em>Dynamic</em>)</li>
 </ul>
+<h3 id="custom_error"><code>custom_error</code></h3>
+<p>A generic helper in pre and post scripts that allows you to set <strong>custom http status codes</strong>. For instance, when you want to send an immediate response to the client from within a Lua script without further querying the backend, or after evaluating the response of the backend.</p>
+<p>It stops the script and the pipe execution.</p>
+<p>Example to throw a generic error (<code>500</code> status code ) with a message:</p>
+<pre><code>custom_error(&quot;Something weird happened&quot;)
+</code></pre>
+<p>Or even changing the http status code (<code>418 I'm a teapot</code>)</p>
+<pre><code>custom_error(&quot;I refuse to make any coffee, I'm a teapot!&quot;, 418)
+</code></pre>
 <h2 id="sequence-of-execution">Sequence of execution</h2>
 <p>Request sequence:</p>
 <ol>
@@ -897,6 +915,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
       &quot;github.com/devopsfaith/krakend-lua/proxy/backend&quot;: {
         &quot;pre&quot;: &quot;print('Showing body from backend-pre logic'); local r = request.load(); print(r:body('')); &quot;,
       }
+}
+</code></pre>
+<p>Setting a cookie:</p>
+<pre><code>&quot;extra_config&quot;: {
+    &quot;github.com/devopsfaith/krakend-lua/proxy&quot;: {
+        &quot;post&quot;: &quot;local r = response.load(); r:headers('Set-Cookie', 'kkkey1='.. r:data('response'));&quot;,
+        &quot;allow_open_libs&quot;: true
+    }
 }
 </code></pre>
 
@@ -948,7 +974,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                     <h6>by Devops Faith</h6>
                     <ul class="list-unstyled">
                         
-                        <li><a href="http://devops.faith">Devops Faith</a></li>
+                        <li><a href="https://devops.faith">Devops Faith</a></li>
                         <li><a href="https://www.krakend.io/blog/">Blog</a></li>
                         <li><a href="https://medium.com/devops-faith">Medium</a></li>
                         <li><a href="mailto:support@devops.faith">Contact Us</a></li>

@@ -6,38 +6,38 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.67.1" />
 
-    <title>Handling WebSockets connections - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Handling WebSockets connections - KrakenD API Gateway">
+    <title>Plugin and dependencies validator - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Plugin and dependencies validator - KrakenD API Gateway">
 
     
-    <meta property="description" content="Handling WebSockets connections - KrakenD API Gateway">
-    <meta itemprop="description" content="Handling WebSockets connections - KrakenD API Gateway">
+    <meta property="description" content="Plugin and dependencies validator - KrakenD API Gateway">
+    <meta itemprop="description" content="Plugin and dependencies validator - KrakenD API Gateway">
     
 
     
-    <meta itemprop="image" content="/images/documentation/krakend-websockets.png" />
+    <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
     
 
 
 
 
-<meta property="og:title" content="Handling WebSockets connections" />
-<meta property="og:description" content="KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
-KrakenD has the capability of multiplexing. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients." />
+<meta property="og:title" content="Plugin and dependencies validator" />
+<meta property="og:description" content="The plugin validator is an online tool that allows you to find problems with your plugin dependencies. Go plugins are strict on which versions of libraries you can use, so it&rsquo;s important to make sure that your dependencies are compatible with the selected KrakenD versions.
+Access the online plugin validation tools The plugin validator checks your go.sum file to find problems and reports all associated problems. From which Go version is supported, to which individual libraries will conflict during runtime." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/enterprise/websockets/" />
-<meta property="og:image" content="https://www.krakend.io/images/documentation/krakend-websockets.png" />
-<meta property="article:published_time" content="2020-05-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-05-25T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/docs/extending/plugin-tools/" />
+<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
+<meta property="article:published_time" content="2019-01-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-01-15T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.krakend.io/images/documentation/krakend-websockets.png"/>
+<meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="Handling WebSockets connections"/>
-<meta name="twitter:description" content="KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
-KrakenD has the capability of multiplexing. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients."/>
+<meta name="twitter:title" content="Plugin and dependencies validator"/>
+<meta name="twitter:description" content="The plugin validator is an online tool that allows you to find problems with your plugin dependencies. Go plugins are strict on which versions of libraries you can use, so it&rsquo;s important to make sure that your dependencies are compatible with the selected KrakenD versions.
+Access the online plugin validation tools The plugin validator checks your go.sum file to find problems and reports all associated problems. From which Go version is supported, to which individual libraries will conflict during runtime."/>
 
 
 
@@ -56,7 +56,7 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
-<body class="krakend page-a7f272992abe83f1a2e4980892341c81">
+<body class="krakend page-d0db39f9952a00653190d601d33cae41">
     
     <div class="top-bar">
   <div class="container my-2">
@@ -254,12 +254,12 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-4" role="button" aria-expanded="true"
-                aria-controls="menu-4" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-4" role="button" aria-expanded="false"
+                aria-controls="menu-4" class="nav-link parent">
                 Endpoints
             </a>
-            <div class="collapse show" id="menu-4">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-4">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
                         <a href="/docs/endpoints/creating-endpoints/" class="nav-link children ">Creating endpoints</a>
@@ -318,7 +318,7 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/enterprise/websockets/" class="nav-link children active">WebSockets</a>
+                        <a href="/docs/enterprise/websockets/" class="nav-link children ">WebSockets</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -629,12 +629,12 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-13" role="button" aria-expanded="false"
-                aria-controls="menu-13" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-13" role="button" aria-expanded="true"
+                aria-controls="menu-13" class="nav-link parent active">
                 Extending KrakenD
             </a>
-            <div class="collapse" id="menu-13">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-13">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
                         <a href="/docs/extending/the-big-picture/" class="nav-link children ">The big picture</a>
@@ -645,7 +645,7 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/extending/plugin-tools/" class="nav-link children ">Plugin validation tools</a>
+                        <a href="/docs/extending/plugin-tools/" class="nav-link children active">Plugin validation tools</a>
                     </li>
                     
                 </ul>
@@ -712,21 +712,13 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
                 <section class="content-header">
                     
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/enterprise/websockets.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending/plugin-tools.md">
     Edit this page
 </a>
 
 
-<h1 class="main-title">Handling WebSockets connections</h1>
+<h1 class="main-title">Plugin and dependencies validator</h1>
 
-    <p class="alert alert-info">
-        <strong>This feature requires</strong> <span class="badge badge-secondary">KrakenD Enterprise Edition</span>
-    </p>
-
-
-    <p class="main-image">
-        <img src="/images/documentation/krakend-websockets.png" />
-    </p>
 
 
 
@@ -738,128 +730,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/enterpris
     <section class="col-md-12">
         
         
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-  <ul>
-    <li><a href="#broadcast-vs-directed-communication">Broadcast vs. directed communication.</a></li>
-    <li><a href="#message-format">Message format</a>
-      <ul>
-        <li><a href="#krakend-message-for-the-backend">KrakenD message for the backend</a></li>
-        <li><a href="#backend-message-for-krakend">Backend message for KrakenD</a></li>
-      </ul>
-    </li>
-    <li><a href="#configuration">Configuration</a></li>
-    <li><a href="#handshaking">Handshaking</a>
-      <ul>
-        <li><a href="#connectivity-issues">Connectivity issues</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-            </div>
-        </div>
-        
 
 
-        <p>KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.</p>
-<p>KrakenD has the capability of <strong>multiplexing</strong>. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients.</p>
-<p>The backend decides whether to send the responses to a specific set of client(s) or to broadcast to everyone. This decision depends on the <strong>message format</strong></p>
-<h2 id="broadcast-vs-directed-communication">Broadcast vs. directed communication.</h2>
-<p>No matter how many clients connect to KrakenD through WebSockets, that KrakenD keeps <strong>one connection with the backend server</strong> (as depicted above). For instance, you might have 1000 concurrent users in a chat room, with 1000 sockets opened against KrakenD, but KrakenD still communicates with your backend using one channel.</p>
-<p>Depending on your business type, you might have two different needs to communicate with the users connected to the gateway:</p>
-<ul>
-<li>Send a message to all your clients (<strong>broadcast</strong>)</li>
-<li>Send a message only to some user(s) (<strong>directed communication</strong>)</li>
-</ul>
-<p>By default, unrecognized messages received by KrakenD do broadcast to all clients. The <strong>message format</strong> allows you to specify how you would like KrakenD to process your backend responses (broadcast to all connected users, or just to a specific session).</p>
-<h2 id="message-format">Message format</h2>
-<p>The message format is the mechanism used by KrakenD to determine if a message needs broadcasting or addressing a specific set of clients.</p>
-<p>The recognized message format for the bidirectional communication is a JSON object with the following fields:</p>
-<ul>
-<li><code>body</code>: Mandatory. A <strong>base64</strong> representation of the content.</li>
-<li><code>session</code>: The session is a filter to determine who is the sender or the receiver of a message.</li>
-<li><code>url</code>: The affected KrakenD endpoint.</li>
-</ul>
-<h3 id="krakend-message-for-the-backend">KrakenD message for the backend</h3>
-<p>When the client interacts with KrakenD, the gateway sends messages to the backend with a structure like the following:</p>
-<pre><code>{ 
-    &quot;url&quot;: &quot;/chat/krakend&quot;,
-    &quot;session&quot;: { 
-        &quot;uuid&quot;: &quot;0b251b07-5611-49e5-b69f-cf2cb8d339d6&quot;,
-        &quot;Room&quot;:&quot;krakend&quot;,
-    },
-    &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
-}
-</code></pre>
-<p>The client sent what you can see in the <code>body</code> (<em>&ldquo;Hello World!&quot;</em> base64 encoded).</p>
-<p>The rest of the fields are contextual metadata for your convenience, so the backend can determine who is doing the call and from which originating endpoint.</p>
-<p>Essential observations on the example above are:</p>
-<ul>
-<li>The <code>body</code> is <strong>base64</strong> encoded.</li>
-<li>The <code>session</code> contains information about the client making the request. At least you always receive an <code>uuid</code> which is a randomly assigned by KrakenD to the client when a new session starts.</li>
-<li>If your endpoint contains placeholders (e.g., as in <code>/chat/{room}</code>), the placeholder parameters are available under <code>session</code>, but using the first letter uppercased. In this example, <code>Room</code> holds the value of <code>{room}</code>).</li>
-</ul>
-<h3 id="backend-message-for-krakend">Backend message for KrakenD</h3>
-<p>The return from your WS backend needs to use the expected format if you don&rsquo;t want to broadcast it.</p>
-<p>The response <code>body</code> is mandatory, and KrakenD forwards to all connected clients matching the filters you pass. If you don&rsquo;t pass any filters, then we are talking about broadcasting. The filters are a combination of the <code>session</code> and the <code>url</code>.</p>
-<p>If for instance, you only want to communicate with a specific user, you would have an answer like this one:</p>
-<pre><code>{
-    &quot;session&quot;: { &quot;uuid&quot;: &quot;0b251b07-5611-49e5-b69f-cf2cb8d339d6&quot;},
-    &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
-}
-</code></pre>
-<p>If you want to communicate with all users connected to an endpoint, then you could use:</p>
-<pre><code>{
-    &quot;url&quot;: &quot;/chat/krakend&quot;,
-    &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
-}
-</code></pre>
-<p>And a broadcast:</p>
-<pre><code>{
-    &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
-}
-</code></pre>
-<p>Notice that when the JSON fields <code>url</code> or <code>session</code> exist, the <code>body</code> is sent to the specific subgroup instead of being broadcasted.</p>
-<h2 id="configuration">Configuration</h2>
-<p>The configuration to enable WebSockets is straightforward; the only requirement is to include the <code>github.com/devopsfaith/krakend-websocket</code> namespace at the <code>endpoint</code> level, and that you declare one backend host (and only one) using the <code>ws://</code> or <code>wss://</code> schema.</p>
-<p>The flag <code>&quot;disable_host_sanitize&quot;: true</code> is also necessary for the backend.</p>
-<p>Here there is an example:</p>
-<pre><code>{
-  &quot;endpoint&quot;: &quot;/chat/{room}&quot;,
-  &quot;backend&quot;: [
-    {
-      &quot;url_pattern&quot;: &quot;/ws&quot;,
-      &quot;disable_host_sanitize&quot;: true,
-      &quot;host&quot;: [ &quot;ws://localhost:8081&quot; ]
-    }
-  ],
-  &quot;extra_config&quot;:{
-    &quot;github.com/devopsfaith/krakend-websocket&quot;: true
-  }
-}
-</code></pre>
-<h2 id="handshaking">Handshaking</h2>
-<p>The WS protocol consists of an opening handshake followed by basic message framing, layered over TCP.</p>
-<p>The handshake process is straightforward but necessary for KrakenD to determine if the backend server is alive. It&rsquo;s managed by KrakenD itself, and it consists in nothing else than opening a WebSocket against the backend server and trying to find a response (like a ping/pong). We can simplify it as:</p>
-<pre><code>krakend =&gt; {&quot;msg&quot;:&quot;KrakenD WS proxy starting&quot;}
-backend =&gt; OK
-</code></pre>
-<p>After the successful handshake, KrakenD is ready to start serving and communicating with WS.</p>
-<h3 id="connectivity-issues">Connectivity issues</h3>
-<p>The nature of WebSocket connections is that they have kind of a &ldquo;state&rdquo; and use a lasting connection. There are implications to be aware of when connectivity issues or downtimes arise.</p>
-<p><strong>Issues during startup</strong>:
-The most visible problem of all. If, for whatever reason, the WebSocket on the backend server is not available <strong>during KrakenD startup</strong>, KrakenD won&rsquo;t start. This event shows in the console with a <em>CRITICAL</em> message like this one:</p>
-<pre><code>[KRAKEND] 2018/12/26 - 12:31:24.708 ▶ CRITIC websocket.Dial ws://localhost:8081/ws: dial tcp [::1]:8081: connect: connection refused
-</code></pre>
-<p>If KrakenD relies on WebSocket communication, make sure that the backends are alive when KrakenD starts, or otherwise, the gateway won&rsquo;t.</p>
-<p><strong>During regular operation</strong>:
-If, on the other hand, the handshake succeeded, but at a given point in time, the backend server with the WS dies, the affected endpoint becomes non-operational.</p>
-<p>All clients connected to KrakenD during the downtime of your backend&rsquo;s WebSocket keep their connection with KrakenD, despite the fact that KrakenD is unable to pass any data from/to the backend server. The error indicating this behavior is:</p>
-<pre><code>[KRAKEND] 2018/12/26 - 15:34:07.178 ▶ WARNIN WS client: EOF
-</code></pre>
-<p>Even after the backend service has resumed its service, the affected endpoint(s) won&rsquo;t be fully available. The connection remains unstable until the KrakenD service is restarted again with a successful connection. So in the case of backend downtime, the recommended course of action is to restart or redeploy KrakenD to minimize issues.</p>
+        <p>The plugin validator is an online tool that allows you to find problems with your plugin dependencies. Go plugins are strict on which versions of libraries you can use, so it&rsquo;s important to make sure that your dependencies are compatible with the selected KrakenD versions.</p>
+<h2 id="access-the-online-plugin-validation-tools">Access the online plugin validation tools</h2>
+<p>The plugin validator checks your <code>go.sum</code> file to find problems and reports all associated problems. From which Go version is supported, to which individual libraries will conflict during runtime.</p>
+<p><a class="btn btn-secondary btn-lg" href="http://plugin-tools.krakend.io/validate">Go to plugin validator</a></p>
+<p>The dependencies list shows all libraries used by KrakenD. Make sure your plugins use the same versions:</p>
+<p><a class="btn btn-secondary btn-lg" href="http://plugin-tools.krakend.io">Go to dependencies finder</a></p>
 
     </section>
 </div>
