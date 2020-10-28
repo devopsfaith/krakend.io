@@ -754,7 +754,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     <li><a href="#transform-headers">Transform headers</a></li>
     <li><a href="#modify-the-body">Modify the body</a></li>
     <li><a href="#transform-the-url">Transform the URL</a></li>
-    <li><a href="#inject-query-string-parameters">Inject query string parameters</a></li>
     <li><a href="#copying-headers">Copying headers</a></li>
     <li><a href="#apply-multiple-modifiers-consecutively">Apply multiple modifiers consecutively</a></li>
     <li><a href="#all-martian-modifiers-verifiers-and-filters">All Martian modifiers, verifiers and filters</a></li>
@@ -834,20 +833,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
           &quot;query&quot;: &quot;testing=true&quot;
         }
     }
-}
-</code></pre>
-<h2 id="inject-query-string-parameters">Inject query string parameters</h2>
-<p>The <code>querystring.Modifier</code> allows you to modify query strings injecting key pairs. It can be useful if you want the Gateway to send something extra to the backends, for instance:</p>
-<pre><code>{
-  extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-martian&quot;: {
-      &quot;querystring.Modifier&quot;: {
-        &quot;scope&quot;: [&quot;request&quot;],
-        &quot;name&quot;: &quot;api-key&quot;,
-        &quot;value&quot;: &quot;some.api.key.here&quot;
-      }
-    }
-  }
 }
 </code></pre>
 <h2 id="copying-headers">Copying headers</h2>
