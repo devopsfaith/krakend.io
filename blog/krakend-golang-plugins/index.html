@@ -324,7 +324,7 @@
 // pluginOpener keeps the plugin open function in a var for easy testing
 var pluginOpener = plugin.Open
 </code></pre>
-<p>We decided that delegating the registering logic to the plugins would give us a better decoupling (the good old <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC </a> principle). After scaning and filtering the contents of the <strong>plugins</strong> folder, the <code>Load</code> function just calls <code>plugin.Open</code> wrapping the possible errors and panics. Currently it doesn&rsquo;t use the returned <code>*plugin.Plugin</code> for lookups. Check the <a href="https://godoc.org/github.com/devopsfaith/krakend/plugin">documentation</a> for more details.</p>
+<p>We decided that delegating the registering logic to the plugins would give us a better decoupling (the good old <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC </a> principle). After scanning and filtering the contents of the <strong>plugins</strong> folder, the <code>Load</code> function just calls <code>plugin.Open</code> wrapping the possible errors and panics. Currently it doesn&rsquo;t use the returned <code>*plugin.Plugin</code> for lookups. Check the <a href="https://godoc.org/github.com/devopsfaith/krakend/plugin">documentation</a> for more details.</p>
 <p>This is the <a href="https://github.com/devopsfaith/krakend/pull/87">Pull Request</a> with all the required changes for the framework.</p>
 <h2 id="tuning-the-krakend-ce-distribution">Tuning the KrakenD-CE distribution</h2>
 <p>In order to load the plugins before starting the gateway, the <code>executor.go</code> script needs to be extended with this code block:</p>
@@ -373,8 +373,8 @@ func main() {
 <p>Shared libraries between the application and the plugins should have the same version or the plugin won&rsquo;t be loaded. Using vendors might help limiting the friction and avoid problems but in some cases this is just not possible.</p>
 <h3 id="flag-collisions">Flag collisions</h3>
 <p>If the plugin or its dependencies redeclare a flag used by the application (or its dependencies) the plugin will panic.</p>
-<h3 id="vendored-packages">Vendored packages</h3>
-<p>If your application or your plugin use any kind of dependency vendoring system, the vendored packages will be usually renamed to <code>path/to/your_app/vendor/path/to/dependency</code>. So it won&rsquo;t be accessible from your plugins.</p>
+<h3 id="vendor-packages">Vendor packages</h3>
+<p>If your application or your plugin use any kind of dependency vendoring system, the vendor packages will be usually renamed to <code>path/to/your_app/vendor/path/to/dependency</code>. So it won&rsquo;t be accessible from your plugins.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this post we have seen the benefits of using plugins and how to use them in your application. Even if they are only supported in Linux, it&rsquo;s a very convenient way to extend functionality, especially those that aren&rsquo;t used in all cases and are more rare.</p>
 <p>Thanks for reading! If you like our product don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>

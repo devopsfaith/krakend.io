@@ -136,7 +136,7 @@ The Krakend Playground and the KrakenDesigner (UI) is also updated.</description
       
       <guid>https://www.krakend.io/blog/krakend-0.5-release-notes/</guid>
       <description>KrakenD 0.5 is out and we want to share some of the cool stuff this release is bringing.
-This release focuses heavily on metrics and its export options to different backend systems such as Zipkin, InfluxDB, Prometheus or Jaeger. It also adds the NoOp logger and exposes all the advanced settings of the http client and server, giving all the power to the user. On the middlware side it extends even more the ecosystem with multiple components.</description>
+This release focuses heavily on metrics and its export options to different backend systems such as Zipkin, InfluxDB, Prometheus or Jaeger. It also adds the NoOp logger and exposes all the advanced settings of the http client and server, giving all the power to the user. On the middleware side it extends even more the ecosystem with multiple components.</description>
     </item>
     
     <item>

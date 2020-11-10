@@ -307,7 +307,7 @@
 <h2 id="installing-krakend-on-the-raspberry-bus">Installing KrakenD on the Raspberry (bus)</h2>
 <p>Now with the pictures clear, let&rsquo;s install KrakenD on the Raspberry, which is the easy part. The Raspberry comes with a small 4-core processor built with the ARM architecture. Fortunately KrakenD is coded in <a href="https://golang.org">Go</a> so it can be compiled in multiple architectures like <code>amd64</code>, <code>386</code>, <code>arm</code>, <code>arm64</code>, <code>s390x</code> or <code>ppc64le</code>. Go is also a language that powers frameworks for robotics, such as <a href="https://gobot.io/">Gobot</a>.</p>
 <h3 id="step-1-install-go">Step 1: Install go</h3>
-<p>Since today we are not distributing binaries for Raspberry, we will need to compile the code, which isn&rsquo;t a a great deal. The only needed tool to compile the code is to have Go. The easiest way to install Go is to download and decompress it. We are doing it in the <code>/tmp/go</code> folder but you might want to choose a different location if you want to use go permanently.</p>
+<p>Since today we are not distributing binaries for Raspberry, we will need to compile the code, which isn&rsquo;t a great deal. The only needed tool to compile the code is to have Go. The easiest way to install Go is to download and decompress it. We are doing it in the <code>/tmp/go</code> folder but you might want to choose a different location if you want to use go permanently.</p>
 <pre><code>cd /tmp
 wget https://storage.googleapis.com/golang/go1.10.linux-armv6l.tar.gz
 tar xvf go1.10.linux-armv6l.tar.gz
