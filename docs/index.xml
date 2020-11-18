@@ -6,7 +6,7 @@
     <description>Recent content in Docs on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/docs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -164,6 +164,18 @@ It&amp;rsquo;s important to remark, that if you want to do complex business logi
     </item>
     
     <item>
+      <title>Extended metrics and the `/__stats` endpoint</title>
+      <link>https://www.krakend.io/docs/extended-metrics/metrics/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/extended-metrics/metrics/</guid>
+      <description>The metrics middleware collects extended metrics and exposes them in the /__stats/ endpoint. The endpoint runs in a different port than the API, and contains a lot of metrics.
+Through the extended metrics you can create new tools or integrate with existing ones. For instance, combining the metrics with the InfluxDB extended metrics you can have a Grafana dashboard.
+The structure of the metrics looks like this (truncated):
+Sample of /__stats endpoint&amp;nbsp;   curl&amp;nbsp;http://localhost:8090/__stats&amp;nbsp; {&amp;nbsp; &amp;nbsp;&amp;nbsp;&#34;</description>
+    </item>
+    
+    <item>
       <title>JSON Web Tokens overview</title>
       <link>https://www.krakend.io/docs/authorization/jwt-overview/</link>
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
@@ -175,12 +187,12 @@ When JWT shields a specific set of endpoints, requests to the API gateway must p
     
     <item>
       <title>Logging - Syslog, stdout and GELF</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/logging/</link>
+      <link>https://www.krakend.io/docs/logging/extended-logging/</link>
       <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/logging/</guid>
-      <description>When the service starts, if no logging configuration is set, all the log events are sent to the standard output using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is DEBUG and adds no prefix to the logs.
-Extending the logging capabilities Different logging components allow you to extend the logging functionality, such as sending the events to the syslog, choosing the verbosity level or use the Graylog Extended Log Format (GELF).</description>
+      <guid>https://www.krakend.io/docs/logging/extended-logging/</guid>
+      <description>By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
+Extending the logging capabilities Different logging components allow you to extend the logging functionality, such as sending the events to the syslog, choosing the verbosity level, or use the Graylog Extended Log Format (GELF).</description>
     </item>
     
     <item>
@@ -313,6 +325,17 @@ At the router level, you can set the rate limit for endpoints based on:</descrip
     </item>
     
     <item>
+      <title>Native InfluxDB exporter</title>
+      <link>https://www.krakend.io/docs/extended-metrics/influxdb/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/extended-metrics/influxdb/</guid>
+      <description>KrakenD can expose detailed and extended metrics via the krakend-metrics). The krakend-influx component lets you send these extended KrakenD metrics to InfluxDB.
+Notice that there are two different implementations of InfluxDB in KrakenD:
+ Native InfluxDB exporter (this page) OpenCensus InfluxDB exporter   Which InfluxDB implementation should I choose? The native implementation exports data from a collector that is tailor-made for KrakenD, and also richer in content and less abstract.</description>
+    </item>
+    
+    <item>
       <title>Enabling Cross Origin Resource Sharing (CORS)</title>
       <link>https://www.krakend.io/docs/service-settings/cors/</link>
       <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
@@ -330,17 +353,6 @@ When the Cross-Origin Resource Sharing (CORS) configuration is enabled, KrakenD 
       <guid>https://www.krakend.io/docs/extending/plugin-tools/</guid>
       <description>The plugin validator is an online tool that allows you to find problems with your plugin dependencies. Go plugins are strict on which versions of libraries you can use, so it&amp;rsquo;s important to make sure that your dependencies are compatible with the selected KrakenD versions.
 Access the online plugin validation tools The plugin validator checks your go.sum file to find problems and reports all associated problems. From which Go version is supported, to which individual libraries will conflict during runtime.</description>
-    </item>
-    
-    <item>
-      <title>Metrics middleware</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/metrics/</link>
-      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/metrics/</guid>
-      <description>The metrics middleware offers a new service in a different port and exposes a /__stats/ endpoint with the collection of all the KrakenD metrics:
-http://localhost:8080/__stats/  Enabling metrics In order to add metrics to your KrakenD installation add the github_com/devopsfaith/krakend-metrics namespace under extra_config in the root of your configuration file, e.g.:
-{ &amp;#34;version&amp;#34;: 2, &amp;#34;extra_config&amp;#34;: { &amp;#34;github_com/devopsfaith/krakend-metrics&amp;#34;: { &amp;#34;collection_time&amp;#34;: &amp;#34;60s&amp;#34;, &amp;#34;proxy_disabled&amp;#34;: false, &amp;#34;router_disabled&amp;#34;: false, &amp;#34;backend_disabled&amp;#34;: false, &amp;#34;endpoint_disabled&amp;#34;: false, &amp;#34;listen_address&amp;#34;: &amp;#34;:8090&amp;#34; },  .</description>
     </item>
     
     <item>
@@ -408,13 +420,23 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
     </item>
     
     <item>
-      <title>Tracing</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/tracing/</link>
+      <title>Preconfigured Grafana dashboard</title>
+      <link>https://www.krakend.io/docs/extended-metrics/grafana/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/extended-metrics/grafana/</guid>
+      <description>The Grafana dashboard for KrakenD offers valuable information to understand the performance of your services and detect anomalies in the service. The dashboard is extensive and offers you metrics like:
+ Requests from users to KrakenD Requests from KrakenD to your backends Response times Memory usage and details Endpoints and status codes Heatmaps Open connections Throughput Distributions, timers, garbage collection and a long etcetera  Better an image than a thousand words (video with no sound):</description>
+    </item>
+    
+    <item>
+      <title>Telemetry</title>
+      <link>https://www.krakend.io/docs/telemetry/overview/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/tracing/</guid>
-      <description>Moving from a single monolithic application to a distributed microservices architecture presents a new type of challenges. Observability and networking are key to succeed in this new scenario, and new monitoring tools are needed. These tools must provide at least options to detect problems&amp;rsquo; root causes, monitoring and details of the different distributed transactions, and performance and latency optimization.
-The Opencensus exporters allow you to send traces to several of these open source and privative tools, so you can follow the activity of the Gateway and the derived requests to the backends.</description>
+      <guid>https://www.krakend.io/docs/telemetry/overview/</guid>
+      <description>Observability and networking are key to succeed in a scenario of distributed microservices architecture, and new monitoring tools are needed. These tools must provide at least options to detect problems&amp;rsquo; root causes, monitoring and details of the different distributed transactions, and performance and latency optimization.
+Through the OpenCensus exporters you can send logs, metrics, and traces to several open source and payment tools, so you can follow the activity of the gateway and the derived requests to its connected backends.</description>
     </item>
     
     <item>
@@ -506,10 +528,10 @@ For instance, take the following krakend.json configuration as an example:</desc
     
     <item>
       <title>Graylog and the GELF format</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/graylog-gelf/</link>
+      <link>https://www.krakend.io/docs/logging/graylog-gelf/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/graylog-gelf/</guid>
+      <guid>https://www.krakend.io/docs/logging/graylog-gelf/</guid>
       <description>KrakenD supports sending structured events in GELF format to your Graylog Cluster thanks to the krakend-gelf integration.
 The setup of GELF is straightforward and requires only to set two parameters:
  address: The address (including the port) of your Graylog cluster (or any other service that receives GELF inputs). enable_tcp: Set to false (recommended) to use UDP. When using TCP performance might be affected.  Enabling GELF Add the krakend-gelf integration in the root level of your krakend.</description>
@@ -561,10 +583,10 @@ Each backend can reply with a different encoding and KrakenD does not have any p
     
     <item>
       <title>Logstash</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/logstash/</link>
+      <link>https://www.krakend.io/docs/logging/logstash/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/logstash/</guid>
+      <guid>https://www.krakend.io/docs/logging/logstash/</guid>
       <description>If you want to log using the Logstash standard via stdout, you have to add the krakend-logstash integration in the root level of your krakend.json, inside the extra_config section. The gologging needs to be enabled too.
 For instance:
 &amp;quot;extra_config&amp;quot;: { &amp;quot;github_com/devopsfaith/krakend-logstash&amp;quot;: { &amp;quot;enabled&amp;quot;: true } &amp;quot;github_com/devopsfaith/krakend-gologging&amp;quot;: { &amp;quot;level&amp;quot;: &amp;quot;INFO&amp;quot;, &amp;quot;prefix&amp;quot;: &amp;quot;[KRAKEND]&amp;quot;, &amp;quot;syslog&amp;quot;: false, &amp;quot;stdout&amp;quot;: true, &amp;quot;format&amp;quot;: &amp;quot;logstash&amp;quot; } }  </description>
@@ -603,14 +625,14 @@ Supported encodings The gateway can work with several content types, even allowi
     </item>
     
     <item>
-      <title>Exporting logs, metrics, and traces to several providers</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/opencensus/</link>
+      <title>Sending out logs, metrics, and traces</title>
+      <link>https://www.krakend.io/docs/telemetry/opencensus/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/opencensus/</guid>
+      <guid>https://www.krakend.io/docs/telemetry/opencensus/</guid>
       <description>The Opencensus exporter is a single component that allows you to export data to multiple providers, both open source and privative.
 You will be interested in Opencensus when you want to see data in one of its supported exporters. For instance, you might want to send metrics to Prometheus. That would be as easy as adding this snippet in the root level of your krakend.json file:
-&amp;quot;extra_config&amp;quot;: { &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091 &amp;quot;namespace&amp;quot;: &amp;quot;krakend&amp;quot; } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration.</description>
+{ &amp;quot;version&amp;quot;: 2, &amp;quot;extra_config&amp;quot;: { &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091 &amp;quot;namespace&amp;quot;: &amp;quot;krakend&amp;quot; } } } } }  Configuration The Opencensus only needs an exporter to work, although multiple exporters can be added in the same configuration.</description>
     </item>
     
     <item>
@@ -656,10 +678,10 @@ The traffic shadowing or traffic mirroring functionality allows you to test new 
     
     <item>
       <title>Exporting metrics to Prometheus</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/prometheus/</link>
+      <link>https://www.krakend.io/docs/telemetry/prometheus/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/prometheus/</guid>
+      <guid>https://www.krakend.io/docs/telemetry/prometheus/</guid>
       <description>Prometheus is an open-source systems monitoring and alerting toolkit.
 The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the prometheus exporter. Specify the port on which Prometheus is running, the namespace (optional), and Prometheus will start receiving the data.
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;prometheus&amp;quot;: { &amp;quot;port&amp;quot;: 9091, &amp;quot;namespace&amp;quot;: &amp;quot;krakend&amp;quot; } } }   port on which Prometheus is listening namespace sets the domain the metric belongs to.</description>
@@ -687,10 +709,10 @@ A typical scenario is when some backend fails and the endpoint becomes incomplet
     
     <item>
       <title>Exporting metrics and events to InfluxDB</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/influxdb/</link>
+      <link>https://www.krakend.io/docs/telemetry/influxdb/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/influxdb/</guid>
+      <guid>https://www.krakend.io/docs/telemetry/influxdb/</guid>
       <description>InfluxDB is a time series database designed to handle high write and query loads.
 The Opencensus exporter allows you export data to InfluxDB for monitoring metrics and events. Enabling it only requires you to add the influxdb exporter in the opencensus module.
 The following configuration snippet sends data to your InfluxDB:
@@ -721,10 +743,10 @@ Martian is mighty and gives you endless possibilities to control what is going i
     
     <item>
       <title>Exporting traces to Datadog</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/datadog/</link>
+      <link>https://www.krakend.io/docs/telemetry/datadog/</link>
       <pubDate>Fri, 24 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/datadog/</guid>
+      <guid>https://www.krakend.io/docs/telemetry/datadog/</guid>
       <description>Datadog is a monitoring and security platform for developers, IT operations teams and business in the cloud.
 Datadog configuration The Opencensus exporter allows you export data to Datadog. Enabling it only requires you to add the datadog exporter in the opencensus module.
 The following configuration snippet sends data to your Datadog:
@@ -743,10 +765,10 @@ If you are more familiar with Lua than Go, this module can help you solve except
     
     <item>
       <title>Exporting traces to Zipkin</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/zipkin/</link>
+      <link>https://www.krakend.io/docs/telemetry/zipkin/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/zipkin/</guid>
+      <guid>https://www.krakend.io/docs/telemetry/zipkin/</guid>
       <description>Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures.
 The Opencensus exporter allows you export data to Zipkin. Enabling it only requires you to add the zipkin exporter in the opencensus module.
 The following configuration snippet sends data to your Zipkin:
@@ -766,10 +788,10 @@ The parameters of this integration follow the AMQP specification. To understand 
     
     <item>
       <title>Exporting traces to Jaeger</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/jaeger/</link>
+      <link>https://www.krakend.io/docs/telemetry/jaeger/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/jaeger/</guid>
+      <guid>https://www.krakend.io/docs/telemetry/jaeger/</guid>
       <description>Jaeger is an open source, end-to-end distributed tracing system that allows you to monitor and troubleshoot transactions in complex distributed systems.
 The Opencensus exporter allows you export data to Jaeger. Enabling it only requires you to add the jaeger exporter in the opencensus module.
 The following configuration snippet sends data to your Jaeger:
@@ -798,10 +820,10 @@ Difference between KrakenD, KrakenD-CE, and Enterprise TL;DR;
     
     <item>
       <title>Exporting traces to AWS X-Ray</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/xray/</link>
+      <link>https://www.krakend.io/docs/telemetry/xray/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/xray/</guid>
+      <guid>https://www.krakend.io/docs/telemetry/xray/</guid>
       <description>AWS X-Ray is a service offered by Amazon that provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.
 The Opencensus exporter allows you export data to AWS X-Ray. Enabling it only requires you to add the xray exporter in the opencensus module.
 The following configuration snippet sends data to your X-Ray:
@@ -832,14 +854,24 @@ As KrakenD is an API gateway, we have also added to the environment an API (back
     
     <item>
       <title>Exporting metrics, logs and events to Google Stackdriver</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/stackdriver/</link>
+      <link>https://www.krakend.io/docs/telemetry/stackdriver/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/stackdriver/</guid>
+      <guid>https://www.krakend.io/docs/telemetry/stackdriver/</guid>
       <description>Google Stackdriver aggregates metrics, logs, and events from infrastructure, giving developers and operators a rich set of observable signals that speed root-cause analysis and reduce mean time to resolution (MTTR).
 The Opencensus exporter allows you export data to Google Stackdriver. Enabling it only requires you to add the stackdriver exporter in the opencensus module.
-The following configuration snippet sends data to your X-Ray:
+The following configuration snippet sends the data:
 &amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;stackdriver&amp;quot;: { &amp;quot;project_id&amp;quot;: &amp;quot;my-krakend-project&amp;quot;, &amp;quot;metrics_prefix&amp;quot;: &amp;quot;krakend&amp;quot;, &amp;quot;default_labels&amp;quot;: { &amp;quot;env&amp;quot;: &amp;quot;production&amp;quot; } } } }   project_id: The identifier of your Google Cloud project.</description>
+    </item>
+    
+    <item>
+      <title>Exporting metrics, logs and events to Azure Monitor</title>
+      <link>https://www.krakend.io/docs/telemetry/azure/</link>
+      <pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/telemetry/azure/</guid>
+      <description>Azure Monitor collect, analyzes, and acts on telemetry data from your Azure and on-premises environments. Azure Monitor helps you maximize performance and availability of your applications and proactively identify problems in seconds.
+The Opencensus exporter allows you export data to Azure Monitor. Enabling it only requires you to add the ocagent exporter in the opencensus module, see how to configure the OpenCensus Agent.</description>
     </item>
     
     <item>
@@ -863,15 +895,15 @@ If in the other hand, your endpoint connects to a single backend with no manipul
     </item>
     
     <item>
-      <title>Exporting to the logger</title>
-      <link>https://www.krakend.io/docs/logging-metrics-tracing/logger/</link>
-      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
+      <title>Exporting metrics, logs, and events to the OpenCensus Agent</title>
+      <link>https://www.krakend.io/docs/telemetry/ocagent/</link>
+      <pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.krakend.io/docs/logging-metrics-tracing/logger/</guid>
-      <description>Opencensus can export data to the system logger as another exporter.
-Enabling it only requires you to add the logger exporter in the opencensus module.
-The following configuration snippet enables the logger:
-&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;logger&amp;quot;: { &amp;quot;stats&amp;quot;: true, &amp;quot;spans&amp;quot;: true } } }   stats: Whether to log the statistics or not spans: Whether to log the spans or not  See also the additional settings of the Opencensus module that can be declared.</description>
+      <guid>https://www.krakend.io/docs/telemetry/ocagent/</guid>
+      <description>The ocagent exporter sends OpenCensus Stats and Traces to the OpenCensus Agent, instead of pushing data to backends’ exporters.
+For instance, you can enable ocagent to upload data to the OpenCensus Agent, and from there, the agent is simply scraped by a Prometheus.
+You can integrate the OpenCensus Agent with Azure Monitor, Jaeger, or Prometheus to name a few examples.
+Enabling it only requires you to add the ocagent exporter in the opencensus module.</description>
     </item>
     
     <item>
@@ -882,6 +914,18 @@ The following configuration snippet enables the logger:
       <guid>https://www.krakend.io/docs/enterprise/websockets/</guid>
       <description>KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
 KrakenD has the capability of multiplexing. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients.</description>
+    </item>
+    
+    <item>
+      <title>Exporting to the logger</title>
+      <link>https://www.krakend.io/docs/telemetry/logger/</link>
+      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/telemetry/logger/</guid>
+      <description>Opencensus can export data to the system logger as another exporter.
+Enabling it only requires you to add the logger exporter in the opencensus module.
+The following configuration snippet enables the logger:
+&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;logger&amp;quot;: { &amp;quot;stats&amp;quot;: true, &amp;quot;spans&amp;quot;: true } } }   stats: Whether to log the statistics or not spans: Whether to log the spans or not  See also the additional settings of the Opencensus module that can be declared.</description>
     </item>
     
     <item>

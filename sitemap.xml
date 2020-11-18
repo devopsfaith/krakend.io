@@ -73,12 +73,17 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/extended-metrics/metrics/</loc>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/authorization/jwt-overview/</loc>
     <lastmod>2018-11-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/logging/</loc>
+    <loc>https://www.krakend.io/docs/logging/extended-logging/</loc>
     <lastmod>2019-01-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -143,6 +148,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/extended-metrics/influxdb/</loc>
+    <lastmod>2020-11-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/service-settings/cors/</loc>
     <lastmod>2020-07-10T00:00:00+00:00</lastmod>
   </url>
@@ -150,11 +160,6 @@
   <url>
     <loc>https://www.krakend.io/docs/extending/plugin-tools/</loc>
     <lastmod>2019-01-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/metrics/</loc>
-    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -188,7 +193,12 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/tracing/</loc>
+    <loc>https://www.krakend.io/docs/extended-metrics/grafana/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/telemetry/overview/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -233,7 +243,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/graylog-gelf/</loc>
+    <loc>https://www.krakend.io/docs/logging/graylog-gelf/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -258,7 +268,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/logstash/</loc>
+    <loc>https://www.krakend.io/docs/logging/logstash/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -278,7 +288,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/opencensus/</loc>
+    <loc>https://www.krakend.io/docs/telemetry/opencensus/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -303,7 +313,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/prometheus/</loc>
+    <loc>https://www.krakend.io/docs/telemetry/prometheus/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -318,7 +328,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/influxdb/</loc>
+    <loc>https://www.krakend.io/docs/telemetry/influxdb/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -333,7 +343,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/datadog/</loc>
+    <loc>https://www.krakend.io/docs/telemetry/datadog/</loc>
     <lastmod>2020-07-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -343,7 +353,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/zipkin/</loc>
+    <loc>https://www.krakend.io/docs/telemetry/zipkin/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -353,7 +363,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/jaeger/</loc>
+    <loc>https://www.krakend.io/docs/telemetry/jaeger/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -368,7 +378,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/xray/</loc>
+    <loc>https://www.krakend.io/docs/telemetry/xray/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -383,8 +393,13 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/stackdriver/</loc>
+    <loc>https://www.krakend.io/docs/telemetry/stackdriver/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/telemetry/azure/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -398,13 +413,18 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/logging-metrics-tracing/logger/</loc>
-    <lastmod>2019-09-15T00:00:00+00:00</lastmod>
+    <loc>https://www.krakend.io/docs/telemetry/ocagent/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/docs/enterprise/websockets/</loc>
     <lastmod>2020-05-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/telemetry/logger/</loc>
+    <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -414,7 +434,7 @@
   
   <url>
     <loc>https://www.krakend.io/docs/</loc>
-    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
