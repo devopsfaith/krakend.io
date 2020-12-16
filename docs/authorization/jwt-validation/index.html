@@ -939,19 +939,20 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <p>The following settings are available for JWT validation. <strong>Fields <code>alg</code> and <code>jwk-url</code> are mandatory</strong>, and the rest of the keys can be added or not at your best convenience.</p>
 <p>Add them under the <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> namespace:</p>
 <ul>
-<li><code>alg</code>: <em>recognized string</em>. The hashing algorithm used by the issuer. See the <a href="#hashing-algorithms">hashing algorithms</a> section for comprehensive list of supported algorithms.</li>
-<li><code>jwk-url</code>: <em>string</em>. The URL to the JWK endpoint with the public keys used to verify the token&rsquo;s authenticity and integrity.</li>
-<li><code>cache</code>: <em>boolean</em>. Set this value to <code>true</code> to store the required keys (from the JWK descriptor) in memory for the next <code>cache_duration</code> period and avoid hammering the key server, recommended for performance. The cache can store up to 100 different public keys simultaneously.</li>
-<li><code>cache_duration</code>: <em>int</em>. Change the default duration of 15 minutes. Value in <strong>seconds</strong>.</li>
-<li><code>audience</code>: <em>list</em>. Set when you want to reject tokens that do not contain the given audience.</li>
-<li><code>roles_key</code>: When passing roles, the key name inside the JWT payload specifies the user&rsquo;s role.</li>
-<li><code>roles</code>: <em>list</em>. When set, the JWT token not having at least one of the listed roles are rejected.</li>
-<li><code>issuer</code>: <em>string</em>. When set,  tokens not matching the issuer are rejected.</li>
-<li><code>cookie_key</code>: <em>string</em>. Add the key name of the cookie containing the token when is not passed in the headers</li>
-<li><code>disable_jwk_security</code>: <em>boolean</em>. When <code>true</code>, disables security of the JWK client and allows insecure connections (plain HTTP) to download the keys. Useful for development environments.</li>
-<li><code>jwk_fingerprints</code>: <em>string list</em>. A list of fingerprints (the certificate&rsquo;s unique identifier) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.</li>
-<li><code>cipher_suites</code>: <em>integers list</em>. Override the default cipher suites. Use it if you want to enforce an even higher security standard.</li>
-<li><code>jwk_local_ca</code>: <em>string</em>. Path to the certificate of the CA that verifies a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).</li>
+<li><code>alg</code> (<em>recognized string</em>): The hashing algorithm used by the issuer. See the <a href="#hashing-algorithms">hashing algorithms</a> section for comprehensive list of supported algorithms.</li>
+<li><code>jwk-url</code> (<em>string</em>): The URL to the JWK endpoint with the public keys used to verify the token&rsquo;s authenticity and integrity.</li>
+<li><code>cache</code> (<em>boolean</em>): Set this value to <code>true</code> to store the required keys (from the JWK descriptor) in memory for the next <code>cache_duration</code> period and avoid hammering the key server, recommended for performance. The cache can store up to 100 different public keys simultaneously.</li>
+<li><code>cache_duration</code> (<em>int</em>): Change the default duration of 15 minutes. Value in <strong>seconds</strong>.</li>
+<li><code>audience</code> (<em>list</em>): Set when you want to reject tokens that do not contain the given audience.</li>
+<li><code>roles_key</code> (<em>string</em>):  When validating users through roles, provide the key name inside the JWT payload that lists their roles. If this key is nested inside another object, use the dot notation <code>.</code> to traverse each level. E.g.: <code>resource_access.myclient.roles</code> represents the payload <code>{resource_access: { myclient: { roles: [&quot;myrole&quot;] } } </code>.</li>
+<li><code>roles_key_is_nested</code> (<em>bool</em>):  If the roles key is using a nested object using the <code>.</code> dot notation must be set to <code>true</code> in order to traverse the object.</li>
+<li><code>roles</code> (<em>list</em>):  When set, the JWT token not having at least one of the listed roles are rejected.</li>
+<li><code>issuer</code> (<em>string</em>): When set,  tokens not matching the issuer are rejected.</li>
+<li><code>cookie_key</code> (<em>string</em>): Add the key name of the cookie containing the token when is not passed in the headers</li>
+<li><code>disable_jwk_security</code> (<em>boolean</em>): When <code>true</code>, disables security of the JWK client and allows insecure connections (plain HTTP) to download the keys. Useful for development environments.</li>
+<li><code>jwk_fingerprints</code> (<em>strings list</em>): A list of fingerprints (the certificate&rsquo;s unique identifier) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.</li>
+<li><code>cipher_suites</code> (<em>integers list</em>): Override the default cipher suites. Use it if you want to enforce an even higher security standard.</li>
+<li><code>jwk_local_ca</code> (<em>string</em>): Path to the certificate of the CA that verifies a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).</li>
 </ul>
 <p>For the full list of recognized algorithms and cipher suites, scroll down to the end of the document.</p>
 <p>The following example contains every single option available:</p>
@@ -966,6 +967,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
             <span class="s2">&#34;audience1&#34;</span>
         <span class="p">],</span>
         <span class="nt">&#34;roles_key&#34;</span><span class="p">:</span> <span class="s2">&#34;department&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;roles_key_is_nested&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
         <span class="nt">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s2">&#34;sales&#34;</span><span class="p">,</span>
             <span class="s2">&#34;development&#34;</span>
