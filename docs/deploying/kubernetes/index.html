@@ -31,7 +31,7 @@ Deployment definition YAML The KrakenD deployment definition, in a file called d
 <meta property="og:url" content="https://www.krakend.io/docs/deploying/kubernetes/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2017-01-21T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-03-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2020-12-17T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -835,6 +835,9 @@ spec:
         imagePullPolicy: Never
         command: [ &quot;/usr/bin/krakend&quot; ]
         args: [ &quot;run&quot;, &quot;-d&quot;, &quot;-c&quot;, &quot;/etc/krakend/krakend.json&quot;, &quot;-p&quot;, &quot;8080&quot; ]
+        env:
+        - name: KRAKEND_PORT
+          value: &quot;8080&quot;
 </code></pre>
 <h2 id="service-definition-yaml">Service definition yaml</h2>
 <p>The KrakenD <code>service</code> definition, in a file called <code>service-definition.yaml</code>:</p>
