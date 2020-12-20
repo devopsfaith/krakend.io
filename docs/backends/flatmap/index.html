@@ -868,19 +868,19 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <h3 id="operations-and-arguments">Operations and arguments</h3>
 <p>The types of operations are defined as follows:</p>
 <ul>
-<li><strong>Move</strong>: To move or rename a collection to another.
+<li><strong>Move</strong>: To move or rename a collection to another. Needs 2 arguments.
 <ul>
 <li><code>&quot;type&quot;: &quot;move&quot;</code></li>
 <li><code>&quot;args&quot;: [&quot;target_in_collection&quot;, &quot;destination_in_collection&quot;]</code></li>
 </ul>
 </li>
-<li><strong>Delete</strong>: To remove a collection
+<li><strong>Delete</strong>: To remove al matching patterns within a collection. Needs one or more arguments.
 <ul>
 <li><code>&quot;type&quot;: &quot;del&quot;</code></li>
-<li><code>&quot;args&quot;: [&quot;target_in_collection_to_delete&quot;]</code></li>
+<li><code>&quot;args&quot;: [&quot;target_in_collection_to_delete&quot;, &quot;another_collection_to_delete&quot;, &quot;...&quot;]</code></li>
 </ul>
 </li>
-<li><strong>Append</strong>: To append a collection after another one, and return only the latter.
+<li><strong>Append</strong>: To append a collection after another one, and return only the latter. Needs 2 arguments.
 <ul>
 <li><code>&quot;type&quot;: &quot;append&quot;</code></li>
 <li><code>&quot;args&quot;: [&quot;collection_to_append&quot;, &quot;returned_collection&quot;]</code></li>
