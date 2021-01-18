@@ -887,7 +887,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 </code></pre>
 <p>No mandatory <code>channel</code> here! Because the optional parameter <code>limit</code> has been declared.</p>
 <p>On the other hand, <code>http://krakend/v3/iOS/foo?evil=here</code> produces:</p>
-<pre><code> /foo?channel=foo
+<pre><code> /foo?channel=iOS
 </code></pre>
 <p>No optional parameter has been passed, so the mandatory one is used.</p>
 <p>Read the <a href="/docs/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test query string parameters.</p>
