@@ -28,7 +28,7 @@
 <meta property="og:url" content="https://www.krakend.io/docs/commands/check/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-10-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2016-10-28T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2021-02-16T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -340,7 +340,7 @@
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/backends/overview/" class="nav-link children ">Backends Overview</a>
+                        <a href="/docs/backends/overview/" class="nav-link children ">Declaring backends</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -789,6 +789,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/commands/
     <li><a href="#example">Example</a></li>
     <li><a href="#debug-disabled">Debug disabled</a></li>
     <li><a href="#debug-enabled">Debug enabled</a></li>
+    <li><a href="#check-conflicting-routes">Check conflicting routes</a></li>
   </ul>
 </nav>
             </div>
@@ -821,7 +822,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>&nbsp;</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					
 				
 			
@@ -829,7 +830,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>`7MMF'&nbsp;`YMM'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM"""Yb.&nbsp;</li>
+					<li>`7MMF'&nbsp;`YMM'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7MM"""Yb.&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					
 				
 			
@@ -837,7 +838,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>MM&nbsp;&nbsp;&nbsp;.M'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;`Yb.&nbsp;</li>
+					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;.M'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;`Yb.&nbsp;&nbsp;</li>
 					
 				
 			
@@ -845,7 +846,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>MM&nbsp;.d"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7Mb,od8&nbsp;,6"Yb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;,MP'.gP"Ya&nbsp;`7MMpMMMb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Mb&nbsp;</li>
+					<li>&nbsp;&nbsp;MM&nbsp;.d"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`7Mb,od8&nbsp;,6"Yb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;,MP'.gP"Ya&nbsp;`7MMpMMMb.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Mb&nbsp;&nbsp;</li>
 					
 				
 			
@@ -853,7 +854,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>MMMMM.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM'&nbsp;"'8)&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;;Y&nbsp;&nbsp;,M'&nbsp;&nbsp;&nbsp;Yb&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;</li>
+					<li>&nbsp;&nbsp;MMMMM.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM'&nbsp;"'8)&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;;Y&nbsp;&nbsp;,M'&nbsp;&nbsp;&nbsp;Yb&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;</li>
 					
 				
 			
@@ -861,7 +862,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>MM&nbsp;&nbsp;VMA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,pm9MM&nbsp;&nbsp;&nbsp;&nbsp;MM;Mm&nbsp;&nbsp;8M""""""&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,MP&nbsp;</li>
+					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;VMA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,pm9MM&nbsp;&nbsp;&nbsp;&nbsp;MM;Mm&nbsp;&nbsp;8M""""""&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,MP&nbsp;&nbsp;</li>
 					
 				
 			
@@ -869,7 +870,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>MM&nbsp;&nbsp;&nbsp;`MM.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;8M&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;`Mb.YM.&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;,dP'&nbsp;</li>
+					<li>&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;`MM.&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;8M&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;`Mb.YM.&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;,dP'&nbsp;&nbsp;</li>
 					
 				
 			
@@ -877,7 +878,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>.JMML.&nbsp;&nbsp;&nbsp;MMb..JMML.&nbsp;&nbsp;`Moo9^Yo..JMML.&nbsp;YA.`Mbmmd'.JMML&nbsp;&nbsp;JMML..JMMmmmd&nbsp;</li>
+					<li>.JMML.&nbsp;&nbsp;&nbsp;MMb..JMML.&nbsp;&nbsp;`Moo9^Yo..JMML.&nbsp;YA.`Mbmmd'.JMML&nbsp;&nbsp;JMML..JMMmmmdP'&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					
 				
 			
@@ -893,7 +894,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>&nbsp;</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					
 				
 			
@@ -949,7 +950,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>krakend&nbsp;check&nbsp;[flags]&nbsp;</li>
+					<li>&nbsp;&nbsp;krakend&nbsp;check&nbsp;[flags]&nbsp;</li>
 					
 				
 			
@@ -973,7 +974,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>check,&nbsp;validate&nbsp;</li>
+					<li>&nbsp;&nbsp;check,&nbsp;validate&nbsp;</li>
 					
 				
 			
@@ -1021,7 +1022,15 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>-h,&nbsp;--help&nbsp;&nbsp;&nbsp;help&nbsp;for&nbsp;check&nbsp;</li>
+					<li>&nbsp;&nbsp;-h,&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help&nbsp;for&nbsp;check&nbsp;</li>
+					
+				
+			
+				
+				 
+					
+					
+					<li>&nbsp;&nbsp;-t,&nbsp;--test-gin-routes&nbsp;&nbsp;&nbsp;Test&nbsp;the&nbsp;endpoint&nbsp;patterns&nbsp;against&nbsp;a&nbsp;real&nbsp;gin&nbsp;router&nbsp;on&nbsp;selected&nbsp;port&nbsp;</li>
 					
 				
 			
@@ -1045,7 +1054,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>-c,&nbsp;--config&nbsp;string&nbsp;&nbsp;&nbsp;Path&nbsp;to&nbsp;the&nbsp;configuration&nbsp;filename&nbsp;</li>
+					<li>&nbsp;&nbsp;-c,&nbsp;--config&nbsp;string&nbsp;&nbsp;&nbsp;Path&nbsp;to&nbsp;the&nbsp;configuration&nbsp;filename&nbsp;</li>
 					
 				
 			
@@ -1053,7 +1062,7 @@ in the config file could be shadowed. In order to validate your config completel
 				 
 					
 					
-					<li>-d,&nbsp;--debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;the&nbsp;debug&nbsp;</li>
+					<li>&nbsp;&nbsp;-d,&nbsp;--debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;the&nbsp;debug&nbsp;</li>
 					
 				
 			
@@ -1704,6 +1713,11 @@ in the config file could be shadowed. In order to validate your config completel
 		</ul>
 	</div>
 </div>
+<h2 id="check-conflicting-routes">Check conflicting routes</h2>
+<p>Even the configuration is valid from a syntax perspective, you can have a failing KrakenD once the service starts. To avoid this situation, the <code>-t</code> flag will actually start a KrakenD instance and <strong>test the routes</strong>.</p>
+<p>When automating the checks of the configuration, make sure to add the <code>-t</code> flag:</p>
+<pre><code>krakend check -t -d -c config.json
+</code></pre><p>Make sure that the port of KrakenD is not allocated in your pipeline. You can always change it with environment vars.</p>
 
     </section>
 </div>
@@ -1793,7 +1807,7 @@ in the config file could be shadowed. In order to validate your config completel
         </div>
         <div class="row copyright">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2020 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017-2021 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="col-md-7 hidden-xs">
                 <span class="float-right">

@@ -341,7 +341,7 @@ If you are more familiar with Lua than Go, this module can help you solve except
                 <ul class="nav flex-column">
                     
                     <li class="nav-item child">
-                        <a href="/docs/backends/overview/" class="nav-link children ">Backends Overview</a>
+                        <a href="/docs/backends/overview/" class="nav-link children ">Declaring backends</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -825,7 +825,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>If you are more familiar with Lua than Go, this module can help you solve exceptional cases that need solution using a little bit of scripting. The introduction of Lua scripts in your Gateway does not require to recompile KrakenD, but unlike Go, Lua scripts are interpreted in real-time.</p>
 <p>For performance-first users, a Go plugin delivers much better results than a Lua script.</p>
 <h2 id="configuration">Configuration</h2>
-<p>KrakenD looks for the lua scripts in the root folder where krakend is running. You need to specify in the configuration which lua scripts are going to be loaded in Krakend, as well as several options. The <code>extra_config</code> can be set at <code>endpoint</code> level or <code>backend</code> level.</p>
+<p>KrakenD looks for the lua scripts in the root folder where KrakenD is running. You need to specify in the configuration which lua scripts are going to be loaded in Krakend, as well as several options. The <code>extra_config</code> can be set at <code>endpoint</code> level or <code>backend</code> level.</p>
 <pre><code>&quot;extra_config&quot;: {
       &quot;github.com/devopsfaith/krakend-lua/proxy&quot;: {
         &quot;sources&quot;: [&quot;file1.lua&quot;],
@@ -1066,7 +1066,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
         </div>
         <div class="row copyright">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2020 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017-2021 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="col-md-7 hidden-xs">
                 <span class="float-right">

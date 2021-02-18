@@ -341,7 +341,7 @@ Filtering When you offer a KrakenD endpoint, you can decide whether to return al
                 <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
-                        <a href="/docs/backends/overview/" class="nav-link children ">Backends Overview</a>
+                        <a href="/docs/backends/overview/" class="nav-link children ">Declaring backends</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -856,56 +856,58 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <p>We will use the <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a> fake API to see live the output of the backend.</p>
 <p>We want to set up a KrakenD endpoint that returns the <strong>posts for a specific user</strong>, but we&rsquo;ve seen that the <a href="https://jsonplaceholder.typicode.com/posts/1">backend response</a> contains too much data since our use case do not need the <code>body</code> and <code>userId</code> fields and we want a lighter and faster response.</p>
 <p>The KrakenD endpoint to accept URLs like<code>/posts/1</code> is defined as follows:</p>
-<p>{
-&ldquo;endpoint&rdquo;: &ldquo;/posts/{user}&quot;,
-&ldquo;method&rdquo;: &ldquo;GET&rdquo;,
-&ldquo;backend&rdquo;: [
-{
-&ldquo;url_pattern&rdquo;: &ldquo;/posts/{user}&quot;,
-&ldquo;host&rdquo;: [
-&ldquo;https://jsonplaceholder.typicode.com&rdquo;
-],
-&ldquo;deny&rdquo;: [
-&ldquo;body&rdquo;,
-&ldquo;userId&rdquo;
-]
-}
-]
-}</p>
+<pre><code>{
+    &quot;endpoint&quot;: &quot;/posts/{user}&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;backend&quot;: [
+      {
+        &quot;url_pattern&quot;: &quot;/posts/{user}&quot;,
+        &quot;host&quot;: [
+          &quot;https://jsonplaceholder.typicode.com&quot;
+        ],
+        &quot;deny&quot;: [
+          &quot;body&quot;,
+          &quot;userId&quot;
+        ]
+      }
+    ]
+  }
+</code></pre>
 <p>When calling the KrakenD endpoint <code>/posts/1</code> the response you would get will be as follows:</p>
 <pre><code>{
-&quot;id&quot;: 1,
-&quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;
+  &quot;id&quot;: 1,
+  &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;
+}
 </code></pre>
-<p>}</p>
 <p><a href="https://jsonplaceholder.typicode.com/posts/1">Compared with the backend response</a>, you&rsquo;ll see that the fields <code>body</code> and <code>userId</code> are no longer there.</p>
 <h3 id="allow">Allow</h3>
 <p>The allow list filter can be read as the <em>only show this</em> filter. When you set an allow list KrakenD will include in the endpoint response, only those fields that match exactly with your choice. Use the allow list to strictly define the fields you want to show in the response.</p>
 <p>The allowed fields of your choice can also be nested. Use a <strong>dot</strong> as the level separator. For instance the <code>a1</code> field in the following JSON response <code>{ &quot;a&quot;: { &quot;a1&quot;: 1 } }</code> can be defined as <code>a.a1</code>.</p>
 <h4 id="allow-list-example">Allow list example</h4>
 <p>We will repeat the same exercise we did in the deny list to get the same output. We only want to get the <code>id</code> and <code>title</code> fields from the backend.</p>
-<p>{
-&ldquo;endpoint&rdquo;: &ldquo;/posts/{user}&quot;,
-&ldquo;method&rdquo;: &ldquo;GET&rdquo;,
-&ldquo;backend&rdquo;: [
-{
-&ldquo;url_pattern&rdquo;: &ldquo;/posts/{user}&quot;,
-&ldquo;host&rdquo;: [
-&ldquo;https://jsonplaceholder.typicode.com&rdquo;
-],
-&ldquo;allow&rdquo;: [
-&ldquo;id&rdquo;,
-&ldquo;title&rdquo;
-]
-}
-]
-}</p>
+<pre><code>{
+    &quot;endpoint&quot;: &quot;/posts/{user}&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;backend&quot;: [
+      {
+        &quot;url_pattern&quot;: &quot;/posts/{user}&quot;,
+        &quot;host&quot;: [
+          &quot;https://jsonplaceholder.typicode.com&quot;
+        ],
+        &quot;allow&quot;: [
+          &quot;id&quot;,
+          &quot;title&quot;
+        ]
+      }
+    ]
+  }
+</code></pre>
 <p>When calling the KrakenD endpoint <code>/posts/1</code> the response you would get will be as follows:</p>
 <pre><code>{
-&quot;id&quot;: 1,
-&quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;
+  &quot;id&quot;: 1,
+  &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;
+}
 </code></pre>
-<p>}</p>
 <p>Just exactly as we did with the deny list.</p>
 <h3 id="allow-list-or-deny-list">Allow list or deny list?</h3>
 <p>When filtering, you need to choose between the deny list and the allow list. The two operations cannot coexist as their behaviors are contradictory. Nothing stops you from playing for a while and seeing what happens if you mix them, but make sure it&rsquo;s only experimentation!</p>
@@ -1193,7 +1195,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         </div>
         <div class="row copyright">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2020 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017-2021 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="col-md-7 hidden-xs">
                 <span class="float-right">

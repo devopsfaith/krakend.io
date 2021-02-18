@@ -22,13 +22,13 @@
 
 
 <meta property="og:title" content="Backends Overview" />
-<meta property="og:description" content="The concept of backend references to the origin servers providing the necessary data to populate your endpoints. A backend can be something as your HTTP-based API, a Lambda function, or a Kafka queue to name a few examples.
-A backend can be any server inside or outside your network, as long it is reachable by KrakenD. For instance, you can create endpoints that are fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook or any other service." />
+<meta property="og:description" content="The concept of backend refers to the origin servers providing the necessary data to populate your endpoints. A backend can be something like your HTTP-based API, a Lambda function, or a Kafka queue, to name a few examples.
+A backend can be any server inside or outside your network, as long it is reachable by KrakenD. For instance, you can create endpoints fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook, or any other service, and return back everything aggregated in a single glorified response." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/overview/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2016-09-30T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-10-21T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2021-01-28T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -36,8 +36,8 @@ A backend can be any server inside or outside your network, as long it is reacha
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Backends Overview"/>
-<meta name="twitter:description" content="The concept of backend references to the origin servers providing the necessary data to populate your endpoints. A backend can be something as your HTTP-based API, a Lambda function, or a Kafka queue to name a few examples.
-A backend can be any server inside or outside your network, as long it is reachable by KrakenD. For instance, you can create endpoints that are fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook or any other service."/>
+<meta name="twitter:description" content="The concept of backend refers to the origin servers providing the necessary data to populate your endpoints. A backend can be something like your HTTP-based API, a Lambda function, or a Kafka queue, to name a few examples.
+A backend can be any server inside or outside your network, as long it is reachable by KrakenD. For instance, you can create endpoints fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook, or any other service, and return back everything aggregated in a single glorified response."/>
 
 
 
@@ -341,7 +341,7 @@ A backend can be any server inside or outside your network, as long it is reacha
                 <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
-                        <a href="/docs/backends/overview/" class="nav-link children active">Backends Overview</a>
+                        <a href="/docs/backends/overview/" class="nav-link children active">Declaring backends</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -787,7 +787,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#backend-configuration">Backend configuration</a></li>
+    <li><a href="#backend-configuration">Backend configuration</a>
+      <ul>
+        <li><a href="#default-values">Default values</a></li>
+      </ul>
+    </li>
     <li><a href="#backend-configuration-example">Backend configuration example</a></li>
   </ul>
 </nav>
@@ -796,44 +800,54 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         
 
 
-        <p>The concept of <code>backend</code> references to the origin servers providing the necessary data to populate your endpoints. A backend can be something as your HTTP-based API, a Lambda function, or a Kafka queue to name a few examples.</p>
-<p>A backend can be any server inside or outside your network, as long it is reachable by KrakenD. For instance, you can create endpoints that are fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook or any other service.</p>
-<p>When a KrakenD endpoint is hit, the engine requests <strong>all defined backends in parallel</strong> (unless a <a href="/docs/endpoints/sequential-proxy">sequential proxy</a> is used), and the content parsed according to its <code>encoding</code> or middleware configuration.</p>
+        <p>The concept of <code>backend</code> refers to the origin servers providing the necessary data to populate your endpoints. A backend can be something like your HTTP-based API, a Lambda function, or a Kafka queue, to name a few examples.</p>
+<p>A backend can be any server inside or outside your network, as long it is reachable by KrakenD. For instance, you can create endpoints fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook, or any other service, and return back everything aggregated in a single glorified response.</p>
+<p>When a KrakenD endpoint is hit, the engine requests <strong>all defined backends in parallel</strong> (unless a <a href="/docs/endpoints/sequential-proxy">sequential proxy</a> is used). The returned content is parsed according to its <code>encoding</code> or middleware configuration.</p>
 <p>The backends are declared inside every endpoint using a <code>backend</code> array.</p>
 <h2 id="backend-configuration">Backend configuration</h2>
 <p>Inside the <code>backend</code> array, you need to create an object for each backend entry. The more important options are:</p>
 <ul>
-<li><a href="/docs/backends/supported-encodings/"><code>encoding</code></a> to define how to parse the backend response</li>
-<li><a href="/docs/service-discovery/overview/"><code>sd</code></a> when using a Service Discovery system (e.g., when deploying in k8s)</li>
-<li><code>method</code> one of <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code> (in <strong>uppercase</strong>!)</li>
-<li><code>url_pattern</code> The path inside the service (no protocol, no host, no method)</li>
-<li><code>host</code> an array with all the available hosts to load balance requests using the format <code>protocol://host:port</code></li>
+<li><code>encoding</code>: Define your <a href="/docs/backends/supported-encodings/">needed encoding</a> to inform KrakenD how to parse the response.</li>
+<li><code>sd</code>: When you use a <a href="/docs/service-discovery/overview/">Service Discovery</a> system to resolve your backend services (e.g., when deploying in k8s)</li>
+<li><code>method</code>: One of <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code> (in <strong>uppercase</strong>!). The method does not need to match the endpoint&rsquo;s method.</li>
+<li><code>url_pattern</code> The path inside the service (no protocol, no host, no method). E.g: <code>/users</code></li>
+<li><code>host</code> an array with all the available hosts to load balance requests using the format <code>protocol://host:port</code>. E.g.: ' <a href="https://my.users-ms.com">https://my.users-ms.com</a>`.</li>
 <li><code>extra_config</code> when there is additional configuration related to a specific component or middleware that you want to enable</li>
 </ul>
-<p>More configuration options such as the ones for <a href="/docs/backends/data-manipulation/">data manipulation</a> are available. You will find them in each specific section.</p>
+<p>Other configuration options such as the ones for <a href="/docs/backends/data-manipulation/">data manipulation</a> are available. You will find them in each specific feature section.</p>
+<h3 id="default-values">Default values</h3>
+<p>When declaring a backend, all properties named as the endpoint are automatically inherited. For instance, if your endpoint uses a <code>POST</code> <code>method</code>, unless otherwise declared, the backend will use <code>POST</code> as well.</p>
+<p>There are also some attributes that you can omit if you don&rsquo;t need to override the value:</p>
+<ul>
+<li><code>host</code>: If you have a <code>host</code> declaration at the configuration&rsquo;s root level, it&rsquo;s value is used.</li>
+<li><code>method</code>: The endpoint&rsquo;s method is used, declare it to alter it in the backend call.</li>
+<li><code>encoding</code>: Will use the endpoint encoding, or <code>json</code> if not defined anywhere.</li>
+<li><code>sd</code>: The service discovery always defaults to <code>static</code> (no external Service Discovery).</li>
+<li><code>extra_config</code>: Not required unless additional non-core middleware is needed (like a circuit breaker, rate limit, etc.)</li>
+</ul>
 <h2 id="backend-configuration-example">Backend configuration example</h2>
-<p>In the example below, KrakenD offers an endpoint <code>/v1/products</code> that merges the content from two different services using the URLs <code>/products</code> and <code>/offers</code>. The requests to the marketing (<code>marketing.myapi.com</code>) and the products (<code>products-XX.myapi.com</code>) API are fired simultaneously. KrakenD will load balance amongs the listed hosts (here or in your <a href="/docs/service-discovery/overview/">service discovery</a>) to pick one of the three hosts.</p>
+<p>In the example below, KrakenD offers an endpoint <code>/v1/products</code> that merges the content from two different services using the URLs <code>/products</code> and <code>/offers</code>. The marketing (<code>marketing.myapi.com</code>) and the products (<code>products-XX.myapi.com</code>) API requests are fired simultaneously. KrakenD will load balance among the listed hosts (here or in your <a href="/docs/service-discovery/overview/">service discovery</a>) to pick one of the three hosts.</p>
 <pre><code>...
 &quot;endpoints&quot;: [
 {
-	&quot;endpoint&quot;: &quot;/v1/products&quot;,
-	&quot;method&quot;: &quot;GET&quot;,
-	&quot;backend&quot;: [
-		{
-			&quot;url_pattern&quot;: &quot;/products&quot;,
-			&quot;host&quot;: [
-				&quot;https://products-01.myapi.com:8000&quot;,
-				&quot;https://products-02.myapi.com:8000&quot;,
-				&quot;https://products-03.myapi.com:8000&quot;
-			]
-		},
-		{
-			&quot;url_pattern&quot;: &quot;/offers&quot;,
-			&quot;host&quot;: [
-				&quot;https://marketing.myapi.com:8000&quot;
-			]
-		}
-	]
+    &quot;endpoint&quot;: &quot;/v1/products&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;backend&quot;: [
+        {
+            &quot;url_pattern&quot;: &quot;/products&quot;,
+            &quot;host&quot;: [
+                &quot;https://products-01.myapi.com:8000&quot;,
+                &quot;https://products-02.myapi.com:8000&quot;,
+                &quot;https://products-03.myapi.com:8000&quot;
+            ]
+        },
+        {
+            &quot;url_pattern&quot;: &quot;/offers&quot;,
+            &quot;host&quot;: [
+                &quot;https://marketing.myapi.com:8000&quot;
+            ]
+        }
+    ]
 },
 ...
 </code></pre>
@@ -925,7 +939,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         </div>
         <div class="row copyright">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2020 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017-2021 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="col-md-7 hidden-xs">
                 <span class="float-right">
