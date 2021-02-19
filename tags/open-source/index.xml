@@ -19,7 +19,7 @@
       <guid>https://www.krakend.io/blog/krakend-partners-with-microsoft/</guid>
       <description>KrakenD continues to expand its distribution channels and services by partnering with Microsoft to publish its API Gateway on Azure Marketplace.
 As a first step, the Azure Marketplace now counts with a ready-to-use KrakenD image for the open-source edition that helps users of the Azure Kubernete Service (AKS) to quickly and securely publish services through KrakenD API Gateway.
-In Christian Dennig&amp;rsquo;s words (Cloud Solution Architect at Microsoft) &amp;ldquo;KrakenD is a great fit in the cloud-native space and a recommended product for AKS workloads and Kubernetes in general&amp;rdquo;</description>
+According to a Cloud Solution Architect at Microsoft KrakenD is a great fit in the cloud-native space and a recommended product for AKS workloads and Kubernetes in general</description>
     </item>
     
     <item>
