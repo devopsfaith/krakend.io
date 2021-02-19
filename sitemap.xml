@@ -438,28 +438,48 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/docs/</loc>
-    <lastmod>2021-02-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/categories/announcements/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/blog/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/docker/</loc>
+    <lastmod>2021-02-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.krakend.io/categories/krakend/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/blog/krakend-partners-with-microsoft/</loc>
+    <lastmod>2021-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/open-source/</loc>
+    <lastmod>2021-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/tags/</loc>
+    <lastmod>2021-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/</loc>
+    <lastmod>2021-02-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -468,17 +488,7 @@
   </url>
   
   <url>
-    <loc>https://www.krakend.io/tags/open-source/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.krakend.io/tags/release-notes/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/</loc>
     <lastmod>2020-10-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -664,11 +674,6 @@
   
   <url>
     <loc>https://www.krakend.io/categories/docker/</loc>
-    <lastmod>2018-06-22T11:06:53+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/tags/docker/</loc>
     <lastmod>2018-06-22T11:06:53+02:00</lastmod>
   </url>
   

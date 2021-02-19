@@ -6,10 +6,21 @@
     <description>Recent content in KrakenD on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Feb 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/categories/krakend/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KrakenD partners with Microsoft to distribute in Azure</title>
+      <link>https://www.krakend.io/blog/krakend-partners-with-microsoft/</link>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-partners-with-microsoft/</guid>
+      <description>KrakenD continues to expand its distribution channels and services by partnering with Microsoft to publish its API Gateway on Azure Marketplace.
+As a first step, the Azure Marketplace now counts with a ready-to-use KrakenD image for the open-source edition that helps users of the Azure Kubernete Service (AKS) to quickly and securely publish services through KrakenD API Gateway.
+In Christian Dennig&amp;rsquo;s words (Cloud Solution Architect at Microsoft) &amp;ldquo;KrakenD is a great fit in the cloud-native space and a recommended product for AKS workloads and Kubernetes in general&amp;rdquo;</description>
+    </item>
     
     <item>
       <title>KrakenD 1.2.0 released</title>

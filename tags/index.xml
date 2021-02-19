@@ -6,15 +6,24 @@
     <description>Recent content in Tags on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Feb 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.krakend.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>docker</title>
+      <link>https://www.krakend.io/tags/docker/</link>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>open source</title>
       <link>https://www.krakend.io/tags/open-source/</link>
-      <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/tags/open-source/</guid>
       <description></description>
@@ -80,15 +89,6 @@
       <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
       
       <guid>https://www.krakend.io/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://www.krakend.io/tags/docker/</link>
-      <pubDate>Fri, 22 Jun 2018 11:06:53 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/tags/docker/</guid>
       <description></description>
     </item>
     
