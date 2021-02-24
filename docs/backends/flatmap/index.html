@@ -821,7 +821,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <li>When the response of a backend is received (inside its <code>backend</code> section)</li>
 <li>After having merged all the backend responses (inside the <code>endpoint</code> section, starting at KrakenD 1.2)</li>
 </ul>
-<p>You can do simultaneous combinations to output the desired result. For instance, declare an endpoint with three backends that apply transformations independently, and a final change within the endpoint after merging the result of the three.</p>
+<p>You can do simultaneous combinations to output the desired result. For instance, declare an endpoint with three backends that apply transformations independently and a final change within the endpoint after merging the three.</p>
 <h2 id="types-of-manipulations">Types of manipulations</h2>
 <p>There are different types of operations you can do:</p>
 <ul>
@@ -837,7 +837,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
  </div>
 <h2 id="flatmap-configuration">Flatmap configuration</h2>
 <p>Depending on the stage you want to do the manipulation, you will need an <code>extra_config</code> configuration inside your <code>endpoint</code> or <code>backend</code> section. For both cases, the namespace is <code>github.com/devopsfaith/krakend/proxy</code>.</p>
-<p>The component structure with three operations, would be as follows:</p>
+<p>The component structure with three operations would be as follows:</p>
 <pre><code>    &quot;extra_config&quot;: {
         &quot;github.com/devopsfaith/krakend/proxy&quot;: {
             &quot;flatmap_filter&quot;: [
@@ -868,13 +868,13 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <h3 id="operations-and-arguments">Operations and arguments</h3>
 <p>The types of operations are defined as follows:</p>
 <ul>
-<li><strong>Move</strong>: To move or rename a collection to another. Needs 2 arguments.
+<li><strong>Move</strong>: To move or rename a collection to another. It needs two arguments.
 <ul>
 <li><code>&quot;type&quot;: &quot;move&quot;</code></li>
 <li><code>&quot;args&quot;: [&quot;target_in_collection&quot;, &quot;destination_in_collection&quot;]</code></li>
 </ul>
 </li>
-<li><strong>Delete</strong>: To remove al matching patterns within a collection. Needs one or more arguments.
+<li><strong>Delete</strong>: To remove all matching patterns within a collection. Needs one or more arguments.
 <ul>
 <li><code>&quot;type&quot;: &quot;del&quot;</code></li>
 <li><code>&quot;args&quot;: [&quot;target_in_collection_to_delete&quot;, &quot;another_collection_to_delete&quot;, &quot;...&quot;]</code></li>
@@ -895,7 +895,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 </ul>
 <p>Operations always apply to ** the last item** in the arguments. For instance, a deletion of <code>a.b.c</code> deletes <code>c</code> but leaves <code>a.b</code> in the response.</p>
 <h3 id="notation-by-example">Notation by example</h3>
-<p>We are going to use an elementary JSON structure as an example of data representation, see below:</p>
+<p>We are going to use an elementary JSON structure as an example of data representation. See below:</p>
 <pre><code>    {
         &quot;a&quot;: [
             {

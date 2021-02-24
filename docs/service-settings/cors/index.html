@@ -815,7 +815,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
       &quot;allow_headers&quot;: [
         &quot;Accept-Language&quot;
       ],
-      &quot;allow_credentials&quot;: false
+      &quot;allow_credentials&quot;: false,
+      &quot;debug&quot;: false
     }
   }
 </code></pre>
@@ -826,6 +827,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-s
 <li><code>expose_headers</code> <em>(list)</em>: Headers that are safe to expose to the API of a CORS API specification</li>
 <li><code>max_age</code> <em>(string)</em>: For how long the response can be cached. The value needs to specify units. Valid time units are: <code>ns</code>, <code>us</code>, (or <code>µs</code>), <code>ms</code>, <code>s</code>, <code>m</code>, <code>h</code> E.g., <code>12h</code> for 12 hours.</li>
 <li><code>allow_credentials</code> <em>(boolean)</em>: When requests can include user credentials like cookies, HTTP authentication or client side SSL certificates</li>
+<li><code>debug</code>: <em>(boolean)</em>: Show debugging information in the logger, <strong>to be used only during development</strong> (defaults to <code>false</code>)</li>
 </ul>
 <div class="note">
     <h4><i class="fa fa-sticky-note"></i> Allow credentials and wildcards</h4>

@@ -22,14 +22,15 @@
 
 
 <meta property="og:title" content="JWT Validation" />
-<meta property="og:description" content="The JWT validation protects endpoints from public usage, forcing calls to the API gateway to provide a valid token to access its contents.
-The generation of the token itself has to be driven by a third party, although the user calls can be proxied through KrakenD. If you don&rsquo;t have an identity server yet you still can sign tokens through KrakenD
-The internal component responsible for validating tokens is called krakend-jose." />
+<meta property="og:description" content="The component krakend-jose is responsible for the JWT validation and protects endpoints from public usage, requiring end-users to provide a valid token to access its contents.
+Before digging any further, some answers to frequently asked questions:
+  KrakenD does not generate the tokens itself. Still, you can plug it into any SaaS or self-hosted Identity Provider (IdP) using industry standards (e.g.: Auth0, Azure AD, Google Firebase, Keycloak, etc.)
+  KrakenD does not need to validate all calls using your IdP." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/authorization/jwt-validation/" />
 <meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 <meta property="article:published_time" content="2018-11-03T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-10-27T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2021-02-21T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -37,9 +38,10 @@ The internal component responsible for validating tokens is called krakend-jose.
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="JWT Validation"/>
-<meta name="twitter:description" content="The JWT validation protects endpoints from public usage, forcing calls to the API gateway to provide a valid token to access its contents.
-The generation of the token itself has to be driven by a third party, although the user calls can be proxied through KrakenD. If you don&rsquo;t have an identity server yet you still can sign tokens through KrakenD
-The internal component responsible for validating tokens is called krakend-jose."/>
+<meta name="twitter:description" content="The component krakend-jose is responsible for the JWT validation and protects endpoints from public usage, requiring end-users to provide a valid token to access its contents.
+Before digging any further, some answers to frequently asked questions:
+  KrakenD does not generate the tokens itself. Still, you can plug it into any SaaS or self-hosted Identity Provider (IdP) using industry standards (e.g.: Auth0, Azure AD, Google Firebase, Keycloak, etc.)
+  KrakenD does not need to validate all calls using your IdP."/>
 
 
 
@@ -796,18 +798,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
                 <h6 class="header rounded-top">On this page</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#jwt-tokens">JWT tokens</a>
+    <li><a href="#key-concepts">Key concepts</a></li>
+    <li><a href="#jwt-tokens-definition">JWT tokens definition</a></li>
+    <li><a href="#jwt-header-requirements">JWT header requirements</a></li>
+    <li><a href="#basic-jwt-validation">Basic JWT validation</a></li>
+    <li><a href="#jwt-validation-settings">JWT validation settings</a>
       <ul>
-        <li><a href="#jwt-header-requirements">JWT header requirements</a></li>
         <li><a href="#validation-process">Validation process</a></li>
-      </ul>
-    </li>
-    <li><a href="#basic-jwt-validation">Basic JWT validation</a>
-      <ul>
-        <li><a href="#jwt-validation-settings">JWT validation settings</a></li>
+        <li><a href="#accepted-providers-for-encrypting-payloads">Accepted providers for encrypting payloads</a></li>
       </ul>
     </li>
     <li><a href="#passing-claims-to-the-backend-url">Passing claims to the backend URL</a></li>
+    <li><a href="#propagate-jwt-claims-as-request-headers">Propagate JWT claims as request headers</a></li>
     <li><a href="#a-complete-running-example">A complete running example</a></li>
     <li><a href="#supported-hashing-algorithms-and-cipher-suites">Supported hashing algorithms and cipher suites</a>
       <ul>
@@ -822,13 +824,38 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
         
 
 
-        <p>The JWT validation <strong>protects endpoints from public usage</strong>, forcing calls to the API gateway to provide a valid token to access its contents.</p>
-<p>The generation of the token itself has to be <strong>driven by a third party</strong>, although the user calls can be proxied through KrakenD. If you don&rsquo;t have an identity server yet you still can <a href="/docs/authorization/jwt-signing/">sign tokens through KrakenD</a></p>
-<p>The internal component responsible for validating tokens is called <strong>krakend-jose</strong>.</p>
-<h2 id="jwt-tokens">JWT tokens</h2>
-<p>KrakenD uses standard JWT tokens to protect endpoints, using JSON Web Signature (<strong>JWS</strong>), to check the tokens&rsquo; digital signature, ensuring the integrity of the contained claims and protecting against attacks using tampered tokens.</p>
-<p>A JWT token is a <code>base64</code> encoded string with the structure <strong>header.payload.signature</strong>.</p>
-<p>A typical request to an endpoint requiring JWT validation includes a <code>Bearer</code> in the <code>Authorization</code> header:
+        <p>The component <code>krakend-jose</code> is responsible for the JWT validation and <strong>protects endpoints from public usage</strong>, requiring end-users to provide a valid token to access its contents.</p>
+<p>Before digging any further, some answers to frequently asked questions:</p>
+<ol>
+<li>
+<p><strong>KrakenD does not generate the tokens itself</strong>. Still, you can plug it into any SaaS or self-hosted Identity Provider (<strong>IdP</strong>) using industry standards (e.g.: Auth0, Azure AD, Google Firebase, Keycloak, etc.)</p>
+</li>
+<li>
+<p><strong>KrakenD does not need to validate all calls using your IdP</strong>. KrakenD validates every incoming call&rsquo;s signature and <strong>it doesn&rsquo;t make token introspection</strong> (asking the IdP data about the token owner).</p>
+</li>
+<li>
+<p><strong>If you don&rsquo;t have an identity server</strong>, you can still use your classic monolith/backend login system and adapt it to return a JWT payload (which is a simple JSON). From here, let KrakenD <a href="/docs/authorization/jwt-signing/">sign the token for you</a> and start using tokens right away.</p>
+</li>
+<li>
+<p><strong>Your self-hosted identity server doesn&rsquo;t need to be exposed to the Internet</strong>, as it can live behind KrakenD and let the token generation requests be proxied through KrakenD. If you use a SaaS solution, of course, it&rsquo;s exposed.</p>
+</li>
+</ol>
+<h2 id="key-concepts">Key concepts</h2>
+<p>KrakenD uses the <strong>JSON Web Token</strong> specification (<strong>JWT</strong>), an industry-standard representing claims securely between two parties. A <strong>JWT</strong> is an encoded JSON object containing key-value pairs of attributes signed by a trusted authority. It carries the information your end-users pass to the system to be recognized as legitimate users with other metadata.</p>
+<p>All tokens transmitted between users and KrakenD have to be signed using <strong>JWS</strong>, to make sure they are legitimate and not forged by an attacker. JWS represents digitally signed content using JSON data structures that are base64url encoded using the format <code>header.payload.signature</code>.</p>
+<p>Finally, KrakenD needs to retrieve from the trusted authority (your Identity Provider) the keys that let the system validate the signature. These keys are transmitted between KrakenD and the IdP using the <strong>JWK</strong> format, a JSON object representing a set of cryptographic keys. Depending on the system and implementation you have in your IdP, objects will use one or another algorithm. <strong>JWA</strong> represents the set of algorithms you can use to sign your tokens.</p>
+<p>The introduction above is very superficial; the recommended read is the RFC:</p>
+<ul>
+<li><strong>JWT</strong>: <a href="https://tools.ietf.org/html/rfc7519">Definition of tokens: structure and composition of header and payload</a></li>
+<li><strong>JWS</strong> <a href="https://tools.ietf.org/html/rfc7515">Signature</a></li>
+<li><strong>JWK</strong> <a href="https://tools.ietf.org/html/rfc7517">Key transmission</a></li>
+<li><strong>JWA</strong> <a href="https://tools.ietf.org/html/rfc7518">Definition of cyphering and signing algorithms</a></li>
+<li><strong>JWE</strong> is not supported by KrakenD (Premise: Sensitive data should not be transmitted using tokens).</li>
+</ul>
+<h2 id="jwt-tokens-definition">JWT tokens definition</h2>
+<p>KrakenD uses <strong>standard JWT tokens</strong> to protect endpoints, using JSON Web Signature (<strong>JWS</strong>), to check the tokens&rsquo; digital signature integrity of the contained claims and defending against attacks using tampered tokens.</p>
+<p>A JWT token is a <code>base64</code> encoded string with the structure <code>header.payload.signature</code>.</p>
+<p>A typical request to an endpoint requiring JWT validation includes a <code>Bearer</code> in the <code>Authorization</code> header:</p>
 <div class="terminal">
 	<div class="title">
 		&nbsp;
@@ -872,10 +899,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 			
 		</ul>
 	</div>
-</div></p>
-<p>Or optionally, you can send the token <strong>inside a cookie</strong> instead.</p>
-<h3 id="jwt-header-requirements">JWT header requirements</h3>
-<p>When KrakenD decodes the <code>base64</code> token string passed in the <code>Bearer</code> or the cookie, it expects to find in its <strong>header</strong> section the following three fields:</p>
+</div>
+<p>Or instead, you can send the token <strong>inside a cookie</strong>.</p>
+<h2 id="jwt-header-requirements">JWT header requirements</h2>
+<p>When KrakenD decodes the <code>base64</code> token string passed in the <code>Bearer</code> or a cookie, it expects to find in its <strong>header</strong> section the following <strong>three fields</strong>:</p>
 <pre><code>{
   &quot;alg&quot;: &quot;RS256&quot;,
   &quot;typ&quot;: &quot;JWT&quot;,
@@ -883,32 +910,16 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 }
 </code></pre>
 <p>The <code>alg</code> and <code>kid</code> values depend on your implementation, but they must be present.</p>
-<p>The value provided in the <code>kid</code> string <strong>must match the <code>kid</code> value of one of the keys exposed at the URL provided in the <code>jwk-url</code></strong> to verify the signature. The example above used <a href="https://albert-test.auth0.com/.well-known/jwks.json">this public key</a>, notice how the <code>kid</code> matches both the single key present in the JWK document and the token header.</p>
-<p>KrakenD is built with security in mind and uses JWS (instead of plain JWT or JWE), and the <code>kid</code> points to the right key in the JWS. This is why this entry is mandatory to validate your tokens.</p>
 <div class="note">
     <h4><i class="fa fa-sticky-note"></i> Important!</h4>
-	Make sure you are declaring the right <code>kid</code> in your JWT. Paste a token in a <a href="https://jwt.io/#debugger-io">debugger</a> to find out.
+	<p>Make sure you are declaring the right <code>kid</code> in your JWT. Paste a token in a <a href="https://jwt.io/#debugger-io">debugger</a>. to find out.</p>
+<p>The value provided in the <code>kid</code> must match with the <code>kid</code> declared at the <code>jwk-url</code> or <code>jwk_local_path</code>.</p>
+
  </div>
-<h3 id="validation-process">Validation process</h3>
-<p>KrakenD does the following validation to let users hit protected endpoints:</p>
-<ul>
-<li>The <code>jwk-url</code> must be accessible by KrakenD at all times (caching is available)</li>
-<li>The token is <a href="https://jwt.io/#debugger-io">well formed</a></li>
-<li>The <code>kid</code> in the header is listed in the <code>jwk-url</code>.</li>
-<li>The content of the JWK Keys (<code>k</code>) is <strong>base64</strong> urlencoded</li>
-<li>The algorithm <code>alg</code> is supported by KrakenD and matches exactly the one used in the endpoint definition.</li>
-<li>The token hasn&rsquo;t expired</li>
-<li>The signature is valid.</li>
-<li>The given <code>issuer</code> matches (if present in the configuration)</li>
-<li>The given <code>audience</code> matches (if present in the configuration)</li>
-<li>The given claims are within the endpoint accepted <code>roles</code> (if present in the configuration))</li>
-</ul>
-<p>The configuration allows you to define the set of required roles. A user who passes a token with roles <code>A</code> and <code>B</code>, can access an endpoint requiring <code>&quot;roles&quot;: [&quot;A&quot;,&quot;C&quot;]</code> as it has one of the required options (<code>A</code>).</p>
-<p>If the token is expired, the signature doesn&rsquo;t match, the required claims do not match or the token is revoked, a <code>401 Unauthorized</code> is returned.</p>
-<p>When the token doesn&rsquo;t include the defined ACL&rsquo;s required roles, a <code>403 Forbidden</code> is returned.</p>
-<p>When you generate tokens for end-users, make sure to set a <strong>low expiration</strong>. Tokens are supposed to have short lives and are recommended to expire in a few minutes or hours.</p>
+<p>The example above used <a href="https://albert-test.auth0.com/.well-known/jwks.json">this public key</a>, notice how the <code>kid</code> matches both the single key present in the JWK document and the token header.</p>
+<p><strong>KrakenD is built with security in mind</strong> and uses <strong>JWS</strong> (instead of plain JWT or JWE), and the <code>kid</code> points to the right key in the JWS. This is why this entry is mandatory to validate your tokens.</p>
 <h2 id="basic-jwt-validation">Basic JWT validation</h2>
-<p>The JWT validation is per endpoint and must be present inside every endpoint definition needing it. If several endpoints are going to require JWT validation consider using the <a href="/docs/configuration/flexible-config/">flexible configuration</a> to avoid repetitive declarations.</p>
+<p>The JWT validation must be present inside every endpoint definition needing it. If several endpoints are going to require JWT validation consider using the <a href="/docs/configuration/flexible-config/">flexible configuration</a> to avoid repetitive declarations.</p>
 <p>Enable the JWT validation by adding the namespace <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> inside the <code>extra_config</code> of the desired <code>endpoint</code>.</p>
 <p>For instance, to protect the endpoint <code>/protected/resource</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
@@ -935,27 +946,38 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <li>The role of the user is either <code>user</code> or <code>admin</code> (taken from a key in the JWT payload named <code>http://api.example.com/custom/roles</code>)</li>
 <li>The token is not revoked in the bloom filter (see <a href="/docs/authorization/revoking-tokens">revoking tokens</a>)</li>
 </ul>
-<h3 id="jwt-validation-settings">JWT validation settings</h3>
-<p>The following settings are available for JWT validation. <strong>Fields <code>alg</code> and <code>jwk-url</code> are mandatory</strong>, and the rest of the keys can be added or not at your best convenience.</p>
-<p>Add them under the <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> namespace:</p>
+<h2 id="jwt-validation-settings">JWT validation settings</h2>
+<p>The following settings are available for JWT validation. There are a lot of options, although generally only the <strong>fields <code>alg</code> and <code>jwk-url</code> or <code>jwk_local_path</code> are mandatory</strong>, and the rest of the keys can be added or not at your best convenience or depending on other options.</p>
+<p>These options are for the <code>extra_config</code>'s namespace <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> placed in every endpoint (use <a href="/docs/configuration/flexible-config">flexible configuration</a> to avoid code repetition):</p>
 <ul>
-<li><code>alg</code> (<em>recognized string</em>): The hashing algorithm used by the issuer. See the <a href="#hashing-algorithms">hashing algorithms</a> section for comprehensive list of supported algorithms.</li>
+<li><code>alg</code> (<em>recognized string</em>): The hashing algorithm used by the issuer. See the <a href="#hashing-algorithms">hashing algorithms</a> section for a comprehensive list of supported algorithms.</li>
 <li><code>jwk-url</code> (<em>string</em>): The URL to the JWK endpoint with the public keys used to verify the token&rsquo;s authenticity and integrity.</li>
+<li><code>jwk_local_path</code> (<em>string</em>): Local path to the JWK public keys. Instead of pointing to an external URL (<code>jwk-url</code>) the public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add:
+<ul>
+<li><code>secret_url</code> (<em>url</em>): An URL with a custom scheme using one of the supported providers (e.g.: <code>awskms://keyID</code>) (see providers below)</li>
+<li><code>cypher_key</code> (<em>string</em>): The cyphering key.</li>
+</ul>
+</li>
 <li><code>cache</code> (<em>boolean</em>): Set this value to <code>true</code> to store the required keys (from the JWK descriptor) in memory for the next <code>cache_duration</code> period and avoid hammering the key server, recommended for performance. The cache can store up to 100 different public keys simultaneously.</li>
 <li><code>cache_duration</code> (<em>int</em>): Change the default duration of 15 minutes. Value in <strong>seconds</strong>.</li>
 <li><code>audience</code> (<em>list</em>): Set when you want to reject tokens that do not contain the given audience.</li>
 <li><code>roles_key</code> (<em>string</em>):  When validating users through roles, provide the key name inside the JWT payload that lists their roles. If this key is nested inside another object, use the dot notation <code>.</code> to traverse each level. E.g.: <code>resource_access.myclient.roles</code> represents the payload <code>{resource_access: { myclient: { roles: [&quot;myrole&quot;] } } </code>.</li>
-<li><code>roles_key_is_nested</code> (<em>bool</em>):  If the roles key is using a nested object using the <code>.</code> dot notation must be set to <code>true</code> in order to traverse the object.</li>
 <li><code>roles</code> (<em>list</em>):  When set, the JWT token not having at least one of the listed roles are rejected.</li>
+<li><code>roles_key_is_nested</code> (<em>bool</em>):  If the roles key is using a nested object using the <code>.</code> dot notation must be set to <code>true</code> in order to traverse the object.</li>
+<li><code>scopes</code> (<em>string</em>): List of scopes to validate, separated by a space.</li>
+<li><code>scopes_key</code>: The key name where the scopes can be found. The key can be a nested object using the <code>.</code> dot notation, e.g.: <code>data.data2.scopes</code></li>
+<li><code>scopes_matcher</code> (<em>string</em>): Valid options are <code>all</code> or <code>any</code>. When <code>all</code> is used, every single scope defined in the endpoint must be present in the token. Otherwise, any matching scope will let you pass.</li>
 <li><code>issuer</code> (<em>string</em>): When set,  tokens not matching the issuer are rejected.</li>
-<li><code>cookie_key</code> (<em>string</em>): Add the key name of the cookie containing the token when is not passed in the headers</li>
+<li><code>cookie_key</code> (<em>string</em>): Add the key name of the cookie containing the token when it is not passed in the headers</li>
 <li><code>disable_jwk_security</code> (<em>boolean</em>): When <code>true</code>, disables security of the JWK client and allows insecure connections (plain HTTP) to download the keys. Useful for development environments.</li>
-<li><code>jwk_fingerprints</code> (<em>strings list</em>): A list of fingerprints (the certificate&rsquo;s unique identifier) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.</li>
+<li><code>jwk_fingerprints</code> (<em>strings list</em>): A list of fingerprints (the certificate&rsquo;s unique identifier) for certificate pinning and avoid man-in-the-middle attacks. Add fingerprints in base64 format.</li>
 <li><code>cipher_suites</code> (<em>integers list</em>): Override the default cipher suites. Use it if you want to enforce an even higher security standard.</li>
-<li><code>jwk_local_ca</code> (<em>string</em>): Path to the certificate of the CA that verifies a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).</li>
+<li><code>jwk_local_ca</code> (<em>string</em>): Path to the CA&rsquo;s certificate that verifies a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).</li>
+<li><code>propagate-claim</code> (<em>list</em>): Enables passing claims in the backend&rsquo;s request header (see below)</li>
+<li><code>key_identify_strategy</code> (<em>string</em>): Allows strategies other than <code>kid</code> to load keys. Allowed values are: <code>kid</code>, <code>x5t</code>, <code>kid_x5t</code></li>
 </ul>
 <p>For the full list of recognized algorithms and cipher suites, scroll down to the end of the document.</p>
-<p>The following example contains every single option available:</p>
+<p>Here there is an example using an external <code>jwk-url</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
 <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/foo&#34;</span>
 <span class="s2">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -984,6 +1006,51 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
+<h3 id="validation-process">Validation process</h3>
+<p>KrakenD does the following validation to let users hit protected endpoints:</p>
+<ul>
+<li>The <code>jwk-url</code> must be accessible by KrakenD at all times (caching is available)</li>
+<li>The token is <a href="https://jwt.io/#debugger-io">well formed</a></li>
+<li>The <code>kid</code> in the header is listed in the <code>jwk-url</code> or <code>jwk_local_path</code>.</li>
+<li>The content of the JWK Keys (<code>k</code>) is <strong>base64</strong> urlencoded</li>
+<li>The algorithm <code>alg</code> is supported by KrakenD and matches exactly the one used in the endpoint definition.</li>
+<li>The token hasn&rsquo;t expired</li>
+<li>The signature is valid.</li>
+<li>The given <code>issuer</code> matches (if present in the configuration)</li>
+<li>The given <code>audience</code> matches (if present in the configuration)</li>
+<li>The given claims are within the endpoint accepted <code>roles</code> (if present in the configuration))</li>
+</ul>
+<p>The configuration allows you to define the set of required roles. A user who passes a token with roles <code>A</code> and <code>B</code>, can access an endpoint requiring <code>&quot;roles&quot;: [&quot;A&quot;,&quot;C&quot;]</code> as it has one of the required options (<code>A</code>).</p>
+<p>If the token is expired, the signature doesn&rsquo;t match, the required claims do not match, or the token is revoked, a <code>401 Unauthorized</code> is returned.</p>
+<p>When the token doesn&rsquo;t include the defined ACL&rsquo;s required roles, a <code>403 Forbidden</code> is returned.</p>
+<p>When you generate tokens for end-users, make sure to set a <strong>low expiration</strong>. Tokens are supposed to have short lives and are recommended to expire in a few minutes or hours.</p>
+<h3 id="accepted-providers-for-encrypting-payloads">Accepted providers for encrypting payloads</h3>
+<p>When using a <code>jwk_local_path</code> the <code>secret_url</code> scheme accepts different providers:</p>
+<h4 id="local-secrets">Local secrets</h4>
+<p>The local secrets require an URL with the following scheme:</p>
+<pre><code>base64key://base64content
+</code></pre><p>The URL host must be base64 encoded and must decode to exactly 32 bytes. Here is an example of the <code>extra_config</code>:</p>
+<pre><code>{
+    &quot;jwk_local_path&quot;:&quot;./jwk.txt&quot;,
+    &quot;secret_url&quot;:&quot;base64key://smGbjm71Nxd1Ig5FS0wj9SlbzAIrnolCz9bQQ6uAhl4=&quot;,
+    &quot;cypher_key&quot;:&quot;gCERmfqHMoEu3+utqBa/R1oMZYIvh0OOKtJmnX/hDPDxbXCGXGvO3SF7B5FWxrJnRW7rnjGIV4eP2VLrYX2q9pJM49BpP+A9&quot;
+}
+</code></pre><p>This config will use the key <code>smGbjm71Nxd1Ig5FS0wj9SlbzAIrnolCz9bQQ6uAhl4=</code> for decrypting de <code>cypher_key</code> and then decrypting the content of the file <code>./jwt.txt</code>.</p>
+<p>See this test to <a href="https://github.com/devopsfaith/krakend-jose/blob/master/jwk_test.go">understand how to generate and encrypt payloads</a>.</p>
+<h4 id="amazon-kms">Amazon KMS</h4>
+<pre><code>awskms://keyID
+</code></pre><p>The URL Host + Path are used as the key ID, which can be in the form of an Amazon Resource Name (ARN), alias name, or alias ARN. See <a href="https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn">https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn</a> for more details. Note that ARNs may contain &ldquo;:&rdquo; characters, which cannot be escaped in the Host part of a URL, so the <code>awskms:///&lt;ARN&gt;</code> form should be used.</p>
+<p><a href="https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn">More information about AWS KMS</a></p>
+<h4 id="azures-key-vault">Azure&rsquo;s Key Vault</h4>
+<pre><code>azurekeyvault://keyID
+</code></pre><p>The credentials are taken from the environment unless the <code>AZURE_KEYVAULT_AUTH_VIA_CLI</code> environment variable is set to true, in which case it uses the <code>az</code> command line.</p>
+<p><a href="https://docs.microsoft.com/en-us/azure/key-vault/general/basic-concepts">More information about Azure Key Vault</a></p>
+<h4 id="google-cloud-kms">Google Cloud KMS</h4>
+<pre><code>gcpkms://projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEY_RING]/cryptoKeys/[KEY]
+</code></pre><p>You can take the URL <a href="https://cloud.google.com/kms/docs/object-hierarchy#key">from the GCP console</a>.</p>
+<h4 id="hashicorps-vault">Hashicorp&rsquo;s Vault</h4>
+<pre><code>hashivault://keyID
+</code></pre><p>Environment variables <code>VAULT_SERVER_URL</code> and <code>VAULT_SERVER_TOKEN</code> are used.</p>
 <h2 id="passing-claims-to-the-backend-url">Passing claims to the backend URL</h2>
 <p>Since KrakenD 1.2.0, it is possible to use data present in the claims to inject it into the backend&rsquo;s final URL. The notation of the <code>url_pattern</code> field includes the parsing of <code>{JWT.some_claim}</code>, where <code>some_claim</code> is an attribute of your claim.</p>
 <p>For instance, when your JWT payload is represented by something like this:</p>
@@ -999,11 +1066,23 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
     ...
 }
 </code></pre>
-<p>Produces , the call by the client to your backend would produces the request:</p>
+<p>The call to your backend would produce the request:</p>
 <pre><code>POST /foo/1234567890
 </code></pre>
-<p>Have in mind that this syntax in the <code>url_pattern</code> field is only available if the backend loads the extra_config <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> and that <strong>it does not work with nested attributes</strong> in the payload.</p>
-<p>If for any reason, KrakenD can&rsquo;t replace the content of the claim, the backend receives a request to the literal url <code>/foo/{JWT.sub}</code>.</p>
+<p>Keep in mind that this syntax in the <code>url_pattern</code> field is only available if the backend loads the extra_config <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> and that <strong>it does not work with nested attributes</strong> in the payload.</p>
+<p>If KrakenD can&rsquo;t replace the claim&rsquo;s content for any reason, the backend receives a request to the literal URL <code>/foo/{JWT.sub}</code>.</p>
+<h2 id="propagate-jwt-claims-as-request-headers">Propagate JWT claims as request headers</h2>
+<p>Since KrakenD 1.3.0, it is possible to forward claims in a JWT as request headers. It is a common use case to have, for instance, the sub claim added as an <code>X-User</code> header to the request.</p>
+<p><strong>Important:</strong> The endpoint <code>headers_to_pass</code> needs to be set as well, so the backend can see it.</p>
+<pre><code>&quot;extra_config&quot;: {
+        &quot;github.com/devopsfaith/krakend-jose/validator&quot;: {
+          &quot;propagate-claims&quot;: [
+            [&quot;sub&quot;, &quot;x-user&quot;]
+          ],
+          ...
+        }
+      },
+</code></pre><p>In this case, the <code>sub</code> claim&rsquo;s value will be added as <code>x-user</code> header to the request. If the claim does not exist, the mapping is just skipped.</p>
 <h2 id="a-complete-running-example">A complete running example</h2>
 <p>The <a href="/docs/overview/playground/">KrakenD Playground</a> demonstrates how to protect endpoints using JWT and includes two examples ready to use:</p>
 <ul>
