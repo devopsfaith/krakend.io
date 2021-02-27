@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.67.1" />
+<meta name="generator" content="Hugo 0.81.0" />
 
     <title>How to work with Golang plugins and KrakenD - KrakenD API Gateway</title>
     <meta itemprop="name" content="How to work with Golang plugins and KrakenD - KrakenD API Gateway">
@@ -24,10 +24,10 @@
 <meta property="og:title" content="How to work with Golang plugins and KrakenD" />
 <meta property="og:description" content="How to implement Golang plugins with the KrakenD API gateway" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/blog/krakend-golang-plugins/" />
-<meta property="og:image" content="https://www.krakend.io/images/blog/light-bulb.jpg" />
-<meta property="article:published_time" content="2018-04-12T22:07:03+02:00" />
-<meta property="article:modified_time" content="2018-04-12T22:07:03+02:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/blog/krakend-golang-plugins/" /><meta property="og:image" content="https://www.krakend.io/images/blog/light-bulb.jpg" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2018-04-12T22:07:03&#43;02:00" />
+<meta property="article:modified_time" content="2018-04-12T22:07:03&#43;02:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+
 
 
 
@@ -302,13 +302,13 @@
 </code></pre>
 <p>In the configuration file we can now define the location of the folder with the plugins and a pattern for filtering the contents of the folder. A typical configuration snippet could go like this:</p>
 <pre><code>&quot;plugin&quot;: {
-    &quot;folder&quot;: &quot;./plugins/&quot;,
-    &quot;pattern&quot;: &quot;.so&quot;
+	&quot;folder&quot;: &quot;./plugins/&quot;,
+	&quot;pattern&quot;: &quot;.so&quot;
 }
 </code></pre>
 <p>The entire package in charge of scanning the <strong>plugin</strong> folder and loading all the included plugins exposes a single function <code>func Load(cfg config.Plugin) (int, error)</code>, so it is convenient to consume.</p>
 <pre><code>func open(pluginName string) (err error) {
-    defer func() {
+	defer func() {
         if r := recover(); r != nil {
             var ok bool
             err, ok = r.(error)
@@ -316,9 +316,9 @@
                 err = fmt.Errorf(&quot;%v&quot;, r)
             }
         }
-    }()
-    _, err = pluginOpener(pluginName)
-    return
+	}()
+	_, err = pluginOpener(pluginName)
+	return
 }
 
 // pluginOpener keeps the plugin open function in a var for easy testing
@@ -329,14 +329,14 @@ var pluginOpener = plugin.Open
 <h2 id="tuning-the-krakend-ce-distribution">Tuning the KrakenD-CE distribution</h2>
 <p>In order to load the plugins before starting the gateway, the <code>executor.go</code> script needs to be extended with this code block:</p>
 <pre><code>...
-    if &quot;&quot; != os.Getenv(&quot;KRAKEND_ENABLE_PLUGINS&quot;) &amp;&amp; cfg.Plugin != nil {
+	if &quot;&quot; != os.Getenv(&quot;KRAKEND_ENABLE_PLUGINS&quot;) &amp;&amp; cfg.Plugin != nil {
         logger.Info(&quot;Plugin experiment enabled!&quot;)
         pluginsLoaded, err := plugin.Load(*cfg.Plugin)
         if err != nil {
             logger.Error(err.Error())
         }
         logger.Info(&quot;Total plugins loaded:&quot;, pluginsLoaded)
-    }
+	}
 ...
 </code></pre>
 <p>Because the plugin feature is still experimental, it should be enabled both in the configuration file and in the <code>KRAKEND_ENABLE_PLUGINS</code> env_var.</p>
@@ -348,14 +348,14 @@ var pluginOpener = plugin.Open
 <pre><code>package main
 
 import (
-    &quot;github.com/devopsfaith/krakend-martian/register&quot;
-    &quot;github.com/kpacha/martian-components/body/elastic-search/modifier&quot;
+	&quot;github.com/devopsfaith/krakend-martian/register&quot;
+	&quot;github.com/kpacha/martian-components/body/elastic-search/modifier&quot;
 )
 
 func init() {
-    register.Set(&quot;body.ESQuery&quot;, []register.Scope{register.ScopeRequest}, func(b []byte) (interface{}, error) {
+	register.Set(&quot;body.ESQuery&quot;, []register.Scope{register.ScopeRequest}, func(b []byte) (interface{}, error) {
         return modifier.FromJSON(b)
-    })
+	})
 }
 
 func main() {

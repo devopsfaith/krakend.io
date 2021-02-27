@@ -6,11 +6,7 @@
     <description>Recent content in Docs on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.krakend.io/docs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction to KrakenD</title>
       <link>https://www.krakend.io/docs/overview/introduction/</link>
@@ -449,7 +445,7 @@ Use the KrakenD Playground if you want to play with KrakenD without configuring 
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/telemetry/overview/</guid>
-      <description>Observability and networking are key to succeed in a scenario of distributed microservices architecture, and new monitoring tools are needed. These tools must provide at least options to detect problems&amp;rsquo; root causes, monitoring and details of the different distributed transactions, and performance and latency optimization.
+      <description>Observability and networking are key to succeed in a scenario of distributed microservices architecture, and new monitoring tools are needed. These tools must provide at least options to detect problems&#39; root causes, monitoring and details of the different distributed transactions, and performance and latency optimization.
 Through the OpenCensus exporters you can send logs, metrics, and traces to several open source and payment tools, so you can follow the activity of the gateway and the derived requests to its connected backends.</description>
     </item>
     
@@ -894,7 +890,7 @@ The Opencensus exporter allows you export data to Azure Monitor. Enabling it onl
       <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/endpoints/json-schema/</guid>
-      <description>KrakenD endpoints receiving a JSON object in its body can apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields&amp;rsquo; values.
+      <description>KrakenD endpoints receiving a JSON object in its body can apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields&#39; values.
 When the validation fails, KrakenD returns to the user a status code 400 (Bad Request), and only if it succeeds, the backend receives the request.</description>
     </item>
     

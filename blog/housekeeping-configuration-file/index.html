@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.67.1" />
+<meta name="generator" content="Hugo 0.81.0" />
 
     <title>Doing housekeeping on your KrakenD configuration file - KrakenD API Gateway</title>
     <meta itemprop="name" content="Doing housekeeping on your KrakenD configuration file - KrakenD API Gateway">
@@ -24,10 +24,10 @@
 <meta property="og:title" content="Doing housekeeping on your KrakenD configuration file" />
 <meta property="og:description" content="How to shrink, optimize and clean your krakend.json settings" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/blog/housekeeping-configuration-file/" />
-<meta property="og:image" content="https://www.krakend.io/images/blog/configuration-file-optimization.png" />
-<meta property="article:published_time" content="2019-05-17T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-05-17T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/blog/housekeeping-configuration-file/" /><meta property="og:image" content="https://www.krakend.io/images/blog/configuration-file-optimization.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2019-05-17T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2019-05-17T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+
 
 
 
@@ -291,7 +291,7 @@
 <p>SD stands for service discovery, and when the value is <code>static</code> it means that the hostnames of your backends are resolved using the internal machine settings, using its DNS settings, <code>resolv.conf</code> configuration or any other internal system that could lead you to ping the name without additional help. A host like <code>http(s)://your.dns</code> is a typical <code>static</code> resolution.</p>
 <h3 id="encoding-json"><code>&quot;encoding&quot;: &quot;json&quot;</code></h3>
 <p>As it happens with the output encoding to return data to the user, when connecting to the backends KrakenD assumes that their response will be in JSON format. Unless they are returning other formats like XML or RSS, or you are proxying to them, you don&rsquo;t need this attribute in the configuration.</p>
-<h3 id="extra_config-">`&quot;extra_config&rdquo;:</h3>
+<h3 id="extra_config-"><code>&quot;extra_config&quot;: {}</code></h3>
 <p>The additional configuration of the different plugins, middlewares, and other surrounding components, it&rsquo;s necessary only when you want to provide specific settings for them. An empty <code>extra_config</code> without declaring a namespace, it&rsquo;s just noise.</p>
 <h3 id="port-8080"><code>&quot;port&quot;: 8080</code></h3>
 <p>We went through a deep brainstorming session to find the most original port in the Internet era, and we decided that our listening port would be <code>8080</code>. Usually, the gateway will live behind a balancer that exposes to the world whatever port you like, so it doesn&rsquo;t matter what port KrakenD is listening unless is conflicting with something else. If <code>8080</code> is fine for you, remove the line.</p>

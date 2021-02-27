@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.67.1" />
+<meta name="generator" content="Hugo 0.81.0" />
 
     <title>Using publisher/subscribe as backends - KrakenD API Gateway</title>
     <meta itemprop="name" content="Using publisher/subscribe as backends - KrakenD API Gateway">
@@ -24,10 +24,10 @@
 <meta property="og:title" content="Using publisher/subscribe as backends" />
 <meta property="og:description" content="Since KrakenD 1.0 you can connect an endpoint to multiple publish/subscribe backends, helping you integrate with event driven architectures. For instance, a frontend client can push events to a queue using a REST interface. Or a client could consume a REST endpoint that is plugged to the last events pushed in a backend. You can even validate messages and formats as all the KrakenD available middleware can be used. The list of supported backend technologies is:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/backends/pubsub/" />
-<meta property="og:image" content="https://www.krakend.io/images/features-event-driven.png" />
-<meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-03-01T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/docs/backends/pubsub/" /><meta property="og:image" content="https://www.krakend.io/images/features-event-driven.png" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2019-09-15T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-03-01T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+
 
 
 
@@ -832,18 +832,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: &quot;schema://&quot;,
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
         &quot;subscription_url&quot;: &quot;url&quot;
-    }
+	}
 }
 </code></pre>
 <p>For a <strong>publisher</strong>:</p>
 <pre><code>&quot;host&quot;: &quot;schema://&quot;,
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/publisher&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/publisher&quot;: {
         &quot;topic_url&quot;: &quot;url&quot;
-    }
+	}
 }
 </code></pre>
 <p>See the specification of each individual technology.</p>
@@ -852,9 +852,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: [&quot;amqp://&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
-    &quot;subscription_url&quot;: &quot;myexchange&quot;
-    }
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;subscription_url&quot;: &quot;myexchange&quot;
+	}
 },
 </code></pre>
 <h3 id="gcp-pubsub">GCP PubSub</h3>
@@ -870,9 +870,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: [&quot;gcppubsub://&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
-    &quot;subscription_url&quot;: &quot;projects/myproject/subscriptions/mysub&quot;
-    }
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;subscription_url&quot;: &quot;projects/myproject/subscriptions/mysub&quot;
+	}
 },
 </code></pre>
 <h3 id="nats">NATS</h3>
@@ -888,9 +888,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: [&quot;nats://&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
         &quot;subscription_url&quot;: &quot;mysubject&quot;
-    }
+	}
 }
 </code></pre>
 <h3 id="aws-sns">AWS SNS</h3>
@@ -899,9 +899,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: [&quot;awssns:///arn:aws:sns:us-east-2:123456789012:mytopic&quot;&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
         &quot;subscription_url&quot;: &quot;?region=us-east-2&quot;
-    }
+	}
 }
 </code></pre>
 <h3 id="aws-sqs">AWS SQS</h3>
@@ -911,9 +911,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: [&quot;awssqs://https://sqs.us-east-2.amazonaws.com/123456789012&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
         &quot;subscription_url&quot;: &quot;/myqueue?region=us-east-2&quot;
-    }
+	}
 }
 </code></pre>
 <h3 id="azure-service-bus-topic-and-subscription">Azure Service Bus Topic and Subscription</h3>
@@ -930,9 +930,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: [&quot;azuresb://&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
         &quot;subscription_url&quot;: &quot;mytopic&quot;
-    }
+	}
 }
 </code></pre>
 <h3 id="rabbitmq">RabbitMQ</h3>
@@ -950,9 +950,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: [&quot;rabbit://&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
         &quot;subscription_url&quot;: &quot;myexchange&quot;
-    }
+	}
 }
 </code></pre>
 <h3 id="kafka">Kafka</h3>
@@ -966,18 +966,18 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <pre><code>&quot;host&quot;: [&quot;kafka://&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
         &quot;subscription_url&quot;: &quot;group?topic=mytopic&quot;
-    }
+	}
 }
 </code></pre>
 <p><strong>Kafka topics</strong>:</p>
 <pre><code>&quot;host&quot;: [&quot;kafka://&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
-    &quot;github.com/devopsfaith/krakend-pubsub/publisher&quot;: {
+	&quot;github.com/devopsfaith/krakend-pubsub/publisher&quot;: {
         &quot;topic_url&quot;: &quot;mytopic&quot;
-    }
+	}
 }
 </code></pre>
 

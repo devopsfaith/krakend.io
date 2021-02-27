@@ -6,11 +6,7 @@
     <description>Recent content in devops on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Jun 2018 11:06:53 +0200</lastBuildDate>
-    
-	<atom:link href="https://www.krakend.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 22 Jun 2018 11:06:53 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Reloading the Krakend configuration with Reflex and Docker</title>
       <link>https://www.krakend.io/blog/reloading-the-krakend-configuration/</link>

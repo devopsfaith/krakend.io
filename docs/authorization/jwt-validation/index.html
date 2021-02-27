@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.67.1" />
+<meta name="generator" content="Hugo 0.81.0" />
 
     <title>JWT Validation - KrakenD API Gateway</title>
     <meta itemprop="name" content="JWT Validation - KrakenD API Gateway">
@@ -27,10 +27,10 @@ Before digging any further, some answers to frequently asked questions:
   KrakenD does not generate the tokens itself. Still, you can plug it into any SaaS or self-hosted Identity Provider (IdP) using industry standards (e.g.: Auth0, Azure AD, Google Firebase, Keycloak, etc.)
   KrakenD does not need to validate all calls using your IdP." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/authorization/jwt-validation/" />
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
-<meta property="article:published_time" content="2018-11-03T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-02-21T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/docs/authorization/jwt-validation/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2018-11-03T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-02-21T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+
 
 
 
@@ -853,7 +853,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <li><strong>JWE</strong> is not supported by KrakenD (Premise: Sensitive data should not be transmitted using tokens).</li>
 </ul>
 <h2 id="jwt-tokens-definition">JWT tokens definition</h2>
-<p>KrakenD uses <strong>standard JWT tokens</strong> to protect endpoints, using JSON Web Signature (<strong>JWS</strong>), to check the tokens&rsquo; digital signature integrity of the contained claims and defending against attacks using tampered tokens.</p>
+<p>KrakenD uses <strong>standard JWT tokens</strong> to protect endpoints, using JSON Web Signature (<strong>JWS</strong>), to check the tokens' digital signature integrity of the contained claims and defending against attacks using tampered tokens.</p>
 <p>A JWT token is a <code>base64</code> encoded string with the structure <code>header.payload.signature</code>.</p>
 <p>A typical request to an endpoint requiring JWT validation includes a <code>Bearer</code> in the <code>Authorization</code> header:</p>
 <div class="terminal">
@@ -948,7 +948,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 </ul>
 <h2 id="jwt-validation-settings">JWT validation settings</h2>
 <p>The following settings are available for JWT validation. There are a lot of options, although generally only the <strong>fields <code>alg</code> and <code>jwk-url</code> or <code>jwk_local_path</code> are mandatory</strong>, and the rest of the keys can be added or not at your best convenience or depending on other options.</p>
-<p>These options are for the <code>extra_config</code>'s namespace <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> placed in every endpoint (use <a href="/docs/configuration/flexible-config">flexible configuration</a> to avoid code repetition):</p>
+<p>These options are for the <code>extra_config</code>&rsquo;s namespace <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> placed in every endpoint (use <a href="/docs/configuration/flexible-config">flexible configuration</a> to avoid code repetition):</p>
 <ul>
 <li><code>alg</code> (<em>recognized string</em>): The hashing algorithm used by the issuer. See the <a href="#hashing-algorithms">hashing algorithms</a> section for a comprehensive list of supported algorithms.</li>
 <li><code>jwk-url</code> (<em>string</em>): The URL to the JWK endpoint with the public keys used to verify the token&rsquo;s authenticity and integrity.</li>
@@ -964,7 +964,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <li><code>roles_key</code> (<em>string</em>):  When validating users through roles, provide the key name inside the JWT payload that lists their roles. If this key is nested inside another object, use the dot notation <code>.</code> to traverse each level. E.g.: <code>resource_access.myclient.roles</code> represents the payload <code>{resource_access: { myclient: { roles: [&quot;myrole&quot;] } } </code>.</li>
 <li><code>roles</code> (<em>list</em>):  When set, the JWT token not having at least one of the listed roles are rejected.</li>
 <li><code>roles_key_is_nested</code> (<em>bool</em>):  If the roles key is using a nested object using the <code>.</code> dot notation must be set to <code>true</code> in order to traverse the object.</li>
-<li><code>scopes</code> (<em>string</em>): List of scopes to validate, separated by a space.</li>
+<li><code>scopes</code> (<em>list</em>): List of scopes to validate.</li>
 <li><code>scopes_key</code>: The key name where the scopes can be found. The key can be a nested object using the <code>.</code> dot notation, e.g.: <code>data.data2.scopes</code></li>
 <li><code>scopes_matcher</code> (<em>string</em>): Valid options are <code>all</code> or <code>any</code>. When <code>all</code> is used, every single scope defined in the endpoint must be present in the token. Otherwise, any matching scope will let you pass.</li>
 <li><code>issuer</code> (<em>string</em>): When set,  tokens not matching the issuer are rejected.</li>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.67.1" />
+<meta name="generator" content="Hugo 0.81.0" />
 
     <title>KrakenD 1.3.0 released - KrakenD API Gateway</title>
     <meta itemprop="name" content="KrakenD 1.3.0 released - KrakenD API Gateway">
@@ -24,10 +24,10 @@
 <meta property="og:title" content="KrakenD 1.3.0 released" />
 <meta property="og:description" content="Krakend 1.3.0 release notes" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/blog/krakend-1.3-release-notes/" />
-<meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/>
-<meta property="article:published_time" content="2021-02-24T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-02-24T00:00:00+00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/blog/krakend-1.3-release-notes/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-02-24T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-02-24T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+
 
 
 
@@ -308,25 +308,24 @@
 </ul>
 <h3 id="changes-in-krakend-ce">Changes in KrakenD-CE</h3>
 <ul>
-<li>flexibleconfig upgraded</li>
-<li>Remove unused variable from Makefile</li>
-<li>Cleanup Makefile to create generic packages for rpm and deb. Remove alpine Dockerfile</li>
-<li>golang version upgraded</li>
-<li>support for namespaced role key</li>
-<li>support for key_identify_strategy to allow different keys for JWK validation</li>
-<li>integration test fixed</li>
-<li>version updated</li>
-<li>deps updated</li>
-<li>Merge remote-tracking branch &lsquo;origin/master&rsquo; into v1.3.0-dev</li>
-<li>vault and k8s versions fixed at the mod file</li>
-<li>switch to direct downloads</li>
-<li>Fix integration tests to reflect devopsfaith/krakend PR #448</li>
-<li>Update krakend deps to latest version</li>
-<li>travis badge removed</li>
-<li>gh actions added</li>
-<li>Update linux versions</li>
-<li>jose package upgraded</li>
-<li>better error reporting added to the integration test runner</li>
+<li><code>[feature]</code> Flexibleconfig upgraded</li>
+<li><code>[bugfix]</code> Remove unused variable from Makefile</li>
+<li><code>[feature]</code> Cleanup Makefile to create generic packages for rpm and deb. Remove alpine Dockerfile</li>
+<li><code>[feature]</code> golang version upgraded</li>
+<li><code>[feature]</code> support for namespaced role key</li>
+<li><code>[feature]</code> support for key_identify_strategy to allow different keys for JWK validation</li>
+<li><code>[bugfix]</code> integration test fixed</li>
+<li><code>[feature]</code> version updated</li>
+<li><code>[feature]</code> deps updated</li>
+<li><code>[bugfix]</code> vault and k8s versions fixed at the mod file</li>
+<li><code>[feature]</code> switch to direct downloads</li>
+<li><code>[bugfix]</code> Fix integration tests to reflect devopsfaith/krakend PR #448</li>
+<li><code>[feature]</code> Update krakend deps to latest version</li>
+<li><code>[bugfix]</code> Travis badge removed</li>
+<li><code>[bugfix]</code> Github actions added</li>
+<li><code>[feature]</code> Update linux versions</li>
+<li><code>[feature]</code> jose package upgraded</li>
+<li><code>[feature]</code> better error reporting added to the integration test runner</li>
 </ul>
 <h3 id="changes-in-bloomfilter">Changes in bloomfilter</h3>
 <ul>
@@ -334,18 +333,17 @@
 </ul>
 <h3 id="changes-in-krakend-framework">Changes in krakend framework</h3>
 <ul>
-<li>create a group for the declared enpoints so mw are injected just to the group</li>
-<li>travis-ci badge removed</li>
-<li>travis config file removed</li>
-<li>envar GODEBUG=x509ignoreCN=0 added to the tests</li>
-<li>build and test workflow added to the repo actions</li>
-<li>avoid using the default logger from the stdlib</li>
-<li>Use filepath.Join to avoid problems with paths with or without a trailing slash</li>
-<li>Fix integration tests</li>
-<li>Increase map size</li>
-<li>Fix tests</li>
-<li>pass original request host in X-Forwarded-Host header</li>
-<li>flatmap del operation accepts more than one argument</li>
+<li><code>[feature]</code> create a group for the declared enpoints so mw are injected just to the group</li>
+<li><code>[bugfix]</code> Moved CI from Travis to Github Actions</li>
+<li><code>[feature]</code> envar GODEBUG=x509ignoreCN=0 added to the tests</li>
+<li><code>[feature]</code> build and test workflow added to the repo actions</li>
+<li><code>[feature]</code> avoid using the default logger from the stdlib</li>
+<li><code>[feature]</code> Use filepath.Join to avoid problems with paths with or without a trailing slash</li>
+<li><code>[bugfix]</code> Fix integration tests</li>
+<li><code>[feature]</code> Increase map size</li>
+<li><code>[bugfix]</code> Fix tests</li>
+<li><code>[feature]</code> pass original request host in X-Forwarded-Host header</li>
+<li><code>[feature]</code> flatmap <code>del</code> operation accepts more than one argument</li>
 </ul>
 <h3 id="changes-in-krakend-cel">Changes in krakend-cel</h3>
 <ul>

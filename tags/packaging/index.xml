@@ -6,11 +6,7 @@
     <description>Recent content in packaging on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Nov 2017 12:43:33 +0200</lastBuildDate>
-    
-	<atom:link href="https://www.krakend.io/tags/packaging/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 06 Nov 2017 12:43:33 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/packaging/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How we automated our RPM and DEB packaging with Docker</title>
       <link>https://www.krakend.io/blog/automating-linux-packaging/</link>

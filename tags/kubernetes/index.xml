@@ -6,11 +6,7 @@
     <description>Recent content in kubernetes on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Jun 2018 18:47:03 +0200</lastBuildDate>
-    
-	<atom:link href="https://www.krakend.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 06 Jun 2018 18:47:03 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Running the KrakenD API Gateway on Kubernetes</title>
       <link>https://www.krakend.io/blog/krakend-on-kubernetes/</link>
