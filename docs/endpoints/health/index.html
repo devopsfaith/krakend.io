@@ -782,8 +782,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
     <section class="col-md-12">
         
         
-
-
         <p>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a <strong>TCP port check</strong>. If, on the other hand, you need an <strong>HTTP endpoint</strong> in systems like Kubernetes, use <code>/__health</code>.</p>
 <h2 id="the-__health-endpoint">The <code>/__health</code> endpoint</h2>
 <p>The health endpoint in KrakenD works out of the box without adding any configuration in the server. Just point your checks to <code>/__health</code> and you&rsquo;ll have a <code>200</code> response code from KrakenD when the system is running, e.g.:</p>

@@ -791,8 +791,6 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
     <section class="col-md-12">
         
         
-
-
         <p>To keep KrakenD responsive and resilient, we added a <strong>Circuit Breaker</strong> middleware on several processing pipe points. Thanks to this component, when KrakenD demands more throughput than your actual API stack can deliver properly, the Circuit Breaker mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. It is also useful for dealing with network and other communication problems by preventing too many requests to fail due to timeouts, etc.</p>
 <p>The <strong>Circuit Breaker</strong> is a straightforward <strong>state machine</strong> in the middle of the request and response that monitors all your backend failures. When they reach a configured threshold, the circuit breaker will prevent sending more traffic to the suffering backend.</p>
 <p>The Circuit Breaker is a protection measure for your stack and avoids cascading failures.</p>
