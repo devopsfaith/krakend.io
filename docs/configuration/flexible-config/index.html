@@ -816,6 +816,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
         
         <p>The <strong>Flexible Configuration</strong> component is included in the KrakenD API Gateway and allows you to split the configuration file into several pieces for a more natural organization.</p>
 <p>When the Flexible Configuration is enabled, KrakenD assumes that your configuration file is a template that needs compilation during start-up time. With this, you have the opportunity to produce a more sophisticated configuration file that utilizes variables and brings content from external files.</p>
+<p>A typical use case of the flexible configuration is when you have multiple environments and you have different settings for each.</p>
 <h2 id="when-to-use-flexible-configuration">When to use Flexible Configuration</h2>
 <p>A template system gives you full flexibility to work with the configuration file. It comes handy to:</p>
 <ul>
@@ -875,6 +876,10 @@ krakend run -c &quot;$PWD/config/krakend.json&quot;
 </code></pre>
 <p>You can access particular settings like using this syntax: <code>{{ .db.host }}</code>.</p>
 <p>The first name after the dot is the name of the file, and then the element in the structure you want to access. The example would write <code>192.168.1.23</code> where you wrote the placeholder.</p>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> Accessing variables inside range</h4>
+	When you are doing a loop with a <code>range</code>, the variables inside are relative to the <code>range</code> context. To access outsider variables use the <code>$</code> notation. For instance: <code>{{ $.db.host }}</code>
+ </div>
 <h4 id="insert-structures-from-settings-files">Insert structures from settings files</h4>
 <p>When instead of a single value you need to insert a <strong>JSON structure</strong> (several elements), you need to use <code>marshal</code>.</p>
 <pre><code>{{ marshal .db }}
