@@ -5,12 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.81.0" />
 
-    <title>KrakenD - KrakenD API Gateway</title>
-    <meta itemprop="name" content="KrakenD - KrakenD API Gateway">
+    <title>How we built our telemetry service - KrakenD API Gateway</title>
+    <meta itemprop="name" content="How we built our telemetry service - KrakenD API Gateway">
 
     
-    <meta property="description" content="KrakenD - KrakenD API Gateway">
-    <meta itemprop="description" content="KrakenD - KrakenD API Gateway">
+    <meta property="description" content="How we built the telemetry system on KrakenD">
+    <meta itemprop="description" content="How we built the telemetry system on KrakenD">
+
     
 
     
@@ -20,10 +21,12 @@
 
 
 
-<meta property="og:title" content="KrakenD" />
-<meta property="og:description" content="Enterprise open source API Gateway built with Go lang" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.krakend.io/categories/krakend/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:title" content="How we built our telemetry service" />
+<meta property="og:description" content="How we built the telemetry system on KrakenD" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.krakend.io/blog/building-a-telemetry-service/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-03-15T09:40:25&#43;02:00" />
+<meta property="article:modified_time" content="2021-03-15T09:40:25&#43;02:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -31,8 +34,8 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="KrakenD"/>
-<meta name="twitter:description" content="Enterprise open source API Gateway built with Go lang"/>
+<meta name="twitter:title" content="How we built our telemetry service"/>
+<meta name="twitter:description" content="How we built the telemetry system on KrakenD"/>
 
 
 
@@ -111,9 +114,9 @@
 
 		
 <div class="blog-wrapper container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-3 col-md-3 navigation_container affix-top">
-            <div class="sidebar mb-3">
+  <div class="blog row">
+    <div class="col-3">
+      <div class="sidebar mb-3">
 	<h6 class="header">Blog categories</h6>
 	<ul class="nav menu">
 		
@@ -159,7 +162,7 @@
 		
 		
 		<li class="nav-item">
-			<a href="/categories/krakend" class="nav-link active">krakend</a>
+			<a href="/categories/krakend" class="nav-link">krakend</a>
 		</li>
 		
 		
@@ -223,20 +226,27 @@
 		
 	</ul>
 </div>
-        </div>
-        <div class="col-xs-12 col-sm-9 col-md-9">
-            <section class="blog px-3">
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/krakend-golang-plugins/" class="post-link">How to work with Golang plugins and KrakenD</a>
-			</h1>
-			<div class="post-metadata clearfix">
+    </div>
+    <div class="col-9">
+      <section class="blog px-3">
+        <article class="post-entry">
+          <header class="post-header">
+            <div class="share float-right">
+	<a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2fwww.krakend.io%2fblog%2fbuilding-a-telemetry-service%2f&t=How%20we%20built%20our%20telemetry%20service" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-facebook"></i></a>
+	<a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fwww.krakend.io%2fblog%2fbuilding-a-telemetry-service%2f&text=How%20we%20built%20our%20telemetry%20service&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-twitter"></i></a>
+	<a href="https://plus.google.com/share?url=https%3a%2f%2fwww.krakend.io%2fblog%2fbuilding-a-telemetry-service%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-google-plus"></i></a>
+	<a href="http://getpocket.com/edit?url=https%3a%2f%2fwww.krakend.io%2fblog%2fbuilding-a-telemetry-service%2f&title=How%20we%20built%20our%20telemetry%20service" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-get-pocket"></i></a>
+</div>
+            <h1 class="post-title">
+              <a href="https://www.krakend.io/blog/building-a-telemetry-service/" class="post-link">How we built our telemetry service</a>
+            </h1>
+            <div class="post-metadata clearfix">
     <p class="author float-left">
-        by Daniel López &middot; Apr 12, 2018
+        by Daniel López &middot; Mar 15, 2021
     </p>
     <div class="tags">
         <ul>
@@ -258,267 +268,106 @@
                 how to
             </a>
             
-            <li><em class="reading-time">6 min read</em></li>
+            <li><em class="reading-time">7 min read</em></li>
         </ul>
     </div>
 </div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/krakend-golang-plugins/" title="Continue reading How to work with Golang plugins and KrakenD">
-				The release of golang 1.8 more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.
-We’d like to share our experience and details on how we enhanced our products to support golang plugins.
-Why would anyone use plugins in Go? The plugin concept is widely known and supported in several programming languages and environments.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/krakend-golang-plugins/">Continue reading →</a>
-		</p>
-	</article>
+            
+          </header>
+
+          <p>​
+<strong>We have run our telemetry system live for the past three years now</strong>. In this article, we&rsquo;ll share code and outline some of the things you&rsquo;ll need to keep in mind if you want to build an anonymous usage reporting system for an open-source project as we did at a ridiculous cost.</p>
+<p>We have an activity of <strong>700,000 reporting servers/month with a monthly cost betwen 5 and 10 EUR ($12)</strong>. We will show you how to use our reporting client and the details of our actual reporting servers in case you are thinking in implementing a cost-efficient solution with high scalability.</p>
+<p>Lets' get started!
+​</p>
+<h2 id="our-anonymous-report">Our anonymous report</h2>
+<p><strong>We are well aware of the importance of privacy</strong>. We are not in the data-mining business, so we selected a set of minimal details to share from your KrakenD instances that would give us enough insights into the matter without being invasive. We decided that we&rsquo;d rather lose some accuracy than collect (maybe) sensible information, so we went for the <strong>anonymous data</strong>.</p>
+<p>We ignored typical system metrics like the number of CPU/cores, CPU usage, available and consumed ram, network throughput, etc. That&rsquo;s something more related to system monitoring than to the use of KrakenD, and we felt that collecting these metrics generates friction with the acceptance of a telemetry system.
+​</p>
+<h2 id="the-spam-problem">The SPAM problem</h2>
+<p><strong>The telemetry system gives us some value, but we were aware of its risks, both technically and economically</strong>. This system is not our primary focus, so it should be small and simple to keep the development and operational costs under control. Our requirements of storage space and computing cycles were almost proportional to the number of reports to process, and there was no way to avoid DoS attacks hitting the service and suffering a death by a thousand cuts (and a massive bill from our providers).</p>
+<p>We took a different approach: <strong>instead of preventing a pure DoS, why don&rsquo;t we avoid the possible spam?</strong>. We classified as spam all the requests that look well-formed but contained forged or expired data. By rejecting these requests as quickly as possible, we contain the amount of storage and computing cycles consumed by a malicious actor. We looked at the strategies used in other sectors when dealing with spam, such as in emails and crypto transactions. We found an interesting idea: <em>&quot;&hellip;to require a user to compute a moderately hard, but not intractable function&hellip;&quot;</em>. <strong>To get a request to be accepted, proof of work is needed</strong>.</p>
+<p>Given that <strong>the generation of proof of work is several times more expensive than the verification itself</strong>, we could require a new proof of work for every report that we would receive. It could also be used as a signature for the request, making the reuse (and other techniques such as precalculated tables, <a href="https://en.wikipedia.org/wiki/Memoization">memoization</a>, etc.) impossible.</p>
+<p><strong>TLDR: every request will cost more to the sender than to the receiver</strong>. If you&rsquo;re a well-intended sender, the cost is 100% negligible (1 second of work every 12 hours). If you&rsquo;re a malicious actor, your bill will be some orders of magnitude bigger than ours. It will be like <em>trying to drown us with your blood</em>.</p>
+<p>We decided to go with <code>hashcash</code> from all the available options since it&rsquo;s free and already used to limit email spam and DoS attacks. For proof of work, <strong>the client (sender) must solve, with brute force, a small guessing problem</strong> consisting of discovering an offset to add to the challenge of the proof of work to satisfy a condition with a very low probability of occurrence. On the other side, the server (receiver) merely needs to check if the proof of work is not expired and if its hash starts with a given number of zeros (the condition to satisfy).
+​</p>
+<h2 id="sessions-and-reports">Sessions and reports</h2>
+<p>​When a new instance of KrakenD gets started, the usage client asks for a new session. The usage server returns a token for the given pair of identifiers (ServerID and ClusterID) that should be used when creating the reports as part of the challenge.</p>
+<p>To know our users better, we thought it was essential to get some system details from our binary, this is <strong>the version, the architecture, and the operating system</strong> it was running on.</p>
+<p>Then we thought about keeping track of every running instance, so we generated a <strong>random UUID</strong> before creating the client (<code>ServerID</code>) and used it to identify a given single server.</p>
+<p>To know the average size of the KrakenD clusters, we needed to group instances, so we decided to use a hash of the configuration as a <strong>cluster identifier</strong> (<code>ClusterID</code>).</p>
+<p>Finally, we wanted to know the average life span of the KrakenD instances, so we added one final metric to the reports: the <strong>service&rsquo;s uptime</strong>.
+​</p>
+<h2 id="reporting-frequency">Reporting frequency</h2>
+<p>Another critical decision: if the reporting frequency stayed too low, the value of the telemetry system would be comparable with the value of our stats from the downloads (deb, rpm and tgz repositories, docker hub, the marketplaces, etc), but if it were too high we could affect the trust of the community or even the performance of the product. The worst-case scenario also included an auto-generated DoS due to the high amount of instances that could be running out there sending legit reports.</p>
+<p>After several discussions, models, and benchmarks, we thought <strong>sending a report every 12 hours</strong> would be the right choice. Looking back, I guess I should have given my vote to a little more ambitious option and set the reporting to every 3 or 4 hours.
+​</p>
+<h2 id="the-reporting-client">The reporting client</h2>
+<p>Here is the <a href="https://github.com/devopsfaith/krakend-usage">source code of our reporting client</a>. It has some opinionated options that you should keep in mind if you intend to use it.
+​
+The opinionated options are:
+​</p>
+<ul>
+<li>Requests will timeout after 15 seconds</li>
+<li>Sessions will be created sending a POST request to the endpoint <code>/session</code></li>
+<li>Reports will be created sending a POST request to the endpoint <code>/report</code></li>
+<li>Reports will be sent every 12 hours</li>
+<li>The proof of work will be done with hashcash and the following params:
+<ul>
+<li><code>HashBits = 20</code></li>
+<li><code>SaltChars = 40</code></li>
+<li><code>DefaultExtension = &quot;&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>The configurable options are:</p>
+<ul>
+<li><code>ClusterID</code>: the identification for a cluster</li>
+<li><code>ServerID</code>: the identification for the instance</li>
+<li><code>URL</code>: the URL of your telemetry service (by default: <code>https://usage.krakend.io</code>)</li>
+<li><code>Version</code>: the version of the binary</li>
+</ul>
+<p>To start a reporting client, just import <code>github.com/devopsfaith/krakend-usage/client</code> and call the single exposed function</p>
+<pre><code>client.StartReporter(ctx, client.Options{
+    ClusterID: &quot;your_cluster_id&quot;,
+    ServerID:  &quot;your_server_id&quot;,
+    URL:       &quot;https://your-usage-domain.tld&quot;,
+    Version:   &quot;your_binary_version&quot;,
+})
+</code></pre><p>The reporting client will create a session and use the token to keep reporting every 12 hours to the server with a new proof of work, so the report gets accepted.
+​</p>
+<h2 id="the-reporting-server">The reporting server</h2>
+<p>To limit our risk exposure, we decided to keep the server-side part of our telemetry system undisclosed for now. That means we won&rsquo;t publish the entire source code of it, but we are open to sharing some details with the community, making it easier for everyone to build their own version.</p>
+<p>Nevertheless, the service is a small API with just two endpoints exposed:</p>
+<ul>
+<li>/session</li>
+<li>/report</li>
+</ul>
+<p>After every successful request to any of these endpoints, the service updates the database, sends a notification to our company Slack, and calls Google Analytics as if it was a simple page view, so we have complete visibility, in real-time.</p>
+<p>In the future, we have plans to integrate into the system other metrics from our public rpm, deb and tgz repos, from docker hub, etc., so we could also cross-exam the correlation between downloads and usage.
+​</p>
+<h2 id="summary">Summary</h2>
+<p>This article shared our experience building and deploying a small but powerful telemetry system for the KrakenD API Gateway. Some recommendations might be handy for you if you are interested in adding a similar feature to your project. We&rsquo;ve stressed the importance of respecting our users' privacy and keeping the trust they have in us.</p>
+<p>Did you make it this far?</p>
+<p>Thanks for reading! If you like our product, don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
+
+
+          <aside>
+            <div class="share float-right">
+	<a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2fwww.krakend.io%2fblog%2fbuilding-a-telemetry-service%2f&t=How%20we%20built%20our%20telemetry%20service" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-facebook"></i></a>
+	<a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fwww.krakend.io%2fblog%2fbuilding-a-telemetry-service%2f&text=How%20we%20built%20our%20telemetry%20service&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-twitter"></i></a>
+	<a href="https://plus.google.com/share?url=https%3a%2f%2fwww.krakend.io%2fblog%2fbuilding-a-telemetry-service%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-google-plus"></i></a>
+	<a href="http://getpocket.com/edit?url=https%3a%2f%2fwww.krakend.io%2fblog%2fbuilding-a-telemetry-service%2f&title=How%20we%20built%20our%20telemetry%20service" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+		 class="fab fa-get-pocket"></i></a>
 </div>
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/deploying-an-api-gateway/" class="post-link">Deploying and versioning an API Gateway</a>
-			</h1>
-			<div class="post-metadata clearfix">
-    <p class="author float-left">
-        by Daniel López and Albert Lombarte &middot; Apr 6, 2018
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/open-source">
-                open source
-            </a>
-            
-            ,
-            
-            <a href="/tags/golang">
-                golang
-            </a>
-            
-            ,
-            
-            <a href="/tags/how-to">
-                how to
-            </a>
-            
-            <li><em class="reading-time">8 min read</em></li>
-        </ul>
+          </aside>
+        </article>
+      </section>
     </div>
-</div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/deploying-an-api-gateway/" title="Continue reading Deploying and versioning an API Gateway">
-				When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it’s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/deploying-an-api-gateway/">Continue reading →</a>
-		</p>
-	</article>
-</div>
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/krakend-0.4-release-notes/" class="post-link">KrakenD 0.4 release notes</a>
-			</h1>
-			<div class="post-metadata clearfix">
-    <p class="author float-left">
-        by Albert Lombarte &middot; Jan 21, 2018
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/open-source">
-                open source
-            </a>
-            
-            ,
-            
-            <a href="/tags/release-notes">
-                release notes
-            </a>
-            
-            <li><em class="reading-time">1 min read</em></li>
-        </ul>
-    </div>
-</div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/krakend-0.4-release-notes/" title="Continue reading KrakenD 0.4 release notes">
-				KrakenD 0.4 materializes the announcement we did 3 months ago by going full open source and public releasing the former enterprise-only components.
-This release note comprehends both the KrakenD framework and the KrakenD Community Edition binary distribution.
-KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The summary of changes introduced in the 0.4 are:
- Removed ALL external dependencies and placed to krakend-contrib repositories Decoder and Service Discovery register system Response metadata Response decoder and formatter exposed Custom status code handler Minor handler optimizations Config version upgraded Server configuration extended (with timeouts and limits) Now non strict REST urls are allowed Request and response manipulation optimized func version for all the interfaces  Link to 0.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/krakend-0.4-release-notes/">Continue reading →</a>
-		</p>
-	</article>
-</div>
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/what-is-an-api-gateway/" class="post-link">An API Gateway is not the new Unicorn</a>
-			</h1>
-			<div class="post-metadata clearfix">
-    <p class="author float-left">
-        by Daniel Lopez and Albert Lombarte &middot; Jan 19, 2018
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/open-source">
-                open source
-            </a>
-            
-            <li><em class="reading-time">9 min read</em></li>
-        </ul>
-    </div>
-</div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/what-is-an-api-gateway/" title="Continue reading An API Gateway is not the new Unicorn">
-				The more we talk to people about API gateways, the more we have come to realize that the term means different things to different people, and more specifically we see a growing trend where developers (but mostly managers) expect an API gateway to be able to perform miracles, usually a long way away from its intended use.
-It’s as if the API Gateway is the new unicorn that will solve all problems and make everything wonderful in the microservices scene.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/what-is-an-api-gateway/">Continue reading →</a>
-		</p>
-	</article>
-</div>
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/road-to-0.4/" class="post-link">Road to KrakenD 0.4</a>
-			</h1>
-			<div class="post-metadata clearfix">
-    <p class="author float-left">
-        by dlopez &middot; Nov 12, 2017
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/open-source">
-                open source
-            </a>
-            
-            <li><em class="reading-time">4 min read</em></li>
-        </ul>
-    </div>
-</div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/road-to-0.4/" title="Continue reading Road to KrakenD 0.4">
-				The next iteration of KrakenD is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the 0.4 release before end of year. The jump from the 0.3.9 of the binary and the 0.3 of the framework to the 0.4 will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: kill external dependencies with fire.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/road-to-0.4/">Continue reading →</a>
-		</p>
-	</article>
-</div>
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/automating-linux-packaging/" class="post-link">How we automated our RPM and DEB packaging with Docker</a>
-			</h1>
-			<div class="post-metadata clearfix">
-    <p class="author float-left">
-        by taik0 &middot; Nov 6, 2017
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/how-to">
-                how-to
-            </a>
-            
-            ,
-            
-            <a href="/tags/packaging">
-                packaging
-            </a>
-            
-            ,
-            
-            <a href="/tags/docker">
-                docker
-            </a>
-            
-            <li><em class="reading-time">6 min read</em></li>
-        </ul>
-    </div>
-</div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/automating-linux-packaging/" title="Continue reading How we automated our RPM and DEB packaging with Docker">
-				Everyone loves reaching the maximum number of available platforms for their software but this usually comes at a cost. In this article we will explain how we generated our packaging for Linux in an automated fashion, being faithful to our DevOps dogma.
-Dockerize all the things! Our team uses both Ubuntu and MacOS X in desktop machines and KrakenD has been running and behaving in the same way in all the platforms because from day one we decided to run everything on Docker.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/automating-linux-packaging/">Continue reading →</a>
-		</p>
-	</article>
-</div>
-                
-                <div class="list-item">
-	
-	<article class="post-entry">
-		<header class="post-header">
-			<h1 class="post-title">
-				<a href="https://www.krakend.io/blog/open-sourcing-enterprise-features/" class="post-link">Open sourcing all enterprise components</a>
-			</h1>
-			<div class="post-metadata clearfix">
-    <p class="author float-left">
-        by alombarte &middot; Oct 22, 2017
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/open-source">
-                open source
-            </a>
-            
-            <li><em class="reading-time">5 min read</em></li>
-        </ul>
-    </div>
-</div>
-		</header>
-		<p class="post-summary">
-			<a class="summary" href="https://www.krakend.io/blog/open-sourcing-enterprise-features/" title="Continue reading Open sourcing all enterprise components">
-				What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don’t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
-A look back… If you are reading this post chances are that you know this already, in short KrakenD is the fastest API Gateway in the market.
-			</a>
-			<a class="read-more" href="https://www.krakend.io/blog/open-sourcing-enterprise-features/">Continue reading →</a>
-		</p>
-	</article>
-</div>
-                
-                
-                <div class="paginator">
-                    
-                    <a class="btn btn-sm btn-secondary" href="/categories/krakend/page/2/"><i class="fa fa-arrow-circle-left"></i> Previous page</a>
-                    
-                    
-                </div>
-                
-            </section>
-        </div>
-    </div>
+  </div>
 </div>
 
 	</div>

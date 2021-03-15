@@ -6,7 +6,7 @@
     <description>Recent content on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Mar 2021 09:40:25 +0200</lastBuildDate><atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction to KrakenD</title>
       <link>https://www.krakend.io/docs/overview/introduction/</link>
@@ -946,6 +946,16 @@ The following configuration snippet enables the logger:
       <guid>https://www.krakend.io/docs/endpoints/health/</guid>
       <description>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need an HTTP endpoint in systems like Kubernetes, use /__health.
 The /__health endpoint The health endpoint in KrakenD works out of the box without adding any configuration in the server. Just point your checks to /__health and you&amp;rsquo;ll have a 200 response code from KrakenD when the system is running, e.</description>
+    </item>
+    
+    <item>
+      <title>How we built our telemetry service</title>
+      <link>https://www.krakend.io/blog/building-a-telemetry-service/</link>
+      <pubDate>Mon, 15 Mar 2021 09:40:25 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/blog/building-a-telemetry-service/</guid>
+      <description>​ We have run our telemetry system live for the past three years now. In this article, we&amp;rsquo;ll share code and outline some of the things you&amp;rsquo;ll need to keep in mind if you want to build an anonymous usage reporting system for an open-source project as we did at a ridiculous cost.
+We have an activity of 700,000 reporting servers/month with a monthly cost betwen 5 and 10 EUR ($12).</description>
     </item>
     
     <item>

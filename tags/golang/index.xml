@@ -6,7 +6,17 @@
     <description>Recent content in golang on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Jun 2019 18:26:10 +0100</lastBuildDate><atom:link href="https://www.krakend.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Mar 2021 09:40:25 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How we built our telemetry service</title>
+      <link>https://www.krakend.io/blog/building-a-telemetry-service/</link>
+      <pubDate>Mon, 15 Mar 2021 09:40:25 +0200</pubDate>
+      
+      <guid>https://www.krakend.io/blog/building-a-telemetry-service/</guid>
+      <description>​ We have run our telemetry system live for the past three years now. In this article, we&amp;rsquo;ll share code and outline some of the things you&amp;rsquo;ll need to keep in mind if you want to build an anonymous usage reporting system for an open-source project as we did at a ridiculous cost.
+We have an activity of 700,000 reporting servers/month with a monthly cost betwen 5 and 10 EUR ($12).</description>
+    </item>
+    
     <item>
       <title>gRPC-gateway as a KrakenD plugin</title>
       <link>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</link>
