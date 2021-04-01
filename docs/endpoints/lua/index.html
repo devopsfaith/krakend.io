@@ -957,14 +957,14 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <p>For the endpoint section:</p>
 <pre><code>&quot;extra_config&quot;: {
       &quot;github.com/devopsfaith/krakend-lua/proxy&quot;: {
-        &quot;pre&quot;: &quot;print('Lua proxy!'); local r = request.load(); r:headers('X-from-lua', '1234');&quot;,
+        &quot;pre&quot;: &quot;print('Lua proxy!'); local r = request.load(); r:headers('X-from-lua', '1234');&quot;
       }
 }
 </code></pre>
 <p>For the backend section:</p>
 <pre><code>&quot;extra_config&quot;: {
       &quot;github.com/devopsfaith/krakend-lua/proxy/backend&quot;: {
-        &quot;pre&quot;: &quot;print('Showing body from backend-pre logic'); local r = request.load(); print(r:body('')); &quot;,
+        &quot;pre&quot;: &quot;print('Showing body from backend-pre logic'); local r = request.load(); print(r:body(''));&quot;
       }
 }
 </code></pre>
