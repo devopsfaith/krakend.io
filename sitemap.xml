@@ -438,6 +438,21 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/case-study/</loc>
+    <lastmod>2021-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/case-study/xiachufang/</loc>
+    <lastmod>2021-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/</loc>
+    <lastmod>2021-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/categories/api-gateway/</loc>
     <lastmod>2021-03-15T09:40:25+02:00</lastmod>
   </url>
@@ -469,11 +484,6 @@
   
   <url>
     <loc>https://www.krakend.io/categories/krakend/</loc>
-    <lastmod>2021-03-15T09:40:25+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/</loc>
     <lastmod>2021-03-15T09:40:25+02:00</lastmod>
   </url>
   
@@ -535,11 +545,6 @@
   <url>
     <loc>https://www.krakend.io/blog/krakend-1.1-release-notes/</loc>
     <lastmod>2020-02-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.krakend.io/case-study/</loc>
-    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
