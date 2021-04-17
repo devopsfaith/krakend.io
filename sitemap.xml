@@ -273,6 +273,11 @@
   </url>
   
   <url>
+    <loc>https://www.krakend.io/docs/authorization/mutual-authentication/</loc>
+    <lastmod>2020-04-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.krakend.io/docs/logging/logstash/</loc>
     <lastmod>2019-09-15T00:00:00+00:00</lastmod>
   </url>
@@ -425,6 +430,11 @@
   <url>
     <loc>https://www.krakend.io/docs/enterprise/websockets/</loc>
     <lastmod>2020-05-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.krakend.io/docs/overview/guides/</loc>
+    <lastmod>2020-04-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>

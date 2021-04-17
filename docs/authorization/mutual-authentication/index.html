@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.81.0" />
 
-    <title>SD with DNS SRV (e.g., Consul, k8s) - KrakenD API Gateway</title>
-    <meta itemprop="name" content="SD with DNS SRV (e.g., Consul, k8s) - KrakenD API Gateway">
+    <title>Securing B2B communication with mTLS - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Securing B2B communication with mTLS - KrakenD API Gateway">
 
     
-    <meta property="description" content="SD with DNS SRV (e.g., Consul, k8s) - KrakenD API Gateway">
-    <meta itemprop="description" content="SD with DNS SRV (e.g., Consul, k8s) - KrakenD API Gateway">
+    <meta property="description" content="Securing B2B communication with mTLS - KrakenD API Gateway">
+    <meta itemprop="description" content="Securing B2B communication with mTLS - KrakenD API Gateway">
     
 
     
@@ -21,14 +21,14 @@
 
 
 
-<meta property="og:title" content="SD with DNS SRV (e.g., Consul, k8s)" />
-<meta property="og:description" content="The DNS SRV is a market standard used by systems such as Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd, and more.
-To integrate Consul as the Service Discovery or any other DNS SRV compatible systems you only need to set two keys:
- &quot;sd&quot;: &quot;dns&quot;: To set service discovery = DNS SRV &quot;host&quot;: []: The list of all the names providing the resolution  These keys need to be added in the backend section of your configuration." />
+<meta property="og:title" content="Securing B2B communication with mTLS" />
+<meta property="og:description" content="Mutual TLS authentication (mTLS) is an authentication mechanism used traditionally in business-to-business (B2B) applications where clients provide a certificate that allows to connect to the KrakenD server.
+Configuring mutual authentication From the configuration file perspective, Mutual TLS Authentication is no more than flag at the root level of the configuration.
+When mTLS is enabled, all KrakenD endpoints require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system&rsquo;s CA to validate certificates." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/service-discovery/dns-srv/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
-
-<meta property="article:modified_time" content="2019-02-13T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/docs/authorization/mutual-authentication/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2020-04-10T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-04-10T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -36,10 +36,10 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="SD with DNS SRV (e.g., Consul, k8s)"/>
-<meta name="twitter:description" content="The DNS SRV is a market standard used by systems such as Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd, and more.
-To integrate Consul as the Service Discovery or any other DNS SRV compatible systems you only need to set two keys:
- &quot;sd&quot;: &quot;dns&quot;: To set service discovery = DNS SRV &quot;host&quot;: []: The list of all the names providing the resolution  These keys need to be added in the backend section of your configuration."/>
+<meta name="twitter:title" content="Securing B2B communication with mTLS"/>
+<meta name="twitter:description" content="Mutual TLS authentication (mTLS) is an authentication mechanism used traditionally in business-to-business (B2B) applications where clients provide a certificate that allows to connect to the KrakenD server.
+Configuring mutual authentication From the configuration file perspective, Mutual TLS Authentication is no more than flag at the root level of the configuration.
+When mTLS is enabled, all KrakenD endpoints require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system&rsquo;s CA to validate certificates."/>
 
 
 
@@ -58,7 +58,7 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
-<body class="krakend page-5cda68c90518f04302132f189d345799">
+<body class="krakend page-3c8b33a36a937b2023e78fc6ae0015d7">
     
     <div class="top-bar">
   <div class="container my-2">
@@ -406,12 +406,12 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-6" role="button" aria-expanded="false"
-                aria-controls="menu-6" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-6" role="button" aria-expanded="true"
+                aria-controls="menu-6" class="nav-link parent active">
                 Authentication and authorization
             </a>
-            <div class="collapse" id="menu-6">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-6">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
                         <a href="/docs/authorization/jwt-overview/" class="nav-link children ">JWT overview</a>
@@ -430,7 +430,7 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/authorization/mutual-authentication/" class="nav-link children ">Mutual TLS Authentication (mTLS)</a>
+                        <a href="/docs/authorization/mutual-authentication/" class="nav-link children active">Mutual TLS Authentication (mTLS)</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -445,19 +445,19 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-7" role="button" aria-expanded="true"
-                aria-controls="menu-7" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-7" role="button" aria-expanded="false"
+                aria-controls="menu-7" class="nav-link parent">
                 Service Discovery
             </a>
-            <div class="collapse show" id="menu-7">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-7">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
                         <a href="/docs/service-discovery/overview/" class="nav-link children ">Service Discovery overview</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/service-discovery/dns-srv/" class="nav-link children active">DNS SRV</a>
+                        <a href="/docs/service-discovery/dns-srv/" class="nav-link children ">DNS SRV</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -772,12 +772,12 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
                 <section class="content-header">
                     
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-discovery/dns-srv.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/authorization/mutual-authentication.md">
     Edit this page
 </a>
 
 
-<h1 class="main-title">SD with DNS SRV (e.g., Consul, k8s)</h1>
+<h1 class="main-title">Securing B2B communication with mTLS</h1>
 
 
 
@@ -792,27 +792,17 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
     <section class="col-md-12">
         
         
-        <p>The <code>DNS SRV</code> is a market standard used by systems such as <strong>Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd</strong>, and more.</p>
-<p>To integrate Consul as the Service Discovery or any other <code>DNS SRV</code> compatible systems you only need to set two keys:</p>
-<ul>
-<li><code>&quot;sd&quot;: &quot;dns&quot;</code>: To set service discovery = DNS SRV</li>
-<li><code>&quot;host&quot;: []</code>: The list of all the names providing the resolution</li>
-</ul>
-<p>These keys need to be added in the <code>backend</code> section of your configuration. The <code>host</code> key can be skipped if there is another <code>host</code> key in the root level of the configuration.</p>
-<p>For instance:</p>
-<pre><code>...
-&quot;backend&quot;: [
-        {
-          &quot;url_pattern&quot;: &quot;/foo&quot;,
-          &quot;sd&quot;: &quot;dns&quot;,
-          &quot;host&quot;: [
-            &quot;api-catalog.service.consul.srv&quot;
-          ],
-          &quot;disable_host_sanitize&quot;: true
-        }
-      ]
-...
+        <p>Mutual TLS authentication (mTLS) is an authentication mechanism used traditionally in business-to-business (B2B) applications where clients provide a certificate that allows to connect to the KrakenD server.</p>
+<h2 id="configuring-mutual-authentication">Configuring mutual authentication</h2>
+<p>From the configuration file perspective, Mutual TLS Authentication is no more than flag at the root level of the configuration.</p>
+<p>When mTLS is enabled, <strong>all KrakenD endpoints</strong> require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system&rsquo;s CA to validate certificates.</p>
+<p>To enable it you need to add <code>enable_mtls</code> to your configuration:</p>
+<pre><code>{
+  &quot;version&quot;: 2&quot;,
+  &quot;enable_mtls&quot;: true
+}
 </code></pre>
+<p>Connections not having a recognized certificate in KrakenD&rsquo;s system CA, will be rejected.</p>
 
     </section>
 </div>

@@ -592,6 +592,17 @@ Each backend can reply with a different encoding and KrakenD does not have any p
     </item>
     
     <item>
+      <title>Securing B2B communication with mTLS</title>
+      <link>https://www.krakend.io/docs/authorization/mutual-authentication/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/authorization/mutual-authentication/</guid>
+      <description>Mutual TLS authentication (mTLS) is an authentication mechanism used traditionally in business-to-business (B2B) applications where clients provide a certificate that allows to connect to the KrakenD server.
+Configuring mutual authentication From the configuration file perspective, Mutual TLS Authentication is no more than flag at the root level of the configuration.
+When mTLS is enabled, all KrakenD endpoints require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system&amp;rsquo;s CA to validate certificates.</description>
+    </item>
+    
+    <item>
       <title>Logstash</title>
       <link>https://www.krakend.io/docs/logging/logstash/</link>
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
@@ -924,6 +935,16 @@ Enabling it only requires you to add the ocagent exporter in the opencensus modu
       <guid>https://www.krakend.io/docs/enterprise/websockets/</guid>
       <description>KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client to a backend host through the API gateway. This technology aims to provide a mechanism for browser-based applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
 KrakenD has the capability of multiplexing. Each individual end-client (e.g., Desktop, Mobile device) establishes a connection with the gateway directly, and KrakenD opens a single channel with the backend host to handle all its connected clients.</description>
+    </item>
+    
+    <item>
+      <title>Tutorials and Guides</title>
+      <link>https://www.krakend.io/docs/overview/guides/</link>
+      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/docs/overview/guides/</guid>
+      <description>The documentation in this site covers all the functionality of KrakenD API Gateway, but over time we have received from KrakenD users all kinds of tutorials, guides and other resources that illustrate how to to do a specific thing. We have included below a few links, but you can share yours.
+User-contributed resources  Getting started with KrakenD on Kubernetes / AKS by Christian Dennig (Cloud Solution Architect @Microsoft) Microservices with Micronaut, KrakenD and Consul by Piotr Minkowski (Solution Architect @ Red Hat) How to Successfully Set Up KrakenD on GKE: A Step by Step Guide by Vijay Savanth on Hackernoon Writing Plugins using Golang by Ilya Nemtsev on Eventslooped Building Micro Services with .</description>
     </item>
     
     <item>

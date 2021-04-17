@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.81.0" />
 
-    <title>SD with DNS SRV (e.g., Consul, k8s) - KrakenD API Gateway</title>
-    <meta itemprop="name" content="SD with DNS SRV (e.g., Consul, k8s) - KrakenD API Gateway">
+    <title>Tutorials and Guides - KrakenD API Gateway</title>
+    <meta itemprop="name" content="Tutorials and Guides - KrakenD API Gateway">
 
     
-    <meta property="description" content="SD with DNS SRV (e.g., Consul, k8s) - KrakenD API Gateway">
-    <meta itemprop="description" content="SD with DNS SRV (e.g., Consul, k8s) - KrakenD API Gateway">
+    <meta property="description" content="Tutorials and Guides - KrakenD API Gateway">
+    <meta itemprop="description" content="Tutorials and Guides - KrakenD API Gateway">
     
 
     
@@ -21,14 +21,13 @@
 
 
 
-<meta property="og:title" content="SD with DNS SRV (e.g., Consul, k8s)" />
-<meta property="og:description" content="The DNS SRV is a market standard used by systems such as Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd, and more.
-To integrate Consul as the Service Discovery or any other DNS SRV compatible systems you only need to set two keys:
- &quot;sd&quot;: &quot;dns&quot;: To set service discovery = DNS SRV &quot;host&quot;: []: The list of all the names providing the resolution  These keys need to be added in the backend section of your configuration." />
+<meta property="og:title" content="Tutorials and Guides" />
+<meta property="og:description" content="The documentation in this site covers all the functionality of KrakenD API Gateway, but over time we have received from KrakenD users all kinds of tutorials, guides and other resources that illustrate how to to do a specific thing. We have included below a few links, but you can share yours.
+User-contributed resources  Getting started with KrakenD on Kubernetes / AKS by Christian Dennig (Cloud Solution Architect @Microsoft) Microservices with Micronaut, KrakenD and Consul by Piotr Minkowski (Solution Architect @ Red Hat) How to Successfully Set Up KrakenD on GKE: A Step by Step Guide by Vijay Savanth on Hackernoon Writing Plugins using Golang by Ilya Nemtsev on Eventslooped Building Micro Services with ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/docs/service-discovery/dns-srv/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
-
-<meta property="article:modified_time" content="2019-02-13T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="og:url" content="https://www.krakend.io/docs/overview/guides/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2020-04-17T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-04-17T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -36,10 +35,9 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="SD with DNS SRV (e.g., Consul, k8s)"/>
-<meta name="twitter:description" content="The DNS SRV is a market standard used by systems such as Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd, and more.
-To integrate Consul as the Service Discovery or any other DNS SRV compatible systems you only need to set two keys:
- &quot;sd&quot;: &quot;dns&quot;: To set service discovery = DNS SRV &quot;host&quot;: []: The list of all the names providing the resolution  These keys need to be added in the backend section of your configuration."/>
+<meta name="twitter:title" content="Tutorials and Guides"/>
+<meta name="twitter:description" content="The documentation in this site covers all the functionality of KrakenD API Gateway, but over time we have received from KrakenD users all kinds of tutorials, guides and other resources that illustrate how to to do a specific thing. We have included below a few links, but you can share yours.
+User-contributed resources  Getting started with KrakenD on Kubernetes / AKS by Christian Dennig (Cloud Solution Architect @Microsoft) Microservices with Micronaut, KrakenD and Consul by Piotr Minkowski (Solution Architect @ Red Hat) How to Successfully Set Up KrakenD on GKE: A Step by Step Guide by Vijay Savanth on Hackernoon Writing Plugins using Golang by Ilya Nemtsev on Eventslooped Building Micro Services with ."/>
 
 
 
@@ -58,7 +56,7 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
-<body class="krakend page-5cda68c90518f04302132f189d345799">
+<body class="krakend page-779bc822bb619e0a77f7c2643b40cf11">
     
     <div class="top-bar">
   <div class="container my-2">
@@ -136,12 +134,12 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-0" role="button" aria-expanded="false"
-                aria-controls="menu-0" class="nav-link parent">
+            <a data-toggle="collapse" href="#menu-0" role="button" aria-expanded="true"
+                aria-controls="menu-0" class="nav-link parent active">
                 Getting Started
             </a>
-            <div class="collapse" id="menu-0">
-                <ul class="nav flex-column">
+            <div class="collapse show" id="menu-0">
+                <ul class="nav flex-column menu-open">
                     
                     <li class="nav-item child">
                         <a href="/docs/overview/introduction/" class="nav-link children ">Introduction</a>
@@ -164,7 +162,7 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/overview/guides/" class="nav-link children ">Tutorials and Guides</a>
+                        <a href="/docs/overview/guides/" class="nav-link children active">Tutorials and Guides</a>
                     </li>
                     
                 </ul>
@@ -445,19 +443,19 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
         
         <li class="nav-item">
             
-            <a data-toggle="collapse" href="#menu-7" role="button" aria-expanded="true"
-                aria-controls="menu-7" class="nav-link parent active">
+            <a data-toggle="collapse" href="#menu-7" role="button" aria-expanded="false"
+                aria-controls="menu-7" class="nav-link parent">
                 Service Discovery
             </a>
-            <div class="collapse show" id="menu-7">
-                <ul class="nav flex-column menu-open">
+            <div class="collapse" id="menu-7">
+                <ul class="nav flex-column">
                     
                     <li class="nav-item child">
                         <a href="/docs/service-discovery/overview/" class="nav-link children ">Service Discovery overview</a>
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/service-discovery/dns-srv/" class="nav-link children active">DNS SRV</a>
+                        <a href="/docs/service-discovery/dns-srv/" class="nav-link children ">DNS SRV</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -772,12 +770,12 @@ To integrate Consul as the Service Discovery or any other DNS SRV compatible sys
                 <section class="content-header">
                     
 <a class="edit-page"
-href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-discovery/dns-srv.md">
+href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/guides.md">
     Edit this page
 </a>
 
 
-<h1 class="main-title">SD with DNS SRV (e.g., Consul, k8s)</h1>
+<h1 class="main-title">Tutorials and Guides</h1>
 
 
 
@@ -792,28 +790,21 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/service-d
     <section class="col-md-12">
         
         
-        <p>The <code>DNS SRV</code> is a market standard used by systems such as <strong>Kubernetes, Mesos, Haproxy, Nginx plus, AWS ECS, Linkerd</strong>, and more.</p>
-<p>To integrate Consul as the Service Discovery or any other <code>DNS SRV</code> compatible systems you only need to set two keys:</p>
+        <p>The documentation in this site covers all the functionality of KrakenD API Gateway, but over time we have received from KrakenD users all kinds of tutorials, guides and other resources that illustrate how to to do a specific thing. We have included below a few links, but you can share yours.</p>
+<h2 id="user-contributed-resources">User-contributed resources</h2>
 <ul>
-<li><code>&quot;sd&quot;: &quot;dns&quot;</code>: To set service discovery = DNS SRV</li>
-<li><code>&quot;host&quot;: []</code>: The list of all the names providing the resolution</li>
+<li><a href="https://partlycloudy.blog/2021/02/17/getting-started-with-krakend-on-kubernetes-aks/">Getting started with KrakenD on Kubernetes / AKS</a> by Christian Dennig (Cloud Solution Architect @Microsoft)</li>
+<li><a href="https://piotrminkowski.com/2021/02/23/microservices-with-micronaut-krakend-and-consul/">Microservices with Micronaut, KrakenD and Consul</a> by Piotr Minkowski (Solution Architect @ Red Hat)</li>
+<li><a href="https://hackernoon.com/how-to-successfully-set-up-krakend-on-gke-a-step-by-step-guide-ny22311c">How to Successfully Set Up KrakenD on GKE: A Step by Step Guide</a> by Vijay Savanth on Hackernoon</li>
+<li><a href="https://www.eventslooped.com/posts/krakend-writing-plugins/">Writing Plugins using Golang</a> by Ilya Nemtsev on Eventslooped</li>
+<li><a href="https://balramchavan.medium.com/building-micro-services-with-net-core-krakend-api-gateway-fad036f10298">Building Micro Services with .Net Core + Krakend API Gateway</a> by Balram Chavan (Engineer @Boehringer Ingelheim)</li>
+<li><a href="https://betterprogramming.pub/how-to-effortlessly-adopt-microservices-using-krakend-28c265573877">How To Effortlessly Adopt Microservices Using KrakenD</a> by Kirshi Yin on BetterProgramming</li>
+<li><a href="https://blog.hcltechsw.com/compass/using-a-proxy-and-api-gateway-to-optimize-compass-for-performance/">Using a proxy and API gateway to optimize Compass for performance</a> by Michael Hudson (Technology Director @HCL Software)</li>
 </ul>
-<p>These keys need to be added in the <code>backend</code> section of your configuration. The <code>host</code> key can be skipped if there is another <code>host</code> key in the root level of the configuration.</p>
-<p>For instance:</p>
-<pre><code>...
-&quot;backend&quot;: [
-        {
-          &quot;url_pattern&quot;: &quot;/foo&quot;,
-          &quot;sd&quot;: &quot;dns&quot;,
-          &quot;host&quot;: [
-            &quot;api-catalog.service.consul.srv&quot;
-          ],
-          &quot;disable_host_sanitize&quot;: true
-        }
-      ]
-...
-</code></pre>
-
+<p>If you have written a tutorial, guide or any other material worth sharing with the community, let us know:</p>
+<a class="btn btn-secondary" href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/guides.md">
+    Add your link
+</a>
     </section>
 </div>
 
