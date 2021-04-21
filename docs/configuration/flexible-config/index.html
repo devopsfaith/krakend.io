@@ -982,27 +982,19 @@ krakend check -d -c &quot;$PWD/config/krakend.json&quot;
 </span><span class="hl">        <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">extra_config</span> <span class="p">}},</span>
 </span><span class="hl">        <span class="s">&#34;host&#34;</span><span class="p">:</span> <span class="p">{{</span> <span class="nx">marshal</span> <span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">default_hosts</span> <span class="p">}},</span>
 </span>        <span class="s">&#34;endpoints&#34;</span><span class="p">:</span> <span class="p">[</span>
-<span class="hl">            <span class="p">{{</span> <span class="k">range</span> <span class="p">.</span><span class="nx">endpoint</span><span class="p">.</span><span class="nx">example_group</span> <span class="p">}}</span>
-</span>            <span class="p">{</span>
-<span class="hl">            <span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;{{ .endpoint }}&#34;</span><span class="p">,</span>
-</span>            <span class="s">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-<span class="hl">                    <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;{{ .backend }}&#34;</span>
-</span>                <span class="p">}</span>
-            <span class="p">]</span>
-            <span class="p">},</span>
-<span class="hl">            <span class="p">{{</span> <span class="nx">end</span> <span class="p">}}</span>
-</span>            <span class="p">{</span>
-            <span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;/limited-endpoint&#34;</span><span class="p">,</span>
+<span class="hl">            <span class="p">{{</span> <span class="k">range</span> <span class="err">$</span><span class="nx">idx</span><span class="p">,</span> <span class="err">$</span><span class="nx">endpoint</span> <span class="o">:=</span> <span class="p">.</span><span class="nx">endpoint</span><span class="p">.</span><span class="nx">example_group</span> <span class="p">}}</span>
+</span>            <span class="p">{{</span><span class="k">if</span> <span class="err">$</span><span class="nx">idx</span><span class="p">}},{{</span><span class="nx">end</span><span class="p">}}</span>
+<span class="hl">            <span class="p">{</span>
+</span>            <span class="s">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s">&#34;{{ $endpoint.endpoint }}&#34;</span><span class="p">,</span>
             <span class="s">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;/v1/slow-backend&#34;</span><span class="p">,</span>
+<span class="hl">                <span class="p">{</span>
+</span>                    <span class="s">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s">&#34;{{ $endpoint.backend }}&#34;</span><span class="p">,</span>
                     <span class="s">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
 <span class="hl">                        <span class="p">{{</span> <span class="nx">include</span> <span class="s">&#34;rate_limit_backend.tmpl&#34;</span> <span class="p">}}</span>
 </span>                    <span class="p">}</span>
                 <span class="p">}</span>
-                <span class="p">]</span>
-            <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">{{</span> <span class="nx">end</span> <span class="p">}}</span>
         <span class="p">]</span>
     <span class="p">}</span>
 </code></pre></div>
@@ -1010,7 +1002,8 @@ krakend check -d -c &quot;$PWD/config/krakend.json&quot;
 <li>The <code>.service.port</code> is taken from the <code>service.json</code> file.</li>
 <li>The <code>extra_config</code> in the third line is inserted as a JSON object using the <code>marshal</code> function from the <code>service.json</code> as well.</li>
 <li>A <code>range</code> iterates the array found under <code>endpoint.json</code> and key <code>example_group</code>. The variables inside the range are relative to the <code>example_group</code> content.</li>
-<li>Finally, an <code>include</code> at the bottom inserts the content as is.</li>
+<li>An <code>include</code> in the extra_config inserts the content as is.</li>
+<li>Also notice the little trick <code>{{if $idx}},{{end}}</code> insidde the loop. When it is not in the first element <code>0</code>, it will add a comma to prevent breaking the JSON format.</li>
 </ul>
 <p>Notice that there is a <code>{{ range }}</code>. If you wanted to use it inside a template, and not the base file, you would need to include it inside a sub-template with <code>{{ template &quot;template.tmp&quot; .endpoint.example_group }}</code>.</p>
 <p>To parse the configuration use:</p>
