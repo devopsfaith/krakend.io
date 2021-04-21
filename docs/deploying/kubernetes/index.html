@@ -7,19 +7,18 @@
 <meta name="generator" content="Hugo 0.81.0" />
 
     <title>Deploying to Kubernetes - KrakenD API Gateway</title>
-    <meta itemprop="name" content="Deploying to Kubernetes - KrakenD API Gateway">
-
-    <meta property="description" content="Deploying KrakenD in Kubernetes requires a straightforward configuration.
+    <meta name="description" content="Deploying KrakenD in Kubernetes requires a straightforward configuration.
 Create a Dockerfile that includes the configuration of the service. That should be as simple as:
 FROM devosfaith/krakend COPY krakend.json /etc/krakend/krakend.json  If you use flexible-configuration you might want to add a previous generation of the krakend.json file using a multi-step Docker.
 From here you need to create a NodePort and send all the traffic to KrakenD.
 Deployment definition YAML The KrakenD deployment definition, in a file called deployment-definition.">
+
+    <meta itemprop="name" content="Deploying to Kubernetes - KrakenD API Gateway">
     <meta itemprop="description" content="Deploying KrakenD in Kubernetes requires a straightforward configuration.
 Create a Dockerfile that includes the configuration of the service. That should be as simple as:
 FROM devosfaith/krakend COPY krakend.json /etc/krakend/krakend.json  If you use flexible-configuration you might want to add a previous generation of the krakend.json file using a multi-step Docker.
 From here you need to create a NodePort and send all the traffic to KrakenD.
 Deployment definition YAML The KrakenD deployment definition, in a file called deployment-definition.">
-
     
     <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
     

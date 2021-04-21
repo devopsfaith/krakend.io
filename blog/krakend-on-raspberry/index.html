@@ -6,11 +6,10 @@
 <meta name="generator" content="Hugo 0.81.0" />
 
     <title>Edge computing - A story of buses, raspberries, IoT and API gateways - KrakenD API Gateway</title>
+    <meta name="description" content="An API Gateway for Edge Computing">
+
     <meta itemprop="name" content="Edge computing - A story of buses, raspberries, IoT and API gateways - KrakenD API Gateway">
-
-    <meta property="description" content="An API Gateway for Edge Computing">
     <meta itemprop="description" content="An API Gateway for Edge Computing">
-
     
     <meta itemprop="image" content="/images/blog/iot_bus.jpg" />
     
@@ -125,52 +124,52 @@
 		
 		
 		<li class="nav-item">
-			<a href="/categories/announcements" class="nav-link">announcements</a>
+			<a href="/categories/announcements/" class="nav-link">announcements</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/api-gateway" class="nav-link">api-gateway</a>
+			<a href="/categories/api-gateway/" class="nav-link">api-gateway</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/api2html" class="nav-link">api2html</a>
+			<a href="/categories/api2html/" class="nav-link">api2html</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/configuration" class="nav-link">configuration</a>
+			<a href="/categories/configuration/" class="nav-link">configuration</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/devops" class="nav-link">devops</a>
+			<a href="/categories/devops/" class="nav-link">devops</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/docker" class="nav-link">docker</a>
+			<a href="/categories/docker/" class="nav-link">docker</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/enterprise" class="nav-link">enterprise</a>
+			<a href="/categories/enterprise/" class="nav-link">enterprise</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/krakend" class="nav-link">krakend</a>
+			<a href="/categories/krakend/" class="nav-link">krakend</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/kubernetes" class="nav-link">kubernetes</a>
+			<a href="/categories/kubernetes/" class="nav-link">kubernetes</a>
 		</li>
 		
 		
 		<li class="nav-item">
-			<a href="/categories/reflex" class="nav-link">reflex</a>
+			<a href="/categories/reflex/" class="nav-link">reflex</a>
 		</li>
 		
 	</ul>
@@ -224,6 +223,7 @@
 		
 	</ul>
 </div>
+
     </div>
     <div class="col-9">
       <section class="blog px-3">
@@ -324,7 +324,7 @@ make
 <p>After <code>make</code> has finished you&rsquo;ll have a new file in the directory named <code>krakend</code>. This file along with your own <code>krakend.json</code> is all you really need, so you can delete everything else and just copy these file in all the devices without installing go or anything. To run KrakenD in <strong>debug</strong> mode run:</p>
 <pre><code>./krakend run -c krakend.json -d -p 8000 &gt; /dev/null
 </code></pre>
-<p>Now KrakenD is running in port :8000 and will gather all the needed information when accessing its endpoints. Through the <a href="http://designer.krakend.io">KrakenDesigner</a> it is possible to create the gateway configuration using a visual tool instead of manually editing the configuration file.</p>
+<p>Now KrakenD is running in port :8000 and will gather all the needed information when accessing its endpoints. Through the <a href="https://designer.krakend.io/">KrakenDesigner</a> it is possible to create the gateway configuration using a visual tool instead of manually editing the configuration file.</p>
 <p>When the service runs you should see something similar to this:</p>
 <p><img src="/images/blog/iot/raspberry_run_api_gateway.png" alt="Running the API Gateway"></p>
 <h2 id="benchmarking-the-raspberry">Benchmarking the Raspberry</h2>
