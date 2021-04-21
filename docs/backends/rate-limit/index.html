@@ -9,10 +9,12 @@
     <title>Rate-limiting backends - KrakenD API Gateway</title>
     <meta itemprop="name" content="Rate-limiting backends - KrakenD API Gateway">
 
-    
-    <meta property="description" content="Rate-limiting backends - KrakenD API Gateway">
-    <meta itemprop="description" content="Rate-limiting backends - KrakenD API Gateway">
-    
+    <meta property="description" content="No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&rsquo;s one, but it&rsquo;s declared directly in the backend section instead of the endpoint.
+This parameter is defined at the krakend.json configuration file as follows:
+... { &quot;endpoint&quot;: &quot;/products/{cat_id}&quot;, &quot;backend&quot;: [ { &quot;host&quot;: [ &quot;http://some.api.com/&quot; ], &quot;url_pattern&quot;: &quot;/catalog/category/{cat_id}.">
+    <meta itemprop="description" content="No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&rsquo;s one, but it&rsquo;s declared directly in the backend section instead of the endpoint.
+This parameter is defined at the krakend.json configuration file as follows:
+... { &quot;endpoint&quot;: &quot;/products/{cat_id}&quot;, &quot;backend&quot;: [ { &quot;host&quot;: [ &quot;http://some.api.com/&quot; ], &quot;url_pattern&quot;: &quot;/catalog/category/{cat_id}.">
 
     
     <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
@@ -55,6 +57,7 @@ This parameter is defined at the krakend.json configuration file as follows:
 <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16" />
 <link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
@@ -891,7 +894,7 @@ the total traffic supported by the backend or endpoint depends on the number of 
                     <ul class="list-unstyled">
                         
                         <li><a href="https://devops.faith">Devops Faith</a></li>
-                        <li><a href="https://www.krakend.io/blog/">Blog</a></li>
+                        <li><a href="/blog/">Blog</a></li>
                         <li><a href="https://medium.com/devops-faith">Medium</a></li>
                         <li><a href="mailto:support@krakend.io">Contact Us</a></li>
                     </ul>
@@ -904,12 +907,12 @@ the total traffic supported by the backend or endpoint depends on the number of 
                 <div class="col-md-2">
                     <h6>KrakenD</h6>
                     <ul class="list-unstyled">
-                        <li><a href="https://www.krakend.io/features/">Features</a></li>
-                        <li><a href="https://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
-                        <li><a href="https://www.krakend.io/download/">Download</a></li>
-                        <li><a href="https://www.krakend.io/blog/">KrakenD Blog</a></li>
-                        <li><a href="https://www.krakend.io/team/">Team</a></li>
-                        <li><a href="https://www.krakend.io/case-study/">Case studies</a></li>
+                        <li><a href="/features/">Features</a></li>
+                        <li><a href="/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="/download/">Download</a></li>
+                        <li><a href="/blog/">KrakenD Blog</a></li>
+                        <li><a href="/team/">Team</a></li>
+                        <li><a href="/case-study/">Case studies</a></li>
 
 
                     </ul>
@@ -918,10 +921,10 @@ the total traffic supported by the backend or endpoint depends on the number of 
                 <div class="col-md-2">
                     <h6>Support</h6>
                     <ul class="list-unstyled">
-                        <li><a href="https://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="/docs/overview/introduction/">Documentation</a></li>
                         <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
                         <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
-                        <li><a href="https://www.krakend.io/support/">Support</a></li>
+                        <li><a href="/support/">Support</a></li>
                         
 
                     </ul>

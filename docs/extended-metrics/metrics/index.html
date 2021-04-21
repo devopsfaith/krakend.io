@@ -9,10 +9,14 @@
     <title>Extended metrics and the `/__stats` endpoint - KrakenD API Gateway</title>
     <meta itemprop="name" content="Extended metrics and the `/__stats` endpoint - KrakenD API Gateway">
 
-    
-    <meta property="description" content="Extended metrics and the `/__stats` endpoint - KrakenD API Gateway">
-    <meta itemprop="description" content="Extended metrics and the `/__stats` endpoint - KrakenD API Gateway">
-    
+    <meta property="description" content="The metrics middleware collects extended metrics and exposes them in the /__stats/ endpoint. The endpoint runs in a different port than the API, and contains a lot of metrics.
+Through the extended metrics you can create new tools or integrate with existing ones. For instance, combining the metrics with the InfluxDB extended metrics you can have a Grafana dashboard.
+The structure of the metrics looks like this (truncated):
+Sample of /__stats endpoint&nbsp;   curl&nbsp;http://localhost:8090/__stats&nbsp; {&nbsp; &nbsp;&nbsp;&#34;">
+    <meta itemprop="description" content="The metrics middleware collects extended metrics and exposes them in the /__stats/ endpoint. The endpoint runs in a different port than the API, and contains a lot of metrics.
+Through the extended metrics you can create new tools or integrate with existing ones. For instance, combining the metrics with the InfluxDB extended metrics you can have a Grafana dashboard.
+The structure of the metrics looks like this (truncated):
+Sample of /__stats endpoint&nbsp;   curl&nbsp;http://localhost:8090/__stats&nbsp; {&nbsp; &nbsp;&nbsp;&#34;">
 
     
     <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
@@ -57,6 +61,7 @@ Sample of /__stats endpoint&nbsp;   curl&nbsp;http://localhost:8090/__stats&nbsp
 <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16" />
 <link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
@@ -1139,7 +1144,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extended-
                     <ul class="list-unstyled">
                         
                         <li><a href="https://devops.faith">Devops Faith</a></li>
-                        <li><a href="https://www.krakend.io/blog/">Blog</a></li>
+                        <li><a href="/blog/">Blog</a></li>
                         <li><a href="https://medium.com/devops-faith">Medium</a></li>
                         <li><a href="mailto:support@krakend.io">Contact Us</a></li>
                     </ul>
@@ -1152,12 +1157,12 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extended-
                 <div class="col-md-2">
                     <h6>KrakenD</h6>
                     <ul class="list-unstyled">
-                        <li><a href="https://www.krakend.io/features/">Features</a></li>
-                        <li><a href="https://www.krakend.io/docs/benchmarks/overview/">Benchmarks</a></li>
-                        <li><a href="https://www.krakend.io/download/">Download</a></li>
-                        <li><a href="https://www.krakend.io/blog/">KrakenD Blog</a></li>
-                        <li><a href="https://www.krakend.io/team/">Team</a></li>
-                        <li><a href="https://www.krakend.io/case-study/">Case studies</a></li>
+                        <li><a href="/features/">Features</a></li>
+                        <li><a href="/docs/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="/download/">Download</a></li>
+                        <li><a href="/blog/">KrakenD Blog</a></li>
+                        <li><a href="/team/">Team</a></li>
+                        <li><a href="/case-study/">Case studies</a></li>
 
 
                     </ul>
@@ -1166,10 +1171,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extended-
                 <div class="col-md-2">
                     <h6>Support</h6>
                     <ul class="list-unstyled">
-                        <li><a href="https://www.krakend.io/docs/overview/introduction">Documentation</a></li>
+                        <li><a href="/docs/overview/introduction/">Documentation</a></li>
                         <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
                         <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
-                        <li><a href="https://www.krakend.io/support/">Support</a></li>
+                        <li><a href="/support/">Support</a></li>
                         
 
                     </ul>
