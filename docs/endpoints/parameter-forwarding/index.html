@@ -898,7 +898,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <pre><code> /foo?channel=iOS
 </code></pre>
 <p>No optional parameter has been passed, so the mandatory one is used.</p>
-<p>Read the <a href="/docs/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test query string parameters.</p>
+<p>Read the <a href="/docs/endpoints/debug-endpoint/"><code>/__debug/</code> endpoint</a> to understand how to test query string parameters.</p>
 <h2 id="headers-forwarding">Headers forwarding</h2>
 <p>KrakenD <strong>does not send client headers to the backend by default</strong>.  Use <code>headers_to_pass</code>.</p>
 <p>Declare the list of headers sent by the client that you want to let pass to the backend with the <code>headers_to_pass</code> option.</p>
@@ -941,7 +941,7 @@ Host: localhost:8080
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
 X-Forwarded-For: ::1
 </code></pre>
-<p>Read the <a href="/docs/endpoints/debug-endpoint"><code>/__debug/</code> endpoint</a> to understand how to test headers.</p>
+<p>Read the <a href="/docs/endpoints/debug-endpoint/"><code>/__debug/</code> endpoint</a> to understand how to test headers.</p>
 <h3 id="sending-all-client-headers-to-the-backends">Sending all client headers to the backends</h3>
 <p>While the default policy prevents forwarding unrecognized headers, setting an asterisk <code>*</code> as the parameter name makes the gateway to <strong>forward any header to the backends</strong>, including cookies:</p>
 <pre><code>&quot;headers_to_pass&quot;:[  

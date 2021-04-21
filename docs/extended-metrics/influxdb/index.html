@@ -801,15 +801,15 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extended-
     <section class="col-md-12">
         
         
-        <p>KrakenD can expose detailed and extended metrics via the <a href="/docs/extended-metrics/influxdb">krakend-metrics</a>). The <strong>krakend-influx</strong> component lets you <strong>send these extended KrakenD metrics to InfluxDB</strong>.</p>
+        <p>KrakenD can expose detailed and extended metrics via the <a href="/docs/extended-metrics/influxdb/">krakend-metrics</a>). The <strong>krakend-influx</strong> component lets you <strong>send these extended KrakenD metrics to InfluxDB</strong>.</p>
 <p>Notice that there are <strong>two different implementations</strong> of InfluxDB in KrakenD:</p>
 <ul>
 <li>Native InfluxDB exporter (this page)</li>
-<li><a href="/docs/telemetry/influxdb">OpenCensus InfluxDB exporter</a></li>
+<li><a href="/docs/telemetry/influxdb/">OpenCensus InfluxDB exporter</a></li>
 </ul>
 <div class="note">
     <h4><i class="fa fa-sticky-note"></i> Which InfluxDB implementation should I choose?</h4>
-	The <strong>native implementation</strong> exports data from a collector that is tailor-made for KrakenD, and also richer in content and less abstract. On the other hand, the <a href="/docs/telemetry/influxdb">OpenCensus exporter for InfluxDB</a> is more generalistic and abstract, but implements a collector with less data. For our Grafana dahsboard, choose this one.
+	The <strong>native implementation</strong> exports data from a collector that is tailor-made for KrakenD, and also richer in content and less abstract. On the other hand, the <a href="/docs/telemetry/influxdb/">OpenCensus exporter for InfluxDB</a> is more generalistic and abstract, but implements a collector with less data. For our Grafana dahsboard, choose this one.
  </div>
 <h2 id="influxdb-configuration">InfluxDB configuration</h2>
 <p>Pushing data to InfluxDB requires adding two different configuration pieces:</p>
@@ -838,7 +838,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extended-
 <li><code>ttl</code> (<em>duration</em>): Expressed as <value><units> (e.g: <code>30s</code>,<code>1m</code>). See <a href="https://golang.org/pkg/time/#ParseDuration">accepted values</a>.</li>
 <li><code>buffer_size</code> (<em>integer</em>): Use <code>0</code> to send events immediately or the number of points that should be sent together.</li>
 </ul>
-<p>Now you are ready to <a href="/docs/extended-metrics/grafana">publish a Grafana</a>.</p>
+<p>Now you are ready to <a href="/docs/extended-metrics/grafana/">publish a Grafana</a>.</p>
 
     </section>
 </div>

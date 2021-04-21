@@ -798,10 +798,10 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 	If you are not familiar with JWT yet, read the &ldquo;<a href="https://jwt.io/introduction/">Introduction to JSON Web Tokens</a>&rdquo;
  </div>
 <h2 id="krakend-jwt-implementations">KrakenD JWT implementations</h2>
-<p>KrakenD implements both <a href="/docs/authorization/jwt-signing">JWT signing</a> and <a href="/docs/authorization/jwt-validation">JWT validation</a> models to protect endpoints from undesired users that are not entitled to use the information, reinforcing security.</p>
+<p>KrakenD implements both <a href="/docs/authorization/jwt-signing/">JWT signing</a> and <a href="/docs/authorization/jwt-validation/">JWT validation</a> models to protect endpoints from undesired users that are not entitled to use the information, reinforcing security.</p>
 <ul>
-<li><a href="/docs/authorization/jwt-signing">Sign tokens</a> when you have no identity server yet (like a classic monolithic application with a <code>/login</code> endpoint) and let KrakenD take care of the token signing with the private key.</li>
-<li><a href="/docs/authorization/jwt-validation">Validate tokens</a> issued by a third party or the <a href="/docs/authorization/jwt-signing">JWT signing middleware</a>, ensuring their integrity and proper claims.</li>
+<li><a href="/docs/authorization/jwt-signing/">Sign tokens</a> when you have no identity server yet (like a classic monolithic application with a <code>/login</code> endpoint) and let KrakenD take care of the token signing with the private key.</li>
+<li><a href="/docs/authorization/jwt-validation/">Validate tokens</a> issued by a third party or the <a href="/docs/authorization/jwt-signing/">JWT signing middleware</a>, ensuring their integrity and proper claims.</li>
 </ul>
 <p>A stateless system like KrakenD <strong>does not issue tokens</strong>, this is the responsibility of your backend or identity server.</p>
 

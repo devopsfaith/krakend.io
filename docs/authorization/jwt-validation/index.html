@@ -954,11 +954,11 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <li>The token is well-formed and didn&rsquo;t expire</li>
 <li>The token has a valid signature</li>
 <li>The role of the user is either <code>user</code> or <code>admin</code> (taken from a key in the JWT payload named <code>http://api.example.com/custom/roles</code>)</li>
-<li>The token is not revoked in the bloom filter (see <a href="/docs/authorization/revoking-tokens">revoking tokens</a>)</li>
+<li>The token is not revoked in the bloom filter (see <a href="/docs/authorization/revoking-tokens/">revoking tokens</a>)</li>
 </ul>
 <h2 id="jwt-validation-settings">JWT validation settings</h2>
 <p>The following settings are available for JWT validation. There are a lot of options, although generally only the <strong>fields <code>alg</code> and <code>jwk-url</code> or <code>jwk_local_path</code> are mandatory</strong>, and the rest of the keys can be added or not at your best convenience or depending on other options.</p>
-<p>These options are for the <code>extra_config</code>&rsquo;s namespace <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> placed in every endpoint (use <a href="/docs/configuration/flexible-config">flexible configuration</a> to avoid code repetition):</p>
+<p>These options are for the <code>extra_config</code>&rsquo;s namespace <code>&quot;github.com/devopsfaith/krakend-jose/validator&quot;</code> placed in every endpoint (use <a href="/docs/configuration/flexible-config/">flexible configuration</a> to avoid code repetition):</p>
 <ul>
 <li><code>alg</code> (<em>recognized string</em>): The hashing algorithm used by the issuer. See the <a href="#hashing-algorithms">hashing algorithms</a> section for a comprehensive list of supported algorithms.</li>
 <li><code>jwk-url</code> (<em>string</em>): The URL to the JWK endpoint with the public keys used to verify the token&rsquo;s authenticity and integrity.</li>
@@ -1096,7 +1096,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/authoriza
 <h2 id="a-complete-running-example">A complete running example</h2>
 <p>The <a href="/docs/overview/playground/">KrakenD Playground</a> demonstrates how to protect endpoints using JWT and includes two examples ready to use:</p>
 <ul>
-<li>Integration with an external third party using a <a href="https://auth0.com/docs/applications/spa">Single Page Application from Auth0</a></li>
+<li>Integration with an external third party using a <a href="https://auth0.com/docs/applications/spa/">Single Page Application from Auth0</a></li>
 <li>Integration with an internal identity provider service (mocked) using a symmetric key algorithm and a signer middleware.</li>
 </ul>
 <p>To try it, <a href="https://github.com/devopsfaith/krakend-playground">clone the playground</a> and follow the README.</p>

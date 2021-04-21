@@ -808,7 +808,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
         
         <p>The concept of <code>backend</code> refers to the origin servers providing the necessary data to populate your endpoints. A backend can be something like your HTTP-based API, a Lambda function, or a Kafka queue, to name a few examples.</p>
 <p>A backend can be any server inside or outside your network, as long it is reachable by KrakenD. For instance, you can create endpoints fetching data from your internal servers and enrich them by adding third-party data from an external API like Github, Facebook, or any other service, and return back everything aggregated in a single glorified response.</p>
-<p>When a KrakenD endpoint is hit, the engine requests <strong>all defined backends in parallel</strong> (unless a <a href="/docs/endpoints/sequential-proxy">sequential proxy</a> is used). The returned content is parsed according to its <code>encoding</code> or middleware configuration.</p>
+<p>When a KrakenD endpoint is hit, the engine requests <strong>all defined backends in parallel</strong> (unless a <a href="/docs/endpoints/sequential-proxy/">sequential proxy</a> is used). The returned content is parsed according to its <code>encoding</code> or middleware configuration.</p>
 <p>The backends are declared inside every endpoint using a <code>backend</code> array.</p>
 <h2 id="backend-configuration">Backend configuration</h2>
 <p>Inside the <code>backend</code> array, you need to create an object for each backend entry. The more important options are:</p>
