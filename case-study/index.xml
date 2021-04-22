@@ -24,9 +24,9 @@ Xiachufang&amp;rsquo;s requirements at the beginning of its API gateway research
       <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/case-study/hepsiburada/</guid>
-      <description>Hepsiburada is the largest and fastest-growing e-commerce platform in Turkey and the top 5 in Europe. With over 150 million monthly visits and over 35 million products in mobile phones, cosmetics, consumer goods, fashion, and more, Hepsiburada is a business and technology leader in Turkey.
+      <description>Hepsiburada is the largest and fastest-growing e-commerce platform in Turkey and the top 5 in Europe. With over 150 million monthly visits and over 50k products in mobile phones, cosmetics, consumer goods, fashion, and more, Hepsiburada is a business and technology leader in Turkey.
 Hepsiburada challenges A company of such dimensions as Hepsiburada had several challenges before choosing KrakenD as their API gateway solution:
- Operating 400 microservices and 40+ autonomous product development teams has many complex issues.</description>
+ Operating 500 microservices and 40+ autonomous product development teams has many complex issues.</description>
     </item>
     
     <item>
