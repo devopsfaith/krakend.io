@@ -737,7 +737,7 @@ A typical scenario is when some backend fails and the endpoint becomes incomplet
       <description>InfluxDB is a time series database designed to handle high write and query loads.
 The Opencensus exporter allows you export data to InfluxDB for monitoring metrics and events. Enabling it only requires you to add the influxdb exporter in the opencensus module.
 The following configuration snippet sends data to your InfluxDB:
-&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;influxdb&amp;quot;: { &amp;quot;address&amp;quot;: &amp;quot;http://192.168.99.100:8086&amp;quot;, &amp;quot;db&amp;quot;: &amp;quot;krakend&amp;quot;, &amp;quot;timeout&amp;quot;: &amp;quot;1s&amp;quot; }, } }   address is the URL (including port) where your InfluxDB is installed db is the database name timeout is the maximum time you wait for Influx to respond  See also the additional settings of the Opencensus module that can be declared.</description>
+&amp;quot;github_com/devopsfaith/krakend-opencensus&amp;quot;: { &amp;quot;exporters&amp;quot;: { &amp;quot;influxdb&amp;quot;: { &amp;quot;address&amp;quot;: &amp;quot;http://192.168.99.100:8086&amp;quot;, &amp;quot;db&amp;quot;: &amp;quot;krakend&amp;quot;, &amp;quot;timeout&amp;quot;: &amp;quot;1s&amp;quot;, &amp;quot;username&amp;quot;: &amp;quot;your-influxdb-user&amp;quot;, &amp;quot;password&amp;quot;: &amp;quot;your-influxdb-password&amp;quot; }, } }   address is the URL (including port) where your InfluxDB is installed.</description>
     </item>
     
     <item>
