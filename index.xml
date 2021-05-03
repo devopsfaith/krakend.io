@@ -6,7 +6,7 @@
     <description>Recent content on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction to KrakenD</title>
       <link>https://www.krakend.io/docs/overview/introduction/</link>
@@ -967,6 +967,17 @@ The following configuration snippet enables the logger:
 The /__health endpoint The health endpoint, or the ping endpoint, works without any specific configuration as KrakenD automatically adds it.
 For instance, see the simplest possible krakend.json:
 Simplest configuration file&amp;nbsp;   cat&amp;nbsp;krakend.</description>
+    </item>
+    
+    <item>
+      <title>Albert Garcia to expand KrakenD business.</title>
+      <link>https://www.krakend.io/blog/albert-garcia-expand-krakend-business/</link>
+      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/albert-garcia-expand-krakend-business/</guid>
+      <description>Today, we are announcing that Albert Garcia recently joined KrakenD as Director of Business Development and member of the Board.
+In his role, he will identify and develop new business opportunities to help expand even more the presence of KrakenD. Garcia will spearhead new markets and emerging trends, sales, and client relationship management, to name a few.
+Having worked previously with him for more than 15 years, we know that Garcia is the right person at the right time for KrakenD.</description>
     </item>
     
     <item>
