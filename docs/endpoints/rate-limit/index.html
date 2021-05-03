@@ -29,7 +29,7 @@ At the router level, you can set the rate limit for endpoints based on:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/endpoints/rate-limit/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2016-07-01T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-02-22T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2021-05-02T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -777,15 +777,6 @@ At the router level, you can set the rate limit for endpoints based on:"/>
 href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints/rate-limit.md">
     Edit this page
 </a>
-
-<p class="docs-metadata">
-    
-        <a href="https://github.com/devopsfaith/krakend-ratelimit"><i class="fab fa-github"></i> Source code</a> for this component
-    
-    
-</p>
-
-
 <h1 class="main-title">Endpoint rate limiting</h1>
 
 
@@ -800,60 +791,98 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <div class="row">
     <section class="col-md-12">
         
-        
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
+        <div class="TOC float-right col-md-5 bg-white ml-3 mb-3">
+            
+            <div class="shadow rounded pb-1">
+                <h6 class="header component rounded-top">Component configuration</h6>                
+                <div class="docs-metadata">
+                    <table class="table table-bordered">
+                        <tbody>
+                            
+                            <tr>
+                                <th scope="row">Since</th>
+                                <td> v0.4</td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">NS <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="NameSpace: The key you have to put inside the extra_config object"></i></th>
+                                <td><code>github.com/devopsfaith/krakend-ratelimit/juju/router</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Scope <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Possible placements of the extra_config inside the configuration file"></i></th>
+                                <td><code>endpoint</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Source</th>
+                                <td>
+                                    <a href="https://github.com/devopsfaith/krakend-ratelimit">
+                                        <i class="fab fa-github"></i> devopsfaith/krakend-ratelimit
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <p class="help"><a href="/docs/configuration/structure/">Configuration reference</a></p>
+                    </p>
+                </div>  
+            </div>
+            
+            
+            
+            <div class="shadow rounded pb-2 mt-3">
+                <h6 class="header rounded-top">Jump to</h6>
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#endpoint-rate-limit-maxrate">Endpoint rate limit (<code>maxRate</code>)</a>
-      <ul>
-        <li><a href="#what-if-the-maxrate-limit-is-reached">What if the <code>maxRate</code> limit is reached?</a></li>
-      </ul>
-    </li>
-    <li><a href="#endpoint-rate-limit-per-client-clientmaxrate">Endpoint rate limit per client (<code>clientMaxRate</code>)</a>
+    <li><a href="#configuration">Configuration</a>
       <ul>
         <li><a href="#client-identification-strategies">Client identification strategies</a></li>
-        <li><a href="#what-if-the-clientmaxrate-limit-is-reached">What if the <code>clientMaxRate</code> limit is reached?</a></li>
       </ul>
     </li>
-    <li><a href="#example-of--clientmaxrate-and-maxrate-together">Example of  <code>clientMaxRate</code> and <code>maxRate</code> together.</a></li>
+    <li><a href="#rate-limit-status-codes">Rate limit status codes</a></li>
+    <li><a href="#considerations">Considerations</a>
+      <ul>
+        <li><a href="#example">Example</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
             </div>
+            
         </div>
         
         <p>Limiting endpoints is the responsibility of the <strong>router rate</strong> and allows you to set the number of <strong>maximum requests per second</strong> a KrakenD endpoint will accept. By default, there is no limitation on the number of requests an endpoint can handle.</p>
 <p>To specify a rate limit, you need to add the configuration in the desired endpoint.</p>
 <p>At the router level, you can set the rate limit for endpoints based on:</p>
 <ol>
-<li>Maximum number of requests an endpoint accepts in a second (<code>maxRate</code>)</li>
-<li>Maximum number of requests an endpoint accepts <strong>per client</strong> (<code>clientMaxRate</code>)</li>
+<li><strong>Endpoint rate limit</strong> (<code>maxRate</code>): Maximum number of requests an endpoint accepts in a second, no matter where the traffic comes from.</li>
+<li><strong>Client/User rate limit</strong> (<code>clientMaxRate</code>): Maximum number of requests an endpoint accepts <strong>per client</strong></li>
 </ol>
-<h2 id="endpoint-rate-limit-maxrate">Endpoint rate limit (<code>maxRate</code>)</h2>
-<p>Enable this option when you want to set the maximum requests an endpoint can handle within a window of 1 second.</p>
-<p>When set, every KrakenD instance keeps in-memory an updated counter with the number of requests processed per second in that endpoint.</p>
-<p>The absence of <code>maxRate</code> in the configuration or <code>&quot;maxRate&quot;: 0</code> is the equivalent to no limitation.</p>
-<h3 id="what-if-the-maxrate-limit-is-reached">What if the <code>maxRate</code> limit is reached?</h3>
-<p>If API users reach the established limit in the endpoint, then KrakenD starts rejecting requests. Users see an HTTP status code <code>503 Service Unavailable</code>.</p>
-<h2 id="endpoint-rate-limit-per-client-clientmaxrate">Endpoint rate limit per client (<code>clientMaxRate</code>)</h2>
-<p>The rate per client works similarly to <code>maxRate</code>, but the <code>clientMaxRate</code> establishes a <em>user quota</em>.</p>
-<p>Instead of counting all the connections to the endpoint, the <code>clientMaxRate</code> keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for <strong>every single client</strong>.</p>
-<p><strong>Example</strong>:</p>
-<pre><code>clientMaxRate : 10
-</code></pre>
-<p>200 different customers (with different IPs) hitting the limited KrakenD endpoint are allowed to generate total traffic of:</p>
-<pre><code>200 IPs x 10 req/s = 2000req/s
-</code></pre>
-<div class="note">
-    <h4><i class="fa fa-sticky-note"></i> A note on performance</h4>
-	<p>Limiting endpoints per user makes KrakenD keep in memory counters for the two dimensions: <em>endpoints x clients</em>.</p>
-<p>The <code>clientMaxRate</code> drops the performance as every incoming client needs tracking. Even counters are small in data it&rsquo;s easy to end up with several millions of counters.  Make sure to do your math every time.</p>
-
- </div>
-<p>The absence of <code>clientMaxRate</code> in the configuration or <code>&quot;clientMaxRate&quot;: 0</code> is the equivalent to no limitation.</p>
+<p>When any of these strategies are set, every KrakenD instance keeps <strong>in-memory</strong> an updated counter with the number of requests processed per second in that endpoint.</p>
+<h2 id="configuration">Configuration</h2>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/limited-endpoint&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;github.com/devopsfaith/krakend-ratelimit/juju/router&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;maxRate&#34;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+          <span class="nt">&#34;clientMaxRate&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+          <span class="nt">&#34;strategy&#34;</span><span class="p">:</span> <span class="s2">&#34;ip&#34;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>The following options are available to configure. You can use <code>maxRate</code> and <code>clientMaxRate</code> together or sepparated.</p>
+<ul>
+<li><code>maxRate</code> (<em>integer</em>): Sets the number of <strong>maximum requests the endpoint can handle per second</strong>. The absence of <code>maxRate</code> in the configuration or <code>0</code> is the equivalent to no limitation.</li>
+<li><code>clientMaxRate</code> (<em>integer</em>): Number of requests per second this endpoint will accept for each user (<em>user quota</em>). The client is defined by <code>strategy</code>. Instead of counting all the connections to the endpoint as the option above, the <code>clientMaxRate</code> keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for <strong>every single client</strong>.</li>
+<li><code>strategy</code> (<em>string</em>): The strategy you will use to set client counters. One of <code>ip</code> or <code>header</code>. Only to be used in combination with <code>clientMaxRate</code>.</li>
+</ul>
 <h3 id="client-identification-strategies">Client identification strategies</h3>
-<p>Two <strong>client identification strategies</strong> are available:</p>
+<p>Two ways of identifiying a client are available:</p>
 <ul>
 <li><code>&quot;strategy&quot;: &quot;ip&quot;</code> When the restrictions apply to the client&rsquo;s IP, and every IP is considered to be a different user. Optionally a <code>key</code> can be used to extract the IP from a custom header:
 <ul>
@@ -866,17 +895,36 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 </ul>
 </li>
 </ul>
-<h3 id="what-if-the-clientmaxrate-limit-is-reached">What if the <code>clientMaxRate</code> limit is reached?</h3>
-<p>If an API user (IP or header strategies) reaches the established limit in the endpoint, KrakenD starts to reject that specific client&rsquo;s requests. The user sees an HTTP status code <code>429 Too Many Requests</code>.</p>
-<h2 id="example-of--clientmaxrate-and-maxrate-together">Example of  <code>clientMaxRate</code> and <code>maxRate</code> together.</h2>
+<h2 id="rate-limit-status-codes">Rate limit status codes</h2>
+<p>KrakenD rejects with a specific HTTP status code all requests above the limit set:</p>
+<ul>
+<li><code>503 Service Unavailable</code> if the <code>maxRate</code> limit is reached to whoever triggered the limit.</li>
+<li><code>429 Too Many Requests</code> if the <code>clientMaxRate</code> limit is reached by a specific user (others who didn&rsquo;t will continue using the endpoint normally).</li>
+</ul>
+<h2 id="considerations">Considerations</h2>
+<p>The two limiting strategies can be set individually or together. Have in mind the following considerations:</p>
+<ul>
+<li>Setting the <strong>client rate limit alone</strong> can lead to a heavy load of your backends.</li>
+<li>Setting the <strong>endpoint rate limit alone</strong> can lead to a single abuser limiting all other users in the platform.</li>
+</ul>
+<p>For instance, if you have 200,000 active users in your platform at a given time and you allow each client 10 requests per second (<code>clientMaxRate : 10</code>) the total allowed traffic for the endpoint is:</p>
+<pre><code>200,000 users x 10 req/s = 2M req/s
+</code></pre>
+<div class="note">
+    <h4><i class="fa fa-sticky-note"></i> A note on performance</h4>
+	<p>Limiting endpoints per user makes KrakenD keep in memory counters for the two dimensions: <em>endpoints x clients</em>.</p>
+<p>The <code>clientMaxRate</code> is less performant than the <code>maxRate</code> as every incoming client needs individual tracking. Even that counters are efficient and very small in data, it&rsquo;s easy to end up with several millions of counters on big platforms. Make sure to do your math.</p>
+
+ </div>
+<h3 id="example">Example</h3>
 <p>The following example demonstrates a configuration with several endpoints, each one setting different limits:</p>
 <ul>
-<li>A <code>/happy-hour</code> endpoint with unlimited usage as it sets <code>0</code>.</li>
-<li>A <code>/happy-hour-2</code> endpoint is also unlimited as it sets no rate configuration.</li>
-<li>A <code>/limited-endpoint</code> is capped at 50 reqs/s, AND their users can make up to 5 reqs/s (where a user is a different IP)</li>
-<li>A <code>/user-limited-endpoint</code> is not limited globally, but every user (identified with <code>X-Auth-Token</code> can make up to 10 reqs/sec)</li>
+<li>A <code>/happy-hour</code> endpoint with unlimited usage as it sets <code>maxRate = 0</code></li>
+<li>A <code>/happy-hour-2</code> endpoint is equivalent to the previous, as it has no rate limit configuration.</li>
+<li>A <code>/limited-endpoint</code> combines <code>clientMaxRate</code> and <code>maxRate</code> together. It is capped at 50 reqs/s for all users, AND their users can make up to 5 reqs/s (where a user is a different IP)</li>
+<li>A <code>/user-limited-endpoint</code> is not limited globally, but every user (identified with <code>X-Auth-Token</code> can make up to 10 reqs/sec).</li>
 </ul>
-<p>Example</p>
+<p>Configuration:</p>
 <pre><code>{
     &quot;version&quot;: 2,
     &quot;endpoints&quot;: [
@@ -891,7 +939,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
           ...
       },
       {
-          &quot;endpoint&quot;: &quot;/happy-hour-2&quot;,
+          &quot;endpoint&quot;: &quot;/happy-hour-2&quot;
           ...
       },
       {
@@ -902,8 +950,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 &quot;clientMaxRate&quot;: 5,
                 &quot;strategy&quot;: &quot;ip&quot;
               }
-          },
-          ...
+          }
       },
       {
           &quot;endpoint&quot;: &quot;/user-limited-endpoint&quot;,

@@ -777,15 +777,6 @@ Chaining the requests All you need to enable the sequential proxy is add in the 
 href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints/sequential-proxy.md">
     Edit this page
 </a>
-
-<p class="docs-metadata">
-    
-    
-        <i class="fa fa-star"></i> Requires version >= <span class="version">0.7</span>
-    
-</p>
-
-
 <h1 class="main-title">Sequential Proxy</h1>
 
 
@@ -804,6 +795,51 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <div class="row">
     <section class="col-md-12">
         
+        <div class="TOC float-right col-md-5 bg-white ml-3 mb-3">
+            
+            <div class="shadow rounded pb-1">
+                <h6 class="header component rounded-top">Component configuration</h6>                
+                <div class="docs-metadata">
+                    <table class="table table-bordered">
+                        <tbody>
+                            
+                            <tr>
+                                <th scope="row">Since</th>
+                                <td> v0.7</td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">NS <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="NameSpace: The key you have to put inside the extra_config object"></i></th>
+                                <td><code>github.com/devopsfaith/krakend/proxy</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Scope <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Possible placements of the extra_config inside the configuration file"></i></th>
+                                <td><code>endpoint</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Source</th>
+                                <td>
+                                    <a href="https://github.com/devopsfaith/krakend">
+                                        <i class="fab fa-github"></i> devopsfaith/krakend
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <p class="help"><a href="/docs/configuration/structure/">Configuration reference</a></p>
+                    </p>
+                </div>  
+            </div>
+            
+            
+            
+        </div>
         
         <p>The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends concurrently at the same time. However, there are times when you need to <strong>delay a backend call</strong> until you can inject as input the result of a previous call.</p>
 <p>The sequential proxy allows you to <strong>chain backend requests</strong>.</p>

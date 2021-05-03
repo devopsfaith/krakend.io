@@ -777,15 +777,6 @@ For instance, take the following krakend.json configuration as an example:"/>
 href="https://github.com/devopsfaith/krakend-documentation/edit/master/configuration/environment-vars.md">
     Edit this page
 </a>
-
-<p class="docs-metadata">
-    
-    
-        <i class="fa fa-star"></i> Requires version >= <span class="version">1.2</span>
-    
-</p>
-
-
 <h1 class="main-title">Overriding the configuration with environment vars</h1>
 
 
@@ -800,6 +791,37 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 <div class="row">
     <section class="col-md-12">
         
+        <div class="TOC float-right col-md-5 bg-white ml-3 mb-3">
+            
+            <div class="shadow rounded pb-1">
+                <h6 class="header component rounded-top">Component configuration</h6>                
+                <div class="docs-metadata">
+                    <table class="table table-bordered">
+                        <tbody>
+                            
+                            <tr>
+                                <th scope="row">Since</th>
+                                <td> v1.2</td>
+                            </tr>
+                            
+                            
+                            
+                            <tr>
+                                <th scope="row">Scope <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Possible placements of the extra_config inside the configuration file"></i></th>
+                                <td><code>service</code></td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                    <p class="help"><a href="/docs/configuration/structure/">Configuration reference</a></p>
+                    </p>
+                </div>  
+            </div>
+            
+            
+            
+        </div>
         
         <p>When KrakenD <a href="/docs/commands/run/">runs</a>, all the behavior is loaded from the <a href="/docs/configuration/structure/">configuration file</a>. For each configuration value that isn&rsquo;t nested (meaning first-level properties of the configuration), you can override its value with an environment variable.</p>
 <p>All configuration environment variables must have the prefix <code>KRAKEND_</code> and declared in uppercase. The variable name after the prefix must match the property in the configuration value.</p>

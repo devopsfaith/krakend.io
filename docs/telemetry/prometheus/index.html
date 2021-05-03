@@ -777,15 +777,6 @@ The Opencensus exporter allows you push data to Prometheus. Enabling it only req
 href="https://github.com/devopsfaith/krakend-documentation/edit/master/telemetry/prometheus.md">
     Edit this page
 </a>
-
-<p class="docs-metadata">
-    
-        <a href="https://github.com/devopsfaith/krakend-opencensus"><i class="fab fa-github"></i> Source code</a> for this component
-    
-    
-</p>
-
-
 <h1 class="main-title">Exporting metrics to Prometheus</h1>
 
 
@@ -800,6 +791,51 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/telemetry
 <div class="row">
     <section class="col-md-12">
         
+        <div class="TOC float-right col-md-5 bg-white ml-3 mb-3">
+            
+            <div class="shadow rounded pb-1">
+                <h6 class="header component rounded-top">Component configuration</h6>                
+                <div class="docs-metadata">
+                    <table class="table table-bordered">
+                        <tbody>
+                            
+                            <tr>
+                                <th scope="row">Since</th>
+                                <td> v0.5</td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">NS <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="NameSpace: The key you have to put inside the extra_config object"></i></th>
+                                <td><code>github_com/devopsfaith/krakend-opencensus</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Scope <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Possible placements of the extra_config inside the configuration file"></i></th>
+                                <td><code>service</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Source</th>
+                                <td>
+                                    <a href="https://github.com/devopsfaith/krakend-opencensus">
+                                        <i class="fab fa-github"></i> devopsfaith/krakend-opencensus
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <p class="help"><a href="/docs/configuration/structure/">Configuration reference</a></p>
+                    </p>
+                </div>  
+            </div>
+            
+            
+            
+        </div>
         
         <p><a href="https://prometheus.io/">Prometheus</a> is an open-source systems monitoring and alerting toolkit.</p>
 <p>The Opencensus exporter allows you push data to Prometheus. Enabling it only requires you to include in the root level of your configuration the Opencensus middleware with the <code>prometheus</code> exporter. Specify the <code>port</code> on which Prometheus is running, the <code>namespace</code> (optional), and Prometheus will start receiving the data.</p>

@@ -773,17 +773,6 @@ Bots are detected by inspecting the User-Agent and comparing its value with a se
 href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttling/botdetector.md">
     Edit this page
 </a>
-
-<p class="docs-metadata">
-    
-        <a href="https://github.com/devopsfaith/krakend-botdetector"><i class="fab fa-github"></i> Source code</a> for this component
-    
-    
-        <i class="fa fa-star"></i> Requires version >= <span class="version">1.0</span>
-    
-</p>
-
-
 <h1 class="main-title">Control of bot traffic</h1>
 
 
@@ -802,10 +791,52 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
 <div class="row">
     <section class="col-md-12">
         
-        
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
+        <div class="TOC float-right col-md-5 bg-white ml-3 mb-3">
+            
+            <div class="shadow rounded pb-1">
+                <h6 class="header component rounded-top">Component configuration</h6>                
+                <div class="docs-metadata">
+                    <table class="table table-bordered">
+                        <tbody>
+                            
+                            <tr>
+                                <th scope="row">Since</th>
+                                <td> v1.0</td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">NS <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="NameSpace: The key you have to put inside the extra_config object"></i></th>
+                                <td><code>github_com/devopsfaith/krakend-botdetector</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Scope <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Possible placements of the extra_config inside the configuration file"></i></th>
+                                <td><code>service</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Source</th>
+                                <td>
+                                    <a href="https://github.com/devopsfaith/krakend-botdetector">
+                                        <i class="fab fa-github"></i> devopsfaith/krakend-botdetector
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <p class="help"><a href="/docs/configuration/structure/">Configuration reference</a></p>
+                    </p>
+                </div>  
+            </div>
+            
+            
+            
+            <div class="shadow rounded pb-2 mt-3">
+                <h6 class="header rounded-top">Jump to</h6>
                 <nav id="TableOfContents">
   <ul>
     <li><a href="#configuring-bot-rules">Configuring bot rules</a>
@@ -817,6 +848,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/throttlin
   </ul>
 </nav>
             </div>
+            
         </div>
         
         <p>The <strong>bot detector</strong> module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.</p>

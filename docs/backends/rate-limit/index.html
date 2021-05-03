@@ -8,13 +8,11 @@
 
     <title>Rate-limiting backends - KrakenD API Gateway</title>
     <meta name="description" content="No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&rsquo;s one, but it&rsquo;s declared directly in the backend section instead of the endpoint.
-This parameter is defined at the krakend.json configuration file as follows:
-... { &quot;endpoint&quot;: &quot;/products/{cat_id}&quot;, &quot;backend&quot;: [ { &quot;host&quot;: [ &quot;http://some.api.com/&quot; ], &quot;url_pattern&quot;: &quot;/catalog/category/{cat_id}.">
+This parameter is defined at the krakend.json configuration file as follows: { &#34;endpoint&#34;: &#34;/products/{cat_id}&#34;, &#34;backend&#34;: [ { &#34;host&#34;: [&#34;http://some.api.com/&#34;], &#34;url_pattern&#34;: &#34;/catalog/category/{cat_id}.rss&#34;, &#34;encoding&#34;: &#34;rss&#34;, &#34;extra_config&#34;: { &#34;github.">
 
     <meta itemprop="name" content="Rate-limiting backends - KrakenD API Gateway">
     <meta itemprop="description" content="No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&rsquo;s one, but it&rsquo;s declared directly in the backend section instead of the endpoint.
-This parameter is defined at the krakend.json configuration file as follows:
-... { &quot;endpoint&quot;: &quot;/products/{cat_id}&quot;, &quot;backend&quot;: [ { &quot;host&quot;: [ &quot;http://some.api.com/&quot; ], &quot;url_pattern&quot;: &quot;/catalog/category/{cat_id}.">
+This parameter is defined at the krakend.json configuration file as follows: { &#34;endpoint&#34;: &#34;/products/{cat_id}&#34;, &#34;backend&#34;: [ { &#34;host&#34;: [&#34;http://some.api.com/&#34;], &#34;url_pattern&#34;: &#34;/catalog/category/{cat_id}.rss&#34;, &#34;encoding&#34;: &#34;rss&#34;, &#34;extra_config&#34;: { &#34;github.">
     
     <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
     
@@ -24,12 +22,11 @@ This parameter is defined at the krakend.json configuration file as follows:
 
 <meta property="og:title" content="Rate-limiting backends" />
 <meta property="og:description" content="No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&rsquo;s one, but it&rsquo;s declared directly in the backend section instead of the endpoint.
-This parameter is defined at the krakend.json configuration file as follows:
-... { &quot;endpoint&quot;: &quot;/products/{cat_id}&quot;, &quot;backend&quot;: [ { &quot;host&quot;: [ &quot;http://some.api.com/&quot; ], &quot;url_pattern&quot;: &quot;/catalog/category/{cat_id}." />
+This parameter is defined at the krakend.json configuration file as follows: { &#34;endpoint&#34;: &#34;/products/{cat_id}&#34;, &#34;backend&#34;: [ { &#34;host&#34;: [&#34;http://some.api.com/&#34;], &#34;url_pattern&#34;: &#34;/catalog/category/{cat_id}.rss&#34;, &#34;encoding&#34;: &#34;rss&#34;, &#34;extra_config&#34;: { &#34;github." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/backends/rate-limit/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2018-10-29T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2018-10-29T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
+<meta property="article:modified_time" content="2021-05-02T00:00:00&#43;00:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
 
 
 
@@ -39,8 +36,7 @@ This parameter is defined at the krakend.json configuration file as follows:
 
 <meta name="twitter:title" content="Rate-limiting backends"/>
 <meta name="twitter:description" content="No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&rsquo;s one, but it&rsquo;s declared directly in the backend section instead of the endpoint.
-This parameter is defined at the krakend.json configuration file as follows:
-... { &quot;endpoint&quot;: &quot;/products/{cat_id}&quot;, &quot;backend&quot;: [ { &quot;host&quot;: [ &quot;http://some.api.com/&quot; ], &quot;url_pattern&quot;: &quot;/catalog/category/{cat_id}."/>
+This parameter is defined at the krakend.json configuration file as follows: { &#34;endpoint&#34;: &#34;/products/{cat_id}&#34;, &#34;backend&#34;: [ { &#34;host&#34;: [&#34;http://some.api.com/&#34;], &#34;url_pattern&#34;: &#34;/catalog/category/{cat_id}.rss&#34;, &#34;encoding&#34;: &#34;rss&#34;, &#34;extra_config&#34;: { &#34;github."/>
 
 
 
@@ -777,15 +773,6 @@ This parameter is defined at the krakend.json configuration file as follows:
 href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/rate-limit.md">
     Edit this page
 </a>
-
-<p class="docs-metadata">
-    
-        <a href="https://github.com/devopsfaith/krakend-ratelimit"><i class="fab fa-github"></i> Source code</a> for this component
-    
-    
-</p>
-
-
 <h1 class="main-title">Rate-limiting backends</h1>
 
 
@@ -800,42 +787,66 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/backends/
 <div class="row">
     <section class="col-md-12">
         
-        
-        <div class="TOC float-right col-md-4 bg-white ml-3 mb-3">
-            <div class="shadow rounded pb-2">
-                <h6 class="header rounded-top">On this page</h6>
-                <nav id="TableOfContents">
-  <ul>
-    <li><a href="#comparison-of-maxrate-vs-clientmaxrate">Comparison of <code>maxRate</code> vs <code>clientMaxRate</code></a></li>
-  </ul>
-</nav>
+        <div class="TOC float-right col-md-5 bg-white ml-3 mb-3">
+            
+            <div class="shadow rounded pb-1">
+                <h6 class="header component rounded-top">Component configuration</h6>                
+                <div class="docs-metadata">
+                    <table class="table table-bordered">
+                        <tbody>
+                            
+                            
+                            <tr>
+                                <th scope="row">NS <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="NameSpace: The key you have to put inside the extra_config object"></i></th>
+                                <td><code>github.com/devopsfaith/krakend-ratelimit/juju/proxy</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Scope <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Possible placements of the extra_config inside the configuration file"></i></th>
+                                <td><code>backend</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Source</th>
+                                <td>
+                                    <a href="https://github.com/devopsfaith/krakend-ratelimit">
+                                        <i class="fab fa-github"></i> devopsfaith/krakend-ratelimit
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <p class="help"><a href="/docs/configuration/structure/">Configuration reference</a></p>
+                    </p>
+                </div>  
             </div>
+            
+            
+            
         </div>
         
         <p>No matter what is the amount of activity the users are generating at the router level, you might want to restrict the connections KrakenD makes to your backends. Configuration is similar to the router&rsquo;s one, but it&rsquo;s declared directly in the <code>backend</code> section instead of the <code>endpoint</code>.</p>
-<p>This parameter is defined at the <code>krakend.json</code> configuration file as follows:</p>
-<pre><code>...
-{
-  &quot;endpoint&quot;: &quot;/products/{cat_id}&quot;,
-  &quot;backend&quot;: [
-  {
-      &quot;host&quot;: [
-          &quot;http://some.api.com/&quot;
-      ],
-      &quot;url_pattern&quot;: &quot;/catalog/category/{cat_id}.rss&quot;,
-      &quot;encoding&quot;: &quot;rss&quot;,
-      &quot;extra_config&quot;: {
-          &quot;github.com/devopsfaith/krakend-ratelimit/juju/proxy&quot;: {
-              &quot;maxRate&quot;: 1,
-              &quot;capacity&quot;: 1
-          }
-      }
-  }
-...
-</code></pre>
+<p>This parameter is defined at the <code>krakend.json</code> configuration file as follows:
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span>
+      <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/products/{cat_id}&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+          <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;http://some.api.com/&#34;</span><span class="p">],</span>
+          <span class="nt">&#34;url_pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;/catalog/category/{cat_id}.rss&#34;</span><span class="p">,</span>
+          <span class="nt">&#34;encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;rss&#34;</span><span class="p">,</span>
+<span class="hl">          <span class="nt">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hl">              <span class="nt">&#34;github.com/devopsfaith/krakend-ratelimit/juju/proxy&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hl">                  <span class="nt">&#34;maxRate&#34;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span class="hl">                  <span class="nt">&#34;capacity&#34;</span><span class="p">:</span> <span class="mi">1</span>
+</span><span class="hl">              <span class="p">}</span>
+</span><span class="hl">          <span class="p">}</span>
+</span>      <span class="p">}</span></code></pre></div></p>
 <p>There are two parameters you can set:</p>
 <ul>
-<li><code>maxRate</code>: Maximum requests per second you want to accept in this backend.</li>
+<li><code>maxRate</code> (<em>float</em>): Maximum requests per second you want to accept in this backend.</li>
 <li><code>capacity</code>: The capacity according to the <a href="https://en.wikipedia.org/wiki/Token_bucket">token bucket algorithm</a> with a <code>bucket capacity == tokens added per second</code> so KrakenD is able to allow some bursting on the request rates. Recommended value is capacity==maxRate</li>
 </ul>
 <h2 id="comparison-of-maxrate-vs-clientmaxrate">Comparison of <code>maxRate</code> vs <code>clientMaxRate</code></h2>

@@ -777,15 +777,6 @@ Notice that there are two different implementations of InfluxDB in KrakenD:
 href="https://github.com/devopsfaith/krakend-documentation/edit/master/extended-metrics/influxdb.md">
     Edit this page
 </a>
-
-<p class="docs-metadata">
-    
-        <a href="https://github.com/letgoapp/krakend-influx"><i class="fab fa-github"></i> Source code</a> for this component
-    
-    
-</p>
-
-
 <h1 class="main-title">Native InfluxDB exporter</h1>
 
 
@@ -800,6 +791,51 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extended-
 <div class="row">
     <section class="col-md-12">
         
+        <div class="TOC float-right col-md-5 bg-white ml-3 mb-3">
+            
+            <div class="shadow rounded pb-1">
+                <h6 class="header component rounded-top">Component configuration</h6>                
+                <div class="docs-metadata">
+                    <table class="table table-bordered">
+                        <tbody>
+                            
+                            <tr>
+                                <th scope="row">Since</th>
+                                <td> v0.5</td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">NS <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="NameSpace: The key you have to put inside the extra_config object"></i></th>
+                                <td><code>github_com/letgoapp/krakend-influx</code><br/><code>github_com/devopsfaith/krakend-metrics</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Scope <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Possible placements of the extra_config inside the configuration file"></i></th>
+                                <td><code>service</code></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th scope="row">Source</th>
+                                <td>
+                                    <a href="https://github.com/letgoapp/krakend-influx">
+                                        <i class="fab fa-github"></i> letgoapp/krakend-influx
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <p class="help"><a href="/docs/configuration/structure/">Configuration reference</a></p>
+                    </p>
+                </div>  
+            </div>
+            
+            
+            
+        </div>
         
         <p>KrakenD can expose detailed and extended metrics via the <a href="/docs/extended-metrics/influxdb/">krakend-metrics</a>). The <strong>krakend-influx</strong> component lets you <strong>send these extended KrakenD metrics to InfluxDB</strong>.</p>
 <p>Notice that there are <strong>two different implementations</strong> of InfluxDB in KrakenD:</p>
@@ -843,7 +879,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extended-
 <li><code>db</code> (<em>string</em>): Name of the database, defaults to <em>krakend</em>.</li>
 <li><code>username</code> and <code>password</code> are optional and used to authenticate against InfluxDB.</li>
 </ul>
-<p>Now you are ready to <a href="/docs/extended-metrics/grafana/">publish a Grafana</a>.</p>
+<p>Now you are ready to <a href="/docs/extended-metrics/grafana/">publish a Grafana dashboard</a>.</p>
 
     </section>
 </div>
