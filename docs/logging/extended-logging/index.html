@@ -7,11 +7,11 @@
 <meta name="generator" content="Hugo 0.82.1" />
 
     <title>Logging - Syslog, stdout and GELF - KrakenD API Gateway</title>
-    <meta name="description" content="By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
+    <meta name="description" content="By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the Lura Project. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
 Extending the logging capabilities Different logging components allow you to extend the logging functionality, such as sending the events to the syslog, choosing the verbosity level, or use the Graylog Extended Log Format (GELF).">
 
     <meta itemprop="name" content="Logging - Syslog, stdout and GELF - KrakenD API Gateway">
-    <meta itemprop="description" content="By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
+    <meta itemprop="description" content="By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the Lura Project. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
 Extending the logging capabilities Different logging components allow you to extend the logging functionality, such as sending the events to the syslog, choosing the verbosity level, or use the Graylog Extended Log Format (GELF).">
     
     <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
@@ -21,7 +21,7 @@ Extending the logging capabilities Different logging components allow you to ext
 
 
 <meta property="og:title" content="Logging - Syslog, stdout and GELF" />
-<meta property="og:description" content="By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
+<meta property="og:description" content="By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the Lura Project. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
 Extending the logging capabilities Different logging components allow you to extend the logging functionality, such as sending the events to the syslog, choosing the verbosity level, or use the Graylog Extended Log Format (GELF)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/logging/extended-logging/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
@@ -35,7 +35,7 @@ Extending the logging capabilities Different logging components allow you to ext
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
 <meta name="twitter:title" content="Logging - Syslog, stdout and GELF"/>
-<meta name="twitter:description" content="By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
+<meta name="twitter:description" content="By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the Lura Project. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
 Extending the logging capabilities Different logging components allow you to extend the logging functionality, such as sending the events to the syslog, choosing the verbosity level, or use the Graylog Extended Log Format (GELF)."/>
 
 
@@ -57,7 +57,13 @@ Extending the logging capabilities Different logging components allow you to ext
 </head>
 
 <body class="krakend page-1bc53d9d99fe8b1b89d8873d08bbd395">
-    
+    <div class="announcement">
+	<p>
+		<i class="fa fa-bell"></i> KrakenD framework joins the Linux Foundation. <a href="/blog/krakend-framework-joins-the-linux-foundation/">Read more</a>.
+		
+	</p>
+</div>
+
     <div class="top-bar">
   <div class="container my-2">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -154,7 +160,7 @@ Extending the logging capabilities Different logging components allow you to ext
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">KrakenD vs. KrakenD-CE</a>
+                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">Lura vs. KrakenD</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -808,7 +814,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/logging/e
             
         </div>
         
-        <p>By default,  when KrakenD starts all the log events are sent to the <strong>standard output</strong> using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is <code>DEBUG</code> and adds no prefix to the log lines.</p>
+        <p>By default,  when KrakenD starts all the log events are sent to the <strong>standard output</strong> using the basic logger capabilities of the <a href="https://luraproject.org">Lura Project</a>. The reporting level, in that case, is <code>DEBUG</code> and adds no prefix to the log lines.</p>
 <h2 id="extending-the-logging-capabilities">Extending the logging capabilities</h2>
 <p>Different logging components allow you to extend the logging functionality, such as sending the events to the <strong>syslog</strong>, choosing the verbosity level, or use the <strong>Graylog Extended Log Format (GELF)</strong>.</p>
 <p>In addition to this, a lot of exporters are available to send your logs out (see <a href="/docs/telemetry/overview/">Telemetry</a>)</p>

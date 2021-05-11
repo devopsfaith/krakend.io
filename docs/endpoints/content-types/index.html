@@ -61,7 +61,13 @@ Supported encodings The gateway can work with several content types, even allowi
 </head>
 
 <body class="krakend page-95a495087cedfc739fb010cb546c9b9e">
-    
+    <div class="announcement">
+	<p>
+		<i class="fa fa-bell"></i> KrakenD framework joins the Linux Foundation. <a href="/blog/krakend-framework-joins-the-linux-foundation/">Read more</a>.
+		
+	</p>
+</div>
+
     <div class="top-bar">
   <div class="container my-2">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -158,7 +164,7 @@ Supported encodings The gateway can work with several content types, even allowi
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">KrakenD vs. KrakenD-CE</a>
+                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">Lura vs. KrakenD</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -800,7 +806,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
                 <nav id="TableOfContents">
   <ul>
     <li><a href="#supported-encodings">Supported encodings</a></li>
-    <li><a href="#using-other-routers-from-the-framework">Using other routers from the framework</a>
+    <li><a href="#using-other-routers-lura-project">Using other routers (Lura Project)</a>
       <ul>
         <li><a href="#gin">Gin</a></li>
         <li><a href="#mux-based">Mux-based</a></li>
@@ -860,8 +866,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 ...
 </code></pre>
 <p>Notice that endpoint <code>/c</code> uses JSON as no encoding has been defined.</p>
-<h2 id="using-other-routers-from-the-framework">Using other routers from the framework</h2>
-<p>If instead of the KrakenD API Gateway (KrakenD-CE), which uses internally the gin router, you decide to build your own gateway using the KrakenD framework, the following routers and output encodings are available:</p>
+<h2 id="using-other-routers-lura-project">Using other routers (Lura Project)</h2>
+<p>If instead of the KrakenD API Gateway, which uses internally the gin router, you decide to build your own custom gateway using the <a href="https://luraproject.org">Lura Project</a>, the following routers and output encodings are available:</p>
 <h3 id="gin">Gin</h3>
 <p>The gin-based KrakenD router includes these output encodings:</p>
 <ul>
@@ -871,7 +877,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>no-op</code></li>
 </ul>
 <h3 id="mux-based">Mux-based</h3>
-<p>The mux based routers supported by the KrakenD framework are:</p>
+<p>The mux based routers supported by Lura are:</p>
 <ul>
 <li>Mux</li>
 <li>Gorilla</li>
@@ -885,7 +891,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/endpoints
 <li><code>string</code></li>
 <li><code>no-op</code></li>
 </ul>
-<p>See the list of <a href="https://github.com/devopsfaith/krakend/tree/master/router">supported routers</a>.</p>
+<p>See the list of <a href="https://github.com/luraproject/lura/tree/master/router">Lura supported routers</a>.</p>
 
     </section>
 </div>

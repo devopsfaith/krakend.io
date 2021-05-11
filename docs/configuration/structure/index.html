@@ -57,7 +57,13 @@ Configuration file structure There are a large number of options you can put in 
 </head>
 
 <body class="krakend page-5be26093f4b84a627eadc25293011ad5">
-    
+    <div class="announcement">
+	<p>
+		<i class="fa fa-bell"></i> KrakenD framework joins the Linux Foundation. <a href="/blog/krakend-framework-joins-the-linux-foundation/">Read more</a>.
+		
+	</p>
+</div>
+
     <div class="top-bar">
   <div class="container my-2">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -154,7 +160,7 @@ Configuration file structure There are a large number of options you can put in 
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">KrakenD vs. KrakenD-CE</a>
+                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">Lura vs. KrakenD</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -850,7 +856,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/configura
 <p>The configuration above declares an endpoint <code>/v1/foo-bar</code>, which returns the result of merging the responses from two backends <code>https://my.foo-api.com/foo</code> and <code>https://my.bar-api.com/bar</code>. These two calls execute in parallel.</p>
 <p>That&rsquo;s the basic structure of endpoints; for more information see <a href="/docs/endpoints/creating-endpoints/">how to create endpoints</a>.</p>
 <h3 id="the-extra_config-structure">The <code>extra_config</code> structure</h3>
-<p>KrakenD is very modular and comes bundled with many components that extend the core functionality of the KrakenD framework. The <code>extra_config</code> stores each component configuration that is not part of the KrakenD framework.</p>
+<p>KrakenD is very modular and comes bundled with many components that extend the core functionality of the <a href="https://luraproject.org">Lura Project</a>. The <code>extra_config</code> stores each component configuration that is not handled by Lura itself.</p>
 <p>Components declare in their source code a <strong>unique namespace</strong>. KrakenD registers the component during the startup, and it passes to the component the configuration found under a key matching the <strong>namespace</strong> inside the <code>extra_config</code> object.</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span>
         <span class="nt">&#34;extra_config&#34;</span><span class="p">:</span> <span class="p">{</span>

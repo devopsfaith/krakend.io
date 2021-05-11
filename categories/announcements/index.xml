@@ -6,7 +6,17 @@
     <description>Recent content in Announcements on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/announcements/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/announcements/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KrakenD framework becomes a Linux Foundation project</title>
+      <link>https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/</guid>
+      <description>Today, together with the Linux Foundation, we are announcing that the KrakenD framework, our core engine, has been donated to the Linux Foundation and is now the &amp;ldquo;Lura Project.&amp;quot;
+The Lura Project&amp;rsquo;s mission is to offer an extendable, simple, and stateless high-performance API Gateway framework designed for cloud-native and on-prem setups. Rather than solving a specific use case, Lura provides a library of components, a framework for assembling them into custom API gateway systems like a Lego set.</description>
+    </item>
+    
     <item>
       <title>Albert Garcia to expand KrakenD business.</title>
       <link>https://www.krakend.io/blog/albert-garcia-expand-krakend-business/</link>

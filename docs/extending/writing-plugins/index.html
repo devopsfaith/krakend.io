@@ -57,7 +57,13 @@ It&rsquo;s important to remark, that if you want to do complex business logic ch
 </head>
 
 <body class="krakend page-c9140c15253c7c31b8d8f2e6bcbf244b">
-    
+    <div class="announcement">
+	<p>
+		<i class="fa fa-bell"></i> KrakenD framework joins the Linux Foundation. <a href="/blog/krakend-framework-joins-the-linux-foundation/">Read more</a>.
+		
+	</p>
+</div>
+
     <div class="top-bar">
   <div class="container my-2">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -154,7 +160,7 @@ It&rsquo;s important to remark, that if you want to do complex business logic ch
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">KrakenD vs. KrakenD-CE</a>
+                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">Lura vs. KrakenD</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -819,7 +825,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <h2 id="where-to-start-customizing">Where to start customizing</h2>
 <p>The word plugin appears in many places over the Internet, but when we talk about plugins we refer to <strong><a href="https://golang.org/pkg/plugin/">Go plugins</a></strong>.</p>
 <p><code>middleware != plugin</code></p>
-<p>KrakenD API Gateway is a composition of a framework and many other pieces and repositories that compile in a single, final, binary. We refer to these pieces as <strong>middleware</strong>, <strong>components</strong>, <strong>modules</strong>, or <strong>packages</strong> <code>¯\_(ツ)_/¯</code>.</p>
+<p>KrakenD API Gateway is a composition of the <a href="https://github.com/luraproject/lura">Lura framework</a> (formerly KrakenD framework) and many other pieces and repositories that compile in a single, final, binary. We refer to these pieces as <strong>middleware</strong>, <strong>components</strong>, <strong>modules</strong>, or <strong>packages</strong> <code>¯\_(ツ)_/¯</code>.</p>
 <p><strong>A plugin is a soft-linked library</strong>, thus a separated <code>.so</code> file, that when running in conjunction with KrakenD can participate in the processing.</p>
 <p>Plugins and middlewares are close concepts but do not confuse them. The middleware compiles inside the KrakenD binary while plugins compile in <strong>another binary</strong>.</p>
 <p>Plugins allow you to &ldquo;drag and drop&rdquo; custom functionality into KrakenD but still use the official binaries. Custom middlewares require compiling your version of KrakenD.</p>
@@ -876,7 +882,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <p>Writing an http handler plugin requires you to implement the <a href="https://github.com/devopsfaith/krakend/tree/master/transport/http/server/plugin">plugin server interface</a>.</p>
 <h4 id="writing-your-custom-middleware">Writing your custom middleware</h4>
 <p>The last option is to write code and compile it along with KrakenD. When writing your custom code, the usual choice is to fork the <a href="https://github.com/devopsfaith/krakend-ce">KrakenD-CE</a> repository.</p>
-<p>The KrakenD-CE repository is the one assembling all the blocks and manages the dependencies (including the <a href="https://github.com/devopsfaith/krakend">KrakenD Framework</a>), and lets you effortlessly include your company customizations.</p>
+<p>The KrakenD repository is the one assembling all the blocks and manages the dependencies (including <a href="https://github.com/luraproject/lura">Lura</a>), and lets you effortlessly include your company customizations.</p>
 <p>The small drawback of this approach is that you need to maintain your custom version, which differs from our official binaries.</p>
 <p>There are many examples of different modules, included in KrakenD-CE and not on our <a href="https://github.com/devopsfaith/krakend-contrib">contributions list</a>.</p>
 <p>A relaxed start to build a component KrakenD is our article &ldquo;<a href="/blog/website-development-as-a-sysadmin/">Website development as a sysadmin&rdquo;</a> where you can find custom code to add automatic API authentication against a backend.</p>

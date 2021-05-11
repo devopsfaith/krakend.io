@@ -7,13 +7,13 @@
 <meta name="generator" content="Hugo 0.82.1" />
 
     <title>Extending KrakenD, the big picture. - KrakenD API Gateway</title>
-    <meta name="description" content="Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
-The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:
+    <meta name="description" content="Before starting to dive into the KrakenD code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
+The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD (shared with The Lura Project), as they answer to architectural design questions:
  Reactive is key Reactive is key (yes, it is very very important) Failing fast is better than succeeding slow (say it one more time!">
 
     <meta itemprop="name" content="Extending KrakenD, the big picture. - KrakenD API Gateway">
-    <meta itemprop="description" content="Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
-The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:
+    <meta itemprop="description" content="Before starting to dive into the KrakenD code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
+The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD (shared with The Lura Project), as they answer to architectural design questions:
  Reactive is key Reactive is key (yes, it is very very important) Failing fast is better than succeeding slow (say it one more time!">
     
     <meta itemprop="image" content="/images/documentation/config-router-proxy-packages.png" />
@@ -23,8 +23,8 @@ The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD, as 
 
 
 <meta property="og:title" content="Extending KrakenD, the big picture." />
-<meta property="og:description" content="Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
-The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:
+<meta property="og:description" content="Before starting to dive into the KrakenD code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
+The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD (shared with The Lura Project), as they answer to architectural design questions:
  Reactive is key Reactive is key (yes, it is very very important) Failing fast is better than succeeding slow (say it one more time!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/extending/the-big-picture/" /><meta property="og:image" content="https://www.krakend.io/images/documentation/config-router-proxy-packages.png" /><meta property="article:section" content="docs" />
@@ -38,8 +38,8 @@ The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD, as 
 <meta name="twitter:image" content="https://www.krakend.io/images/documentation/config-router-proxy-packages.png"/>
 
 <meta name="twitter:title" content="Extending KrakenD, the big picture."/>
-<meta name="twitter:description" content="Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
-The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:
+<meta name="twitter:description" content="Before starting to dive into the KrakenD code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
+The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD (shared with The Lura Project), as they answer to architectural design questions:
  Reactive is key Reactive is key (yes, it is very very important) Failing fast is better than succeeding slow (say it one more time!"/>
 
 
@@ -61,7 +61,13 @@ The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD, as 
 </head>
 
 <body class="krakend page-a82104509b3eccf8371a84f1a6eb40d4">
-    
+    <div class="announcement">
+	<p>
+		<i class="fa fa-bell"></i> KrakenD framework joins the Linux Foundation. <a href="/blog/krakend-framework-joins-the-linux-foundation/">Read more</a>.
+		
+	</p>
+</div>
+
     <div class="top-bar">
   <div class="container my-2">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -158,7 +164,7 @@ The KrakenD rules Let&rsquo;s start with the rules followed to code KrakenD, as 
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">KrakenD vs. KrakenD-CE</a>
+                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children ">Lura vs. KrakenD</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -823,9 +829,9 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
             
         </div>
         
-        <p>Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.</p>
+        <p>Before starting to dive into the KrakenD code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.</p>
 <h2 id="the-krakend-rules">The KrakenD rules</h2>
-<p>Let&rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:</p>
+<p>Let&rsquo;s start with the rules followed to code KrakenD (shared with <a href="https://luraproject.org">The Lura Project</a>), as they answer to architectural design questions:</p>
 <ul>
 <li><a href="http://www.reactivemanifesto.org/">Reactive is key</a></li>
 <li>Reactive is key (yes, it is very very important)</li>
@@ -849,8 +855,8 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 <p>The working state is when the system is ready and can process the requests. When they arrive, the <code>router</code> already has the mapping of the request with the handler function and triggers the pipe execution. The <code>proxy</code> is the step of the pipe that manipulates, aggregates, and does other data handling for the rest of the process.</p>
 <p>As the handler functions are in the previous step, <strong>KrakenD doesn&rsquo;t penalize the performance depending on the number of endpoints or the possible cardinality</strong> of the URIs requested by the users.</p>
 <h2 id="the-important-packages">The important packages</h2>
-<p>The KrakenD framework is composed of a set of packages designed as building blocks for creating pipes and processors between an exposed endpoint and one or several API resources served by your backends.</p>
-<p><img src="/images/documentation/config-router-proxy-packages.png" alt="KrakenD packages"></p>
+<p>The Lura Project (KrakenD&rsquo;s engine) is composed of a set of packages designed as building blocks for creating pipes and processors between an exposed endpoint and one or several API resources served by your backends.</p>
+<p><img src="/images/documentation/config-router-proxy-packages.png" alt="Lura packages"></p>
 <p>The most important packages are:</p>
 <ol>
 <li>the <code>config</code> package defines the service.</li>
@@ -875,7 +881,7 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/extending
 </ul>
 <p>This layer transforms the request received from the outer layer (router) into a single or several requests to your backend services, processes the responses and returns a single response.</p>
 <p>Middlewares generates custom proxies that are chained depending on the workflow defined in the configuration until each possible branch ends in a transport-related proxy. Every one of these generated proxies can transform the input or even clone it several times and pass it or them to the next element in the chain. Finally, they can also modify the received response or responses adding all kinds of features to the generated pipe.</p>
-<p>The KrakenD framework provides a default implementation of the proxy stack factory.</p>
+<p>The Lura Project provides a default implementation of the proxy stack factory.</p>
 <h4 id="middlewares-available">Middlewares available</h4>
 <ul>
 <li>The <code>balancing</code> middleware uses some strategy for selecting a backend host to query.</li>

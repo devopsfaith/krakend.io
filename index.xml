@@ -6,7 +6,7 @@
     <description>Recent content on KrakenD - Open source API Gateway</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction to KrakenD</title>
       <link>https://www.krakend.io/docs/overview/introduction/</link>
@@ -24,8 +24,8 @@ KrakenD needs no programming as it offers a declarative way to create the endpoi
       <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/extending/the-big-picture/</guid>
-      <description>Before starting to dive into the KrakenD framework code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
-The KrakenD rules Let&amp;rsquo;s start with the rules followed to code KrakenD, as they answer to architectural design questions:
+      <description>Before starting to dive into the KrakenD code, spend a few minutes understanding the big pieces of the system, how it works, and the philosophy behind it.
+The KrakenD rules Let&amp;rsquo;s start with the rules followed to code KrakenD (shared with The Lura Project), as they answer to architectural design questions:
  Reactive is key Reactive is key (yes, it is very very important) Failing fast is better than succeeding slow (say it one more time!</description>
     </item>
     
@@ -186,7 +186,7 @@ When JWT shields a specific set of endpoints, requests to the API gateway must p
       <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/logging/extended-logging/</guid>
-      <description>By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the KrakenD framework. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
+      <description>By default, when KrakenD starts all the log events are sent to the standard output using the basic logger capabilities of the Lura Project. The reporting level, in that case, is DEBUG and adds no prefix to the log lines.
 Extending the logging capabilities Different logging components allow you to extend the logging functionality, such as sending the events to the syslog, choosing the verbosity level, or use the Graylog Extended Log Format (GELF).</description>
     </item>
     
@@ -827,14 +827,13 @@ The following configuration snippet sends data to your Jaeger:
     </item>
     
     <item>
-      <title>KrakenD vs. KrakenD-CE</title>
+      <title>Lura vs. KrakenD</title>
       <link>https://www.krakend.io/docs/overview/krakend-vs-krakend-ce/</link>
       <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.krakend.io/docs/overview/krakend-vs-krakend-ce/</guid>
-      <description>If you had a quick look at our git repositories, you might be confused at first, as we have a repository named krakend and another one named krakend-ce.
-Difference between KrakenD, KrakenD-CE, and Enterprise TL;DR;
- KrakenD is a framework KrakenD-CE is our open-source API Gateway ready to use KrakenD Enterprise are our professional software and services to businesses  KrakenD framework KrakenD (repo) is an open-source project created by @devopsfaith to accelerate the creation of custom API Gateways.</description>
+      <description>If you had a quick look at our git repositories or the documentation, you might be confused at first, as there is something called the Lura Project and also KrakenD.
+TL;DR; Difference between Lura, KrakenD, and Enterprise  Lura is the KrakenD&amp;rsquo;s engine. Formerly known as &amp;ldquo;KrakenD framework&amp;rdquo; until we donated it to The Linux Foundation on 2021. It is not a product itself but a set of libraries. KrakenD is our open-source API Gateway ready to use KrakenD Enterprise is our commercial version, including services to businesses  Lura Project The Lura Project is our original KrakenD framework that we donated to The Linux Foundation on 2021.</description>
     </item>
     
     <item>
@@ -967,6 +966,16 @@ The following configuration snippet enables the logger:
 The /__health endpoint The health endpoint, or the ping endpoint, works without any specific configuration as KrakenD automatically adds it.
 For instance, see the simplest possible krakend.json:
 Simplest configuration file&amp;nbsp;   cat&amp;nbsp;krakend.</description>
+    </item>
+    
+    <item>
+      <title>KrakenD framework becomes a Linux Foundation project</title>
+      <link>https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/</guid>
+      <description>Today, together with the Linux Foundation, we are announcing that the KrakenD framework, our core engine, has been donated to the Linux Foundation and is now the &amp;ldquo;Lura Project.&amp;quot;
+The Lura Project&amp;rsquo;s mission is to offer an extendable, simple, and stateless high-performance API Gateway framework designed for cloud-native and on-prem setups. Rather than solving a specific use case, Lura provides a library of components, a framework for assembling them into custom API gateway systems like a Lego set.</description>
     </item>
     
     <item>

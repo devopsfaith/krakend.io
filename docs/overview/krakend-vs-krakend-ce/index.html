@@ -6,11 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.82.1" />
 
-    <title>KrakenD vs. KrakenD-CE - KrakenD API Gateway</title>
-    <meta name="description" content="What is the difference between KrakenD and KrakenD-CE?">
+    <title>Lura vs. KrakenD - KrakenD API Gateway</title>
+    <meta name="description" content="What is the difference between Lura and KrakenD?">
 
-    <meta itemprop="name" content="KrakenD vs. KrakenD-CE - KrakenD API Gateway">
-    <meta itemprop="description" content="What is the difference between KrakenD and KrakenD-CE?">
+    <meta itemprop="name" content="Lura vs. KrakenD - KrakenD API Gateway">
+    <meta itemprop="description" content="What is the difference between Lura and KrakenD?">
     
     <meta itemprop="image" content="https://www.krakend.io/images/logo.png">
     
@@ -18,8 +18,8 @@
 
 
 
-<meta property="og:title" content="KrakenD vs. KrakenD-CE" />
-<meta property="og:description" content="What is the difference between KrakenD and KrakenD-CE?" />
+<meta property="og:title" content="Lura vs. KrakenD" />
+<meta property="og:description" content="What is the difference between Lura and KrakenD?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.krakend.io/docs/overview/krakend-vs-krakend-ce/" /><meta property="og:image" content="https://www.krakend.io/images/krakend-waves.png"/><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2018-06-23T00:00:00&#43;00:00" />
@@ -31,8 +31,8 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.krakend.io/images/krakend-waves.png"/>
 
-<meta name="twitter:title" content="KrakenD vs. KrakenD-CE"/>
-<meta name="twitter:description" content="What is the difference between KrakenD and KrakenD-CE?"/>
+<meta name="twitter:title" content="Lura vs. KrakenD"/>
+<meta name="twitter:description" content="What is the difference between Lura and KrakenD?"/>
 
 
 
@@ -53,7 +53,13 @@
 </head>
 
 <body class="krakend page-c5731dce4f43a5cb5c08b7c9e11f7a77">
-    
+    <div class="announcement">
+	<p>
+		<i class="fa fa-bell"></i> KrakenD framework joins the Linux Foundation. <a href="/blog/krakend-framework-joins-the-linux-foundation/">Read more</a>.
+		
+	</p>
+</div>
+
     <div class="top-bar">
   <div class="container my-2">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -150,7 +156,7 @@
                     </li>
                     
                     <li class="nav-item child">
-                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children active">KrakenD vs. KrakenD-CE</a>
+                        <a href="/docs/overview/krakend-vs-krakend-ce/" class="nav-link children active">Lura vs. KrakenD</a>
                     </li>
                     
                     <li class="nav-item child">
@@ -769,7 +775,7 @@
 href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/krakend-vs-krakend-ce.md">
     Edit this page
 </a>
-<h1 class="main-title">KrakenD vs. KrakenD-CE</h1>
+<h1 class="main-title">Lura vs. KrakenD</h1>
 
 
 
@@ -783,28 +789,27 @@ href="https://github.com/devopsfaith/krakend-documentation/edit/master/overview/
 <div class="row">
     <section class="col-md-12">
         
-        <p>If you had a quick look at our git repositories, you might be confused at first, as we have a repository named <code>krakend</code> and another one named <code>krakend-ce</code>.</p>
-<h2 id="difference-between-krakend-krakend-ce-and-enterprise">Difference between KrakenD, KrakenD-CE, and Enterprise</h2>
-<p><strong>TL;DR;</strong></p>
+        <p>If you had a quick look at our git repositories or the documentation, you might be confused at first, as there is something called the <strong>Lura Project</strong> and also <strong>KrakenD</strong>.</p>
+<h2 id="tldr-difference-between-lura-krakend-and-enterprise">TL;DR; Difference between Lura, KrakenD, and Enterprise</h2>
 <ul>
-<li>KrakenD is a framework</li>
-<li>KrakenD-CE is our open-source API Gateway ready to use</li>
-<li>KrakenD Enterprise are our professional software and services to businesses</li>
+<li><a href="https://luraproject.org"><strong>Lura</strong></a> is the KrakenD&rsquo;s engine. Formerly known as &ldquo;<strong>KrakenD framework</strong>&rdquo; until we <a href="/blog/krakend-framework-joins-the-linux-foundation/">donated it to The Linux Foundation on 2021</a>. It is not a product itself but a set of libraries.</li>
+<li><strong>KrakenD</strong> is our open-source API Gateway ready to use</li>
+<li><strong>KrakenD Enterprise</strong> is our commercial version, including services to businesses</li>
 </ul>
-<h3 id="krakend-framework">KrakenD framework</h3>
-<p>KrakenD (<a href="https://github.com/devopsfaith/krakend">repo</a>) is an open-source project created by <a href="https://twitter.com/devopsfaith">@devopsfaith</a> to accelerate the creation of custom API Gateways. The KrakenD framework provides several components for assembling your API Gateway and can be used in its entirety or just importing it as Go libraries to take only some of the functionality it brings.</p>
-<p>Unlike the rest of API Gateways in the space, KrakenD framework aims to bring together Go enthusiasts and professionals to collaborate towards building API Gateways. KrakenD is very modular and lets you replace the components or add new ones (middlewares).</p>
-<p>KrakenD focuses on providing a core framework and functionality that a pure API gateway needs, and it keeps it clean and extensible, so that you can create your custom gateway without any trouble.</p>
-<p><a class="btn btn-light" href="https://github.com/devopsfaith/krakend"><i class="fab fa-github"></i> Source code</a></p>
-<h3 id="krakend-community-edition">KrakenD Community Edition</h3>
-<p><code>KrakenD-CE</code> (<a href="https://github.com/devopsfaith/krakend-ce">repo</a>) is a ready-to-use API gateway, assembled the way we think it delivers more value to the general audience. The KrakenD-CE uses the KrakenD framework in its core and extends its functionality by adding in the final binary some of the several <a href="https://github.com/devopsfaith/krakend-contrib">middleware contributions</a> we thought an API Gateway should have.</p>
-<p>KrakenD-CE adds to the KrakenD framework more functionality like logging, service discovery, developer tools, metrics, circuit breaker, rate limiting, OAuth, security and other exciting stuff.</p>
-<p>The good news is that we always refer to both things as &ldquo;KrakenD&rdquo; :)</p>
+<h3 id="lura-project">Lura Project</h3>
+<p>The <a href="https://luraproject.org">Lura Project</a> is our original <em>KrakenD framework</em> that we <a href="/blog/krakend-framework-joins-the-linux-foundation/">donated to The Linux Foundation on 2021</a>. Previously it lived from 2006 to 2021 under the KrakenD&rsquo;s team organization (<a href="https://twitter.com/devopsfaith">@devopsfaith</a>) until it became a <a href="https://linuxfoundation.org/">Linux Foundation</a> project. KrakenD team continues to be part of the steering committee.</p>
+<p>The mission of the Lura Project is to offer an extendable, simple and stateless high-performance API Gateway <strong>framework</strong> designed for both cloud-native and on-prem setups. It provides components for assembling your API Gateway. It can be used in its entirety or just importing it as Go libraries to take only some of the functionality it brings.</p>
+<p>Lura focuses on providing the core functionality that a pure API gateway needs. It keeps it clean and extensible so that you can create your custom gateway without any trouble. KrakenD is the primary representation of Lura&rsquo;s possibilities.</p>
+<p><a class="btn btn-secondary btn-circle" href="https://luraproject.org"><i class="fa fa-globe"></i> Website</a>
+<a class="btn btn-light" href="https://github.com/luraproject/lura"><i class="fab fa-github"></i> Source code</a></p>
+<h3 id="krakend-api-gateway">KrakenD API gateway</h3>
+<p><code>KrakenD</code> (<a href="https://github.com/devopsfaith/krakend-ce">repo</a>) is our ready-to-use API gateway, assembled the way we think it delivers more value to the general audience. KrakenD uses the Lura Project in its core and extends its functionality by adding in the final binary multiple middlewares <a href="https://github.com/devopsfaith/krakend-contrib">contributions</a> we thought an API Gateway should have.</p>
+<p>KrakenD adds to Lura more functionality like logging, service discovery, developer tools, metrics, circuit breaker, rate limiting, OAuth, security, and other exciting stuff.</p>
 <p><a class="btn btn-secondary btn-circle" href="/download/"><i class="fa fa-download"></i> Download</a>
 <a class="btn btn-light" href="https://github.com/devopsfaith/krakend-ce"><i class="fab fa-github"></i> Source code</a></p>
 <h3 id="krakend-enterprise">KrakenD Enterprise</h3>
-<p>Customers of the <a href="/enterprise">KrakenD Enterprise</a> package enjoy the development, consultancy, support, and training services offered by the very same KrakenD creators. As per the software, KrakenD Enterprise users have SaaS functionalities that allow remote management, observability, and other features. There is also more tooling around KrakenD to increase productivity, and enable working with KrakenD in large groups of developers.</p>
-<p><strong>Our commitment to open-source is still in the center of our business</strong>, and this is why our Enterprise solution is built on top of the open-source version.  The Enterprise version uses the same OSS binary and extends it with a great variety of pluggable solutions. We want to make sure that both enterprise and community users have the excellent quality and reliability they are used to.</p>
+<p>Customers of the <a href="/enterprise">KrakenD Enterprise</a> package enjoy the development, consultancy, support, and training services offered by the very same KrakenD creators (and Lura steering committee). As per the software, KrakenD Enterprise users have SaaS functionalities that allow remote management, observability, and other features. There is also more tooling around KrakenD to increase productivity and enable working with KrakenD in large groups of developers.</p>
+<p><strong>Our commitment to open-source is in the center of our business</strong>, and this is why our Enterprise solution is built on top of the open-source version.  The Enterprise version uses the same OSS binary and extends it with a great variety of pluggable solutions. We want to make sure that both enterprise and community users have the excellent quality and reliability they are used to.</p>
 <p><a href="/enterprise/">Learn more about Enterprise</a></p>
 
     </section>
