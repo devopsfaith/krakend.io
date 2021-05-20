@@ -1,183 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Announcements on KrakenD - Open source API Gateway</title>
-    <link>https://www.krakend.io/categories/announcements/</link>
-    <description>Recent content in Announcements on KrakenD - Open source API Gateway</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/announcements/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>KrakenD framework becomes a Linux Foundation project</title>
-      <link>https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/</link>
-      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/</guid>
-      <description>Today, together with the Linux Foundation, we are announcing that the KrakenD framework, our core engine, has been donated to the Linux Foundation and is now the &amp;ldquo;Lura Project.&amp;quot;
-The Lura Project&amp;rsquo;s mission is to offer an extendable, simple, and stateless high-performance API Gateway framework designed for cloud-native and on-prem setups. Rather than solving a specific use case, Lura provides a library of components, a framework for assembling them into custom API gateway systems like a Lego set.</description>
-    </item>
-    
-    <item>
-      <title>Albert Garcia to expand KrakenD business.</title>
-      <link>https://www.krakend.io/blog/albert-garcia-expand-krakend-business/</link>
-      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/albert-garcia-expand-krakend-business/</guid>
-      <description>Today, we are announcing that Albert Garcia recently joined KrakenD as Director of Business Development and member of the Board.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Announcements on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/announcements/</link><description>Recent content in Announcements on KrakenD - Open source API Gateway</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/announcements/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD framework becomes a Linux Foundation project</title><link>https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/</link><pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/</guid><description>Today, together with the Linux Foundation, we are announcing that the KrakenD framework, our core engine, has been donated to the Linux Foundation and is now the &amp;ldquo;Lura Project.&amp;quot;
+The Lura Project&amp;rsquo;s mission is to offer an extendable, simple, and stateless high-performance API Gateway framework designed for cloud-native and on-prem setups. Rather than solving a specific use case, Lura provides a library of components, a framework for assembling them into custom API gateway systems like a Lego set.</description></item><item><title>Albert Garcia to expand KrakenD business.</title><link>https://www.krakend.io/blog/albert-garcia-expand-krakend-business/</link><pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/albert-garcia-expand-krakend-business/</guid><description>Today, we are announcing that Albert Garcia recently joined KrakenD as Director of Business Development and member of the Board.
 In his role, he will identify and develop new business opportunities to help expand even more the presence of KrakenD. Garcia will spearhead new markets and emerging trends, sales, and client relationship management, to name a few.
-Having worked previously with him for more than 15 years, we know that Garcia is the right person at the right time for KrakenD.</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 1.3.0 released</title>
-      <link>https://www.krakend.io/blog/krakend-1.3-release-notes/</link>
-      <pubDate>Wed, 24 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-1.3-release-notes/</guid>
-      <description>The KrakenD team is pleased to announce the release of KrakenD 1.3.0. You can get it packaged from the download page.
+Having worked previously with him for more than 15 years, we know that Garcia is the right person at the right time for KrakenD.</description></item><item><title>KrakenD 1.3.0 released</title><link>https://www.krakend.io/blog/krakend-1.3-release-notes/</link><pubDate>Wed, 24 Feb 2021 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-1.3-release-notes/</guid><description>The KrakenD team is pleased to announce the release of KrakenD 1.3.0. You can get it packaged from the download page.
 KrakenD 1.3.0 makes focus on completing the RBAC system regarding JWT. The main highlights are:
 JWT: Complete the RBAC system and flexibility improvements:
- Scopes validation (thanks to @chrisdennig) Extract and forward claims as headers (thanks to @chrisdennig) Support for Oracle Identity Cloud Service by allowing key identifers other than kid such as x5t or kid_x5t (contribution from Oracle) Allow loading of local JWK files Integration with secret providers such as:  Amazon KMS Azure&amp;rsquo;s Key Vault Google Cloud KMS Hashicorp&amp;rsquo;s Vault Encrypted or plain base64 file    Other features:</description>
-    </item>
-    
-    <item>
-      <title>KrakenD partners with Microsoft to distribute in Azure</title>
-      <link>https://www.krakend.io/blog/krakend-partners-with-microsoft/</link>
-      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-partners-with-microsoft/</guid>
-      <description>KrakenD continues to expand its distribution channels and services by partnering with Microsoft to publish its API Gateway on Azure Marketplace.
+Scopes validation (thanks to @chrisdennig) Extract and forward claims as headers (thanks to @chrisdennig) Support for Oracle Identity Cloud Service by allowing key identifers other than kid such as x5t or kid_x5t (contribution from Oracle) Allow loading of local JWK files Integration with secret providers such as: Amazon KMS Azure&amp;rsquo;s Key Vault Google Cloud KMS Hashicorp&amp;rsquo;s Vault Encrypted or plain base64 file Other features:</description></item><item><title>KrakenD partners with Microsoft to distribute in Azure</title><link>https://www.krakend.io/blog/krakend-partners-with-microsoft/</link><pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-partners-with-microsoft/</guid><description>KrakenD continues to expand its distribution channels and services by partnering with Microsoft to publish its API Gateway on Azure Marketplace.
 As a first step, the Azure Marketplace now counts with a ready-to-use KrakenD image for the open-source edition that helps users of the Azure Kubernete Service (AKS) to quickly and securely publish services through KrakenD API Gateway.
-According to a Cloud Solution Architect at Microsoft KrakenD is a great fit in the cloud-native space and a recommended product for AKS workloads and Kubernetes in general</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 1.2.0 released</title>
-      <link>https://www.krakend.io/blog/krakend-1.2-release-notes/</link>
-      <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-1.2-release-notes/</guid>
-      <description>The KrakenD team is pleased to announce the release of KrakenD 1.2. You can get it packaged from the download page.
+According to a Cloud Solution Architect at Microsoft KrakenD is a great fit in the cloud-native space and a recommended product for AKS workloads and Kubernetes in general</description></item><item><title>KrakenD 1.2.0 released</title><link>https://www.krakend.io/blog/krakend-1.2-release-notes/</link><pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-1.2-release-notes/</guid><description>The KrakenD team is pleased to announce the release of KrakenD 1.2. You can get it packaged from the download page.
 Some of the highlights include:
- Added a /__health endpoint Removed the wording whitelist and blacklist from all our products (#BlackLivesMatter) Datadog integration Array manipulation available after merging multiple backends KRAKEND_-like environment vars to override configuration A lot of small features and bugfixes   KrakenD framework Summary of the most significant changes:</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 1.1 with Kafka integration released</title>
-      <link>https://www.krakend.io/blog/krakend-1.1-release-notes/</link>
-      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-1.1-release-notes/</guid>
-      <description>The KrakenD team is pleased to announce the release of KrakenD 1.1. You can get it packaged from the download page.
+Added a /__health endpoint Removed the wording whitelist and blacklist from all our products (#BlackLivesMatter) Datadog integration Array manipulation available after merging multiple backends KRAKEND_-like environment vars to override configuration A lot of small features and bugfixes KrakenD framework Summary of the most significant changes:</description></item><item><title>KrakenD 1.1 with Kafka integration released</title><link>https://www.krakend.io/blog/krakend-1.1-release-notes/</link><pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-1.1-release-notes/</guid><description>The KrakenD team is pleased to announce the release of KrakenD 1.1. You can get it packaged from the download page.
 Some of the highlights include:
- Kafka integration Extended Docker image Added Telemetry for Azure Monitor More performance improvements  Kafka integration From now on, users of Apache Kafka can publish and subscribe from KrakenD. The Kafka integration saves you from writing application logic to interact with the streaming platform and let the gateway be an active player in the event architecture pattern.</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 1.0 announcement</title>
-      <link>https://www.krakend.io/blog/announcing-krakend-1.0/</link>
-      <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/announcing-krakend-1.0/</guid>
-      <description>In November 2016, we released KrakenD framework to the public. Today, after three years serving traffic around the world, and a lot of lessons learned on the way, KrakenD 1.0 is out 🎉🎉🎉
-KrakenD 1.0 is our announcement to the world that our libraries are now fully established and with the solid commitment of keeping backward compatibility. In the last twelve months, we have seen 120,000+ clusters in the world and 1M+ docker pulls, but as we always did (since 0.</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 0.9 released</title>
-      <link>https://www.krakend.io/blog/krakend-0.9-release-notes/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-0.9-release-notes/</guid>
-      <description>It&amp;rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&amp;rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&amp;rsquo;s get started!
-Integration with AMQP The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 0.8 released</title>
-      <link>https://www.krakend.io/blog/krakend-0.8-release-notes/</link>
-      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-0.8-release-notes/</guid>
-      <description>KrakenD 0.8 is a significant release as it brings numerous code changes and functionality. The framework brings +100 commits, the gateway +50 commits and even more changes in the components. A lot of refactoring and component updates has taken place. The big picture is a move from a single binary application to become a package with several internal binaries.
+Kafka integration Extended Docker image Added Telemetry for Azure Monitor More performance improvements Kafka integration From now on, users of Apache Kafka can publish and subscribe from KrakenD. The Kafka integration saves you from writing application logic to interact with the streaming platform and let the gateway be an active player in the event architecture pattern.</description></item><item><title>KrakenD 1.0 announcement</title><link>https://www.krakend.io/blog/announcing-krakend-1.0/</link><pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/announcing-krakend-1.0/</guid><description>In November 2016, we released KrakenD framework to the public. Today, after three years serving traffic around the world, and a lot of lessons learned on the way, KrakenD 1.0 is out 🎉🎉🎉
+KrakenD 1.0 is our announcement to the world that our libraries are now fully established and with the solid commitment of keeping backward compatibility. In the last twelve months, we have seen 120,000+ clusters in the world and 1M+ docker pulls, but as we always did (since 0.</description></item><item><title>KrakenD 0.9 released</title><link>https://www.krakend.io/blog/krakend-0.9-release-notes/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-0.9-release-notes/</guid><description>It&amp;rsquo;s been only one month since we released KrakenD 0.8, and although we have been releasing new versions approximately every 3 months, we have very interesting features that can&amp;rsquo;t wait! KrakenD 0.9 comes with a series of very demanded features. Let&amp;rsquo;s get started!
+Integration with AMQP The AMQP integration allows you to send and receive messages to and from a queue through the KrakenD API Gateway. This feature enables the gateway to become in both a subscriber and a consumer of messages for asynchronous processing and opens the doors to very different implementations we were seeing.</description></item><item><title>KrakenD 0.8 released</title><link>https://www.krakend.io/blog/krakend-0.8-release-notes/</link><pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-0.8-release-notes/</guid><description>KrakenD 0.8 is a significant release as it brings numerous code changes and functionality. The framework brings +100 commits, the gateway +50 commits and even more changes in the components. A lot of refactoring and component updates has taken place. The big picture is a move from a single binary application to become a package with several internal binaries.
 See the details below.
-KrakenD framework The KrakenD framework brings +100 commits compared to 0.</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 0.7 released</title>
-      <link>https://www.krakend.io/blog/krakend-0.7-release-notes/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-0.7-release-notes/</guid>
-      <description>The most relevant features for the 0.7 release are increased metrics and tracing options, and functionality that has been requested by many, the sequential proxy merger. During this release, we also updated the KrakenD brand with a new logo, and we added more documentation.
-On the metrics side, we can now send structured events using GELF to your Graylog Cluster. Opencensus middleware adds new functionality to push metrics to your Google StackDriver account.</description>
-    </item>
-    
-    <item>
-      <title>Krakend 0.6.1 release notes</title>
-      <link>https://www.krakend.io/blog/krakend-0.6.1-release-notes/</link>
-      <pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-0.6.1-release-notes/</guid>
-      <description>The 0.6.1 release adds TLS and enables HTTP2 and HTTPS.
+KrakenD framework The KrakenD framework brings +100 commits compared to 0.</description></item><item><title>KrakenD 0.7 released</title><link>https://www.krakend.io/blog/krakend-0.7-release-notes/</link><pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-0.7-release-notes/</guid><description>The most relevant features for the 0.7 release are increased metrics and tracing options, and functionality that has been requested by many, the sequential proxy merger. During this release, we also updated the KrakenD brand with a new logo, and we added more documentation.
+On the metrics side, we can now send structured events using GELF to your Graylog Cluster. Opencensus middleware adds new functionality to push metrics to your Google StackDriver account.</description></item><item><title>Krakend 0.6.1 release notes</title><link>https://www.krakend.io/blog/krakend-0.6.1-release-notes/</link><pubDate>Thu, 04 Oct 2018 09:15:49 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-0.6.1-release-notes/</guid><description>The 0.6.1 release adds TLS and enables HTTP2 and HTTPS.
 TL;DR This release brings HTTP2 and HTTPS to KrakenD. It also upgrades Go from 1.10 to 1.11 and fixes forwarded query string parameters to backends that are using arrays and repeated variables.
 The KrakenDesigner (UI) is also updated to reflect these changes.
 KrakenD framework The KrakenD framework has the following relevant changes:
- NEW: Added support for HTTP2/HTTPS FIX: query string parameters works now with arrays and repeated variables (e.</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 0.6 autumn release</title>
-      <link>https://www.krakend.io/blog/krakend-0.6-release-notes/</link>
-      <pubDate>Fri, 07 Sep 2018 09:18:53 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-0.6-release-notes/</guid>
-      <description>As if we were an agrarian society, our releases keep revolving around the weather calendar seasons. Autumn is around the corner (northern hemisphere), so our release is ready for a cool autumn.
+NEW: Added support for HTTP2/HTTPS FIX: query string parameters works now with arrays and repeated variables (e.</description></item><item><title>KrakenD 0.6 autumn release</title><link>https://www.krakend.io/blog/krakend-0.6-release-notes/</link><pubDate>Fri, 07 Sep 2018 09:18:53 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-0.6-release-notes/</guid><description>As if we were an agrarian society, our releases keep revolving around the weather calendar seasons. Autumn is around the corner (northern hemisphere), so our release is ready for a cool autumn.
 TL;DR This release adds two interesting components: the JOSE component responsible for the JWT signing and validation, and the Cross-origin resource sharing (CORS) component. There is also a Consul client available.
-The Krakend Playground and the KrakenDesigner (UI) is also updated.</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 0.5 summer release</title>
-      <link>https://www.krakend.io/blog/krakend-0.5-release-notes/</link>
-      <pubDate>Fri, 08 Jun 2018 14:50:53 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-0.5-release-notes/</guid>
-      <description>KrakenD 0.5 is out and we want to share some of the cool stuff this release is bringing.
-This release focuses heavily on metrics and its export options to different backend systems such as Zipkin, InfluxDB, Prometheus or Jaeger. It also adds the NoOp logger and exposes all the advanced settings of the http client and server, giving all the power to the user. On the middleware side it extends even more the ecosystem with multiple components.</description>
-    </item>
-    
-    <item>
-      <title>KrakenD 0.4 release notes</title>
-      <link>https://www.krakend.io/blog/krakend-0.4-release-notes/</link>
-      <pubDate>Sun, 21 Jan 2018 14:50:53 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-0.4-release-notes/</guid>
-      <description>KrakenD 0.4 materializes the announcement we did 3 months ago by going full open source and public releasing the former enterprise-only components.
+The Krakend Playground and the KrakenDesigner (UI) is also updated.</description></item><item><title>KrakenD 0.5 summer release</title><link>https://www.krakend.io/blog/krakend-0.5-release-notes/</link><pubDate>Fri, 08 Jun 2018 14:50:53 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-0.5-release-notes/</guid><description>KrakenD 0.5 is out and we want to share some of the cool stuff this release is bringing.
+This release focuses heavily on metrics and its export options to different backend systems such as Zipkin, InfluxDB, Prometheus or Jaeger. It also adds the NoOp logger and exposes all the advanced settings of the http client and server, giving all the power to the user. On the middleware side it extends even more the ecosystem with multiple components.</description></item><item><title>KrakenD 0.4 release notes</title><link>https://www.krakend.io/blog/krakend-0.4-release-notes/</link><pubDate>Sun, 21 Jan 2018 14:50:53 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-0.4-release-notes/</guid><description>KrakenD 0.4 materializes the announcement we did 3 months ago by going full open source and public releasing the former enterprise-only components.
 This release note comprehends both the KrakenD framework and the KrakenD Community Edition binary distribution.
 KrakenD framework The KrakenD framework, engine of the KrakenD API Gateway. The summary of changes introduced in the 0.4 are:
- Removed ALL external dependencies and placed to krakend-contrib repositories Decoder and Service Discovery register system Response metadata Response decoder and formatter exposed Custom status code handler Minor handler optimizations Config version upgraded Server configuration extended (with timeouts and limits) Now non strict REST urls are allowed Request and response manipulation optimized func version for all the interfaces  Link to 0.</description>
-    </item>
-    
-    <item>
-      <title>Road to KrakenD 0.4</title>
-      <link>https://www.krakend.io/blog/road-to-0.4/</link>
-      <pubDate>Sun, 12 Nov 2017 12:10:53 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/road-to-0.4/</guid>
-      <description>The next iteration of KrakenD is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the 0.4 release before end of year. The jump from the 0.3.9 of the binary and the 0.3 of the framework to the 0.4 will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: kill external dependencies with fire.</description>
-    </item>
-    
-    <item>
-      <title>Open sourcing all enterprise components</title>
-      <link>https://www.krakend.io/blog/open-sourcing-enterprise-features/</link>
-      <pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/open-sourcing-enterprise-features/</guid>
-      <description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
-A look back&amp;hellip; If you are reading this post chances are that you know this already, in short KrakenD is the fastest API Gateway in the market.</description>
-    </item>
-    
-  </channel>
-</rss>
+Removed ALL external dependencies and placed to krakend-contrib repositories Decoder and Service Discovery register system Response metadata Response decoder and formatter exposed Custom status code handler Minor handler optimizations Config version upgraded Server configuration extended (with timeouts and limits) Now non strict REST urls are allowed Request and response manipulation optimized func version for all the interfaces Link to 0.</description></item><item><title>Road to KrakenD 0.4</title><link>https://www.krakend.io/blog/road-to-0.4/</link><pubDate>Sun, 12 Nov 2017 12:10:53 +0200</pubDate><guid>https://www.krakend.io/blog/road-to-0.4/</guid><description>The next iteration of KrakenD is right around the corner and the Devops Faith team and the rest of the community we are working together to launch the 0.4 release before end of year. The jump from the 0.3.9 of the binary and the 0.3 of the framework to the 0.4 will bring a lot of interesting stuff but we also need to do a remarkable change in the code for a brighter future: kill external dependencies with fire.</description></item><item><title>Open sourcing all enterprise components</title><link>https://www.krakend.io/blog/open-sourcing-enterprise-features/</link><pubDate>Sun, 22 Oct 2017 19:01:33 +0200</pubDate><guid>https://www.krakend.io/blog/open-sourcing-enterprise-features/</guid><description>What are known today as the KrakenD Enterprise components will be disclosed in the form of open source repositories in the following weeks, and the action has already started, don&amp;rsquo;t miss it! In this post we will explain the reasons behind this decision that might sound crazy from a business perspective in the first place. Why anyone would publish the paid software increment bits of an existing free software?
+A look back&amp;hellip; If you are reading this post chances are that you know this already, in short KrakenD is the fastest API Gateway in the market.</description></item></channel></rss>

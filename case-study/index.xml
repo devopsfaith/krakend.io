@@ -1,145 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Case-studies on KrakenD - Open source API Gateway</title>
-    <link>https://www.krakend.io/case-study/</link>
-    <description>Recent content in Case-studies on KrakenD - Open source API Gateway</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 06 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/case-study/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Case study - Xiachufang (下厨房)</title>
-      <link>https://www.krakend.io/case-study/xiachufang/</link>
-      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/xiachufang/</guid>
-      <description>With around 60 million registered users, Xiachufang is the biggest cuisine community in China, making it possible for its users to share home recipes easily, watch video courses made by experts, and shop ingredients or kitchenware.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Case-studies on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/case-study/</link><description>Recent content in Case-studies on KrakenD - Open source API Gateway</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 06 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/case-study/index.xml" rel="self" type="application/rss+xml"/><item><title>Case study - Xiachufang (下厨房)</title><link>https://www.krakend.io/case-study/xiachufang/</link><pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/xiachufang/</guid><description>With around 60 million registered users, Xiachufang is the biggest cuisine community in China, making it possible for its users to share home recipes easily, watch video courses made by experts, and shop ingredients or kitchenware.
 Xiachufang&amp;rsquo;s requirements at the beginning of its API gateway research were:
- Being able to efficiently distribute the requests A simple and stateless approach to API gateway Strong customization capabilities An efficient and programmatic way to define rules Supporting monitoring and alarms Support the traffic and scalability needs of the company  Xiachufang started with a small subset of live services (small as in nearly 2,000 requests per second) before starting moving more services to KrakenD:</description>
-    </item>
-    
-    <item>
-      <title>Hepsiburada - KrakenD Case Study</title>
-      <link>https://www.krakend.io/case-study/hepsiburada/</link>
-      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/hepsiburada/</guid>
-      <description>Hepsiburada is the largest and fastest-growing e-commerce platform in Turkey and the top 5 in Europe. With over 150 million monthly visits and over 50 million product variations in mobile phones, cosmetics, consumer goods, fashion, and more, Hepsiburada is a business and technology leader in Turkey.
+Being able to efficiently distribute the requests A simple and stateless approach to API gateway Strong customization capabilities An efficient and programmatic way to define rules Supporting monitoring and alarms Support the traffic and scalability needs of the company Xiachufang started with a small subset of live services (small as in nearly 2,000 requests per second) before starting moving more services to KrakenD:</description></item><item><title>Hepsiburada - KrakenD Case Study</title><link>https://www.krakend.io/case-study/hepsiburada/</link><pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/hepsiburada/</guid><description>Hepsiburada is the largest and fastest-growing e-commerce platform in Turkey and the top 5 in Europe. With over 150 million monthly visits and over 50 million product variations in mobile phones, cosmetics, consumer goods, fashion, and more, Hepsiburada is a business and technology leader in Turkey.
 Hepsiburada challenges A company of such dimensions as Hepsiburada had several challenges before choosing KrakenD as their API gateway solution:
- Operating 500 microservices and 40+ autonomous product development teams has many complex issues.</description>
-    </item>
-    
-    <item>
-      <title>Case Study - Perx</title>
-      <link>https://www.krakend.io/case-study/perx/</link>
-      <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/perx/</guid>
-      <description>Perx is developing a data management platform called Hoop built on microservices and an architecture that makes use of extensive internal and external communications through REST APIs and asynchronous NATS channels.
-KrakenD API Gateway offers robust functionality to control the traffic between external API clients and services. It aggregates microservices responses together into one unified API and thus provides flexible options for request/response manipulation to meet customers&#39; needs.
-Using KrakenD provides secure external connections with OAuth.</description>
-    </item>
-    
-    <item>
-      <title>Case study - Privalia</title>
-      <link>https://www.krakend.io/case-study/privalia/</link>
-      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/privalia/</guid>
-      <description>Veepee is the European flash sales leader with 72M of members, and Privalia its strategic brand for Spain, Italy, Brazil, and Mexico.
+Operating 500 microservices and 40+ autonomous product development teams has many complex issues.</description></item><item><title>Case Study - Perx</title><link>https://www.krakend.io/case-study/perx/</link><pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/perx/</guid><description>Perx is developing a data management platform called Hoop built on microservices and an architecture that makes use of extensive internal and external communications through REST APIs and asynchronous NATS channels.
+KrakenD API Gateway offers robust functionality to control the traffic between external API clients and services. It aggregates microservices responses together into one unified API and thus provides flexible options for request/response manipulation to meet customers' needs.
+Using KrakenD provides secure external connections with OAuth.</description></item><item><title>Case study - Privalia</title><link>https://www.krakend.io/case-study/privalia/</link><pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/privalia/</guid><description>Veepee is the European flash sales leader with 72M of members, and Privalia its strategic brand for Spain, Italy, Brazil, and Mexico.
 Privalia, with +13M members, evolved their customer care solution from an in-house solution to a Salesforce integration with their internal systems.
 Before KrakenD, the main challenge of Veepee was to integrate Salesforce with multiple microservices and handle authorization, security, and aggregation in the middle layers.
-KrakenD solved this challenge with out of the box features, keeping Privalia&amp;rsquo;s logic separated, and decoupled from Salesforce.</description>
-    </item>
-    
-    <item>
-      <title>Case Study - i2S by GFI</title>
-      <link>https://www.krakend.io/case-study/i2s/</link>
-      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/i2s/</guid>
-      <description>GFI is one of the most high-performing IT and digital service companies in the market. Their insurance branch i2S has software solutions installed in nearly 50 insurance companies (Life and Non-life) and several pension fund management societies.
+KrakenD solved this challenge with out of the box features, keeping Privalia&amp;rsquo;s logic separated, and decoupled from Salesforce.</description></item><item><title>Case Study - i2S by GFI</title><link>https://www.krakend.io/case-study/i2s/</link><pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/i2s/</guid><description>GFI is one of the most high-performing IT and digital service companies in the market. Their insurance branch i2S has software solutions installed in nearly 50 insurance companies (Life and Non-life) and several pension fund management societies.
 KrakenD is the entry point to consume all the micro-services in a controlled way and helps create an insurance-related product, covering many aspects, from legal to finance and actuarial.
-KrakenD unifies and aggregates the responses of all the underlying Java microservices, and injects custom middleware for insurance&amp;rsquo;s particular use case.</description>
-    </item>
-    
-    <item>
-      <title>Case study - Open Room Inc</title>
-      <link>https://www.krakend.io/case-study/openroom/</link>
-      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/openroom/</guid>
-      <description>Open Room Inc. uses KrakenD to expose easily and safely various Real Estate applications, to help agents in their daily work and end-users to find the home they are looking for.
+KrakenD unifies and aggregates the responses of all the underlying Java microservices, and injects custom middleware for insurance&amp;rsquo;s particular use case.</description></item><item><title>Case study - Open Room Inc</title><link>https://www.krakend.io/case-study/openroom/</link><pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/openroom/</guid><description>Open Room Inc. uses KrakenD to expose easily and safely various Real Estate applications, to help agents in their daily work and end-users to find the home they are looking for.
 Open Room uses image processing, character recognition, document analysis, and machine learning.
-KrakenD API Gateway helped Open Room to reduce the latency of all queries by grouping backend queries by frontend use-case, and allowed Open Room to build their API simply and coherently.</description>
-    </item>
-    
-    <item>
-      <title>Case Study - Adevinta Spain</title>
-      <link>https://www.krakend.io/case-study/adevinta/</link>
-      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/adevinta/</guid>
-      <description>Adevinta Spain handles a vast amount of traffic, as it operates marketplaces with 18 million active users. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
+KrakenD API Gateway helped Open Room to reduce the latency of all queries by grouping backend queries by frontend use-case, and allowed Open Room to build their API simply and coherently.</description></item><item><title>Case Study - Adevinta Spain</title><link>https://www.krakend.io/case-study/adevinta/</link><pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/adevinta/</guid><description>Adevinta Spain handles a vast amount of traffic, as it operates marketplaces with 18 million active users. The adoption of KrakenD&amp;rsquo;s technology in production started in early 2017 and has been running since then.
 Adevinta was investigating how to get more performance in their company-wide solution, and how to provide autonomy to non backend teams.
-After several weeks of research, stress-tests and benchmarking several products in the market, Adevinta decided to choose KrakenD as the api gateway engine.</description>
-    </item>
-    
-    <item>
-      <title>Case Study - Delivery Club (Mail.ru group)</title>
-      <link>https://www.krakend.io/case-study/mailru/</link>
-      <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/mailru/</guid>
-      <description>Delivery Club, a Mail.ru brand, is the largest online food delivery platform in Russia, moving food from thousands of restaurants to homes in more than 100 cities.
+After several weeks of research, stress-tests and benchmarking several products in the market, Adevinta decided to choose KrakenD as the api gateway engine.</description></item><item><title>Case Study - Delivery Club (Mail.ru group)</title><link>https://www.krakend.io/case-study/mailru/</link><pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/mailru/</guid><description>Delivery Club, a Mail.ru brand, is the largest online food delivery platform in Russia, moving food from thousands of restaurants to homes in more than 100 cities.
 Delivery Club processes +30,000 orders per day, 72% of which are made from mobile devices.
 The technology is built using a modernized microservices architecture with around 20 services, including KrakenD API Gateway that sits between end users and Delivery Club&amp;rsquo;s services.
-KrakenD&amp;rsquo;s main duty is processing ingoing and outgoing traffic making sure that user sessions are properly authorized when needed, and discarding malicious activity and hacking attempts.</description>
-    </item>
-    
-    <item>
-      <title>Case Study - Dusdusan.com (Indonesia)</title>
-      <link>https://www.krakend.io/case-study/dusdusan/</link>
-      <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/dusdusan/</guid>
-      <description>Established in the Jakarta City of Indonesia in November 2015, PT. Dusdusan Dotcom Indonesia is a mobile Internet company engaged in the research, development, and operation of E-business platform.
+KrakenD&amp;rsquo;s main duty is processing ingoing and outgoing traffic making sure that user sessions are properly authorized when needed, and discarding malicious activity and hacking attempts.</description></item><item><title>Case Study - Dusdusan.com (Indonesia)</title><link>https://www.krakend.io/case-study/dusdusan/</link><pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/dusdusan/</guid><description>Established in the Jakarta City of Indonesia in November 2015, PT. Dusdusan Dotcom Indonesia is a mobile Internet company engaged in the research, development, and operation of E-business platform.
 As a leader of membership E-business in Indonesia, Dusdusan.com, together with many domestic and foreign top brands and quality emerging brands, has integrated into the life of thousands of Indonesian families.
-As the business developed rapidly, Dusdusan.com needs to keep improving its platform.</description>
-    </item>
-    
-    <item>
-      <title>Case Study - Letgo</title>
-      <link>https://www.krakend.io/case-study/letgo/</link>
-      <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/letgo/</guid>
-      <description>Letgo is the biggest and fastest-growing app for buying and selling locally.
+As the business developed rapidly, Dusdusan.com needs to keep improving its platform.</description></item><item><title>Case Study - Letgo</title><link>https://www.krakend.io/case-study/letgo/</link><pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/letgo/</guid><description>Letgo is the biggest and fastest-growing app for buying and selling locally.
 Letgo is both a desktop application (SPA) and a mobile application with native implementations for every OS. As Letgo&amp;rsquo;s organization is large, the UI experience of each client is handled by a different team.
-Letgo uses different clusters of KrakenD API Gateway per client, allowing each team to have its customized views of merged data. The API contract used in every device is preserved and respected even when the backends need to change their specification.</description>
-    </item>
-    
-    <item>
-      <title>Case Study - Pearson Education</title>
-      <link>https://www.krakend.io/case-study/pearson/</link>
-      <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/pearson/</guid>
-      <description>Pearson has trusted KrakenD as its API Gateway solution for the Parent App, which provides parents with a wide range of resources, including podcasts, infographics, quizzes, and checklists, to support their children&amp;rsquo;s progress in learning.
+Letgo uses different clusters of KrakenD API Gateway per client, allowing each team to have its customized views of merged data. The API contract used in every device is preserved and respected even when the backends need to change their specification.</description></item><item><title>Case Study - Pearson Education</title><link>https://www.krakend.io/case-study/pearson/</link><pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/case-study/pearson/</guid><description>Pearson has trusted KrakenD as its API Gateway solution for the Parent App, which provides parents with a wide range of resources, including podcasts, infographics, quizzes, and checklists, to support their children&amp;rsquo;s progress in learning.
 KrakenD API Gateway offers the endpoints to the Parent App and sits between end-users and the Pearson services, which provide all the data that KrakenD aggregates to supply the use case.
-KrakenD handles OAuth with HMAC security and implements minor custom middlewares to fit the desired end-user consumption of the services.</description>
-    </item>
-    
-    <item>
-      <title>Case study - iContainers</title>
-      <link>https://www.krakend.io/case-study/icontainers/</link>
-      <pubDate>Fri, 05 Oct 2018 17:23:05 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/case-study/icontainers/</guid>
-      <description>iContainers is an ocean freight forwarder that allows you to compare, book, manage, and track maritime shipments in real-time without intermediaries.
+KrakenD handles OAuth with HMAC security and implements minor custom middlewares to fit the desired end-user consumption of the services.</description></item><item><title>Case study - iContainers</title><link>https://www.krakend.io/case-study/icontainers/</link><pubDate>Fri, 05 Oct 2018 17:23:05 +0200</pubDate><guid>https://www.krakend.io/case-study/icontainers/</guid><description>iContainers is an ocean freight forwarder that allows you to compare, book, manage, and track maritime shipments in real-time without intermediaries.
 As importers and exporters combine more than 500,000 rates and maritime transport routes from different providers, KrakenD plays the role of a Backend for Frontend in several SPAs. Some examples are the back-office, the partners portal, or the pricing API.
-KrakenD&amp;rsquo;s primary duty in all these cases is to provide a reliable way to fetch data from multiple providers and APIs and merge the results of all the services into useful endpoints.</description>
-    </item>
-    
-  </channel>
-</rss>
+KrakenD&amp;rsquo;s primary duty in all these cases is to provide a reliable way to fetch data from multiple providers and APIs and merge the results of all the services into useful endpoints.</description></item></channel></rss>

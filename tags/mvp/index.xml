@@ -1,21 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>mvp on KrakenD - Open source API Gateway</title>
-    <link>https://www.krakend.io/tags/mvp/</link>
-    <description>Recent content in mvp on KrakenD - Open source API Gateway</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 10 May 2018 16:18:25 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/mvp/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Website development as a sysadmin</title>
-      <link>https://www.krakend.io/blog/website-development-as-a-sysadmin/</link>
-      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
-      <description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
-Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mvp on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/tags/mvp/</link><description>Recent content in mvp on KrakenD - Open source API Gateway</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 10 May 2018 16:18:25 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/mvp/index.xml" rel="self" type="application/rss+xml"/><item><title>Website development as a sysadmin</title><link>https://www.krakend.io/blog/website-development-as-a-sysadmin/</link><pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate><guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid><description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
+Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description></item></channel></rss>

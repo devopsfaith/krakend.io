@@ -1,102 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>how-to on KrakenD - Open source API Gateway</title>
-    <link>https://www.krakend.io/tags/how-to/</link>
-    <description>Recent content in how-to on KrakenD - Open source API Gateway</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 15 Mar 2021 09:40:25 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/how-to/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>How we built our telemetry service</title>
-      <link>https://www.krakend.io/blog/building-a-telemetry-service/</link>
-      <pubDate>Mon, 15 Mar 2021 09:40:25 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/building-a-telemetry-service/</guid>
-      <description>​ We have run our telemetry system live for the past three years now. In this article, we&amp;rsquo;ll share code and outline some of the things you&amp;rsquo;ll need to keep in mind if you want to build an anonymous usage reporting system for an open-source project as we did at a ridiculous cost.
-We have an activity of 700,000 reporting servers/month with a monthly cost betwen 5 and 10 EUR ($12).</description>
-    </item>
-    
-    <item>
-      <title>gRPC-gateway as a KrakenD plugin</title>
-      <link>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</link>
-      <pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</guid>
-      <description>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&amp;rsquo;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</description>
-    </item>
-    
-    <item>
-      <title>Doing housekeeping on your KrakenD configuration file</title>
-      <link>https://www.krakend.io/blog/housekeeping-configuration-file/</link>
-      <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/housekeeping-configuration-file/</guid>
-      <description>Starting your krakend.json configuration from scratch and writing every attribute in a blank editor might be a difficult and time consuming task, and that&amp;rsquo;s why we have the KrakenDesigner.
-KrakenDesigner is an aid tool to generate KrakenD configurations for the uninitiated audience. It produces a verbose output of the configuration file and explicitly writes unneeded attributes to let you see that a specific configuration option exists. These attributes I am mentioning are not necessary because they contain default values and the server is not going to alter its behavior.</description>
-    </item>
-    
-    <item>
-      <title>How we run KrakenD on Javascript with WebAssembly</title>
-      <link>https://www.krakend.io/blog/krakend-wasm/</link>
-      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-wasm/</guid>
-      <description>KrakenD is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the KrakenDesigner is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.
-In this post, we are going to explain how we included KrakenD framework components in a .</description>
-    </item>
-    
-    <item>
-      <title>Running the KrakenD API Gateway on Kubernetes</title>
-      <link>https://www.krakend.io/blog/krakend-on-kubernetes/</link>
-      <pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-on-kubernetes/</guid>
-      <description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>how-to on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/tags/how-to/</link><description>Recent content in how-to on KrakenD - Open source API Gateway</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Mar 2021 09:40:25 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/how-to/index.xml" rel="self" type="application/rss+xml"/><item><title>How we built our telemetry service</title><link>https://www.krakend.io/blog/building-a-telemetry-service/</link><pubDate>Mon, 15 Mar 2021 09:40:25 +0200</pubDate><guid>https://www.krakend.io/blog/building-a-telemetry-service/</guid><description>​ We have run our telemetry system live for the past three years now. In this article, we&amp;rsquo;ll share code and outline some of the things you&amp;rsquo;ll need to keep in mind if you want to build an anonymous usage reporting system for an open-source project as we did at a ridiculous cost.
+We have an activity of 700,000 reporting servers/month with a monthly cost betwen 5 and 10 EUR ($12).</description></item><item><title>gRPC-gateway as a KrakenD plugin</title><link>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</link><pubDate>Sun, 09 Jun 2019 18:26:10 +0100</pubDate><guid>https://www.krakend.io/blog/krakend-grpc-gateway-plugin/</guid><description>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&amp;rsquo;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</description></item><item><title>Doing housekeeping on your KrakenD configuration file</title><link>https://www.krakend.io/blog/housekeeping-configuration-file/</link><pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/housekeeping-configuration-file/</guid><description>Starting your krakend.json configuration from scratch and writing every attribute in a blank editor might be a difficult and time consuming task, and that&amp;rsquo;s why we have the KrakenDesigner.
+KrakenDesigner is an aid tool to generate KrakenD configurations for the uninitiated audience. It produces a verbose output of the configuration file and explicitly writes unneeded attributes to let you see that a specific configuration option exists. These attributes I am mentioning are not necessary because they contain default values and the server is not going to alter its behavior.</description></item><item><title>How we run KrakenD on Javascript with WebAssembly</title><link>https://www.krakend.io/blog/krakend-wasm/</link><pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-wasm/</guid><description>KrakenD is an API Gateway written in Go that uses a single configuration file to define its whole behavior. As the configuration file might be complicated, the KrakenDesigner is a javascript-based user interface to edit this file, and we were missing the capability of reproducing directly on javascript the existing gateway pipes so that users could run manual tests over the editing configuration.
+In this post, we are going to explain how we included KrakenD framework components in a .</description></item><item><title>Running the KrakenD API Gateway on Kubernetes</title><link>https://www.krakend.io/blog/krakend-on-kubernetes/</link><pubDate>Wed, 06 Jun 2018 18:47:03 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-on-kubernetes/</guid><description>In this article we are going to show how to configure and deploy the KrakenD API Gateway in a kubernetes environment.
 We will use for the demonstration Minikube so you cant test it in your own local machine.
 Let&amp;rsquo;s get started!
-Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&amp;rsquo;s quick and easy.</description>
-    </item>
-    
-    <item>
-      <title>Website development as a sysadmin</title>
-      <link>https://www.krakend.io/blog/website-development-as-a-sysadmin/</link>
-      <pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid>
-      <description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
-Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description>
-    </item>
-    
-    <item>
-      <title>How to work with Golang plugins and KrakenD</title>
-      <link>https://www.krakend.io/blog/krakend-golang-plugins/</link>
-      <pubDate>Thu, 12 Apr 2018 22:07:03 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-golang-plugins/</guid>
-      <description>The release of golang 1.8 more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.
+Setting up a local Kubernetes We will run Kubernetes locally thanks to Minikube. Just follow the README in the project for the installation and the Quickstart section. Installing minikube it&amp;rsquo;s quick and easy.</description></item><item><title>Website development as a sysadmin</title><link>https://www.krakend.io/blog/website-development-as-a-sysadmin/</link><pubDate>Thu, 10 May 2018 16:18:25 +0200</pubDate><guid>https://www.krakend.io/blog/website-development-as-a-sysadmin/</guid><description>As a systems administrator for the past 15 years, I&amp;rsquo;m not very used to web development as this kind of work has been usually done by other colleagues in every company I&amp;rsquo;ve worked for. I wanted to create a web application myself using an external API, as an exercise to go out my comfort zone.
+Some time ago I found that Marvel Comics has a REST API where you can get a lot of information about comics, characters, authors and other interesting information.</description></item><item><title>How to work with Golang plugins and KrakenD</title><link>https://www.krakend.io/blog/krakend-golang-plugins/</link><pubDate>Thu, 12 Apr 2018 22:07:03 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-golang-plugins/</guid><description>The release of golang 1.8 more than a year ago opened the door to loading dynamic linked components in run time, and we were keen to find out if we could include this great feature in our KrakenD toolbox.
 We&amp;rsquo;d like to share our experience and details on how we enhanced our products to support golang plugins.
-Why would anyone use plugins in Go? The plugin concept is widely known and supported in several programming languages and environments.</description>
-    </item>
-    
-    <item>
-      <title>Deploying and versioning an API Gateway</title>
-      <link>https://www.krakend.io/blog/deploying-an-api-gateway/</link>
-      <pubDate>Fri, 06 Apr 2018 23:46:25 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/deploying-an-api-gateway/</guid>
-      <description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&amp;rsquo;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description>
-    </item>
-    
-    <item>
-      <title>How we automated our RPM and DEB packaging with Docker</title>
-      <link>https://www.krakend.io/blog/automating-linux-packaging/</link>
-      <pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/automating-linux-packaging/</guid>
-      <description>Everyone loves reaching the maximum number of available platforms for their software but this usually comes at a cost. In this article we will explain how we generated our packaging for Linux in an automated fashion, being faithful to our DevOps dogma.
-Dockerize all the things! Our team uses both Ubuntu and MacOS X in desktop machines and KrakenD has been running and behaving in the same way in all the platforms because from day one we decided to run everything on Docker.</description>
-    </item>
-    
-  </channel>
-</rss>
+Why would anyone use plugins in Go? The plugin concept is widely known and supported in several programming languages and environments.</description></item><item><title>Deploying and versioning an API Gateway</title><link>https://www.krakend.io/blog/deploying-an-api-gateway/</link><pubDate>Fri, 06 Apr 2018 23:46:25 +0200</pubDate><guid>https://www.krakend.io/blog/deploying-an-api-gateway/</guid><description>When it comes to maintaining and deploying an API Gateway within an organization, you should always be aware of best practice. A gateway is an extra step between the client and the servers with the power to define a whole new interface, yet it&amp;rsquo;s so flexible and easy to implement that you might be tempted to start creating API interfaces without thinking about it - and end up creating problems for the future.</description></item><item><title>How we automated our RPM and DEB packaging with Docker</title><link>https://www.krakend.io/blog/automating-linux-packaging/</link><pubDate>Mon, 06 Nov 2017 12:43:33 +0200</pubDate><guid>https://www.krakend.io/blog/automating-linux-packaging/</guid><description>Everyone loves reaching the maximum number of available platforms for their software but this usually comes at a cost. In this article we will explain how we generated our packaging for Linux in an automated fashion, being faithful to our DevOps dogma.
+Dockerize all the things! Our team uses both Ubuntu and MacOS X in desktop machines and KrakenD has been running and behaving in the same way in all the platforms because from day one we decided to run everything on Docker.</description></item></channel></rss>

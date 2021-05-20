@@ -1,21 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>DIY on KrakenD - Open source API Gateway</title>
-    <link>https://www.krakend.io/tags/diy/</link>
-    <description>Recent content in DIY on KrakenD - Open source API Gateway</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 01 May 2018 21:25:00 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/diy/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Edge computing - A story of buses, raspberries, IoT and API gateways</title>
-      <link>https://www.krakend.io/blog/krakend-on-raspberry/</link>
-      <pubDate>Tue, 01 May 2018 21:25:00 +0200</pubDate>
-      
-      <guid>https://www.krakend.io/blog/krakend-on-raspberry/</guid>
-      <description>The IoT industry has been running for some years now adding millions of devices into the network. The range of devices and capabilities is very wide and heterogeneous, from small devices powered with a 9-volt battery to track the location of freight shippings traveling the oceans (using platforms like Sigfox) to permanently plugged devices with more powerful computing like a Raspberry Pi where computation cycles are not a problem.
-Generally speaking, all these devices collect raw data and send it to the cloud where big data centers process it.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DIY on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/tags/diy/</link><description>Recent content in DIY on KrakenD - Open source API Gateway</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 01 May 2018 21:25:00 +0200</lastBuildDate><atom:link href="https://www.krakend.io/tags/diy/index.xml" rel="self" type="application/rss+xml"/><item><title>Edge computing - A story of buses, raspberries, IoT and API gateways</title><link>https://www.krakend.io/blog/krakend-on-raspberry/</link><pubDate>Tue, 01 May 2018 21:25:00 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-on-raspberry/</guid><description>The IoT industry has been running for some years now adding millions of devices into the network. The range of devices and capabilities is very wide and heterogeneous, from small devices powered with a 9-volt battery to track the location of freight shippings traveling the oceans (using platforms like Sigfox) to permanently plugged devices with more powerful computing like a Raspberry Pi where computation cycles are not a problem.
+Generally speaking, all these devices collect raw data and send it to the cloud where big data centers process it.</description></item></channel></rss>

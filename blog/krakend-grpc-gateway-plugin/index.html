@@ -1,299 +1,11 @@
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-	<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.82.1" />
-
-    <title>gRPC-gateway as a KrakenD plugin - KrakenD API Gateway</title>
-    <meta name="description" content="Consuming gRPC services with KrakenD">
-
-    <meta itemprop="name" content="gRPC-gateway as a KrakenD plugin - KrakenD API Gateway">
-    <meta itemprop="description" content="Consuming gRPC services with KrakenD">
-    
-    <meta itemprop="image" content="https://camo.githubusercontent.com/e75a8b46b078a3c1df0ed9966a16c24add9ccb83/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3132687034435071724e5046686174744c5f63496f4a707446766c41716d35774c513067677149356d6b43672f7075623f773d37343926683d333730" />
-    
-
-
-
-
-<meta property="og:title" content="gRPC-gateway as a KrakenD plugin" />
-<meta property="og:description" content="Consuming gRPC services with KrakenD" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.krakend.io/blog/krakend-grpc-gateway-plugin/" /><meta property="og:image" content="https://camo.githubusercontent.com/e75a8b46b078a3c1df0ed9966a16c24add9ccb83/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3132687034435071724e5046686174744c5f63496f4a707446766c41716d35774c513067677149356d6b43672f7075623f773d37343926683d333730" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2019-06-09T18:26:10&#43;01:00" />
-<meta property="article:modified_time" content="2019-06-09T18:26:10&#43;01:00" /><meta property="og:site_name" content="KrakenD - Open source API Gateway" />
-
-
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://camo.githubusercontent.com/e75a8b46b078a3c1df0ed9966a16c24add9ccb83/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3132687034435071724e5046686174744c5f63496f4a707446766c41716d35774c513067677149356d6b43672f7075623f773d37343926683d333730"/>
-
-<meta name="twitter:title" content="gRPC-gateway as a KrakenD plugin"/>
-<meta name="twitter:description" content="Consuming gRPC services with KrakenD"/>
-
-
-
-
-
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
-<link rel="stylesheet" href="/dist/styles.css">
-
-
-<link rel="icon" type="image/png" href="/favicon/favicon-196x196.png" sizes="196x196" />
-<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32" />
-<link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16" />
-<link rel="icon" type="image/png" href="/favicon/favicon-128.png" sizes="128x128" />
-
-</head>
-<body class="krakend">
-	<div class="wrapper">
-
-		<div class="announcement">
-	<p>
-		<i class="fa fa-bell"></i> KrakenD framework joins the Linux Foundation. <a href="/blog/krakend-framework-joins-the-linux-foundation/">Read more</a>.
-		
-	</p>
-</div>
-
-		<div class="top-bar">
-  <div class="container my-2">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="/" title="Home">
-        <img class="mr-4" src="/images/logo.png" alt="" width="180">
-      </a>
-      <div class="collapse navbar-collapse" id="navbarMenu">
-        <ul class="mega-dropdown navbar-nav mr-auto">
-          
-
-          <li class="nav-item">
-            <a class="nav-link" href="/features/">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/enterprise/">Enterprise</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.krakend.io/case-study/">Case studies</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/support/">Support</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/docs/overview/introduction/">Docs</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li class="nav-item"><a class="nav-link" href="/partners/">Partners</a></li>
-              <li class="nav-item"><a class="nav-link" href="/team/">About us</a></li>
-              <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-
-      <div class="download d-none d-lg-block">
-          <a class="btn btn-sm" href="/download/">Downloads</a>
-      </div>
-      <div class="designer d-none d-lg-block">
-        <a class="btn btn-sm" href="https://designer.krakend.io">Designer</a>
-      </div>
-      
-
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </nav>
-  </div>
-</div>
-
-		
-<div class="blog-wrapper container">
-  <div class="blog row">
-    <div class="col-3">
-      <div class="sidebar mb-3">
-	<h6 class="header">Blog categories</h6>
-	<ul class="nav menu">
-		
-		<li class="nav-item">
-			<a class="nav-link" href="/blog/">All categories</a></li>
-		</li>
-		
-		
-		
-		<li class="nav-item">
-			<a href="/categories/announcements/" class="nav-link">announcements</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/api-gateway/" class="nav-link">api-gateway</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/api2html/" class="nav-link">api2html</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/configuration/" class="nav-link">configuration</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/devops/" class="nav-link">devops</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/docker/" class="nav-link">docker</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/enterprise/" class="nav-link">enterprise</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/krakend/" class="nav-link">krakend</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/kubernetes/" class="nav-link">kubernetes</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a href="/categories/reflex/" class="nav-link">reflex</a>
-		</li>
-		
-	</ul>
-</div>
-
-<div class="sidebar mb-3">
-	<h6 class="header">Tags</h6>
-	<ul class="nav menu">
-		
-		
-		<li class="nav-item">
-			<a class="nav-link" href="/tags/open-source">open-source</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a class="nav-link" href="/tags/release-notes">release-notes</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a class="nav-link" href="/tags/how-to">how-to</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a class="nav-link" href="/tags/golang">golang</a>
-		</li>
-		
-		
-		<li class="nav-item">
-			<a class="nav-link" href="/tags/docker">docker</a>
-		</li>
-		
-	</ul>
-</div>
-
-<div class="sidebar mb-3">
-	<h6 class="header">Recent entries</h6>
-	<ul class="nav menu">
-		
-		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/">KrakenD framework becomes a Linux Foundation project</a></li>
-		
-		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/albert-garcia-expand-krakend-business/">Albert Garcia to expand KrakenD business.</a></li>
-		
-		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/building-a-telemetry-service/">How we built our telemetry service</a></li>
-		
-		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-1.3-release-notes/">KrakenD 1.3.0 released</a></li>
-		
-		<li class="nav-item"><a class="nav-link" href="https://www.krakend.io/blog/krakend-partners-with-microsoft/">KrakenD partners with Microsoft to distribute in Azure</a></li>
-		
-	</ul>
-</div>
-
-    </div>
-    <div class="col-9">
-      <section class="blog px-3">
-        <article class="post-entry">
-          <header class="post-header">
-            <h1 class="post-title">
-              <a href="https://www.krakend.io/blog/krakend-grpc-gateway-plugin/" class="post-link">gRPC-gateway as a KrakenD plugin</a>
-            </h1>
-            <div class="post-metadata clearfix">
-    <p class="author float-left">
-        by Daniel López &middot; Jun 9, 2019
-    </p>
-    <div class="tags">
-        <ul>
-            
-            
-            <a href="/tags/how-to">
-                how to
-            </a>
-            
-            ,
-            
-            <a href="/tags/grpc">
-                gRPC
-            </a>
-            
-            ,
-            
-            <a href="/tags/golang">
-                golang
-            </a>
-            
-            <li><em class="reading-time">7 min read</em></li>
-        </ul>
-    </div>
-</div>
-            
-            
-            
-            <a href="https://www.krakend.io/blog/krakend-grpc-gateway-plugin/">
-              <img class="post-image img-fluid" src="https://camo.githubusercontent.com/e75a8b46b078a3c1df0ed9966a16c24add9ccb83/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3132687034435071724e5046686174744c5f63496f4a707446766c41716d35774c513067677149356d6b43672f7075623f773d37343926683d333730" />
-            </a>
-            
-            
-            
-           
-          </header>
-
-          <p><em>image from the official <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway repository</a></em></p>
-<p>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&rsquo;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</p>
-<p>This article begins with some introduction to gRPC services and how to build some demos using the available definitions. If you are already familiar with gRPC and created a grpc-gateway, you can skip the first sections and jump directly to <a href="#finishing-the-grpc-gateway">Finishing the gRPC-gateway</a></p>
-<p><strong>Disclaimer</strong>: this is not a gRPC intro. If you don&rsquo;t know anything about it, consider reading the <a href="https://grpc-ecosystem.github.io/grpc-gateway/">project site</a> before going any further.</p>
-<h2 id="grpc-backends-and-gateway">gRPC backends and gateway</h2>
-<h3 id="service-definitions">Service definitions</h3>
-<p>We&rsquo;ll use two of the examples of the gRPC project: <code>helloworld</code> and <code>routeguide</code>. So we can start by adding their definitions to the <code>protos</code> folder.</p>
-<p>Since we want to consume these services also using JSON, we must create the proper definitions (or annotations), so the gRPC-gateway code can be generated. Check the <a href="https://cloud.google.com/endpoints/docs/grpc-service-config/reference/rpc/google.api#httprule">documentation</a> for more details.</p>
-<p><code>helloworld.yml</code></p>
-<pre><code> type: google.api.Service
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.82.1"><title>gRPC-gateway as a KrakenD plugin - KrakenD API Gateway</title><meta name=description content="Consuming gRPC services with KrakenD"><meta itemprop=name content="gRPC-gateway as a KrakenD plugin - KrakenD API Gateway"><meta itemprop=description content="Consuming gRPC services with KrakenD"><meta itemprop=image content="https://camo.githubusercontent.com/e75a8b46b078a3c1df0ed9966a16c24add9ccb83/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3132687034435071724e5046686174744c5f63496f4a707446766c41716d35774c513067677149356d6b43672f7075623f773d37343926683d333730"><meta property="og:title" content="gRPC-gateway as a KrakenD plugin"><meta property="og:description" content="Consuming gRPC services with KrakenD"><meta property="og:type" content="article"><meta property="og:url" content="https://www.krakend.io/blog/krakend-grpc-gateway-plugin/"><meta property="og:image" content="https://camo.githubusercontent.com/e75a8b46b078a3c1df0ed9966a16c24add9ccb83/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3132687034435071724e5046686174744c5f63496f4a707446766c41716d35774c513067677149356d6b43672f7075623f773d37343926683d333730"><meta property="article:section" content="blog"><meta property="article:published_time" content="2019-06-09T18:26:10+01:00"><meta property="article:modified_time" content="2019-06-09T18:26:10+01:00"><meta property="og:site_name" content="KrakenD - Open source API Gateway"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://camo.githubusercontent.com/e75a8b46b078a3c1df0ed9966a16c24add9ccb83/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3132687034435071724e5046686174744c5f63496f4a707446766c41716d35774c513067677149356d6b43672f7075623f773d37343926683d333730"><meta name=twitter:title content="gRPC-gateway as a KrakenD plugin"><meta name=twitter:description content="Consuming gRPC services with KrakenD"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><link rel=stylesheet href=https://www.krakend.io/css/bundle.min.1d0964c6109c4450ae533a8dffc529016322bb14345a216801ec33bd81427dd8.css><link rel=icon type=image/png href=/favicon/favicon-196x196.png sizes=196x196><link rel=icon type=image/png href=/favicon/favicon-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicon/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/favicon/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicon/favicon-128.png sizes=128x128></head><body class=krakend><div class="text-white bg-denim-500 py-2 text-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300 inline" viewBox="0 0 20 20" fill="currentcolor"><path d="M10 2A6 6 0 004 8v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zm0 16a3 3 0 01-3-3h6a3 3 0 01-3 3z"/></svg>KrakenD framework joins the Linux Foundation. <a class=text-blue-300 href=/blog/krakend-framework-joins-the-linux-foundation/>Read more</a>.</div><div class=relative><nav class="max-w-7xl mx-auto lg:flex py-6 items-center justify-between"><div class="ml-4 xl:ml-0"><a href=/ title=Home><img src=/images/logo-krakend.svg alt="KrakenD Logo" width=180></a></div><div class="hidden ml-12 mr-4 xl:mr-0 lg:flex-grow lg:flex lg:justify-between lg:space-x-8" id=navbarMenu><ul class="lg:flex lg:space-x-8 font-medium xl:text-lg whitespace-nowrap"><li><a class=text-gray-700 href=/features/>Features</a></li><li><a class=text-gray-700 href=/enterprise/>Enterprise</a></li><li><a class=text-gray-700 href=https://www.krakend.io/case-study/>Case studies</a></li><li><a class=text-gray-700 href=/support/>Support</a></li><li><a class=text-gray-700 href=/docs/overview/introduction/>Docs</a></li><li class="nav-item dropdown"><a class=text-gray-700 href=# class="nav-link dropdown-toggle" data-toggle=dropdown>About<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentcolor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a><ul class="hidden absolute ml-4 divide-y rounded-lg shadow dropdown-menu bg-white"><li class="py-1 px-6"><a class=text-gray-700 href=/partners/>Partners</a></li><li class="py-1 px-6"><a class=text-gray-700 href=/team/>About us</a></li><li class="py-1 px-6"><a class=text-gray-700 href=/blog/>Blog</a></li></ul></li></ul><ul class="hidden lg:flex lg:space-x-4 text-sm font-medium whitespace-nowrap"><li><a class=text-gray-700 href=/download/><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" viewBox="0 0 20 20" fill="currentcolor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414.0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414.0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Downloads</a></li><li><a class=text-gray-700 href=https://designer.krakend.io><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" viewBox="0 0 20 20" fill="currentcolor"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793 3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>Designer</a></li></ul></div><button class="absolute right-4 top-2 lg:hidden p-3 rounded-lg border border-gray-100 navbar-toggler" type=button data-toggle=collapse data-target=#navbarMenu aria-controls=navbarMenu aria-expanded=false aria-label="Toggle navigation"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentcolor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></nav></div><div class=border-t><div class="grid grid-cols-1 md:grid-cols-5 gap-x-8 py-6 max-w-7xl mx-auto"><div class="order-last md:order-first"><div class=p-4><h4 class="uppercase font-medium text-gray-400 text-xs mb-2">Blog categories</h4><ul class="px-6 space-y-2 text-sm"><li class=nav-item><a class=nav-link href=/blog/>All categories</a></li></li><li class=nav-item><a href=/categories/announcements/ class=nav-link>announcements</a></li><li class=nav-item><a href=/categories/api-gateway/ class=nav-link>api-gateway</a></li><li class=nav-item><a href=/categories/api2html/ class=nav-link>api2html</a></li><li class=nav-item><a href=/categories/configuration/ class=nav-link>configuration</a></li><li class=nav-item><a href=/categories/devops/ class=nav-link>devops</a></li><li class=nav-item><a href=/categories/docker/ class=nav-link>docker</a></li><li class=nav-item><a href=/categories/enterprise/ class=nav-link>enterprise</a></li><li class=nav-item><a href=/categories/krakend/ class=nav-link>krakend</a></li><li class=nav-item><a href=/categories/kubernetes/ class=nav-link>kubernetes</a></li><li class=nav-item><a href=/categories/reflex/ class=nav-link>reflex</a></li></ul></div><div class=p-4><h4 class="uppercase font-medium text-gray-400 text-xs mb-2">Tags</h4><ul class="px-6 space-y-2 text-sm"><li class=nav-item><a class=nav-link href=/tags/open-source>open-source</a></li><li class=nav-item><a class=nav-link href=/tags/release-notes>release-notes</a></li><li class=nav-item><a class=nav-link href=/tags/how-to>how-to</a></li><li class=nav-item><a class=nav-link href=/tags/golang>golang</a></li><li class=nav-item><a class=nav-link href=/tags/docker>docker</a></li></ul></div><div class=p-4><h4 class="uppercase font-medium text-gray-400 text-xs mb-2">Recent entries</h4><ul class="px-6 space-y-4 text-sm"><li class=nav-item><a class=nav-link href=https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/>KrakenD framework becomes a Linux Foundation project</a></li><li class=nav-item><a class=nav-link href=https://www.krakend.io/blog/albert-garcia-expand-krakend-business/>Albert Garcia to expand KrakenD business.</a></li><li class=nav-item><a class=nav-link href=https://www.krakend.io/blog/building-a-telemetry-service/>How we built our telemetry service</a></li><li class=nav-item><a class=nav-link href=https://www.krakend.io/blog/krakend-1.3-release-notes/>KrakenD 1.3.0 released</a></li><li class=nav-item><a class=nav-link href=https://www.krakend.io/blog/krakend-partners-with-microsoft/>KrakenD partners with Microsoft to distribute in Azure</a></li></ul></div></div><div class=col-span-4><section class=px-4><article class=mb-24><header class="mb-6 lg:mb-12"><h1 class="text-denim-800 text-current text-3xl md:text-5xl">gRPC-gateway as a KrakenD plugin</a></h1><div class="my-4 md:flex items-center gap-x-4"><p class=text-denim-800>by <strong>Daniel López</strong></p><p><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline -mt-1 text-gray-500" viewBox="0 0 20 20" fill="currentcolor"><path fill-rule="evenodd" d="M6 2A1 1 0 005 3v1H4A2 2 0 002 6v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3A1 1 0 006 2zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>Jun 9, 2019</p><p class=text-sm><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline text-gray-500" viewBox="0 0 20 20" fill="currentcolor"><path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414.0l-7-7A.997.997.0 012 10V5a3 3 0 013-3h5c.256.0.512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg><a href=/tags/how-to>how to</a>, <a href=/tags/grpc>gRPC</a>, <a href=/tags/golang>golang</a></p><div class="text-sm text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline text-gray-500 -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentcolor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3A9 9 0 113 12a9 9 0 0118 0z"/></svg>7 min read</div></div><img class="post-image img-fluid" src=https://camo.githubusercontent.com/e75a8b46b078a3c1df0ed9966a16c24add9ccb83/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3132687034435071724e5046686174744c5f63496f4a707446766c41716d35774c513067677149356d6b43672f7075623f773d37343926683d333730></header><div class="prose prose max-w-full text-lg"><p><em>image from the official <a href=https://github.com/grpc-ecosystem/grpc-gateway>grpc-gateway repository</a></em></p><p>The gRPC protocol is becoming trendy in the era of microservices. Its compactness and backward-compatibility make it very attractive. However, it requires custom code to work with it. In this article, we&rsquo;ll show you how to get all the benefits from the gRPC protocol and the gRPC-gateway without coding any business logic to use your gRPC services as regular backends. Moreover, avoiding the extra network hop!</p><p>This article begins with some introduction to gRPC services and how to build some demos using the available definitions. If you are already familiar with gRPC and created a grpc-gateway, you can skip the first sections and jump directly to <a href=#finishing-the-grpc-gateway>Finishing the gRPC-gateway</a></p><p><strong>Disclaimer</strong>: this is not a gRPC intro. If you don&rsquo;t know anything about it, consider reading the <a href=https://grpc-ecosystem.github.io/grpc-gateway/>project site</a> before going any further.</p><h2 id=grpc-backends-and-gateway>gRPC backends and gateway</h2><h3 id=service-definitions>Service definitions</h3><p>We&rsquo;ll use two of the examples of the gRPC project: <code>helloworld</code> and <code>routeguide</code>. So we can start by adding their definitions to the <code>protos</code> folder.</p><p>Since we want to consume these services also using JSON, we must create the proper definitions (or annotations), so the gRPC-gateway code can be generated. Check the <a href=https://cloud.google.com/endpoints/docs/grpc-service-config/reference/rpc/google.api#httprule>documentation</a> for more details.</p><p><code>helloworld.yml</code></p><pre><code> type: google.api.Service
  config_version: 3
 
  http:
    rules:
    - selector: helloworld.Greeter.SayHello
      get: /v1/helloworld/hello/{name}
-</code></pre><p><code>routeguide.yml</code></p>
-<pre><code> type: google.api.Service
+</code></pre><p><code>routeguide.yml</code></p><pre><code> type: google.api.Service
  config_version: 3
 
  http:
@@ -305,21 +17,12 @@
    - selector: routeguide.RouteGuide.RecordRoute
      post: /v1/routeguide/route
      body: &quot;*&quot;
-</code></pre><p>These are the contents of the <code>protos</code> folder:</p>
-<pre><code>protos
+</code></pre><p>These are the contents of the <code>protos</code> folder:</p><pre><code>protos
 ├── helloworld.proto
 ├── helloworld.yml
 ├── routeguide.proto
 └── routeguide.yml
-</code></pre><h3 id="generating-the-code">Generating the code</h3>
-<p>As described in the <a href="https://grpc-ecosystem.github.io/grpc-gateway/docs/grpcapiconfiguration.html">project documentation</a>, we&rsquo;ll need to follow some simple steps:</p>
-<ul>
-<li>generate the grpc bindings</li>
-<li>generate the grpc-gateway bindings</li>
-<li>generate the swagger definitions</li>
-</ul>
-<p>We can do it with a simple bash script:</p>
-<pre><code>#!/bin/bash
+</code></pre><h3 id=generating-the-code>Generating the code</h3><p>As described in the <a href=https://grpc-ecosystem.github.io/grpc-gateway/docs/grpcapiconfiguration.html>project documentation</a>, we&rsquo;ll need to follow some simple steps:</p><ul><li>generate the grpc bindings</li><li>generate the grpc-gateway bindings</li><li>generate the swagger definitions</li></ul><p>We can do it with a simple bash script:</p><pre><code>#!/bin/bash
 
 for i in &quot;$@&quot;
 do :
@@ -365,30 +68,7 @@ mv statik gateway/.
 rm -rf protos/swagger
 
 echo &quot;services generated&quot;
-</code></pre><p>and invoke it with <code>sh generate.sh helloworld routeguide</code></p>
-<p>The <code>generate.sh</code> will also create a package with the swagger definitions, so no static files should be attached to the final binary.</p>
-<h3 id="finishing-the-backend-grpc-services">Finishing the backend gRPC services</h3>
-<p>The already generated code requires a main function and the implementation of every service interface. We can use some available example implementations or go with our custom ones.</p>
-<p>Examples:</p>
-<ul>
-<li><a href="https://github.com/grpc/grpc-go/blob/master/examples/helloworld/greeter_server/main.go">https://github.com/grpc/grpc-go/blob/master/examples/helloworld/greeter_server/main.go</a></li>
-<li><a href="https://github.com/grpc/grpc-go/blob/master/examples/route_guide/server/server.go">https://github.com/grpc/grpc-go/blob/master/examples/route_guide/server/server.go</a></li>
-</ul>
-<p>Custom:</p>
-<ul>
-<li><a href="https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/helloworld/main.go">https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/helloworld/main.go</a></li>
-<li><a href="https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/routeguide/main.go">https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/routeguide/main.go</a></li>
-</ul>
-<h2 id="finishing-the-grpc-gateway">Finishing the gRPC-gateway</h2>
-<p>To get your grpc-gateway up and running, we&rsquo;ll need two essential things:</p>
-<ul>
-<li>Create the gateway http.Handler</li>
-<li>Create and start the server using that handler</li>
-</ul>
-<p><em>We are splitting this into two steps so we will be able to play with plugins in the future</em></p>
-<h3 id="create-the-gateway-httphandler">Create the gateway http.Handler</h3>
-<p>Time to use the auto-generated register functions and add the swagger file server. We need to create the <code>http.Handler</code> that will be injected into a custom <code>http.Server</code>, so add a file called <code>gateway/gateway.go</code> with the following content:</p>
-<pre><code>package gateway
+</code></pre><p>and invoke it with <code>sh generate.sh helloworld routeguide</code></p><p>The <code>generate.sh</code> will also create a package with the swagger definitions, so no static files should be attached to the final binary.</p><h3 id=finishing-the-backend-grpc-services>Finishing the backend gRPC services</h3><p>The already generated code requires a main function and the implementation of every service interface. We can use some available example implementations or go with our custom ones.</p><p>Examples:</p><ul><li><a href=https://github.com/grpc/grpc-go/blob/master/examples/helloworld/greeter_server/main.go>https://github.com/grpc/grpc-go/blob/master/examples/helloworld/greeter_server/main.go</a></li><li><a href=https://github.com/grpc/grpc-go/blob/master/examples/route_guide/server/server.go>https://github.com/grpc/grpc-go/blob/master/examples/route_guide/server/server.go</a></li></ul><p>Custom:</p><ul><li><a href=https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/helloworld/main.go>https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/helloworld/main.go</a></li><li><a href=https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/routeguide/main.go>https://github.com/kpacha/krakend-grpc-gateway-post/blob/master/cmd/routeguide/main.go</a></li></ul><h2 id=finishing-the-grpc-gateway>Finishing the gRPC-gateway</h2><p>To get your grpc-gateway up and running, we&rsquo;ll need two essential things:</p><ul><li>Create the gateway http.Handler</li><li>Create and start the server using that handler</li></ul><p><em>We are splitting this into two steps so we will be able to play with plugins in the future</em></p><h3 id=create-the-gateway-httphandler>Create the gateway http.Handler</h3><p>Time to use the auto-generated register functions and add the swagger file server. We need to create the <code>http.Handler</code> that will be injected into a custom <code>http.Server</code>, so add a file called <code>gateway/gateway.go</code> with the following content:</p><pre><code>package gateway
 
 import (
     &quot;context&quot;
@@ -425,9 +105,7 @@ func New(ctx context.Context, helloEndpoint, routeEndpoint string) (http.Handler
 
     return mux, nil
 }
-</code></pre><h3 id="create-the-gateway-server">Create the gateway server</h3>
-<p>The server can be created and managed from the main package itself. It needs to call the already created <code>gateway.New</code> function and define the port and the shutdown strategy:</p>
-<pre><code>package main
+</code></pre><h3 id=create-the-gateway-server>Create the gateway server</h3><p>The server can be created and managed from the main package itself. It needs to call the already created <code>gateway.New</code> function and define the port and the shutdown strategy:</p><pre><code>package main
 
 import (
     &quot;context&quot;
@@ -477,17 +155,14 @@ func main() {
         log.Printf(&quot;Failed to listen and serve: %v&quot;, err)
     }
 }
-</code></pre><h2 id="build-and-start-everything">Build and start everything</h2>
-<p>Just compile the binaries and start them</p>
-<pre><code>go build ./cmd/grpc-gateway
+</code></pre><h2 id=build-and-start-everything>Build and start everything</h2><p>Just compile the binaries and start them</p><pre><code>go build ./cmd/grpc-gateway
 go build ./cmd/helloworld
 go build ./cmd/routeguide
 
 ./routeguide &amp;
 ./helloworld &amp;
 ./grpc-gateway &amp;
-</code></pre><p>Now we are ready to test our grpc-gateway!</p>
-<pre><code>$ curl -i &quot;http://localhost:8080/v1/routeguide/features/407838350/-746143763/407838353/-74614373&quot;
+</code></pre><p>Now we are ready to test our grpc-gateway!</p><pre><code>$ curl -i &quot;http://localhost:8080/v1/routeguide/features/407838350/-746143763/407838353/-74614373&quot;
 HTTP/1.1 200 OK
 Content-Type: application/json
 Grpc-Metadata-Content-Type: application/grpc
@@ -495,9 +170,7 @@ Date: Wed, 08 May 2019 15:49:07 GMT
 Transfer-Encoding: chunked
 
 {&quot;result&quot;:{&quot;name&quot;:&quot;Patriots Path, Mendham, NJ 07945, USA&quot;,&quot;location&quot;:{&quot;latitude&quot;:407838351,&quot;longitude&quot;:-746143763}}}
-</code></pre><h2 id="krakend-plugins">KrakenD plugins</h2>
-<p>Using the new branch <a href="https://github.com/devopsfaith/krakend-ce/tree/modules">modules</a>, it is straightforward to create customized request executors and inject them as plugins into the KrakenD-CE binary. If we want to avoid the network hop between the KrakenD gateway and the grpc-gateway, we can inject the latter into the former as a plugin with just this code:</p>
-<pre><code>package main
+</code></pre><h2 id=krakend-plugins>KrakenD plugins</h2><p>Using the new branch <a href=https://github.com/devopsfaith/krakend-ce/tree/modules>modules</a>, it is straightforward to create customized request executors and inject them as plugins into the KrakenD-CE binary. If we want to avoid the network hop between the KrakenD gateway and the grpc-gateway, we can inject the latter into the former as a plugin with just this code:</p><pre><code>package main
 
 import (
     &quot;context&quot;
@@ -533,10 +206,8 @@ func (r registerer) RegisterClients(f func(
 }
 
 ... // aux function 'parse' omitted
-</code></pre><p>Also, compile our grpc-gateway as a golang plugin</p>
-<pre><code>go build -buildmode=plugin -o grpc-gateway-post.so ./plugin
-</code></pre><p>With the plugin already built, we can add the required configuration to our API gateway and expose a single endpoint consuming the endpoints offered by the grpc-gateway as backends without an extra network hop between the KrakenD API gateway and the gRPC-gateway</p>
-<pre><code>{
+</code></pre><p>Also, compile our grpc-gateway as a golang plugin</p><pre><code>go build -buildmode=plugin -o grpc-gateway-post.so ./plugin
+</code></pre><p>With the plugin already built, we can add the required configuration to our API gateway and expose a single endpoint consuming the endpoints offered by the grpc-gateway as backends without an extra network hop between the KrakenD API gateway and the gRPC-gateway</p><pre><code>{
     &quot;version&quot;: 2,
     &quot;name&quot;: &quot;My lovely gateway&quot;,
     &quot;port&quot;: 8000,
@@ -583,8 +254,7 @@ func (r registerer) RegisterClients(f func(
         },
     ]
 }
-</code></pre><p>Our log message should be displayed at the booting stage.</p>
-<pre><code>$ ./krakend run -d -c krakend.json
+</code></pre><p>Our log message should be displayed at the booting stage.</p><pre><code>$ ./krakend run -d -c krakend.json
 Parsing configuration file: krakend.json
 ...
 [KRAKEND] 2019/05/08 - 20:47:28.079 ▶ INFO Listening on port: 8000
@@ -592,8 +262,7 @@ Parsing configuration file: krakend.json
 krakend-grpc-post plugin loaded!!!
 [KRAKEND] 2019/05/08 - 20:47:28.107 ▶ INFO plugins loaded: 1
 ...
-</code></pre><p>Time to test our new endpoint!</p>
-<pre><code>$ curl -i localhost:8000/user/foo/407838351/-746143763
+</code></pre><p>Time to test our new endpoint!</p><pre><code>$ curl -i localhost:8000/user/foo/407838351/-746143763
 HTTP/1.1 200 OK
 Cache-Control: public, max-age=3600
 Content-Type: application/json; charset=utf-8
@@ -603,176 +272,13 @@ Date: Wed, 08 May 2019 18:48:48 GMT
 Content-Length: 139
 
 {&quot;feature&quot;:{&quot;location&quot;:{&quot;latitude&quot;:407838351,&quot;longitude&quot;:-746143763},&quot;name&quot;:&quot;Patriots Path, Mendham, NJ 07945, USA&quot;},&quot;message&quot;:&quot;Hello foo&quot;}
-</code></pre><p>It works!</p>
-<p>Here, the <a href="https://github.com/kpacha/krakend-grpc-gateway-post">code for this post</a></p>
-<h2 id="summary">Summary</h2>
-<p>In this article, we shared our explorations in the golang plugins area. We&rsquo;ve split the custom code required for building our gRPC-gateway into separated components for later reuse of one of them. Introducing just a few lines of code, we&rsquo;ve shown how to integrate any golang component exposing an <code>http.Handler</code> into the KrakenD-CE as a backend.</p>
-<p>Did you make it this far? Do you have questions or comments? Consider joining now our #krakend channel at <a href="https://invite.slack.golangbridge.org/">Gophers</a> on Slack.</p>
-<p>Thanks for reading! If you like our product, don&rsquo;t forget to <a href="https://github.com/devopsfaith/krakend/stargazers">star our project</a>!</p>
-<p>Enjoy KrakenD!</p>
-
-        </article>
-      </section>
-    </div>
-  </div>
-</div>
-
-	</div>
-	<div class="row action-bar">
-	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-12 col-md-8">
-				<h6><i class="fa fa-envelope mr-2"></i>Stay up to date with KrakenD releases and important updates</h6>
-			</div>
-			<div class="col-12 col-md-4">
-				<form action="https://krakend.us19.list-manage.com/subscribe/post?u=5cae4bbe9877b1adfe8fe808d&amp;id=e5385eb57b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-					
-					<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_5cae4bbe9877b1adfe8fe808d_e5385eb57b" tabindex="-1" value=""></div>
-					<div class="input-group">
-						<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="email address" required>
-						<div class="input-group-append">
-							<input type="submit" class="btn btn-secondary" value="Subscribe">
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-	<footer class="footer d-print-none">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <img src="/images/logo-white.png" class="pb-2" width="80%" >
-                <p class="lead">The <strong>Ultra-High performance</strong> Open Source API Gateway with middlewares</p>
-                <span>KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures while offering a unique performance.</span>
-                <div class="social">
-                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
-                        <i class="fab fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
-                    </a>
-                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
-                    </a>
-                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
-                        <i class="fab fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
-                    </a>
-                    <a href="mailto:support@krakend.io" target="_blank" title="Send us an email">
-                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="sr-only">Mail</span>
-                    </a>
-                </div>
-
-            </div>
-
-                <div class="col-md-2 offset-md-1">
-                    <h6>by Devops Faith</h6>
-                    <ul class="list-unstyled">
-                        
-                        <li><a href="https://devops.faith">Devops Faith</a></li>
-                        <li><a href="/blog/">Blog</a></li>
-                        <li><a href="https://medium.com/devops-faith">Medium</a></li>
-                        <li><a href="mailto:support@krakend.io">Contact Us</a></li>
-                    </ul>
-                    <h6>More products</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="http://api2html.com">API2HTML</a></li>
-                    </ul>
-
-                </div>
-                <div class="col-md-2">
-                    <h6>KrakenD</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="/features/">Features</a></li>
-                        <li><a href="/docs/benchmarks/overview/">Benchmarks</a></li>
-                        <li><a href="/download/">Download</a></li>
-                        <li><a href="/blog/">KrakenD Blog</a></li>
-                        <li><a href="/team/">Team</a></li>
-                        <li><a href="/case-study/">Case studies</a></li>
-
-
-                    </ul>
-
-                </div>
-                <div class="col-md-2">
-                    <h6>Support</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="/docs/overview/introduction/">Documentation</a></li>
-                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
-                        <li><a href="https://github.com/devopsfaith/krakend/issues">Report a problem</a></li>
-                        <li><a href="/support/">Support</a></li>
-                        
-
-                    </ul>
-                </div>
-
-        </div>
-        <div class="row copyright">
-            <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2017-2021 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
-            </div>
-            <div class="col-md-7 hidden-xs">
-                <span class="float-right">
-                    Made with <i class="fa fa-heart heart"></i> in Barcelona by <a href="https://twitter.com/devopsfaith">
-                    <img height="30px" src="/images/devops-faith-logo-inverse.png" />
-                </span>
-                </a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<div class="pea_cook_wrapper pea_cook_bottom" style="display:none">
-    <p>We use cookies to understand how you use our site and to improve your overall experience. By continuing to use our site, you accept our Privacy Policy. <a data-toggle="modal" data-target="#cookiesConsent" style="color:#0a0a0a;"
-            href="#">More information</a>
-        <button class="btn btn-primary btn-sm ml-2 ACCEPT_COOKIES" href="#">Accept</button>
-    </p>
-</div>
-
-
-<div class="modal fade" id="cookiesConsent" tabindex="-1" role="dialog" aria-labelledby="cookiesConsentLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="cookiesConsentLabel">Cookies</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>In order to give you the best experience, we use cookies and similar technologies for performance, analytics and marketing. Want to know more?</p>
-                <p><a href="/privacy-policy/">Privacy Policy</a></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary ACCEPT_COOKIES" data-dismiss="modal">
-                    Accept cookies</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-    
-<script type="application/javascript">
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-87994359-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-	<script src="/dist/krakend-io.js"></script>
-<script>
-	window.fwSettings={
-	'widget_id':36000000396
-	};
-	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
-</script>
-	
-</body>
-</html>
+</code></pre><p>It works!</p><p>Here, the <a href=https://github.com/kpacha/krakend-grpc-gateway-post>code for this post</a></p><h2 id=summary>Summary</h2><p>In this article, we shared our explorations in the golang plugins area. We&rsquo;ve split the custom code required for building our gRPC-gateway into separated components for later reuse of one of them. Introducing just a few lines of code, we&rsquo;ve shown how to integrate any golang component exposing an <code>http.Handler</code> into the KrakenD-CE as a backend.</p><p>Did you make it this far? Do you have questions or comments? Consider joining now our #krakend channel at <a href=https://invite.slack.golangbridge.org/>Gophers</a> on Slack.</p><p>Thanks for reading! If you like our product, don&rsquo;t forget to <a href=https://github.com/devopsfaith/krakend/stargazers>star our project</a>!</p><p>Enjoy KrakenD!</p></div></article></section></div></div></div><div class="bg-gradient-to-r from-denim-500 to-denim-800 py-8"><div class="max-w-7xl mx-auto sm:flex sm:space-y-0 space-y-4 text-center sm:text-left items-center justify-between px-8"><div class="flex-none text-xl font-medium text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" viewBox="0 0 20 20" fill="currentcolor"><path d="M2.003 5.884 10 9.882l7.997-3.998A2 2 0 0016 4H4A2 2 0 002.003 5.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>Stay up to date with KrakenD releases and important updates</div><div class=flex-grow><form action="https://krakend.us19.list-manage.com/subscribe/post?u=5cae4bbe9877b1adfe8fe808d&id=e5385eb57b" method=post id=mc-embedded-subscribe-form name=mc-embedded-subscribe-form class=validate target=_blank novalidate><div style=position:absolute;left:-5000px aria-hidden=true><input type=text name=b_5cae4bbe9877b1adfe8fe808d_e5385eb57b tabindex=-1></div><div class="flex items-center justify-center sm:justify-end"><input type=email name=EMAIL class="block rounded-l px-3 py-1 w-full max-w-xs" id=mce-EMAIL placeholder="email address" required>
+<input type=submit class="block bg-denim-500 text-white rounded-r px-3 py-1" value=Subscribe></div></form></div></div></div><footer class="bg-gradient-to-r from-denim-900 to-denim-800 py-8 sm:py-18 text-gray-300"><div class="max-w-7xl mx-auto px-4"><div class="lg:grid lg:grid-cols-6 md:grid md:grid-cols-4"><div class="lg:col-span-3 pr-12"><img src=/images/logo-white.png width=353><p class="text-xl my-6 text-denim-500">The <strong>Ultra-High performance</strong> Open Source API Gateway with middlewares</p><p class="text-sm my-4">KrakenD helps application developers release features quickly by eliminating all the complexities of SOA architectures while offering a unique performance.</p><div class=social><a href=https://www.facebook.com/apigateway target=_blank title=Facebook><i class="fab fa-facebook-official" aria-hidden=true></i><span class=sr-only>Facebook</span></a>
+<a href=https://twitter.com/devopsfaith target=_blank class=social-btn-twitter title=Twitter><i class="fab fa-twitter" aria-hidden=true></i><span class=sr-only>Twitter</span></a>
+<a href=https://github.com/devopsfaith target=_blank class=social-btn-github title=GitHub><i class="fab fa-github" aria-hidden=true></i><span class=sr-only>GitHub</span></a>
+<a href=mailto:support@krakend.io target=_blank title="Send us an email"><i class="fa fa-envelope" aria-hidden=true></i><span class=sr-only>Mail</span></a></div></div><div><h6>by Devops Faith</h6><ul class="ml-2 my-2"><li><a class=text-denim-300 href=https://devops.faith>Devops Faith</a></li><li><a class=text-denim-300 href=/blog/>Blog</a></li><li><a class=text-denim-300 href=https://medium.com/devops-faith>Medium</a></li><li><a class=text-denim-300 href=mailto:support@krakend.io>Contact Us</a></li></ul><h6>More products</h6><ul class="ml-2 mb-2"><li><a class=text-denim-300 href=http://api2html.com>API2HTML</a></li></ul></div><div><h6>KrakenD</h6><ul class="ml-2 my-2"><li><a class=text-denim-300 href=/features/>Features</a></li><li><a class=text-denim-300 href=/docs/benchmarks/overview/>Benchmarks</a></li><li><a class=text-denim-300 href=/download/>Download</a></li><li><a class=text-denim-300 href=/blog/>KrakenD Blog</a></li><li><a class=text-denim-300 href=/team/>Team</a></li><li><a class=text-denim-300 href=/case-study/>Case studies</a></li></ul></div><div><h6>Support</h6><ul class="ml-2 my-2"><li><a class=text-denim-300 href=/docs/overview/introduction/>Documentation</a></li><li><a class=text-denim-300 href=https://github.com/devopsfaith/krakend target=_blank>Open Source</a></li><li><a class=text-denim-300 href=https://github.com/devopsfaith/krakend/issues>Report a problem</a></li><li><a class=text-denim-300 href=/support/>Support</a></li></ul></div></div><div class="sm:flex sm:justify-between sm:items:center"><div><strong>Copyright &copy; 2017-2021 <a href=https://devops.faith>Devops Faith</a>.</strong> All rights reserved.</div><div class=whitespace-nowrap>Made with<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline text-red-600 animate-pulse" viewBox="0 0 20 20" fill="currentcolor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656.0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+in Barcelona by <a href=https://devops.faith><img class=inline width=63 src=/images/devops-faith-logo-inverse.png></a></div></div></div></footer><div class="fixed w-full text-sm bottom-0 bg-white border-t border-gray-400 pea_cook_wrapper pea_cook_bottom"><p class="relative max-w-7xl mx-auto py-4">We use cookies to understand how you use our site and to improve your overall experience. By continuing to use our site, you accept our Privacy Policy.
+<a data-toggle=modal data-target=#cookiesConsent class=text-black href=#>More information</a>
+<button class="absolute right-0 top-2 p-2 bg-denim-500 rounded-lg text-white ACCEPT_COOKIES">Accept</button></p></div><div class="hidden fixed top-0 left-0 w-full h-full bg-denim-800 bg-opacity-80" id=cookiesConsent tabindex=-1 role=dialog aria-labelledby=cookiesConsentLabel aria-hidden=true><div class="modal-dialog mx-auto top-1/3 max-w-xl bg-white rounded-lg p-12 relative" role=document><div class=modal-content><div class=mb-4><h5 class=font-bold id=cookiesConsentLabel>Cookies</h5><button type=button class="close absolute right-5 top-5 text-xl" data-dismiss=modal aria-label=Close>
+<span aria-hidden=true>✖︎</span></button></div><div class=text-sm><p>In order to give you the best experience, we use cookies and similar technologies for performance, analytics and marketing. Want to know more? <a href=/privacy-policy/>Privacy Policy</a></p></div><div class="mt-4 text-center"><button type=button class="py-1 px-3 bg-denim-500 text-white rounded-lg ACCEPT_COOKIES" data-dismiss=modal>
+Accept cookies</button></div></div></div></div><script type=application/javascript>var dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-87994359-1','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=https://code.jquery.com/jquery-3.6.0.min.js integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin=anonymous></script><script src=https://www.krakend.io/main.js></script><script>window.fwSettings={widget_id:36000000396},!function(){if("function"!=typeof window.FreshworksWidget){var a=function(){a.q.push(arguments)};a.q=[],window.FreshworksWidget=a}}()</script></body></html>
