@@ -55,7 +55,7 @@
         &quot;subscription_url&quot;: &quot;mytopic&quot;
 	}
 }
-</code></pre><h3 id=rabbitmq>RabbitMQ</h3><p><a href=https://www.rabbitmq.com/>RabbitMQ</a> is one of the most popular open source message brokers.</p><p>Rabbit can alternatively be configured using the <a href=/docs/backends/amqp/>AMQP component</a>.</p><p>Configuration:</p><ul><li><code>host</code>: <code>rabbit://</code></li><li>Environment variable: <code>RABBIT_SERVER_URL</code></li><li><code>url</code> for topics: <code>myexchange</code></li><li><code>url</code> for subscriptions: <code>myqueue</code></li></ul><p>No query parameters are supported.</p><p>Example:</p><pre><code>&quot;host&quot;: [&quot;rabbit://&quot;],
+</code></pre><h3 id=rabbitmq>RabbitMQ</h3><p><a href=https://www.rabbitmq.com/>RabbitMQ</a> is one of the most popular open source message brokers.</p><p>Rabbit can alternatively be configured using the <a href=/docs/enterprise/backends/amqp/>AMQP component</a>.</p><p>Configuration:</p><ul><li><code>host</code>: <code>rabbit://</code></li><li>Environment variable: <code>RABBIT_SERVER_URL</code></li><li><code>url</code> for topics: <code>myexchange</code></li><li><code>url</code> for subscriptions: <code>myqueue</code></li></ul><p>No query parameters are supported.</p><p>Example:</p><pre><code>&quot;host&quot;: [&quot;rabbit://&quot;],
 &quot;disable_host_sanitize&quot;: true,
 &quot;extra_config&quot;: {
 	&quot;github.com/devopsfaith/krakend-pubsub/subscriber&quot;: {
