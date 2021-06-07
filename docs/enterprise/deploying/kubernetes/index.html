@@ -1,4 +1,4 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.82.1"><title>Deploying to Kubernetes - KrakenD API Gateway</title><meta name=description content="Deploying KrakenD in Kubernetes requires a straightforward configuration.
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.82.1"><link rel=canonical href=/docs/deploying/kubernetes/><title>Deploying to Kubernetes - KrakenD API Gateway</title><meta name=description content="Deploying KrakenD in Kubernetes requires a straightforward configuration.
 Create a Dockerfile that includes the configuration of the service. That should be as simple as:
 FROM devopsfaith/krakend COPY krakend.json /etc/krakend/krakend.json  If you use flexible-configuration you might want to add a previous generation of the krakend.json file using a multi-step Docker.
 From here you need to create a NodePort and send all the traffic to KrakenD.
