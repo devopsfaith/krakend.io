@@ -419,5 +419,53 @@
     $('[data-dismiss="modal"].close').click(function() {
       $(this).parents('[role="dialog"]').addClass("hidden");
     });
+    $("div.carousel button.carousel-prev").click(function() {
+      var carousel = $(this).parents("div.carousel").find("div.carousel-content");
+      var active_node = carousel.find("div.active");
+      if (active_node.length === 0)
+        active_node = carousel.find("div:first");
+      var prev_node = active_node.prev();
+      if (prev_node.length === 0)
+        return;
+      if (prev_node.prev().length === 0)
+        $(this).addClass("invisible");
+      $("div.carousel div button.carousel-next").removeClass("invisible");
+      active_node.removeClass("active");
+      prev_node.addClass("active");
+      carousel.animate({scrollLeft: active_node.width() * prev_node.index(), height: prev_node.height() + 100}, 1e3);
+    });
+    $("div.carousel div button.carousel-next").click(function() {
+      var carousel = $(this).parents("div.carousel").find("div.carousel-content");
+      var active_node = carousel.find("div.active");
+      if (active_node.length === 0)
+        active_node = carousel.find("div:first");
+      var next_node = active_node.next();
+      if (next_node.length === 0)
+        return;
+      if (next_node.next().length === 0)
+        $(this).addClass("invisible");
+      $("div.carousel div button.carousel-prev").removeClass("invisible");
+      active_node.removeClass("active");
+      next_node.addClass("active");
+      carousel.animate({scrollLeft: active_node.width() * next_node.index(), height: next_node.height() + 100}, 1e3);
+    });
+    var automatic_carousel = $("div.carousel.auto");
+    scrollCarouselToEnd(automatic_carousel);
   });
+  function scrollCarouselToEnd(carousel) {
+    carousel.animate({scrollLeft: carousel.get(0).scrollWidth - carousel.width()}, {
+      duration: 3e4,
+      complete: function() {
+        scrollCarouselToStart(carousel);
+      }
+    });
+  }
+  function scrollCarouselToStart(carousel) {
+    carousel.animate({scrollLeft: 0}, {
+      duration: 3e4,
+      complete: function() {
+        scrollCarouselToEnd(carousel);
+      }
+    });
+  }
 })();
