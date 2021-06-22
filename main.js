@@ -450,7 +450,8 @@
       carousel.animate({scrollLeft: active_node.width() * next_node.index(), height: next_node.height() + 100}, 1e3);
     });
     var automatic_carousel = $("div.carousel.auto");
-    scrollCarouselToEnd(automatic_carousel);
+    if (automatic_carousel.length)
+      scrollCarouselToEnd(automatic_carousel);
   });
   function scrollCarouselToEnd(carousel) {
     carousel.animate({scrollLeft: carousel.get(0).scrollWidth - carousel.width()}, {
