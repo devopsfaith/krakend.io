@@ -23,7 +23,9 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
     &quot;body&quot;: &quot;SGVsbG8gV29ybGQh&quot;
 }
 </code></pre><p>Notice that when the JSON fields <code>url</code> or <code>session</code> exist, the <code>body</code> is sent to the specific subgroup instead of being broadcasted.</p><h2 id=configuration>Configuration</h2><p>The configuration to enable WebSockets is straightforward; the only requirement is to include the <code>github.com/devopsfaith/krakend-websocket</code> namespace at the <code>endpoint</code> level, and that you declare one backend host (and only one) using the <code>ws://</code> or <code>wss://</code> schema.</p><p>The flag <code>"disable_host_sanitize": true</code> is also necessary for the backend.</p><p>Here there is an example:</p><pre><code>{
-  &quot;endpoint&quot;: &quot;/chat/{room}&quot;,
+  &quot;endpoint&quot;: &quot;/ws/{room}&quot;,
+  &quot;querystring_params&quot;:[ &quot;*&quot; ],
+  &quot;headers_to_pass&quot;:[ &quot;*&quot; ],
   &quot;backend&quot;: [
     {
       &quot;url_pattern&quot;: &quot;/ws&quot;,
@@ -32,7 +34,11 @@ KrakenD has the capability of multiplexing. Each individual end-client (e.g., De
     }
   ],
   &quot;extra_config&quot;:{
-    &quot;github.com/devopsfaith/krakend-websocket&quot;: true
+    &quot;github.com/devopsfaith/krakend-websocket&quot;: {
+        &quot;headers_to_pass&quot;:[&quot;Cookie&quot;, &quot;Authorization&quot;],
+        &quot;connect_event&quot;: true,
+        &quot;disconnect_event&quot;: true
+    }
   }
 }
 </code></pre><h2 id=handshaking>Handshaking</h2><p>The WS protocol consists of an opening handshake followed by basic message framing, layered over TCP.</p><p>The handshake process is straightforward but necessary for KrakenD to determine if the backend server is alive. It&rsquo;s managed by KrakenD itself, and it consists in nothing else than opening a WebSocket against the backend server and trying to find a response (like a ping/pong). We can simplify it as:</p><pre><code>krakend =&gt; {&quot;msg&quot;:&quot;KrakenD WS proxy starting&quot;}
