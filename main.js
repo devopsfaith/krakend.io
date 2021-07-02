@@ -432,7 +432,7 @@
       $("div.carousel div button.carousel-next").removeClass("invisible");
       active_node.removeClass("active");
       prev_node.addClass("active");
-      carousel.animate({scrollLeft: active_node.width() * prev_node.index(), height: prev_node.height() + 100}, 1e3);
+      carousel.animate({scrollLeft: active_node.width() * prev_node.index(), height: prev_node.height() + 136}, 1e3);
     });
     $("div.carousel div button.carousel-next").click(function() {
       var carousel = $(this).parents("div.carousel").find("div.carousel-content");
@@ -447,7 +447,7 @@
       $("div.carousel div button.carousel-prev").removeClass("invisible");
       active_node.removeClass("active");
       next_node.addClass("active");
-      carousel.animate({scrollLeft: active_node.width() * next_node.index(), height: next_node.height() + 100}, 1e3);
+      carousel.animate({scrollLeft: active_node.width() * next_node.index(), height: next_node.height() + 136}, 1e3);
     });
     var automatic_carousel = $("div.carousel.auto");
     if (automatic_carousel.length)
