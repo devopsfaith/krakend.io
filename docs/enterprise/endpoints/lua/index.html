@@ -30,7 +30,7 @@ If you are more familiar with Lua than Go, this module can help you solve except
   <span class=p>}</span></code></pre></div></p><h3 id=lua-in-the-backend>Lua in the backend</h3><p>An example showing how to <strong>print the backend response</strong> in the console.<div class=highlight><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
     <span class=nt>&#34;extra_config&#34;</span><span class=p>:</span> <span class=p>{</span>
           <span class=nt>&#34;github.com/devopsfaith/krakend-lua/proxy/backend&#34;</span><span class=p>:</span> <span class=p>{</span>
-            <span class=nt>&#34;pre&#34;</span><span class=p>:</span> <span class=s2>&#34;print(&#39;Backend response, pre-logic:&#39;); local r = request.load(); print(r:body(&#39;&#39;));&#34;</span>
+            <span class=nt>&#34;pre&#34;</span><span class=p>:</span> <span class=s2>&#34;print(&#39;Backend response, pre-logic:&#39;); local r = request.load(); print(r:body());&#34;</span>
           <span class=p>}</span>
     <span class=p>}</span>
 <span class=p>}</span></code></pre></div></p><p>Another example <strong>setting a cookie from Lua</strong>:<div class=highlight><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
