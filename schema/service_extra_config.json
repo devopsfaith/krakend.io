@@ -1,0 +1,180 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/service_extra_config.json",
+    "title": "Schema definition for service extra_config",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "auth/revoker": {
+            "$ref": "auth/revoker.json"
+        },
+        "security/bot-detector": {
+            "$id": "#service_extra_config/security/bot-detector",
+            "title": "Bot detector",
+            "description": "The bot detector module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+            "type": "object",
+            "minProperties": 1,
+            "properties": {
+                "allow": {
+                    "$id": "#service_extra_config/security/bot-detector/allow",
+                    "title": "Allow",
+                    "description": "An array with EXACT MATCHES of trusted user agents that can connect.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+                    "type": "array",
+                    "default": [],
+                    "examples": [
+                        "MyAndroidClient/1.0",
+                        "Pingdom.com_bot_version_1.1"
+                    ]
+                },
+                "deny": {
+                    "$id": "#service_extra_config/security/bot-detector/deny",
+                    "title": "Deny",
+                    "description": "An array with EXACT MATCHES of undesired bots, to reject immediately.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+                    "type": "array",
+                    "default": [],
+                    "examples": [
+                        "facebookexternalhit/1.1"
+                    ]
+                },
+                "patterns": {
+                    "$id": "#service_extra_config/security/bot-detector/patterns",
+                    "title": "Bot patterns",
+                    "description": "An array with all the regular expressions that define bots. Matching bots are rejected.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+                    "type": "array",
+                    "default": [],
+                    "examples": [
+                        "GoogleBot.*",
+                        "(facebookexternalhit)/.*"
+                    ]
+                },
+                "cache_size": {
+                    "$id": "#service_extra_config/security/bot-detector/cache_size",
+                    "title": "Cache size",
+                    "description": "Size of the LRU cache that helps speed the bot detection. The size is the mumber of users agents that you want to keep in memory.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+                    "type": "integer",
+                    "examples": [
+                        100
+                    ],
+                    "default": 500
+                }
+            }
+        },
+        "security/cors": {
+            "$id": "#service_extra_config/security/cors",
+            "title": "Cross Origin Resource Sharing",
+            "description": "When KrakenD endpoints are consumed from a browser, you might need to enable the Cross-Origin Resource Sharing (CORS) module as browsers restrict cross-origin HTTP requests initiated from scripts.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "type": "object",
+            "required": [
+                "allow_origins"
+            ],
+            "default": {
+                "allow_origins": [
+                    "http://foobar.com"
+                ],
+                "allow_methods": [
+                    "POST",
+                    "GET"
+                ],
+                "max_age": "12h"
+            },
+            "properties": {
+                "allow_origins": {
+                    "$id": "#service_extra_config/security/cors/allow_origins",
+                    "title": "Allowed origins",
+                    "description": "An array with all the origins allowed, examples of values are https://example.com, or * (any origin).\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "array",
+                    "items": {
+                        "$id": "#service_extra_config/security/cors/allow_origins/items",
+                        "title": "Allowed origins list",
+                        "type": "string",
+                        "examples": [
+                            "*",
+                            "https://example.com"
+                        ]
+                    }
+                },
+                "expose_headers": {
+                    "$id": "#service_extra_config/security/cors/expose_headers",
+                    "title": "Expose headers",
+                    "description": "Headers that are safe to expose to the API of a CORS API specification-\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "array",
+                    "default": []
+                },
+                "max_age": {
+                    "$id": "#service_extra_config/security/cors/max_age",
+                    "title": "Max age",
+                    "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "string",
+                    "$ref": "timeunits.json#/$defs/timeunit",
+                    "examples": [
+                        "12h"
+                    ]
+                },
+                "allow_methods": {
+                    "$id": "#service_extra_config/security/cors/allow_methods",
+                    "title": "Allowed methods",
+                    "description": "The array of all HTTP methods accepted, in uppercase.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "$id": "#service_extra_config/security/cors/allow_methods/items",
+                        "title": "Items",
+                        "description": "\n\nSee: https://www.krakend.io",
+                        "type": "string",
+                        "enum": [
+                            "GET",
+                            "POST",
+                            "PUT",
+                            "DELETE",
+                            "PATCH"
+                        ]
+                    }
+                },
+                "allow_headers": {
+                    "$id": "#service_extra_config/security/cors/allow_headers",
+                    "title": "Allowed headers",
+                    "type": "array",
+                    "default": []
+                },
+                "allow_credentials": {
+                    "$id": "#service_extra_config/security/cors/allow_credentials",
+                    "title": "Allow_credentials",
+                    "description": "When requests can include user credentials like cookies, HTTP authentication or client side SSL certificates\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "boolean",
+                    "default": true
+                },
+                "debug": {
+                    "$id": "#service_extra_config/security/cors/debug",
+                    "title": "Show debug",
+                    "description": "Show debugging information in the logger, to be used only during development.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        },
+        "security/http": {
+            "$ref": "security/http.json"
+        },
+        "telemetry/logging": {
+            "$ref": "telemetry/logging.json"
+        },
+        "telemetry/logstash": {
+            "$ref": "telemetry/logstash.json"
+        },
+        "telemetry/gelf": {
+            "$ref": "telemetry/gelf.json"
+        },
+        "telemetry/influx": {
+            "$ref": "telemetry/influx.json"
+        },
+        "telemetry/metrics": {
+            "$ref": "telemetry/metrics.json"
+        },
+        "telemetry/opencensus": {
+            "$ref": "telemetry/opencensus.json"
+        }
+    }
+}
