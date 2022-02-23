@@ -1,0 +1,12 @@
+on: [push]
+name: Validate JSON schema
+jobs:
+  validate_configurations:
+    name: Validate all json files using their own $schema properties
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate any json file
+        uses: cardinalby/schema-validator-action@v1
+        with:
+          file: '**/*.json'
