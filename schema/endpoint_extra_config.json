@@ -8,6 +8,9 @@
         "^[@$_#]": {}
     },
     "properties": {
+        "plugin/req-resp-modifier": {
+            "$ref": "plugin/req-resp-modifier.json"
+        },
         "qos/ratelimit/router": {
             "$id": "#endpoint_extra_config/qos/ratelimit/router",
             "title": "Router Rate-limiting",
@@ -104,9 +107,6 @@
                     }
                 }
             }
-        },
-        "router": {
-            "$ref": "router.json"
         },
         "security/http": {
             "$ref": "security/http.json"
