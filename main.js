@@ -449,6 +449,7 @@
       next_node.addClass("active");
       carousel.animate({scrollLeft: active_node.width() * next_node.index(), height: next_node.height() + 136}, 1e3);
     });
+    $("div.carousel div.carousel-content").animate({height: $("div.carousel div.carousel-content > div:first").height() + 136});
     var automatic_carousel = $("div.carousel.auto");
     if (automatic_carousel.length)
       scrollCarouselToEnd(automatic_carousel);
