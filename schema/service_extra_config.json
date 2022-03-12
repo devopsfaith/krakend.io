@@ -130,6 +130,15 @@
         },
         "telemetry/opencensus": {
             "$ref": "telemetry/opencensus.json"
+        },
+        "telemetry/instana": {
+            "$ref": "telemetry/instana.json"
+        },
+        "documentation/openapi": {
+            "$ref": "documentation/openapi.json"
+        },
+        "auth/api-keys": {
+            "$ref": "auth/api-keys.json"
         }
     }
 }

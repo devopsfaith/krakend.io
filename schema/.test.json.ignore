@@ -83,7 +83,26 @@
         }
     ],
     "endpoints": [
-        {
+       {
+            "endpoint": "/ws/{room}",
+            "input_query_strings":[ "*" ],
+            "input_headers":[ "*" ],
+            "backend": [
+              {
+                "url_pattern": "/ws",
+                "disable_host_sanitize": true,
+                "host": [ "ws://localhost:8081" ]
+              }
+            ],
+            "extra_config":{
+              "websocket": {
+                  "input_headers":["Cookie", "Authorization"],
+                  "connect_event": true,
+                  "disconnect_event": true
+              }
+            }
+          },
+          {
             "@endpoint_comment": "here",
             "endpoint": "/cel/req-resp/{id}",
             "input_headers": [
@@ -122,6 +141,17 @@
                 }
             ],
             "extra_config": {
+                "auth/api-keys": {
+                    "@comment": "here",
+                    "roles": [
+                      "admin"
+                    ]
+                },
+                "documentation/openapi": {
+                    "description": "Very long description of what this endpoint does",
+                    "summary": "Get my favourite foo",
+                    "tags": ["foo", "bar", "baz"]
+                },
                 "validation/cel": [
                     {
                         "@cel_comment": "here",
@@ -658,6 +688,23 @@
                 }
             }
         },
+        "telemetry/instana": {
+            "AgentHost": "localhost",
+            "AgentPort": 46999,
+            "EnableAutoProfile": false,
+            "Service": "krakend",
+            "MaxBufferedSpans": 15,
+            "ForceTransmissionStartingAt": 10,
+            "LogLevel": 0,
+            "MaxBufferedProfiles": 0,
+            "IncludeProfilerFrames": false,
+            "Tracer": {
+                "CollectableHTTPHeaders": [],
+                "DropAllLogs": false,
+                "MaxLogsPerSpan": 0,
+                "Secrets": {}
+            }
+        },
         "auth/revoker": {
             "hash_name": "default",
             "N": 10000000,
@@ -668,6 +715,33 @@
             ],
             "TTL": 1500,
             "@extra_comment": "here"
-        }
+        },
+        "documentation/openapi": {
+            "description": "This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)",
+            "version": "1.0.0",
+            "host": "my.api.com",
+            "base_path": "/v1",
+            "terms_of_service": "http://url.to/tos",
+            "contact_name": "The wonderful API department",
+            "contact_email": "contact@example.com",
+            "contact_url": "https://your.company/developers",
+            "license_name": "MIT",
+            "license_url": "https://opensource.org/licenses/MIT",
+            "tags": ["B2B", "Restricted"]
+        },
+        "auth/api-keys": {
+            "keys": [
+              {
+                "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
+                "roles": ["role1", "role2"],
+                "@description": "ACME Inc."
+              },
+              {
+                "key": "58427514-be32-0b52-b7c6-d01fada30497",
+                "roles": ["role1","role3"],
+                "@description": "Administrators Inc."
+              }
+            ]
+          }
     }
 }
