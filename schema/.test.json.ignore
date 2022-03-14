@@ -7,6 +7,7 @@
     "version": 3,
     "name": "KrakenD configuration at MyCompany",
     "port": 8080,
+    "host": ["http://localhost:8080"],
     "sequential_start": false,
     "timeout": "2s",
     "output_encoding": "json",
@@ -83,26 +84,35 @@
         }
     ],
     "endpoints": [
-       {
+        {
             "endpoint": "/ws/{room}",
-            "input_query_strings":[ "*" ],
-            "input_headers":[ "*" ],
-            "backend": [
-              {
-                "url_pattern": "/ws",
-                "disable_host_sanitize": true,
-                "host": [ "ws://localhost:8081" ]
-              }
+            "input_query_strings": [
+                "*"
             ],
-            "extra_config":{
-              "websocket": {
-                  "input_headers":["Cookie", "Authorization"],
-                  "connect_event": true,
-                  "disconnect_event": true
-              }
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/ws",
+                    "disable_host_sanitize": true,
+                    "host": [
+                        "ws://localhost:8081"
+                    ]
+                }
+            ],
+            "extra_config": {
+                "websocket": {
+                    "input_headers": [
+                        "Cookie",
+                        "Authorization"
+                    ],
+                    "connect_event": true,
+                    "disconnect_event": true
+                }
             }
-          },
-          {
+        },
+        {
             "@endpoint_comment": "here",
             "endpoint": "/cel/req-resp/{id}",
             "input_headers": [
@@ -144,13 +154,17 @@
                 "auth/api-keys": {
                     "@comment": "here",
                     "roles": [
-                      "admin"
+                        "admin"
                     ]
                 },
                 "documentation/openapi": {
                     "description": "Very long description of what this endpoint does",
                     "summary": "Get my favourite foo",
-                    "tags": ["foo", "bar", "baz"]
+                    "tags": [
+                        "foo",
+                        "bar",
+                        "baz"
+                    ]
                 },
                 "validation/cel": [
                     {
@@ -202,7 +216,26 @@
                         "plugin/req-resp-modifier": {
                             "name": [
                                 "krakend-debugger"
-                            ]
+                            ],
+                            "krakend-ipfilter": {
+                                "allow": false,
+                                "CIDR": [
+                                    "192.168.0.0/24",
+                                    "172.17.2.56/32"
+                                ],
+                                "client_ip_headers": [
+                                    "X-Forwarded-For",
+                                    "X-Real-IP",
+                                    "X-Appengine-Remote-Addr"
+                                ],
+                                "trusted_proxies": [
+                                    "10.0.0.0/16"
+                                ]
+                            }
+                        },
+                        "plugin/http-client": {
+                            "name": "krakend-static-live",
+                            "path": "/var/log/application/"
                         },
                         "backend/pubsub/publisher": {
                             "topic_url": "",
@@ -705,6 +738,16 @@
                 "Secrets": {}
             }
         },
+        "telemetry/ganalytics": {
+            "buffer_size": 0,
+            "tags": {
+                "cd1": "my custom dimension"
+            },
+            "timeout": "250ms",
+            "track_id": "UA-1234567",
+            "url": "https://www.google-analytics.com/batch",
+            "workers": 0
+        },
         "auth/revoker": {
             "hash_name": "default",
             "N": 10000000,
@@ -727,32 +770,110 @@
             "contact_url": "https://your.company/developers",
             "license_name": "MIT",
             "license_url": "https://opensource.org/licenses/MIT",
-            "tags": ["B2B", "Restricted"]
+            "tags": [
+                "B2B",
+                "Restricted"
+            ]
         },
         "auth/api-keys": {
             "keys": [
-              {
-                "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
-                "roles": ["role1", "role2"],
-                "@description": "ACME Inc."
-              },
-              {
-                "key": "58427514-be32-0b52-b7c6-d01fada30497",
-                "roles": ["role1","role3"],
-                "@description": "Administrators Inc."
-              }
+                {
+                    "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
+                    "roles": [
+                        "role1",
+                        "role2"
+                    ],
+                    "@description": "ACME Inc."
+                },
+                {
+                    "key": "58427514-be32-0b52-b7c6-d01fada30497",
+                    "roles": [
+                        "role1",
+                        "role3"
+                    ],
+                    "@description": "Administrators Inc."
+                }
             ]
-          },
-          "plugin/http-server": {
-              "name": ["a-plugin"],
-              "a_plugin_conf": {},
-              "krakend-jwk-aggregator": {
+        },
+        "plugin/http-server": {
+            "name": [
+                "a-plugin"
+            ],
+            "a_plugin_conf": {},
+            "krakend-ipfilter": {
+                "allow": false,
+                "CIDR": [
+                    "192.168.0.0/24",
+                    "172.17.2.56/32"
+                ],
+                "client_ip_headers": [
+                    "X-Forwarded-For",
+                    "X-Real-IP",
+                    "X-Appengine-Remote-Addr"
+                ],
+                "trusted_proxies": [
+                    "10.0.0.0/16"
+                ]
+            },
+            "krakend-jwk-aggregator": {
                 "origins": [
                     "https://jwk1.tld/jwk.json",
                     "http://foo.bar/public_keys"
                 ],
                 "port": 9876
-              }
-          }
+            },
+            "url-rewrite": {
+                "literal": {
+                    "/hi-there": "/hello",
+                    "/whatsup": "/hello"
+                },
+                "regexp": [
+                    [
+                        "/hi-there/([.+)/bar",
+                        "/hello/${1}"
+                    ]
+                ]
+            },
+            "krakend-static-live": {
+                "prefix": "/media/assets",
+                "path": "./../../",
+                "@comment": "static om"
+            },
+            "krakend-basic-auth": {
+                "endpoints": [
+                    "/checkout"
+                ],
+                "users": {
+                    "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
+                    "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
+                },
+                "htpasswd_path": "/path/to/.htpasswd"
+            },
+            "krakend-geoip": {
+                "citydb_path": "path/to/GeoIP2-City.mmdb"
+            },
+            "redis-ratelimit": {
+                "Burst": 0,
+                "Host": "redis",
+                "Period": "3s",
+                "Rate": 0,
+                "Tokenizer": "cookie",
+                "TokenizerField": "aaa"
+            },
+            "virtualhost": {
+                "hosts": [
+                    "host-a.tld",
+                    "host-b.tld"
+                ]
+            },
+            "krakend-wildcard": {
+                "endpoints": {
+                    "/__wildcard/foo": [
+                        "/foo",
+                        "/aliasfoo"
+                    ]
+                }
+            }
+        }
     }
 }
