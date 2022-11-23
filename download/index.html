@@ -15,15 +15,11 @@ krakend_2.1.3_arm64_generic-linux.tar.gz.asc" class=sha>PGP</a></div></div><div 
 <span aria-hidden=true>✖︎</span></button></div><div class="p-6 prose"><p>Paste the following lines in the terminal. You'll need <a href=https://brew.sh>Homebrew</a>
 installed:</p><pre>brew install krakend</pre><p>The process might take a while as it compiles the binary for your platform</p></div></div></div></div><div id=install_deb class="hidden absolute top-0 w-full h-full flex justify-center items-start" tabindex=-1 role=dialog><div class="mt-24 max-w-lg rounded-lg bg-white border border-gray-200" role=document><div class=modal-content><div class="rounded-t-lg py-4 text-center bg-gray-100 relative"><h3 class=modal-title>Install KrakenD with Debian package</h3><button type=button class="absolute top-1 right-4 close text-xl" data-dismiss=modal aria-label=Close>
 <span aria-hidden=true>✖︎</span></button></div><div class="p-6 prose"><p>Paste the following lines in the terminal:</p><pre class=no-scrollbar>
+apt install -y ca-certificates gnupg
 apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
 echo "deb https://repo.krakend.io/apt stable main" | tee /etc/apt/sources.list.d/krakend.list
 apt-get update
-apt-get install -y krakend</pre><p>What these commands are doing:</p><ul><li>Add the key</li><li>Add the repo to the sources.list</li><li>Update your package list</li><li>Install the KrakenD service</li></ul><p>The process has been tested on Debian 8, Debian 9, Ubuntu 16.x and Ubuntu 18.x</p><p>We changed the tool and the pgp key we use to create this repository, if you find this error:</p><pre class=no-scrollbar>
-E: Repository 'https://repo.krakend.io/apt stable InRelease' changed its 'Origin' value from '' to 'repo.krakend.io'</pre>Run one of this commands:<pre class=no-scrollbar>
-apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
-apt update</pre>or:<pre class=no-scrollbar>
-apt-key adv --keyserver keyserver.ubuntu.com --recv 5DE6FD698AD6FDD2
-apt-get update --allow-releaseinfo-change</pre></div></div></div></div><div id=install_rpm class="hidden absolute top-0 w-full h-full flex justify-center items-start" tabindex=-1 role=dialog><div class="mt-24 max-w-lg rounded-lg bg-white border border-gray-200" role=document><div class=modal-content><div class="rounded-t-lg py-4 text-center bg-gray-100 relative"><h5 class=modal-title>Install KrakenD with RPM package</h5><button type=button class="absolute top-1 right-4 close text-xl" data-dismiss=modal aria-label=Close>
+apt-get install -y krakend</pre><p>What these commands are doing:</p><ul><li>Add the key</li><li>Add the repo to the sources.list</li><li>Update your package list</li><li>Install the KrakenD service</li></ul><p>The process has been tested on Debian and Ubuntu</p></div></div></div></div><div id=install_rpm class="hidden absolute top-0 w-full h-full flex justify-center items-start" tabindex=-1 role=dialog><div class="mt-24 max-w-lg rounded-lg bg-white border border-gray-200" role=document><div class=modal-content><div class="rounded-t-lg py-4 text-center bg-gray-100 relative"><h5 class=modal-title>Install KrakenD with RPM package</h5><button type=button class="absolute top-1 right-4 close text-xl" data-dismiss=modal aria-label=Close>
 <span aria-hidden=true>✖︎</span></button></div><div class="p-6 prose"><p>Paste the following lines in the terminal:</p><pre class=no-scrollbar>
 rpm -Uvh https://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
 yum install -y krakend
