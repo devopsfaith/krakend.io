@@ -12,7 +12,7 @@ v1.3</strong><svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 inline 
     &quot;timeout&quot;: &quot;3s&quot;,
     &quot;name&quot;: &quot;Example gateway.&quot;
 }
-</code></pre><p>Now run krakend with the following command:</p><div class="rounded-lg shadow-md"><div class="bg-gradient-to-b from-gray-100 to-gray-300 border border-gray-300 text-center py-1 rounded-t-lg text-sm">Example: Override configuration with env vars&nbsp;</div><div class="font-mono bg-gradient-to-br from-gray-900 to-gray-700 text-gray-200 rounded-b-lg p-4"><div class="whitespace-nowrap overflow-auto no-scrollbar text-sm"><div><span class="text-purple-400 mr-2">$</span>KRAKEND_NAME="Build&nbsp;ABC0123"&nbsp;KRAKEND_TIMEOUT="500ms"&nbsp;krakend&nbsp;run&nbsp;-c&nbsp;krakend.json</div></div></div></div><p>The resulting configuration will be:</p><pre><code>{
+</code></pre><p>Now run krakend with the following command:</p><div class="rounded-lg shadow-md"><div class="bg-gradient-to-b from-gray-100 to-gray-300 border border-gray-300 text-center py-1 rounded-t-lg text-sm">Example: Override configuration with env vars&nbsp;</div><div class="font-mono bg-gradient-to-br from-gray-900 to-gray-700 text-gray-200 rounded-b-lg p-4"><div class="whitespace-nowrap overflow-auto no-scrollbar text-sm"><div><span class="text-purple-400 mr-2">$</span>KRAKEND_NAME="Build ABC0123" KRAKEND_TIMEOUT="500ms" krakend run -c krakend.json</div></div></div></div><p>The resulting configuration will be:</p><pre><code>{
     &quot;version&quot;: 2,
     &quot;timeout&quot;: &quot;500ms&quot;,
     &quot;name&quot;: &quot;Build ABC0123&quot;

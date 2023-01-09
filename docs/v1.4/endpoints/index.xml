@@ -23,4 +23,4 @@ If you are more familiar with Lua than Go, this module can help you solve except
 When the validation fails, KrakenD returns to the user a status code 400 (Bad Request), and only if it succeeds, the backend receives the request.</description></item><item><title>The health endpoint</title><link>https://www.krakend.io/docs/v1.4/endpoints/health/</link><pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate><guid>https://www.krakend.io/docs/v1.4/endpoints/health/</guid><description>If you place a balancer in front of KrakenD, such as an ELB, you can check KrakenD health using a TCP port check. If, on the other hand, you need an HTTP endpoint in systems like Kubernetes, use the internal endpoint /__health.
 The /__health endpoint The health endpoint, or the ping endpoint, works without any specific configuration as KrakenD automatically adds it.
 For instance, see the simplest possible krakend.json:
-Simplest configuration file&amp;nbsp; $cat&amp;nbsp;krakend.</description></item></channel></rss>
+Simplest configuration file&amp;nbsp; $cat krakend.</description></item></channel></rss>
