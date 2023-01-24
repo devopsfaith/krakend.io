@@ -29,7 +29,7 @@ v2.0</strong><svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 inline 
 </span></span></span><span class=line><span class=cl><span class=err></span><span class=k>RUN</span> krakend check -c /tmp/krakend.json --lint<span class=err>
 </span></span></span><span class=line><span class=cl><span class=err>
 </span></span></span><span class=line><span class=cl><span class=err></span><span class=k>FROM</span><span class=s> devopsfaith/krakend:v2.0</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>COPY</span> --from<span class=o>=</span>builder --chown<span class=o>=</span>krakend /tmp/krakend.json .<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>COPY</span> --from<span class=o>=</span>builder --chown<span class=o>=</span>krakend:nogroup /tmp/krakend.json .<span class=err>
 </span></span></span><span class=line><span class=cl><span class=err></span><span class=c># Uncomment with Enterprise image:</span><span class=err>
 </span></span></span><span class=line><span class=cl><span class=err></span><span class=c># COPY LICENSE /etc/krakend/LICENSE</span></span></span></code></pre></div><p>The <code>Dockerfile</code> above has two stages:
 The <code>check</code> command compiles the template <code>krakend.tmpl</code> and any included sub-template inside and outputs (<code>FC_OUT</code>) the resulting <code>/tmp/krakend.json</code> file.
