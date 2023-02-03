@@ -449,6 +449,35 @@
     var automatic_carousel = $("div.carousel.auto");
     if (automatic_carousel.length)
       scrollCarouselToEnd(automatic_carousel);
+    $("a.copy-link").click(function(e) {
+      e.preventDefault();
+      let href = this.href;
+      let rect = this.getBoundingClientRect();
+      if (!href.startsWith("http")) {
+        href = new URL(href, window.location.href).href;
+      }
+      const textArea = document.createElement("textarea");
+      textArea.value = href;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      const popover = document.createElement("div");
+      popover.textContent = "Copied!";
+      popover.classList.add("absolute", "bg-black", "rounded", "text-white", "px-2", "py-1", "opacity-0", "transition-opacity", "text-sm");
+      popover.style.top = `${rect.bottom + document.documentElement.scrollTop - rect.height * 2}px`;
+      popover.style.left = `${rect.right + document.documentElement.scrollLeft}px`;
+      document.body.appendChild(popover);
+      setTimeout(() => {
+        popover.classList.add("opacity-100");
+      }, 0);
+      setTimeout(() => {
+        popover.classList.remove("opacity-100");
+      }, 3e3);
+      setTimeout(() => {
+        document.body.removeChild(popover);
+      }, 3500);
+    });
   });
   function scrollCarouselToEnd(carousel) {
     carousel.animate({ scrollLeft: carousel.get(0).scrollWidth - carousel.width() }, {
