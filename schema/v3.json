@@ -37,6 +37,13 @@
             "type": "boolean",
             "default": false
         },
+        "echo_endpoint": {
+            "$id": "#service/echo_endpoint",
+            "title": "Echo endpoint",
+            "description": "Enables the `/__echo/` endpoint for this configuration, that returns information about the incoming request. When using /__echo as a backend you can check the actual headers and content a backend receives after all the zero-trust filtering.",
+            "type": "boolean",
+            "default": false
+        },
         "sequential_start": {
             "$id": "#service/sequential_start",
             "title": "Sequential start",
@@ -74,7 +81,7 @@
         "cache_ttl": {
             "$id": "#service/cache_ttl",
             "title": "Cache TTL",
-            "description": "Sets a default `Cache-Control: public, max-age=%d` header to all endpoints where `%d` is the conversion to seconds of any duration you write, indicating for how long the client (or CDN) can cache the content of the request. You can override this value per endpoint. Notice that KrakenD does not cache the content with this parameter, but tells the client how to do it. Defaults to `0s` (no cache). **For KrakenD cache, see [backend caching](/docs/backends/caching/)**.",
+            "description": "Sets a default `Cache-Control: public, max-age=%d` header to all endpoints where `%d` is the conversion to seconds of any duration you write, indicating for how long the client (or CDN) can cache the content of the request. You can override this value per endpoint, but setting an endpoint to 0 will use the default value instead. Notice that KrakenD does not cache the content with this parameter, but tells the client how to do it. Defaults to `0s` (no cache). **For KrakenD cache, see [backend caching](/docs/backends/caching/)**.",
             "type": "string",
             "default": "0s",
             "$ref": "timeunits.json#/$defs/timeunit"
@@ -213,9 +220,15 @@
         "allow_insecure_connections": {
             "$id": "#service/allow_insecure_connections",
             "title": "Allow insecure connections",
-            "description": "By default, KrakenD verifies every SSL connection. This option allows you to connect to backends considered insecure, for instance when you are using **self-signed certificates**",
+            "description": "This property has been moved to `tls_client` > `allow_insecure_connections`, it will still work but you should [move it](/docs/service-settings/tls/#tls-client-settings) before it's deleted.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "boolean",
+            "deprecated": true,
             "default": false
+        },
+        "tls_client": {
+            "title": "TLS Client settings",
+            "description": "Allows to set specific transport settings when using TLS in your upstream services. See [TLS Client](/docs/service-settings/tls/) for more settings",
+            "$ref": "tls_client.json"
         },
         "tls": {
             "$ref": "tls.json"
