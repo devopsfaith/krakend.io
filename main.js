@@ -1,13 +1,13 @@
 (() => {
-  // ns-hugo:/builds/devops-faith/website/assets/js/vendor/jquery-ui.min.js
+  // ns-hugo:/site/assets/js/vendor/jquery-ui.min.js
   !function(t) {
-    typeof define == "function" && define.amd ? define(["jquery"], t) : t(jQuery);
+    "function" == typeof define && define.amd ? define(["jquery"], t) : t(jQuery);
   }(function(C) {
     C.ui = C.ui || {};
     C.ui.version = "1.12.1";
     var n, i = 0, r = Array.prototype.slice;
     C.cleanData = (n = C.cleanData, function(t2) {
-      for (var e, i2, o2 = 0; (i2 = t2[o2]) != null; o2++)
+      for (var e, i2, o2 = 0; null != (i2 = t2[o2]); o2++)
         try {
           (e = C._data(i2, "events")) && e.remove && C(i2).triggerHandler("remove");
         } catch (t3) {
@@ -39,15 +39,15 @@
     }, C.widget.extend = function(t2) {
       for (var e, i2, o2 = r.call(arguments, 1), n2 = 0, s2 = o2.length; n2 < s2; n2++)
         for (e in o2[n2])
-          i2 = o2[n2][e], o2[n2].hasOwnProperty(e) && i2 !== void 0 && (C.isPlainObject(i2) ? t2[e] = C.isPlainObject(t2[e]) ? C.widget.extend({}, t2[e], i2) : C.widget.extend({}, i2) : t2[e] = i2);
+          i2 = o2[n2][e], o2[n2].hasOwnProperty(e) && void 0 !== i2 && (C.isPlainObject(i2) ? t2[e] = C.isPlainObject(t2[e]) ? C.widget.extend({}, t2[e], i2) : C.widget.extend({}, i2) : t2[e] = i2);
       return t2;
     }, C.widget.bridge = function(s2, e) {
       var l2 = e.prototype.widgetFullName || s2;
       C.fn[s2] = function(i2) {
-        var t2 = typeof i2 == "string", o2 = r.call(arguments, 1), n2 = this;
-        return t2 ? this.length || i2 !== "instance" ? this.each(function() {
+        var t2 = "string" == typeof i2, o2 = r.call(arguments, 1), n2 = this;
+        return t2 ? this.length || "instance" !== i2 ? this.each(function() {
           var t3, e2 = C.data(this, l2);
-          return i2 === "instance" ? (n2 = e2, false) : e2 ? C.isFunction(e2[i2]) && i2.charAt(0) !== "_" ? (t3 = e2[i2].apply(e2, o2)) !== e2 && t3 !== void 0 ? (n2 = t3 && t3.jquery ? n2.pushStack(t3.get()) : t3, false) : void 0 : C.error("no such method '" + i2 + "' for " + s2 + " widget instance") : C.error("cannot call methods on " + s2 + " prior to initialization; attempted to call method '" + i2 + "'");
+          return "instance" === i2 ? (n2 = e2, false) : e2 ? C.isFunction(e2[i2]) && "_" !== i2.charAt(0) ? (t3 = e2[i2].apply(e2, o2)) !== e2 && void 0 !== t3 ? (n2 = t3 && t3.jquery ? n2.pushStack(t3.get()) : t3, false) : void 0 : C.error("no such method '" + i2 + "' for " + s2 + " widget instance") : C.error("cannot call methods on " + s2 + " prior to initialization; attempted to call method '" + i2 + "'");
         }) : n2 = void 0 : (o2.length && (i2 = C.widget.extend.apply(null, [i2].concat(o2))), this.each(function() {
           var t3 = C.data(this, l2);
           t3 ? (t3.option(i2 || {}), t3._init && t3._init()) : C.data(this, l2, new e(i2, this));
@@ -69,18 +69,18 @@
       return this.element;
     }, option: function(t2, e) {
       var i2, o2, n2, s2 = t2;
-      if (arguments.length === 0)
+      if (0 === arguments.length)
         return C.widget.extend({}, this.options);
-      if (typeof t2 == "string")
+      if ("string" == typeof t2)
         if (s2 = {}, t2 = (i2 = t2.split(".")).shift(), i2.length) {
           for (o2 = s2[t2] = C.widget.extend({}, this.options[t2]), n2 = 0; n2 < i2.length - 1; n2++)
             o2[i2[n2]] = o2[i2[n2]] || {}, o2 = o2[i2[n2]];
-          if (t2 = i2.pop(), arguments.length === 1)
-            return o2[t2] === void 0 ? null : o2[t2];
+          if (t2 = i2.pop(), 1 === arguments.length)
+            return void 0 === o2[t2] ? null : o2[t2];
           o2[t2] = e;
         } else {
-          if (arguments.length === 1)
-            return this.options[t2] === void 0 ? null : this.options[t2];
+          if (1 === arguments.length)
+            return void 0 === this.options[t2] ? null : this.options[t2];
           s2[t2] = e;
         }
       return this._setOptions(s2), this;
@@ -89,7 +89,7 @@
         this._setOption(e, t2[e]);
       return this;
     }, _setOption: function(t2, e) {
-      return t2 === "classes" && this._setOptionClasses(e), this.options[t2] = e, t2 === "disabled" && this._setOptionDisabled(e), this;
+      return "classes" === t2 && this._setOptionClasses(e), this.options[t2] = e, "disabled" === t2 && this._setOptionDisabled(e), this;
     }, _setOptionClasses: function(t2) {
       var e, i2, o2;
       for (e in t2)
@@ -110,24 +110,24 @@
     }, _untrackClassesElement: function(i2) {
       var o2 = this;
       C.each(o2.classesElementLookup, function(t2, e) {
-        C.inArray(i2.target, e) !== -1 && (o2.classesElementLookup[t2] = C(e.not(i2.target).get()));
+        -1 !== C.inArray(i2.target, e) && (o2.classesElementLookup[t2] = C(e.not(i2.target).get()));
       });
     }, _removeClass: function(t2, e, i2) {
       return this._toggleClass(t2, e, i2, false);
     }, _addClass: function(t2, e, i2) {
       return this._toggleClass(t2, e, i2, true);
     }, _toggleClass: function(t2, e, i2, o2) {
-      o2 = typeof o2 == "boolean" ? o2 : i2;
-      var n2 = typeof t2 == "string" || t2 === null, t2 = { extra: n2 ? e : i2, keys: n2 ? t2 : e, element: n2 ? this.element : t2, add: o2 };
+      o2 = "boolean" == typeof o2 ? o2 : i2;
+      var n2 = "string" == typeof t2 || null === t2, t2 = { extra: n2 ? e : i2, keys: n2 ? t2 : e, element: n2 ? this.element : t2, add: o2 };
       return t2.element.toggleClass(this._classes(t2), o2), this;
     }, _on: function(n2, s2, t2) {
       var l2, r2 = this;
-      typeof n2 != "boolean" && (t2 = s2, s2 = n2, n2 = false), t2 ? (s2 = l2 = C(s2), this.bindings = this.bindings.add(s2)) : (t2 = s2, s2 = this.element, l2 = this.widget()), C.each(t2, function(t3, e) {
+      "boolean" != typeof n2 && (t2 = s2, s2 = n2, n2 = false), t2 ? (s2 = l2 = C(s2), this.bindings = this.bindings.add(s2)) : (t2 = s2, s2 = this.element, l2 = this.widget()), C.each(t2, function(t3, e) {
         function i2() {
-          if (n2 || r2.options.disabled !== true && !C(this).hasClass("ui-state-disabled"))
-            return (typeof e == "string" ? r2[e] : e).apply(r2, arguments);
+          if (n2 || true !== r2.options.disabled && !C(this).hasClass("ui-state-disabled"))
+            return ("string" == typeof e ? r2[e] : e).apply(r2, arguments);
         }
-        typeof e != "string" && (i2.guid = e.guid = e.guid || i2.guid || C.guid++);
+        "string" != typeof e && (i2.guid = e.guid = e.guid || i2.guid || C.guid++);
         var o2 = t3.match(/^([\w:-]*)\s*(.*)$/), t3 = o2[1] + r2.eventNamespace, o2 = o2[2];
         o2 ? l2.on(t3, o2, i2) : s2.on(t3, i2);
       });
@@ -136,7 +136,7 @@
     }, _delay: function(t2, e) {
       var i2 = this;
       return setTimeout(function() {
-        return (typeof t2 == "string" ? i2[t2] : t2).apply(i2, arguments);
+        return ("string" == typeof t2 ? i2[t2] : t2).apply(i2, arguments);
       }, e || 0);
     }, _hoverable: function(t2) {
       this.hoverable = this.hoverable.add(t2), this._on(t2, { mouseenter: function(t3) {
@@ -155,13 +155,13 @@
       if (i2 = i2 || {}, (e = C.Event(e)).type = (t2 === this.widgetEventPrefix ? t2 : this.widgetEventPrefix + t2).toLowerCase(), e.target = this.element[0], n2 = e.originalEvent)
         for (o2 in n2)
           o2 in e || (e[o2] = n2[o2]);
-      return this.element.trigger(e, i2), !(C.isFunction(s2) && s2.apply(this.element[0], [e].concat(i2)) === false || e.isDefaultPrevented());
+      return this.element.trigger(e, i2), !(C.isFunction(s2) && false === s2.apply(this.element[0], [e].concat(i2)) || e.isDefaultPrevented());
     } }, C.each({ show: "fadeIn", hide: "fadeOut" }, function(s2, l2) {
       C.Widget.prototype["_" + s2] = function(e, t2, i2) {
         var o2;
-        typeof t2 == "string" && (t2 = { effect: t2 });
-        var n2 = t2 ? t2 !== true && typeof t2 != "number" && t2.effect || l2 : s2;
-        typeof (t2 = t2 || {}) == "number" && (t2 = { duration: t2 }), o2 = !C.isEmptyObject(t2), t2.complete = i2, t2.delay && e.delay(t2.delay), o2 && C.effects && C.effects.effect[n2] ? e[s2](t2) : n2 !== s2 && e[n2] ? e[n2](t2.duration, t2.easing, i2) : e.queue(function(t3) {
+        "string" == typeof t2 && (t2 = { effect: t2 });
+        var n2 = t2 ? true !== t2 && "number" != typeof t2 && t2.effect || l2 : s2;
+        "number" == typeof (t2 = t2 || {}) && (t2 = { duration: t2 }), o2 = !C.isEmptyObject(t2), t2.complete = i2, t2.delay && e.delay(t2.delay), o2 && C.effects && C.effects.effect[n2] ? e[s2](t2) : n2 !== s2 && e[n2] ? e[n2](t2.duration, t2.easing, i2) : e.queue(function(t3) {
           C(this)[s2](), i2 && i2.call(e[0]), t3();
         });
       };
@@ -175,27 +175,27 @@
       return parseInt(C.css(t2, e), 10) || 0;
     }
     W = Math.max, T = Math.abs, s = /left|center|right/, l = /top|center|bottom/, a = /[\+\-]\d+(\.[\d]+)?%?/, h = /^\w+/, d = /%$/, E = C.fn.position, C.position = { scrollbarWidth: function() {
-      if (o !== void 0)
+      if (void 0 !== o)
         return o;
       var t2, e = C("<div style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>"), i2 = e.children()[0];
       return C("body").append(e), t2 = i2.offsetWidth, e.css("overflow", "scroll"), t2 === (i2 = i2.offsetWidth) && (i2 = e[0].clientWidth), e.remove(), o = t2 - i2;
     }, getScrollInfo: function(t2) {
-      var e = t2.isWindow || t2.isDocument ? "" : t2.element.css("overflow-x"), i2 = t2.isWindow || t2.isDocument ? "" : t2.element.css("overflow-y"), e = e === "scroll" || e === "auto" && t2.width < t2.element[0].scrollWidth;
-      return { width: i2 === "scroll" || i2 === "auto" && t2.height < t2.element[0].scrollHeight ? C.position.scrollbarWidth() : 0, height: e ? C.position.scrollbarWidth() : 0 };
+      var e = t2.isWindow || t2.isDocument ? "" : t2.element.css("overflow-x"), i2 = t2.isWindow || t2.isDocument ? "" : t2.element.css("overflow-y"), e = "scroll" === e || "auto" === e && t2.width < t2.element[0].scrollWidth;
+      return { width: "scroll" === i2 || "auto" === i2 && t2.height < t2.element[0].scrollHeight ? C.position.scrollbarWidth() : 0, height: e ? C.position.scrollbarWidth() : 0 };
     }, getWithinInfo: function(t2) {
-      var e = C(t2 || window), i2 = C.isWindow(e[0]), o2 = !!e[0] && e[0].nodeType === 9;
+      var e = C(t2 || window), i2 = C.isWindow(e[0]), o2 = !!e[0] && 9 === e[0].nodeType;
       return { element: e, isWindow: i2, isDocument: o2, offset: !i2 && !o2 ? C(t2).offset() : { left: 0, top: 0 }, scrollLeft: e.scrollLeft(), scrollTop: e.scrollTop(), width: e.outerWidth(), height: e.outerHeight() };
     } }, C.fn.position = function(u) {
       if (!u || !u.of)
         return E.apply(this, arguments);
       u = C.extend({}, u);
-      var c, p, f, g, m, t2, v = C(u.of), _ = C.position.getWithinInfo(u.within), y = C.position.getScrollInfo(_), w = (u.collision || "flip").split(" "), b = {}, e = (t2 = (e = v)[0]).nodeType === 9 ? { width: e.width(), height: e.height(), offset: { top: 0, left: 0 } } : C.isWindow(t2) ? { width: e.width(), height: e.height(), offset: { top: e.scrollTop(), left: e.scrollLeft() } } : t2.preventDefault ? { width: 0, height: 0, offset: { top: t2.pageY, left: t2.pageX } } : { width: e.outerWidth(), height: e.outerHeight(), offset: e.offset() };
+      var c, p, f, g, m, t2, v = C(u.of), _ = C.position.getWithinInfo(u.within), y = C.position.getScrollInfo(_), w = (u.collision || "flip").split(" "), b = {}, e = 9 === (t2 = (e = v)[0]).nodeType ? { width: e.width(), height: e.height(), offset: { top: 0, left: 0 } } : C.isWindow(t2) ? { width: e.width(), height: e.height(), offset: { top: e.scrollTop(), left: e.scrollLeft() } } : t2.preventDefault ? { width: 0, height: 0, offset: { top: t2.pageY, left: t2.pageX } } : { width: e.outerWidth(), height: e.outerHeight(), offset: e.offset() };
       return v[0].preventDefault && (u.at = "left top"), p = e.width, f = e.height, g = e.offset, m = C.extend({}, g), C.each(["my", "at"], function() {
         var t3, e2, i2 = (u[this] || "").split(" ");
-        i2.length === 1 && (i2 = s.test(i2[0]) ? i2.concat(["center"]) : l.test(i2[0]) ? ["center"].concat(i2) : ["center", "center"]), i2[0] = s.test(i2[0]) ? i2[0] : "center", i2[1] = l.test(i2[1]) ? i2[1] : "center", t3 = a.exec(i2[0]), e2 = a.exec(i2[1]), b[this] = [t3 ? t3[0] : 0, e2 ? e2[0] : 0], u[this] = [h.exec(i2[0])[0], h.exec(i2[1])[0]];
-      }), w.length === 1 && (w[1] = w[0]), u.at[0] === "right" ? m.left += p : u.at[0] === "center" && (m.left += p / 2), u.at[1] === "bottom" ? m.top += f : u.at[1] === "center" && (m.top += f / 2), c = x(b.at, p, f), m.left += c[0], m.top += c[1], this.each(function() {
+        1 === i2.length && (i2 = s.test(i2[0]) ? i2.concat(["center"]) : l.test(i2[0]) ? ["center"].concat(i2) : ["center", "center"]), i2[0] = s.test(i2[0]) ? i2[0] : "center", i2[1] = l.test(i2[1]) ? i2[1] : "center", t3 = a.exec(i2[0]), e2 = a.exec(i2[1]), b[this] = [t3 ? t3[0] : 0, e2 ? e2[0] : 0], u[this] = [h.exec(i2[0])[0], h.exec(i2[1])[0]];
+      }), 1 === w.length && (w[1] = w[0]), "right" === u.at[0] ? m.left += p : "center" === u.at[0] && (m.left += p / 2), "bottom" === u.at[1] ? m.top += f : "center" === u.at[1] && (m.top += f / 2), c = x(b.at, p, f), m.left += c[0], m.top += c[1], this.each(function() {
         var i2, t3, l2 = C(this), r2 = l2.outerWidth(), a2 = l2.outerHeight(), e2 = D(this, "marginLeft"), o2 = D(this, "marginTop"), n2 = r2 + e2 + D(this, "marginRight") + y.width, s2 = a2 + o2 + D(this, "marginBottom") + y.height, h2 = C.extend({}, m), d2 = x(b.my, l2.outerWidth(), l2.outerHeight());
-        u.my[0] === "right" ? h2.left -= r2 : u.my[0] === "center" && (h2.left -= r2 / 2), u.my[1] === "bottom" ? h2.top -= a2 : u.my[1] === "center" && (h2.top -= a2 / 2), h2.left += d2[0], h2.top += d2[1], i2 = { marginLeft: e2, marginTop: o2 }, C.each(["left", "top"], function(t4, e3) {
+        "right" === u.my[0] ? h2.left -= r2 : "center" === u.my[0] && (h2.left -= r2 / 2), "bottom" === u.my[1] ? h2.top -= a2 : "center" === u.my[1] && (h2.top -= a2 / 2), h2.left += d2[0], h2.top += d2[1], i2 = { marginLeft: e2, marginTop: o2 }, C.each(["left", "top"], function(t4, e3) {
           C.ui.position[w[t4]] && C.ui.position[w[t4]][e3](h2, { targetWidth: p, targetHeight: f, elemWidth: r2, elemHeight: a2, collisionPosition: i2, collisionWidth: n2, collisionHeight: s2, offset: [c[0] + d2[0], c[1] + d2[1]], my: u.my, at: u.at, within: _, elem: l2 });
         }), u.using && (t3 = function(t4) {
           var e3 = g.left - h2.left, i3 = e3 + p - r2, o3 = g.top - h2.top, n3 = o3 + f - a2, s3 = { target: { element: v, left: g.left, top: g.top, width: p, height: f }, element: { element: l2, left: h2.left, top: h2.top, width: r2, height: a2 }, horizontal: i3 < 0 ? "left" : 0 < e3 ? "right" : "center", vertical: n3 < 0 ? "top" : 0 < o3 ? "bottom" : "middle" };
@@ -209,10 +209,10 @@
       var i2 = e.within, o2 = i2.isWindow ? i2.scrollTop : i2.offset.top, n2 = e.within.height, s2 = t2.top - e.collisionPosition.marginTop, l2 = o2 - s2, r2 = s2 + e.collisionHeight - n2 - o2;
       e.collisionHeight > n2 ? 0 < l2 && r2 <= 0 ? (i2 = t2.top + l2 + e.collisionHeight - n2 - o2, t2.top += l2 - i2) : t2.top = !(0 < r2 && l2 <= 0) && r2 < l2 ? o2 + n2 - e.collisionHeight : o2 : 0 < l2 ? t2.top += l2 : 0 < r2 ? t2.top -= r2 : t2.top = W(t2.top - s2, t2.top);
     } }, flip: { left: function(t2, e) {
-      var i2 = e.within, o2 = i2.offset.left + i2.scrollLeft, n2 = i2.width, s2 = i2.isWindow ? i2.scrollLeft : i2.offset.left, l2 = t2.left - e.collisionPosition.marginLeft, r2 = l2 - s2, a2 = l2 + e.collisionWidth - n2 - s2, h2 = e.my[0] === "left" ? -e.elemWidth : e.my[0] === "right" ? e.elemWidth : 0, i2 = e.at[0] === "left" ? e.targetWidth : e.at[0] === "right" ? -e.targetWidth : 0, l2 = -2 * e.offset[0];
+      var i2 = e.within, o2 = i2.offset.left + i2.scrollLeft, n2 = i2.width, s2 = i2.isWindow ? i2.scrollLeft : i2.offset.left, l2 = t2.left - e.collisionPosition.marginLeft, r2 = l2 - s2, a2 = l2 + e.collisionWidth - n2 - s2, h2 = "left" === e.my[0] ? -e.elemWidth : "right" === e.my[0] ? e.elemWidth : 0, i2 = "left" === e.at[0] ? e.targetWidth : "right" === e.at[0] ? -e.targetWidth : 0, l2 = -2 * e.offset[0];
       r2 < 0 ? ((o2 = t2.left + h2 + i2 + l2 + e.collisionWidth - n2 - o2) < 0 || o2 < T(r2)) && (t2.left += h2 + i2 + l2) : 0 < a2 && (0 < (s2 = t2.left - e.collisionPosition.marginLeft + h2 + i2 + l2 - s2) || T(s2) < a2) && (t2.left += h2 + i2 + l2);
     }, top: function(t2, e) {
-      var i2 = e.within, o2 = i2.offset.top + i2.scrollTop, n2 = i2.height, s2 = i2.isWindow ? i2.scrollTop : i2.offset.top, l2 = t2.top - e.collisionPosition.marginTop, r2 = l2 - s2, a2 = l2 + e.collisionHeight - n2 - s2, h2 = e.my[1] === "top" ? -e.elemHeight : e.my[1] === "bottom" ? e.elemHeight : 0, i2 = e.at[1] === "top" ? e.targetHeight : e.at[1] === "bottom" ? -e.targetHeight : 0, l2 = -2 * e.offset[1];
+      var i2 = e.within, o2 = i2.offset.top + i2.scrollTop, n2 = i2.height, s2 = i2.isWindow ? i2.scrollTop : i2.offset.top, l2 = t2.top - e.collisionPosition.marginTop, r2 = l2 - s2, a2 = l2 + e.collisionHeight - n2 - s2, h2 = "top" === e.my[1] ? -e.elemHeight : "bottom" === e.my[1] ? e.elemHeight : 0, i2 = "top" === e.at[1] ? e.targetHeight : "bottom" === e.at[1] ? -e.targetHeight : 0, l2 = -2 * e.offset[1];
       r2 < 0 ? ((o2 = t2.top + h2 + i2 + l2 + e.collisionHeight - n2 - o2) < 0 || o2 < T(r2)) && (t2.top += h2 + i2 + l2) : 0 < a2 && (0 < (s2 = t2.top - e.collisionPosition.marginTop + h2 + i2 + l2 - s2) || T(s2) < a2) && (t2.top += h2 + i2 + l2);
     } }, flipfit: { left: function() {
       C.ui.position.flip.left.apply(this, arguments), C.ui.position.fit.left.apply(this, arguments);
@@ -237,12 +237,12 @@
       i2.push(e), t2.data("ui-tooltip-id", e).attr("aria-describedby", C.trim(i2.join(" ")));
     }, _removeDescribedBy: function(t2) {
       var e = t2.data("ui-tooltip-id"), i2 = (t2.attr("aria-describedby") || "").split(/\s+/), e = C.inArray(e, i2);
-      e !== -1 && i2.splice(e, 1), t2.removeData("ui-tooltip-id"), (i2 = C.trim(i2.join(" "))) ? t2.attr("aria-describedby", i2) : t2.removeAttr("aria-describedby");
+      -1 !== e && i2.splice(e, 1), t2.removeData("ui-tooltip-id"), (i2 = C.trim(i2.join(" "))) ? t2.attr("aria-describedby", i2) : t2.removeAttr("aria-describedby");
     }, _create: function() {
       this._on({ mouseover: "open", focusin: "open" }), this.tooltips = {}, this.parents = {}, this.liveRegion = C("<div>").attr({ role: "log", "aria-live": "assertive", "aria-relevant": "additions" }).appendTo(this.document[0].body), this._addClass(this.liveRegion, null, "ui-helper-hidden-accessible"), this.disabledTitles = C([]);
     }, _setOption: function(t2, e) {
       var i2 = this;
-      this._super(t2, e), t2 === "content" && C.each(this.tooltips, function(t3, e2) {
+      this._super(t2, e), "content" === t2 && C.each(this.tooltips, function(t3, e2) {
         i2._updateContent(e2.element);
       });
     }, _setOptionDisabled: function(t2) {
@@ -264,13 +264,13 @@
       }), this.disabledTitles = C([]);
     }, open: function(t2) {
       var i2 = this, e = C(t2 ? t2.target : this.element).closest(this.options.items);
-      e.length && !e.data("ui-tooltip-id") && (e.attr("title") && e.data("ui-tooltip-title", e.attr("title")), e.data("ui-tooltip-open", true), t2 && t2.type === "mouseover" && e.parents().each(function() {
+      e.length && !e.data("ui-tooltip-id") && (e.attr("title") && e.data("ui-tooltip-title", e.attr("title")), e.data("ui-tooltip-open", true), t2 && "mouseover" === t2.type && e.parents().each(function() {
         var t3, e2 = C(this);
         e2.data("ui-tooltip-open") && ((t3 = C.Event("blur")).target = t3.currentTarget = this, i2.close(t3, true)), e2.attr("title") && (e2.uniqueId(), i2.parents[this.id] = { element: this, title: e2.attr("title") }, e2.attr("title", ""));
       }), this._registerCloseHandlers(t2, e), this._updateContent(e, t2));
     }, _updateContent: function(e, i2) {
       var t2 = this.options.content, o2 = this, n2 = i2 ? i2.type : null;
-      if (typeof t2 == "string" || t2.nodeType || t2.jquery)
+      if ("string" == typeof t2 || t2.nodeType || t2.jquery)
         return this._open(i2, e, t2);
       (t2 = t2.call(e[0], function(t3) {
         o2._delay(function() {
@@ -282,7 +282,7 @@
       function r2(t3) {
         l2.of = t3, n2.is(":hidden") || n2.position(l2);
       }
-      i2 && ((o2 = this._find(e)) ? o2.tooltip.find(".ui-tooltip-content").html(i2) : (e.is("[title]") && (t2 && t2.type === "mouseover" ? e.attr("title", "") : e.removeAttr("title")), o2 = this._tooltip(e), n2 = o2.tooltip, this._addDescribedBy(e, n2.attr("id")), n2.find(".ui-tooltip-content").html(i2), this.liveRegion.children().hide(), (i2 = C("<div>").html(n2.find(".ui-tooltip-content").html())).removeAttr("name").find("[name]").removeAttr("name"), i2.removeAttr("id").find("[id]").removeAttr("id"), i2.appendTo(this.liveRegion), this.options.track && t2 && /^mouse/.test(t2.type) ? (this._on(this.document, { mousemove: r2 }), r2(t2)) : n2.position(C.extend({ of: e }, this.options.position)), n2.hide(), this._show(n2, this.options.show), this.options.track && this.options.show && this.options.show.delay && (s2 = this.delayedShow = setInterval(function() {
+      i2 && ((o2 = this._find(e)) ? o2.tooltip.find(".ui-tooltip-content").html(i2) : (e.is("[title]") && (t2 && "mouseover" === t2.type ? e.attr("title", "") : e.removeAttr("title")), o2 = this._tooltip(e), n2 = o2.tooltip, this._addDescribedBy(e, n2.attr("id")), n2.find(".ui-tooltip-content").html(i2), this.liveRegion.children().hide(), (i2 = C("<div>").html(n2.find(".ui-tooltip-content").html())).removeAttr("name").find("[name]").removeAttr("name"), i2.removeAttr("id").find("[id]").removeAttr("id"), i2.appendTo(this.liveRegion), this.options.track && t2 && /^mouse/.test(t2.type) ? (this._on(this.document, { mousemove: r2 }), r2(t2)) : n2.position(C.extend({ of: e }, this.options.position)), n2.hide(), this._show(n2, this.options.show), this.options.track && this.options.show && this.options.show.delay && (s2 = this.delayedShow = setInterval(function() {
         n2.is(":visible") && (r2(l2.of), clearInterval(s2));
       }, C.fx.interval)), this._trigger("open", t2, { tooltip: n2 })));
     }, _registerCloseHandlers: function(t2, e) {
@@ -291,12 +291,12 @@
       } };
       e[0] !== this.element[0] && (i2.remove = function() {
         this._removeTooltip(this._find(e).tooltip);
-      }), t2 && t2.type !== "mouseover" || (i2.mouseleave = "close"), t2 && t2.type !== "focusin" || (i2.focusout = "close"), this._on(true, e, i2);
+      }), t2 && "mouseover" !== t2.type || (i2.mouseleave = "close"), t2 && "focusin" !== t2.type || (i2.focusout = "close"), this._on(true, e, i2);
     }, close: function(t2) {
       var e, i2 = this, o2 = C(t2 ? t2.currentTarget : this.element), n2 = this._find(o2);
       n2 ? (e = n2.tooltip, n2.closing || (clearInterval(this.delayedShow), o2.data("ui-tooltip-title") && !o2.attr("title") && o2.attr("title", o2.data("ui-tooltip-title")), this._removeDescribedBy(o2), n2.hiding = true, e.stop(true), this._hide(e, this.options.hide, function() {
         i2._removeTooltip(C(this));
-      }), o2.removeData("ui-tooltip-open"), this._off(o2, "mouseleave focusout keyup"), o2[0] !== this.element[0] && this._off(o2, "remove"), this._off(this.document, "mousemove"), t2 && t2.type === "mouseleave" && C.each(this.parents, function(t3, e2) {
+      }), o2.removeData("ui-tooltip-open"), this._off(o2, "mouseleave focusout keyup"), o2[0] !== this.element[0] && this._off(o2, "remove"), this._off(this.document, "mousemove"), t2 && "mouseleave" === t2.type && C.each(this.parents, function(t3, e2) {
         C(e2.element).attr("title", e2.title), delete i2.parents[t3];
       }), n2.closing = true, this._trigger("close", t2, { tooltip: e }), n2.hiding || (n2.closing = false))) : o2.removeData("ui-tooltip-open");
     }, _tooltip: function(t2) {
@@ -316,14 +316,14 @@
         var i2 = C.Event("blur"), e = e.element;
         i2.target = i2.currentTarget = e[0], o2.close(i2, true), C("#" + t2).remove(), e.data("ui-tooltip-title") && (e.attr("title") || e.attr("title", e.data("ui-tooltip-title")), e.removeData("ui-tooltip-title"));
       }), this.liveRegion.remove();
-    } }), C.uiBackCompat !== false && C.widget("ui.tooltip", C.ui.tooltip, { options: { tooltipClass: null }, _tooltip: function() {
+    } }), false !== C.uiBackCompat && C.widget("ui.tooltip", C.ui.tooltip, { options: { tooltipClass: null }, _tooltip: function() {
       var t2 = this._superApply(arguments);
       return this.options.tooltipClass && t2.tooltip.addClass(this.options.tooltipClass), t2;
     } });
     C.ui.tooltip;
   });
 
-  // ns-hugo:/builds/devops-faith/website/assets/js/cookies.js
+  // ns-hugo:/site/assets/js/cookies.js
   var eucookielaw_data = {
     euCookieSet: null,
     autoBlock: "0",
@@ -480,20 +480,26 @@
     });
   });
   function scrollCarouselToEnd(carousel) {
-    carousel.animate({ scrollLeft: carousel.get(0).scrollWidth - carousel.width() }, {
-      duration: 3e4,
-      complete: function() {
-        scrollCarouselToStart(carousel);
+    carousel.animate(
+      { scrollLeft: carousel.get(0).scrollWidth - carousel.width() },
+      {
+        duration: 3e4,
+        complete: function() {
+          scrollCarouselToStart(carousel);
+        }
       }
-    });
+    );
   }
   function scrollCarouselToStart(carousel) {
-    carousel.animate({ scrollLeft: 0 }, {
-      duration: 3e4,
-      complete: function() {
-        scrollCarouselToEnd(carousel);
+    carousel.animate(
+      { scrollLeft: 0 },
+      {
+        duration: 3e4,
+        complete: function() {
+          scrollCarouselToEnd(carousel);
+        }
       }
-    });
+    );
   }
 })();
 /*! jQuery UI - v1.12.1 - 2021-05-18
