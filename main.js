@@ -374,9 +374,9 @@
       var cookiestring = "euCookie=set;";
       if (expireTimer > 0) {
         expire.setTime(today.getTime() + expireTimer * 24 * 60 * 60 * 1e3);
-        cookiestring = "euCookie=set; " + networkShareURL + "expires=" + expire.toUTCString() + "; path=/";
+        cookiestring = "euCookie=set; SameSite=Strict; " + networkShareURL + "expires=" + expire.toUTCString() + "; path=/";
       } else {
-        cookiestring = "euCookie=set; " + networkShareURL + "path=/";
+        cookiestring = "euCookie=set; SameSite=Strict; " + networkShareURL + "path=/";
       }
       document.cookie = cookiestring;
       $(".pea_cook_wrapper").addClass("hidden");
