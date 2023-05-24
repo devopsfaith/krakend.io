@@ -478,6 +478,11 @@
         document.body.removeChild(popover);
       }, 3500);
     });
+    $(".prose h2, .prose h3").each(function() {
+      if (this.id) {
+        $("<a>", { href: "#" + this.id, text: "#", class: "anchor" }).prependTo(this);
+      }
+    });
   });
   function scrollCarouselToEnd(carousel) {
     carousel.animate(
