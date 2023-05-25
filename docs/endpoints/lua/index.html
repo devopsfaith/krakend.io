@@ -115,7 +115,7 @@ v2.3.2 <span class="flex-none uppercase bg-denim-200 text-gray-600 text-xs track
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></div><p>Another example <strong>setting a cookie from Lua</strong>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nt>&#34;extra_config&#34;</span><span class=p>:</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=nt>&#34;modifier/lua-proxy&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;modifier/lua-backend&#34;</span><span class=p>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>            <span class=nt>&#34;post&#34;</span><span class=p>:</span> <span class=s2>&#34;local r = response.load(); r:headers(&#39;Set-Cookie&#39;, &#39;key1=&#39;.. r:data(&#39;response&#39;));&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>            <span class=nt>&#34;allow_open_libs&#34;</span><span class=p>:</span> <span class=kc>true</span>
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
