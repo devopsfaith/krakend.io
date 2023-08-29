@@ -3,6 +3,7 @@
     "$id": "https://www.krakend.io/schema/v2.4/plugin/virtualhost.json",
     "title": "Enterprise only. The Virtual Host plugin allows you to run different configurations of KrakenD endpoints based on the host accessing the server.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
     "type": "object",
+    "deprecated": true,
     "additionalProperties": false,
     "patternProperties": {
         "^[@$_#]": {}
