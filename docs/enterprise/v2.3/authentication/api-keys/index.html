@@ -227,9 +227,6 @@ Content-Length: 18
 </span></span><span class=line><span class=cl>            <span class=nt>&#34;endpoint&#34;</span><span class=p>:</span> <span class=s2>&#34;/custom-header&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>            <span class=nt>&#34;backend&#34;</span><span class=p>:</span> <span class=p>[</span>
 </span></span><span class=line><span class=cl>                <span class=p>{</span>
-</span></span><span class=line><span class=cl>                    <span class=nt>&#34;@comment&#34;</span><span class=p>:</span> <span class=s2>&#34;Instead of the Authorization header, we will use X-ADMIN-KEY&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>                    <span class=nt>&#34;identifier&#34;</span><span class=p>:</span> <span class=s2>&#34;X-User-Key&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>                    <span class=nt>&#34;strategy&#34;</span><span class=p>:</span> <span class=s2>&#34;header&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>                    <span class=nt>&#34;url_pattern&#34;</span><span class=p>:</span> <span class=s2>&#34;/__debug/custom-header&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>                    <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=p>[</span>
 </span></span><span class=line><span class=cl>                        <span class=s2>&#34;http://localhost:8080&#34;</span>
@@ -240,10 +237,13 @@ Content-Length: 18
 </span></span><span class=line><span class=cl>                <span class=nt>&#34;auth/api-keys&#34;</span><span class=p>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>                    <span class=nt>&#34;roles&#34;</span><span class=p>:</span> <span class=p>[</span>
 </span></span><span class=line><span class=cl>                        <span class=s2>&#34;admin&#34;</span>
-</span></span><span class=line><span class=cl>                    <span class=p>]</span>
+</span></span><span class=line><span class=cl>                    <span class=p>],</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;@comment&#34;</span><span class=p>:</span> <span class=s2>&#34;Instead of the Authorization header, we will use X-ADMIN-KEY&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;identifier&#34;</span><span class=p>:</span> <span class=s2>&#34;X-User-Key&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;strategy&#34;</span><span class=p>:</span> <span class=s2>&#34;header&#34;</span>
 </span></span><span class=line><span class=cl>                <span class=p>}</span>
 </span></span><span class=line><span class=cl>            <span class=p>}</span>
-</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=p>]</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></div><p>In this example, we have enabled two different API users. One with key <code>4d2c61e1-34c4-e96c-9456-15bd983c5019</code> (let&rsquo;s say a customer of <em>ACME Inc.</em>) and another one with the key <code>58427514-be32-0b52-b7c6-d01fada30497</code> (an administrator of my company).</p><p>Both users share the role <code>users</code>, and they can access all the protected endpoints as this role is included. Nevertheless, the <code>/admin</code> endpoint is reachable by the administrator only, as the role &ldquo;admin&rdquo; is required.</p><p>The endpoint <code>/public</code> is always accessible, with or without the <code>Authorization</code> header, as it does not include the API key middleware configuration.</p><p>Finally, all endpoints expected the <code>Authorization</code> header, but in the endpoint <code>/custom-header</code>, we decided to use a different one and override it for this endpoint only. Therefore, we will use the <code>X-User-Key</code> header instead.</p><p>And now some sample interactions:</p><div class="rounded-lg shadow-md terminal"><div class="bg-gradient-to-b from-gray-100 to-gray-300 border border-gray-300 text-center py-1 rounded-t-lg text-sm">Accessing the /user endpoint with a valid user (Bearer)&nbsp;</div><div class="font-mono bg-gradient-to-br from-gray-900 to-gray-700 text-gray-200 rounded-b-lg p-4"><pre><span class="text-purple-400 mr-2">$</span>curl -H&#39;Authorization: Bearer 4d2c61e1-34c4-e96c-9456-15bd983c5019&#39; http://localhost:8080/user
