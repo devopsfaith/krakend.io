@@ -370,7 +370,7 @@
       }
     }
     function createCookie() {
-      var today = new Date(), expire = new Date();
+      var today = /* @__PURE__ */ new Date(), expire = /* @__PURE__ */ new Date();
       var cookiestring = "euCookie=set;";
       if (expireTimer > 0) {
         expire.setTime(today.getTime() + expireTimer * 24 * 60 * 60 * 1e3);
