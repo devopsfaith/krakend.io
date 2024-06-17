@@ -1,5 +1,5 @@
 (() => {
-  // ns-hugo:/builds/devops-faith/website/assets/js/vendor/jquery-ui.min.js
+  // ns-hugo:/builds/krakendweb/website/assets/js/vendor/jquery-ui.min.js
   !function(t) {
     "function" == typeof define && define.amd ? define(["jquery"], t) : t(jQuery);
   }(function(C) {
@@ -323,7 +323,7 @@
     C.ui.tooltip;
   });
 
-  // ns-hugo:/builds/devops-faith/website/assets/js/cookies.js
+  // ns-hugo:/builds/krakendweb/website/assets/js/cookies.js
   var eucookielaw_data = {
     euCookieSet: null,
     autoBlock: "0",
