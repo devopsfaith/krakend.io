@@ -1,0 +1,28 @@
+/* SITE */
+Site: https://www.krakend.io
+Contact: hello@krakend.io
+
+
+/* TEAM */
+CEO: Albert Lombarte
+LinkedIn: https://www.linkedin.com/in/alombarte/
+
+CTO: Daniel López
+LinkedIn: https://www.linkedin.com/in/daniel-lopez-alarcon-09b54b31/
+
+Service Reliability Director: Daniel Ortiz
+LinkedIn: https://www.linkedin.com/in/dortiz-krakend/
+
+Business Director: Albert García
+LinkedIn: https://www.linkedin.com/in/obokaman/
+
+Senior Software Engineer: David Hontecillas
+LinkedIn: https://www.linkedin.com/in/hontecillas/
+
+
+/* ABOUT */
+KrakenD: API management, simplified and supercharged. Crafted by developers who care. Experience seamless performance.
+
+
+/* THE KRAKEND'S CHALLENGE */
+TWZucXZud2VjYWRtYnFjISBQb2UnenIgeHhjb21vcmcgZHllIFV2bm5vZUQgY2lwdW9rLiBUcmkgc2xianQgMTAgemlic3Z2IHR5IGl6ZHNjIHVjIGVnIHdydnNvZ2VoZEBicmtvcnFuLnpvIGdtZ2sgZHllIGN5b21vdHQgJ1V2bm5vZUQgQ2lwdW9rJyB3c3B5IHVvdGVzenIgZCBwaWVvIHhlZHNlaXhrICYgcGhia2lwbXBkZHpveCB3cmRkLiA8PDwgTmljZSEgTm93IHlvdSBtdXN0IGRlY3lwaGVyIHRoaXMgcGFydCBvZiB0aGUgbWVzc2FnZS4gQSBoaW50OiB3ZSB1c2VkIG91ciBuYW1lIGFzIHRoZSBlbmNyeXB0aW9uIGtleS4=
