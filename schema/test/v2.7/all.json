@@ -1,6 +1,6 @@
 {
     "description": "Full JSON Schema test",
-    "schema": "https://www.krakend.io/schema/v2.7/krakend.json",
+    "target": "https://www.krakend.io/schema/v2.7/krakend.json",
     "tests": [
         {
             "description": "Full test-case",
@@ -20,6 +20,7 @@
                 "output_encoding": "fast-json",
                 "read_timeout": "10s",
                 "write_timeout": "10s",
+                "dns_cache_ttl": "30s",
                 "dialer_timeout": "10s",
                 "dialer_keep_alive": "15s",
                 "dialer_fallback_delay": "300ms",
@@ -27,6 +28,7 @@
                 "disable_keep_alives": true,
                 "max_idle_connections": 0,
                 "max_idle_connections_per_host": 2,
+                "max_header_bytes": 10000000,
                 "idle_connection_timeout": "10s",
                 "response_header_timeout": "10s",
                 "expect_continue_timeout": "0s",
@@ -884,6 +886,7 @@
                             },
                             "auth/signer": {
                                 "alg": "EdDSA",
+                                "leeway": "1s",
                                 "cipher_suites": [
                                     49199,
                                     49195,
