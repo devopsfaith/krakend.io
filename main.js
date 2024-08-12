@@ -7,19 +7,17 @@
     C.ui.version = "1.12.1";
     var n, i = 0, r = Array.prototype.slice;
     C.cleanData = (n = C.cleanData, function(t2) {
-      for (var e, i2, o2 = 0; null != (i2 = t2[o2]); o2++)
-        try {
-          (e = C._data(i2, "events")) && e.remove && C(i2).triggerHandler("remove");
-        } catch (t3) {
-        }
+      for (var e, i2, o2 = 0; null != (i2 = t2[o2]); o2++) try {
+        (e = C._data(i2, "events")) && e.remove && C(i2).triggerHandler("remove");
+      } catch (t3) {
+      }
       n(t2);
     }), C.widget = function(t2, i2, e) {
       var o2, n2, s2, l2 = {}, r2 = t2.split(".")[0], a2 = r2 + "-" + (t2 = t2.split(".")[1]);
       return e || (e = i2, i2 = C.Widget), C.isArray(e) && (e = C.extend.apply(null, [{}].concat(e))), C.expr[":"][a2.toLowerCase()] = function(t3) {
         return !!C.data(t3, a2);
       }, C[r2] = C[r2] || {}, o2 = C[r2][t2], n2 = C[r2][t2] = function(t3, e2) {
-        if (!this._createWidget)
-          return new n2(t3, e2);
+        if (!this._createWidget) return new n2(t3, e2);
         arguments.length && this._createWidget(t3, e2);
       }, C.extend(n2, o2, { version: e.version, _proto: C.extend({}, e), _childConstructors: [] }), (s2 = new i2()).options = C.widget.extend({}, s2.options), C.each(e, function(e2, o3) {
         function n3() {
@@ -37,9 +35,7 @@
         C.widget(i3.namespace + "." + i3.widgetName, n2, e2._proto);
       }), delete o2._childConstructors) : i2._childConstructors.push(n2), C.widget.bridge(t2, n2), n2;
     }, C.widget.extend = function(t2) {
-      for (var e, i2, o2 = r.call(arguments, 1), n2 = 0, s2 = o2.length; n2 < s2; n2++)
-        for (e in o2[n2])
-          i2 = o2[n2][e], o2[n2].hasOwnProperty(e) && void 0 !== i2 && (C.isPlainObject(i2) ? t2[e] = C.isPlainObject(t2[e]) ? C.widget.extend({}, t2[e], i2) : C.widget.extend({}, i2) : t2[e] = i2);
+      for (var e, i2, o2 = r.call(arguments, 1), n2 = 0, s2 = o2.length; n2 < s2; n2++) for (e in o2[n2]) i2 = o2[n2][e], o2[n2].hasOwnProperty(e) && void 0 !== i2 && (C.isPlainObject(i2) ? t2[e] = C.isPlainObject(t2[e]) ? C.widget.extend({}, t2[e], i2) : C.widget.extend({}, i2) : t2[e] = i2);
       return t2;
     }, C.widget.bridge = function(s2, e) {
       var l2 = e.prototype.widgetFullName || s2;
@@ -69,31 +65,24 @@
       return this.element;
     }, option: function(t2, e) {
       var i2, o2, n2, s2 = t2;
-      if (0 === arguments.length)
-        return C.widget.extend({}, this.options);
-      if ("string" == typeof t2)
-        if (s2 = {}, t2 = (i2 = t2.split(".")).shift(), i2.length) {
-          for (o2 = s2[t2] = C.widget.extend({}, this.options[t2]), n2 = 0; n2 < i2.length - 1; n2++)
-            o2[i2[n2]] = o2[i2[n2]] || {}, o2 = o2[i2[n2]];
-          if (t2 = i2.pop(), 1 === arguments.length)
-            return void 0 === o2[t2] ? null : o2[t2];
-          o2[t2] = e;
-        } else {
-          if (1 === arguments.length)
-            return void 0 === this.options[t2] ? null : this.options[t2];
-          s2[t2] = e;
-        }
+      if (0 === arguments.length) return C.widget.extend({}, this.options);
+      if ("string" == typeof t2) if (s2 = {}, t2 = (i2 = t2.split(".")).shift(), i2.length) {
+        for (o2 = s2[t2] = C.widget.extend({}, this.options[t2]), n2 = 0; n2 < i2.length - 1; n2++) o2[i2[n2]] = o2[i2[n2]] || {}, o2 = o2[i2[n2]];
+        if (t2 = i2.pop(), 1 === arguments.length) return void 0 === o2[t2] ? null : o2[t2];
+        o2[t2] = e;
+      } else {
+        if (1 === arguments.length) return void 0 === this.options[t2] ? null : this.options[t2];
+        s2[t2] = e;
+      }
       return this._setOptions(s2), this;
     }, _setOptions: function(t2) {
-      for (var e in t2)
-        this._setOption(e, t2[e]);
+      for (var e in t2) this._setOption(e, t2[e]);
       return this;
     }, _setOption: function(t2, e) {
       return "classes" === t2 && this._setOptionClasses(e), this.options[t2] = e, "disabled" === t2 && this._setOptionDisabled(e), this;
     }, _setOptionClasses: function(t2) {
       var e, i2, o2;
-      for (e in t2)
-        o2 = this.classesElementLookup[e], t2[e] !== this.options.classes[e] && o2 && o2.length && (i2 = C(o2.get()), this._removeClass(o2, e), i2.addClass(this._classes({ element: i2, keys: e, classes: t2, add: true })));
+      for (e in t2) o2 = this.classesElementLookup[e], t2[e] !== this.options.classes[e] && o2 && o2.length && (i2 = C(o2.get()), this._removeClass(o2, e), i2.addClass(this._classes({ element: i2, keys: e, classes: t2, add: true })));
     }, _setOptionDisabled: function(t2) {
       this._toggleClass(this.widget(), this.widgetFullName + "-disabled", null, !!t2), t2 && (this._removeClass(this.hoverable, null, "ui-state-hover"), this._removeClass(this.focusable, null, "ui-state-focus"));
     }, enable: function() {
@@ -103,8 +92,7 @@
     }, _classes: function(n2) {
       var s2 = [], l2 = this;
       function t2(t3, e) {
-        for (var i2, o2 = 0; o2 < t3.length; o2++)
-          i2 = l2.classesElementLookup[t3[o2]] || C(), i2 = n2.add ? C(C.unique(i2.get().concat(n2.element.get()))) : C(i2.not(n2.element).get()), l2.classesElementLookup[t3[o2]] = i2, s2.push(t3[o2]), e && n2.classes[t3[o2]] && s2.push(n2.classes[t3[o2]]);
+        for (var i2, o2 = 0; o2 < t3.length; o2++) i2 = l2.classesElementLookup[t3[o2]] || C(), i2 = n2.add ? C(C.unique(i2.get().concat(n2.element.get()))) : C(i2.not(n2.element).get()), l2.classesElementLookup[t3[o2]] = i2, s2.push(t3[o2]), e && n2.classes[t3[o2]] && s2.push(n2.classes[t3[o2]]);
       }
       return n2 = C.extend({ element: this.element, classes: this.options.classes || {} }, n2), this._on(n2.element, { remove: "_untrackClassesElement" }), n2.keys && t2(n2.keys.match(/\S+/g) || [], true), n2.extra && t2(n2.extra.match(/\S+/g) || []), s2.join(" ");
     }, _untrackClassesElement: function(i2) {
@@ -124,8 +112,7 @@
       var l2, r2 = this;
       "boolean" != typeof n2 && (t2 = s2, s2 = n2, n2 = false), t2 ? (s2 = l2 = C(s2), this.bindings = this.bindings.add(s2)) : (t2 = s2, s2 = this.element, l2 = this.widget()), C.each(t2, function(t3, e) {
         function i2() {
-          if (n2 || true !== r2.options.disabled && !C(this).hasClass("ui-state-disabled"))
-            return ("string" == typeof e ? r2[e] : e).apply(r2, arguments);
+          if (n2 || true !== r2.options.disabled && !C(this).hasClass("ui-state-disabled")) return ("string" == typeof e ? r2[e] : e).apply(r2, arguments);
         }
         "string" != typeof e && (i2.guid = e.guid = e.guid || i2.guid || C.guid++);
         var o2 = t3.match(/^([\w:-]*)\s*(.*)$/), t3 = o2[1] + r2.eventNamespace, o2 = o2[2];
@@ -152,9 +139,7 @@
       } });
     }, _trigger: function(t2, e, i2) {
       var o2, n2, s2 = this.options[t2];
-      if (i2 = i2 || {}, (e = C.Event(e)).type = (t2 === this.widgetEventPrefix ? t2 : this.widgetEventPrefix + t2).toLowerCase(), e.target = this.element[0], n2 = e.originalEvent)
-        for (o2 in n2)
-          o2 in e || (e[o2] = n2[o2]);
+      if (i2 = i2 || {}, (e = C.Event(e)).type = (t2 === this.widgetEventPrefix ? t2 : this.widgetEventPrefix + t2).toLowerCase(), e.target = this.element[0], n2 = e.originalEvent) for (o2 in n2) o2 in e || (e[o2] = n2[o2]);
       return this.element.trigger(e, i2), !(C.isFunction(s2) && false === s2.apply(this.element[0], [e].concat(i2)) || e.isDefaultPrevented());
     } }, C.each({ show: "fadeIn", hide: "fadeOut" }, function(s2, l2) {
       C.Widget.prototype["_" + s2] = function(e, t2, i2) {
@@ -175,8 +160,7 @@
       return parseInt(C.css(t2, e), 10) || 0;
     }
     W = Math.max, T = Math.abs, s = /left|center|right/, l = /top|center|bottom/, a = /[\+\-]\d+(\.[\d]+)?%?/, h = /^\w+/, d = /%$/, E = C.fn.position, C.position = { scrollbarWidth: function() {
-      if (void 0 !== o)
-        return o;
+      if (void 0 !== o) return o;
       var t2, e = C("<div style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>"), i2 = e.children()[0];
       return C("body").append(e), t2 = i2.offsetWidth, e.css("overflow", "scroll"), t2 === (i2 = i2.offsetWidth) && (i2 = e[0].clientWidth), e.remove(), o = t2 - i2;
     }, getScrollInfo: function(t2) {
@@ -186,8 +170,7 @@
       var e = C(t2 || window), i2 = C.isWindow(e[0]), o2 = !!e[0] && 9 === e[0].nodeType;
       return { element: e, isWindow: i2, isDocument: o2, offset: !i2 && !o2 ? C(t2).offset() : { left: 0, top: 0 }, scrollLeft: e.scrollLeft(), scrollTop: e.scrollTop(), width: e.outerWidth(), height: e.outerHeight() };
     } }, C.fn.position = function(u) {
-      if (!u || !u.of)
-        return E.apply(this, arguments);
+      if (!u || !u.of) return E.apply(this, arguments);
       u = C.extend({}, u);
       var c, p, f, g, m, t2, v = C(u.of), _ = C.position.getWithinInfo(u.within), y = C.position.getScrollInfo(_), w = (u.collision || "flip").split(" "), b = {}, e = 9 === (t2 = (e = v)[0]).nodeType ? { width: e.width(), height: e.height(), offset: { top: 0, left: 0 } } : C.isWindow(t2) ? { width: e.width(), height: e.height(), offset: { top: e.scrollTop(), left: e.scrollLeft() } } : t2.preventDefault ? { width: 0, height: 0, offset: { top: t2.pageY, left: t2.pageX } } : { width: e.outerWidth(), height: e.outerHeight(), offset: e.offset() };
       return v[0].preventDefault && (u.at = "left top"), p = e.width, f = e.height, g = e.offset, m = C.extend({}, g), C.each(["my", "at"], function() {
@@ -254,8 +237,7 @@
         i2.target = i2.currentTarget = e.element[0], o2.close(i2, true);
       }), this.disabledTitles = this.disabledTitles.add(this.element.find(this.options.items).addBack().filter(function() {
         var t2 = C(this);
-        if (t2.is("[title]"))
-          return t2.data("ui-tooltip-title", t2.attr("title")).removeAttr("title");
+        if (t2.is("[title]")) return t2.data("ui-tooltip-title", t2.attr("title")).removeAttr("title");
       }));
     }, _enable: function() {
       this.disabledTitles.each(function() {
@@ -270,8 +252,7 @@
       }), this._registerCloseHandlers(t2, e), this._updateContent(e, t2));
     }, _updateContent: function(e, i2) {
       var t2 = this.options.content, o2 = this, n2 = i2 ? i2.type : null;
-      if ("string" == typeof t2 || t2.nodeType || t2.jquery)
-        return this._open(i2, e, t2);
+      if ("string" == typeof t2 || t2.nodeType || t2.jquery) return this._open(i2, e, t2);
       (t2 = t2.call(e[0], function(t3) {
         o2._delay(function() {
           e.data("ui-tooltip-open") && (i2 && (i2.type = n2), this._open(i2, e, t3));
@@ -418,13 +399,10 @@
     $("div.carousel button.carousel-prev").click(function() {
       var carousel = $(this).parents("div.carousel").find("div.carousel-content");
       var active_node = carousel.find("div.active");
-      if (active_node.length === 0)
-        active_node = carousel.find("div:first");
+      if (active_node.length === 0) active_node = carousel.find("div:first");
       var prev_node = active_node.prev();
-      if (prev_node.length === 0)
-        return;
-      if (prev_node.prev().length === 0)
-        $(this).addClass("invisible");
+      if (prev_node.length === 0) return;
+      if (prev_node.prev().length === 0) $(this).addClass("invisible");
       $("div.carousel div button.carousel-next").removeClass("invisible");
       active_node.removeClass("active");
       prev_node.addClass("active");
@@ -433,13 +411,10 @@
     $("div.carousel div button.carousel-next").click(function() {
       var carousel = $(this).parents("div.carousel").find("div.carousel-content");
       var active_node = carousel.find("div.active");
-      if (active_node.length === 0)
-        active_node = carousel.find("div:first");
+      if (active_node.length === 0) active_node = carousel.find("div:first");
       var next_node = active_node.next();
-      if (next_node.length === 0)
-        return;
-      if (next_node.next().length === 0)
-        $(this).addClass("invisible");
+      if (next_node.length === 0) return;
+      if (next_node.next().length === 0) $(this).addClass("invisible");
       $("div.carousel div button.carousel-prev").removeClass("invisible");
       active_node.removeClass("active");
       next_node.addClass("active");
@@ -447,8 +422,7 @@
     });
     $("div.carousel div.carousel-content").animate({ height: $("div.carousel div.carousel-content > div:first").height() + 136 });
     var automatic_carousel = $("div.carousel.auto");
-    if (automatic_carousel.length)
-      scrollCarouselToEnd(automatic_carousel);
+    if (automatic_carousel.length) scrollCarouselToEnd(automatic_carousel);
     $("a.copy-link").click(function(e) {
       e.preventDefault();
       let href = this.href;
