@@ -1198,6 +1198,17 @@
           "default": false,
           "type": "boolean"
         },
+        "failed_jwk_key_cooldown": {
+          "title": "Failed JWK Key cooldown",
+          "description": "When a request comes with a token declaring an unknown `kid` (or the key strategy you choose), and the JWK is in a remote destination, KrakenD downloads the JWK from the Identity Provider for its recognition. Suppose there is a network failure, or the key is not in the list (e.g., you rotated the keys without anticipation). In that case, you can tell the gateway not to contact the Identity Provider again during the time specified here. We recommend setting this value, even with a low time (e.g., `10s`), to prevent misconfigurations from hammering your Identity Providers. Any values under one second are ignored.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+          "examples": [
+            "1m",
+            "10s",
+            "1h"
+          ],
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
         "issuer": {
           "title": "Issuer",
           "description": "When set, tokens not matching the issuer are rejected.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
@@ -1893,6 +1904,11 @@
             "camelCase",
             "snake_case"
           ]
+        },
+        "use_alternate_host_on_error": {
+          "title": "Use alternate host on error",
+          "description": "When `true`, before sending a message to a host, it checks if the connection status is in a \"transient failure\" or \"failure\" state and tries to use a different host (from the service discovery or randomly from the list of hosts). If the connection is in a valid state, but an error happens when sending the gRPC message, it also tries to use a different host to retry sending the message. Depending on the host list, the retry attempts may go to the same host initially in a \"bad state\".\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+          "type": "boolean"
         },
         "use_request_body": {
           "title": "Use body",
