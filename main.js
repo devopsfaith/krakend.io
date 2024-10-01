@@ -378,6 +378,7 @@
       var hide = $(this).data("hide");
       if (hide) {
         $(hide).slideUp();
+        $(hide).siblings().removeClass("active");
       }
       var target = $(this).attr("data-target");
       if ($(target).is(":visible")) {
@@ -387,6 +388,8 @@
         $(this).filter(".open-arrow").removeClass("open-arrow").addClass("close-arrow");
         $(target).slideDown();
       }
+      $(this).toggleClass("active");
+      $(this).toggleClass("active");
     });
     $('[data-toggle="modal"]').click(function() {
       $('[role="dialog"]').not(".hidden").addClass("hidden");
@@ -457,6 +460,16 @@
         $("<a>", { href: "#" + this.id, text: "#", class: "anchor" }).prependTo(this);
       }
     });
+    $(".copy-clipboard").on("click", function() {
+      const target = $($(this).attr("data-id"));
+      const codeToCopy = target?.text() || "";
+      copyTextToClipBoard(codeToCopy, () => {
+        this.classList.add("copy-success");
+        setTimeout(() => {
+          this.classList.remove("copy-success");
+        }, 2e3);
+      });
+    });
   });
   function scrollCarouselToEnd(carousel) {
     carousel.animate(
@@ -479,6 +492,14 @@
         }
       }
     );
+  }
+  function copyTextToClipBoard(text = "", callback) {
+    text = text.trim();
+    navigator.clipboard.writeText(text).then((data) => {
+      if (callback) {
+        callback();
+      }
+    });
   }
 })();
 /*! jQuery UI - v1.12.1 - 2021-05-18
