@@ -389,7 +389,6 @@
         $(target).slideDown();
       }
       $(this).toggleClass("active");
-      $(this).toggleClass("active");
     });
     $('[data-toggle="modal"]').click(function() {
       $('[role="dialog"]').not(".hidden").addClass("hidden");
