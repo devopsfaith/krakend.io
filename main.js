@@ -304,67 +304,6 @@
     C.ui.tooltip;
   });
 
-  // ns-hugo:/github/workspace/assets/js/cookies.js
-  var eucookielaw_data = {
-    euCookieSet: null,
-    autoBlock: "0",
-    expireTimer: "90",
-    scrollConsent: "0",
-    networkShareURL: "",
-    isCookiePage: "",
-    isRefererWebsite: "",
-    deleteCookieUrl: "/?nocookie=1"
-  };
-  $(document).ready(function() {
-    var euCookieSet = eucookielaw_data.euCookieSet;
-    var expireTimer = eucookielaw_data.expireTimer;
-    var scrollConsent = eucookielaw_data.scrollConsent;
-    var networkShareURL = eucookielaw_data.networkShareURL;
-    var isCookiePage = eucookielaw_data.isCookiePage;
-    var isRefererWebsite = eucookielaw_data.isRefererWebsite;
-    var deleteCookieUrl = eucookielaw_data.deleteCookieUrl;
-    var autoBlock = eucookielaw_data.autoBlock;
-    if (document.cookie.indexOf("euCookie") >= 0) {
-      $(".pea_cook_wrapper").addClass("hidden");
-      euCookieSet = 1;
-    } else {
-      $(".pea_cook_wrapper").removeClass("hidden");
-    }
-    if (euCookieSet > 0) {
-      createCookie();
-    }
-    $(".ACCEPT_COOKIES").on("click", function(e) {
-      e.preventDefault();
-      euCookieConsent();
-    });
-    $(window).scroll(function() {
-      if (scrollConsent > 0 && document.cookie.indexOf("euCookie") < 0 && !euCookieSet) {
-        if (!isCookiePage) {
-          euCookieConsent();
-        }
-      }
-    });
-    function euCookieConsent() {
-      createCookie();
-      if (autoBlock == 1) {
-        window.location = window.location;
-      }
-    }
-    function createCookie() {
-      var today = /* @__PURE__ */ new Date(), expire = /* @__PURE__ */ new Date();
-      var cookiestring = "euCookie=set;";
-      if (expireTimer > 0) {
-        expire.setTime(today.getTime() + expireTimer * 24 * 60 * 60 * 1e3);
-        cookiestring = "euCookie=set; SameSite=Strict; " + networkShareURL + "expires=" + expire.toUTCString() + "; path=/";
-      } else {
-        cookiestring = "euCookie=set; SameSite=Strict; " + networkShareURL + "path=/";
-      }
-      document.cookie = cookiestring;
-      $(".pea_cook_wrapper").addClass("hidden");
-      $("#cookiesConsent").addClass("hidden");
-    }
-  });
-
   // <stdin>
   $(document).ready(function() {
     $("#navbarMenu li.dropdown").hover(function() {
