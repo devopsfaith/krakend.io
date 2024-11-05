@@ -314,6 +314,7 @@
     $('[data-toggle="tooltip"]').tooltip();
     $('[data-toggle="collapse"]').click(function(e) {
       e.preventDefault();
+      if ($(".collapsed").has(this).length) return;
       var hide = $(this).data("hide");
       if (hide) {
         $(hide).slideUp();
@@ -408,7 +409,91 @@
         }, 2e3);
       });
     });
+    $(window).on("scroll", function() {
+      const $announcementBar = $("#announcement-bar");
+      if ($announcementBar.length) {
+        const { top, left, bottom, right } = $announcementBar[0].getBoundingClientRect();
+        const windowHeight = $(window).height();
+        const windowWidth = $(window).width();
+        const topVisible = top >= 0;
+        const bottomVisible = bottom <= windowHeight;
+        const leftVisible = left >= 0;
+        const rightVisible = right <= windowWidth;
+        const isAnnouncementBarInViewport = topVisible && bottomVisible && leftVisible && rightVisible;
+        $("body").css("--announcement-bar-height", isAnnouncementBarInViewport ? "40px" : "0px");
+        $(".nav-link.parent.active-tooltip").removeClass("active-tooltip");
+        if ($("#tooltip").is(":visible")) {
+          $("#tooltip").fadeOut();
+        }
+      } else {
+        $("body").css("--announcement-bar-height", "0px");
+      }
+    });
+    window.dispatchEvent(new Event("scroll"));
+    $(document).on("click", function(e) {
+      if (!$(e.target).closest("#tooltip").length && !$(e.target).closest(".nav-link.parent").length) {
+        $(".nav-link.active-tooltip").removeClass("active-tooltip");
+        if ($("#tooltip").is(":visible")) {
+          $("#tooltip").fadeOut();
+        }
+      }
+    });
+    $(".toggle-collapse-sidebar").on("click", function() {
+      const slider = $(".collapse-sidebar");
+      const isCollapsed = slider.hasClass("collapsed");
+      localStorage.setItem("sidebar", isCollapsed ? "" : "collapsed");
+      if (isCollapsed) {
+        $("#tooltip").fadeOut();
+      } else {
+        const activeChildMenu = $(".collapse-sidebar .nav-link.parent.active");
+        if (activeChildMenu) {
+          activeChildMenu.removeClass("active");
+          $(activeChildMenu.data("target")).hide();
+        }
+      }
+      slider.toggleClass("collapsed");
+    });
+    $(".nav-link.parent").on("mouseover", function() {
+      if ($(".collapsed").length && $(window).width() > 767) {
+        $(".nav-link.parent.active-tooltip").not(this).removeClass("active-tooltip");
+        if (!$(this).hasClass("active-tooltip")) {
+          $("#tooltip").fadeIn();
+          $("#tooltip .tooltip-title").html($(this).find(".nav-title").html());
+          $("#tooltip .tooltip-body").addClass("hidden").empty().append($($(this).data("target")).clone().removeAttr("class id").html());
+          $("#tooltip").css({
+            top: this.getBoundingClientRect().top + "px",
+            left: 60 + this.getBoundingClientRect().left + "px"
+          });
+        }
+      }
+    });
+    $(".nav-link.parent").on("click", function(e) {
+      if ($(".collapsed").length && $(window).width() > 767) {
+        $(this).addClass("active-tooltip");
+        $("#tooltip .tooltip-title").html($(this).find(".nav-title").html());
+        $("#tooltip .tooltip-body").removeClass("hidden");
+        adjustTooptipPosition();
+      }
+    });
+    $("#tooltip").on("click", function() {
+      if ($(".collapsed").length && $(window).width() > 767 && $("#tooltip .tooltip-body").hasClass("hidden")) {
+        $("#tooltip .tooltip-body").removeClass("hidden");
+        adjustTooptipPosition();
+      }
+    });
   });
+  function adjustTooptipPosition() {
+    const tooltip = $("#tooltip");
+    const tooltipTopPosition = $("#tooltip")[0].getBoundingClientRect().top;
+    const top = tooltipTopPosition + tooltip.outerHeight(true);
+    if (top > window.innerHeight) {
+      const adjustedPostion = tooltipTopPosition - (top - window.innerHeight + 6);
+      const scrollMarginTop = parseFloat($("body").css("--scroll-margin-top")) + parseFloat($("body").css("--announcement-bar-height"));
+      tooltip.css({
+        top: adjustedPostion < scrollMarginTop ? `${scrollMarginTop}px` : `${adjustedPostion}px`
+      });
+    }
+  }
   function scrollCarouselToEnd(carousel) {
     carousel.animate(
       { scrollLeft: carousel.get(0).scrollWidth - carousel.width() },
