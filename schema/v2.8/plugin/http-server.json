@@ -24,7 +24,10 @@
         "myplugin"
       ],
       "default": [],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "redis-ratelimit": {
       "$ref": "redis-ratelimit.json"
@@ -41,6 +44,5 @@
     "wildcard": {
       "$ref": "wildcard.json"
     }
-  },
-  "additionalProperties": true
+  }
 }

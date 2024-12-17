@@ -171,6 +171,22 @@
                             "*"
                         ],
                         "extra_config": {
+                            "qos/ratelimit/router/redis": {
+                                "connection_pool": "shared_instance",
+                                "on_failure_allow": false,
+                                "max_rate": 10,
+                                "capacity": 10,
+                                "client_max_rate": 10,
+                                "client_capacity": 10,
+                                "every": "1m",
+                                "strategy": "header",
+                                "key": "x-client-id"
+                            },
+                            "documentation/postman": {
+                                "name": "Create book",
+                                "folder": "/Books",
+                                "description": "Books endpoint"
+                            },
                             "qos/ratelimit/tiered": {
                                 "tier_key": "X-Plan",
                                 "tiers": [
@@ -184,6 +200,16 @@
                                             "max_rate": 10000,
                                             "strategy": "header",
                                             "key": "X-Account-Id"
+                                        },
+                                        "redis_ratelimit": {
+                                            "connection_pool": "shared_instance",
+                                            "on_failure_allow": true,
+                                            "client_max_rate": 10,
+                                            "client_capacity": 10,
+                                            "max_rate": 10000,
+                                            "every": "1s",
+                                            "strategy": "header",
+                                            "key": "X-Rate-Client-Id"
                                         }
                                     },
                                     {
@@ -1624,6 +1650,44 @@
                     }
                 ],
                 "extra_config": {
+                    "redis": {
+                        "connection_pools": [
+                            {
+                                "name": "shared_instance",
+                                "address": "redis:6379"
+                            }
+                        ]
+                    },
+                    "qos/ratelimit/service/redis": {
+                        "connection_pool": "shared_instance",
+                        "on_failure_allow": false,
+                        "max_rate": 10,
+                        "capacity": 10,
+                        "client_max_rate": 10,
+                        "client_capacity": 10,
+                        "every": "1m",
+                        "strategy": "header",
+                        "key": "x-client-id"
+                    },
+                    "documentation/postman": {
+                        "name": "Postman doc",
+                        "description": "This is a **sample** server. You can find out more about at [http://blah](http://blah.blah.com) webpage",
+                        "version": "0.3.0",
+                        "folder": [
+                            {
+                                "name": "/Users",
+                                "description": "User endpoints. **in markdown**"
+                            },
+                            {
+                                "name": "/Users/Assets",
+                                "description": "User assets endpoints. **in markdown**"
+                            },
+                            {
+                                "name": "/Books",
+                                "description": "Books endpoints. **in markdown**"
+                            }
+                        ]
+                    },
                     "qos/ratelimit/tiered": {
                         "tier_key": "X-Plan",
                         "tiers": [

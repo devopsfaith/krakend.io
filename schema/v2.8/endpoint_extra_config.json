@@ -57,6 +57,9 @@
     "documentation/openapi": {
       "$ref": "documentation/openapi.json"
     },
+    "documentation/postman": {
+      "$ref": "documentation/postman_endpoint.json"
+    },
     "modifier/jmespath": {
       "$ref": "modifier/jmespath.json"
     },
@@ -100,7 +103,10 @@
           "title": "Flatmap (Array manipulation)",
           "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
           "$ref": "proxy/flatmap.json",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "max_payload": {
           "title": "Maximum Payload",
@@ -159,6 +165,9 @@
       "title": "Router Rate-limiting",
       "description": "The router rate limit feature allows you to set a number of maximum requests per second a KrakenD endpoint will accept.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
       "$ref": "qos/ratelimit/router.json"
+    },
+    "qos/ratelimit/router/redis": {
+      "$ref": "qos/ratelimit/redis.json"
     },
     "qos/ratelimit/tiered": {
       "$ref": "qos/ratelimit/tiered.json"

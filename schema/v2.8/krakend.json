@@ -358,6 +358,7 @@
       "description": "Async agents are routines listening to queues or PubSub systems that react to new events and push data to your backends. Through async agents, you can start a lot of consumers to process your events autonomously.\n\nSee: https://www.krakend.io/docs/async/",
       "type": "array",
       "items": {
+        "type": "object",
         "required": [
           "name",
           "consumer",
@@ -402,11 +403,7 @@
                 "default": 0,
                 "type": "integer"
               }
-            },
-            "patternProperties": {
-              "^[@$_#]": {}
-            },
-            "additionalProperties": false
+            }
           },
           "consumer": {
             "title": "Consumer",
@@ -475,11 +472,7 @@
           "^[@$_#]": {}
         },
         "additionalProperties": false
-      },
-      "patternProperties": {
-        "^[@$_#]": {}
-      },
-      "additionalProperties": false
+      }
     },
     "https://www.krakend.io/schema/v2.8/auth/api-keys.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -596,10 +589,10 @@
           "type": "object",
           "patternProperties": {
             "(.*)": {
-              "type": "string",
-              "additionalProperties": false
+              "type": "string"
             }
-          }
+          },
+          "additionalProperties": false
         }
       },
       "patternProperties": {
@@ -880,7 +873,10 @@
           "examples": [
             "jti"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -994,7 +990,10 @@
         "jwk_fingerprints": {
           "title": "JWK Fingerprints",
           "description": "A list of fingerprints (the unique identifier of the certificate) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "jwk_local_ca": {
           "title": "Local CA",
@@ -1024,7 +1023,10 @@
             "access_token",
             "refresh_token"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "kid": {
           "title": "Kid",
@@ -1368,7 +1370,10 @@
             ]
           ],
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
         },
         "deny": {
           "title": "Deny (data manipulation)",
@@ -1381,7 +1386,10 @@
             ]
           ],
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
         },
         "disable_host_sanitize": {
           "title": "Disable host sanitize",
@@ -1391,7 +1399,7 @@
         },
         "encoding": {
           "title": "Backend Encoding",
-          "description": "Defines your [needed encoding](https://www.krakend.io/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint's `encoding`, or to `json` if not defined anywhere else.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
+          "description": "Defines your [needed encoding](https://www.krakend.io/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint's `encoding`, or to `json` if not defined anywhere else. Notice that `fast-json` and `yaml` are for Enterprise only.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
           "default": "json",
           "enum": [
             "json",
@@ -1400,7 +1408,8 @@
             "xml",
             "rss",
             "string",
-            "no-op"
+            "no-op",
+            "yaml"
           ]
         },
         "extra_config": {
@@ -1623,7 +1632,10 @@
           "examples": [
             "#"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -2066,7 +2078,6 @@
           ]
         }
       ],
-      "minItems": 1,
       "properties": {
         "content_type": {
           "title": "Content-Type",
@@ -2434,7 +2445,10 @@
               "*"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "base_path": {
           "title": "Base path",
@@ -2502,6 +2516,95 @@
             "string"
           ]
         },
+        "header_definition": {
+          "title": "Header definition",
+          "description": "Sets a detailed description for the headers allowed in the endpoint. Make sure to include the same headers in the endpoint's `input_headers`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [
+            [
+              {
+                "description": "The type of content",
+                "name": "Content-Type"
+              }
+            ]
+          ],
+          "type": "array",
+          "items": {
+            "title": "Headers definition",
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "description": {
+                "title": "Name",
+                "description": "The description of the header",
+                "examples": [
+                  "The Content-Type sets the encoding of the request"
+                ],
+                "type": "string"
+              },
+              "type": {
+                "title": "Type",
+                "description": "The type of data according to the OpenAPI spec",
+                "examples": [
+                  "string"
+                ],
+                "default": "string",
+                "enum": [
+                  "integer",
+                  "string",
+                  "bool",
+                  "object",
+                  "array",
+                  "float",
+                  "datetime"
+                ]
+              },
+              "enum": {
+                "title": "Enum",
+                "description": "The allowed values for this header",
+                "examples": [
+                  [
+                    "application/json",
+                    "application/xml"
+                  ]
+                ],
+                "type": "array",
+                "items": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "integer",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": {
+                "title": "Required",
+                "description": "Set to `true` when this query string is required",
+                "default": false,
+                "type": "boolean"
+              },
+              "hide": {
+                "title": "Hide querystring",
+                "description": "Avoids this querystring from showing in the generated documentation",
+                "default": false,
+                "type": "boolean"
+              },
+              "name": {
+                "title": "Name",
+                "description": "The name of the querystring, as declared in `input_query_strings`",
+                "type": "string"
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": {}
+            },
+            "additionalProperties": false
+          }
+        },
         "host": {
           "title": "Host",
           "description": "The hostname where you will publish your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
@@ -2542,7 +2645,7 @@
         },
         "param_definition": {
           "title": "Param definition",
-          "description": "Sets a description for the URL parameters (e.g.: `/foo/{param}`) required in the endpoint. Make sure to include to write the param exactly as in the endpoint definition.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "Sets a detailed description for the URL parameters (e.g.: `/foo/{param}`) required in the endpoint. Make sure to include to write the param exactly as in the endpoint definition.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             [
               {
@@ -2564,6 +2667,56 @@
                 "description": "The description of the parameter",
                 "type": "string"
               },
+              "type": {
+                "title": "Type",
+                "description": "The type of data according to the OpenAPI spec",
+                "examples": [
+                  "string"
+                ],
+                "default": "string",
+                "enum": [
+                  "integer",
+                  "string",
+                  "bool",
+                  "object",
+                  "array",
+                  "float",
+                  "datetime"
+                ]
+              },
+              "enum": {
+                "title": "Enum",
+                "description": "The allowed values for this parameter",
+                "examples": [
+                  [
+                    "application/json",
+                    "application/xml"
+                  ]
+                ],
+                "type": "array",
+                "items": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "integer",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
+              "required": {
+                "title": "Required",
+                "description": "A path parameter is always mandatory on KrakenD, but you can still generate the OpenAPI documentation saying otherwise.",
+                "default": true,
+                "type": "boolean"
+              },
+              "hide": {
+                "title": "Hide param",
+                "description": "Avoids this param from showing in the generated documentation, although is still part of the endpoint definition.",
+                "default": false,
+                "type": "boolean"
+              },
               "name": {
                 "title": "Name",
                 "description": "The name of the parameter, as declared in `endpoint` without the curly braces `{}`",
@@ -2578,7 +2731,7 @@
         },
         "query_definition": {
           "title": "Query definition",
-          "description": "Sets a description for the query strings allowed in the endpoint. Make sure to include the same strings in the endpoint's `input_query_strings`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "Sets a detailed description for the query strings allowed in the endpoint. Make sure to include the same strings in the endpoint's `input_query_strings`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             [
               {
@@ -2600,9 +2753,45 @@
                 "description": "The description of the querystring",
                 "type": "string"
               },
+              "type": {
+                "title": "Type",
+                "description": "The type of data according to the OpenAPI spec",
+                "default": "string",
+                "enum": [
+                  "integer",
+                  "string",
+                  "bool",
+                  "object",
+                  "array",
+                  "float",
+                  "datetime"
+                ]
+              },
+              "enum": {
+                "title": "Enum",
+                "description": "The allowed values for this query definition",
+                "type": "array",
+                "items": {
+                  "type": [
+                    "array",
+                    "boolean",
+                    "integer",
+                    "number",
+                    "object",
+                    "string"
+                  ]
+                }
+              },
               "required": {
                 "title": "Required",
                 "description": "Set to `true` when this query string is required",
+                "default": true,
+                "type": "boolean"
+              },
+              "hide": {
+                "title": "Hide querystring",
+                "description": "Avoids this querystring from showing in the generated documentation",
+                "default": false,
                 "type": "boolean"
               },
               "name": {
@@ -2641,9 +2830,7 @@
               "description": {
                 "title": "Description",
                 "description": "The description of the payload this endpoint accepts.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-                "type": [
-                  "string"
-                ]
+                "type": "string"
               },
               "content_type": {
                 "title": "Content Type",
@@ -2700,9 +2887,7 @@
               }
             }
           ],
-          "type": [
-            "object"
-          ],
+          "type": "object",
           "patternProperties": {
             "default|^[0-9]+$": {
               "type": "object",
@@ -2713,9 +2898,7 @@
                 "description": {
                   "title": "Description",
                   "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-                  "type": [
-                    "string"
-                  ]
+                  "type": "string"
                 },
                 "content_type": {
                   "title": "Content Type",
@@ -2771,7 +2954,10 @@
           "default": [
             "http"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "summary": {
           "title": "Summary",
@@ -2780,7 +2966,7 @@
         },
         "tag_definition": {
           "title": "Tag definition",
-          "description": "Sets a description for the tags classifiying endpoints when generating the OpenAPI spec.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "Sets a detailed description for the tags classifiying endpoints when generating the OpenAPI spec.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             [
               {
@@ -2817,7 +3003,10 @@
         "tags": {
           "title": "Tags",
           "description": "You can assign a list of tags to each API operation. If you declare tags in the `tag_definition` at the OpenAPI service level, they will have a description in the documentation. Tagged operations may be handled differently by tools and libraries. For example, Swagger UI uses tags to group the displayed operations.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "terms_of_service": {
           "title": "Terms of Service",
@@ -2832,6 +3021,114 @@
           "description": "The version numbering you want to apply to this release of API., e.g.: `1.0`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             "1.0"
+          ],
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.8/documentation/postman.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Generate documentation using Postman collections",
+      "description": "Enterprise only. Generates postman documentation automatically through `krakend postman export` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+      "type": "object",
+      "properties": {
+        "description": {
+          "title": "API Collection Description",
+          "description": "An introductory, optionally verbose, explanation supporting Markdown syntax. If you'd like to load an **external markdown file**, you can use flexible configuration, for instance `\"description\": {{include \"postman/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "Hi there, I am a [postman collection](https://www.krakend.io/docs/enterprise/developer/postman/)"
+          ],
+          "type": "string"
+        },
+        "folder": {
+          "title": "Folder",
+          "description": "The folder definition where you will add endpoints",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "description": {
+                "title": "Folder description",
+                "description": "A description explaining the items inside this folder",
+                "examples": [
+                  "Books from post-apocalyptic dystopias to brilliant time-travel"
+                ]
+              },
+              "name": {
+                "title": "Folder name",
+                "description": "The folder name. This might look like the path in an operative system with a slash /, but is not strictly necessary. Usage of special chars is allowed.",
+                "examples": [
+                  "/Books",
+                  "/Books/Science Fiction/Dystopia",
+                  "/书籍/科幻小说",
+                  "/पुस्तकें/विज्ञान कथा",
+                  "/本/サイエンスフィクション"
+                ],
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "name": {
+          "title": "Collection Name",
+          "description": "The name of the Postman collection you are generating.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "KrakenD Config v1"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "title": "Collection Version",
+          "description": "The version you assign to this Postman collection you are generating using **semantic versioning**.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "1.2.3",
+            "0.7.9"
+          ],
+          "type": "string",
+          "pattern": "^[0-9].[0-9].[0-9]+$"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.8/documentation/postman_endpoint.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Generate documentation using Postman collections",
+      "description": "Enterprise only. Generates postman documentation automatically through `krakend postman export` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+      "type": "object",
+      "properties": {
+        "description": {
+          "title": "Endpoint description",
+          "description": "An introductory, optionally verbose, explanation supporting Markdown syntax. If you'd like to load an **external markdown file**, you can use flexible configuration, for instance `\"description\": {{include \"postman/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "Hi there, I am a [postman endpoint](https://www.krakend.io/docs/enterprise/developer/postman/)"
+          ],
+          "type": "string"
+        },
+        "folder": {
+          "title": "Folder",
+          "description": "The folder name where you want to put this endpoint. If you defined folders at the service level, use the same name to reuse their name and description",
+          "examples": [
+            "/Books"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "title": "Endpoint Name",
+          "description": "The name of the endpoint you are generating. If you don't set any name the last member path is used.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "List books",
+            "Create user"
           ],
           "type": "string"
         }
@@ -2947,6 +3244,7 @@
           "enum": [
             "json",
             "json-collection",
+            "yaml",
             "fast-json",
             "xml",
             "negotiate",
@@ -3028,6 +3326,9 @@
         "documentation/openapi": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1documentation~1openapi.json"
         },
+        "documentation/postman": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1documentation~1postman_endpoint.json"
+        },
         "modifier/jmespath": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1modifier~1jmespath.json"
         },
@@ -3068,7 +3369,10 @@
               "title": "Flatmap (Array manipulation)",
               "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
               "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1proxy~1flatmap.json",
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "max_payload": {
               "title": "Maximum Payload",
@@ -3123,6 +3427,9 @@
           "title": "Router Rate-limiting",
           "description": "The router rate limit feature allows you to set a number of maximum requests per second a KrakenD endpoint will accept.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1router.json"
+        },
+        "qos/ratelimit/router/redis": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1redis.json"
         },
         "qos/ratelimit/tiered": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1tiered.json"
@@ -3332,7 +3639,6 @@
           ]
         }
       ],
-      "minItems": 1,
       "properties": {
         "content_type": {
           "title": "Content-Type",
@@ -3396,7 +3702,6 @@
       "title": "Lua modifier",
       "description": "Scripting with Lua is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
       "type": "object",
-      "minItems": 1,
       "properties": {
         "allow_open_libs": {
           "title": "Open external libs",
@@ -3445,7 +3750,10 @@
         "sources": {
           "title": "Sources",
           "description": "An array with all the Lua files that will be processed. If no path is provided (e.g., `myfile.lua`) the file loads from the [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -3458,7 +3766,6 @@
       "title": "Martian modifiers",
       "description": "The Martian component allows you to modify requests and responses with static data through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/endpoints/martian/",
       "type": "object",
-      "minItems": 1,
       "maxProperties": 1,
       "properties": {
         "body.Modifier": {
@@ -4306,6 +4613,13 @@
         "add": {
           "title": "Headers to add",
           "description": "The headers you want to add. Every key under `add` is the header name, and the values are declared in an array with all those you want to set. If the header didn't exist previously, it is created with the values you passed. If the header existed, then the new values are appended.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "examples": [
+            {
+              "X-Hello": [
+                "World"
+              ]
+            }
+          ],
           "type": "object",
           "minProperties": 1,
           "patternProperties": {
@@ -4335,9 +4649,38 @@
             "type": "string"
           }
         },
+        "rename": {
+          "title": "Headers to rename",
+          "description": "The headers you want to rename. The key used under `rename` is the original header name, and the value the new header name. This operation is destructive, meaning that if you rename to a header name that already existed it will be replaced with the new header and value.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "examples": [
+            {
+              "Header-A": "Header-A-New-Name"
+            }
+          ],
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            "(.+)": {
+              "description": "Header you want to rename",
+              "type": "string"
+            }
+          }
+        },
         "replace": {
           "title": "Headers to replace",
           "description": "The headers you want to replace. The key used under `replace` is the header name, and the value an array with all the header values you want to set. The replacement overwrites any other value that could exist in this header.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "examples": [
+            {
+              "Cache-Control": [
+                "no-store"
+              ],
+              "Vary": [
+                "foo",
+                "bar",
+                "foobar"
+              ]
+            }
+          ],
           "type": "object",
           "minProperties": 1,
           "patternProperties": {
@@ -4362,7 +4705,6 @@
       "description": "Enterprise only. The content replacer plugin allows you to modify the response of your services by doing literal replacements or more sophisticated replacements with regular expressions.\n\nSee: See: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
       "type": "object",
       "minProperties": 1,
-      "properties": {},
       "additionalProperties": {
         "type": "object",
         "required": [
@@ -4431,8 +4773,7 @@
           ],
           "type": "string"
         }
-      },
-      "additionalProperties": true
+      }
     },
     "https://www.krakend.io/schema/v2.8/plugin/http-server.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -4458,7 +4799,10 @@
             "myplugin"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "redis-ratelimit": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1plugin~1redis-ratelimit.json"
@@ -4475,8 +4819,7 @@
         "wildcard": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1plugin~1wildcard.json"
         }
-      },
-      "additionalProperties": true
+      }
     },
     "https://www.krakend.io/schema/v2.8/plugin/ip-filter.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -4497,7 +4840,10 @@
               "172.17.2.56/32"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "allow": {
           "title": "Allow or deny mode",
@@ -4515,7 +4861,10 @@
               "X-Appengine-Remote-Addr"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "trusted_proxies": {
           "title": "Trusted proxies",
@@ -4525,7 +4874,10 @@
               "10.0.0.0/16"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -4551,7 +4903,10 @@
         "origins": {
           "title": "Origins",
           "description": "The list of all JWK URLs recognized as valid Identity Providers by the gateway.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "port": {
           "title": "Port",
@@ -4569,8 +4924,9 @@
     },
     "https://www.krakend.io/schema/v2.8/plugin/redis-ratelimit.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Redis ratelimit",
+      "title": "DEPRECATED. Redis ratelimit",
       "description": "Enterprise only. The global rate limit functionality enables a Redis database store to centralize all KrakenD node counters. Instead of having each KrakenD node count its hits, the counters are global and stored in the database.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+      "deprecated": true,
       "type": "object",
       "required": [
         "host",
@@ -4647,13 +5003,15 @@
             "myplugin"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "response-schema-validator": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1plugin~1response-schema-validator.json"
         }
-      },
-      "additionalProperties": true
+      }
     },
     "https://www.krakend.io/schema/v2.8/plugin/response-schema-validator.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -4740,7 +5098,10 @@
               "/media/file.json"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -4782,7 +5143,10 @@
           "description": "A list of lists, containing the regular expression that defines the URL to be rewritten, and its endpoint destination. You can use the capturing groups with the syntax `${1}`, `${2}`, etc.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/",
           "type": "array",
           "items": {
-            "type": "array"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -4906,7 +5270,10 @@
           "args": {
             "title": "Args",
             "description": "The arguments passed to the operation.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-            "type": "array"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "patternProperties": {
@@ -4997,6 +5364,86 @@
         "^[@$_#]": {}
       },
       "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.8/qos/ratelimit/redis.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "description": "Enterprise Only. Redis-backed service ratelimit",
+      "type": "object",
+      "anyOf": [
+        {
+          "required": [
+            "connection_pool",
+            "max_rate"
+          ]
+        },
+        {
+          "required": [
+            "connection_pool",
+            "client_max_rate"
+          ]
+        }
+      ],
+      "properties": {
+        "capacity": {
+          "title": "Capacity",
+          "description": "Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
+          "default": 1,
+          "type": "integer"
+        },
+        "client_capacity": {
+          "title": "Client capacity",
+          "description": "Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
+          "default": 1,
+          "type": "integer"
+        },
+        "client_max_rate": {
+          "title": "Client max rate",
+          "description": "Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
+          "type": "number"
+        },
+        "connection_pool": {
+          "title": "Connection Pool Name",
+          "description": "The connection pool name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](/docs/enterprise/service-settings/redis-connection-pools/)",
+          "type": "string"
+        },
+        "every": {
+          "title": "Time window",
+          "description": "Time period in which the maximum rates operate. For instance, if you set an `every` of `10m` and a rate of `5`, you are allowing 5 requests every ten minutes.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
+          "default": "1s",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "key": {
+          "title": "Header or Param key",
+          "description": "Available when using `client_max_rate` and you have set a `strategy` equal to `header` or `param`. It makes no sense in other contexts. For `header` it is the header name containing the user identification (e.g., `Authorization` on tokens, or `X-Original-Forwarded-For` for IPs). When they contain a list of space-separated IPs, it will take the IP from the client that hit the first trusted proxy. For `param` it is the name of the placeholder used in the endpoint, like `id_user` for an endpoint `/user/{id_user}`.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
+          "examples": [
+            "X-Tenant",
+            "Authorization",
+            "id_user"
+          ],
+          "type": "string"
+        },
+        "max_rate": {
+          "title": "Max rate",
+          "description": "Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
+          "type": "number"
+        },
+        "on_failure_allow": {
+          "title": "On Failure Allow?",
+          "description": "Whether you want to allow a request to continue when the Redis connection is failing or not. The default behavior blocks the request if Redis is not responding correctly",
+          "default": false,
+          "type": "boolean"
+        },
+        "strategy": {
+          "title": "Strategy",
+          "description": "Available when using `client_max_rate`. Sets the strategy you will use to set client counters. Choose `ip` when the restrictions apply to the client's IP address, or set it to `header` when there is a header that identifies a user uniquely. That header must be defined with the `key` entry.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
+          "enum": [
+            "ip",
+            "header",
+            "param"
+          ]
+        }
+      }
     },
     "https://www.krakend.io/schema/v2.8/qos/ratelimit/router.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -5096,38 +5543,42 @@
       "properties": {
         "tier_key": {
           "title": "Tier key",
-          "description": "The header name containing the tier name. The string you provide is case-insensitive. If you need to take the value from a place that is not a header (a token, an API key), you must use propagate functions in the components that convert values to internal headers.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+          "description": "The header name containing the tier name. The string you provide is case-insensitive. If you need to take the value from a place that is not a header (a token, an API key), you must use propagate functions in the components that convert values to internal headers.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
           "type": "string"
         },
         "tiers": {
           "title": "Tiers",
-          "description": "The list of all tier definitions and limits for each. Each item in the list is a tier object.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+          "description": "The list of all tier definitions and limits for each. Each item in the list is a tier object.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "ratelimit": {
                 "title": "Ratelimit",
-                "description": "The rate limit definition. This is an object with the same attributes the [service rate limit](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/) has.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "description": "The rate limit definition. This is an object with the same attributes the [service rate limit](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1router.json",
+                "type": "object"
+              },
+              "redis_ratelimit": {
+                "title": "Redis Ratelimit",
+                "description": "The stateful rate limit definition. This is an object with the same attributes the [stateful service rate limit](http://localhost:1313/docs/enterprise/throttling/global-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1redis.json",
                 "type": "object"
               },
               "tier_value": {
                 "title": "Tier value",
-                "description": "The tier value. When you use `literal`, it is the tier name. When you use `policy`, it is the expression you want to evaluate to determine if the user matches this tier or not (see security policies for syntax).\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "description": "The tier value. When you use `literal`, it is the tier name. When you use `policy`, it is the expression you want to evaluate to determine if the user matches this tier or not (see security policies for syntax).\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "examples": [
                   "gold",
                   "silver",
                   "value.matches('User-[a-Z]+')"
                 ],
                 "default": "",
-                "type": [
-                  "string"
-                ]
+                "type": "string"
               },
               "tier_value_as": {
                 "title": "Tier value as",
-                "description": "Determines how to parse the value found in the tier header. When `literal` is used, the exact value of the header is compared against the tier name. When `policy` is used, the value is used to evaluate a policy. When `*` is used, all values will match. Make sure to put the `*` as the last tier; otherwise the rest will be ignored.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "description": "Determines how to parse the value found in the tier header. When `literal` is used, the exact value of the header is compared against the tier name. When `policy` is used, the value is used to evaluate a policy. When `*` is used, all values will match. Make sure to put the `*` as the last tier; otherwise the rest will be ignored.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "default": "literal",
                 "enum": [
                   "literal",
@@ -5140,12 +5591,194 @@
         }
       }
     },
+    "https://www.krakend.io/schema/v2.8/redis.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Redis configuration",
+      "description": "Defines the Redis connection pools available to any functionality requiring Redis.\n\nSee: /docs/enterprise/throttling/global-rate-limit/",
+      "type": "object",
+      "properties": {
+        "connection_pools": {
+          "title": "Connection Pools",
+          "description": "Defines all the connetion pools available to Redis functionality. The different components requiring Redis will access the pool based on its name",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "address"
+            ],
+            "properties": {
+              "address": {
+                "title": "Address",
+                "description": "The Redis host where you want to connect using the format `host:port`.",
+                "examples": [
+                  "shared.redis.example.com"
+                ],
+                "type": "string"
+              },
+              "client_name": {
+                "title": "Client name",
+                "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
+                "examples": [
+                  "krakend_pool"
+                ],
+                "type": "string"
+              },
+              "conn_max_idle_time": {
+                "title": "Connection Max Idle Time",
+                "description": "The maximum amount of time a connection may be idle. Should be less than server's timeout.Expired connections may be closed lazily before reuse. If <= 0, connections are not closed due to a connection's idle time.",
+                "default": "30m",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "conn_max_life_time": {
+                "title": "conn_max_life_time",
+                "description": "The maximum amount of time a connection may be reused. When the attribute is not declared, the connection does not expire",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "db": {
+                "title": "DB",
+                "description": "The database number tp select after connecting",
+                "default": 0,
+                "type": "integer"
+              },
+              "dial_timeout": {
+                "title": "Dial Timeout",
+                "description": "Dial timeout for establishing new connections",
+                "default": "5s",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "max_active_conns": {
+                "title": "Max active conns",
+                "description": "Maximum number of connections allocated by the pool at a given time. When zero, there is no limit on the number of connections in the pool.",
+                "default": 0,
+                "type": "integer"
+              },
+              "max_idle_conns": {
+                "title": "Max idle conns",
+                "description": "Maximum number of idle connections. The value `0` means connections not closed",
+                "default": 0,
+                "type": "integer"
+              },
+              "max_retries": {
+                "title": "Max retries",
+                "description": "The number of times you want to retry a Redis command using a different connection from the pool, applying a random delay between `min_retry_backoff` and `max_retry_backoff`. Use `-1` to never retry (it might not be a good idea)",
+                "default": 3,
+                "type": "integer"
+              },
+              "max_retry_backoff": {
+                "title": "Max retry backoff",
+                "description": "Every retry is executed increasing randomly starting at the `min_retry_backoff` until the `max_retry_backoff` is reached. This is the longest possible time.",
+                "default": "512ms",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "min_idle_conns": {
+                "title": "min_idle_conns",
+                "description": "Minimum number of idle connections which is useful when establishing new connection is slow. `0` means connections are not closed.",
+                "default": 0,
+                "type": "integer"
+              },
+              "min_retry_backoff": {
+                "description": "Every retry is executed increasing randomly starting at the `min_retry_backoff` until the `max_retry_backoff` is reached. This is the shortest possible time.",
+                "default": "8ms",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "name": {
+                "title": "Connection name",
+                "description": "The connection pool name. This is an arbitrary name used to reference this connection in other parts of the configuration needing Redis.",
+                "examples": [
+                  "shared_instance",
+                  "Redis_for_ratelimit"
+                ],
+                "type": "string"
+              },
+              "opentelemetry": {
+                "title": "OpenTelemetry",
+                "description": "The OpenTelemetry configuration establishing how to report Redis connection activity",
+                "type": "object",
+                "properties": {
+                  "disable_metrics": {
+                    "title": "Disable metrics",
+                    "description": "Disables any metrics of this Redis pool",
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "disable_traces": {
+                    "title": "Disable traces",
+                    "description": "Disables any traces of this Redis pool",
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "traces_static_attributes": {
+                    "title": "Static attributes",
+                    "description": "Static attributes you want to pass for traces.",
+                    "type": "array",
+                    "items": {
+                      "properties": {
+                        "key": {
+                          "title": "Key",
+                          "description": "The key of the static attribute you want to send",
+                          "type": "string"
+                        },
+                        "value": {
+                          "title": "Value",
+                          "description": "The value of the static attribute you want to send",
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "password": {
+                "title": "password",
+                "description": "Sets the password to connect to Redis.",
+                "type": "string"
+              },
+              "pool_size": {
+                "title": "Pool size",
+                "description": "The pool size defines the number of concurrent Redis commands that can be executed by this Redis pool. Take into account that this only saves the connection time to the server, but, Redis will still be a non-concurrent service. When `0` it maps to its default 10",
+                "default": 10,
+                "type": "integer"
+              },
+              "pool_timeout": {
+                "title": "Pool timeout",
+                "description": "Amount of time the client waits for a connection if all connections are busy.",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "tls": {
+                "title": "tls",
+                "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1client_tls.json",
+                "type": "object"
+              },
+              "user_name": {
+                "title": "Username",
+                "description": "The username to connect to Redis",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.8/router.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Router Options",
       "description": "The optional router configuration allows you to set global flags that change the way KrakenD processes the requests at the router layer.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
       "type": "object",
-      "minItems": 1,
       "properties": {
         "app_engine": {
           "title": "App Engine integration",
@@ -5263,7 +5896,10 @@
         "remote_ip_headers": {
           "title": "Remote IP headers",
           "description": "List of headers used to obtain the client IP when `forwarded_by_client_ip` is set to `true` and the remote address is matched by at least one of the network origins of `trusted_proxies`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "remove_extra_slash": {
           "title": "Remove extra slash",
@@ -5280,7 +5916,10 @@
         "trusted_proxies": {
           "title": "Trusted Proxies",
           "description": "List of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs) from which to trust request's headers that contain alternative client IP when `forwarded_by_client_ip` is `true`. When declared **you must** configure `forwarded_by_client_ip` set to `true`, and optionally `remote_ip_headers`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "use_h2c": {
           "title": "Enable h2c",
@@ -5310,7 +5949,10 @@
             "Pingdom.com_bot_version_1.1"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "cache_size": {
           "title": "Cache size",
@@ -5327,7 +5969,10 @@
             "facebookexternalhit/1.1"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "empty_user_agent_is_bot": {
           "title": "Empty user agent is a bot?",
@@ -5343,7 +5988,10 @@
             "(facebookexternalhit)/.*"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -5368,6 +6016,9 @@
           "description": "An array with the headers allowed, but `Origin`is always appended to the list. Requests with headers not in this list are rejected.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
           "default": [],
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "example": [
             "Accept-Language"
           ]
@@ -5399,7 +6050,10 @@
           "default": [
             "*"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "allow_private_network": {
           "title": "Allow private network",
@@ -5420,7 +6074,10 @@
             "Content-Length",
             "Content-Type"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "max_age": {
           "title": "Max Age",
@@ -5460,7 +6117,10 @@
           "title": "Allowed hosts",
           "description": "When a request hits KrakenD, it will confirm if the value of the Host HTTP header is in the list. If so, it will further process the request. If the host is not in the allowed hosts list, KrakenD will simply reject the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "allowed_hosts_are_regex": {
           "title": "Hosts are regexps",
@@ -5517,7 +6177,10 @@
               "X-Forwarded-Hosts"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "hpkp_public_key": {
           "title": "HTTP Public Key Pinning (HPKP)",
@@ -5785,7 +6448,10 @@
               "/media/file.json"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -5868,6 +6534,9 @@
         "documentation/openapi": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1documentation~1openapi.json"
         },
+        "documentation/postman": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1documentation~1postman.json"
+        },
         "grpc": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1grpc.json"
         },
@@ -5887,8 +6556,14 @@
           "description": "Enterprise Only. The service rate limit feature allows you to set the maximum requests per second a user or group of users can do to KrakenD and works analogously to the endpoint rate limit.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1router.json"
         },
+        "qos/ratelimit/service/redis": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1redis.json"
+        },
         "qos/ratelimit/tiered": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1tiered.json"
+        },
+        "redis": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1redis.json"
         },
         "router": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1router.json"
@@ -5923,7 +6598,10 @@
             "allow_headers": {
               "title": "Allowed headers",
               "default": [],
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "allow_methods": {
               "title": "Allowed methods",
@@ -5967,7 +6645,10 @@
               "title": "Expose headers",
               "description": "Headers that are safe to expose to the API of a CORS API specification-\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
               "default": [],
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "max_age": {
               "title": "Max age",
@@ -6350,6 +7031,17 @@
           "default": true,
           "type": "boolean"
         },
+        "metadata": {
+          "title": "Metadata",
+          "description": "A free-form object that allows you to push custom metadata along with events. The custom metadata appears in Moesif under a key `krakend`, you can use nesting if needed.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
+          "examples": [
+            {
+              "instance_id": "1234abcd",
+              "region": "us-west-1"
+            }
+          ],
+          "type": "object"
+        },
         "request_body_masks": {
           "title": "Request body masks",
           "description": "The list of fields in the request body that you want to mask before sending them to Moesif. You can set `log_body` to `false` to prevent any body being sent.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
@@ -6428,7 +7120,10 @@
               "Authorization"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "user_id_jwt_claim": {
           "title": "User ID JWT claim",
@@ -6469,7 +7164,10 @@
               "*"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "license": {
           "title": "License key",
@@ -6580,7 +7278,10 @@
                 "tags": {
                   "title": "Tags",
                   "description": "Specifies a set of global tags to attach to each metric.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-                  "type": "array"
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "trace_address": {
                   "title": "Trace address",
@@ -7335,7 +8036,10 @@
                   "local_prometheus"
                 ]
               ],
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "metric_reporting_period": {
               "title": "Reporting period",
@@ -7352,7 +8056,10 @@
                   "local_tempo"
                 ]
               ],
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "trace_sample_rate": {
               "title": "Trace sample rate",
@@ -8034,7 +8741,10 @@
             ]
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "cipher_suites": {
           "title": "Cipher Suites",
@@ -8045,7 +8755,10 @@
             4867
           ],
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "items": {
+            "type": "integer"
+          }
         },
         "curve_preferences": {
           "title": "Curve identifiers",
@@ -8350,6 +9063,7 @@
           "enum": [
             "json",
             "json-collection",
+            "yaml",
             "fast-json",
             "xml",
             "negotiate",
