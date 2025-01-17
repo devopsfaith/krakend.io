@@ -140,11 +140,11 @@
             "enum": [
               "integer",
               "string",
-              "bool",
+              "boolean",
               "object",
               "array",
               "float",
-              "datetime"
+              "date-time"
             ]
           },
           "enum": {
@@ -270,11 +270,11 @@
             "enum": [
               "integer",
               "string",
-              "bool",
+              "boolean",
               "object",
               "array",
               "float",
-              "datetime"
+              "date-time"
             ]
           },
           "enum": {
@@ -354,11 +354,11 @@
             "enum": [
               "integer",
               "string",
-              "bool",
+              "boolean",
               "object",
               "array",
               "float",
-              "datetime"
+              "date-time"
             ]
           },
           "enum": {
