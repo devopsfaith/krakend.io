@@ -3,7 +3,7 @@ name: Validate JSON Schema
 permissions:
   contents: write
 jobs:
-  test:
+  test-schema:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -25,3 +25,15 @@ jobs:
           # The arguments for the `git add` command (see the paragraph below for more info)
           # Default: '.'
           add: 'v2.9/krakend.json'
+      - name: Notify JSON schema
+        uses: slackapi/slack-github-action@v2.0.0
+        if: ${{ github.head_ref == 'main' || github.ref_name == 'main' }} # check the target branch if it's main
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: webhook-trigger
+          payload: |
+            app: "${{ github.event.repository.name }}"
+            status: "${{ job.status }}"
+            env: "production"
+            msg: "${{ github.event.head_commit.message }} ${{ github.event.head_commit.url }}"
+            link: "${{ github.event.pull_request.url || github.event.head_commit.url }}"
