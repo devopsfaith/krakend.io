@@ -1,0 +1,253 @@
+# KrakenD API Gateway Documentation
+
+
+## Getting Started
+- [KrakenD API Gateway - Enterprise Edition Overview](https://www.krakend.io/docs/enterprise/overview/): Explore the features and capabilities of the enterprise edition of KrakenD API Gateway, empowering you to manage APIs at an enterprise scale
+- [KrakenD Community Edition Documentation](https://www.krakend.io/docs/overview/): Explore the comprehensive documentation for KrakenD API Gateway, including an overview, guides, and best practices
+- [Installing KrakenD Enterprise](https://www.krakend.io/docs/enterprise/overview/installing/): Get step-by-step instructions for installing the Enterprise Edition of KrakenD API Gateway to unlock advanced features and scalability
+- [KrakenD API Gateway Installation Guide](https://www.krakend.io/docs/overview/installing/): Follow our step-by-step installation guide to set up and configure KrakenD API Gateway, enabling efficient and scalable API management.
+- [Running KrakenD Enterprise: Available commands](https://www.krakend.io/docs/enterprise/overview/run/): Get started with KrakenD Enterprise command, and learn all possible subcommands to run the software and perform checks in your CI/CD pipeline
+- [Running KrakenD server](https://www.krakend.io/docs/overview/run/): All options of the krakend command to manage the service, write plugins, or get information about the installed version.
+- [Managing the LICENSE file](https://www.krakend.io/docs/enterprise/overview/license-file/): Activate your KrakenD Enterprise with the provided license file and learn how to automate its validity and expiration times.
+- [API Configuration Designer](https://www.krakend.io/docs/configuration/designer/): Discover the API Configuration Designer in KrakenD API Gateway, enabling intuitive and visual configuration management for your APIs
+- [KrakenD API Gateway Enterprise Playground](https://www.krakend.io/docs/enterprise/overview/playground/): Explore the KrakenD Playground, an interactive environment to test and experience KrakenD API Gateway features in real time
+- [KrakenD API Gateway Playground](https://www.krakend.io/docs/overview/playground/): Explore KrakenD Playground and experiment with different API configurations before deploying them
+- [Comprehensive Guides for KrakenD API Gateway](https://www.krakend.io/docs/overview/guides/): Access a collection of comprehensive guides for KrakenD API Gateway, providing step-by-step instructions and best practices for various use cases
+
+
+## Configuration files
+- [Configuration Guide for KrakenD API Gateway](https://www.krakend.io/docs/configuration/): Get a comprehensive guide on configuring KrakenD API Gateway to optimize and streamline your API management processes
+- [Configuration Structure](https://www.krakend.io/docs/configuration/structure/): Learn about the configuration structure and organization in KrakenD API Gateway to effectively define the behavior of your API gateway
+- [Validating the configuration with `check`](https://www.krakend.io/docs/configuration/check/): The krakend check command validates KrakenD configuration files written in any of its supported formats and outputs syntax or linting problems.
+- [Auditing KrakenD API Gateway Configurations](https://www.krakend.io/docs/configuration/audit/): Learn how to configure configuration auditing in KrakenD API Gateway to ensure file integrity and print security recommendations and statistical information
+- [Extended Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/): The Flexible Configuration allows you to declare the configuration using a templates system, multiple files, and variable injection.
+- [Flexible Configuration: A template-based config for API Gateway](https://www.krakend.io/docs/configuration/flexible-config/): Discover the flexible configuration options offered by KrakenD API Gateway, allowing you to customize and fine-tune your API gateway setup
+- [Introduction to Templates](https://www.krakend.io/docs/configuration/templates/): Understanding how to work with Go templates in the flexible configuration and other components. Template syntax and practical snippets to resolve common situations.
+- [Supported Configuration Formats](https://www.krakend.io/docs/configuration/supported-formats/): Explore the supported formats for KrakenD configuration. Find the best fit for your API Gateway setup
+- [Environment variables in the configuration](https://www.krakend.io/docs/configuration/environment-vars/): Learn how to leverage environment variables in KrakenD API Gateway configuration for flexible and dynamic configuration management
+- [Hot Reload Feature](https://www.krakend.io/docs/developer/hot-reload/): Explore the hot reload feature in KrakenD API Gateway, allowing dynamic configuration updates without service interruption for enhanced agility on development
+- [Hot Reload Feature](https://www.krakend.io/docs/enterprise/developer/hot-reload/): Explore the hot reload feature in KrakenD API Gateway, allowing dynamic configuration updates without service interruption for enhanced agility on development
+- [Working Directory: Specifying paths](https://www.krakend.io/docs/configuration/working-directory/): KrakenD supports absolute and relative paths in configurations. Absolute paths provide clarity, while relative paths use the working directory, making them flexible for varied environments.
+- [Upgrading KrakenD from an older version](https://www.krakend.io/docs/configuration/migrating/): Seamlessly migrate your KrakenD configuration to a new version. Hassle-free transition for your API Gateway
+
+
+## Service Settings
+- [Service Settings Configuration](https://www.krakend.io/docs/service-settings/): Service settings are optional flags that allow you to change how KrakenD behaves globally for all endpoints across configuration.
+- [Redis connection pools for stateful functionality](https://www.krakend.io/docs/enterprise/service-settings/redis-connection-pools/): How to configure Redis connection pools to reuse in stateful functionality backed on Redis
+- [HTTP Server Settings](https://www.krakend.io/docs/service-settings/http-server-settings/): Configure HTTP server settings in KrakenD API Gateway for optimal performance, security, and compatibility with your infrastructure
+
+
+## Routing and Forwarding
+- [Endpoint Configuration](https://www.krakend.io/docs/endpoints/): Configure and manage API endpoints effectively with KrakenD Enterprise. Explore our documentation to learn how to define and optimize your API endpoints for better performance.
+- [Backend Configuration](https://www.krakend.io/docs/backends/): Explore the backend configuration options in KrakenD API Gateway, allowing you to connect and integrate with your microservices efficiently
+- [Parameter Forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/): Learn how to forward and manipulate parameters effectively using KrakenD API Gateway, ensuring seamless communication between clients and microservices
+- [Proxying directly to the backends with `no-op`](https://www.krakend.io/docs/endpoints/no-op/)
+- [Wildcard Endpoints](https://www.krakend.io/docs/enterprise/endpoints/wildcard/): Implement wildcard endpoints in KrakenD API Gateway for flexible and dynamic routing of API requests in enterprise environments
+- [Dynamic Routing](https://www.krakend.io/docs/enterprise/endpoints/dynamic-routing/): Implement dynamic routing in KrakenD API Gateway to dynamically route requests based on headers and query strings
+- [Catchall (Fallback backend)](https://www.krakend.io/docs/enterprise/endpoints/catch-all/): The Catchall is a special type of endpoint that receives all the traffic other endpoint routes in the configuration cannot handle.
+- [Sequential Proxying](https://www.krakend.io/docs/endpoints/sequential-proxy/): Explore the sequential proxying capability in KrakenD API Gateway, allowing you to chain multiple requests and orchestrate complex API workflows
+- [Virtual Hosts](https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/): Configure virtual hosts in KrakenD API Gateway's Enterprise Edition to host multiple domains and handle complex routing scenarios
+- [Handling Client Redirects](https://www.krakend.io/docs/enterprise/backends/client-redirect/): Integrate client redirect backend in KrakenD API Gateway to enable dynamic and conditional redirection of API requests
+- [URL Rewrite for API Endpoints](https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/): Rewrite and customize API URLs with URL rewriting in KrakenD Enterprise. Learn how to modify and optimize API endpoints without impacting client applications.
+- [Router Options](https://www.krakend.io/docs/service-settings/router-options/): Explore the router options available in KrakenD API Gateway to customize the routing behavior and optimize API request handling
+- [HTTP Proxy: Access to backends through a proxy](https://www.krakend.io/docs/enterprise/backends/http-proxy/): The HTTP proxy plugin adds an intermediate layer where the connection to the backend is made through an external proxy.
+- [HTTP Global Client settings](https://www.krakend.io/docs/service-settings/http-transport-settings/)
+- [HTTP Per-backend Client settings](https://www.krakend.io/docs/enterprise/backends/http-client/): The HTTP client options allow you to set the client TLS settings for each backend, configure the no redirect behavior, or connect through a web proxy.
+- [Handling Concurrent Requests](https://www.krakend.io/docs/endpoints/concurrent-requests/): Learn how KrakenD API Gateway efficiently handles concurrent requests to ensure scalability, performance, and optimal resource utilization
+- [Service Discovery Integration](https://www.krakend.io/docs/backends/service-discovery/): Integrate service discovery mechanisms into KrakenD API Gateway to dynamically discover and route requests to available backend services
+- [Traffic shadowing and mirroring](https://www.krakend.io/docs/backends/shadow-backends/): Implement shadow backends in KrakenD API Gateway for non-intrusive testing and monitoring of new backend services or API versions
+- [Conditional requests and responses with CEL](https://www.krakend.io/docs/endpoints/common-expression-language-cel/): Learn how to utilize the Common Expression Language (CEL) in KrakenD API Gateway for dynamic routing and advanced request handling
+- [API Throttling and Timeout Management](https://www.krakend.io/docs/throttling/timeouts/): Learn how to effectively manage API throttling and timeouts with KrakenD API Gateway to ensure optimal performance and prevent abuse
+
+
+## Non-REST Connectivity
+- [Non-REST Connectivity](https://www.krakend.io/docs/non-rest-connectivity/): Explore KrakenD's non-REST connectivity features, including RabbitMQ integration, GraphQL, Lambda functions, event-driven async agents, and AMQP support.
+- [SOAP Backend Integration](https://www.krakend.io/docs/enterprise/backends/soap/): Integrate SOAP backends into KrakenD API Gateway for seamless integration with legacy SOAP-based services and modernize your services
+- [WebSockets Integration](https://www.krakend.io/docs/enterprise/websockets/): Learn how to integrate WebSockets with KrakenD API Gateway to enable real-time, bidirectional communication between clients and your APIs
+- [Introduction to gRPC and the service catalog](https://www.krakend.io/docs/enterprise/grpc/): The gRPC integration allows you to connect to gRPC services (client) and expose data using gRPC (server). You can choose to use both together or separately.
+- [gRPC client and gRPC to REST conversion](https://www.krakend.io/docs/enterprise/backends/grpc/): Interact with gRPC upstream services and expose data to the clients in a regular REST API or directly expose gRPC services to the consumer.
+- [gRPC Server](https://www.krakend.io/docs/enterprise/grpc/server/): KrakenD's gRPC server support for gRPC to HTTP/JSON transcoding, advanced routing, and API management for efficient microservices communication
+- [AMQP Consumer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-consumer/): Integrate AMQP consumers into KrakenD API Gateway for seamless communication with message queue systems like RabbitMQ
+- [AMQP Producer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-producer/): Integrate AMQP producers with KrakenD for seamless communication with backend systems. Follow our documentation to set up reliable and scalable messaging with Advanced Message Queuing Protocol (AMQP).
+- [Publisher/Subscribe with Kafka, NATS and cloud systems](https://www.krakend.io/docs/backends/pubsub/): Integrate Pub-Sub backend into KrakenD API Gateway to enable event-driven communication and real-time data updates in your API ecosystem
+- [GraphQL Backend Integration](https://www.krakend.io/docs/backends/graphql/): Integrate GraphQL backends into KrakenD API Gateway to leverage the power of GraphQL in your microservices architecture
+- [AWS Lambda Integration](https://www.krakend.io/docs/backends/lambda/): Integrate AWS Lambda functions into KrakenD API Gateway to leverage serverless computing for scalable and event-driven API processing
+- [Event-Driven API Gateway: Async Agents](https://www.krakend.io/docs/async/): Learn how to leverage asynchronous processing in KrakenD API Gateway to implement an event based pattern
+- [AMQP driver for the Asynchronous Agent](https://www.krakend.io/docs/async/amqp/): Leverage Asynchronous AMQP Agents in KrakenD for high-performance messaging and event-driven architectures
+
+
+## Request and Response Manipulation
+- [Introduction to Request and Response Manipulation](https://www.krakend.io/docs/request-response-manipulation/): Explore the request and response manipulation capabilities in KrakenD API Gateway, allowing you to modify and enhance API responses for a better user experience
+- [API Composition and aggregation](https://www.krakend.io/docs/endpoints/response-manipulation/): Explore the response manipulation capabilities in KrakenD API Gateway, allowing you to modify and enhance API responses for a better user experience
+- [Data Manipulation](https://www.krakend.io/docs/backends/data-manipulation/): Explore data manipulation capabilities in KrakenD API Gateway, enabling transformation and manipulation of response data
+- [Replace content with regular expressions and other functions](https://www.krakend.io/docs/enterprise/endpoints/content-replacer/): Utilize pre-defined content modifiers to replace values in responses dynamically using regular expressions and other functions.
+- [Response manipulation with query language (JMESPath)](https://www.krakend.io/docs/enterprise/endpoints/jmespath/): KrakenD Enterprise supports response manipulation with a query language. Learn how to use JMESPath for efficient data filtering and manipulation
+- [Response manipulation with templates](https://www.krakend.io/docs/enterprise/backends/response-body-generator/): The response body generator lets you write a whole new payload using a template that has access to the full data of the response.
+- [Serving Static Content](https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/): Learn how to serve static content through KrakenD API Gateway, enabling efficient delivery of static files for web applications
+- [Caching Strategies](https://www.krakend.io/docs/backends/caching/): Learn how to implement effective caching strategies in KrakenD API Gateway to improve API performance and reduce backend load
+- [Array manipulation](https://www.krakend.io/docs/backends/flatmap/): Integrate the FlatMap backend into KrakenD API Gateway for array data transformation and mapping operations in your API ecosystem
+- [Response header transformation](https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/): Add, replace, or delete headers at the service level, applying the conditions to all endpoints simultaneously before the headers reach the end-users
+- [Request manipulation with templates](https://www.krakend.io/docs/enterprise/backends/body-generator/): Explore the body generator backend feature in KrakenD API Gateway, allowing dynamic generation of request bodies for advanced API interactions.
+- [GeoIP integration: Location-based services](https://www.krakend.io/docs/enterprise/endpoints/geoip/): Leverage GeoIP endpoints in KrakenD Enterprise for location-based services and enrich your API responses
+- [Static modification of requests and responses with Martian](https://www.krakend.io/docs/backends/martian/): Learn how to integrate the Martian component into KrakenD API Gateway, enabling static request and response transformations for your APIs
+- [Supported Encodings for Backend Integration](https://www.krakend.io/docs/backends/supported-encodings/): Explore the supported encodings for seamless integration with backend systems in KrakenD. Learn how to optimize data exchange and ensure compatibility between KrakenD and your backend services.
+- [Returned encodings](https://www.krakend.io/docs/endpoints/content-types/): Discover how KrakenD API Gateway handles various content types, ensuring proper parsing and transformation for seamless data exchange
+- [Automatic Gzip compression on responses](https://www.krakend.io/docs/enterprise/service-settings/gzip/): Optimize API response sizes and reduce network traffic with Gzip compression in KrakenD Enterprise. Follow our documentation to enable and configure Gzip compression for your APIs.
+- [API Gateway Status Codes](https://www.krakend.io/docs/endpoints/status-codes/): Learn how to interpret HTTP status codes in KrakenD API Gateway, ensuring accurate and meaningful responses to API consumers
+- [Returning the backend headers and errors](https://www.krakend.io/docs/backends/detailed-errors/): Implement returning of backend headers and errors to provide informative and customized error messages to API consumers
+- [Static Proxy Endpoints](https://www.krakend.io/docs/endpoints/static-proxy/): Learn how to configure static proxy endpoints in KrakenD API Gateway to return stubs and static data on certain events
+- [JSON Schema Validation](https://www.krakend.io/docs/endpoints/json-schema/): Implement JSON Schema validation in KrakenD API Gateway to ensure data integrity and adherence to defined data structures for API requests
+- [Response Schema Validation for API Endpoints](https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/): Ensure the integrity of your API responses by implementing response schema validation in KrakenD Enterprise. Follow our documentation to learn how to validate and enforce response schemas
+- [Limiting requests' payload maximum size](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/): Learn how to set the maximum number of bytes you allow a user to send in the payload and return an error '413 Request Entity Too Large' for those who pass it.
+- [Workflows](https://www.krakend.io/docs/enterprise/endpoints/workflows/): KrakenD's workflows functionality lets you define and orchestrate multiple backend calls in a sequence, enabling complex API flows and responses with minimal configuration.
+
+
+## Security
+- [Security Overview](https://www.krakend.io/docs/security/): KrakenD is built with a security-first approach in mind. Read about the security features bundled by KrakenD and the principles and design philosophy behind it
+- [Cross-Origin Resource Sharing (CORS) Configuration](https://www.krakend.io/docs/service-settings/cors/): Configure Cross-Origin Resource Sharing (CORS) in KrakenD API Gateway to enable secure communication between different domains and APIs.
+- [TLS Configuration](https://www.krakend.io/docs/service-settings/tls/): Learn how to configure Transport Layer Security (TLS) in KrakenD API Gateway to ensure secure HTTP and HTTP/2 communication between clients and your APIs
+- [HTTP Security Considerations](https://www.krakend.io/docs/service-settings/security/): KrakenD's HTTP Security component enhances API protection by enabling features like Clickjacking protection, MIME-Sniffing prevention, and XSS protection, and more
+- [Docker Container with FIPS-140 Cryptographic Module](https://www.krakend.io/docs/enterprise/security/fips-140/): Learn about the security considerations and best practices in configuring and securing KrakenD API Gateway for protecting your APIs
+- [Security Policies Engine](https://www.krakend.io/docs/enterprise/security-policies/): Protect your APIs and enforce security policies using KrakenD Enterprise. Discover best practices and configuration options in our comprehensive security policies documentation.
+- [Security Policies language and syntax](https://www.krakend.io/docs/enterprise/security-policies/policy-language/): Explore the policy language for enhanced security in KrakenD documentation. Define precise access controls and policies
+- [CEL Built-in functions for Security Policies](https://www.krakend.io/docs/enterprise/security-policies/built-in-functions/): Explore CEL built-in functions to enhance security policies in KrakenD Enterprise for maximum protection
+- [Advanced Macros for Security Policies](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/): Discover advanced policy macros in KrakenD Enterprise for comprehensive security policies. Strengthen API protection
+- [Security Policies Playbook](https://www.krakend.io/docs/enterprise/security-policies/playbook/): Access our Security Policies Playbook for comprehensive guidelines on safeguarding your APIs. Ensure robust protection
+
+
+## Authentication & Authorization
+- [Authorization and Authentication (authZ + authN)](https://www.krakend.io/docs/authorization/): Overview of the options available to integrate authentication and authorization services with KrakenD API Gateway for secure access control to your APIs
+- [API Key Authentication in KrakenD](https://www.krakend.io/docs/enterprise/authentication/api-keys/): Implement API key authentication in KrakenD API Gateway for secure and controlled access to your APIs in enterprise environments
+- [Basic Authentication](https://www.krakend.io/docs/enterprise/authentication/basic-authentication/): Implement basic authentication in KrakenD API Gateway to secure your APIs using username and password credentials
+- [JWT Overview - Authorization](https://www.krakend.io/docs/authorization/jwt-overview/): Gain an overview of JSON Web Tokens (JWT) and learn how to implement JWT-based authorization with KrakenD API Gateway for secure API access
+- [JWT Validation](https://www.krakend.io/docs/authorization/jwt-validation/): Implement JWT validation with KrakenD API Gateway to secure your APIs and prevent unauthorized access.
+- [Shared JWK Caching for Authorization](https://www.krakend.io/docs/authorization/jwk-caching/): Implement shared JWK caching for efficient authorization in KrakenD. Learn how to cache and manage JSON Web Key (JWK) sets to optimize authorization's performance.
+- [JWT Signing](https://www.krakend.io/docs/authorization/jwt-signing/): KrakenD's JWT signing wraps your login endpoint, signing payloads with your secret key. Perfect for monolith migrations or setups without an OAuth server.
+- [Token Revocation](https://www.krakend.io/docs/authorization/revoking-tokens/): Learn how to implement token revocation mechanisms in KrakenD API Gateway to manage and invalidate access tokens when needed
+- [Revoke Server for clusters](https://www.krakend.io/docs/enterprise/authentication/revoke-server/): Implement the Revoke Server as a standalone server that coordinates and pushes token revocation in a KrakenD Cluster
+- [Client Credentials Authorization](https://www.krakend.io/docs/authorization/client-credentials/): Learn how to implement OAuth 2.0 Client Credentials (2-legged flow) with KrakenD API Gateway to secure your APIs for machine-to-machine communication
+- [Multiple Identity Providers](https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/): Learn how to integrate and support multiple identity providers in KrakenD API Gateway, enabling flexible authentication options for API consumers
+- [Mutual Authentication](https://www.krakend.io/docs/authorization/mutual-authentication/): Implement mutual authentication in KrakenD API Gateway to establish a secure and trusted communication channel between clients and APIs
+- [Google Cloud service-to-service authentication](https://www.krakend.io/docs/enterprise/authentication/gcloud/): Learn how to implement secure GCloud authentication with KrakenD Enterprise. Step-by-step guide for seamless integration
+- [Auth0 Integration](https://www.krakend.io/docs/authorization/auth0/): Integrate Auth0 authentication and authorization services with KrakenD API Gateway for secure and seamless access control to your APIs
+- [Descope Authorization](https://www.krakend.io/docs/authorization/descope/): Learn how to integrate Descope authorization with KrakenD API Gateway for secure and controlled access to your APIs.
+- [Keycloak Authorization](https://www.krakend.io/docs/authorization/keycloak/): Learn how to integrate Keycloak authorization with KrakenD API Gateway for secure and controlled access to your APIs.
+- [NTLM authentication](https://www.krakend.io/docs/enterprise/authentication/ntlm/): Secure API access with NTLMv2 authentication for Microsoft servers to integrate legacy systems like the ERP Microsoft Dynamics that still need to switch to Oauth.
+
+
+## Traffic Management
+- [Traffic Management Overview](https://www.krakend.io/docs/throttling/): Learn how KrakenD's traffic management features help optimize your API's performance, prevent abuse, and ensure a seamless user experience.
+- [Load Balancing and Throttling](https://www.krakend.io/docs/throttling/load-balancing/): Explore load balancing and throttling strategies in KrakenD API Gateway to ensure optimal performance and resource utilization
+- [Circuit Breaker](https://www.krakend.io/docs/backends/circuit-breaker/): Implement the circuit breaker pattern in KrakenD API Gateway to enhance the resilience and stability of your API ecosystem
+- [Service Rate Limiting to Control API Usage](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/): Implement service rate limiting to control API usage and prevent abuse with KrakenD Enterprise. Follow our comprehensive guide to configure rate limits and ensure fair usage of your APIs.
+- [Rate Limiting API Gateway Endpoints](https://www.krakend.io/docs/endpoints/rate-limit/): Implement rate-limiting strategies in KrakenD API Gateway to control the number of requests and prevent API abuse or overloading
+- [Rate Limit Tiers](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/): KrakenD's tiered rate limiting allows you to apply different rate limits based on user levels or API clients, ensuring fair usage and protecting your services efficiently.
+- [Rate Limiting  Backends](https://www.krakend.io/docs/backends/rate-limit/): Implement rate limiting in KrakenD API Gateway backends to control and manage API usage, preventing abuse and ensuring fair resource allocation
+- [Stateless Cluster Throttling: Optimize API Performance](https://www.krakend.io/docs/throttling/cluster/): Employ cluster throttling to optimize API performance and prevent overload scenarios through KrakenD
+- [Stateful endpoint rate limit (Redis backed)](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/): Implement endpoint rate limiting in KrakenD API Gateway's Enterprise Edition to control and manage API traffic at an endpoint level using Redis as the backend.
+- [Stateful service rate limit (Redis backed)](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/): Implement global rate limiting in KrakenD API Gateway's Enterprise Edition to control and manage API traffic at a global level
+- [Bot Detection and Throttling Guide: Prevent API Abuse](https://www.krakend.io/docs/throttling/botdetector/): Implement bot detection and throttling mechanisms to prevent API abuse and ensure fair usage. Follow our comprehensive guide to protect your APIs from malicious bot traffic.
+- [IP Filtering](https://www.krakend.io/docs/enterprise/throttling/ipfilter/): Implement IP filtering for efficient API throttling with KrakenD Enterprise. Learn how to secure and optimize your API requests using our IP filtering configuration guide.
+- [How API Traffic Throttling with Token Bucket algorithm works](https://www.krakend.io/docs/throttling/token-bucket/): Implement token bucket-based throttling mechanism in KrakenD API Gateway to control API access rates and prevent abuse
+- [Understanding Spike Arrest and Burst](https://www.krakend.io/docs/throttling/spike-arrest/): Spike Arrest throttling in KrakenD to regulate API traffic and prevent overload situations effectively
+
+
+## AI Gateway
+- [AI Gateway - API Gateway for LLMs](https://www.krakend.io/docs/ai-gateway/): Discover how KrakenD transforms your API Gateway into a full-featured AI Gateway, with token enforcement, multi-LLM orchestration, and LLM security.
+- [AI Security](https://www.krakend.io/docs/ai-gateway/security/): Protect sensitive data and secure LLM access using KrakenD’s API-level AI security capabilities like isolated auth and data masking.
+- [AI Token Cost Control & Quotas](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/): KrakenD lets you enforce LLM token quotas per user, tier, or endpoint, with dynamic routing to cost-efficient models.
+- [AI Governance](https://www.krakend.io/docs/enterprise/ai-gateway/governance/): Enforce rate limits, validate prompts, and route multi-LLM traffic with policy-based governance in KrakenD's AI Gateway.
+- [Unified LLM Interface](https://www.krakend.io/docs/ai-gateway/unified-llm-interface/): Simplify multi-LLM integration by exposing a single, consistent API through KrakenD’s unified LLM interface.
+
+
+## Governance and Monetization
+- [API Governance using Quota](https://www.krakend.io/docs/enterprise/governance/quota/)
+- [Moesif integration for API Analytics and Monetization](https://www.krakend.io/docs/enterprise/governance/moesif/)
+
+
+## Monitoring, Logs, and Analytics
+- [Telemetry and Monitoring](https://www.krakend.io/docs/telemetry/): Learn about the telemetry and monitoring capabilities of KrakenD API Gateway, enabling real-time visibility and analysis of API performance
+- [Telemetry and Monitoring through OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/): Learn about the telemetry and monitoring capabilities of KrakenD API Gateway using OTEL, enabling real-time visibility and analysis of API performance
+- [Understanding OpenTelemetry layers and metrics](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/): Learn about the metrics available when activating OpenTelemetry on KrakenD API Gateway, enabling real-time visibility and analysis of API performance
+- [Granular OpenTelemetry by endpoint](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry-by-endpoint/): Set different metrics and traces settings per endpoint or per backend individually, overriding existing OpenTelemetry settings that are defined at the service level
+- [Granular OpenTelemetry by endpoint](https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/): Set different metrics and traces settings per endpoint or per backend individually, overriding existing OpenTelemetry settings that are defined at the service level
+- [Authenticated metrics to SaaS providers using OTEL](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry-security/): Push metrics and traces to any SaaS-based third party remote collectors directly, without needing to set up a local collector inside your infrastructure.
+- [Prometheus' metrics endpoint](https://www.krakend.io/docs/telemetry/prometheus/): Learn how to integrate Prometheus telemetry with KrakenD API Gateway for efficient monitoring and performance analysis of your APIs
+- [Telemetry and Monitoring with Grafana](https://www.krakend.io/docs/telemetry/grafana/): Discover how to set up telemetry and monitoring for KrakenD API Gateway using Grafana, gaining insights into performance and usage metrics
+- [InfluxDB Telemetry Integration](https://www.krakend.io/docs/telemetry/influxdb/): Integrate InfluxDB telemetry with KrakenD API Gateway for efficient data collection, storage, and visualization of API performance metrics
+- [OpenCensus Telemetry Integration](https://www.krakend.io/docs/telemetry/opencensus/): The OpenCensus telemetry integration is now development-frozen. All efforts are now put into OpenTelemetry.
+- [Datadog Telemetry Integration](https://www.krakend.io/docs/telemetry/datadog/): Integrate Datadog telemetry with KrakenD API Gateway for advanced monitoring, visualization, and analysis of your API ecosystem
+- [Zipkin Telemetry Integration](https://www.krakend.io/docs/telemetry/zipkin/): Integrate Zipkin telemetry to monitor and trace KrakenD API Gateway requests efficiently for enhanced performance
+- [Jaeger Telemetry Integration - KrakenD API Gateway](https://www.krakend.io/docs/telemetry/jaeger/): Integrate Jaeger telemetry with KrakenD API Gateway for distributed tracing and monitoring of your microservices architecture
+- [AWS X-Ray Telemetry Integration](https://www.krakend.io/docs/telemetry/xray/): Push KrakenD metrics to AWS X-Ray Telemetry with a small snippet of configuration to monitor and analyze KrakenD API Gateway performance effectively
+- [Google Cloud and Stackdriver Integration](https://www.krakend.io/docs/telemetry/stackdriver/): Monitor KrakenD API Gateway using Google Cloud (formerly Stackdriver) for comprehensive insights and effective troubleshooting
+- [Azure Monitor Telemetry Integration](https://www.krakend.io/docs/telemetry/azure/): Integrate Azure Telemetry with KrakenD for effective monitoring and performance analysis of your APIs. Follow our documentation to set up seamless integration with your Azure services.
+- [New Relic Telemetry Integration (native DSK)](https://www.krakend.io/docs/enterprise/telemetry/newrelic/): Integrate New Relic telemetry with KrakenD Enterprise for real-time monitoring and performance analysis of your APIs. Follow our documentation to set up seamless integration
+- [Advanced Logging](https://www.krakend.io/docs/enterprise/logging/): Configure and customize logging in KrakenD Enterprise, including log destinations (stdout, syslog), formats, levels, and advanced options.
+- [Logging](https://www.krakend.io/docs/logging/): Learn how to implement Syslog and Stdout logging in KrakenD API Gateway, enabling effective monitoring and troubleshooting of your API gateway and microservices
+- [Graylog GELF Logging Integration](https://www.krakend.io/docs/logging/graylog-gelf/): Integrate Graylog GELF logging with KrakenD API Gateway for centralized log management and analysis of API logs
+- [Logstash Integration (JSON logs)](https://www.krakend.io/docs/logging/logstash/): Streamline log management and analysis by integrating Logstash with KrakenD. Follow our documentation to set up seamless integration and gain valuable insights from your API logs.
+- [ELK Integration for Logging](https://www.krakend.io/docs/logging/elk-integration/): Learn how to integrate the ELK (Elasticsearch, Logstash, Kibana) stack for centralized logging and log analysis in KrakenD API Gateway
+- [Extended Metrics API](https://www.krakend.io/docs/telemetry/extended-metrics/): Explore the extended metrics available in KrakenD API Gateway telemetry for detailed insights into API performance and usage
+- [API Health Check](https://www.krakend.io/docs/service-settings/health/)
+
+
+## API Documentation and Dev Tools
+- [KrakenD Development Tools](https://www.krakend.io/docs/enterprise/developer/): Access KrakenD tooling tailored for developers. Build powerful APIs using KrakenD API Gateway quicker through these aids.
+- [Custom developer tools](https://www.krakend.io/docs/developer/): Discover what are the development tools you can compile additionally to work with KrakenD Open Source edition. These tools are not bundled by default with KrakenD.
+- [Debug Endpoint](https://www.krakend.io/docs/endpoints/debug-endpoint/): Learn how to utilize the debug endpoint in KrakenD API Gateway for troubleshooting and debugging purposes during API development and testing
+- [Automated integration tests](https://www.krakend.io/docs/developer/integration-tests/)
+- [Echo Endpoint Configuration](https://www.krakend.io/docs/endpoints/echo-endpoint/): Learn how to configure the Echo endpoint in KrakenD. A straightforward way to test your API Gateway setup containing the details of a request.
+- [HTTP Logger Integration](https://www.krakend.io/docs/enterprise/backends/http-logger/): Integrate the HTTP logger backend into KrakenD API Gateway to log and analyze API requests and responses for troubleshooting and analysis
+- [Import and Export OpenAPI definitions](https://www.krakend.io/docs/enterprise/developer/openapi/): Integrate OpenAPI specifications with KrakenD API Gateway to streamline API documentation, validation, and management in enterprise environments
+- [Document your endpoints with OpenAPI](https://www.krakend.io/docs/enterprise/endpoints/openapi/)
+- [Generating API documentation](https://www.krakend.io/docs/enterprise/developer/api-docs/): Learn how to automate and generate API documentation on the fly in JSON or HTML format automatically using Redocly or Swagger UI during the build process
+- [Postman Integration Guide for Developers](https://www.krakend.io/docs/enterprise/developer/postman/): Integrate KrakenD with Postman for streamlined API development and testing. Explore our documentation to learn how to import, configure, and collaborate on API collections in Postman.
+- [Generate graphs from your configuration](https://www.krakend.io/docs/enterprise/developer/config2dot/): Get a comprehensive guide to using Config2Dot in KrakenD Enterprise for better visualization and analysis of configurations
+- [IDE Integration Guide for Developers](https://www.krakend.io/docs/developer/ide-integration/): Enhance your development workflow by integrating KrakenD with your favorite IDE. Follow our comprehensive guide to seamlessly integrate KrakenD into your development environment.
+- [End-to-End Testing for Developers](https://www.krakend.io/docs/enterprise/developer/integration-tests/): Streamline your API development process with E2E tests in KrakenD Enterprise. Explore our documentation to learn how to write comprehensive tests for your APIs.
+
+
+## Extending with custom code
+- [Extending KrakenD with your code](https://www.krakend.io/docs/extending/): Learn how to extend KrakenD API Gateway by developing custom plugins or scripts to add new functionalities and integrate with external systems
+- [Writing and building custom plugins](https://www.krakend.io/docs/extending/writing-plugins/): Learn how to extend the functionality of KrakenD API Gateway by writing and building custom plugins, enabling custom business logic and workflows
+- [Automatically generate boilerplate for Go plugins](https://www.krakend.io/docs/enterprise/extending/generating-plugins/): Generate any type of plugin with a simple command that provides scaffolding and the Makefile to compile for any supported architecture.
+- [Checking dependencies of plugins](https://www.krakend.io/docs/extending/check-plugin/): Learn how to check your custom KrakenD plugins with the check-plugin command and ensure that your developments are compatible and loadable by KrakenD during runtime.
+- [Test plugins after compiling them](https://www.krakend.io/docs/extending/test-plugin/): Learn how to test binary files that you compiled as plugins by loading them to KrakenD and test their behavior before you deploy them to production.
+- [Enterprise plugins](https://www.krakend.io/docs/enterprise/overview/plugins/): Discover how you can customize KrakenD Enterprise through plugins and the different types of plugins you can use to solve situations in different scenarios
+- [Injecting Plugins into KrakenD API Gateway - Extensibility Guide](https://www.krakend.io/docs/extending/injecting-plugins/): Discover the extensibility of KrakenD API Gateway by learning how to inject custom plugins for adding new functionality and integration
+- [HTTP Server Plugins for KrakenD API Gateway](https://www.krakend.io/docs/extending/http-server-plugins/): Discover how to write HTTP server plugins for KrakenD API Gateway, enabling you to customize server behaviors and implement custom logic.
+- [HTTP Client Plugins for KrakenD API Gateway](https://www.krakend.io/docs/extending/http-client-plugins/): Learn how to extend the functionality of KrakenD API Gateway by utilizing HTTP client plugins, enabling customized communication with external services
+- [Extending KrakenD with Request and Response Plugin Modifiers](https://www.krakend.io/docs/extending/plugin-modifiers/): Learn how to extend the functionality of KrakenD API Gateway by utilizing plugin modifiers, enabling customized request and response processing
+- [Middleware Plugins for KrakenD API Gateway](https://www.krakend.io/docs/enterprise/extending/middleware-plugins/): Discover how to write Middleware plugins for KrakenD API Gateway, enabling you to customize server behaviors and implement custom logic.
+- [Lua Scripting](https://www.krakend.io/docs/endpoints/lua/): Explore the power of Lua scripting in KrakenD API Gateway, allowing you to customize and extend the behavior of your API gateway
+- [Lua advanced helpers](https://www.krakend.io/docs/enterprise/endpoints/lua-advanced-helpers/): Extend the functionality of your Lua scripts with additional helpers that run natively on Go for optimal performance and advanced functionality
+
+
+## Deployment and Go-Live
+- [Clustering Deployment Guide](https://www.krakend.io/docs/deploying/clustering/): Discover the best practices for deploying KrakenD in a clustered environment. Scale your API infrastructure effectively using our comprehensive clustering deployment guide.
+- [Deploying KrakenD API Gateway - Best Practices and Guidelines](https://www.krakend.io/docs/deploying/): Explore the best practices and guidelines for deploying KrakenD API Gateway in various environments, ensuring a smooth and efficient deployment process
+- [Server Dimensioning for KrakenD API Gateway Deployment](https://www.krakend.io/docs/deploying/server-dimensioning/): Learn how to dimension and scale servers for deploying KrakenD API Gateway, ensuring optimal performance and resource allocation
+- [CI/CD Deployment on the API Gateway](https://www.krakend.io/docs/deploying/ci-cd/): Streamline your API deployments with KrakenD using continuous integration and continuous deployment (CI/CD) practices. Follow our comprehensive guide to automate your deployment pipeline.
+- [Deploying KrakenD API Gateway with Docker](https://www.krakend.io/docs/deploying/docker/): Learn how to deploy KrakenD API Gateway using Docker, enabling containerized deployments for efficient scaling and management
+- [Deploying KrakenD API Gateway on Kubernetes](https://www.krakend.io/docs/deploying/kubernetes/): Discover the best practices and guidelines for deploying KrakenD API Gateway on Kubernetes, enabling scalable and efficient API management
+
+
+## Benchmarks
+- [API Gateway Performance Benchmarks with KrakenD](https://www.krakend.io/docs/benchmarks/): Explore the performance benchmarks conducted with KrakenD API Gateway to ensure optimal performance and scalability for your APIs.
+- [API Gateway Benchmarking with KrakenD](https://www.krakend.io/docs/benchmarks/api-gateway-benchmark/): Explore the API gateway benchmarking capabilities of KrakenD, measure performance, and optimize your API gateway for high throughput and low latency
+- [Benchmarking KrakenD API Gateway on AWS](https://www.krakend.io/docs/benchmarks/aws/): Explore the benchmarking results of KrakenD API Gateway running on Amazon Web Services (AWS), showcasing its performance and scalability
+- [Benchmarking KrakenD API Gateway on a local machine](https://www.krakend.io/docs/benchmarks/local/): Performance tests of KrakenD running on a local machine (laptop) with measurements of different concurrency levels.
+
+
+## Design principles
+- [Design principles. The big picture.](https://www.krakend.io/docs/design/): Discover the KrakenD API architecture and its design principles, as well its most important internal packages.
+- [KrakenD Execution Flow Design](https://www.krakend.io/docs/design/execution-flow/): Understand the execution flow design of KrakenD API Gateway. Is the configuration X executed before the configuration Y?
+- [Backend-for-Frontend (BFF) Design Pattern](https://www.krakend.io/docs/design/backend-for-frontend/): Discover how to leverage the Backend-for-Frontend (BFF) design pattern with KrakenD API Gateway to optimize frontend-backend communication
+- [Zero Trust Design: Secure API Architecture](https://www.krakend.io/docs/design/zero-trust/): The zero-trust security is a deny by default software design choice, where the exposed surface is limited to what it's explicitly declared.
+- [Lura vs. KrakenD](https://www.krakend.io/docs/overview/lura-vs-krakend/): The Lura Project is the code libraries we donated to the Linux Foundation (and still maintain!) and KrakenD the distributable software that runs on top of it.
+
+
+## Frequently Asked Questions
+- [Frequently Asked Questions (FAQ) - KrakenD API Gateway](https://www.krakend.io/docs/faq/): Get quick answers to frequently asked questions about how KrakenD works and the reason behind different responses.
+- [Switching to Community or Enterprise](https://www.krakend.io/docs/faq/switch-versions/): Learn how to upgrade or downgrade KrakenD from Enterprise Edition (EE) to Community Edition (CE) to keep your existing installation working correctly.
