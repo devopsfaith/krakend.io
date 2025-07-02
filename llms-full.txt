@@ -3801,7 +3801,7 @@ To enable dynamic routing, **you don't need to add any specific extra entry** in
 }
 ```
 
-The example above replaces the variable `{input_headers.X-Tenant}` with the value provided under a hypothetical `X-Tenant`  header to construct the final DNS entry. It also uses a header `X-Route` to define the URL pattern. Notice that when using dynamic routing in the field `host` **, the flag `disable_host_sanitize` set to `true` is mandatory**.
+The example above replaces the variable `{input_headers.X-Tenant}` with the value provided under a hypothetical `X-Tenant`  header to construct the final DNS entry. It also uses a header `X-Route` to define the URL pattern. Notice that when using dynamic routing in the field `host` **, the flag `disable_host_sanitize` set to `true` is mandatory**. Also notice **the absence of a service discovery property (`sd`)** in the configuration, as the dynamic routing is incompatible with DNS-based service discovery strategies.
 
 {{< note title="Security notice" type="warning" >}}
 Because the dynamic routing might take the user input to build the `host` string, you should always add a [Security Policy](/docs/enterprise/security-policies/) that validates the user input.
@@ -10433,7 +10433,7 @@ Some **examples of typical Martian scenarios** are:
 
 Add martian modifiers in your configuration under the `extra_config` of any `backend` using the namespace `modifier/martian`.
 
-Inside the configuration, you must write one or more component keys using the notation `package.Type` using the available ones described in this page. You cannot write `@comment`-like attributes directly under the `modifier/martian` namespace, but you can add them inside each modifier.
+Inside the configuration, you must write a single component using the notation `package.Type` using the available ones described in this page. If you need **multiple modifiers** use a group type. You cannot write `@comment`-like attributes directly under the `modifier/martian` namespace, but you can add them inside each modifier.
 
 There are three main **types** of packages you can use in Martian:
 
@@ -12514,6 +12514,8 @@ Try this example locally and play with it to understand the flow.
 # [Security Overview](https://www.krakend.io/docs/security/)
 
 KrakenD is a software built with a **security-first philosophy**. In 2022, we became a recognized **CVE Numbering Authority (CNA)** worldwide for software distribution ([Partner page](https://www.cve.org/PartnerInformation/ListofPartners/partner/KrakenD)), and we publish CVE Records for vulnerabilities within any KrakenD software or the Lura Project (© the Linux Foundation).
+
+In addition, our company is [SOC 2 Type II Certified](/blog/soc2-certification-announcement/) and you can get more information on our [Trust Center](https://trust.krakend.io/).
 
 {{< button-group >}}
 {{< button url="/categories/security/" text="Security Advisories" >}}<svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
@@ -18584,7 +18586,7 @@ Here are some indications to avoid exfiltration using **static patterns**:
 - Use [Security Policies](/docs/enterprise/security-policies/) {{< badge >}}Enterprise{{< /badge >}} to check necessary roles and conditions to deliver content
 - Use [Regex Masking or Redaction](/docs/ai-gateway/security/#data-masking--data-loss-prevention) on fields that must not be exfiltrated in full.
 - Use custom logic in [request and response modifier plugins](/docs/extending/plugin-modifiers/)
-- Instead of allowing open LLM queries, use [prompt templates](/docs/ai-gateway/governance/#prompt-templates)
+- Instead of allowing open LLM queries, use [prompt templates](/docs/enterprise/ai-gateway/governance/#prompt-templates) {{< badge >}}Enterprise{{< /badge >}}
 
 For **dynamic operation**, you can delegate the output to an LLM that will refine the response. To do that, you can add a [sequential proxy](/docs/endpoints/sequential-proxy/) step as the second backend, as explained in the chapter above.
 
@@ -19323,6 +19325,10 @@ Once the data is pushed to Moesif, from Moesif itself, you can:
 - **Charge for APIs Effortlessly**: Connect to a payment gateway and set up usage-based billing rules on API calls, gross dollar volume, and more. Issue invoices directly from Stripe, Recurly, Chargebee, or trigger webhooks.
 - **Enforce Subscription Quotas**: Make your users subscribe and accept terms automatically. Allow access to freemium and trial accounts.
 - **Guide Developers at Scale**: Automatically guide external developers on using your platform with behavioral emails, like they have exceeded the quota or any other rules you want to enforce.
+
+{{< note title="Streaming incompatible" type="warning" >}}
+The activation of this component disables [streaming](/docs/endpoints/no-op/) on all endpoints (and the full response uses buffering instead).
+{{< /note >}}
 
 ## Monetization and API Analytics configuration
 To push data to your Moesif account, the configuration you need is straightforward, as you only need to add your Application ID and a few additional settings to map your users and companies correctly. Here is an example configuration:

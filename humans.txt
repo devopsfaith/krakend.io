@@ -16,8 +16,17 @@ LinkedIn: https://www.linkedin.com/in/dortiz-krakend/
 Business Director: Albert García
 LinkedIn: https://www.linkedin.com/in/obokaman/
 
-Senior Software Engineer: David Hontecillas
+Senior Engineer: David Hontecillas
 LinkedIn: https://www.linkedin.com/in/hontecillas/
+
+Senior Engineer: Jorge Tarrero
+LinkedIn: https://www.linkedin.com/in/jorge-tarrero-mart%C3%ADn-39731348/
+
+Finance: Luis Martin
+LinkedIn: https://www.linkedin.com/in/luismartinmartinez/
+
+Technical Account Executive: Toni Pinel
+LinkedIn: https://www.linkedin.com/in/tonipinel/
 
 
 /* ABOUT */
