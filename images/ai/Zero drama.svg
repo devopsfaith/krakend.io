@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/Zero drama</title>
+    <g id="Icons/Zero-drama" stroke="none" fill="none">
+        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        <g id="Show-Person--Streamline-Ultimate" stroke-width="1" fill-rule="evenodd" transform="translate(1, 1)" stroke="#C9D3EE" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11,0 L0.956521739,0 C0.42824937,0 0,0.42824937 0,0.956521739 L0,20.5652174 C0,21.3576259 0.642374055,22 1.43478261,22 L4.30434783,22 C4.30434783,18.173913 3.82608696,14.826087 1.91304348,12.9130435 C5.72902648,9.76904915 7.70636603,4.91557936 7.17391304,0" id="Path" stroke-width="2"></path>
+            <path d="M11,0 L21.0434783,0 C21.5717506,0 22,0.42824937 22,0.956521739 L22,20.5652174 C22,21.3576259 21.3576259,22 20.5652174,22 L17.6956522,22 C17.6956522,18.173913 18.173913,14.826087 20.0869565,12.9130435 C16.2709735,9.76904915 14.293634,4.91557936 14.826087,0" id="Path" stroke-width="2"></path>
+            <line x1="1.91304348" y1="12.9130435" x2="0" y2="12.9130435" id="Path" stroke-width="2"></line>
+            <line x1="22" y1="12.9130435" x2="20.0869565" y2="12.9130435" id="Path" stroke-width="2"></line>
+        </g>
+    </g>
+</svg>
