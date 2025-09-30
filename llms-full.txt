@@ -19882,11 +19882,11 @@ When the credentials do not work, you'll see failure messages in the log when pu
 
 # [Prometheus' metrics endpoint](https://www.krakend.io/docs/telemetry/prometheus/)
 
-[Prometheus](https://prometheus.io/) is an open-source system monitoring and alerting toolkit that you can use to scrap a `/metrics` endpoint on KrakenD in the selected port. For instance, you could have an endpoint like `http://localhost:9091/metrics`.
+[Prometheus](https://prometheus.io/) is an open-source system monitoring and alerting toolkit that you can use to scrape a `/metrics` endpoint on KrakenD in the selected port. For instance, you could have an endpoint like `http://localhost:9091/metrics`.
 
 When using Prometheus with OpenTelemetry, you can use a [ready-to-use Grafana dashboard](/docs/telemetry/grafana/) to visualize metrics, as shown in the image above.
 
-The mechanics are simple: you add the `telemetry/opentelemetry` integration with a `prometheus` exporter, and then you add a Prometheus job to scrap from your KrakenD instances the metrics.
+The mechanics are simple: you add the `telemetry/opentelemetry` integration with a `prometheus` exporter, and then you add a Prometheus job to scrape from your KrakenD instances the metrics.
 
 ![Prometheus scrapping from KrakenD image](/images/documentation/diagrams/opentelemetry-prometheus.mmd.svg)
 
@@ -19925,7 +19925,7 @@ The following configuration allows you to test a complete metrics experience, fr
 
 
 - The `krakend` service exposing port 8080
-- The `prometheus` service that will scrap the metrics from KrakenD
+- The `prometheus` service that will scrape the metrics from KrakenD
 - A `grafana` dashboard to display them (it uses our [Grafana dashboard](/docs/telemetry/grafana/))
 
 Notice that the three services declare volumes to pick the configuration.
@@ -21619,7 +21619,7 @@ If you want to see how this works, you can start the [KrakenD Playground](/docs/
 
 # [Extended Metrics API](https://www.krakend.io/docs/telemetry/extended-metrics/)
 
-The **metrics API** offers a new `/__stats/` endpoint in a different port and contains a lot of metrics that you can scrap in a custom collector, or you can push them to [InfluxDB](/docs/telemetry/influxdb/).
+The **metrics API** offers a new `/__stats/` endpoint in a different port and contains a lot of metrics that you can scrape in a custom collector, or you can push them to [InfluxDB](/docs/telemetry/influxdb/).
 
 This component is unrelated to the [OpenTelemetry](/docs/telemetry/opentelemetry/) metrics, and they can coexist. Previous to the creation of OpenTelemetry, the combination of Influx and the metrics API, offered the older versions of [Grafana dashboard](/docs/telemetry/grafana/).
 
@@ -23311,7 +23311,7 @@ While **you don't need any configuration block** to use Postman, the following o
 All items described above are optional and they enrich the Postman output. You can go as far as you want depending on the level of detail you want to give to your Postman collection.
 {{< /note >}}
 
-The following is a full example of Postman-documented configuration. It includes a service configuration block that declares names and descriptions for the different folders that are used in the endpoints, and a Postman block for each endpoint. 
+The following is a full example of Postman-documented configuration. It includes a service configuration block that declares names and descriptions for the different folders that are used in the endpoints, and a Postman block for each endpoint.
 ```json
 {
   "$schema": "https://www.krakend.io/schema/v{{< product minor_version >}}/krakend.json",
@@ -28317,4 +28317,3 @@ To upgrade a Community configuration to an Enterprise one, **no configuration ch
 - Start the new server
 
 If you use the same version, everything you configured on the Community Edition works in the Enterprise Edition.
-
