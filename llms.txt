@@ -46,6 +46,7 @@
 - [Dynamic Routing](https://www.krakend.io/docs/enterprise/endpoints/dynamic-routing/): Implement dynamic routing in KrakenD API Gateway to dynamically route requests based on headers and query strings
 - [Catchall (Fallback backend)](https://www.krakend.io/docs/enterprise/endpoints/catch-all/): The Catchall is a special type of endpoint that receives all the traffic other endpoint routes in the configuration cannot handle.
 - [Sequential Proxying](https://www.krakend.io/docs/endpoints/sequential-proxy/): Explore the sequential proxying capability in KrakenD API Gateway, allowing you to chain multiple requests and orchestrate complex API workflows
+- [Conditional Routing](https://www.krakend.io/docs/enterprise/backends/conditional/): Conditional Routing in KrakenD enables dynamic backend selection based on request headers, JWT claims, or custom policies—perfect for AB testing, feature flags, AI/LLM orchestration, and multi-tenant APIs. Seamlessly route requests using flexible rules without triggering errors or relying on Security Policies. Supports fallback logic, header evaluation, and integration with workflows, making it ideal for advanced, production-ready API scenarios.
 - [Virtual Hosts](https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/): Configure virtual hosts in KrakenD API Gateway's Enterprise Edition to host multiple domains and handle complex routing scenarios
 - [Handling Client Redirects](https://www.krakend.io/docs/enterprise/backends/client-redirect/): Integrate client redirect backend in KrakenD API Gateway to enable dynamic and conditional redirection of API requests
 - [URL Rewrite for API Endpoints](https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/): Rewrite and customize API URLs with URL rewriting in KrakenD Enterprise. Learn how to modify and optimize API endpoints without impacting client applications.
@@ -53,6 +54,7 @@
 - [HTTP Proxy: Access to backends through a proxy](https://www.krakend.io/docs/enterprise/backends/http-proxy/): The HTTP proxy plugin adds an intermediate layer where the connection to the backend is made through an external proxy.
 - [HTTP Global Client settings](https://www.krakend.io/docs/service-settings/http-transport-settings/)
 - [HTTP Per-backend Client settings](https://www.krakend.io/docs/enterprise/backends/http-client/): The HTTP client options allow you to set the client TLS settings for each backend, configure the no redirect behavior, or connect through a web proxy.
+- [HTTP Per-backend Client settings](https://www.krakend.io/docs/backends/http-client/): The HTTP client options allow you to configure the behavior to connect to your backends using HTTP
 - [Handling Concurrent Requests](https://www.krakend.io/docs/endpoints/concurrent-requests/): Learn how KrakenD API Gateway efficiently handles concurrent requests to ensure scalability, performance, and optimal resource utilization
 - [Service Discovery Integration](https://www.krakend.io/docs/backends/service-discovery/): Integrate service discovery mechanisms into KrakenD API Gateway to dynamically discover and route requests to available backend services
 - [Traffic shadowing and mirroring](https://www.krakend.io/docs/backends/shadow-backends/): Implement shadow backends in KrakenD API Gateway for non-intrusive testing and monitoring of new backend services or API versions
@@ -107,11 +109,11 @@
 - [Cross-Origin Resource Sharing (CORS) Configuration](https://www.krakend.io/docs/service-settings/cors/): Configure Cross-Origin Resource Sharing (CORS) in KrakenD API Gateway to enable secure communication between different domains and APIs.
 - [TLS Configuration](https://www.krakend.io/docs/service-settings/tls/): Learn how to configure Transport Layer Security (TLS) in KrakenD API Gateway to ensure secure HTTP and HTTP/2 communication between clients and your APIs
 - [HTTP Security Considerations](https://www.krakend.io/docs/service-settings/security/): KrakenD's HTTP Security component enhances API protection by enabling features like Clickjacking protection, MIME-Sniffing prevention, and XSS protection, and more
-- [Docker Container with FIPS-140 Cryptographic Module](https://www.krakend.io/docs/enterprise/security/fips-140/): Learn about the security considerations and best practices in configuring and securing KrakenD API Gateway for protecting your APIs
+- [Run using the FIPS-140 Cryptographic Module](https://www.krakend.io/docs/enterprise/security/fips-140/): Learn about the security considerations and best practices in configuring and securing KrakenD API Gateway for protecting your APIs
 - [Security Policies Engine](https://www.krakend.io/docs/enterprise/security-policies/): Protect your APIs and enforce security policies using KrakenD Enterprise. Discover best practices and configuration options in our comprehensive security policies documentation.
 - [Security Policies language and syntax](https://www.krakend.io/docs/enterprise/security-policies/policy-language/): Explore the policy language for enhanced security in KrakenD documentation. Define precise access controls and policies
-- [CEL Built-in functions for Security Policies](https://www.krakend.io/docs/enterprise/security-policies/built-in-functions/): Explore CEL built-in functions to enhance security policies in KrakenD Enterprise for maximum protection
 - [Advanced Macros for Security Policies](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/): Discover advanced policy macros in KrakenD Enterprise for comprehensive security policies. Strengthen API protection
+- [CEL Built-in functions for Security Policies](https://www.krakend.io/docs/enterprise/security-policies/built-in-functions/): Explore CEL built-in functions to enhance security policies in KrakenD Enterprise for maximum protection
 - [Security Policies Playbook](https://www.krakend.io/docs/enterprise/security-policies/playbook/): Access our Security Policies Playbook for comprehensive guidelines on safeguarding your APIs. Ensure robust protection
 
 
@@ -130,6 +132,7 @@
 - [Mutual Authentication](https://www.krakend.io/docs/authorization/mutual-authentication/): Implement mutual authentication in KrakenD API Gateway to establish a secure and trusted communication channel between clients and APIs
 - [Google Cloud service-to-service authentication](https://www.krakend.io/docs/enterprise/authentication/gcloud/): Learn how to implement secure GCloud authentication with KrakenD Enterprise. Step-by-step guide for seamless integration
 - [Auth0 Integration](https://www.krakend.io/docs/authorization/auth0/): Integrate Auth0 authentication and authorization services with KrakenD API Gateway for secure and seamless access control to your APIs
+- [AWS SigV4 Authentication for Service-to-Service Calls](https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/): Learn how to implement secure AWS SigV4 authentication with KrakenD Enterprise. Step-by-step guide for seamless integration
 - [Descope Authorization](https://www.krakend.io/docs/authorization/descope/): Learn how to integrate Descope authorization with KrakenD API Gateway for secure and controlled access to your APIs.
 - [Keycloak Authorization](https://www.krakend.io/docs/authorization/keycloak/): Learn how to integrate Keycloak authorization with KrakenD API Gateway for secure and controlled access to your APIs.
 - [NTLM authentication](https://www.krakend.io/docs/enterprise/authentication/ntlm/): Secure API access with NTLMv2 authentication for Microsoft servers to integrate legacy systems like the ERP Microsoft Dynamics that still need to switch to Oauth.
@@ -157,7 +160,14 @@
 - [AI Security](https://www.krakend.io/docs/ai-gateway/security/): Protect sensitive data and secure LLM access using KrakenD’s API-level AI security capabilities like isolated auth and data masking.
 - [AI Token Cost Control & Quotas](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/): KrakenD lets you enforce LLM token quotas per user, tier, or endpoint, with dynamic routing to cost-efficient models.
 - [AI Governance](https://www.krakend.io/docs/enterprise/ai-gateway/governance/): Enforce rate limits, validate prompts, and route multi-LLM traffic with policy-based governance in KrakenD's AI Gateway.
-- [Unified LLM Interface](https://www.krakend.io/docs/ai-gateway/unified-llm-interface/): Simplify multi-LLM integration by exposing a single, consistent API through KrakenD’s unified LLM interface.
+- [Unified LLM Interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/): Simplify multi-LLM integration by exposing a single, consistent API through KrakenD's unified LLM interface.
+- [LLM Routing](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/): Simplify multi-LLM integration by exposing a single, consistent API through KrakenD’s unified LLM interface.
+- [OpenAI Integration](https://www.krakend.io/docs/enterprise/ai-gateway/openai/): KrakenD integration to connect to OpenAI without setting the full payload of the API interaction.
+- [Google Gemini integration](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/): Connect to Google Gemini APIs using an abstracted interface allowing you to concentrate on content rather than format
+- [Mistral Integration](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/): KrakenD integration to connect to Mistral without setting the full payload of the API interaction.
+- [Anthropic integration](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/): Connect to Anthropic APIs using an abstracted interface allowing you to concentrate on content rather than format
+- [Connecting to other AI vendors](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/): Generic approach to connect to AI vendors with no pre-defined LLM interface
+- [AI usage monitoring](https://www.krakend.io/docs/ai-gateway/usage-monitoring/): Use OpenTelemetry for monitoring API gateway traffic, including AI calls, with your existing providers.
 
 
 ## Governance and Monetization
