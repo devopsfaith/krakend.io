@@ -24769,6 +24769,10 @@ Schema: [https://www.krakend.io/schema/v2.12/qos/circuit-breaker-http.json](http
 
 **IMPORTANT**: The number of maximum errors reflects **consecutive errors**, and **not the aggregated number** of errors in the period. This approach works better when your traffic is variable, as it’s based on a **probabilistic pattern** and isn’t affected by traffic volume.
 
+## Limitations with `backend/http`
+
+The HTTP Circuit Breaker is a subtype of the `backend/http`, that means that if the HTTP Circuit Breaker faces a failing status code, any configuration related to [custom detailed errors](/docs/enterprise/backends/detailed-errors/) is ignored.
+
 
 
 ---
