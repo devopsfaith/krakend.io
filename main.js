@@ -1,8 +1,8 @@
 (() => {
-  // ns-hugo:/github/workspace/assets/js/vendor/jquery-ui.min.js
-  !function(t) {
+  // ns-hugo-imp:/github/workspace/assets/js/vendor/jquery-ui.min.js
+  !(function(t) {
     "function" == typeof define && define.amd ? define(["jquery"], t) : t(jQuery);
-  }(function(C) {
+  })(function(C) {
     C.ui = C.ui || {};
     C.ui.version = "1.12.1";
     var n, i = 0, r = Array.prototype.slice;

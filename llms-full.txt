@@ -1,4 +1,4 @@
-# [KrakenD API Gateway - Enterprise Edition Overview (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/overview/_index.md] (parent: 000 Getting Started, weight: -10000)
+# [KrakenD API Gateway - Enterprise Edition Overview (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/)
 
 **KrakenD Enterprise is a high-performance API Gateway** built on top of our open-source API Gateway but adding extended Enterprise functionality. As it happens with the Community Edition, the KrakenD Enterprise engine is also fueled by the [Lura Project](https://luraproject.org) (a framework we have hosted at **The Linux Foundation** with the help of the community).
 
@@ -57,7 +57,7 @@ If you'd like to try KrakenD Enterprise at no charge or commitment, [get in touc
 
 ---
 
-# [KrakenD Community Edition Documentation](https://www.krakend.io/docs/overview/)  [/Users/obokaman/Code/krakend/website/content/docs/overview/_index.md] (parent: 000 Getting Started, weight: -10000)
+# [KrakenD Community Edition Documentation](https://www.krakend.io/docs/overview/)
 
 KrakenD is an extensible, declarative, **high-performance open-source API Gateway**.
 
@@ -105,7 +105,7 @@ As KrakenD is declarative and GitOps oriented, the mobile developers can update 
 
 ---
 
-# [Installing KrakenD Enterprise (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/installing/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/overview/installing.md] (parent: 000 Getting Started, weight: 10)
+# [Installing KrakenD Enterprise (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/installing/)
 
 KrakenD Enterprise is delivered in several formats, including Docker, Linux packages (deb, rpm) and generic installation options.
 
@@ -219,7 +219,7 @@ killall -s SIGINT krakend
 
 ---
 
-# [KrakenD API Gateway Installation Guide](https://www.krakend.io/docs/overview/installing/)  [/Users/obokaman/Code/krakend/website/content/docs/overview/installing.md] (parent: 000 Getting Started, weight: 10)
+# [KrakenD API Gateway Installation Guide](https://www.krakend.io/docs/overview/installing/)
 
 KrakenD is a **single binary file** that does not require any external libraries to work. To install KrakenD choose your operative system in the downloads section or use the Docker image.
 
@@ -314,7 +314,7 @@ As KrakenD is open source you can opt for [building the binary](https://github.c
 
 ---
 
-# [Running KrakenD Enterprise: Available commands (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/run/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/overview/run.md] (parent: 000 Getting Started, weight: 20)
+# [Running KrakenD Enterprise: Available commands (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/run/)
 
 After installing KrakenD Enterprise, you can start using it by typing `krakend help`:
 
@@ -397,7 +397,7 @@ Now KrakenD is listening on `8080`, and you can see it working under `http://loc
 
 ---
 
-# [Running KrakenD server](https://www.krakend.io/docs/overview/run/)  [/Users/obokaman/Code/krakend/website/content/docs/overview/run.md] (parent: 000 Getting Started, weight: 20)
+# [Running KrakenD server](https://www.krakend.io/docs/overview/run/)
 
 After installing KrakenD, you can start using KrakenD by typing `krakend`. To see all the options of `krakend`, type `krakend -h` or `krakend <COMMAND> -h`. For instance, the `krakend run` help is:
 
@@ -467,10 +467,20 @@ Now KrakenD is listening on `8080`, and you can see it working under `http://loc
 
 ---
 
-# [Managing the LICENSE file (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/license-file/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/overview/license-file.md] (parent: 000 Getting Started, weight: 30)
+# [Managing the LICENSE file (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/license-file/)
 
-To run the Enterprise software, **you must provide a valid license**. The license file is included in an email with the download link. The file is named `LICENSE` by default (no extension), although you can change its location and name as long as you let KrakenD know.
+To run the Enterprise software, whether it is API Gateway or AI Gateway functionality, **you must provide a valid license**.
 
+{{< note title="Single license for all products" type="info" >}}
+KrakenD distributes the **API Gateway** and the **AI Gateway** under the same binary, and the `LICENSE` file you load during startup entitles you to use one product or both.
+
+If you see an error in the logs for unlicensed content, reach out to [sales](/contact-sales/).
+{{< /note >}}
+
+## Where is the license?
+The sales team sends the license file via email, containing a download link. Be sure to save the file(s) in a secure location. The file is named `LICENSE` (no extension) for the **production license**, and `LICENSE_DEV` for **non-production** environments (trials receive a single file).
+
+## What happens if my LICENSE is wrong?
 When the license file is expired, incorrect, or missing, KrakenD **won't start**. If KrakenD is running and the license expires, the service **shuts down**. It is important to have your license up to date and take the necessary measures to ensure its successful rotation.
 
 You can run `krakend license` to see if the installed `LICENSE` file is valid.
@@ -480,15 +490,16 @@ As long as you **don't change the license content** (e.g., copy/paste partially)
 
 The `LICENSE` file:
 
-- Uses the default path `/etc/krakend/LICENSE` and must be readable
+- Uses the default path `/etc/krakend/LICENSE` and must be readable by the KrakenD process.
 - It is a plain text file containing the certificate we gave you (it looks like a PEM file)
 - Includes the necessary surrounding `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` literals.
-
-If you opt to use the `KRAKEND_LICENSE_BASE64` environment var instead of a file:
-
-- The env var `KRAKEND_LICENSE_BASE64` **when decoded** in base64, contains byte-for-byte the same content of the LICENSE file.
+- Accepts loading from a different path, filename (e.g., the development license LICENSE_DEV), or environment variable **when specified**. See below.
 
 ## Checking the license validity
+{{< note title="Automate license validation" type="tip" >}}
+To avoid problems, ensure that you automate periodic license validation so its expiration does not go unnoticed. Our sales team reaches out before that happens, but it's better to be safe than sorry!
+{{< /note >}}
+
 The command `krakend license` and several of its subcommands help you validate the installed `LICENSE` file. Use `krakend license --help` for the complete list of available subcommands and help. **Add this command to your automated development workflow** to be warned when the license is about to expire.
 
 The `krakend license` command exits either with a:
@@ -574,18 +585,19 @@ KO: License will be invalid before 2024-11-10
 Notice that the date format is `yyyy-mm-dd`.
 
 ### The LICENSE file is a certificate
-Because our `LICENSE` file is a regular certificate, you can use `openssl` to play with it.
+Because our `LICENSE` file is a regular certificate, you can also use `openssl` to play with it.
 
 For instance, you can execute `openssl x509 -in LICENSE -text -noout` to get all the information.
 
-## Change the location of the LICENSE
-The `LICENSE` file is automatically loaded from `/etc/krakend/LICENSE`, although you can rename this file and change its location using two different methods:
+## Change the location of the LICENSE or use a non-production LICENSE_DEV
+The production `LICENSE` file is automatically loaded from `/etc/krakend/LICENSE`, although you can use a different type of license, rename it, or change its location using three different methods:
 
-1. Set an environment variable `KRAKEND_LICENSE_PATH`, for instance, `KRAKEND_LICENSE_PATH=/path/to/prod_license.crt`. As long as the content inside is valid, the path or extension you set (if any) does not matter.
-2. Passing the `--license` or `-l` flags when running the application. For instance:
+1. Set an environment variable `KRAKEND_LICENSE_PATH` pointing to the desired file. For instance, `KRAKEND_LICENSE_PATH=/path/to/prod_license.crt`. As long as the content inside is valid, the path or the extension you set (if any) does not matter.
+2. Taking the content of the license from the `KRAKEND_LICENSE_BASE64` environment var (see below)
+3. Passing the `--license` or `-l` flags when running the application. For instance:
 
-{{< terminal title="Provide a license from a different location" >}}
-krakend run -c krakend.json --license /my/dir/DEVELOPMENT_LICENSE
+{{< terminal title="Start with a development license" >}}
+krakend run -c krakend.json --license ./LICENSE_DEV
 {{< /terminal >}}
 
 The flag `--license` takes precedence if you also set the environment variable `KRAKEND_LICENSE_PATH`.
@@ -597,9 +609,9 @@ Another possibility to pass the license to KrakenD is to save its contents in th
 KRAKEND_LICENSE_BASE64="$(base64 LICENSE)" krakend run -c krakend.json
 {{< /terminal >}}
 
-When you use this method, you must ensure that the content of the license is encoded correctly.
+When you use this method, you must ensure that the content of the license is encoded correctly. **When decoded** in base64, it must contain byte-for-byte the same content of the LICENSE file.
 
-If you declare both the `KRAKEND_LICENSE_BASE64` and the `--license` flag, the environment variable takes precedence.
+If you declare both the `KRAKEND_LICENSE_BASE64` and the `--license` flag, the **environment variable always takes precedence**.
 
 ## How the license path is resolved
 If you don't change the license location using the environment variable or flag, KrakenD internally searches for `./LICENSE`. Because KrakenD's [working directory](/docs/enterprise/configuration/working-directory/) is `/etc/krakend`, the file is resolved to `/etc/krakend/LICENSE`. If, for any reason, you change the container's working directory, you must update the `LICENSE` file to reflect the exact new location.
@@ -622,7 +634,7 @@ See [Generating a Docker artifact](/docs/enterprise/deploying/docker/)
 You can store your LICENSE in any secret manager of your choice if you want to. However, ensure the line breaks are respected when retrieving them again. You must dump the contents of the secret in a `LICENSE` file somewhere in the container.
 
 ### AWS Secrets Manager
-One of the particularities of AWS Secrets Manager is that it might have problems when storing **multiline contents**. Therefore, we recommend keeping the `LICENSE` content in `base64` format when working with AWS in plain text.
+One of the particularities of AWS Secrets Manager is that it may encounter issues when storing **multiline content**. Therefore, we recommend keeping the `LICENSE` content in `base64` format when working with AWS in plain text.
 
 You can create an AWS secret with your license with this command:
 
@@ -665,7 +677,7 @@ Whichever is the case, you **must restart or redeploy** KrakenD for the changes 
 
 ---
 
-# [API Configuration Designer](https://www.krakend.io/docs/configuration/designer/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/designer.md] (parent: 000 Getting Started, weight: 40)
+# [API Configuration Designer](https://www.krakend.io/docs/configuration/designer/)
 
 The [Designer](https://designer.krakend.io) is a UI that allows you to create KrakenD configurations from scratch or resume editing an existing one. It is a tool very useful in your **early contact with KrakenD**, as it helps you try functionalities without having to learn the different attributes of the configuration.
 
@@ -745,7 +757,7 @@ The Designer supports editing Enterprise and Community features simultaneously. 
 
 ---
 
-# [KrakenD API Gateway Enterprise Playground (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/playground/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/overview/playground.md] (parent: 000 Getting Started, weight: 50)
+# [KrakenD API Gateway Enterprise Playground (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/playground/)
 
 The [KrakenD Enterprise Playground](https://github.com/krakend/playground-enterprise) is a Docker Compose demonstration environment that puts together the necessary pieces to get you started with our API Gateway, using example use-cases.
 
@@ -779,7 +791,7 @@ If you'd like to see more examples, please let us know or open an [issue](https:
 
 ---
 
-# [KrakenD API Gateway Playground](https://www.krakend.io/docs/overview/playground/)  [/Users/obokaman/Code/krakend/website/content/docs/overview/playground.md] (parent: 000 Getting Started, weight: 50)
+# [KrakenD API Gateway Playground](https://www.krakend.io/docs/overview/playground/)
 
 If you are new to KrakenD, a quick way to get started is to make use of the [KrakenD Playground](https://github.com/krakend/playground-community).
 
@@ -805,7 +817,7 @@ If you'd like to see more examples, please let us know or open an [issue](https:
 
 ---
 
-# [Comprehensive Guides for KrakenD API Gateway](https://www.krakend.io/docs/overview/guides/)  [/Users/obokaman/Code/krakend/website/content/docs/overview/guides.md] (parent: 000 Getting Started, weight: 1000)
+# [Comprehensive Guides for KrakenD API Gateway](https://www.krakend.io/docs/overview/guides/)
 
 The documentation in this site covers all the functionality of KrakenD API Gateway, but over time we have received from KrakenD users all kinds of tutorials, guides and other resources that illustrate how to do a specific thing. We have included below a few links, but you can share yours.
 
@@ -838,45 +850,78 @@ If you have written a tutorial, guide, video or any other material worth sharing
 
 ---
 
-# [Configuration Guide for KrakenD API Gateway](https://www.krakend.io/docs/configuration/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/_index.md] (parent: 010 Configuration files, weight: -1000)
+# [Configuration Guide for KrakenD API Gateway](https://www.krakend.io/docs/configuration/)
 
-All the setup a KrakenD server needs to operate is a single configuration file. This file is referred to as `krakend.json` through all the documentation.
+All the setup a KrakenD server needs to operate is a single configuration file. This file is referred to as `krakend.json` throughout all the documentation.
 
-The name `krakend.json` is just **an alias**, a convention, that we use everywhere. Your real configuration file can have any name, multiple formats (like YAML or TOML), be stored anywhere, **or split in many pieces**.
+The name `krakend.json` is simply an **alias**, a convention that we use everywhere. Your real configuration file can have any name, multiple formats (such as YAML or TOML), be stored anywhere, or be **split into numerous pieces**.
 
-Provided this simple configuration mechanism, the **versioning and automation are very convenient**. Any change in the API Gateway is always under the version control system, and the code controls the state of the gateway.
-
+With this simple configuration mechanism in place, **versioning and automation are very convenient**. Any change to the API Gateway or the AI Gateway is always under version control, and the code controls the state of the gateway.
 
 {{< note title="Configuration using multiple files" type="tip" >}}
-If your configuration file is too large or repetitive, it can be split into several files using a templating system. See the [flexible configuration documentation](/docs/configuration/flexible-config/) for more information on this feature.
+If your configuration file is too large or repetitive, or is maintained by many people, it can be split into several files using a templating system. See the [flexible configuration documentation](/docs/configuration/flexible-config/) for more information.
 {{< /note >}}
 
 
 ## Generating the configuration file(s)
-The configuration file can be written from scratch or reuse another existing file as a base, but the easiest way to write your first configuration file is by simply using the online configuration editor [KrakenDesigner](/docs/configuration/designer/).
+The configuration file is how you provide instructions to KrakenD. To start your first KrakenD configuration, you can:
 
-The KrakenDesigner is a simple javascript application that helps you understand the capabilities of the API Gateway and helps you set the different values for all the different options. Using this option you don't need to learn and write from scratch all the attribute names. The configuration file can be downloaded at any time and loaded again to resume the edition.
+- Use the [KrakenD Playground](/docs/overview/playground/) and start editing its configuration from a working environment with several use-case examples.
+- Use the online configuration editor [KrakenDesigner](/docs/configuration/designer/).
+- Start a file from scratch or from a template
 
-The Kraken Designer is a **pure static** page that **does not send any of your configuration elsewhere**.
+The [KrakenDesigner](/docs/configuration/designer/) is a simple javascript application that helps you understand some of the capabilities of the API Gateway and helps you set the different values for all the different options. Using this option, you don't need to learn and write from scratch all the attribute names. You can download the configuration file at any time and load it to resume editing. The Kraken Designer is a **pure static** page that **does not send any of your configuration elsewhere**.
 
 {{< button-group >}}
 {{< button url="https://designer.krakend.io/" text="Generate configuration now" >}}
 {{< /button >}}
 {{< /button-group >}}
 
+To start editing from scratch, use a [modern IDE with JSON Schema integration](/docs/developer/ide-integration/), and play with the autocomplete! Here's a starting point:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/v{{< product minor_version >}}/krakend.json",
+  "version": 3,
+  "debug_endpoint": true,
+  "echo_endpoint": true,
+  "endpoints": [
+    {
+      "endpoint": "/test",
+      "backend": [
+        {
+          "@comment": "Connect KrakenD to KrakenD itself as backend!",
+          "host": [
+            "http://localhost:8080"
+          ],
+          "url_pattern": "/__echo/test"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Start KrakenD and connect to `http://localhost:8080/test` or `http://localhost:8080/__health` now.
+
+## Understanding the configuration parts
+Whether you choose to start with the KrakenDesigner, a template, or from scratch, we recommend that you understand the configuration structure and edit the file(s) by hand as soon as possible. Always [run the linter](/docs/configuration/check/) after you finish editing to make sure you have a valid configuration.
+
+Read the [introduction to the configuration file](/docs/configuration/structure/) to understand the different parts of the configuration.
+
 ## Supported file formats
-Through all the documentation we refer to the configuration file as the `krakend.json` file, but the configuration file can be written using `.json`, `.toml`, `.yaml`, `.yml`, `.properties`, `.props`, `.prop` or `.hcl`. For more information and recommendations see [supported file formats](/docs/configuration/supported-formats/).
+Throughout all the documentation, we refer to the configuration file as the `krakend.json` file; however, you can also express the configuration file using `.json`, `.toml`, or `.yaml` extensions. For more information and recommendations, see [supported file formats](/docs/configuration/supported-formats/).
 
 ## Validating the syntax of the configuration file
 Validate the syntax (not the logic) of your configuration file using the `krakend check` command:
 
 {{< terminal title="Check the configuration" >}}
-krakend check --config ./krakend.toml --debug --lint
+krakend check --lint --config ./krakend.toml --debug
 {{< /terminal >}}
 
-When the syntax is correct, you'll see the message `Syntax OK!`, otherwise the error is shown.
+When the syntax is correct, you'll see the message `Syntax OK!`; otherwise, the error is displayed.
 
-You can also start the service directly as this is done right before the server starts (except the linting).
+You can, of course, start the service directly without checking, and KrakenD will do everything possible to start the service (even if there are configuration inconsistencies, at your own risk), but **never send a configuration to production without passing the lint first**
 
 Read more about [`krakend check`](/docs/configuration/check/)
 
@@ -884,7 +929,7 @@ Read more about [`krakend check`](/docs/configuration/check/)
 
 ---
 
-# [Configuration Structure](https://www.krakend.io/docs/configuration/structure/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/structure.md] (parent: 010 Configuration files, weight: 10)
+# [Configuration Structure](https://www.krakend.io/docs/configuration/structure/)
 
 All KrakenD behavior depends on its configuration file(s). You'll find it referenced through all this documentation and for simplicity as the `krakend.json`, although the configuration [supports formats other than JSON](/docs/configuration/supported-formats/) and it can be described [using multiple files and templates](/docs/configuration/flexible-config/). Being familiar with its structure it's essential.
 
@@ -902,7 +947,7 @@ There are a large number of options you can put in this file. Let's focus now on
 ```
 
 
-- `$schema`: *Optional*. When added, enables [IDE integration](/docs/developer/ide-integration/) with autocompletion and documentation. Defines the JSON schema to validate your configuration. Is used by ` krakend check --lint`.
+- `$schema`: *Optional* but recommended. When added, enables [IDE integration](/docs/developer/ide-integration/) with autocompletion and documentation. Defines the JSON schema to validate your configuration. The KrakenD linting process (` krakend check --lint`) does not read this property as it knows which version must use on runtime.
 - `version` (*mandatory*): The version of the configuration file format (not the version of KrakenD).
   - Format version `3`: **Current** (since `v2.0`)
   - Format version `2`: Deprecated in 2022, for versions between `v0.4` and `v1.4.1`
@@ -1038,7 +1083,7 @@ For larger sample files with more options you can have a look a the [KrakenD Pla
 
 ---
 
-# [Validating the configuration with `check`](https://www.krakend.io/docs/configuration/check/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/check.md] (parent: 010 Configuration files, weight: 20)
+# [Validating the configuration with `check`](https://www.krakend.io/docs/configuration/check/)
 
 The `krakend check` command **validates KrakenD configuration files** written in any of its [supported formats](/docs/configuration/supported-formats/).
 
@@ -1392,7 +1437,7 @@ Syntax OK!
 
 ---
 
-# [Auditing KrakenD API Gateway Configurations](https://www.krakend.io/docs/configuration/audit/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/audit.md] (parent: 010 Configuration files, weight: 21)
+# [Auditing KrakenD API Gateway Configurations](https://www.krakend.io/docs/configuration/audit/)
 
 The `krakend audit` command is a rule evaluation tool that checks configuration files written in any of its [supported formats](/docs/configuration/supported-formats/) and returns practical **security recommendations**. It is designed to raise basic red flags and provide essential advice on your configuration. The output of the configuration and classification is inspired by the [CIS Benchmarks](https://www.cisecurity.org/communities/benchmarks).
 
@@ -1541,7 +1586,7 @@ The following is the list of **recommendations** you can find in the audit resul
 
 ---
 
-# [Extended Flexible Configuration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/configuration/flexible-config/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/configuration/flexible-config.md] (parent: 010 Configuration files, weight: 30)
+# [Extended Flexible Configuration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/configuration/flexible-config/)
 
 The **Extended Flexible Configuration** allows you to express your KrakenD configuration using **multiple files**, reusing code blocks, and injecting external data through a **templates system**. It is called "Extended" because it uses an engine more capable and easier to use than its [open source alternative](/docs/configuration/flexible-config/), while it remains 100% compatible.
 
@@ -1932,7 +1977,7 @@ Note: on Alpine-based containers, like the KrakenD image, you need to do an `apk
 
 ---
 
-# [Flexible Configuration: A template-based config for API Gateway](https://www.krakend.io/docs/configuration/flexible-config/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/flexible-config.md] (parent: 010 Configuration files, weight: 30)
+# [Flexible Configuration: A template-based config for API Gateway](https://www.krakend.io/docs/configuration/flexible-config/)
 
 The **Flexible Configuration** allows you to declare the configuration using **multiple files** and use a **templates system**, opening the door to multi-environment configurations and code reuse.
 
@@ -2080,7 +2125,7 @@ krakend check -t -d -c "$PWD/config/krakend.json"
 
 ---
 
-# [Introduction to Templates](https://www.krakend.io/docs/configuration/templates/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/templates.md] (parent: 010 Configuration files, weight: 31)
+# [Introduction to Templates](https://www.krakend.io/docs/configuration/templates/)
 
 There are **several components and features** in KrakenD that allow you to define configurations or content manipulations using **templates**.
 
@@ -2471,7 +2516,7 @@ Notice that there is a `{{ range }}`. If you wanted to use it inside a template 
 
 ---
 
-# [Supported Configuration Formats](https://www.krakend.io/docs/configuration/supported-formats/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/supported-formats.md] (parent: 010 Configuration files, weight: 35)
+# [Supported Configuration Formats](https://www.krakend.io/docs/configuration/supported-formats/)
 
 The expected configuration file format by default is `json`, but KrakenD can parse any of these file formats:
 
@@ -2500,7 +2545,7 @@ As you can see, if you are OK with the limitations above, you can freely choose 
 
 ---
 
-# [Environment variables in the configuration](https://www.krakend.io/docs/configuration/environment-vars/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/environment-vars.md] (parent: 010 Configuration files, weight: 40)
+# [Environment variables in the configuration](https://www.krakend.io/docs/configuration/environment-vars/)
 
 When KrakenD runs (whether with `run` or `check`), all the behavior is loaded from the [configuration file](/docs/configuration/structure/). Through environment variables, you can also set values. There are two different ways of injecting environment vars:
 
@@ -2593,7 +2638,7 @@ Note: on Alpine-based containers, like the KrakenD image, you need to do an `apk
 
 ---
 
-# [Hot Reload Feature](https://www.krakend.io/docs/developer/hot-reload/)  [/Users/obokaman/Code/krakend/website/content/docs/developer/hot-reload.md] (parent: 010 Configuration files, weight: 80)
+# [Hot Reload Feature](https://www.krakend.io/docs/developer/hot-reload/)
 
 The Docker tag `:watch` is a **development-phase image** that allows you to **restart KrakenD automatically after saving** or changing files inside the configuration folder, although **is not recommended for production workloads**. It works whether you use [flexible configuration](/docs/configuration/flexible-config/) or a single file (`krakend.json` or any other [supported format](/docs/configuration/supported-formats/)).
 
@@ -2656,7 +2701,7 @@ As we said, in the introduction, this tag is for development. Because you might 
 
 ---
 
-# [Hot Reload Feature (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/hot-reload/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/developer/hot-reload.md] (parent: 010 Configuration files, weight: 80)
+# [Hot Reload Feature (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/hot-reload/)
 
 The Docker tag `:watch` is a **development-phase image** that allows you to **restart KrakenD automatically after saving** or changing files inside the configuration folder, although **is not recommended for production workloads**. It works whether you use [flexible configuration](/docs/configuration/flexible-config/) or a single file (`krakend.json` or any other [supported format](/docs/configuration/supported-formats/)).
 
@@ -2699,7 +2744,7 @@ As we said, in the introduction, this tag is for development. Because you might 
 
 ---
 
-# [Working Directory: Specifying paths](https://www.krakend.io/docs/configuration/working-directory/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/working-directory.md] (parent: 010 Configuration files, weight: 100)
+# [Working Directory: Specifying paths](https://www.krakend.io/docs/configuration/working-directory/)
 
 Many components and options in KrakenD allow you to specify paths. In all of them, you can use **absolute** or **relative** paths.
 
@@ -2726,7 +2771,7 @@ Now, if you set a relative path like `a/b.tmpl`, for instance, and the log tells
 
 ---
 
-# [Upgrading KrakenD from an older version](https://www.krakend.io/docs/configuration/migrating/)  [/Users/obokaman/Code/krakend/website/content/docs/configuration/migrating.md] (parent: 010 Configuration files, weight: 1000)
+# [Upgrading KrakenD from an older version](https://www.krakend.io/docs/configuration/migrating/)
 
 Upgrading to a new version of KrakenD is designed to be straightforward, thanks to our commitment to **maintaining backward compatibility** across versions within the same major release (e.g., within `2.x` versions). You can generally update KrakenD to a newer version without altering your configuration. However, to ensure optimal performance and access to the latest features, reviewing and adjusting your configuration is wise.
 
@@ -2836,7 +2881,7 @@ Differences highlighted
 
 ---
 
-# [Service Settings Configuration](https://www.krakend.io/docs/service-settings/)  [/Users/obokaman/Code/krakend/website/content/docs/service-settings/_index.md] (parent: 030 Service Settings, weight: -1000)
+# [Service Settings Configuration](https://www.krakend.io/docs/service-settings/)
 
 We call **service settings** (or the service layer) those parameters that allow you to change how KrakenD behaves **globally** (and not to a specific call). They determine how you start the HTTP server, enforce security parameters, or define behavioral options like which reporting activities occur, to name a few examples.
 
@@ -2881,7 +2926,7 @@ Other service-level settings you can add:
 
 ---
 
-# [Redis connection pools for stateful functionality (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/redis-connection-pools/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/service-settings/redis-connection-pools.md] (parent: 030 Service Settings, weight: 20)
+# [Redis connection pools for stateful functionality (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/redis-connection-pools/)
 
 KrakenD's architecture allows developers to define all Redis connections in a single `redis` namespace, so you can reuse the definitions in other components across the configuration.
 
@@ -2964,13 +3009,13 @@ While the library sets defaults for all the options (except the address and the 
 
 ---
 
-# [HTTP Server Settings](https://www.krakend.io/docs/service-settings/http-server-settings/)  [/Users/obokaman/Code/krakend/website/content/docs/service-settings/http-server-settings.md] (parent: 030 Service Settings, weight: 50)
+# [HTTP Server Settings](https://www.krakend.io/docs/service-settings/http-server-settings/)
 
 KrakenD starts an HTTP server to offer the API Gateway server. You can personalize some of the settings used to start the service and also override the default settings of the underlying Go [standard library](https://pkg.go.dev/net/http#Server).
 
 If you want to customize any of the settings below, they must be written at the top level of the configuration.
 
-{{< schema data="_root.json" filter="port,cache_ttl,sequential_start,read_timeout,read_header_timeout,write_timeout,idle_timeout,use_h2c,listen_ip,max_header_bytes,disable_rest">}}
+{{< schema data="_root.json" filter="max_shutdown_wait_time,port,cache_ttl,sequential_start,read_timeout,read_header_timeout,write_timeout,idle_timeout,use_h2c,listen_ip,max_header_bytes,disable_rest">}}
 
 ## Override settings using environment vars
 When you declare in the configuration file any of the HTTP server settings declared above, you can [override its value through environment variables](/docs/configuration/environment-vars/) when starting the server.
@@ -2995,25 +3040,33 @@ KRAKEND_PORT=8000 KRAKEND_READ_TIMEOUT="1s" krakend run -c krakend.json
 
 ---
 
-# [Endpoint Configuration](https://www.krakend.io/docs/endpoints/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/_index.md] (parent: 040 Routing and Forwarding, weight: 10)
+# [Endpoint Configuration](https://www.krakend.io/docs/endpoints/)
 
-KrakenD `endpoints` are the most critical configuration part of KrakenD, as they are what your end users consume. Adding endpoint objects creates the API contract your users will consume.
+**Endpoints** are the most important core concept in KrakenD. An oversimplification is that they define the **available routes and protocols the gateway supports**. For instance, you create a `/foo` route and this connects to a `foo.example.com` to fetch the data. If you are familiar with the *API or AI Gateway offering*, as you continue reading, you will quickly realize that **KrakenD is quite different from other products**.
 
-{{< note title="Configuration overview" type="tip" >}}
-If you are still getting familiar with KrakenD's configuration structure, take a moment to read [Understanding the configuration file](/docs/configuration/structure/).
-{{< /note >}}
+Instead of acting as a mere proxy and coupling one sad route to one sad underlying service of the same type, in KrakenD you define **the API contract** you want to expose, and then you create the composite of services that fulfill the contract. Said otherwise, create whatever API definition you want, and plug it into your existing stack. It does not matter the protocols or encodings you have on each side, as KrakenD takes care of transforming the data for you.
 
-The `endpoints` array contains the **API definition you are publishing**. It is a collection of **endpoint objects**, and you have to place it at the root of your configuration file.
+For example, say you declare a route that offers REST API content on `/foo, but you want to aggregate the results of querying a gRPC server, a regular REST API, a Lambda service, and an LLM Model altogether. Or maybe you want to offer all the latter under a gRPC server. Or maybe you have a twenty-year-old SOAP service and want to create an MPC Server instantly so your AI client can talk "naturally" to it. All that and more is available as an endpoint.
 
+Because KrakenD treats users' interactions with the gateway and the gateway's interactions with services separate, endpoints are a piece of magic that can complete all kinds of use cases.
 
 ## The endpoint object
+{{< note title="Deep dive into the configuration" type="tip" >}}
+If you are still getting familiar with KrakenD's configuration structure, take a moment to read [Understanding the configuration file](/docs/configuration/structure/). This section explains what an `endpoint` looks like, but take a moment to understand the different pieces.
+{{< /note >}}
 
-To create an endpoint, you only need to add an **endpoint object** under the `endpoints` collection. An endpoint object should contain at least the `endpoint` name and a `backend` section (to where it connects to). The defaults are taken if no further information is declared (e.g., `method` will be a `GET`, and `output_encoding` as `json`).
+We refer to all routes as families, regardless of their transport nature (HTTP, WebSockets, SOAP, etc.), as `endpoints`. Each of these endpoints can retrieve data from one or more different upstream services, which we collectively call the `backend` array.
 
-An `endpoints` section might look like this:
+The `endpoints` array in the configuration contains the **API definition you are publishing**, and is a collection of **endpoint objects** that granularly define how each route behaves. Because everything is independent and highly configurable, the gateway can feed from a vast ecosystem and can add new functionality to your stack.
+
+To create an endpoint, you only need to add an **endpoint object** under the `endpoints` collection of the configuration. An endpoint object should contain at least the `endpoint` name and a `backend` section (to which it connects). The defaults are taken if no further information is declared (e.g., `method` will be a `GET`, and `output_encoding` as `json`).
+
+A simple`endpoints` section for a REST endpoint might look like this:
 
 ```json
 {
+  "$schema": "https://www.krakend.io/schema/v{{< product minor_version >}}/krakend.json",
+  "version": 3,
   "endpoints": [
     {
       "endpoint": "/v1/users/{user}",
@@ -3032,13 +3085,13 @@ An `endpoints` section might look like this:
 }
 ```
 
+The previous example exposes a REST `GET /v1/users/{user}` endpoint to the clients and takes the data from your existing backend `GET https://api.example.com/users/summary/{user}`.
 
-The previous example exposes a `GET /v1/users/{user}` endpoint to the clients and takes the data from your existing backend `GET https://api.example.com/users/summary/{user}`.
-
-Inside this object, you can add manipulation options and transform the response before it returns to the end user.
+This is the most simple example of an endpoint definition, from here you can add manipulation options, transform the request or the response, and a lot more stuff. See the options below.
 
 ### Endpoint object configuration
-The configuration attributes of **endpoints objects** are:
+When declaring `endpoints` objects in the configuration, the following fields are available for each one of them:
+
 {{< schema data="endpoint.json" >}}
 
 ### Endpoints with multiple nesting levels
@@ -3047,7 +3100,7 @@ You might have envisioned KrakenD as a proxy and expected its `endpoint` declara
 For instance, you declared an `"endpoint": "/user/{id}"` and you expected to resolve URLs like `/user/john/profile/preferences`, but you are getting a *404* instead. There are two solutions to this problem:
 
 1. You can declare all possible endpoints: `/user/{id}`, `/user/{id}/{level2}`, `/user/{id}/{level2}/{level3}`, etc.
-2. You use a [Wildcard {{< badge >}}Enterprise{{< /badge >}}](/docs/enterprise/endpoints/wildcard/)
+2. You use a [Wildcard](/docs/enterprise/endpoints/wildcard/)
 
 
 ### Endpoints listening to multiple methods
@@ -3161,11 +3214,16 @@ The endpoints return HTTP content to the end-user in any of the [supported encod
 
 If, for instance, one of the backends you are connecting to uses AMQP, Kafka, gRPC, or any other supported services, KrakenD will perform automatically for you both the protocol and the encoding translation.
 
+## Additional endpoint functionality
+The `extra_config` entry of any endpoint can include additional components that provide further functionality. The following is the list of all components accepted under `extra_config`, see the linked documentation of each for more information:
+
+{{< schema data="endpoint_extra_config.json" norecurse="auth/api-keys,proxy" title="Available components of an endpoint">}}
+
 
 
 ---
 
-# [Backend Configuration](https://www.krakend.io/docs/backends/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/_index.md] (parent: 040 Routing and Forwarding, weight: 20)
+# [Backend Configuration](https://www.krakend.io/docs/backends/)
 
 The concept of `backend` refers to the origin servers providing the necessary data to populate your endpoints. A backend can be something like your HTTP-based API, a Lambda function, or a Kafka queue, for example.
 
@@ -3246,7 +3304,7 @@ When using **self-signed certificates** in your backends, you must add the certi
 
 ---
 
-# [Parameter Forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/parameter-forwarding.md] (parent: 040 Routing and Forwarding, weight: 30)
+# [Parameter Forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/)
 
 KrakenD is an API Gateway with a **[zero-trust security policy](/docs/design/zero-trust/)**. You need to define what is allowed because KrakenD **does not forward** any unexpected [query string](#query-string-forwarding), [headers](#headers-forwarding), or [cookies](#cookies-forwarding). See below for instructions on how to set the forwarding rules.
 
@@ -3576,7 +3634,7 @@ Example:
 
 ---
 
-# [Proxying directly to the backends with `no-op`](https://www.krakend.io/docs/endpoints/no-op/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/no-op.md] (parent: 040 Routing and Forwarding, weight: 40)
+# [Proxying directly to the backends with `no-op`](https://www.krakend.io/docs/endpoints/no-op/)
 
 KrakenD `no-op` (**no-operation**), is a special type of **encoding** that behaves as a **proxy** by passing the client's request to the backend and returning the response to the client ***as it is*** (some additional operations are permitted). Essentially without any manipulation or operation.
 
@@ -3638,7 +3696,7 @@ The following snippet shows an endpoint that is passed to the backend as is. Not
 
 ---
 
-# [Wildcard Endpoints (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/wildcard/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/wildcard.md] (parent: 040 Routing and Forwarding, weight: 50)
+# [Wildcard Endpoints (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/wildcard/)
 
 The **wildcard** functionality allows you to declare endpoints that have **many implicit paths** in their backend. Instead of declaring all possible routes one by one, you can create one or more endpoints that will respond to a path pattern instead. The gateway then forwards all routes starting with the configured path to the backend(s).
 
@@ -3816,7 +3874,7 @@ Since EE 2.3, it has become:
 
 ---
 
-# [Dynamic Routing (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/dynamic-routing/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/dynamic-routing.md] (parent: 040 Routing and Forwarding, weight: 60)
+# [Dynamic Routing (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/dynamic-routing/)
 
 The **dynamic routing** extends the routing capabilities to add header, tokens, and query string processing to assemble the final upstream URL you want to reach. In addition, it allows you to convert headers to query strings and enforce the existence of parameters on the request.
 
@@ -4039,7 +4097,7 @@ The example above would abort user requests that do not use `/foo/a.example.com`
 
 ---
 
-# [Catchall (Fallback backend) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/catch-all/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/catch-all.md] (parent: 040 Routing and Forwarding, weight: 70)
+# [Catchall (Fallback backend) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/catch-all/)
 
 The catchall endpoint is a particular type of `endpoint` that, when added, receives all the traffic from routes and methods that do not resolve to any of the other existing `endpoints` in the configuration.
 
@@ -4102,7 +4160,7 @@ Any other HTTP-related components loaded in the `extra_config` are ignored. For 
 
 ---
 
-# [Sequential Proxying](https://www.krakend.io/docs/endpoints/sequential-proxy/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/sequential-proxy.md] (parent: 040 Routing and Forwarding, weight: 80)
+# [Sequential Proxying](https://www.krakend.io/docs/endpoints/sequential-proxy/)
 
 The best experience consumers can have with KrakenD API is by letting the system fetch all the data from the different backends simultaneously. However, sometimes you need to **delay a backend call** until you have called a previous service. Although this is not ideal, the sequential proxy allows you to **chain backend requests**.
 
@@ -4300,7 +4358,7 @@ You can copy the code of this endpoint and test locally (it requires you to have
 
 ---
 
-# [Conditional Routing (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/conditional/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/conditional.md] (parent: 040 Routing and Forwarding, weight: 90)
+# [Conditional Routing (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/conditional/)
 
 The **Conditional Routing** feature enables **dynamic backend or multi-backend selection** based on request headers (including propagated JWT claims) or custom policy expressions. This functionality enhances flexibility and operational control for complex routing scenarios, including AI/LLM integrations, feature flags, and multi-tenant APIs, among others, without requiring the use of [Security Policies](/docs/enterprise/security-policies/) or raising errors in the log.
 
@@ -4460,7 +4518,7 @@ Another close functionality is the [Dynamic Routing](/docs/enterprise/endpoints/
 
 ---
 
-# [Virtual Hosts (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/service-settings/virtual-hosts.md] (parent: 040 Routing and Forwarding, weight: 90)
+# [Virtual Hosts (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/)
 
 The Virtual Host server allows you to run different configurations of KrakenD endpoints based on the host used to access the server.
 
@@ -4677,7 +4735,7 @@ No additional changes are required in the endpoints.
 
 ---
 
-# [Handling Client Redirects (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/client-redirect/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/client-redirect.md] (parent: 040 Routing and Forwarding, weight: 100)
+# [Handling Client Redirects (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/client-redirect/)
 
 When a backend returns a redirect, the default behavior of KrakenD is to follow the redirection and serve the final content to the user. When you don't want this behavior and let the end client follow the redirect, you must enable the `no_redirect` **HTTP client option**.
 
@@ -4732,7 +4790,7 @@ Prior to v2.3 the `no-redirect` plugin offered this functionality, and is now de
 
 ---
 
-# [URL Rewrite for API Endpoints (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/url-rewrite.md] (parent: 040 Routing and Forwarding, weight: 110)
+# [URL Rewrite for API Endpoints (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/)
 
 The `url-rewrite` plugin allows you to define a set of URLs or regular expressions that are handled by an endpoint of your choice. In other words, this plugin allows you to declare additional URLs other than the ones defined under the `endpoints` configuration, used as aliases of existing endpoints.
 
@@ -4782,7 +4840,7 @@ All regular expressions are evaluated in order. The first matching expression wi
 
 ---
 
-# [Router Options](https://www.krakend.io/docs/service-settings/router-options/)  [/Users/obokaman/Code/krakend/website/content/docs/service-settings/router-options.md] (parent: 040 Routing and Forwarding, weight: 120)
+# [Router Options](https://www.krakend.io/docs/service-settings/router-options/)
 
 The **optional router configuration** allows you to set global flags that change how KrakenD processes the requests globally at the router layer.
 
@@ -4942,7 +5000,7 @@ There are two options to remove content from logs: the `logger_skip_paths` (list
 
 ---
 
-# [HTTP Proxy: Access to backends through a proxy (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/http-proxy/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/http-proxy.md] (parent: 040 Routing and Forwarding, weight: 130)
+# [HTTP Proxy: Access to backends through a proxy (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/http-proxy/)
 
 The HTTP proxy adds an intermediate layer where the connection to the backend goes through an external proxy.
 
@@ -5012,7 +5070,7 @@ Prior to v2.3 the `http-proxy` plugin offered this functionality, and is now dep
 
 ---
 
-# [HTTP Global Client settings](https://www.krakend.io/docs/service-settings/http-transport-settings/)  [/Users/obokaman/Code/krakend/website/content/docs/service-settings/http-transport-settings.md] (parent: 040 Routing and Forwarding, weight: 140)
+# [HTTP Global Client settings](https://www.krakend.io/docs/service-settings/http-transport-settings/)
 
 When KrakenD communicates using HTTP **with all your upstream services**, it implements a concurrent-safe round tripper that supports HTTP, HTTPS, and HTTP proxies, and it caches connections for future re-use. This may leave many open connections when accessing many hosts. You can change the behavior of the transport layer using several settings presented below.
 
@@ -5070,7 +5128,48 @@ Every ecosystem needs its own setting, have this in mind:
 
 ---
 
-# [HTTP Per-backend Client settings (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/http-client/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/http-client.md] (parent: 040 Routing and Forwarding, weight: 145)
+# [HTTP Per-backend Client settings](https://www.krakend.io/docs/backends/http-client/)
+
+The HTTP client namespace allows you to set the behavior of the HTTP connections between KrakenD and your backend service.
+
+### Send the payload on 307 and 308 redirects
+KrakenD does not duplicate the body of the request when following a redirection because automatically doing it would affect the performance of all requests. In the unusual cases where your backend responds with a `307 Temporary Redirect` or a `308 Permanent Redirect`, enable the following flag to resend the original payload to the final redirected service:
+
+{{< schema data="backend/http_client.json" filter="send_body_on_redirect" >}}
+
+Here is a configuration example:
+
+```json
+{
+  "version": 3,
+  "$schema": "https://www.krakend.io/schema/v{{< product minor_version >}}/krakend.json",
+  "endpoints": [
+    {
+      "endpoint": "/foo",
+      "backend": [
+        {
+          "host": ["https://api"],
+          "url_pattern": "/url-that-will-redirect-with-307",
+          "extra_config": {
+            "backend/http/client": {
+              "send_body_on_redirect": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Avoid HTTP redirection and other options
+To prevent KrakenD from following redirects, use specific TLS options, and utilize intermediate proxies and other options, refer to the [HTTP Client options in the Enterprise Edition](/docs/enterprise/backends/http-client/).
+
+
+
+---
+
+# [HTTP Per-backend Client settings (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/http-client/)
 
 The HTTP client options allow you to set the client TLS settings for each backend, configure the no-redirect behavior, or connect through an external proxy.
 
@@ -5127,48 +5226,7 @@ It also prevents the gateway from following the redirections and returns the `30
 
 ---
 
-# [HTTP Per-backend Client settings](https://www.krakend.io/docs/backends/http-client/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/http-client.md] (parent: 040 Routing and Forwarding, weight: 145)
-
-The HTTP client namespace allows you to set the behavior of the HTTP connections between KrakenD and your backend service.
-
-### Send the payload on 307 and 308 redirects
-KrakenD does not duplicate the body of the request when following a redirection because automatically doing it would affect the performance of all requests. In the unusual cases where your backend responds with a `307 Temporary Redirect` or a `308 Permanent Redirect`, enable the following flag to resend the original payload to the final redirected service:
-
-{{< schema data="backend/http_client.json" filter="send_body_on_redirect" >}}
-
-Here is a configuration example:
-
-```json
-{
-  "version": 3,
-  "$schema": "https://www.krakend.io/schema/v{{< product minor_version >}}/krakend.json",
-  "endpoints": [
-    {
-      "endpoint": "/foo",
-      "backend": [
-        {
-          "host": ["https://api"],
-          "url_pattern": "/url-that-will-redirect-with-307",
-          "extra_config": {
-            "backend/http/client": {
-              "send_body_on_redirect": true
-            }
-          }
-        }
-      ]
-    }
-  ]
-}
-```
-
-## Avoid HTTP redirection and other options
-To prevent KrakenD from following redirects, use specific TLS options, and utilize intermediate proxies and other options, refer to the [HTTP Client options in the Enterprise Edition](/docs/enterprise/backends/http-client/).
-
-
-
----
-
-# [Handling Concurrent Requests](https://www.krakend.io/docs/endpoints/concurrent-requests/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/concurrent-requests.md] (parent: 040 Routing and Forwarding, weight: 150)
+# [Handling Concurrent Requests](https://www.krakend.io/docs/endpoints/concurrent-requests/)
 
 The concurrent requests are an excellent technique to **improve the response times and decrease error rates** by requesting in parallel the same information multiple times. Yes, you make the same request to several backends instead of asking to just one. When the first backend returns the information, the remaining requests are canceled.
 
@@ -5249,7 +5307,7 @@ Since the scale of the previous graphs is hiding the huge impact, let's use a lo
 
 ---
 
-# [Service Discovery Integration](https://www.krakend.io/docs/backends/service-discovery/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/service-discovery.md] (parent: 040 Routing and Forwarding, weight: 160)
+# [Service Discovery Integration](https://www.krakend.io/docs/backends/service-discovery/)
 
 The service discovery (`sd`) is an optional attribute of the `backend` section that enables KrakenD to detect and locate services automatically on your enterprise network.
 
@@ -5378,7 +5436,7 @@ In addition, the weight of `service-1` is `1`, and `service-2` is `2`, so the fi
 
 ---
 
-# [Traffic shadowing and mirroring](https://www.krakend.io/docs/backends/shadow-backends/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/shadow-backends.md] (parent: 040 Routing and Forwarding, weight: 170)
+# [Traffic shadowing and mirroring](https://www.krakend.io/docs/backends/shadow-backends/)
 
 There are times when you have been working in a new version of your microservice, a complete refactor, a dangerous change, or any other valuable change that needs being careful, and it's too risky to put it live as there might be issues that impact your end users.
 
@@ -5439,7 +5497,7 @@ Learn how to do [Canary Testing](/blog/krakend-shadow-testing/), or the differen
 
 ---
 
-# [Conditional requests and responses with CEL](https://www.krakend.io/docs/endpoints/common-expression-language-cel/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/common-expression-language-cel.md] (parent: 040 Routing and Forwarding, weight: 180)
+# [Conditional requests and responses with CEL](https://www.krakend.io/docs/endpoints/common-expression-language-cel/)
 
 There are times when you might want to incorporate **additional logic** to check if the gateway has to **skip the backend call**. For example, maybe the request from the user is undoubtedly wrong, and there is no point in hitting your backend(s).
 
@@ -5844,7 +5902,7 @@ Content-Length: 114
 
 ---
 
-# [API Throttling and Timeout Management](https://www.krakend.io/docs/throttling/timeouts/)  [/Users/obokaman/Code/krakend/website/content/docs/throttling/timeouts.md] (parent: 040 Routing and Forwarding, weight: 200)
+# [API Throttling and Timeout Management](https://www.krakend.io/docs/throttling/timeouts/)
 
 Being KrakenD, an API Gateway that talks to other services, controlling the waiting times for different aspects is crucial. KrakenD will allow you to fine-tune these settings.
 
@@ -5917,7 +5975,7 @@ All the settings in these sections work just like the pipeline timeouts. However
 
 ---
 
-# [Non-REST Connectivity](https://www.krakend.io/docs/non-rest-connectivity/)  [/Users/obokaman/Code/krakend/website/content/docs/non-rest-connectivity/_index.md] (parent: 050 Non-REST Connectivity, weight: -10)
+# [Non-REST Connectivity](https://www.krakend.io/docs/non-rest-connectivity/)
 
 KrakenD supports a range of non-REST connectivity options that open the door to integration with message brokers, event-driven systems, and alternative protocols and communication styles. By providing built-in capabilities to interact with services beyond traditional REST APIs, KrakenD enables applications to handle complex, real-time data flows and asynchronous communication patterns.
 
@@ -5951,7 +6009,7 @@ Follow to the documents under this section to find out more about each one.
 
 ---
 
-# [SOAP Backend Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/soap/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/SOAP.md] (parent: 050 Non-REST Connectivity, weight: 10)
+# [SOAP Backend Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/soap/)
 
 The SOAP integration is the ideal tool for those companies that rely on SOAP services and would like to have an option to **modernize their interface for the end-user**.
 
@@ -6199,7 +6257,7 @@ Use the flag for faster development!
 
 ---
 
-# [WebSockets Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/websockets/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/websockets.md] (parent: 050 Non-REST Connectivity, weight: 20)
+# [WebSockets Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/websockets/)
 
 KrakenD Enterprise supports communications using the WebSocket Protocol (RFC-6455) to enable two-way communication between a client and a backend host through the API gateway. This technology aims to provide a mechanism for applications that need two-way communication with servers that do not rely on opening multiple HTTP connections.
 
@@ -6487,7 +6545,7 @@ In the examples repository you will find a running demo:
 
 ---
 
-# [Introduction to gRPC and the service catalog (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/grpc/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/grpc/_index.md] (parent: 050 Non-REST Connectivity, weight: 30)
+# [Introduction to gRPC and the service catalog (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/grpc/)
 
 [gRPC is a protocol](https://grpc.io/docs/what-is-grpc/introduction/) that creates a channel connection between a client and a server and allows calling methods to send and receive payloads serialized with [protocol buffers](https://protobuf.dev/overview/).
 
@@ -6622,7 +6680,7 @@ Continue now to:
 
 ---
 
-# [gRPC client and gRPC to REST conversion (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/grpc/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/gRPC.md] (parent: 050 Non-REST Connectivity, weight: 40)
+# [gRPC client and gRPC to REST conversion (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/grpc/)
 
 <img src="/images/documentation/grpc.png" class="dark-version-available">
 
@@ -6839,7 +6897,7 @@ Should it be: `{"a": {"b": [{"x": [1, 2]}]}}` or `{"a": {"b": [{"x": [1]}, {"x":
 
 ---
 
-# [gRPC Server (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/grpc/server/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/grpc/server.md] (parent: 050 Non-REST Connectivity, weight: 50)
+# [gRPC Server (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/grpc/server/)
 
 The gRPC server integration allows you to expose an additional gRPC service under the same HTTP port. The gRPC service can consume data from mixed upstream services, whether they are also gRPC, HTTP, Lambdas, queues, or any other supported type.
 
@@ -6991,7 +7049,7 @@ Read the [gRPC reflection documentation](https://grpc.io/docs/guides/reflection/
 
 ---
 
-# [AMQP Consumer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-consumer/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/amqp-consumer.md] (parent: 050 Non-REST Connectivity, weight: 100)
+# [AMQP Consumer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-consumer/)
 
 The AMQP component allows to **send and receive messages to and from a queue** through the API Gateway.
 
@@ -7046,7 +7104,7 @@ The gateway will try to reconnect to the AMQP server if the connection is lost f
 
 ---
 
-# [AMQP Producer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-producer/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/amqp-producer.md] (parent: 050 Non-REST Connectivity, weight: 110)
+# [AMQP Producer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-producer/)
 
 The AMQP producer component allows to **send messages to a queue** through the API Gateway.
 
@@ -7113,7 +7171,7 @@ The gateway will try to reconnect to the AMQP server if the connection is lost f
 
 ---
 
-# [Publisher/Subscribe with Kafka, NATS and cloud systems](https://www.krakend.io/docs/backends/pubsub/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/pubsub.md] (parent: 050 Non-REST Connectivity, weight: 130)
+# [Publisher/Subscribe with Kafka, NATS and cloud systems](https://www.krakend.io/docs/backends/pubsub/)
 
 You can connect an endpoint to multiple publish/subscribe backends, helping you integrate with **event driven architectures**.
 
@@ -7381,7 +7439,7 @@ Kafka connection requires KrakenD >= `1.1`.
 
 ---
 
-# [GraphQL Backend Integration](https://www.krakend.io/docs/backends/graphql/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/graphql.md] (parent: 050 Non-REST Connectivity, weight: 140)
+# [GraphQL Backend Integration](https://www.krakend.io/docs/backends/graphql/)
 
 The **GraphQL integration** allows you to work in two different modes:
 
@@ -7779,7 +7837,7 @@ The following example is a REST endpoint consuming data from 2 different subgrap
 
 ---
 
-# [AWS Lambda Integration](https://www.krakend.io/docs/backends/lambda/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/lambda.md] (parent: 050 Non-REST Connectivity, weight: 150)
+# [AWS Lambda Integration](https://www.krakend.io/docs/backends/lambda/)
 
 The Lambda integration allows you to **invoke Amazon Lambda functions** on a KrakenD endpoint call. The content returned by the lambda function can be treated and manipulated as any other backend.
 
@@ -7972,7 +8030,7 @@ Following the code, a call `GET /call-a-lambda/my-lambda` would produce a call t
 
 ---
 
-# [Event-Driven API Gateway: Async Agents](https://www.krakend.io/docs/async/)  [/Users/obokaman/Code/krakend/website/content/docs/async/_index.md] (parent: 050 Non-REST Connectivity, weight: 500)
+# [Event-Driven API Gateway: Async Agents](https://www.krakend.io/docs/async/)
 
 **Async agents** are routines listening to queues or PubSub systems that react to new events and push data to your backends. Through async agents, you can start a lot of consumers to process your events autonomously.
 
@@ -8066,7 +8124,7 @@ The `backoff_strategies` you can set are defined below:
 
 ---
 
-# [AMQP driver for the Asynchronous Agent](https://www.krakend.io/docs/async/amqp/)  [/Users/obokaman/Code/krakend/website/content/docs/async/amqp.md] (parent: 050 Non-REST Connectivity, weight: 510)
+# [AMQP driver for the Asynchronous Agent](https://www.krakend.io/docs/async/amqp/)
 
 The AMQP driver for **Async agents** allows you to have KrakenD consuming AMQP queues autonomously. Routines listening to AMQP queues will react by themselves to new events and push data to your backends.
 
@@ -8098,7 +8156,7 @@ The AMQP driver has to be placed inside the `extra_config` of the [async compone
 
 ---
 
-# [Introduction to Request and Response Manipulation](https://www.krakend.io/docs/request-response-manipulation/)  [/Users/obokaman/Code/krakend/website/content/docs/request-response-manipulation/_index.md] (parent: 060 Request and Response Manipulation, weight: -1)
+# [Introduction to Request and Response Manipulation](https://www.krakend.io/docs/request-response-manipulation/)
 
 One of KrakenD's standout features is its powerful capability to manipulate requests and responses, allowing you to shape data flows to meet your application's needs. With KrakenD, you can transform incoming requests and outgoing responses on the fly, ensuring your APIs are efficient and perfectly aligned with your business logic. Whether you need to filter sensitive information, restructure payloads, enrich responses, or enforce specific rules, KrakenD provides a robust toolkit to get the job done.
 
@@ -8167,7 +8225,7 @@ Modern APIs must often adapt to varying client requirements, integrate with lega
 
 ---
 
-# [API Composition and aggregation](https://www.krakend.io/docs/endpoints/response-manipulation/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/response-manipulation.md] (parent: 060 Request and Response Manipulation, weight: 10)
+# [API Composition and aggregation](https://www.krakend.io/docs/endpoints/response-manipulation/)
 
 KrakenD allows you to perform several manipulations of the responses out of the box by adding them to the configuration file. You can also add your own or 3rd parties middleware to extend this behavior.
 
@@ -8426,7 +8484,7 @@ See [Content Replacer {{< badge >}}Enterprise{{< /badge >}}](/docs/enterprise/en
 
 ---
 
-# [Data Manipulation](https://www.krakend.io/docs/backends/data-manipulation/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/data-manipulation.md] (parent: 060 Request and Response Manipulation, weight: 20)
+# [Data Manipulation](https://www.krakend.io/docs/backends/data-manipulation/)
 
 This page describes the most basic options to manipulate the content you receive from the `backend` before delivering it to the endpoint to [aggregate data from all backends](/docs/endpoints/response-manipulation/#aggregation-and-merging).
 
@@ -8852,7 +8910,7 @@ If you need more sophisticated manipulation options, there are different approac
 
 ---
 
-# [Replace content with regular expressions and other functions (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/content-replacer/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/content-replacer.md] (parent: 060 Request and Response Manipulation, weight: 30)
+# [Replace content with regular expressions and other functions (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/content-replacer/)
 
 The `modifier/response-body` allows you to change the content of any desired fields using several modifiers, from regular expression replacement to simpler modifiers like trimming characters or converting the case.
 
@@ -9089,7 +9147,7 @@ If you have doubts, please get in touch with support.
 
 ---
 
-# [Response manipulation with query language (JMESPath) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/jmespath/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/jmespath.md] (parent: 060 Request and Response Manipulation, weight: 40)
+# [Response manipulation with query language (JMESPath) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/jmespath/)
 
 If you'd like to apply **advanced manipulations** before you return the API data, the `modifier/jmespath` allows you to apply JSON query language expressions. Fine-tune the final content delivered to the user, and even add the possibility to add small logic chunks.
 
@@ -9196,7 +9254,7 @@ The same happens with the `"output_encoding": "string"` when the query returns a
 
 ---
 
-# [Response manipulation with templates (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/response-body-generator/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/response-body-generator.md] (parent: 060 Request and Response Manipulation, weight: 50)
+# [Response manipulation with templates (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/response-body-generator/)
 
 The **response body generator** lets you write a whole new payload [using a template](/docs/enterprise/configuration/templates/) that has access to all the response data. In addition to the payload from the backend, you can incorporate other information such as headers, status codes, query strings, or URL parameters.
 
@@ -9461,7 +9519,7 @@ Notice that we are adding `-w 0` because we don't want new lines that would brea
 
 ---
 
-# [Serving Static Content (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/serve-static-content.md] (parent: 060 Request and Response Manipulation, weight: 60)
+# [Serving Static Content (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/)
 
 The static filesystem component lets you return content saved in the disk to end users and updates as the filesystem changes. The component is very lightweight and straightforward, using only the standard lib.
 
@@ -9696,7 +9754,7 @@ Since EE 2.4, it has become:
 
 ---
 
-# [Caching Strategies](https://www.krakend.io/docs/backends/caching/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/caching.md] (parent: 060 Request and Response Manipulation, weight: 100)
+# [Caching Strategies](https://www.krakend.io/docs/backends/caching/)
 
 Caching allows you to **store backend responses in memory** to reduce the number of calls a user sends to the origin, **reducing the network traffic and alleviating the pressure on your services**.
 
@@ -9885,7 +9943,7 @@ Notice in the configuration above how KrakenD consumed a backend without an acti
 
 ---
 
-# [Array manipulation](https://www.krakend.io/docs/backends/flatmap/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/flatmap.md] (parent: 060 Request and Response Manipulation, weight: 110)
+# [Array manipulation](https://www.krakend.io/docs/backends/flatmap/)
 
 The flatmap middleware allows you to **manipulate collections** (or arrays, or lists; you name it) or to **flatten objects** from the response.
 
@@ -10185,7 +10243,7 @@ When the flatmap filter is enabled, the operations `group` and `target` keep the
 
 ---
 
-# [Response header transformation](https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/service-settings/response-headers-modifier.md] (parent: 060 Request and Response Manipulation, weight: 120)
+# [Response header transformation](https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/)
 
 The response headers modifier allows you to `add`, `replace`, or `delete` headers declaratively before responses are returned to the end-user for **all declared endpoints simultaneously**.
 
@@ -10277,7 +10335,7 @@ There are several ways to set response headers without the `modifier/response-he
 
 ---
 
-# [Request manipulation with templates (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/body-generator/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/body-generator.md] (parent: 060 Request and Response Manipulation, weight: 200)
+# [Request manipulation with templates (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/body-generator/)
 
 The body generator modifier allows you to **craft the body you send** to a backend through templates and enables injecting other values from the user request, such as the original body, headers, query strings, or URL parameters.
 
@@ -10585,7 +10643,7 @@ Notice that we are adding `-w 0` because we don't want new lines that would brea
 
 ---
 
-# [GeoIP integration: Location-based services (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/geoip/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/geoip.md] (parent: 060 Request and Response Manipulation, weight: 210)
+# [GeoIP integration: Location-based services (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/geoip/)
 
 The GeoIP integration allows you load Maxmind's [GeoIP2 City](https://www.maxmind.com/en/geoip2-city) database (both commercial and free versions) and enrich all KrakenD calls to your backends with geo data.
 
@@ -10664,7 +10722,7 @@ The following structure is available. Keys that couldn't retrieve its associated
 
 ---
 
-# [Static modification of requests and responses with Martian](https://www.krakend.io/docs/backends/martian/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/martian.md] (parent: 060 Request and Response Manipulation, weight: 300)
+# [Static modification of requests and responses with Martian](https://www.krakend.io/docs/backends/martian/)
 
 The Martian component allows you to **modify requests and responses with static data** through a simple DSL definition in the configuration file.
 
@@ -11588,7 +11646,7 @@ It is useful when you want to reorder them in the future, but instead of moving 
 
 ---
 
-# [Supported Encodings for Backend Integration](https://www.krakend.io/docs/backends/supported-encodings/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/supported-encodings.md] (parent: 060 Request and Response Manipulation, weight: 400)
+# [Supported Encodings for Backend Integration](https://www.krakend.io/docs/backends/supported-encodings/)
 
 Setting the `encoding` is an important part of the backend definition, as it informs KrakenD how to parse the responses of your services.
 
@@ -11683,7 +11741,7 @@ As you can see, having the `encoding` declaration inside every backend allows yo
 
 ---
 
-# [Returned encodings](https://www.krakend.io/docs/endpoints/content-types/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/content-types.md] (parent: 060 Request and Response Manipulation, weight: 410)
+# [Returned encodings](https://www.krakend.io/docs/endpoints/content-types/)
 
 An important concept to get familiar with is that by default, KrakenD **does not work as a reverse proxy** (unless you use the [`no-op` encoding](/docs/endpoints/no-op/)).
 
@@ -11770,7 +11828,7 @@ The endpoint `/baz` will use the default encoding `json` as no encoding has been
 
 ---
 
-# [Automatic Gzip compression on responses (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/gzip/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/service-settings/gzip.md] (parent: 060 Request and Response Manipulation, weight: 415)
+# [Automatic Gzip compression on responses (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/gzip/)
 
 KrakenD Enterprise compresses with gzip **all traffic returned to the client** when the request contains an `Accept-Encoding: gzip` header.
 
@@ -11804,7 +11862,7 @@ The gzip is always on unless you disable it in the router section as follows:
 
 ---
 
-# [API Gateway Status Codes](https://www.krakend.io/docs/endpoints/status-codes/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/status-codes.md] (parent: 060 Request and Response Manipulation, weight: 420)
+# [API Gateway Status Codes](https://www.krakend.io/docs/endpoints/status-codes/)
 
 When consuming content through KrakenD, the status code returned to the client depends on the chosen configuration. Three different approaches impact status codes:
 
@@ -11868,7 +11926,7 @@ Default status codes can be overridden per endpoint following different implemen
 
 ---
 
-# [Returning the backend headers and errors](https://www.krakend.io/docs/backends/detailed-errors/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/detailed-errors.md] (parent: 060 Request and Response Manipulation, weight: 430)
+# [Returning the backend headers and errors](https://www.krakend.io/docs/backends/detailed-errors/)
 
 KrakenD's default policy regarding errors and status codes is to **hide from the client any backend details**, this includes headers and errors, except when you use the [`no-op` encoding](/docs/endpoints/no-op/).
 
@@ -12024,7 +12082,7 @@ When you want to show the interpretation of the error but not the error of the b
 
 ---
 
-# [Static Proxy Endpoints](https://www.krakend.io/docs/endpoints/static-proxy/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/static-proxy.md] (parent: 060 Request and Response Manipulation, weight: 440)
+# [Static Proxy Endpoints](https://www.krakend.io/docs/endpoints/static-proxy/)
 
 The **static proxy** aids in decorating the final response with static data. It helps deal with incomplete and degraded responses or add more content to good responses. When enabled, it injects the static `data`** into the final response when a backend's behavior falls within the selected strategy. The `data` is **injected** replacing any colliding keys and merging with any existing data from the backend responses.
 
@@ -12198,7 +12256,7 @@ And remember: the static proxy is the last piece of software evaluated, so it me
 
 ---
 
-# [JSON Schema Validation](https://www.krakend.io/docs/endpoints/json-schema/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/json-schema.md] (parent: 060 Request and Response Manipulation, weight: 450)
+# [JSON Schema Validation](https://www.krakend.io/docs/endpoints/json-schema/)
 
 KrakenD endpoints receiving a JSON object in its body can apply automatic validations using the [JSON Schema](https://json-schema.org/) vocabulary before the content passes to the backends. The json schema component allows you to define **validation rules** on the body, type definition, or even validate the fields' values.
 
@@ -12323,7 +12381,7 @@ Content-Type: text/plain; charset=utf-8
 
 ---
 
-# [Response Schema Validation for API Endpoints (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/response-schema-validator.md] (parent: 060 Request and Response Manipulation, weight: 460)
+# [Response Schema Validation for API Endpoints (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/)
 
 The response JSON schema validator adds a schema validation **before the gateway returns the response to the end-user** or before it's merged in the endpoint with the rest of the backends.
 
@@ -12453,7 +12511,7 @@ As you can see the following changes are needed:
 
 ---
 
-# [Limiting requests' payload maximum size (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/maximum-request-size.md] (parent: 060 Request and Response Manipulation, weight: 470)
+# [Limiting requests' payload maximum size (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/)
 
 Consumers of the gateway might see their requests limited when using the `max_payload` property. All requests are validated when this attribute is set, checking that their size is inside the limits set.
 
@@ -12515,7 +12573,7 @@ When you want to limit the maximum payload you can send to an endpoint, place th
 
 ---
 
-# [Workflows (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/workflows/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/workflows.md] (parent: 060 Request and Response Manipulation, weight: 600)
+# [Workflows (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/workflows/)
 
 The Workflow component allows you to create **complex API flows** behind an endpoint. In a regular endpoint, you connect a route to one or several backends, but what if you could **nest other endpoints** in any backend call? The workflow component allows you, amongst other things, to:
 
@@ -12766,7 +12824,7 @@ Try this example locally and play with it to understand the flow.
 
 ---
 
-# [Security Overview](https://www.krakend.io/docs/security/)  [/Users/obokaman/Code/krakend/website/content/docs/security/_index.md] (parent: 070 Security, weight: -1000)
+# [Security Overview](https://www.krakend.io/docs/security/)
 
 KrakenD is a software built with a **security-first philosophy**. In 2022, we became a recognized **CVE Numbering Authority (CNA)** worldwide for software distribution ([Partner page](https://www.cve.org/PartnerInformation/ListofPartners/partner/KrakenD)), and we publish CVE Records for vulnerabilities within any KrakenD software or the Lura Project (© the Linux Foundation).
 
@@ -12854,7 +12912,7 @@ As KrakenD operates as a stateless gateway, only processes data in transit and *
 
 ---
 
-# [Cross-Origin Resource Sharing (CORS) Configuration](https://www.krakend.io/docs/service-settings/cors/)  [/Users/obokaman/Code/krakend/website/content/docs/service-settings/CORS.md] (parent: 070 Security, weight: 20)
+# [Cross-Origin Resource Sharing (CORS) Configuration](https://www.krakend.io/docs/service-settings/cors/)
 
 When KrakenD endpoints are consumed from a browser, you should enable the **Cross-Origin Resource Sharing (CORS)** module, as browsers restrict cross-origin HTTP requests initiated from scripts.
 
@@ -12990,7 +13048,7 @@ To support `OPTIONS` in your endpoints, you only need to add the [flag `auto_opt
 
 ---
 
-# [TLS Configuration](https://www.krakend.io/docs/service-settings/tls/)  [/Users/obokaman/Code/krakend/website/content/docs/service-settings/TLS.md] (parent: 070 Security, weight: 30)
+# [TLS Configuration](https://www.krakend.io/docs/service-settings/tls/)
 
 The TLS settings define the parameters that the gateway takes into account to handle incoming and outgoing HTTPS traffic. We refer to this as:
 
@@ -13239,7 +13297,7 @@ Not valid after:  Feb 28 11:44:05 2024 GMT
 
 ---
 
-# [HTTP Security Considerations](https://www.krakend.io/docs/service-settings/security/)  [/Users/obokaman/Code/krakend/website/content/docs/service-settings/security.md] (parent: 070 Security, weight: 40)
+# [HTTP Security Considerations](https://www.krakend.io/docs/service-settings/security/)
 
 KrakenD has implemented several security strategies, controlled via the `security/http` component. To enable them you only need to add its namespace `security/http` at the `extra_config` in the root level of the configuration.
 
@@ -13344,7 +13402,7 @@ See the specific docs for [OAuth2 Client Credentials](/docs/authorization/client
 
 ---
 
-# [Run using the FIPS-140 Cryptographic Module](https://www.krakend.io/docs/enterprise/security/fips-140/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/security/fips-140.md] (parent: 070 Security, weight: 100)
+# [Run using the FIPS-140 Cryptographic Module](https://www.krakend.io/docs/enterprise/security/fips-140/)
 
 While KrakenD's stateless design **does not handle customer data storage**, it still offers a binary that facilitates **FIPS 140-3 compliance** to **protect customers' data in-transit**.
 
@@ -13386,7 +13444,7 @@ The possible values of the fips140 setting are:
 
 ---
 
-# [Security Policies Engine (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/security-policies/_index.md] (parent: 070 Security, weight: 200)
+# [Security Policies Engine (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/)
 
 The policies engine lets you write custom rules validated on runtime during **requests, responses, and token validation**. The policies allow you to implement all sorts of validations and user access control, from parameter compliance, to **RBAC** (Role-Based Access Control) and **ABAC** (Attribute-Based Access Control) strategies.
 
@@ -13541,7 +13599,7 @@ These are the options available in the component:
 
 ---
 
-# [Security Policies language and syntax (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/policy-language/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/security-policies/policy-language.md] (parent: 070 Security, weight: 210)
+# [Security Policies language and syntax (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/policy-language/)
 
 The policies language and syntax look nearly identical to **C++, Go, Java, and Typescript** and is based on Google's CEL [built-in functions](/docs/enterprise/security-policies/policy-language/) and [advanced macros](/docs/enterprise/security-policies/advanced-policy-macros/). If you have existing validation using the [CEL Component](/docs/endpoints/common-expression-language-cel/), you can also port them as policies.
 
@@ -13660,7 +13718,7 @@ This example checks that the JWT token contains the metadata `user_id` and
 
 ---
 
-# [Advanced Macros for Security Policies (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/security-policies/advanced-policy-macros.md] (parent: 070 Security, weight: 215)
+# [Advanced Macros for Security Policies (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/)
 
 The advanced macros are powerful functions that allow you to declare Security Policies with simple expressions, reducing code complexity and speeding up development. Advanced macros are not available on the [CEL component](/docs/enterprise/endpoints/common-expression-language-cel/), only on Security Policies.
 
@@ -13676,7 +13734,7 @@ The following list is not the complete catalogue of functions, but the ones adde
 
 ---
 
-# [CEL Built-in functions for Security Policies (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/built-in-functions/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/security-policies/built-in-functions.md] (parent: 070 Security, weight: 220)
+# [CEL Built-in functions for Security Policies (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/built-in-functions/)
 
 The CEL language ([language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md)) offers the following built-in functions and macros that you can use while building your [Security Policies](/docs/enterprise/security-policies/) or [conditional requests and responses with CEL](/docs/enterprise/endpoints/common-expression-language-cel/).
 
@@ -13688,7 +13746,7 @@ The following functions and macros are **always available** regardless of your c
 
 ---
 
-# [Security Policies Playbook (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/playbook/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/security-policies/playbook.md] (parent: 070 Security, weight: 240)
+# [Security Policies Playbook (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/playbook/)
 
 An example is sometimes self-explanatory and lets you see the potential of the kind of stuff you can do with policies. The following examples demonstrate who to apply different policies to your API, but possibilities are endless!
 
@@ -13871,7 +13929,7 @@ Checking that a specific response from the backend(s) contains essential data, o
 
 ---
 
-# [Authorization and Authentication (authZ + authN)](https://www.krakend.io/docs/authorization/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/_index.md] (parent: 080 Authentication & Authorization, weight: -100)
+# [Authorization and Authentication (authZ + authN)](https://www.krakend.io/docs/authorization/)
 
 Authorization and authentication are fundamental to managing access to your APIs. While authentication verifies the identity of a user or service (e.g., *is this a valid user/pass?*), the authorization checks their access rights (e.g., *Should John see this resource?*).
 
@@ -13966,7 +14024,7 @@ In this scenario, the `/token` endpoint passes through KrakenD, allowing you to 
 
 ---
 
-# [API Key Authentication in KrakenD (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/api-keys/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/authentication/api-keys.md] (parent: 080 Authentication & Authorization, weight: 10)
+# [API Key Authentication in KrakenD (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/api-keys/)
 
 API key authentication enables a **Role-Based Access Control (RBAC)** and a **rate-limiting** mechanism based on an API key passed by the client. For the desired endpoints, KrakenD rejects requests from users who do not provide a valid **key**, users trying to access a resource with insufficient permissions for their **role**, or exceeding the defined quota.
 
@@ -14579,7 +14637,7 @@ Finally, your backend should have this list somewhere, and when a new user regis
 
 ---
 
-# [Basic Authentication (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/basic-authentication/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/authentication/basic-authentication.md] (parent: 080 Authentication & Authorization, weight: 10)
+# [Basic Authentication (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/basic-authentication/)
 
 The Basic Authentication functionality protects access to selected endpoints using basic username and password credentials. The functionality works at the router level, and the backend is never hit when the authentication fails.
 
@@ -14760,7 +14818,7 @@ As you can see, your configuration in the plugin moves to a new `extra_config` s
 
 ---
 
-# [JWT Overview - Authorization](https://www.krakend.io/docs/authorization/jwt-overview/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/jwt-overview.md] (parent: 080 Authentication & Authorization, weight: 10)
+# [JWT Overview - Authorization](https://www.krakend.io/docs/authorization/jwt-overview/)
 
 The **JSON Web Token** specification is an industry standard to represent claims securely between two parties. The **JWT** is a `base64` encoded JSON object that contains key-value pairs of attributes that are signed by a trusted authority.
 
@@ -14815,7 +14873,7 @@ If you are not familiar with JWT yet, read the "[Introduction to JSON Web Tokens
 
 ---
 
-# [JWT Validation](https://www.krakend.io/docs/authorization/jwt-validation/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/jwt-validation.md] (parent: 080 Authentication & Authorization, weight: 20)
+# [JWT Validation](https://www.krakend.io/docs/authorization/jwt-validation/)
 
 **Protect endpoints from public usage** by validating JWT tokens generated by any industry-standard **OpenID Connect (OIDC)** integration.
 
@@ -15177,7 +15235,7 @@ Accepted values for cipher suites are:
 
 ---
 
-# [Shared JWK Caching for Authorization](https://www.krakend.io/docs/authorization/jwk-caching/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/jwk-caching.md] (parent: 080 Authentication & Authorization, weight: 21)
+# [Shared JWK Caching for Authorization](https://www.krakend.io/docs/authorization/jwk-caching/)
 
 The [JWT validation](/docs/authorization/jwt-validation/) and [JWT signing](/docs/authorization/jwt-signing/) components do not apply cache by default.
 
@@ -15299,7 +15357,7 @@ In the example above, each endpoint will cache the JWK URL for 1 hour, but when 
 
 ---
 
-# [JWT Signing](https://www.krakend.io/docs/authorization/jwt-signing/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/jwt-signing.md] (parent: 080 Authentication & Authorization, weight: 30)
+# [JWT Signing](https://www.krakend.io/docs/authorization/jwt-signing/)
 
 The JWT signing component creates a **wrapper for your existing login endpoint** that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.
 
@@ -15473,7 +15531,7 @@ The [KrakenD Playground](/docs/overview/playground/) demonstrates how to sign to
 
 ---
 
-# [Token Revocation](https://www.krakend.io/docs/authorization/revoking-tokens/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/revoking-tokens.md] (parent: 080 Authentication & Authorization, weight: 40)
+# [Token Revocation](https://www.krakend.io/docs/authorization/revoking-tokens/)
 
 The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to **revoke JWT tokens that are still valid**.
 
@@ -15591,7 +15649,7 @@ If you want to learn bloomfilters by example or additional information on token 
 
 ---
 
-# [Revoke Server for clusters (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/revoke-server/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/authentication/revoke-server.md] (parent: 080 Authentication & Authorization, weight: 41)
+# [Revoke Server for clusters (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/revoke-server/)
 
 The Revoke Server (a.k.a Revoker) is a **standalone server** that coordinates token revocation in a KrakenD Cluster. When you start the service, it offers a ping endpoint for all KrakenD instances to self-register and pushes token revocation instructions to all nodes in the cluster.
 
@@ -15921,7 +15979,7 @@ The associated configuration files are left below. Notice they are exact except 
 
 ---
 
-# [Client Credentials Authorization](https://www.krakend.io/docs/authorization/client-credentials/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/client-credentials.md] (parent: 080 Authentication & Authorization, weight: 50)
+# [Client Credentials Authorization](https://www.krakend.io/docs/authorization/client-credentials/)
 
 Through the **OAuth 2.0 Client Credentials Grant**, KrakenD can do a **2-legged OAuth2 flow**, which means that the gateway requests to your authorization server an access token before reaching the backend's protected resources. This token is passed in the "Authorization" header. The token refreshes when needed.
 
@@ -16021,7 +16079,7 @@ The code above works with Auth0. The difference with the basic example is the wa
 
 ---
 
-# [Multiple Identity Providers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/authentication/multiple-identity-providers.md] (parent: 080 Authentication & Authorization, weight: 50)
+# [Multiple Identity Providers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/)
 
 The JWK aggregator plugin allows KrakenD to validate tokens issued by numerous Identity Providers or multiple realms of the same Identity Server.
 
@@ -16232,7 +16290,7 @@ As you can see, the security policy implements any needed logic, moving the resp
 
 ---
 
-# [Mutual Authentication](https://www.krakend.io/docs/authorization/mutual-authentication/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/mutual-authentication.md] (parent: 080 Authentication & Authorization, weight: 50)
+# [Mutual Authentication](https://www.krakend.io/docs/authorization/mutual-authentication/)
 
 **mTLS** is an authentication mechanism used traditionally in business-to-business (B2B) applications where clients provide a certificate that allows to connect to the KrakenD server.
 
@@ -16401,7 +16459,7 @@ curl: (56) OpenSSL SSL_read: error:14094412:SSL routines:ssl3_read_bytes:sslv3 a
 
 ---
 
-# [Google Cloud service-to-service authentication (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/gcloud/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/authentication/gcloud.md] (parent: 080 Authentication & Authorization, weight: 90)
+# [Google Cloud service-to-service authentication (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/gcloud/)
 
 KrakenD supports the three different **service-to-service authentication** mechanisms Google Cloud provides: **Service Accounts** (this page), [OAuth 2.0](/docs/authorization/client-credentials/), and [Mutual TLS Authentication](/docs/authorization/mutual-authentication/).
 
@@ -16575,7 +16633,7 @@ Your Service is now ready. You should be able to access your Hello service from 
 
 ---
 
-# [Auth0 Integration](https://www.krakend.io/docs/authorization/auth0/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/auth0.md] (parent: 080 Authentication & Authorization, weight: 100)
+# [Auth0 Integration](https://www.krakend.io/docs/authorization/auth0/)
 
 Let's start with the elephant in the room: when you face the challenge of creating a modern API that has to be scalable, secure, performant, and resilient, it might look like a daunting task.
 
@@ -16738,7 +16796,7 @@ We are hoping that this reading has been helpful, and if you have any questions 
 
 ---
 
-# [AWS SigV4 Authentication for Service-to-Service Calls (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/authentication/aws-sigv4.md] (parent: 080 Authentication & Authorization, weight: 100)
+# [AWS SigV4 Authentication for Service-to-Service Calls (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/)
 
 Use AWS SigV4 authentication in KrakenD when your backend services or APIs require signed AWS requests to authorize access. This method signs HTTP requests with AWS Signature Version 4, allowing KrakenD to securely authenticate to AWS services or custom APIs that understand SigV4 signed requests. You might need this component when:
 
@@ -16801,7 +16859,7 @@ docker run --rm -it -p "8080:8080" \
 
 ---
 
-# [Descope Authorization](https://www.krakend.io/docs/authorization/descope/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/descope.md] (parent: 080 Authentication & Authorization, weight: 110)
+# [Descope Authorization](https://www.krakend.io/docs/authorization/descope/)
 
 Securing your APIs and underlying microservices is crucial in modern development. Descope enables you to add advanced authentication capabilities to your KrakenD endpoints efficiently.
 
@@ -16923,7 +16981,7 @@ Integrating Descope with KrakenD enhances security while maintaining flexibility
 
 ---
 
-# [Keycloak Authorization](https://www.krakend.io/docs/authorization/keycloak/)  [/Users/obokaman/Code/krakend/website/content/docs/authorization/keycloak.md] (parent: 080 Authentication & Authorization, weight: 110)
+# [Keycloak Authorization](https://www.krakend.io/docs/authorization/keycloak/)
 
 The Keycloak integration allows one of the many possible OpenID Connect different security options available in KrakenD.
 
@@ -16991,7 +17049,7 @@ It consists in two Node microservices fronted and protected by KrakenD. The iden
 
 ---
 
-# [NTLM authentication (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/ntlm/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/authentication/ntlm.md] (parent: 080 Authentication & Authorization, weight: 200)
+# [NTLM authentication (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/ntlm/)
 
 NTLM (NT Lan Manager) is a suite of Microsoft security protocols used for authentication, integrity, and confidentiality of network communications. It is primarily used for authentication on Windows-based systems but can also be used in other environments.
 
@@ -17075,7 +17133,7 @@ Below there is a functional example you can test. It should work unless the exte
 
 ---
 
-# [Traffic Management Overview](https://www.krakend.io/docs/throttling/)  [/Users/obokaman/Code/krakend/website/content/docs/throttling/_index.md] (parent: 090 Traffic Management, weight: 910)
+# [Traffic Management Overview](https://www.krakend.io/docs/throttling/)
 
 Traffic management refers to the practice of **monitoring, controlling, and optimizing the flow of requests** to and from an API. It aims to prevent abuse by limiting the volume of requests from individual clients or groups, regulate the flow of traffic, ensure fair usage, and provide predictable API performance.
 
@@ -17133,7 +17191,7 @@ When [GeoIP](/docs/enterprise/endpoints/geoip/) is enabled, the requests reachin
 
 ---
 
-# [Load Balancing and Throttling](https://www.krakend.io/docs/throttling/load-balancing/)  [/Users/obokaman/Code/krakend/website/content/docs/throttling/load-balancing.md] (parent: 090 Traffic Management, weight: 920)
+# [Load Balancing and Throttling](https://www.krakend.io/docs/throttling/load-balancing/)
 
 The natural placement of an API gateway is between API consumers and your services. When we talk about load balancing, we can refer to both sides of the gateway: **ingress traffic** (user to gateway) or **egress traffic** (gateway to services).
 
@@ -17255,7 +17313,7 @@ Some examples on space optimization and removal of neglectable items:
 
 ---
 
-# [Circuit Breaker](https://www.krakend.io/docs/backends/circuit-breaker/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/circuit-breaker.md] (parent: 090 Traffic Management, weight: 930)
+# [Circuit Breaker](https://www.krakend.io/docs/backends/circuit-breaker/)
 
 The **Circuit Breaker** is a straightforward **state machine** in the middle of the request and response that monitors all your backend failures. In the image above you can see a simplified version of its behavior. When backends fail to succeed for a number of consecutive times, the circuit breaker will prevent sending more traffic to a failing backend alleviating its pressure under challenging conditions.
 
@@ -17356,7 +17414,76 @@ In addition, only when you work with `json`, or **any other encoding different t
 
 ---
 
-# [Service Rate Limiting to Control API Usage (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/service-settings/service-rate-limit.md] (parent: 090 Traffic Management, weight: 940)
+# [HTTP Circuit Breaker (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/http-circuit-breaker/)
+
+Both this **HTTP Circuit Breaker** and the regular [Circuit Breaker](/docs/enterprise/backends/circuit-breaker/) are **state machines** that monitor failures. Once they see more consecutive errors than expected within the defined time window, they prevent further traffic from reaching the backend and enter a cooldown state.
+
+The HTTP Circuit Breaker is an **automatic protection measure** for your API stack and **avoids cascade failures**, keeping your API responsive and resilient. It has a low resource consumption. Try to implement it consistently.
+
+## Difference between the Circuit Breaker and the HTTP Circuit Breaker
+The HTTP Circuit Breaker (`qos/circuit-breaker/http`) behaves mostly like a regular [Circuit Breaker](/docs/enterprise/backends/circuit-breaker/) (`qos/circuit-breaker`), but it has a few differences:
+
+- Allows you to **customize the HTTP status codes** considered errors.
+- Can read HTTP status code **even with no-op** and other encodings
+- It is executed at a different stage
+
+{{< note title="Do not run both" type="warning" >}}
+You should not run both types of Circuit Breakers in the same backend as they would compete with each other.
+{{< /note >}}
+
+On the common part, the HTTP Circuit Breaker uses the same settings and adds the status code list, and also considers other errors, such as **connectivity issues or timeouts**.
+
+Read [How the Circuit Breaker works](https://www.krakend.io/docs/enterprise/backends/circuit-breaker/#how-the-circuit-breaker-works) to better understand this pattern.
+
+## HTTP Circuit breaker configuration
+The HTTP Circuit Breaker is available in the namespace `qos/circuit-breaker/http` inside the `extra_config` key of every `backend`. The following configuration is an example of how to add circuit breaker capabilities to a backend. While the regular Circuit Breaker will consider an error anything different than a 200 or 201 status code, you can extend this list using the `valid_status_codes` array, which is the most important configuration:
+
+```json
+{
+  "endpoints": [
+    {
+      "endpoint": "/myendpoint",
+      "method": "GET",
+      "backend": [
+        {
+          "host": [
+            "http://api.example.com"
+          ],
+          "url_pattern": "/mybackend-endpoint",
+          "extra_config": {
+            "qos/circuit-breaker/http": {
+              "valid_status_codes": [
+                200,
+                201,
+                400,
+                404
+              ],
+              "@comment": "Three errors IN A ROW within a minute, stop sending traffic!",
+              "interval": 60,
+              "timeout": 10,
+              "max_errors": 3,
+              "name": "cb-myendpoint-1",
+              "log_status_change": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The attributes available for the configuration are:
+
+{{< schema data="qos/circuit-breaker-http.json" >}}
+
+**IMPORTANT**: The number of maximum errors reflects **consecutive errors**, and **not the aggregated number** of errors in the period. This approach works better when your traffic is variable, as it's based on a **probabilistic pattern** and isn't affected by traffic volume.
+
+
+
+---
+
+# [Service Rate Limiting to Control API Usage (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/)
 
 The service rate limit feature allows you to set the **maximum requests per second** a user or group of users can do to KrakenD and works analogously to the [endpoint rate limit](/docs/endpoints/rate-limit/). There are two different strategies to set limits that you can use, simultaneously or individually:
 
@@ -17410,7 +17537,7 @@ A note on strategies:
 
 ---
 
-# [Rate Limiting API Gateway Endpoints](https://www.krakend.io/docs/endpoints/rate-limit/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/rate-limit.md] (parent: 090 Traffic Management, weight: 950)
+# [Rate Limiting API Gateway Endpoints](https://www.krakend.io/docs/endpoints/rate-limit/)
 
 The router rate limit feature allows you to set the **maximum requests** a KrakenD endpoint (a route) will accept in a **given time window**. There are two different strategies to set limits that you can use separately or together:
 
@@ -17754,7 +17881,7 @@ For more information, see the [Token Bucket algorithm](/docs/enterprise/throttli
 
 ---
 
-# [Rate Limit Tiers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/service-settings/tiered-rate-limit.md] (parent: 090 Traffic Management, weight: 955)
+# [Rate Limit Tiers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/)
 
 The rate limit based on tiers allows you to have **multiple sets of [service](/docs/enterprise/service-settings/service-rate-limit/) and [endpoint](/docs/enterprise/endpoints/rate-limit/) rate limits** that apply differently to users depending on their tier or sometimes called subscription plans.
 
@@ -18036,7 +18163,7 @@ Notice that the `key` used in the `ratelimit` of each plan matches the `identifi
 
 ---
 
-# [Rate Limiting  Backends](https://www.krakend.io/docs/backends/rate-limit/)  [/Users/obokaman/Code/krakend/website/content/docs/backends/rate-limit.md] (parent: 090 Traffic Management, weight: 960)
+# [Rate Limiting  Backends](https://www.krakend.io/docs/backends/rate-limit/)
 
 No matter what amount of activity the users generate at the router level, you can limit KrakenD's connections to your backends. The configuration is similar to the [router's rate limit](/docs/endpoints/rate-limit/), but it's declared directly in the `backend` section instead of the `endpoint`.
 
@@ -18078,7 +18205,7 @@ You don't have to choose one or the other; you can mix the different types as th
 
 ---
 
-# [Stateless Cluster Throttling: Optimize API Performance](https://www.krakend.io/docs/throttling/cluster/)  [/Users/obokaman/Code/krakend/website/content/docs/throttling/cluster.md] (parent: 090 Traffic Management, weight: 970)
+# [Stateless Cluster Throttling: Optimize API Performance](https://www.krakend.io/docs/throttling/cluster/)
 
 The stateless rate-limiting ([service {{< badge >}}Enterprise{{< /badge >}}
 ](/docs/enterprise/service-settings/service-rate-limit/) or [endpoint](/docs/endpoints/rate-limit/) types) is the recommended approach for almost all scenarios. As the API Gateway does not have any centralization, **the limits apply individually to each running instance of KrakenD**.
@@ -18130,7 +18257,7 @@ And you get in the compiled.json the following content:
 
 ---
 
-# [Stateful endpoint rate limit (Redis backed) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/throttling/endpoint-redis-rate-limit.md] (parent: 090 Traffic Management, weight: 980)
+# [Stateful endpoint rate limit (Redis backed) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/)
 
 The **Stateful Endpoint Rate Limit based on Redis** centralizes the activity of all KrakenD instances rate limiting. It works identically to the [stateful service rate limit](/docs/enterprise/throttling/global-rate-limit/) but applies the limits to specific endpoints instead of the whole service.
 
@@ -18184,7 +18311,7 @@ The `redis` namespace allows you to set a [lot of Redis pool options](/docs/ente
 
 ---
 
-# [Stateful service rate limit (Redis backed) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/throttling/global-rate-limit.md] (parent: 090 Traffic Management, weight: 980)
+# [Stateful service rate limit (Redis backed) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/)
 
 The Redis rate limit functionality enables a Redis database store to centralize all KrakenD rate limit counters. Instead of having each KrakenD node count its hits in memory, the counters are global and persist in the database.
 
@@ -18320,7 +18447,7 @@ To see the documentation of the old Redis plugin, browse the documentation for K
 
 ---
 
-# [Bot Detection and Throttling Guide: Prevent API Abuse](https://www.krakend.io/docs/throttling/botdetector/)  [/Users/obokaman/Code/krakend/website/content/docs/throttling/botdetector.md] (parent: 090 Traffic Management, weight: 990)
+# [Bot Detection and Throttling Guide: Prevent API Abuse](https://www.krakend.io/docs/throttling/botdetector/)
 
 The **bot detector** module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.
 
@@ -18385,7 +18512,7 @@ Set in the `cache_size` an integer with the fixed size of the cache (number of e
 
 ---
 
-# [IP Filtering (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/throttling/ipfilter/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/throttling/ipfilter.md] (parent: 090 Traffic Management, weight: 9100)
+# [IP Filtering (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/throttling/ipfilter/)
 
 The IP filtering plugin allows you to restrict the traffic to your API gateway based on the IP address. It works in two different modes (allow or deny) where you define the list of IPs (CIDR blocks) that are authorized to use the API, or that are denied from using the API.
 
@@ -18528,7 +18655,7 @@ Here is an example of the configuration (set your custom values):
 
 ---
 
-# [How API Traffic Throttling with Token Bucket algorithm works](https://www.krakend.io/docs/throttling/token-bucket/)  [/Users/obokaman/Code/krakend/website/content/docs/throttling/token-bucket.md] (parent: 090 Traffic Management, weight: 9200)
+# [How API Traffic Throttling with Token Bucket algorithm works](https://www.krakend.io/docs/throttling/token-bucket/)
 
 The Token Bucket algorithm helps you to allow or deny requests depending on the levels of traffic you are having. The algorithm is used to offer functionalities like the **Spike Arrest** and the several **Rate Limiting** options.
 
@@ -18575,7 +18702,7 @@ When you do your tests, you have to be aware that the capacity can allow the use
 
 ---
 
-# [Understanding Spike Arrest and Burst](https://www.krakend.io/docs/throttling/spike-arrest/)  [/Users/obokaman/Code/krakend/website/content/docs/throttling/spike-arrest.md] (parent: 090 Traffic Management, weight: 9300)
+# [Understanding Spike Arrest and Burst](https://www.krakend.io/docs/throttling/spike-arrest/)
 
 The **Spike Arrest** policy ensures a minimum time between different requests. KrakenD will enable Spike Arrest **after exhausting the burst capacity** of the rate-limiting features.
 
@@ -18601,7 +18728,7 @@ Depending on the rate limit you implement, you might see rejected connections wi
 
 ---
 
-# [AI Gateway - API Gateway for LLMs](https://www.krakend.io/docs/ai-gateway/)  [/Users/obokaman/Code/krakend/website/content/docs/ai-gateway/_index.md] (parent: 100 AI Gateway, weight: -1)
+# [AI Gateway - API Gateway for LLMs](https://www.krakend.io/docs/ai-gateway/)
 
 KrakenD's AI Gateway capabilities extend your existing API infrastructure with controls to securely route, govern, and optimize Artificial Intelligence workloads at scale. The functionality offers a straightforward integration without extra layers, products, or complexity. It brings the speed, flexibility, and clarity you are already familiar with.
 
@@ -18698,7 +18825,7 @@ There are many other possibilities; look at the rest of the AI sections.
 
 ---
 
-# [AI Security](https://www.krakend.io/docs/ai-gateway/security/)  [/Users/obokaman/Code/krakend/website/content/docs/ai-gateway/security.md] (parent: 100 AI Gateway, weight: 100)
+# [AI Security](https://www.krakend.io/docs/ai-gateway/security/)
 
 Protecting sensitive AI data and controlling access is essential for trustworthy AI workloads. KrakenD's AI Gateway integrates multiple layers of security at the edge to enforce zero-trust AI operations. From isolated authorization flows to data masking and exfiltration prevention, you can safeguard data traveling between clients and LLM providers without altering your existing API infrastructure.
 
@@ -18921,7 +19048,7 @@ For **dynamic operation**, you can delegate the output to an LLM that will refin
 
 ---
 
-# [AI Token Cost Control & Quotas (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/budget-control.md] (parent: 100 AI Gateway, weight: 110)
+# [AI Token Cost Control & Quotas (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/)
 
 AI workloads can quickly generate unpredictable and excessive costs. KrakenD's AI Gateway provides granular token usage monitoring and enforcement to keep your AI expenses transparent and within budget. Features like token quotas, budget alerts, prompt caching, and intelligent routing enable you to optimize requests and avoid surprise bills while maintaining performance and scalability.
 
@@ -18971,7 +19098,7 @@ In addition, while there is no API available to generate reporting yet, you can 
 
 ---
 
-# [AI Governance (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/governance/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/governance.md] (parent: 100 AI Gateway, weight: 120)
+# [AI Governance (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/governance/)
 
 KrakenD AI Governance empowers organizations to deploy large language models responsibly by enforcing compliance, security, and operational guardrails inline with AI traffic. Leverage granular controls on prompts, responses, usage, and reuse of prompt templates to standardize AI across teams, tenants, and projects.
 
@@ -19028,7 +19155,7 @@ Benefits:
 
 ---
 
-# [Unified LLM Interface (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/unified-llm-interface.md] (parent: 100 AI Gateway, weight: 130)
+# [Unified LLM Interface (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/)
 
 The Unified LLM Interface of KrakenD allows you to interact with one or more LLMs, removing the complexity of dealing with LLMs for the end user. It allows you to set the grounds to communicate with LLMs, authenticate, and treat requests and responses back and forth.
 
@@ -19067,7 +19194,268 @@ See each vendor documentation.
 
 ---
 
-# [LLM Routing (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/llm-routing.md] (parent: 100 AI Gateway, weight: 500)
+# [MCP Gateway](https://www.krakend.io/docs/ai-gateway/mcp-gateway/)
+
+The Model Context Protocol (MCP) Gateway in KrakenD enables transparent communication between an **MCP agent** and a **third-party MCP server** through a `no-op` endpoint. This setup allows KrakenD to forward messages with minimal processing while enriching the communication path with additional layers and functionality such as:
+
+- Adding [authorization](/docs/authorization/) and other security options
+- Add [observability](/docs/telemetry/)
+- [Throttle](/docs/throttling/) the usage of the MCP
+- Add [CORS](/docs/service-settings/cors/)
+- Add [IP filtering](/docs/enterprise/throttling/ipfilter/) {{< badge >}}Enterprise{{< /badge >}}
+- Add [security policies](/docs/enterprise/security-policies/) or [CEL expressions](/docs/endpoints/common-expression-language-cel/) with business logic
+- Move the passing of headers to the gateway and make the client unaware with [Martian](/docs/backends/martian/)
+- Limit the [payload size](/docs/enterprise/endpoints/maximum-request-size) of the requests {{< badge >}}Enterprise{{< /badge >}}
+
+- And a long etcetera, check the documentation menu.
+
+Use KrakenD's MCP Gateway to **connect MCP agents to external MCP servers** that lack sufficient Enterprise-ready features, leveraging KrakenD as a secure, observable, and manageable gateway. This feature relays MCP agent content directly to the MCP server while enabling configurable middlewares to enhance protocol flow control and monitoring.
+
+KrakenD can also be the [MCP Server](/docs/enterprise/ai-gateway/mcp-server/) if needed {{< badge >}}Enterprise{{< /badge >}}
+
+Example use cases:
+
+- Secure MCP Agent Communication: Inject authentication and authorization to restrict MCP agent interactions with third-party MCP servers.
+- Rate Limiting MCP Traffic: Protect MCP servers from overload by applying rate limits at the gateway.
+- Observability and Logging: Add tracing and metrics on MCP message exchanges to improve operational insight.
+- Enterprise MCP Server: For deployments needing an in-house MCP server, KrakenD Enterprise includes the MCP Server feature that can be integrated or proxied using this gateway.
+
+## MCP Gateway configuration
+To configure an endpoint in KrakenD acting as an MCP gateway to forward raw MCP messages, you only need a configuration like this:
+
+```json
+{
+  "endpoints": [
+    {
+      "endpoint": "/mcp",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "HeaderNeededByYourMCP"
+      ],
+      "method": "POST",
+      "backend": [
+        {
+          "url_pattern": "/mcp",
+          "host": [
+            "https://third-party-mcp-server.local"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/mcp",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "HeaderNeededByYourMCP"
+      ],
+      "method": "GET",
+      "@comment": "The high timeout avoids repeating connections on SSE",
+      "timeout": "5m",
+      "backend": [
+        {
+          "url_pattern": "/mcp",
+          "host": [
+            "https://third-party-mcp-server.local"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/mcp",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "HeaderNeededByYourMCP"
+      ],
+      "method": "DELETE",
+      "backend": [
+        {
+          "url_pattern": "/mcp",
+          "host": [
+            "https://third-party-mcp-server.local"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+Line-by-Line:
+
+- `method`: Three endpoints, as we want to allow MCP communication through `GET`, `POST` and `DELETE`. Being the `POST` the most important.
+- `output_encoding`: The `no-op` encoding allows transparent MCP communication. This is a must.
+- `input_headers`: Depending on the MCP technology, you might need forwarding headers to the MCP server. Or you can add [Martian](/docs/backends/martian/) and inject them at the gateway level if they have constant values and you don't want the MCP agent to know.
+- `endpoint`: `/mcp` defines the KrakenD endpoint exposed to MCP agents, whatever route you want this to be.
+- `host`: Remote MCP server address to forward MCP messages.
+
+{{< note title="Supported MCP Server types" type="info" >}}
+The MCP server connected to KrakenD must be HTTP-based, like JSONRPC or SSE. Stdio communication is out of scope for this functionality. If you plan to use SSE, make sure to add also a `timeout` with a value large enough to not close the session on the `GET` method only.
+{{< /note >}}
+
+
+From here, you can add Authorization, Telemetry, Rate Limiting, or any other KrakenD component that is compatible with no-op.
+
+KrakenD's MCP Gateway feature enables infrastructure teams to transparently connect MCP agents to third-party MCP servers while adding vital control layers such as authorization, observability, and rate limiting. The no-op proxy behavior ensures the integrity of the MCP protocol, enabling integration and operational management.
+
+For advanced MCP deployments, KrakenD Enterprise offers a native [MCP Server](/docs/enterprise/ai-gateway/mcp-server/) option that complements or replaces third-party MCP resources.
+
+
+
+---
+
+# [MCP Server (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/)
+
+The MCP Server feature **exposes any of your existing use cases as MCP tools** so you can allow to **AI MCP Agents to access any of the systems you have already**, or create new ones easily, whether it is based on legacy services and data or not.
+
+With the MCP Server of KrakenD, you instantly add MCP to all your stack regardless of their native MCP compatibility or not. This unlocks effortless AI-driven integrations by bridging any service with MCP through declarative configuration.
+
+![ai-gateway-mcp-server.mmd diagram](/images/documentation/diagrams/ai-gateway-mcp-server.mmd.svg)
+
+As KrakenD can expose through MCP any kind of service, you can start offering **endless use cases**, and is a game changer to start publishing AI services inside enterprise architectures with no effort.
+
+The key concepts of the MCP server are:
+
+- **Build on-the-fly MCP servers**: Declare and run MCP servers that fetch and send data from and to multiple places.
+- **Protocol translation**: Offer MCP, consume anything. E.g., connect to a SOAP service and offer it to Claude via MCP.
+- **KrakenD ecosystem compatibility**: MCP servers are first-class citizens and enjoy authorization, throttling, data modification, validation, caching, monitoring, workflows and everything else on KrakenD.
+- **Declarative simplicity**: Minimal config additions get powerful AI-optimized APIs in front of any service.
+- **Multi-tool support**: Expose multiple AI tools with individual input/output JSON schemas and workflows per MCP server, including mediatypes like audio and images.
+- **Stateless or stateful operations**: Choose behavior to align with backend semantics, **SSE available** too.
+
+## MCP Server configuration overview
+
+To start serving MCP on KrakenD, two main configuration sections define MCP Servers:
+
+1. **MCP server declaration** (root `extra_config` with `ai/mcp`)
+2. **MCP entrypoint configuration** (endpoint's `extra_config` with `ai/mcp`)
+
+## MCP Server configuration
+The `ai/mcp` namespace at the root level contains all the configuration related to MCP. In this section you declare the list of servers available to agents, and plug them to specific services.
+
+Here's a real world configuration example you can test:
+
+```json
+{
+  "$schema": "https://krakend.io/schema/v2.12/krakend.json",
+  "version": 3,
+  "extra_config": {
+    "ai/mcp": {
+      "servers": [
+        {
+          "instructions": "Provides the current state of city webcams",
+          "name": "webcam-status",
+          "title": "Webcam tools",
+          "version": "1.0.1",
+          "tools": [
+            {
+              "name": "rovaniemi-webcam",
+              "title": "Rovaniemi webcam",
+              "description": "Get the latest image from the Rovaniemi webcam",
+              "type": "image",
+              "workflow": {
+                "endpoint": "/__mcp/rovaniemi-webcam",
+                "output_encoding": "no-op",
+                "backend": [
+                  {
+                    "url_pattern": "/vi/Cp4RRAEgpeU/0.jpg",
+                    "host": [
+                      "https://img.youtube.com"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/mcp",
+      "method": "POST",
+      "timeout": "10s",
+      "backend": [
+        {
+          "url_pattern": "/ignore",
+          "host": [
+            "ignore"
+          ]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "webcam-status"
+        }
+      }
+    }
+  ]
+}
+```
+The configuration above will allow you an interaction like this:
+
+![Example of MCP tool call from Claude Desktop](/images/documentation/ai/mcp-tool-example.png)
+
+The list of available fields is:
+
+{{< schema data="ai/mcp.json" >}}
+
+## MCP Entrypoint configuration
+Finally, you need to provide a door to use the MCP servers you have defined. Endpoints serve as entrypoints, and you declare a route (most vendors use `/mcp`), and then plug it to the server you have defined above. Make sure to reuse the exact name you wrote in the server definition.
+
+For example:
+
+```json
+{ "version": 3,
+  "endpoints": [
+    {
+      "endpoint": "/mcp",
+      "method": "POST",
+      "timeout": "10s",
+      "backend": [
+        {
+          "url_pattern": "/ignore",
+          "host": [
+            "ignore"
+          ]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "webcam-status"
+        }
+      }
+    },
+    {
+      "endpoint": "/mcp",
+      "method": "DELETE",
+      "@comment": "Allows the client to mark the session as deleted to free up memory",
+      "backend": [
+        {
+          "url_pattern": "/ignore",
+          "host": [
+            "ignore"
+          ]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "webcam-status"
+        }
+      }
+    }
+  ]
+}
+```
+
+{{< schema data="ai/mcp_endpoint.json" >}}
+
+You can write any value on the `host` and `url_pattern` of your backend, as once you add the `ai/mcp` these become irrelevant (the endpoint connects to the MCP server you just created). On the `timeout` make sure to use a value that is suitable for the services you are exposing through MCP.
+
+
+
+---
+
+# [LLM Routing (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/)
 
 KrakenD’s AI Proxy and LLM routing feature enables you to distribute AI requests across one or multiple Large Language Model providers or instances.
 
@@ -19313,7 +19701,7 @@ Then the user calls one endpoint or the other, and the API offers one endpoint p
 
 ---
 
-# [OpenAI Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/openai/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/openai.md] (parent: 100 AI Gateway, weight: 510)
+# [OpenAI Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/openai/)
 
 The OpenAI interface allows KrakenD to use [OpenAI's API](https://platform.openai.com/docs/overview) **without writing custom integration code**, enabling intelligent automation, content generation, or any LLM-powered use case within your existing API infrastructure.
 
@@ -19428,7 +19816,7 @@ When you don't declare an `output_template`, the response from the AI is transfo
 
 ---
 
-# [Google Gemini integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/gemini.md] (parent: 100 AI Gateway, weight: 520)
+# [Google Gemini integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/)
 
 The Gemini interface allows KrakenD to use [Gemini's API](https://ai.google.dev/gemini-api/docs) **without writing custom integration code**, enabling intelligent automation, content generation, or any LLM-powered use case within your existing API infrastructure.
 
@@ -19561,7 +19949,7 @@ When you don't declare an `output_template`, the response from the AI is transfo
 
 ---
 
-# [Mistral Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/mistral.md] (parent: 100 AI Gateway, weight: 530)
+# [Mistral Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/)
 
 The Mistral integration enables KrakenD to talk to Mistral’s AI services, allowing you to embed powerful language model capabilities into your API workflows without custom coding. Use this interface when you want to connect Mistral for tasks like intelligent automation, conversational AI, content generation, or other LLM-driven functionalities inside your existing API infrastructure.
 
@@ -19696,7 +20084,7 @@ If you are not confortable receiveing the response in the `ai_gateway_response` 
 
 ---
 
-# [Anthropic integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/anthropic.md] (parent: 100 AI Gateway, weight: 540)
+# [Anthropic integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/)
 
 The Anthropic interface allows KrakenD to use [Anthropic's API (Claude)](https://docs.claude.com/en/home) **without writing custom integration code**, enabling intelligent automation, content generation, or any LLM-powered use case within your existing API infrastructure.
 
@@ -19823,7 +20211,7 @@ As you can see in the response template, you get the total number of tokens cons
 
 ---
 
-# [Connecting to other AI vendors (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/ai-gateway/other-vendors.md] (parent: 100 AI Gateway, weight: 1000)
+# [Connecting to other AI vendors (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/)
 
 If you need to connect to an AI vendor that is not listed in the pre-defined list of abstracted interfaces, you can still perform the abstraction by providing a template.
 
@@ -19925,7 +20313,7 @@ Another example with Cohere:
 
 ---
 
-# [AI usage monitoring](https://www.krakend.io/docs/ai-gateway/usage-monitoring/)  [/Users/obokaman/Code/krakend/website/content/docs/ai-gateway/usage-monitoring.md] (parent: 100 AI Gateway, weight: 1010)
+# [AI usage monitoring](https://www.krakend.io/docs/ai-gateway/usage-monitoring/)
 
 Monitoring AI backends in KrakenD does not require special treatment. AI services are integrated and handled just like any other backend in your API Gateway. Your existing monitoring tools and practices, such as [OpenTelemetry](/docs/telemetry/opentelemetry/), remain fully applicable.
 
@@ -19999,7 +20387,7 @@ Use OpenTelemetry to monitor your API gateway traffic, including AI backend call
 
 ---
 
-# [API Governance using Quota (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/governance/quota/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/governance/quota.md] (parent: 150 Governance and Monetization, weight: 20)
+# [API Governance using Quota (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/governance/quota/)
 
 The Quota feature allows teams to enforce quota limits by tier, enabling API monetization strategies such as freemium plans, usage-based tiers, and differentiated service levels, but also helps you **contain the expenses** when using external APIs or AI providers.
 
@@ -20336,7 +20724,7 @@ This idea is expressed with the following configuration `tiers` for the `governa
 
 ---
 
-# [Moesif integration for API Analytics and Monetization (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/governance/moesif/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/governance/moesif.md] (parent: 150 Governance and Monetization, weight: 100)
+# [Moesif integration for API Analytics and Monetization (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/governance/moesif/)
 
 [Moesif](https://www.moesif.com/) is our API Analytics and Monetization partner that helps you understand and monetize API usage with a robust analytics and billing platform. While KrakenD focuses on organizing and protecting your content through the API gateway, Moesif provides governance and monetization dashboards that allow you to rule the activity on the API.
 
@@ -20399,7 +20787,7 @@ You have the freedom to configure the size of the queue, the wake-up timer, and 
 
 ---
 
-# [Telemetry and Monitoring](https://www.krakend.io/docs/telemetry/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/_index.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 10)
+# [Telemetry and Monitoring](https://www.krakend.io/docs/telemetry/)
 
 KrakenD's **no lock-in philosophy** emphasizes flexibility and interoperability, ensuring technology-specific dependencies don't constrain you. Giving you choices for observability and networking tools is key to success in a distributed microservices architecture.
 
@@ -20471,7 +20859,7 @@ The adoption of OpenTelemetry by these platforms indicates a strong industry shi
 
 ---
 
-# [Telemetry and Monitoring through OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/opentelemetry.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 20)
+# [Telemetry and Monitoring through OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/)
 
 OpenTelemetry (for short **OTEL**) offers a comprehensive, unified, and **vendor-neutral** approach to collecting and managing telemetry data, providing enhanced observability and deeper insights into application performance and behavior. It's particularly beneficial in complex, distributed, and cloud-native environments.
 
@@ -20620,7 +21008,7 @@ Here's an example with a Grafana Tempo and a Prometheus.
 
 ---
 
-# [Understanding OpenTelemetry layers and metrics](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/opentelemetry-layers-metrics.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 21)
+# [Understanding OpenTelemetry layers and metrics](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/)
 
 You can add several `exporters` to your [OpenTelemetry configuration](/docs/telemetry/opentelemetry/#opentelemetry-configuration) (the more, the hungrier the gateway will be), and KrakenD will send data to all the declared exporters and layers by default.
 
@@ -20650,7 +21038,98 @@ Once you configure the OpenTelemetry component, KrakenD will start reporting met
 
 ---
 
-# [Granular OpenTelemetry by endpoint (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry-by-endpoint/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/telemetry/opentelemetry-by-endpoint.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 22)
+# [Granular OpenTelemetry by endpoint](https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/)
+
+The OpenTelemetry configuration is declared [at the service level](/docs/telemetry/opentelemetry/), but you can override metrics and traces per endpoint and per backend as follows.
+
+## Endpoint override of metrics and traces
+The following example overrides properties that could be declared at the service level.
+
+```json
+{
+    "endpoints": [
+        {
+            "endpoint": "/example",
+            "backend": [
+                {
+                    "host": [
+                        "example.com"
+                    ],
+                    "url_pattern": "/example"
+                }
+            ],
+            "extra_config": {
+                "telemetry/opentelemetry": {
+                    "proxy": {
+                        "disable_metrics": false,
+                        "disable_traces": false,
+                        "report_headers": true,
+                        "traces_static_attributes": [
+                          {
+                            "key": "owner",
+                            "value": "team-charlie"
+                          }
+                        ],
+                        "metrics_static_attributes": [
+                          {
+                            "key": "owner",
+                            "value": "team-charlie"
+                          }
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
+The full list of options is:
+
+{{< schema data="telemetry/opentelemetry-endpoint.json" filter="proxy" title="OpenTelemetry settings per endpoint">}}
+
+In the Enterprise Edition you have more override options, like [override entirely the exporter you want to use](/docs/enterprise/telemetry/opentelemetry-by-endpoint/).
+
+## Backend override of metrics and traces
+For instance, you have a specific backend that is adding noise to your dashboards and you'd like to disable all layers:
+
+```json
+{
+    "backend": [
+        {
+            "extra_config": {
+                "telemetry/opentelemetry": {
+                    "proxy": {
+                        "disable_metrics": true,
+                        "disable_traces": true
+                    },
+                    "backend": {
+                        "metrics": {
+                            "disable_stage": true
+                        },
+                        "traces": {
+                            "disable_stage": true
+                        }
+                    }
+                }
+            },
+            "url_pattern": "/noise",
+            "host": [
+                "example.com"
+            ]
+        }
+    ]
+}
+```
+These are the options:
+
+{{< schema data="telemetry/opentelemetry-backend.json" title="OpenTelemetry settings per backend" >}}
+
+
+
+---
+
+# [Granular OpenTelemetry by endpoint (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry-by-endpoint/)
 
 The OpenTelemetry configuration is declared [at the service level](/docs/enterprise/telemetry/opentelemetry/), but in the Enterprise edition you have more granularity and you can override metrics and traces per endpoint and per backend as follows.
 
@@ -20765,98 +21244,7 @@ These are the options:
 
 ---
 
-# [Granular OpenTelemetry by endpoint](https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/opentelemetry-by-endpoint.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 22)
-
-The OpenTelemetry configuration is declared [at the service level](/docs/telemetry/opentelemetry/), but you can override metrics and traces per endpoint and per backend as follows.
-
-## Endpoint override of metrics and traces
-The following example overrides properties that could be declared at the service level.
-
-```json
-{
-    "endpoints": [
-        {
-            "endpoint": "/example",
-            "backend": [
-                {
-                    "host": [
-                        "example.com"
-                    ],
-                    "url_pattern": "/example"
-                }
-            ],
-            "extra_config": {
-                "telemetry/opentelemetry": {
-                    "proxy": {
-                        "disable_metrics": false,
-                        "disable_traces": false,
-                        "report_headers": true,
-                        "traces_static_attributes": [
-                          {
-                            "key": "owner",
-                            "value": "team-charlie"
-                          }
-                        ],
-                        "metrics_static_attributes": [
-                          {
-                            "key": "owner",
-                            "value": "team-charlie"
-                          }
-                        ]
-                    }
-                }
-            }
-        }
-    ]
-}
-```
-
-The full list of options is:
-
-{{< schema data="telemetry/opentelemetry-endpoint.json" filter="proxy" title="OpenTelemetry settings per endpoint">}}
-
-In the Enterprise Edition you have more override options, like [override entirely the exporter you want to use](/docs/enterprise/telemetry/opentelemetry-by-endpoint/).
-
-## Backend override of metrics and traces
-For instance, you have a specific backend that is adding noise to your dashboards and you'd like to disable all layers:
-
-```json
-{
-    "backend": [
-        {
-            "extra_config": {
-                "telemetry/opentelemetry": {
-                    "proxy": {
-                        "disable_metrics": true,
-                        "disable_traces": true
-                    },
-                    "backend": {
-                        "metrics": {
-                            "disable_stage": true
-                        },
-                        "traces": {
-                            "disable_stage": true
-                        }
-                    }
-                }
-            },
-            "url_pattern": "/noise",
-            "host": [
-                "example.com"
-            ]
-        }
-    ]
-}
-```
-These are the options:
-
-{{< schema data="telemetry/opentelemetry-backend.json" title="OpenTelemetry settings per backend" >}}
-
-
-
----
-
-# [Authenticated metrics to SaaS providers using OTEL (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry-security/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/telemetry/opentelemetry-security.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 23)
+# [Authenticated metrics to SaaS providers using OTEL (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry-security/)
 
 The OpenTelemetry Security component allows your KrakenD nodes to push data to a remote collector over the Internet that needs authentication, usually adding a token header.
 
@@ -20915,7 +21303,7 @@ When the credentials do not work, you'll see failure messages in the log when pu
 
 ---
 
-# [Prometheus' metrics endpoint](https://www.krakend.io/docs/telemetry/prometheus/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/prometheus.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 30)
+# [Prometheus' metrics endpoint](https://www.krakend.io/docs/telemetry/prometheus/)
 
 [Prometheus](https://prometheus.io/) is an open-source system monitoring and alerting toolkit that you can use to scrape a `/metrics` endpoint on KrakenD in the selected port. For instance, you could have an endpoint like `http://localhost:9091/metrics`.
 
@@ -21071,7 +21459,7 @@ From here, add any of the additional properties you can add.
 
 ---
 
-# [Telemetry and Monitoring with Grafana](https://www.krakend.io/docs/telemetry/grafana/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/grafana.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 40)
+# [Telemetry and Monitoring with Grafana](https://www.krakend.io/docs/telemetry/grafana/)
 
 The preconfigured Grafana dashboard for KrakenD offers valuable information to understand the performance of your services and detect anomalies in the service.
 
@@ -21163,7 +21551,7 @@ We hope you enjoy our new Grafana dashboard for OpenTelemetry. Do not hesitate t
 
 ---
 
-# [InfluxDB Telemetry Integration](https://www.krakend.io/docs/telemetry/influxdb/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/influxdb.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 50)
+# [InfluxDB Telemetry Integration](https://www.krakend.io/docs/telemetry/influxdb/)
 
 [InfluxDB](https://www.influxdata.com/) is a time series database designed to handle high write and query loads and allows you to store and visualize metrics data. Influx is offered as an open-source solution you can host but also as a cloud service.
 
@@ -21185,12 +21573,12 @@ You can configure [OpenTelemetry](/docs/telemetry/opentelemetry/) with an `otlp`
 
 ---
 
-# [OpenCensus Telemetry Integration](https://www.krakend.io/docs/telemetry/opencensus/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/opencensus.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 60)
+# [OpenCensus Telemetry Integration](https://www.krakend.io/docs/telemetry/opencensus/)
 
-{{< note title="OpenCensus is no longer maintained" type="error" >}}
-KrakenD has traditionally offered its telemetry integration through this **OpenCensus** component, which has provided reliable service for over six years, but now is transitioning to the more modern and robust [OpenTelemetry](/docs/telemetry/opentelemetry/) framework.
+{{< note title="OpenCensus is deprecated" type="error" >}}
+KrakenD has traditionally offered its telemetry integration through this **OpenCensus** component, which has provided reliable service for over six years, but now has transitioned to the more modern and robust [OpenTelemetry](/docs/telemetry/opentelemetry/) framework.
 
-As a result of a change in the industry, the OpenCensus integration is no longer maintained, and all efforts are focused on [OpenTelemetry](/docs/telemetry/opentelemetry/).
+As a result of a change in the industry, the OpenCensus integration is deprecated, and all efforts are focused on [OpenTelemetry](/docs/telemetry/opentelemetry/). Move away from this component.
 {{< /note >}}
 
 The Opencensus exporter is a single component that allows you to **export data to multiple providers**, both open source and privative.
@@ -21258,7 +21646,7 @@ While our OpenCensus integration will keep functioning on KrakenD for now, it wo
 
 ---
 
-# [Datadog Telemetry Integration](https://www.krakend.io/docs/telemetry/datadog/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/datadog.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 90)
+# [Datadog Telemetry Integration](https://www.krakend.io/docs/telemetry/datadog/)
 
 [Datadog](https://www.datadoghq.com/) is a cloud monitoring and security platform for developers, IT operations teams, and businesses.
 
@@ -21377,7 +21765,7 @@ You can migrate to OpenTelemetry doing the following changes:
 
 ---
 
-# [Zipkin Telemetry Integration](https://www.krakend.io/docs/telemetry/zipkin/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/zipkin.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 100)
+# [Zipkin Telemetry Integration](https://www.krakend.io/docs/telemetry/zipkin/)
 
 [Zipkin](https://zipkin.io/) is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures.
 
@@ -21414,7 +21802,7 @@ Then, the `exporters` key must contain an `zipkin` entry with the following prop
 
 ---
 
-# [Jaeger Telemetry Integration - KrakenD API Gateway](https://www.krakend.io/docs/telemetry/jaeger/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/jaeger.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 110)
+# [Jaeger Telemetry Integration - KrakenD API Gateway](https://www.krakend.io/docs/telemetry/jaeger/)
 
 The KrakenD exporter to [Jaeger](https://www.jaegertracing.io/) allows you to submit spans to an OpenTelemetry Collector (HTTP or gRPC) automatically.
 
@@ -21504,7 +21892,7 @@ services:
 
 ---
 
-# [AWS X-Ray Telemetry Integration](https://www.krakend.io/docs/telemetry/xray/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/xray.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 120)
+# [AWS X-Ray Telemetry Integration](https://www.krakend.io/docs/telemetry/xray/)
 
 [AWS X-Ray](https://aws.amazon.com/xray/) is a service offered by Amazon that provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.
 
@@ -21550,7 +21938,7 @@ See also the [additional settings](/docs/telemetry/opencensus/) of the Opencensu
 
 ---
 
-# [Google Cloud and Stackdriver Integration](https://www.krakend.io/docs/telemetry/stackdriver/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/stackdriver.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 130)
+# [Google Cloud and Stackdriver Integration](https://www.krakend.io/docs/telemetry/stackdriver/)
 
 [Google Cloud's Operation Suite](https://cloud.google.com/products/operations) (formerly [Stackdriver](https://cloud.google.com/stackdriver/)) aggregates metrics, logs, and events from infrastructure, giving developers and operators a rich set of observable signals that speed root-cause analysis and reduce mean time to resolution (MTTR).
 
@@ -21608,7 +21996,7 @@ The exporter searches for the **Application Default Credentials**. It looks for 
 
 ---
 
-# [Azure Monitor Telemetry Integration](https://www.krakend.io/docs/telemetry/azure/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/azure.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 140)
+# [Azure Monitor Telemetry Integration](https://www.krakend.io/docs/telemetry/azure/)
 
 [Azure Monitor](https://azure.microsoft.com/en-us/services/monitor/) collects, analyzes, and acts on telemetry data from your Azure and on-premises environments. Azure Monitor helps you maximize performance and availability of your applications and proactively identify problems in seconds.
 
@@ -21757,7 +22145,7 @@ Most of the times, the communication between KrakenD and the collector happens i
 
 ---
 
-# [New Relic Telemetry Integration (native DSK) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/telemetry/newrelic/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/telemetry/newrelic.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 160)
+# [New Relic Telemetry Integration (native DSK) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/telemetry/newrelic/)
 
 The New Relic native integration lets you push KrakenD **metrics and distributed traces** to your New Relic dashboard. It uses internally the official New Relic SDK and brings its features to your **APM dashboard**.
 
@@ -21861,7 +22249,7 @@ To set the `license` attribute on KrakenD you need to:
 
 ---
 
-# [Advanced Logging (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/logging/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/logging/_index.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 300)
+# [Advanced Logging (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/logging/)
 
 The logging component is an essential configuration block for any installation that lets you choose **where** and **how** to log the gateway activity. It also opens the door to integrating other components for more advanced usage.
 
@@ -22278,7 +22666,7 @@ The syslog will populate the log and can be used conveniently with the default s
 
 ---
 
-# [Logging](https://www.krakend.io/docs/logging/)  [/Users/obokaman/Code/krakend/website/content/docs/logging/_index.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 300)
+# [Logging](https://www.krakend.io/docs/logging/)
 
 The logging component is an essential configuration block for any installation that lets you choose **where** and **how** to log the gateway activity. It also opens the door to integrating other components for more advanced usage.
 
@@ -22510,7 +22898,7 @@ The syslog will take care of populating the log and can be used conveniently wit
 
 ---
 
-# [Graylog GELF Logging Integration](https://www.krakend.io/docs/logging/graylog-gelf/)  [/Users/obokaman/Code/krakend/website/content/docs/logging/graylog-gelf.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 320)
+# [Graylog GELF Logging Integration](https://www.krakend.io/docs/logging/graylog-gelf/)
 
 KrakenD supports sending structured events in GELF format to your Graylog Cluster thanks to the [krakend-gelf](https://github.com/krakend/krakend-gelf) integration.
 
@@ -22550,7 +22938,7 @@ In addition, you must also add the `telemetry/logging`:
 
 ---
 
-# [Logstash Integration (JSON logs)](https://www.krakend.io/docs/logging/logstash/)  [/Users/obokaman/Code/krakend/website/content/docs/logging/logstash.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 360)
+# [Logstash Integration (JSON logs)](https://www.krakend.io/docs/logging/logstash/)
 
 The [Logstash](https://www.elastic.co/logstash/) integration prints **KrakenD application logs in JSON format** (not access logs) to ingest them and process them later. If you want to log using the Logstash standard via stdout, you need to add the `telemetry/logging` integration as a dependency.
 
@@ -22594,7 +22982,7 @@ If you don't want to parse the access log on Logstash, you can remove it from th
 
 ---
 
-# [ELK Integration for Logging](https://www.krakend.io/docs/logging/elk-integration/)  [/Users/obokaman/Code/krakend/website/content/docs/logging/elk-integration.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 390)
+# [ELK Integration for Logging](https://www.krakend.io/docs/logging/elk-integration/)
 
 KrakenD can push logs to external services; a good example is an integration with the ELK Stack (**Elastic + Logstash + Kibana**). The ELK integration allows you to have KrakenD pushing logs to your Elastic server and **visualize them through a Kibana dashboard**.
 
@@ -22658,7 +23046,7 @@ If you want to see how this works, you can start the [KrakenD Playground](/docs/
 
 ---
 
-# [Extended Metrics API](https://www.krakend.io/docs/telemetry/extended-metrics/)  [/Users/obokaman/Code/krakend/website/content/docs/telemetry/extended-metrics.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 1000)
+# [Extended Metrics API](https://www.krakend.io/docs/telemetry/extended-metrics/)
 
 The **metrics API** offers a new `/__stats/` endpoint in a different port and contains a lot of metrics that you can scrape in a custom collector, or you can push them to [InfluxDB](/docs/telemetry/influxdb/).
 
@@ -22879,7 +23267,7 @@ In the fields `db`, `username`, and `password` of the component configuration re
 
 ---
 
-# [API Health Check](https://www.krakend.io/docs/service-settings/health/)  [/Users/obokaman/Code/krakend/website/content/docs/service-settings/health.md] (parent: 160 Monitoring, Logs, and Analytics, weight: 1100)
+# [API Health Check](https://www.krakend.io/docs/service-settings/health/)
 
 The health endpoint (or the **ping endpoint**) allows you to query KrakenD to find out if it is ready to accept connections or not.
 
@@ -23006,7 +23394,7 @@ The `/__health` endpoint will still be available, but you can rename it, or if y
 
 ---
 
-# [KrakenD Development Tools (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/developer/_index.md] (parent: 170 API Documentation and Dev Tools, weight: -1)
+# [KrakenD Development Tools (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/)
 
 There are some tools that make your life easier when developing KrakenD. Here is a miscellaneous list of features that might help you speed up KrakenD adoption and development.
 
@@ -23064,7 +23452,7 @@ The `krakend.json` file whether it is a single file or the result of using the f
 
 ---
 
-# [Custom developer tools](https://www.krakend.io/docs/developer/)  [/Users/obokaman/Code/krakend/website/content/docs/developer/_index.md] (parent: 170 API Documentation and Dev Tools, weight: 10)
+# [Custom developer tools](https://www.krakend.io/docs/developer/)
 
 There are some additional resources that might help you when developing with KrakenD. These tools are meant to be used only in development and **never in production**, they are **not bundled with KrakenD** and are separate components that you must compile.
 
@@ -23106,7 +23494,7 @@ Dumps are stored in files like `<pipe>_<base64_endpoint/backend_name>_<timestamp
 
 ---
 
-# [Debug Endpoint](https://www.krakend.io/docs/endpoints/debug-endpoint/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/debug-endpoint.md] (parent: 170 API Documentation and Dev Tools, weight: 20)
+# [Debug Endpoint](https://www.krakend.io/docs/endpoints/debug-endpoint/)
 
 The `/__debug/` endpoint is available when you start the server with the `-d` flag, or when you add the `debug_endpoint=true` in the configuration.
 
@@ -23254,7 +23642,7 @@ As we can see, the backend includes the `?mandatory=foo` variable that was writt
 
 ---
 
-# [Automated integration tests](https://www.krakend.io/docs/developer/integration-tests/)  [/Users/obokaman/Code/krakend/website/content/docs/developer/integration-tests.md] (parent: 170 API Documentation and Dev Tools, weight: 30)
+# [Automated integration tests](https://www.krakend.io/docs/developer/integration-tests/)
 
 In addition to checking the syntax of your KrakenD configuration and make sure that the gateway can start, you can run **integration tests** to make sure that the gateway returns the expected content from the consumed backends. to make sure all endpoints are properly connected and that they reply with the expected content. To do that, you can use the library that KrakenD is relying on to run its **integration tests**, and complement the unit testing battery.
 
@@ -23337,7 +23725,7 @@ The three parameters of the binary are:
 
 ---
 
-# [Echo Endpoint Configuration](https://www.krakend.io/docs/endpoints/echo-endpoint/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/echo-endpoint.md] (parent: 170 API Documentation and Dev Tools, weight: 30)
+# [Echo Endpoint Configuration](https://www.krakend.io/docs/endpoints/echo-endpoint/)
 
 The `/__echo/` endpoint is a developer tool to help you debug configurations. It works similarly to the [`/__debug/` endpoint](/docs/endpoints/debug-endpoint/), but instead of printing the requests in the log and returning a `{"message": "pong"}`, they are printed in the response. It replies with an object containing all the request details, and you can use it as an endpoint or backend. As KrakenD has a [zero-trust](/docs/design/zero-trust/) approach, you will find out the exact information that passes through in this endpoint.
 
@@ -23417,7 +23805,7 @@ Play now with the [parameter forwarding](/docs/endpoints/parameter-forwarding/),
 
 ---
 
-# [HTTP Logger Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/http-logger/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/backends/http-logger.md] (parent: 170 API Documentation and Dev Tools, weight: 40)
+# [HTTP Logger Integration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/http-logger/)
 
 The HTTP logger is a response dumper that allows you to write the backend request and its response into a file, to help you debug your processes during development.
 
@@ -23500,7 +23888,7 @@ Date: Tue, 12 Apr 2022 08:49:28 GMT
 
 ---
 
-# [Import and Export OpenAPI definitions (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/openapi/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/developer/openapi.md] (parent: 170 API Documentation and Dev Tools, weight: 110)
+# [Import and Export OpenAPI definitions (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/openapi/)
 
 The OpenAPI integration is a series of commands embedded in the KrakenD binary and additional metadata you can add in the configuration to enrich the documentation.
 
@@ -23787,7 +24175,7 @@ These are the changes you need in the code.
 
 ---
 
-# [Document your endpoints with OpenAPI (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/openapi/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/openapi.md] (parent: 170 API Documentation and Dev Tools, weight: 120)
+# [Document your endpoints with OpenAPI (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/openapi/)
 
 The OpenAPI documentation (formerly Swagger) is automatically generated by the KrakenD Enterprise binary when you use the `krakend openapi export` command (see [Exporting to OpenAPI](/docs/enterprise/developer/openapi/)).
 
@@ -24186,7 +24574,7 @@ Or writing the schema inline, escaped with backticks:
 
 ---
 
-# [Generating API documentation (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/api-docs/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/developer/api-docs.md] (parent: 170 API Documentation and Dev Tools, weight: 130)
+# [Generating API documentation (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/api-docs/)
 
 KrakenD supports exporting (and importing) OpenAPI Specification. This flexibility allows you to **auto-generate documentation** that you can serve from the gateway itself, or host somewhere else.
 
@@ -24321,7 +24709,7 @@ COPY --from=builder /tmp/swagger.json /etc/krakend/docs/swagger.json
 
 ---
 
-# [Postman Integration Guide for Developers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/postman/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/developer/postman.md] (parent: 170 API Documentation and Dev Tools, weight: 200)
+# [Postman Integration Guide for Developers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/postman/)
 
 The Postman generator is a command line utility embedded in the KrakenD binary, offering the automatic generation of Postman collections based on the KrakenD configuration.
 
@@ -24455,7 +24843,7 @@ Then, in each `endpoint` you can also add a `documentation/postman` block with t
 
 ---
 
-# [Generate graphs from your configuration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/config2dot/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/developer/config2dot.md] (parent: 170 API Documentation and Dev Tools, weight: 210)
+# [Generate graphs from your configuration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/config2dot/)
 
 The `krakend.json` file whether it is a single file or the result of using the flexible configuration, it might be a complex file. A generated image of the configuration might help you understand better the running configuration.
 
@@ -24521,7 +24909,7 @@ dot -Tpng graph.dot -o graph.png
 
 ---
 
-# [IDE Integration Guide for Developers](https://www.krakend.io/docs/developer/ide-integration/)  [/Users/obokaman/Code/krakend/website/content/docs/developer/IDE-integration.md] (parent: 170 API Documentation and Dev Tools, weight: 300)
+# [IDE Integration Guide for Developers](https://www.krakend.io/docs/developer/ide-integration/)
 
 Automatic validation as you type, showing documentation while hovering an attribute, explanation of errors, and autocompletion of properties, are features that you get automatically while working with KrakenD.
 
@@ -24564,7 +24952,7 @@ Some editors also allow you the combination of templating + JSON format, so you 
 
 ---
 
-# [End-to-End Testing for Developers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/integration-tests/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/developer/integration-tests.md] (parent: 170 API Documentation and Dev Tools, weight: 400)
+# [End-to-End Testing for Developers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/integration-tests/)
 
 In addition to checking the syntax of your KrakenD configuration and ensuring that the gateway can start, an essential step in any CI/CD strategy is including **end-to-end tests** to guarantee that all the active software components from beginning to end have the expected flow and that the gateway returns what you planned when working together with your upstream services.
 
@@ -24907,7 +25295,7 @@ bearer eyJhbGciOiJIUzI1NiIsImtpZCI6InNpbTIifQ.eyJhdWQiOiJodHRwOi8vYXBpLmV4YW1wbG
 
 ---
 
-# [Extending KrakenD with your code](https://www.krakend.io/docs/extending/)  [/Users/obokaman/Code/krakend/website/content/docs/extending/_index.md] (parent: 180 Extending with custom code, weight: -1)
+# [Extending KrakenD with your code](https://www.krakend.io/docs/extending/)
 
 KrakenD is **highly extensible and flexible** and allows developers to extend its functionality through custom code when the built-in features are not enough. Whether you need to add custom logic, integrate specific business rules, or enhance features, KrakenD lets you add extensions coded by you.
 
@@ -24990,7 +25378,7 @@ Open-source users might be tempted to fork the source code to add modifications.
 
 ---
 
-# [Writing and building custom plugins](https://www.krakend.io/docs/extending/writing-plugins/)  [/Users/obokaman/Code/krakend/website/content/docs/extending/writing-plugins.md] (parent: 180 Extending with custom code, weight: 10)
+# [Writing and building custom plugins](https://www.krakend.io/docs/extending/writing-plugins/)
 
 **Plugins are soft-linked libraries**, thus a separated `.so` file that can participate in the processing when running in conjunction with KrakenD. When we talk about plugins, we refer to **[Go plugins](https://golang.org/pkg/plugin/)**. You can create custom code, inject it into different parts of KrakenD processing, and still use the official KrakenD software without forking the code.
 
@@ -25198,7 +25586,7 @@ See the detailed information to [inject plugins](/docs/extending/injecting-plugi
 
 ---
 
-# [Automatically generate boilerplate for Go plugins (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/extending/generating-plugins/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/extending/generating-plugins.md] (parent: 180 Extending with custom code, weight: 20)
+# [Automatically generate boilerplate for Go plugins (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/extending/generating-plugins/)
 
 The command `krakend plugin init` generates the necessary boilerplate code to start working with plugins. This command provides a structured starting point for plugin development, ensuring that the required interfaces are included from the outset.
 
@@ -25278,7 +25666,7 @@ Now, you should [inject the plugin](/docs/enterprise/extending/injecting-plugins
 
 ---
 
-# [Checking dependencies of plugins](https://www.krakend.io/docs/extending/check-plugin/)  [/Users/obokaman/Code/krakend/website/content/docs/extending/check-plugin.md] (parent: 180 Extending with custom code, weight: 30)
+# [Checking dependencies of plugins](https://www.krakend.io/docs/extending/check-plugin/)
 
 The Go plugin system requires you to compile the main application and its plugins using the same ecosystem. This means that KrakenD and your plugins must use the same Go version, the same version of any **imported libraries**, the same system architecture, and the same GLIBC/MUSL libraries. Therefore, knowing in advance that you are using libraries that are incompatible with KrakenD when [writing custom plugins](/docs/extending/writing-plugins/) is key.
 
@@ -25402,7 +25790,7 @@ You might need to use the `-f` several times and use `go mod tidy` as well.
 
 ---
 
-# [Test plugins after compiling them](https://www.krakend.io/docs/extending/test-plugin/)  [/Users/obokaman/Code/krakend/website/content/docs/extending/test-plugin.md] (parent: 180 Extending with custom code, weight: 30)
+# [Test plugins after compiling them](https://www.krakend.io/docs/extending/test-plugin/)
 
 Plugins are essential extensions to the KrakenD gateway, enhancing functionality without modifying the core codebase. Due to their reliance on specific versions of KrakenD, libraries, or system architecture, plugins can face compatibility issues following updates or modifications. So, when you have written a new plugin, and compiled it you still need to see that is loadable into KrakenD.
 
@@ -25472,7 +25860,7 @@ If you encounter issues, consider using the [check-plugin](/docs/extending/check
 
 ---
 
-# [Enterprise plugins (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/plugins/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/overview/plugins.md] (parent: 180 Extending with custom code, weight: 35)
+# [Enterprise plugins (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/overview/plugins/)
 
 Some of the functionality offered by KrakenD Enterprise is presented as plugins, and other as components. Although functionality offered as plugins is decreasing, it's important to understand a few concepts and particularities of plugins before you start using them. For each functionality of Enterprise offered as a plugin, you will see in its documentation how to use it.
 
@@ -25620,7 +26008,7 @@ In the previous example, the `folder` configuration didn't end in a slash.
 
 ---
 
-# [Injecting Plugins into KrakenD API Gateway - Extensibility Guide](https://www.krakend.io/docs/extending/injecting-plugins/)  [/Users/obokaman/Code/krakend/website/content/docs/extending/injecting-plugins.md] (parent: 180 Extending with custom code, weight: 40)
+# [Injecting Plugins into KrakenD API Gateway - Extensibility Guide](https://www.krakend.io/docs/extending/injecting-plugins/)
 
 You have developed your plugin or are in the middle of it. There are two phases to take into account:
 
@@ -25831,7 +26219,7 @@ You can place the middleware plugins at the `endpoint` or the `backend` level. I
 
 ---
 
-# [HTTP Server Plugins for KrakenD API Gateway](https://www.krakend.io/docs/extending/http-server-plugins/)  [/Users/obokaman/Code/krakend/website/content/docs/extending/http-server-plugins.md] (parent: 180 Extending with custom code, weight: 100)
+# [HTTP Server Plugins for KrakenD API Gateway](https://www.krakend.io/docs/extending/http-server-plugins/)
 
 The HTTP server plugins (codenamed as *handler plugins*) belong to the **router layer** and let you modify the requests before KrakenD starts processing them or modify the final response back to the user. The HTTP handler plugin lets you write your servers and HTTP middlewares right in KrakenD and enables you to implement anything you can imagine. This plugin type is so powerful that you can use it to implement custom monetization, tracking, tenant control, protocol conversion, and heavy modifications, for example.
 
@@ -26065,7 +26453,7 @@ The plugin is now working.
 
 ---
 
-# [HTTP Client Plugins for KrakenD API Gateway](https://www.krakend.io/docs/extending/http-client-plugins/)  [/Users/obokaman/Code/krakend/website/content/docs/extending/http-client-plugins.md] (parent: 180 Extending with custom code, weight: 110)
+# [HTTP Client Plugins for KrakenD API Gateway](https://www.krakend.io/docs/extending/http-client-plugins/)
 
 The **HTTP client** plugins execute in the proxy layer when KrakenD tries to reach your backends for content. They allow you to intercept, transform, and manipulate the requests **before they hit your backend services**, and their way back. It is the perfect time to modify the request before it reaches the backend.
 
@@ -26322,7 +26710,7 @@ The plugin is now working.
 
 ---
 
-# [Extending KrakenD with Request and Response Plugin Modifiers](https://www.krakend.io/docs/extending/plugin-modifiers/)  [/Users/obokaman/Code/krakend/website/content/docs/extending/plugin-modifiers.md] (parent: 180 Extending with custom code, weight: 120)
+# [Extending KrakenD with Request and Response Plugin Modifiers](https://www.krakend.io/docs/extending/plugin-modifiers/)
 
 The **request and response modifier plugins** are a type of KrakenD customization that allow you to code your own business logic directly on requests and responses in a simple and extensible way. These plugins complement the **handler plugins**, and the **client executor plugins** and avoid their limitations and **extra overload**.
 
@@ -26691,7 +27079,7 @@ func(input interface{}) (interface{}, error) {
 
 ---
 
-# [Middleware Plugins for KrakenD API Gateway (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/extending/middleware-plugins/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/extending/middleware-plugins.md] (parent: 180 Extending with custom code, weight: 130)
+# [Middleware Plugins for KrakenD API Gateway (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/extending/middleware-plugins/)
 
 Middleware plugins are designed to provide the maximum level of customization. While an open-source user could fork the source code of KrakenD and implement their own middleware, an enterprise user can use this plugin to change the internals of KrakenD.
 
@@ -26971,7 +27359,7 @@ Do not forget to [inject the middleware](/docs/enterprise/extending/injecting-pl
 
 ---
 
-# [Lua Scripting](https://www.krakend.io/docs/endpoints/lua/)  [/Users/obokaman/Code/krakend/website/content/docs/endpoints/lua.md] (parent: 180 Extending with custom code, weight: 200)
+# [Lua Scripting](https://www.krakend.io/docs/endpoints/lua/)
 
 Scripting with Lua allows you to extend your business logic and make **transformations on requests and responses**. The Lua module is compatible with the rest of components such as [CEL](/docs/endpoints/common-expression-language-cel/), [Martian](/docs/backends/martian/), or other [Go plugins](/docs/extending/) and middlewares.
 
@@ -27391,7 +27779,7 @@ Another example **setting a cookie from Lua**:
 
 ---
 
-# [Lua advanced helpers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/lua-advanced-helpers/)  [/Users/obokaman/Code/krakend/website/content/docs/enterprise/endpoints/lua-advanced-helpers.md] (parent: 180 Extending with custom code, weight: 210)
+# [Lua advanced helpers (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/lua-advanced-helpers/)
 
 When running Lua scripts on the Enterprise Edition, a collection of helpers extends functionality and improves the speed of Lua execution. Because these helpers run natively on Go and their output is passed to the Lua virtual machine, their performance is optimal and much better than any behavior you can code within Lua libraries.
 
@@ -27666,7 +28054,7 @@ Given a `d` variable using the parse duration above, you can use the following f
 
 ---
 
-# [Clustering Deployment Guide](https://www.krakend.io/docs/deploying/clustering/)  [/Users/obokaman/Code/krakend/website/content/docs/deploying/clustering.md] (parent: 190 Deployment and Go-Live, weight: 1)
+# [Clustering Deployment Guide](https://www.krakend.io/docs/deploying/clustering/)
 
 KrakenD nodes **are stateless** and they don't store data or application state to a persistent storage. Instead, any configuration data and application state exist within the configuration file. Nodes are expendable and replaceable at any time, as they do not hold anything.
 
@@ -27701,7 +28089,7 @@ For best practices deploying KrakenD, see [Deploying KrakenD](/docs/deploying/)
 
 ---
 
-# [Deploying KrakenD API Gateway - Best Practices and Guidelines](https://www.krakend.io/docs/deploying/)  [/Users/obokaman/Code/krakend/website/content/docs/deploying/_index.md] (parent: 190 Deployment and Go-Live, weight: 1)
+# [Deploying KrakenD API Gateway - Best Practices and Guidelines](https://www.krakend.io/docs/deploying/)
 
 Setting up KrakenD is a straightforward process, but here are some not-so-obvious recommendations to get a good start when going live. This section has generalistic advice, even though every KrakenD installation is different. So let's dip our toe into the deployment waters!
 
@@ -27879,7 +28267,7 @@ Most KrakenD configurations tend to be large and with repetitive blocks. Define 
 
 ---
 
-# [Server Dimensioning for KrakenD API Gateway Deployment](https://www.krakend.io/docs/deploying/server-dimensioning/)  [/Users/obokaman/Code/krakend/website/content/docs/deploying/server-dimensioning.md] (parent: 190 Deployment and Go-Live, weight: 10)
+# [Server Dimensioning for KrakenD API Gateway Deployment](https://www.krakend.io/docs/deploying/server-dimensioning/)
 
 When comparing KrakenD with other solutions, a key difference is that its **Total Cost of Ownership** is actually **lower**, and you can save a lot of money in infrastructure.
 
@@ -27942,7 +28330,7 @@ All the components above are resource-efficient but they offer full flexibility.
 
 ---
 
-# [CI/CD Deployment on the API Gateway](https://www.krakend.io/docs/deploying/ci-cd/)  [/Users/obokaman/Code/krakend/website/content/docs/deploying/ci-cd.md] (parent: 190 Deployment and Go-Live, weight: 20)
+# [CI/CD Deployment on the API Gateway](https://www.krakend.io/docs/deploying/ci-cd/)
 
 KrakenD operates with its single binary and your associated configuration. Therefore, your build process or CI/CD pipeline only needs to ensure that the configuration file is correct. These are a few recommendations to a safer KrakenD deployment:
 
@@ -28045,7 +28433,7 @@ docker-build:
 
 ---
 
-# [Deploying KrakenD API Gateway with Docker](https://www.krakend.io/docs/deploying/docker/)  [/Users/obokaman/Code/krakend/website/content/docs/deploying/docker.md] (parent: 190 Deployment and Go-Live, weight: 20)
+# [Deploying KrakenD API Gateway with Docker](https://www.krakend.io/docs/deploying/docker/)
 
 If you use containers, the recommended approach is to write your own `Dockerfile` and deploy an **immutable artifact** (embedding the config).
 
@@ -28134,7 +28522,7 @@ The resulting image, including your configuration, weighs around `80MB`.
 
 ---
 
-# [Deploying KrakenD API Gateway on Kubernetes](https://www.krakend.io/docs/deploying/kubernetes/)  [/Users/obokaman/Code/krakend/website/content/docs/deploying/kubernetes.md] (parent: 190 Deployment and Go-Live, weight: 30)
+# [Deploying KrakenD API Gateway on Kubernetes](https://www.krakend.io/docs/deploying/kubernetes/)
 
 Deploying KrakenD in Kubernetes requires a straightforward configuration.
 
@@ -28231,7 +28619,7 @@ tracking Krakend releases maintained by [Equinix Metal](https://github.com/equin
 
 ---
 
-# [API Gateway Performance Benchmarks with KrakenD](https://www.krakend.io/docs/benchmarks/)  [/Users/obokaman/Code/krakend/website/content/docs/benchmarks/_index.md] (parent: 300 Benchmarks, weight: 1)
+# [API Gateway Performance Benchmarks with KrakenD](https://www.krakend.io/docs/benchmarks/)
 
 ## KrakenD, the **ultra performer** API Gateway
 An API Gateway is a component that needs to deliver really fast, as it is an added layer in the infrastructure. KrakenD
@@ -28321,7 +28709,7 @@ Check the [varnish/api-gateway-benchmarks](https://github.com/varnish/api-gatewa
 
 ---
 
-# [API Gateway Benchmarking with KrakenD](https://www.krakend.io/docs/benchmarks/api-gateway-benchmark/)  [/Users/obokaman/Code/krakend/website/content/docs/benchmarks/api-gateway-benchmark.md] (parent: 300 Benchmarks, weight: 10)
+# [API Gateway Benchmarking with KrakenD](https://www.krakend.io/docs/benchmarks/api-gateway-benchmark/)
 
 We wanted to compare our own product with other similar products in the market. In order to do so we used the same
 environment and conditions and tested the following products:
@@ -28642,7 +29030,7 @@ $ vagrant ssh consumer
 
 ---
 
-# [Benchmarking KrakenD API Gateway on AWS](https://www.krakend.io/docs/benchmarks/aws/)  [/Users/obokaman/Code/krakend/website/content/docs/benchmarks/aws.md] (parent: 300 Benchmarks, weight: 10)
+# [Benchmarking KrakenD API Gateway on AWS](https://www.krakend.io/docs/benchmarks/aws/)
 
 The following numbers show the execution results for the KrakenD benchmarks on [Amazon EC2](https://aws.amazon.com/ec2/) machines.
 
@@ -28798,7 +29186,7 @@ using your own data. This is a reference to contrast your own tests.
 
 ---
 
-# [Benchmarking KrakenD API Gateway on a local machine](https://www.krakend.io/docs/benchmarks/local/)  [/Users/obokaman/Code/krakend/website/content/docs/benchmarks/local.md] (parent: 300 Benchmarks, weight: 15)
+# [Benchmarking KrakenD API Gateway on a local machine](https://www.krakend.io/docs/benchmarks/local/)
 
 ## Hardware
 
@@ -28918,7 +29306,7 @@ Response from the KrakenD:
 
 ---
 
-# [Design principles. The big picture.](https://www.krakend.io/docs/design/)  [/Users/obokaman/Code/krakend/website/content/docs/design/_index.md] (parent: 310 Design principles, weight: -1)
+# [Design principles. The big picture.](https://www.krakend.io/docs/design/)
 
 Before starting to dive into the KrakenD code, you should spend a few minutes understanding the big pieces of the system, how they work, and the philosophy behind it.
 
@@ -29018,7 +29406,7 @@ The `proxy` package also defines the `EntityFormatter`, the block responsible fo
 
 ---
 
-# [KrakenD Execution Flow Design](https://www.krakend.io/docs/design/execution-flow/)  [/Users/obokaman/Code/krakend/website/content/docs/design/execution-flow.md] (parent: 310 Design principles, weight: 0)
+# [KrakenD Execution Flow Design](https://www.krakend.io/docs/design/execution-flow/)
 
 To truly master KrakenD, you should get familiar with **the concept of "pipes"** and how these pipes define the execution flow of KrakenD from request to response.
 
@@ -29053,7 +29441,7 @@ The following diagram is the same as the one shown above but includes the **prim
 
 ---
 
-# [Backend-for-Frontend (BFF) Design Pattern](https://www.krakend.io/docs/design/backend-for-frontend/)  [/Users/obokaman/Code/krakend/website/content/docs/design/backend-for-frontend.md] (parent: 310 Design principles, weight: 10)
+# [Backend-for-Frontend (BFF) Design Pattern](https://www.krakend.io/docs/design/backend-for-frontend/)
 
 One of the main differences between KrakenD and any other API gateway in the market is that all your endpoints can offer a ready-to-use Backend For Frontend experience by simply declaring the backend sources and the fields your client needs. But why and when do you need to use a BFF?
 
@@ -29162,7 +29550,7 @@ KrakenD allows powerful transformations and business logic, but we recommend lea
 
 ---
 
-# [Zero Trust Design: Secure API Architecture](https://www.krakend.io/docs/design/zero-trust/)  [/Users/obokaman/Code/krakend/website/content/docs/design/zero-trust.md] (parent: 310 Design principles, weight: 10)
+# [Zero Trust Design: Secure API Architecture](https://www.krakend.io/docs/design/zero-trust/)
 
 Real-world API deployments suffer daily attacks, even if you don't notice them. It doesn't matter if you have your infrastructure behind a delimited perimeter. Where there is a point of access, there is malicious activity.
 
@@ -29206,14 +29594,14 @@ KrakenD assumes the following behaviors when serving an API:
 
 ---
 
-# [Lura vs. KrakenD](https://www.krakend.io/docs/overview/lura-vs-krakend/)  [/Users/obokaman/Code/krakend/website/content/docs/overview/lura-vs-krakend.md] (parent: 310 Design principles, weight: 100)
+# [Lura vs. KrakenD](https://www.krakend.io/docs/overview/lura-vs-krakend/)
 
 If you had a quick look at our git repositories or the documentation, you might be confused at first, as there is something called the **Lura Project** and also **KrakenD**.
 
 ## TL;DR; Difference between Lura, KrakenD, and Enterprise
 
 - [**Lura**](https://luraproject.org) is the KrakenD's engine. Formerly known as "**KrakenD framework**" until we [donated it to The Linux Foundation on 2021](/blog/krakend-framework-joins-the-linux-foundation/). It is not a product itself but a toolkit/set of libraries to build API gateways. KrakenD founders are in the steering committee of Lura at The Linux Foundation.
-- **KrakenD** is driven by KRAKEND SL, and is our open-source API Gateway ready to use.
+- **KrakenD** is driven by the company KRAKEND S.L.U, and is our open-source API Gateway ready to use.
 - **KrakenD Enterprise** is our commercial version with added functionality and includes services to businesses.
 
 ### Lura Project
@@ -29254,7 +29642,7 @@ Customers of the [KrakenD Enterprise](/enterprise/) package enjoy the developmen
 
 ---
 
-# [Frequently Asked Questions (FAQ) - KrakenD API Gateway](https://www.krakend.io/docs/faq/)  [/Users/obokaman/Code/krakend/website/content/docs/faq/_index.md] (parent: 999 Frequently Asked Questions, weight: -1)
+# [Frequently Asked Questions (FAQ) - KrakenD API Gateway](https://www.krakend.io/docs/faq/)
 
 ## I am getting a `200` status when the backend returns a `201`
 E.g:
@@ -29352,7 +29740,7 @@ If you think you have found a security problem, please [report us the vulnerabil
 
 ---
 
-# [Switching to Community or Enterprise](https://www.krakend.io/docs/faq/switch-versions/)  [/Users/obokaman/Code/krakend/website/content/docs/faq/switch-versions.md] (parent: 999 Frequently Asked Questions, weight: 20)
+# [Switching to Community or Enterprise](https://www.krakend.io/docs/faq/switch-versions/)
 
 If you are considering upgrading to KrakenD Enterprise or downgrading to KrakenD Community, these are the things you should have in mind.
 
@@ -29385,4 +29773,3 @@ To upgrade a Community configuration to an Enterprise one, **no configuration ch
 - Start the new server
 
 If you use the same version, everything you configured on the Community Edition works in the Enterprise Edition.
-

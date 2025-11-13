@@ -1,59 +1,1154 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/security/</link><description>Recent content in Security on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 30 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/security/index.xml" rel="self" type="application/rss+xml"/><item><title>Turn any service into MCP tools - Released EE v2.12</title><link>https://www.krakend.io/blog/krakend-ee-2.12-release-notes/</link><pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.12-release-notes/</guid><description>MCP is an emerging standard designed to unify how AI clients (Such as chat interfaces, code editors, and others) interact with services. If you already have services (such as REST endpoints, gRPC, Lambda functions, etc.), KrakenD can handle bidirectional communication without requiring any changes to your backends.
-The new release of KrakenD EEv2.12 delivers a bold step forward towards rapid AI adoption in an impressive time-to-market and without requiring new tools, as it converts a wide range of protocols and encodings to MCP.</description></item><item><title>KrakenD CE v2.12 released</title><link>https://www.krakend.io/blog/krakend-2.12-release-notes/</link><pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.12-release-notes/</guid><description>KrakenD CE v2.12 delivers enhancements focused on configuration flexibility, telemetry data security, and improvements to the internal expression engine.
-Improved configuration parsing Until now, KrakenD&amp;rsquo;s configuration parser forced all keys to lowercase, a legacy limitation rooted in the previous Viper dependency. With this release, KrakenD replaces Viper with Koanf for configuration parsing. This upgrade enables open source users to implement plugins using configuration files without forced lowercase.
-This means you can now safely use uppercase keys in your configuration files, a benefit especially relevant if you used schemas or conventions that depend on case sensitivity —a long-standing issue in KrakenD customization.</description></item><item><title>KrakenD CE 2.11.2 and EE 2.11.3 update released</title><link>https://www.krakend.io/blog/krakend-2.11.3-ee-2.11.2-ce-release-notes/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.11.3-ee-2.11.2-ce-release-notes/</guid><description>This minor release of KrakenD Community Edition and Enterprise Edition is a security fix bringing all patches from Go 1.25.3 addressing an issue with the crypto package.
-🚀 Summary of changes for EEv2.11.3 (patch) Security update for the Go crypto x509 library
-crypto/x509: TLS validation fails for FQDNs with trailing dot. Fixes CVE-2025-58187 Upgrading to the latest version is always advised. 🚀 Summary of changes for CEv2.11.2 (patch) Security update for the Go crypto x509 library</description></item><item><title>KrakenD CE 2.11.1 and EE 2.11.2 update released</title><link>https://www.krakend.io/blog/krakend-2.11.2-ee-2.11.1-ce-release-notes/</link><pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.11.2-ee-2.11.1-ce-release-notes/</guid><description>This minor release of KrakenD Community Edition and Enterprise Edition is a security fix bringing all patches from Go 1.25.2 addressing several CVEs.
-🚀 Summary of changes for EEv2.11.2 (patch) Security update for TLS, Cookies and x509
-OpenAPI: Added a new option disable_default_response_definitions to not document 200 and 500 status codes. gRPC fix: skip non set optional fields on backend client Upgraded Go to 1.25.2 fixing several CVEs (see below) CVEs remediated in this release part of the Go upgrade (false-positives not listed):</description></item><item><title>KrakenD EE v2.11: New AI integrations and Conditional Routing</title><link>https://www.krakend.io/blog/krakend-ee-2.11-release-notes/</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.11-release-notes/</guid><description>The new version EE v2.11 brings native AI Gateway integrations with AI providers such as OpenAI, Google Gemini, Anthropic (Claude), and Mistral. While using these vendors was already possible, we have reduced the amount of configuration needed. Alongside this, a new Conditional Routing component allows dynamic request routing and aggregation based on request data, greatly enhancing API orchestration flexibility.
-AI Gateway integrations The OpenAI, Google Gemini, Anthropic (Claude), and Mistral integrations let you embed powerful AI-driven capabilities inside your APIs with minimal configuration.</description></item><item><title>KrakenD CE v2.11 released with improved AMQP, JWT, caching and more</title><link>https://www.krakend.io/blog/krakend-2.11-release-notes/</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.11-release-notes/</guid><description>This release of KrakenD Community Edition v2.11 brings a substantial upgrade to message queue integration, improved JWT handling, enhanced HTTP client capabilities, telemetry configuration flexibility, and important bug fixes that improve stability and performance.
-AMQP Driver Overhaul We&amp;rsquo;ve replaced the previous AMQP driver with the official RabbitMQ client maintained by the RabbitMQ Core Team. This change means better ongoing support, quicker bug fixes, and enhanced capabilities. Importantly, no action is required from you to adapt existing configurations.</description></item><item><title>KrakenD CE and EE 2.10.1 update released</title><link>https://www.krakend.io/blog/krakend-2.10.1-ee-ce-release-notes/</link><pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.10.1-ee-ce-release-notes/</guid><description>This minor release of KrakenD - Community Edition and Enterprise Edition - is a security fix and introduces small bug resolution in the Enterprise version.
-Both CE and EE now run on Go 1.24.4, which includes patches for security vulnerabilities included in the language.
-🚀 Summary of changes for EEv2.10.1 (patch) Minor fixes on weighted quotas and middleware plugins
-The no-op encoding for Enterprise is now compatible with streaming. Allow the direct WebSockets connection to forward query strings.</description></item><item><title>KrakenD EE v2.10: AI Gateway &amp; Quota management</title><link>https://www.krakend.io/blog/krakend-ee-2.10-release-notes/</link><pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.10-release-notes/</guid><description>With the release of KrakenD Enterprise Edition v2.10, we&amp;rsquo;re thrilled to unveil a game-changing innovation that marks a new era in API management: AI Gateway functionality. This release includes several powerful enhancements to logging, quota management, observability, and developer tooling to better adopt AI in your company. Let&amp;rsquo;s dive into the highlights.
-The KrakenD AI Gateway Vision As AI adoption explodes, organizations face pressure to integrate intelligent systems into their architectures without compromising control, cost, or compliance.</description></item><item><title>KrakenD CE v2.10 released with new Docker official image, LRU cache, and more</title><link>https://www.krakend.io/blog/krakend-2.10-release-notes/</link><pubDate>Tue, 06 May 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.10-release-notes/</guid><description>We’re excited to announce that KrakenD v2.10 is out now! This release brings new features, enhancements for developers, important deprecations, and critical fixes that improve your KrakenD experience. Let’s dive into what’s new:
-Goodbye Docker image! Hello, Official Docker image! As we announced a few days ago, KrakenD is now an official Docker image! 🎉
-The old image devopsfaith/krakend is now deprecated and no longer maintained. Please rename your Docker image source to the official krakend image to continue receiving security updates and verified builds.</description></item><item><title>KrakenD v2.9.4 CE and EE security releases</title><link>https://www.krakend.io/blog/krakend-2.9.4-ce-ee-release-notes/</link><pubDate>Thu, 10 Apr 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.9.4-ce-ee-release-notes/</guid><description>KrakenD CE 2.9.4 and KrakenD EE 2.9.4 are security releases that address several newly disclosed vulnerabilities affecting KrakenD EE and CE. The release ensures enhanced protection against known threats and maintains compliance with industry best practices for secure API gateways.
-All KrakenD users are strongly encouraged to upgrade to version 2.9.4, even though some of the severities of these vulnerabilities have yet to be classified, and the potential impact is unknown.</description></item><item><title>KrakenD v2.9.2 and v2.9.3 security releases</title><link>https://www.krakend.io/blog/krakend-2.9.2-2.9.3-ce-ee-release-notes/</link><pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.9.2-2.9.3-ce-ee-release-notes/</guid><description>With just one day of difference two CVEs required the attention of KrakenD to publish new security versions.
-KrakenD Enterprise 2.9.2 and KrakenD Community 2.9.2 have been released on March 4th and announced to customers via Slack/Email on that day before writing blog post. We strongly recommend all users using JWT validation upgrade to this version as soon as possible. The severity for this vulnerability is classified as moderate.
-In addition, one day later, on March 5th, another CVE was published by the Go community, affecting the proxy package.</description></item><item><title>KrakenD EE v2.9 released: Redis Cluster Support, LRU, WebSockets Upgrades &amp; More!</title><link>https://www.krakend.io/blog/krakend-ee-2.9-release-notes/</link><pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.9-release-notes/</guid><description>We&amp;rsquo;re excited to announce the release of KrakenD Enterprise Edition (EE) 2.9, packed with powerful new features and enhancements across a lot of components. This release brings greater flexibility, caching improvements, Redis Cluster support, enhanced WebSockets, and more. See below the most relevant changes.
-More data on the sequential proxy The sequential proxy was limited to passing previous calls&amp;rsquo; data to the next call&amp;rsquo;s URL. Now you can propagate parameters or the entire body response of previous calls, allowing more flexibility when passing data from one backend to the other.</description></item><item><title>KrakenD CE v2.9 released with improved sequential proxy and security</title><link>https://www.krakend.io/blog/krakend-2.9-release-notes/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.9-release-notes/</guid><description>We are excited to announce the latest updates and improvements to our platform. Here&amp;rsquo;s a breakdown of the new features, bug fixes, and security enhancements:
-Sequential Proxy enhancements The enhanced sequential proxy functionality of v2.9.0 provides greater flexibility with multi-step API calls. We have added a parameter sequential_propagated_params that allows you to propagate parameters to the next calls, having more data available in dependent calls. With this new parameter, you can do things like passing as the body of a request any previous response, or reuse any element of a prior response in scripts without having the requirement to pass values in the url_pattern</description></item><item><title>KrakenD EE v2.8 released: Configurable logging, Redis-backed rate limits, Lua, YAML encoding and more</title><link>https://www.krakend.io/blog/krakend-ee-2.8-release-notes/</link><pubDate>Tue, 17 Dec 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.8-release-notes/</guid><description>We are excited to announce the release of KrakenD Enterprise 2.8, packed with new features, upgrades, bug fixes, and some deprecations. Below is a breakdown of the updates.
-Configurable access logs The most acclaimed feature by our customers was the ability to customize the access log. This is why we have introduced in the new version a custom log format that allows you to define the string and fields you want to print in the stdlog.</description></item><item><title>Releases of KrakenD EE 2.7.1 and KrakenD CE 2.7.1 with minor fixes</title><link>https://www.krakend.io/blog/krakend-2.7.1-ce-ee-release-notes/</link><pubDate>Tue, 10 Sep 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.7.1-ce-ee-release-notes/</guid><description>A new patch version of KrakenD Enterprise 2.7.1 and KrakenD Community 2.7.1 is now available on the download page and the Docker registry. This update addresses minor functionality and security improvements.
-This release is classified as a security release due to CVE-2024-28180. The vulnerability could allow an attacker to send a JWE containing compressed data, which could consume significant memory and CPU resources when decompressed. However, KrakenD does not support JWE, so this issue is a false positive in security scans.</description></item><item><title>KrakenD EE v2.7: Workflows, enhanced Rate Limiting, Direct WS, and more</title><link>https://www.krakend.io/blog/krakend-ee-2.7-release-notes/</link><pubDate>Wed, 14 Aug 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.7-release-notes/</guid><description>Today, we released KrakenD EE v2.7, the latest version of our enterprise edition. This version includes many new features and enhancements to existing components. Here&amp;rsquo;s a closer look at what&amp;rsquo;s new and why it matters.
-Workflows The most exciting addition in KrakenD EE v2.7 is the new workflow component that allows you to create workflows and nest virtual endpoints without limitations. This feature is a game-changer for those managing complex API ecosystems, enabling you to orchestrate multiple API calls within the gateway efficiently.</description></item><item><title>KrakenD CE v2.7 released with better rate-limiting and security options</title><link>https://www.krakend.io/blog/krakend-2.7-release-notes/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.7-release-notes/</guid><description>We are excited to announce the latest release of KrakenD, which focuses on resource optimization and brings new features, especially on security. Here&amp;rsquo;s a detailed look at what&amp;rsquo;s new in this release:
-Finer rate-limiting We have been working on optimizing the rate-limit feature, significantly reducing the RAM consumption for users of the endpoint rate limit. Generally speaking, installations using it can reduce their RAM consumption at least a 70%. No action is needed to benefit from this optimization other than upgrading your installation to v2.</description></item><item><title>KrakenD Enterprise v2.6 released with OpenTelemetry, FIPS-140, gRPC server and more</title><link>https://www.krakend.io/blog/krakend-ee-2.6-release-notes/</link><pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.6-release-notes/</guid><description>We&amp;rsquo;re rolling out KrakenD Enterprise v2.6, and it&amp;rsquo;s packed with new features and improvements that make managing your APIs smoother and more efficient. This version builds on everything you know and love about KrakenD Community 2.6, adding even more to the mix. Let&amp;rsquo;s break down what&amp;rsquo;s new without the fluff.
-Observability and monitoring OpenTelemetry integration: We&amp;rsquo;ve integrated OpenTelemetry to give you a better way to keep an eye on your APIs through tracing and metrics.</description></item><item><title>KrakenD CE v2.6 released with OpenTelemetry</title><link>https://www.krakend.io/blog/krakend-2.6-release-notes/</link><pubDate>Tue, 05 Mar 2024 14:25:33 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-2.6-release-notes/</guid><description>We&amp;rsquo;re thrilled to share the latest KrakenD Community Edition v2.6 updates, focusing on enhancing observability, plugin development, and JWT validation. This release introduces significant improvements, new features, and an emphasis on OpenTelemetry integration.
-Developers of plugins will find a new command to test plugins before you deploy them. While developing them, there is also access to more data, like the KrakenD context or the internal request, which allows for more imaginative plugins.</description></item><item><title>KrakenD Enterprise v2.5 released with API Monetization</title><link>https://www.krakend.io/blog/krakend-ee-2.5-release-notes/</link><pubDate>Tue, 21 Nov 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.5-release-notes/</guid><description>We&amp;rsquo;re excited to announce the latest release v2.5 of KrakenD Enterprise, packed with powerful features and enhancements to make your API gateway experience even more seamless and robust. Needless to say, the KrakenD Enterprise v2.5 contains everything in the KrakenD Community 2.5 and a lot more. Let&amp;rsquo;s dive into the key changes in this release:
-API Monetization and Governance Ooh la la! Our first release of KrakenD with API Monetization, in partnership with Moesif, which allows you to charge for your APIs based on usage, check the analytics, and set governance rules that KrakenD keeps in-sync in real time.</description></item><item><title>KrakenD CE v2.5 released: multiple POSTs opened</title><link>https://www.krakend.io/blog/krakend-2.5-release-notes/</link><pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.5-release-notes/</guid><description>Hey KrakenD enthusiasts,
-We&amp;rsquo;ve got some exciting news for you – KrakenD v2.5 is here, packed with features that take simplicity to a whole new level while tackling complex challenges head-on. Let&amp;rsquo;s dive right into the key updates that make this release worth upgrading:
-Multiple POSTs When we created the aggregation feature seven years ago, we considered it too dangerous for our users to open the door to allow aggregation and sequential calls to write data to multiple targets from a single API call.</description></item><item><title>Upgrade to mitigate the Rapid Reset Attack vulnerability</title><link>https://www.krakend.io/blog/krakend-2.4.6-ce-2.4.2-ee-release-notes/</link><pubDate>Thu, 12 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.4.6-ce-2.4.2-ee-release-notes/</guid><description>A new patch version KrakenD Enterprise 2.4.2, and another for KrakenD Community 2.4.6 is available on the download page and the Docker registry, addressing a critical security issue related to Distributed Denial of Service (DDoS) vulnerabilities in HTTP/2 server implementations
-More specifically this upgrade addresses CVE-2023-44487 and CVE-2023-39325&amp;quot;, known as the &amp;ldquo;Rapid Reset Attack.&amp;rdquo;
-These vulnerabilities have been rated with a CVSSv3 Score of 7.5 and are classified as having an important security impact.</description></item><item><title>KrakenD Enterprise v2.4: New Power and Efficiency</title><link>https://www.krakend.io/blog/krakend-ee-2.4-release-notes/</link><pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.4-release-notes/</guid><description>We are thrilled to announce the upcoming release of KrakenD API Gateway v2.4 (download, a significant step forward in enhancing your API management experience. Packed with an array of powerful features and improvements, this release is set to improve the way you manage and optimize your APIs.
-As the API landscape evolves, KrakenD remains dedicated to providing cutting-edge tools to optimize and manage your APIs. The v2.4 release showcases our commitment to innovation, flexibility, and security, ensuring that you have the best possible resources at your disposal.</description></item><item><title>Securing Your Microservices and APIs: The KrakenD Way</title><link>https://www.krakend.io/blog/securing-your-microservices/</link><pubDate>Wed, 26 Jul 2023 13:25:33 +0200</pubDate><guid>https://www.krakend.io/blog/securing-your-microservices/</guid><description>In today&amp;rsquo;s world, where everything is going digital, we can&amp;rsquo;t overemphasize the importance of keeping your APIs and microservices safe. Cyber threats are an everyday reality, and they don&amp;rsquo;t care how big or complex your infrastructure is. They just want a way in. This is where KrakenD, a leading API gateway company, steps in. We&amp;rsquo;ve got your back with our robust solution, built around a zero-trust policy, OWASP guidelines, and a bunch of other cool stuff to bolster your API security.</description></item><item><title>KrakenD CE 2.4.2 and EE 2.3.3 security fixes</title><link>https://www.krakend.io/blog/krakend-2.4.2-ce-2.3.3-ee-release-notes/</link><pubDate>Fri, 07 Jul 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.4.2-ce-2.3.3-ee-release-notes/</guid><description>A new patch version KrakenD Enterprise 2.3.3, and another for KrakenD Community 2.4.2 is available on the download page and the Docker registry. Upgrading from any 2.x is backward compatible.
-The following security fixes do not seem to have any impact on KrakenD after all the tests performed, but a patch is offered as a cautionary measure.
-🚀 Summary of changes for CEv2.4.2 (patch) We have updated our internal libraries to rectify security issues identified in scans.</description></item><item><title>KrakenD CE v2.4 released!</title><link>https://www.krakend.io/blog/krakend-2.4-release-notes/</link><pubDate>Thu, 29 Jun 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.4-release-notes/</guid><description>The KrakenD team is pleased to announce the release of KrakenD Community Edition v2.4, which improves configuration granularity, and a more user-friendly rate limit.
-You can get v2.4 packaged for several options from the download page.
-🚀 Summary of changes for CEv2.4 The v2.4 improves the rate limit usage experience to support non-second time intervals, and offers more granularity option to improve security.
-A rewritten rate limit introduces the every component, allowing to set limits per second, minute, or hour.</description></item><item><title>KrakenD Enterprise 2.3.1 update released</title><link>https://www.krakend.io/blog/krakend-ee-2.3.1-release-notes/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.3.1-release-notes/</guid><description>The new KrakenD Enterprise version 2.3.1 is already available for install or upgrade. This patch version fixes a few corner cases of several components that could not work properly in edge scenarios. It also adds two small new Lua functions for working with tables and lists.
-🚀 Summary of changes for EEv2.3.1 (patch) Fixes on Redis rate limiter, Alpine security upgrade, body generator, gRPC, and added new helpers in Lua</description></item><item><title>KrakenD 2.3.3 (patch version) released</title><link>https://www.krakend.io/blog/krakend-2.3.3-release-notes/</link><pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.3.3-release-notes/</guid><description>A new patch version KrakenD 2.3.3 is available on the download page and the Docker registry. Upgrading from any 2.x is backward compatible.
-This release includes a security fix to mitigate SSL3 CVE-2023-1255 (Base Score: 5.9 MEDIUM) and new Lua helpers fo facilitate developments of custom business logic. The new Lua helpers are:
-luaTable.new(), which returns a new table. t:keys(), which returns the sorted key names of a table t. luaList.</description></item><item><title>KrakenD Enterprise v2.3: Easing Your API Journey</title><link>https://www.krakend.io/blog/krakend-ee-2.3-release-notes/</link><pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.3-release-notes/</guid><description>KrakenD Enterprise is excited to announce the release of its API gateway software v2.3, available for download. This upgrade delivers an improved experience for users looking to simplify their operations.
-With KrakenD v2.3, users will experience greater simplicity, eliminating the need for several plugins and adding automated processes to import OpenAPI and gRPC contracts.
-This upgrade has been designed to address the joint pain points customers experience when managing their APIs.</description></item><item><title>KrakenD CE v2.3 released!</title><link>https://www.krakend.io/blog/krakend-2.3-release-notes/</link><pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.3-release-notes/</guid><description>The KrakenD team is pleased to announce the release of KrakenD Community Edition v2.3, which improves connectivity with backends, caching, and adds the possibility to play with KrakenD using the web Designer directly.
-You can get v2.3 packaged for several options from the download page.
-🚀 Summary of changes for CEv2.3 The v2.3 adds more connectivity options with backends and caching and adds the possibility to load changes into a local KrakenD using the Designer (UI) directly.</description></item><item><title>KrakenD Enterprise 2.2.1 update released</title><link>https://www.krakend.io/blog/krakend-ee-2.2.1-release-notes/</link><pubDate>Wed, 19 Apr 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.2.1-release-notes/</guid><description>The new KrakenD Enterprise version 2.2.1 is already available for install or upgrade. This patch version does not bring significant new functionality (except for AMQP) but includes a few fixes.
-🚀 Summary of changes for EEv2.2.1 (patch) Enables backoff strategies for AMQP producers and consumers, and fixes OpenAPI generation issues.
-AMQP consumers and producers offer now retries with several backoff strategies. Request modifier plugin loader is now hardened and is more strict to prevent human error.</description></item><item><title>KrakenD Enterprise 2.2 released</title><link>https://www.krakend.io/blog/krakend-ee-2.2-release-notes/</link><pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.2-release-notes/</guid><description>The new KrakenD Enterprise version 2.2 is now available, and it&amp;rsquo;s supercharged: Introduces dynamic routing based on headers and query strings, adds a security policies engine, upgrades to OpenAPI 3, improves SOAP integration, default gzip compression and a lot more&amp;hellip;
-Below there is a summary of changes and an introduction to some of these new features.
-Security Policies: Enforce any check, anywhere From RBAC and ABAC, to lifecycle management, restriction of content by country, validation custom cryptography or other strategies, &amp;hellip; The new policies engine allows you to do any custom evaluations you need, during runtime and with access to query strings, URLs, parameters, cookies, tokens, time functions, geolocation, cryptography, and a long etcetera.</description></item><item><title>KrakenD 2.2 Release Notes: Latest Features and Enhancements</title><link>https://www.krakend.io/blog/krakend-2.2-release-notes/</link><pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.2-release-notes/</guid><description>The KrakenD team is pleased to announce the release of KrakenD Community Edition v2.2. It introduces a new security audit command (krakend audit) that parses and analyzes your configurations and outputs security recommendations. We have designed it to run as a standalone command or integrated it into your existing CI/CD pipeline to avoid dangerous configurations, such as unwillingly disabling the TLS, setting excessive timeouts, unprotected endpoints, or similar scenarios.
-You can get v2.</description></item><item><title>KrakenD Enterprise 2.1.2 (security fix) released</title><link>https://www.krakend.io/blog/krakend-ee-2.1.2-release-notes/</link><pubDate>Mon, 23 Jan 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.1.2-release-notes/</guid><description>The new KrakenD Enterprise version 2.1.2 is already available for install or upgrade. This patch version does not bring significant new functionality but updates dependencies that have security vulnerabilities and adds a few fixes:
-🚀 Summary of changes for EEv2.1.2 (patch) The patch v2.1.2 updates dependencies that have security vulnerabilities.
-Add the content-type header when returning errors Upgrade from Go 1.19.3 to Go 1.19.5, which includes security fixes to the net/http, crypto/x509, and os packages, among others.</description></item><item><title>KrakenD Enterprise 2.1 released</title><link>https://www.krakend.io/blog/krakend-ee-2.1-release-notes/</link><pubDate>Fri, 28 Oct 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.1-release-notes/</guid><description>The KrakenD team is pleased to announce the release of KrakenD Enterprise 2.1, already available for install or upgrade.
-Apologies because we have added so much that the summary is not going to be short this time :)
-🚀 Summary of changes for EEv2.1 KrakenD Enterprise v2.1 brings a lot of new functionality, including advanced manipulation with a JSON Query language, a Revoke Server to manage tokens in clusters, new Kibana and Grafana dashboards, faster encoding, a rewritten and richer NewRelic exporter, Websockets balancing, everything on Community 2.</description></item><item><title>KrakenD becomes a CNA (CVE Numbering Authority)</title><link>https://www.krakend.io/blog/krakend-becomes-a-cna/</link><pubDate>Tue, 25 Oct 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-becomes-a-cna/</guid><description>The Spanish National Cybersecurity Institute (INCIBE) announces today the addition of KrakenD as a CNA (CVE Numbering Authority). KrakenD assumes as its own, from this date, the best practices of this program.
-KrakenD is now authorized by the CVE Program to assign CVE identifiers within its scope and its corresponding publication in the CNA section. Information technology and cybersecurity professionals use CVE Records to ensure they are discussing the same issue, and to coordinate their efforts to prioritize and address the vulnerabilities.</description></item><item><title>Adressing CVE-2022-1561: Crafted backend urls</title><link>https://www.krakend.io/blog/cve-2022-1561-crafted-backend-urls/</link><pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/cve-2022-1561-crafted-backend-urls/</guid><description>&lt;p>There is a new vulnerability in the &lt;a href="https://luraproject.org/">Lura Project&lt;/a> software (which is the KrakenD&amp;rsquo;s engine). We have immediately corrected the problem in the subsequent release after its report. Please upgrade to the latest version.&lt;/p></description></item><item><title>KrakenD Enterprise 2.0 released!</title><link>https://www.krakend.io/blog/krakend-ee-2.0-release-notes/</link><pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.0-release-notes/</guid><description>The KrakenD team is pleased to announce KrakenD Enterprise 2.0, already available for install or upgrade today.
-KrakenD 2.0 is the awaited new major version of KrakenD bringing a lot of improvements to the API Gateway, including all the features and improvements of open source releases between v1.4 and v2.0.4.
-🚀 Summary of changes for EEv2.0 KrakenD Enterprise 2.0 is a major rework and needs migration. API Analytics, IP Filtering, GraphQL, OpenAPI importers and exporters, integration tests, specific request/modifier plugins, Async Agents, backend response logging (dumper) and improves the existing WebSockets, API Keys, configuration syntax, New Relic reporting, logging, and router to put a few examples.</description></item><item><title>KrakenD unnaffected by Log4j</title><link>https://www.krakend.io/blog/log4j-vulnerability/</link><pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/log4j-vulnerability/</guid><description>The year 2021 ended with terrible news for Java developers who saw how the Log4J vulnerabilities exposed their systems.
-KrakenD is a Go application and not a Java application. Therefore, it is not affected by this vulnerability in any way. As a result, we didn&amp;rsquo;t want to add more noise to the chain of emails you could have probably received.
-Nevertheless, during the past month, we had questions from customers who have Java systems behind KrakenD that could be vulnerable and other users that weren&amp;rsquo;t sure if KrakenD was impacted or not.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/security/</link><description>Recent content in Security on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 30 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/security/index.xml" rel="self" type="application/rss+xml"/><item><title>Turn any service into MCP tools - Released EE v2.12</title><link>https://www.krakend.io/blog/krakend-ee-2.12-release-notes/</link><pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.12-release-notes/</guid><description>&lt;p&gt;&lt;a href="https://modelcontextprotocol.io/docs/getting-started/intro"&gt;MCP&lt;/a&gt; is an emerging standard designed to unify how AI clients (Such as chat interfaces, code editors, and others) interact with services. If you already have services (such as REST endpoints, gRPC, Lambda functions, etc.), &lt;strong&gt;KrakenD can handle bidirectional communication without requiring any changes to your backends&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;new release&lt;/strong&gt; of KrakenD EEv2.12 delivers a bold step forward towards &lt;strong&gt;rapid AI adoption&lt;/strong&gt; in an impressive time-to-market and &lt;strong&gt;without requiring new tools&lt;/strong&gt;, as it converts a wide range of protocols and encodings to MCP. To illustrate what we are talking about, let&amp;rsquo;s start with a (maybe extreme) scenario:&lt;/p&gt;</description></item><item><title>KrakenD CE v2.12 released</title><link>https://www.krakend.io/blog/krakend-2.12-release-notes/</link><pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.12-release-notes/</guid><description>&lt;p&gt;KrakenD CE v2.12 delivers enhancements focused on configuration flexibility, telemetry data security, and improvements to the internal expression engine.&lt;/p&gt;
+&lt;h2 id="improved-configuration-parsing"&gt;Improved configuration parsing&lt;/h2&gt;
+&lt;p&gt;Until now, KrakenD&amp;rsquo;s configuration parser forced all keys to lowercase, a legacy limitation rooted in the previous Viper dependency. With this release, KrakenD replaces Viper with &lt;a href="https://github.com/knadh/koanf/"&gt;Koanf&lt;/a&gt; for configuration parsing. This upgrade enables open source users to implement plugins using configuration files without forced lowercase.&lt;/p&gt;
+&lt;p&gt;This means you can now safely use uppercase keys in your configuration files, a benefit especially relevant if you used schemas or conventions that depend on case sensitivity —a long-standing issue in KrakenD customization.&lt;/p&gt;</description></item><item><title>KrakenD CE 2.11.2 and EE 2.11.3 update released</title><link>https://www.krakend.io/blog/krakend-2.11.3-ee-2.11.2-ce-release-notes/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.11.3-ee-2.11.2-ce-release-notes/</guid><description>&lt;p&gt;This minor release of KrakenD Community Edition and Enterprise Edition is a security fix bringing all patches from Go 1.25.3 addressing an issue with the crypto package.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.11"&gt;🚀 Summary of changes for EEv2.11.3 (patch)&lt;/h2&gt;
+ &lt;p&gt;Security update for the Go crypto x509 library&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ crypto/x509: TLS validation fails for FQDNs with trailing dot. Fixes CVE-2025-58187&lt;/li&gt;
+ 
+ 
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Upgrading to the latest version is always advised.
+ &lt;/p&gt;</description></item><item><title>KrakenD CE 2.11.1 and EE 2.11.2 update released</title><link>https://www.krakend.io/blog/krakend-2.11.2-ee-2.11.1-ce-release-notes/</link><pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.11.2-ee-2.11.1-ce-release-notes/</guid><description>&lt;p&gt;This minor release of KrakenD Community Edition and Enterprise Edition is a security fix bringing all patches from Go 1.25.2 addressing several CVEs.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.11"&gt;🚀 Summary of changes for EEv2.11.2 (patch)&lt;/h2&gt;
+ &lt;p&gt;Security update for TLS, Cookies and x509&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-feature"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#85F09B" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M14.033 6.05a7.365 7.365 0 0 1-2.039 4.55 7.365 7.365 0 0 1-2.039-4.55 7.369 7.369 0 0 1 2.04-4.55 7.369 7.369 0 0 1 2.038 4.55h0zM16.845 14.483A6.836 6.836 0 0 1 12 14.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575zM16.845 21.483A6.836 6.836 0 0 1 12 21.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575h0zM7.153 14.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575zM7.153 21.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575h0zM11.996 10.6l.007 11.9"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ OpenAPI: Added a new option &lt;code&gt;disable_default_response_definitions&lt;/code&gt; to not document 200 and 500 status codes.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ gRPC fix: skip non set optional fields on backend client&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Go to 1.25.2 fixing several CVEs (see below)&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="flex items-start"&gt;
+ &lt;p class="ml-5 my-2 text-white"&gt;&lt;a href="https://groups.google.com/g/golang-announce/c/4Emdl2iQ_bI"&gt;CVEs remediated&lt;/a&gt; in this release part of the Go upgrade (false-positives not listed):&lt;/p&gt;</description></item><item><title>KrakenD EE v2.11: New AI integrations and Conditional Routing</title><link>https://www.krakend.io/blog/krakend-ee-2.11-release-notes/</link><pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.11-release-notes/</guid><description>&lt;p&gt;
+
+
+
+
+
+&lt;img
+ src="https://www.krakend.io/images/documentation/hero/ai_gateway.dark.png"
+ alt="KrakenD AI Gateway"
+ loading="lazy"
+ width="990"
+ height="260"
+ 
+ 
+ 
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;The new version EE v2.11 brings native &lt;strong&gt;AI Gateway integrations&lt;/strong&gt; with AI providers such as &lt;strong&gt;OpenAI, Google Gemini, Anthropic (Claude), and Mistral&lt;/strong&gt;. While using these vendors was already possible, we have reduced the amount of configuration needed. Alongside this, a new &lt;strong&gt;Conditional Routing&lt;/strong&gt; component allows dynamic request routing and aggregation based on request data, greatly enhancing API orchestration flexibility.&lt;/p&gt;
+&lt;h2 id="ai-gateway-integrations"&gt;AI Gateway integrations&lt;/h2&gt;
+&lt;p&gt;The &lt;strong&gt;OpenAI, Google Gemini, Anthropic (Claude), and Mistral&lt;/strong&gt; integrations let you embed powerful AI-driven capabilities inside your APIs with minimal configuration. Features such as authentication and facilitation of the Prompt Template are now included.&lt;/p&gt;</description></item><item><title>KrakenD CE v2.11 released with improved AMQP, JWT, caching and more</title><link>https://www.krakend.io/blog/krakend-2.11-release-notes/</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.11-release-notes/</guid><description>&lt;p&gt;This release of KrakenD Community Edition v2.11 brings a substantial upgrade to message queue integration, improved JWT handling, enhanced HTTP client capabilities, telemetry configuration flexibility, and important bug fixes that improve stability and performance.&lt;/p&gt;
+&lt;h2 id="amqp-driver-overhaul"&gt;AMQP Driver Overhaul&lt;/h2&gt;
+&lt;p&gt;We&amp;rsquo;ve replaced the previous AMQP driver with the official RabbitMQ client maintained by the &lt;a href="https://github.com/rabbitmq"&gt;RabbitMQ Core Team&lt;/a&gt;. This change means better ongoing support, quicker bug fixes, and enhanced capabilities. Importantly, &lt;strong&gt;no action is required from you&lt;/strong&gt; to adapt existing configurations.&lt;/p&gt;</description></item><item><title>KrakenD CE and EE 2.10.1 update released</title><link>https://www.krakend.io/blog/krakend-2.10.1-ee-ce-release-notes/</link><pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.10.1-ee-ce-release-notes/</guid><description>&lt;p&gt;This minor release of KrakenD - Community Edition and Enterprise Edition - is a security fix and introduces small bug resolution in the Enterprise version.&lt;/p&gt;
+&lt;p&gt;Both CE and EE now run on Go 1.24.4, which includes patches for security vulnerabilities included in the language.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.10"&gt;🚀 Summary of changes for EEv2.10.1 (patch)&lt;/h2&gt;
+ &lt;p&gt;Minor fixes on weighted quotas and middleware plugins&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ The &lt;code&gt;no-op&lt;/code&gt; encoding for Enterprise is now compatible with streaming.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Allow the direct WebSockets connection to forward query strings.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Allow non json.Number fields in the &lt;code&gt;weight_key&lt;/code&gt; to be used as weights.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Check plugin middleware factories returning nil handlers, to not cause a panic.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Go to 1.24.4 fixing &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-4673"&gt;CVE-2025-4673&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-22874"&gt;CVE-2025-22874&lt;/a&gt;.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Client Credentials to remove false positive &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-22868"&gt;CVE-2025-22868&lt;/a&gt;. This functionality is not present on KrakenD.&lt;/li&gt;
+ 
+ 
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Upgrading to the latest version is always advised.
+ &lt;/p&gt;</description></item><item><title>KrakenD EE v2.10: AI Gateway &amp; Quota management</title><link>https://www.krakend.io/blog/krakend-ee-2.10-release-notes/</link><pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.10-release-notes/</guid><description>&lt;p&gt;
+
+
+
+
+
+&lt;img
+ src="https://www.krakend.io/images/documentation/hero/ai_gateway.dark.png"
+ alt="KrakenD AI Gateway"
+ loading="lazy"
+ width="990"
+ height="260"
+ 
+ 
+ 
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;With the release of KrakenD Enterprise Edition v2.10, we&amp;rsquo;re thrilled to unveil a game-changing innovation that marks a new era in API management: AI Gateway functionality. This release includes several powerful enhancements to logging, quota management, observability, and developer tooling to better adopt AI in your company. Let&amp;rsquo;s dive into the highlights.&lt;/p&gt;
+&lt;h2 id="the-krakend-ai-gateway-vision"&gt;The KrakenD AI Gateway Vision&lt;/h2&gt;
+&lt;p&gt;As AI adoption explodes, organizations face pressure to integrate intelligent systems into their architectures without compromising control, cost, or compliance. KrakenD&amp;rsquo;s AI Gateway addresses this challenge head-on by turning your existing API infrastructure into a powerful, secure, and governable AI delivery platform.&lt;/p&gt;</description></item><item><title>KrakenD CE v2.10 released with new Docker official image, LRU cache, and more</title><link>https://www.krakend.io/blog/krakend-2.10-release-notes/</link><pubDate>Tue, 06 May 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.10-release-notes/</guid><description>&lt;p&gt;We’re excited to announce that KrakenD v2.10 is out now! This release brings new features, enhancements for developers, &lt;strong&gt;important deprecations&lt;/strong&gt;, and critical fixes that improve your KrakenD experience. Let’s dive into what’s new:&lt;/p&gt;
+&lt;h2 id="goodbye-docker-image-hello-official-docker-image"&gt;Goodbye Docker image! Hello, Official Docker image!&lt;/h2&gt;
+&lt;p&gt;As we announced a few days ago, &lt;a href="https://www.krakend.io/blog/official-docker-image/"&gt;KrakenD is now an official Docker image&lt;/a&gt;! 🎉&lt;/p&gt;
+&lt;p&gt;The old image &lt;code&gt;devopsfaith/krakend&lt;/code&gt; is &lt;strong&gt;now deprecated and no longer maintained&lt;/strong&gt;. Please rename your Docker image source to the official krakend image to continue receiving security updates and verified builds. Enterprise users will continue to use &lt;code&gt;krakend/krakend-ee&lt;/code&gt; as before, no changes are required.&lt;/p&gt;</description></item><item><title>KrakenD v2.9.4 CE and EE security releases</title><link>https://www.krakend.io/blog/krakend-2.9.4-ce-ee-release-notes/</link><pubDate>Thu, 10 Apr 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.9.4-ce-ee-release-notes/</guid><description>&lt;p&gt;KrakenD CE 2.9.4 and KrakenD EE 2.9.4 are security releases that address several newly disclosed vulnerabilities affecting KrakenD EE and CE. The release ensures enhanced protection against known threats and maintains compliance with industry best practices for secure API gateways.&lt;/p&gt;
+&lt;p&gt;All KrakenD users are strongly encouraged to upgrade to version 2.9.4, even though some of the severities of these vulnerabilities have yet to be classified, and the potential impact is unknown.&lt;/p&gt;</description></item><item><title>KrakenD v2.9.2 and v2.9.3 security releases</title><link>https://www.krakend.io/blog/krakend-2.9.2-2.9.3-ce-ee-release-notes/</link><pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.9.2-2.9.3-ce-ee-release-notes/</guid><description>&lt;p&gt;With just one day of difference two CVEs required the attention of KrakenD to publish new security versions.&lt;/p&gt;
+&lt;p&gt;KrakenD Enterprise 2.9.2 and KrakenD Community 2.9.2 have been released on March 4th and announced to customers via Slack/Email on that day before writing blog post. &lt;strong&gt;We strongly recommend all users using JWT validation upgrade&lt;/strong&gt; to this version as soon as possible. The severity for this vulnerability is classified as &lt;strong&gt;moderate&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In addition, one day later, on March 5th, another CVE was published by the Go community, affecting the proxy package. This created a new release v2.9.3 to patch this vulnerability.&lt;/p&gt;</description></item><item><title>KrakenD EE v2.9 released: Redis Cluster Support, LRU, WebSockets Upgrades &amp; More!</title><link>https://www.krakend.io/blog/krakend-ee-2.9-release-notes/</link><pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.9-release-notes/</guid><description>&lt;p&gt;We&amp;rsquo;re excited to announce the release of KrakenD Enterprise Edition (EE) 2.9, packed with powerful new features and enhancements across a lot of components. This release brings greater flexibility, caching improvements, Redis Cluster support, enhanced WebSockets, and more. See below the most relevant changes.&lt;/p&gt;
+&lt;h2 id="more-data-on-the-sequential-proxy"&gt;More data on the sequential proxy&lt;/h2&gt;
+&lt;p&gt;The sequential proxy was limited to passing previous calls&amp;rsquo; data to the next call&amp;rsquo;s URL. Now you can &lt;a href="https://www.krakend.io/docs/enterprise/endpoints/sequential-proxy/#passing-previous-values-outside-the-url_pattern"&gt;propagate parameters&lt;/a&gt; or the entire body response of previous calls, allowing more flexibility when passing data from one backend to the other. The limitation of passing data only on the &lt;code&gt;url_pattern&lt;/code&gt; is now history. See &lt;a href="https://www.krakend.io/docs/enterprise/endpoints/sequential-proxy/#example-setting-a-previous-response-as-the-payload-of-the-next"&gt;an example of passing a previous body to the next call&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>KrakenD CE v2.9 released with improved sequential proxy and security</title><link>https://www.krakend.io/blog/krakend-2.9-release-notes/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.9-release-notes/</guid><description>&lt;p&gt;We are excited to announce the latest updates and improvements to our platform. Here&amp;rsquo;s a breakdown of the new features, bug fixes, and security enhancements:&lt;/p&gt;
+&lt;h2 id="sequential-proxy-enhancements"&gt;Sequential Proxy enhancements&lt;/h2&gt;
+&lt;p&gt;The enhanced sequential proxy functionality of v2.9.0 provides greater flexibility with multi-step API calls. We have added a parameter &lt;code&gt;sequential_propagated_params&lt;/code&gt; that allows you to &lt;strong&gt;propagate parameters&lt;/strong&gt; to the next calls, having more data available in dependent calls. With this new parameter, you can do things like passing as the body of a request any previous response, or reuse any element of a prior response in scripts without having the requirement to pass values in the &lt;code&gt;url_pattern&lt;/code&gt;&lt;/p&gt;</description></item><item><title>KrakenD EE v2.8 released: Configurable logging, Redis-backed rate limits, Lua, YAML encoding and more</title><link>https://www.krakend.io/blog/krakend-ee-2.8-release-notes/</link><pubDate>Tue, 17 Dec 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.8-release-notes/</guid><description>&lt;p&gt;We are excited to announce the release of KrakenD Enterprise 2.8, packed with new features, upgrades, bug fixes, and some deprecations. Below is a breakdown of the updates.&lt;/p&gt;
+&lt;h2 id="configurable-access-logs"&gt;Configurable access logs&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;The most acclaimed feature by our customers&lt;/strong&gt; was the ability to customize the access log. This is why we have introduced in the new version a &lt;a href="https://www.krakend.io/docs/enterprise/logging/#customizing-the-access-log"&gt;custom log format&lt;/a&gt; that allows you to define the string and fields you want to print in the stdlog. For instance, you can define an &lt;code&gt;access_log_custom_format&lt;/code&gt; like this:&lt;/p&gt;</description></item><item><title>Releases of KrakenD EE 2.7.1 and KrakenD CE 2.7.1 with minor fixes</title><link>https://www.krakend.io/blog/krakend-2.7.1-ce-ee-release-notes/</link><pubDate>Tue, 10 Sep 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.7.1-ce-ee-release-notes/</guid><description>&lt;p&gt;A new &lt;strong&gt;patch version&lt;/strong&gt; of KrakenD Enterprise &lt;strong&gt;2.7.1&lt;/strong&gt; and KrakenD Community &lt;strong&gt;2.7.1&lt;/strong&gt; is now available on the &lt;a href="https://www.krakend.io/download/"&gt;download page&lt;/a&gt; and the Docker registry. This update addresses minor functionality and security improvements.&lt;/p&gt;
+&lt;p&gt;This release is classified as a security release due to &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2024-28180"&gt;CVE-2024-28180&lt;/a&gt;. The vulnerability could allow an attacker to send a JWE containing compressed data, which could consume significant memory and CPU resources when decompressed. However, &lt;strong&gt;KrakenD does not support JWE&lt;/strong&gt;, so this issue is a false positive in security scans. Despite no risk to users, we have upgraded several libraries to ensure KrakenD is not flagged by security tools, including OpenTelemetry, and Gcloud.&lt;/p&gt;</description></item><item><title>KrakenD EE v2.7: Workflows, enhanced Rate Limiting, Direct WS, and more</title><link>https://www.krakend.io/blog/krakend-ee-2.7-release-notes/</link><pubDate>Wed, 14 Aug 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.7-release-notes/</guid><description>&lt;p&gt;Today, we released KrakenD EE v2.7, the latest version of our enterprise edition. This version includes many new features and enhancements to existing components. Here&amp;rsquo;s a closer look at what&amp;rsquo;s new and why it matters.&lt;/p&gt;
+&lt;h2 id="workflows"&gt;Workflows&lt;/h2&gt;
+&lt;p&gt;The most exciting addition in KrakenD EE v2.7 is &lt;a href="https://www.krakend.io/docs/enterprise/endpoints/workflows/"&gt;the new &lt;code&gt;workflow&lt;/code&gt; component&lt;/a&gt; that allows you to create workflows and nest virtual endpoints without limitations. This feature is a game-changer for those managing complex API ecosystems, enabling you to orchestrate multiple API calls within the gateway efficiently. By nesting virtual endpoints, you can simplify processes, reduce external dependencies, and remove responsibility from the clients consuming your APIs. Here is a super-simple use case (but you can do wild things!):&lt;/p&gt;</description></item><item><title>KrakenD CE v2.7 released with better rate-limiting and security options</title><link>https://www.krakend.io/blog/krakend-2.7-release-notes/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.7-release-notes/</guid><description>&lt;p&gt;We are excited to announce the latest release of KrakenD, which focuses on &lt;strong&gt;resource optimization&lt;/strong&gt; and brings &lt;strong&gt;new features, especially on security&lt;/strong&gt;. Here&amp;rsquo;s a detailed look at what&amp;rsquo;s new in this release:&lt;/p&gt;
+&lt;h2 id="finer-rate-limiting"&gt;Finer rate-limiting&lt;/h2&gt;
+&lt;p&gt;We have been working on optimizing the rate-limit feature, significantly reducing the RAM consumption for users of the &lt;a href="https://www.krakend.io/docs/endpoints/rate-limit/"&gt;endpoint rate limit&lt;/a&gt;. Generally speaking, installations using it can &lt;strong&gt;reduce their RAM consumption at least a 70%&lt;/strong&gt;. No action is needed to benefit from this optimization other than upgrading your installation to v2.7.0.&lt;/p&gt;</description></item><item><title>KrakenD Enterprise v2.6 released with OpenTelemetry, FIPS-140, gRPC server and more</title><link>https://www.krakend.io/blog/krakend-ee-2.6-release-notes/</link><pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.6-release-notes/</guid><description>&lt;p&gt;We&amp;rsquo;re rolling out KrakenD Enterprise v2.6, and it&amp;rsquo;s packed with new features and improvements that make managing your APIs smoother and more efficient. This version &lt;a href="https://www.krakend.io/blog/krakend-2.6-release-notes/"&gt;builds on everything you know and love about KrakenD Community 2.6&lt;/a&gt;, adding even more to the mix. Let&amp;rsquo;s break down what&amp;rsquo;s new without the fluff.&lt;/p&gt;
+&lt;h2 id="observability-and-monitoring"&gt;Observability and monitoring&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;OpenTelemetry integration&lt;/strong&gt;: We&amp;rsquo;ve integrated OpenTelemetry to give you a better way to keep an eye on your APIs through tracing and metrics. This new tool &lt;a href="https://www.krakend.io/blog/from-opencensus-to-opentelemetry/"&gt;will supersede OpenCensus&lt;/a&gt;, offering a more streamlined approach to understanding your API&amp;rsquo;s performance.&lt;/p&gt;</description></item><item><title>KrakenD CE v2.6 released with OpenTelemetry</title><link>https://www.krakend.io/blog/krakend-2.6-release-notes/</link><pubDate>Tue, 05 Mar 2024 14:25:33 +0200</pubDate><guid>https://www.krakend.io/blog/krakend-2.6-release-notes/</guid><description>&lt;p&gt;We&amp;rsquo;re thrilled to share the latest KrakenD Community Edition v2.6 updates, focusing on enhancing observability, plugin development, and JWT validation. This release introduces significant improvements, new features, and an emphasis on OpenTelemetry integration.&lt;/p&gt;
+&lt;p&gt;Developers of plugins will find a &lt;a href="https://www.krakend.io/docs/extending/test-plugin/"&gt;new command&lt;/a&gt; to test plugins before you deploy them. While developing them, there is also access to more data, like the KrakenD context or the internal request, which allows for more imaginative plugins.&lt;/p&gt;</description></item><item><title>KrakenD Enterprise v2.5 released with API Monetization</title><link>https://www.krakend.io/blog/krakend-ee-2.5-release-notes/</link><pubDate>Tue, 21 Nov 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.5-release-notes/</guid><description>&lt;p&gt;We&amp;rsquo;re excited to announce the latest release v2.5 of KrakenD Enterprise, packed with powerful features and enhancements to make your API gateway experience even more seamless and robust. Needless to say, the KrakenD Enterprise v2.5 contains &lt;a href="https://www.krakend.io/blog/krakend-2.5-release-notes/"&gt;everything in the KrakenD Community 2.5&lt;/a&gt; and a lot more. Let&amp;rsquo;s dive into the key changes in this release:&lt;/p&gt;
+&lt;h2 id="api-monetization-and-governance"&gt;API Monetization and Governance&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Ooh la la!&lt;/em&gt; Our first release of KrakenD with &lt;a href="https://www.krakend.io/docs/enterprise/governance/moesif/"&gt;API Monetization&lt;/a&gt;, in partnership with &lt;a href="https://www.moesif.com/"&gt;Moesif&lt;/a&gt;, which allows you to charge for your APIs based on usage, check the analytics, and set governance rules that KrakenD keeps in-sync in real time. Are you interested? &lt;a href="https://www.krakend.io/contact-sales/"&gt;Get in touch for a demo&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>KrakenD CE v2.5 released: multiple POSTs opened</title><link>https://www.krakend.io/blog/krakend-2.5-release-notes/</link><pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.5-release-notes/</guid><description>&lt;p&gt;Hey KrakenD enthusiasts,&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve got some exciting news for you – &lt;a href="https://www.krakend.io/download/"&gt;KrakenD v2.5 is here&lt;/a&gt;, packed with features that take simplicity to a whole new level while tackling complex challenges head-on. Let&amp;rsquo;s dive right into the key updates that make this release worth upgrading:&lt;/p&gt;
+&lt;h2 id="multiple-posts"&gt;Multiple POSTs&lt;/h2&gt;
+&lt;p&gt;When we created the aggregation feature seven years ago, we considered it too dangerous for our users to open the door to allow aggregation and sequential calls to write data to multiple targets from a single API call. Therefore, you might have felt restricted when dealing with numerous POSTs and other unsafe methods.&lt;/p&gt;</description></item><item><title>Upgrade to mitigate the Rapid Reset Attack vulnerability</title><link>https://www.krakend.io/blog/krakend-2.4.6-ce-2.4.2-ee-release-notes/</link><pubDate>Thu, 12 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.4.6-ce-2.4.2-ee-release-notes/</guid><description>&lt;p&gt;A new &lt;strong&gt;patch version&lt;/strong&gt; KrakenD Enterprise &lt;strong&gt;2.4.2&lt;/strong&gt;, and another for KrakenD Community &lt;strong&gt;2.4.6&lt;/strong&gt; is available on the &lt;a href="https://www.krakend.io/download/"&gt;download page&lt;/a&gt; and the Docker registry, addressing a critical security issue related to &lt;strong&gt;Distributed Denial of Service (DDoS) vulnerabilities in HTTP/2 server implementations&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;More specifically this upgrade addresses &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2023-44487"&gt;CVE-2023-44487&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39325"&gt;CVE-2023-39325&lt;/a&gt;&amp;quot;, known as the &amp;ldquo;&lt;strong&gt;Rapid Reset Attack&lt;/strong&gt;.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;These vulnerabilities have been rated with a CVSSv3 Score of 7.5 and are classified as having an &lt;strong&gt;important security impact&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>KrakenD Enterprise v2.4: New Power and Efficiency</title><link>https://www.krakend.io/blog/krakend-ee-2.4-release-notes/</link><pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.4-release-notes/</guid><description>&lt;p&gt;We are thrilled to announce the upcoming release of KrakenD API Gateway v2.4 (&lt;a href="https://www.krakend.io/docs/enterprise/overview/installing/"&gt;download&lt;/a&gt;, a significant step forward in enhancing your API management experience. Packed with an array of powerful features and improvements, this release is set to &lt;strong&gt;improve the way you manage and optimize your APIs&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;As the API landscape evolves, KrakenD remains dedicated to providing cutting-edge tools to optimize and manage your APIs. The v2.4 release showcases our commitment to innovation, flexibility, and security, ensuring that you have the best possible resources at your disposal.&lt;/p&gt;</description></item><item><title>Securing Your Microservices and APIs: The KrakenD Way</title><link>https://www.krakend.io/blog/securing-your-microservices/</link><pubDate>Wed, 26 Jul 2023 13:25:33 +0200</pubDate><guid>https://www.krakend.io/blog/securing-your-microservices/</guid><description>&lt;p&gt;In today&amp;rsquo;s world, where everything is going digital, we can&amp;rsquo;t overemphasize the importance of keeping your APIs and microservices safe. Cyber threats are an everyday reality, and they don&amp;rsquo;t care how big or complex your infrastructure is. They just want a way in. This is where KrakenD, a leading &lt;a href="https://www.krakend.io/"&gt;API gateway&lt;/a&gt; company, steps in. We&amp;rsquo;ve got your back with our robust solution, built around a &lt;a href="https://www.krakend.io/docs/design/zero-trust/"&gt;zero-trust policy&lt;/a&gt;, OWASP guidelines, and a bunch of other cool stuff to bolster your API security.&lt;/p&gt;</description></item><item><title>KrakenD CE 2.4.2 and EE 2.3.3 security fixes</title><link>https://www.krakend.io/blog/krakend-2.4.2-ce-2.3.3-ee-release-notes/</link><pubDate>Fri, 07 Jul 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.4.2-ce-2.3.3-ee-release-notes/</guid><description>&lt;p&gt;A new &lt;strong&gt;patch version&lt;/strong&gt; KrakenD Enterprise &lt;strong&gt;2.3.3&lt;/strong&gt;, and another for KrakenD Community &lt;strong&gt;2.4.2&lt;/strong&gt; is available on the &lt;a href="https://www.krakend.io/download/"&gt;download page&lt;/a&gt; and the Docker registry. Upgrading from any 2.x is backward compatible.&lt;/p&gt;
+&lt;p&gt;The following security fixes do not seem to have any impact on KrakenD after all the tests performed, but a patch is offered as a cautionary measure.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-CEv2.4"&gt;🚀 Summary of changes for CEv2.4.2 (patch)&lt;/h2&gt;
+ &lt;p&gt;We have updated our internal libraries to rectify security issues identified in scans. While these issues do not affect KrakenD&amp;rsquo;s operations, the updated version provides clean container scans. Notably, CVE-2023-29406, related to HTTP/1 client&amp;rsquo;s Host header validation, does not impact most users due to our zero-trust security, but may affect those utilizing the non-recommended &lt;code&gt;input_headers: [&amp;quot;*&amp;quot;]&lt;/code&gt; policy.&lt;/p&gt;</description></item><item><title>KrakenD CE v2.4 released!</title><link>https://www.krakend.io/blog/krakend-2.4-release-notes/</link><pubDate>Thu, 29 Jun 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.4-release-notes/</guid><description>&lt;p&gt;The KrakenD team is pleased to announce the release of &lt;strong&gt;KrakenD Community Edition v2.4&lt;/strong&gt;, which improves configuration granularity, and a more user-friendly rate limit.&lt;/p&gt;
+&lt;p&gt;You can get v2.4 packaged for several options from the &lt;a href="https://www.krakend.io/download/"&gt;download page&lt;/a&gt;.&lt;/p&gt;
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-CEv2.4"&gt;🚀 Summary of changes for CEv2.4&lt;/h2&gt;
+ &lt;p&gt;The v2.4 improves the rate limit usage experience to support non-second time intervals, and offers more granularity option to improve security.&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-feature"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#85F09B" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M14.033 6.05a7.365 7.365 0 0 1-2.039 4.55 7.365 7.365 0 0 1-2.039-4.55 7.369 7.369 0 0 1 2.04-4.55 7.369 7.369 0 0 1 2.038 4.55h0zM16.845 14.483A6.836 6.836 0 0 1 12 14.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575zM16.845 21.483A6.836 6.836 0 0 1 12 21.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575h0zM7.153 14.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575zM7.153 21.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575h0zM11.996 10.6l.007 11.9"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ A rewritten rate limit introduces the &lt;code&gt;every&lt;/code&gt; component, allowing to set limits per second, minute, or hour.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-feature"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#85F09B" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M14.033 6.05a7.365 7.365 0 0 1-2.039 4.55 7.365 7.365 0 0 1-2.039-4.55 7.369 7.369 0 0 1 2.04-4.55 7.369 7.369 0 0 1 2.038 4.55h0zM16.845 14.483A6.836 6.836 0 0 1 12 14.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575zM16.845 21.483A6.836 6.836 0 0 1 12 21.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575h0zM7.153 14.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575zM7.153 21.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575h0zM11.996 10.6l.007 11.9"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Add a second level of &lt;code&gt;input_headers&lt;/code&gt; filtering in the &lt;code&gt;backend&lt;/code&gt; section.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-feature"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#85F09B" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M14.033 6.05a7.365 7.365 0 0 1-2.039 4.55 7.365 7.365 0 0 1-2.039-4.55 7.369 7.369 0 0 1 2.04-4.55 7.369 7.369 0 0 1 2.038 4.55h0zM16.845 14.483A6.836 6.836 0 0 1 12 14.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575zM16.845 21.483A6.836 6.836 0 0 1 12 21.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575h0zM7.153 14.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575zM7.153 21.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575h0zM11.996 10.6l.007 11.9"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ The DNS SRV can now use other protocols than &lt;code&gt;http&lt;/code&gt; through flag &lt;code&gt;sd_scheme&lt;/code&gt;.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Log the name of endpoints that cannot register correctly during startup&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ The &lt;code&gt;krakend check --lint&lt;/code&gt; command fetches the schema for its version.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ The &lt;code&gt;post&lt;/code&gt; execution on Lua fixes the error handling.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-deprecation"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+ &lt;g stroke="#A2A9BE" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+ &lt;path d="m20.217 5.152-1.654 15.713a1.826 1.826 0 0 1-1.815 1.635H7.252a1.826 1.826 0 0 1-1.816-1.635L3.783 5.152M2.254 5.185l19.496-.033"/&gt;
+ &lt;path d="M7.891 5.152V2.413c0-.504.41-.913.913-.913h6.392c.504 0 .913.409.913.913v2.74M12 9.261v9.587M16.109 9.261l-.457 9.587M7.892 9.261l.456 9.587"/&gt;
+ &lt;/g&gt;
+&lt;/svg&gt;
+
+ The flag &lt;code&gt;allow_insecure_connections&lt;/code&gt; was relocated under &lt;code&gt;client_tls&lt;/code&gt; in v2.3 and the old location on &lt;code&gt;tls&lt;/code&gt; is no longer supported.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-deprecation"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+ &lt;g stroke="#A2A9BE" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+ &lt;path d="m20.217 5.152-1.654 15.713a1.826 1.826 0 0 1-1.815 1.635H7.252a1.826 1.826 0 0 1-1.816-1.635L3.783 5.152M2.254 5.185l19.496-.033"/&gt;
+ &lt;path d="M7.891 5.152V2.413c0-.504.41-.913.913-.913h6.392c.504 0 .913.409.913.913v2.74M12 9.261v9.587M16.109 9.261l-.457 9.587M7.892 9.261l.456 9.587"/&gt;
+ &lt;/g&gt;
+&lt;/svg&gt;
+
+ The &lt;a href="https://www.krakend.io/docs/v2.3/service-settings/tls/#prefer_server_cipher_suites"&gt;flag &lt;code&gt;prefer_server_cipher_suites&lt;/code&gt;&lt;/a&gt; is no longer supported. Servers now select the best mutually supported cipher suite automatically based on the logic that considers inferred client hardware, server hardware, and security.&lt;/li&gt;
+ 
+ 
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Upgrading to the latest version is always advised.
+ &lt;/p&gt;</description></item><item><title>KrakenD Enterprise 2.3.1 update released</title><link>https://www.krakend.io/blog/krakend-ee-2.3.1-release-notes/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.3.1-release-notes/</guid><description>&lt;p&gt;The new KrakenD Enterprise version &lt;strong&gt;2.3.1&lt;/strong&gt; is already available for &lt;a href="https://www.krakend.io/docs/enterprise/overview/installing/"&gt;install or upgrade&lt;/a&gt;. This patch version fixes a few corner cases of several components that could not work properly in edge scenarios. It also adds two small new Lua functions for working with tables and lists.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.3"&gt;🚀 Summary of changes for EEv2.3.1 (patch)&lt;/h2&gt;
+ &lt;p&gt;Fixes on Redis rate limiter, Alpine security upgrade, body generator, gRPC, and added new helpers in Lua&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-feature"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#85F09B" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M14.033 6.05a7.365 7.365 0 0 1-2.039 4.55 7.365 7.365 0 0 1-2.039-4.55 7.369 7.369 0 0 1 2.04-4.55 7.369 7.369 0 0 1 2.038 4.55h0zM16.845 14.483A6.836 6.836 0 0 1 12 14.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575zM16.845 21.483A6.836 6.836 0 0 1 12 21.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575h0zM7.153 14.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575zM7.153 21.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575h0zM11.996 10.6l.007 11.9"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Add &lt;a href="https://www.krakend.io/docs/endpoints/lua/#lua-helpers"&gt;list and table helpers&lt;/a&gt; to Lua scripts&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Automatically set content-type &lt;code&gt;application/json&lt;/code&gt; for GraphQL backends, no longer needing the client to pass it + fixes in formatting&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Fix escaped chars during XML rendering&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Avoid startup panic when using proxy rate limit with capacity 0&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Bodygenerator: Push Content-Length header with the calculation of a generated body.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Redis rate limit: Fix on zero capacity limits&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ gRPC endpoints not filling data with URL parameters and query strings combinations&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Avoid initial wait for client connection and add retry strategies on WebSockets&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgrade Docker image base to Alpine 3.18&lt;/li&gt;
+ 
+ 
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Upgrading to the latest version is always advised.
+ &lt;/p&gt;</description></item><item><title>KrakenD 2.3.3 (patch version) released</title><link>https://www.krakend.io/blog/krakend-2.3.3-release-notes/</link><pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.3.3-release-notes/</guid><description>&lt;p&gt;A new &lt;strong&gt;patch version&lt;/strong&gt; KrakenD &lt;strong&gt;2.3.3&lt;/strong&gt; is available on the &lt;a href="https://www.krakend.io/download/"&gt;download page&lt;/a&gt; and the Docker registry. Upgrading from any 2.x is backward compatible.&lt;/p&gt;
+&lt;p&gt;This release includes a security fix to mitigate SSL3 &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255"&gt;CVE-2023-1255&lt;/a&gt; (Base Score: 5.9 MEDIUM) and new &lt;strong&gt;Lua helpers&lt;/strong&gt; fo facilitate developments of custom business logic. The new Lua helpers are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;luaTable.new()&lt;/code&gt;, which returns a new table.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;t:keys()&lt;/code&gt;, which returns the sorted key names of a table &lt;code&gt;t&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;luaList.new()&lt;/code&gt;, which returns a new list.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See &lt;a href="https://www.krakend.io/docs/endpoints/lua/#lua-helpers"&gt;Lua helpers documentation&lt;/a&gt;&lt;/p&gt;</description></item><item><title>KrakenD Enterprise v2.3: Easing Your API Journey</title><link>https://www.krakend.io/blog/krakend-ee-2.3-release-notes/</link><pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.3-release-notes/</guid><description>&lt;p&gt;KrakenD Enterprise is excited to announce the release of its API gateway software v2.3, &lt;a href="https://www.krakend.io/docs/enterprise/overview/installing/"&gt;available for download&lt;/a&gt;. This upgrade delivers an &lt;strong&gt;improved experience for users looking to simplify their operations&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With KrakenD v2.3, users will experience greater simplicity, eliminating the need for several plugins and adding automated processes to import OpenAPI and gRPC contracts.&lt;/p&gt;
+&lt;p&gt;This upgrade has been designed to address the &lt;strong&gt;joint pain points customers experience&lt;/strong&gt; when managing their APIs.&lt;/p&gt;</description></item><item><title>KrakenD CE v2.3 released!</title><link>https://www.krakend.io/blog/krakend-2.3-release-notes/</link><pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.3-release-notes/</guid><description>&lt;p&gt;The KrakenD team is pleased to announce the release of &lt;strong&gt;KrakenD Community Edition v2.3&lt;/strong&gt;, which improves connectivity with backends, caching, and adds the possibility to play with KrakenD using the web Designer directly.&lt;/p&gt;
+&lt;p&gt;You can get v2.3 packaged for several options from the &lt;a href="https://www.krakend.io/download/"&gt;download page&lt;/a&gt;.&lt;/p&gt;
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-CEv2.3"&gt;🚀 Summary of changes for CEv2.3&lt;/h2&gt;
+ &lt;p&gt;The v2.3 adds more connectivity options with backends and caching and adds the possibility to load changes into a local KrakenD using the Designer (UI) directly.&lt;/p&gt;</description></item><item><title>KrakenD Enterprise 2.2.1 update released</title><link>https://www.krakend.io/blog/krakend-ee-2.2.1-release-notes/</link><pubDate>Wed, 19 Apr 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.2.1-release-notes/</guid><description>&lt;p&gt;The new KrakenD Enterprise version &lt;strong&gt;2.2.1&lt;/strong&gt; is already available for &lt;a href="https://www.krakend.io/docs/enterprise/overview/installing/"&gt;install or upgrade&lt;/a&gt;. This patch version does not bring significant new functionality (except for AMQP) but includes a few fixes.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.2"&gt;🚀 Summary of changes for EEv2.2.1 (patch)&lt;/h2&gt;
+ &lt;p&gt;Enables backoff strategies for AMQP producers and consumers, and fixes OpenAPI generation issues.&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-feature"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#85F09B" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M14.033 6.05a7.365 7.365 0 0 1-2.039 4.55 7.365 7.365 0 0 1-2.039-4.55 7.369 7.369 0 0 1 2.04-4.55 7.369 7.369 0 0 1 2.038 4.55h0zM16.845 14.483A6.836 6.836 0 0 1 12 14.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575zM16.845 21.483A6.836 6.836 0 0 1 12 21.119a7.163 7.163 0 0 1 3.406-3.576 6.833 6.833 0 0 1 4.844.365 7.158 7.158 0 0 1-3.405 3.575h0zM7.153 14.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575zM7.153 21.483a6.836 6.836 0 0 0 4.844-.364 7.16 7.16 0 0 0-3.405-3.576 6.837 6.837 0 0 0-4.842.365 7.164 7.164 0 0 0 3.403 3.575h0zM11.996 10.6l.007 11.9"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ AMQP &lt;a href="https://www.krakend.io/docs/backends/amqp-consumer/"&gt;consumers&lt;/a&gt; and &lt;a href="https://www.krakend.io/docs/backends/amqp-producer/"&gt;producers&lt;/a&gt; offer now retries with several backoff strategies.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Request modifier plugin loader is now hardened and is more strict to prevent human error.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Prevent showing 500 status codes when using the body-generator component that receives an empty body&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ OpenAPI includes basic auth information when available for the new component (not the plugin).&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ OpenAPI output is now deterministic. The order of elements of the output is ordered.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ OpenAPI runtime error when declaring nested JSON schemas&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Lua exited with semicolon characters&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Conflicting treatment of floats and integers on JMESpath component&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ The underlying Go version has been upgraded to 1.20.3 which includes security fixes to crypto&lt;/li&gt;
+ 
+ 
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Upgrading to the latest version is always advised.
+ &lt;/p&gt;</description></item><item><title>KrakenD Enterprise 2.2 released</title><link>https://www.krakend.io/blog/krakend-ee-2.2-release-notes/</link><pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.2-release-notes/</guid><description>&lt;p&gt;The new KrakenD Enterprise version &lt;strong&gt;2.2&lt;/strong&gt; is &lt;a href="https://www.krakend.io/docs/enterprise/overview/installing/"&gt;now available&lt;/a&gt;, and it&amp;rsquo;s &lt;strong&gt;supercharged&lt;/strong&gt;: Introduces &lt;strong&gt;dynamic routing based on headers and query strings&lt;/strong&gt;, adds a &lt;strong&gt;security policies&lt;/strong&gt; engine, upgrades to &lt;strong&gt;OpenAPI 3&lt;/strong&gt;, improves &lt;strong&gt;SOAP integration&lt;/strong&gt;, default &lt;strong&gt;gzip compression&lt;/strong&gt; and a lot more&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Below there is a summary of changes and an introduction to some of these new features.&lt;/p&gt;
+&lt;h2 id="security-policies-enforce-any-check-anywhere"&gt;Security Policies: Enforce any check, anywhere&lt;/h2&gt;
+&lt;p&gt;From RBAC and ABAC, to lifecycle management, restriction of content by country, validation custom cryptography or other strategies, &amp;hellip; The &lt;a href="https://www.krakend.io/docs/enterprise/security-policies/"&gt;new policies engine&lt;/a&gt; allows you to do any custom evaluations you need, during runtime and with access to query strings, URLs, parameters, cookies, tokens, time functions, geolocation, cryptography, and a long etcetera.&lt;/p&gt;</description></item><item><title>KrakenD 2.2 Release Notes: Latest Features and Enhancements</title><link>https://www.krakend.io/blog/krakend-2.2-release-notes/</link><pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.2-release-notes/</guid><description>&lt;p&gt;The KrakenD team is pleased to announce the release of &lt;strong&gt;KrakenD Community Edition v2.2&lt;/strong&gt;. It introduces a new &lt;strong&gt;security audit command&lt;/strong&gt; (&lt;code&gt;krakend audit&lt;/code&gt;) that parses and analyzes your configurations and outputs &lt;strong&gt;security recommendations&lt;/strong&gt;. We have designed it to run as a standalone command or integrated it into your existing CI/CD pipeline to avoid dangerous configurations, such as unwillingly disabling the TLS, setting excessive timeouts, unprotected endpoints, or similar scenarios.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+&lt;img
+ src="https://www.krakend.io/images/documentation/screenshots/krakend_audit.png"
+ alt="KrakenD Audit screenshot"
+ loading="lazy"
+ width="1258"
+ height="416"
+ 
+ 
+ 
+/&gt;
+
+&lt;/p&gt;</description></item><item><title>KrakenD Enterprise 2.1.2 (security fix) released</title><link>https://www.krakend.io/blog/krakend-ee-2.1.2-release-notes/</link><pubDate>Mon, 23 Jan 2023 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.1.2-release-notes/</guid><description>&lt;p&gt;The new KrakenD Enterprise version &lt;strong&gt;2.1.2&lt;/strong&gt; is already available for &lt;a href="https://www.krakend.io/docs/enterprise/overview/installing/"&gt;install or upgrade&lt;/a&gt;. This patch version does not bring significant new functionality but updates dependencies that have &lt;strong&gt;security vulnerabilities&lt;/strong&gt; and adds a few fixes:&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.1"&gt;🚀 Summary of changes for EEv2.1.2 (patch)&lt;/h2&gt;
+ &lt;p&gt;The patch v2.1.2 updates dependencies that have security vulnerabilities.&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Add the content-type header when returning errors&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgrade from Go 1.19.3 to Go 1.19.5, which includes security fixes to the &lt;code&gt;net/http&lt;/code&gt;, &lt;code&gt;crypto/x509&lt;/code&gt;, and &lt;code&gt;os&lt;/code&gt; packages, among others.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Caching backends with gzipped content wasn&amp;rsquo;t working properly&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded the gin router to avoid panics on certain 404 paths.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Improve render selection when negotiating XML content&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Use a float instead of an integer for API keys rate limiting&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Add security definitions to OpenAPI generation&lt;/li&gt;
+ 
+ 
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Upgrading to the latest version is always advised.
+ &lt;/p&gt;</description></item><item><title>KrakenD Enterprise 2.1 released</title><link>https://www.krakend.io/blog/krakend-ee-2.1-release-notes/</link><pubDate>Fri, 28 Oct 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.1-release-notes/</guid><description>&lt;p&gt;The KrakenD team is pleased to announce the release of &lt;strong&gt;KrakenD Enterprise 2.1&lt;/strong&gt;, already available for &lt;a href="https://www.krakend.io/docs/enterprise/overview/installing/"&gt;install or upgrade&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Apologies because we have added so much that the summary is not going to be short this time :)&lt;/p&gt;
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.1"&gt;🚀 Summary of changes for EEv2.1&lt;/h2&gt;
+ &lt;p&gt;KrakenD Enterprise v2.1 brings a lot of new functionality, including &lt;strong&gt;advanced manipulation with a JSON Query language&lt;/strong&gt;, a &lt;strong&gt;Revoke Server&lt;/strong&gt; to manage tokens in clusters, new &lt;strong&gt;Kibana and Grafana dashboards&lt;/strong&gt;, &lt;strong&gt;faster encoding&lt;/strong&gt;, a rewritten and richer &lt;strong&gt;NewRelic exporter&lt;/strong&gt;, &lt;strong&gt;Websockets balancing&lt;/strong&gt;, everything on Community 2.1.2, and much more.&lt;/p&gt;</description></item><item><title>KrakenD becomes a CNA (CVE Numbering Authority)</title><link>https://www.krakend.io/blog/krakend-becomes-a-cna/</link><pubDate>Tue, 25 Oct 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-becomes-a-cna/</guid><description>&lt;p&gt;
+
+
+
+
+
+
+
+
+
+&lt;img
+src="https://www.krakend.io/images/cve.svg"
+alt="CVE"
+loading="lazy"
+width="320.65"
+height="93.91"
+
+
+
+/&gt;
+
+
+The Spanish National Cybersecurity Institute (INCIBE) &lt;a href="https://www.incibe.es/incibe-cert/asignacion-publicacion-cve/cna-participantes/krakend"&gt;announces today&lt;/a&gt; the addition of KrakenD as a CNA (CVE Numbering Authority). KrakenD assumes as its own, from this date, the best practices of this program.&lt;/p&gt;
+&lt;p&gt;KrakenD is now authorized by the CVE Program to assign CVE identifiers within its &lt;a href="https://www.cve.org/PartnerInformation/ListofPartners/partner/KrakenD"&gt;scope&lt;/a&gt; and its corresponding publication in the CNA &lt;a href="https://www.incibe.es/incibe-cert/asignacion-publicacion-cve"&gt;section&lt;/a&gt;. Information technology and cybersecurity professionals use CVE Records to ensure they are discussing the same issue, and to coordinate their efforts to prioritize and address the vulnerabilities.&lt;/p&gt;</description></item><item><title>Adressing CVE-2022-1561: Crafted backend urls</title><link>https://www.krakend.io/blog/cve-2022-1561-crafted-backend-urls/</link><pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/cve-2022-1561-crafted-backend-urls/</guid><description>&lt;p&gt;There is a new vulnerability in the &lt;a href="https://luraproject.org/"&gt;Lura Project&lt;/a&gt; software (which is the KrakenD&amp;rsquo;s engine). We have immediately corrected the problem in the subsequent release after its report. Please upgrade to the latest version.&lt;/p&gt;</description></item><item><title>KrakenD Enterprise 2.0 released!</title><link>https://www.krakend.io/blog/krakend-ee-2.0-release-notes/</link><pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.0-release-notes/</guid><description>&lt;p&gt;
+
+
+
+
+
+&lt;img
+ src="https://www.krakend.io/images/blog/krakend-2.0-release.png"
+ alt="KrakenD Enterprise 2.0 is here!"
+ loading="lazy"
+ width="987"
+ height="196"
+ 
+ 
+ 
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;The KrakenD team is pleased to announce &lt;strong&gt;KrakenD Enterprise 2.0&lt;/strong&gt;, already available for &lt;a href="https://www.krakend.io/docs/enterprise/overview/installing/"&gt;install or upgrade&lt;/a&gt; today.&lt;/p&gt;
+&lt;p&gt;KrakenD 2.0 is the awaited new major version of KrakenD bringing a lot of improvements to the API Gateway, including all the features and improvements of open source releases between &lt;a href="https://www.krakend.io/blog/krakend-1.4-release-notes/"&gt;v1.4&lt;/a&gt; and &lt;a href="https://www.krakend.io/blog/krakend-2.0-release-notes/"&gt;v2.0.4&lt;/a&gt;.&lt;/p&gt;
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.0"&gt;🚀 Summary of changes for EEv2.0&lt;/h2&gt;
+ &lt;p&gt;KrakenD Enterprise 2.0 is a major rework and &lt;a href="https://www.krakend.io/docs/enterprise/configuration/migrating/"&gt;needs migration&lt;/a&gt;. &lt;strong&gt;API Analytics, IP Filtering, GraphQL, OpenAPI importers and exporters, integration tests, specific request/modifier plugins, Async Agents, backend response logging (dumper)&lt;/strong&gt; and improves the existing &lt;strong&gt;WebSockets, API Keys, configuration syntax, New Relic reporting, logging, and router&lt;/strong&gt; to put a few examples. It also includes everything on Community 2.0.4.&lt;/p&gt;</description></item><item><title>KrakenD unnaffected by Log4j</title><link>https://www.krakend.io/blog/log4j-vulnerability/</link><pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/log4j-vulnerability/</guid><description>&lt;p&gt;The year 2021 ended with terrible news for Java developers who saw how the Log4J vulnerabilities exposed their systems.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;KrakenD is a Go application and not a Java application. Therefore, it is not affected by this vulnerability in any way&lt;/strong&gt;. As a result, we didn&amp;rsquo;t want to add more noise to the chain of emails you could have probably received.&lt;/p&gt;
+&lt;p&gt;Nevertheless, during the past month, we had questions from customers who have &lt;strong&gt;Java systems behind KrakenD&lt;/strong&gt; that could be vulnerable and other users that weren&amp;rsquo;t sure if KrakenD was impacted or not. So we want to explain in this email what can KrakenD do to help.&lt;/p&gt;</description></item></channel></rss>
