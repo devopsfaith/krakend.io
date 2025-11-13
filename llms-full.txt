@@ -9766,6 +9766,151 @@ Read the [gRPC reflection documentation](https://grpc.io/docs/guides/reflection/
 
 ---
 
+# [HTTP Streaming and Server-Sent Events (SSE) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/endpoints/streaming/)
+
+KrakenD supports HTTP streaming to enable real-time data delivery between servers and clients through persistent HTTP connections. This page covers how to implement generic **HTTP streaming** and one of its subtypes: **Server-Sent Events (SSE)**.
+
+HTTP streaming is a technique where **a server sends data chunks to the client as they become available**. To do that, unlike regular REST endpoints that close the connection after delivering the payload, the streaming connection between the client and server remains open for as long as the session makes sense. Streaming is usually applied to real-time logs, video (streaming), continuous data feeds, multipart responses (such as progressive image loading), LLM interaction, and other long-polling style APIs, to name a few examples.
+
+KrakenD support for streaming is based on the principle that you won’t need to manipulate the content of the different data chunks returned by the server.
+
+No manipulation available
+
+Because of the nature of streaming, KrakenD **will act as a proxy only** and won’t be compatible with any components that perform response manipulation. While you can add validations such as authorization, IP validation, and similar components, response payloads are not available to transformation or inspection.
+
+## HTTP Streaming configuration
+
+Streaming endpoints are declared as any other endpoint and do not require an additional namespace or configuration to function. At the configuration level, there are basically three things you need to take into account when writing the `endpoint` configuration:
+
+1. `output_encoding`: Endpoints [must use `no-op`](/docs/endpoints/no-op/) (proxy only - no merging of responses possible)
+2. `timeout`: The timeout you add in the endpoint must cover enough time to maintain the persistent connection between the client and backend alive without closing prematurely.
+3. `input_headers`: If the server requires special headers, let them pass, or statically set them using a [Martian modifier](/docs/backends/martian/)
+
+That would be the important stuff to keep in mind in terms of configuration. The following example is for an endpoint that **streams videos** of a short duration (timeout set to max. 5 minutes) and serves it to the client as chunks become available:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "endpoints": [
+    {
+      "timeout": "5m",
+      "endpoint": "/video/{id}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Content-Type"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/video/{id}.mkv",
+          "encoding": "no-op",
+          "host": [
+            "https://videos.example.com/"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+When you add streaming to your API, always **set the long timeout inside the streaming endpoint**. Never add long-pooled timeouts at the service level, affecting all endpoints.
+
+## Server-Sent Events (SSE) configuration
+
+![streaming-sse.mmd diagram](/images/documentation/diagrams/streaming-sse.mmd.svg)
+
+SSE is a protocol that allows servers to push real-time updates to browsers or clients over a single HTTP connection, using a lightweight, text-based stream. SSE is designed to continuously send updates like notifications, live feeds, or real-time metrics without the overhead of [WebSockets](/docs/enterprise/websockets/) complexity. Unlike WebSockets, SSE uses simple HTTP and is easier to implement for unidirectional real-time data flow.
+
+From a configuration perspective, SSE is not different than the generic HTTP Streaming configuration defined above, as it is a subtype of it. More specifically, as SSE formats the content as `text/event-stream`, you will probably need to pass the `Content-Type` to your server to make it work (whether in `input_headers` or setting it using [Martian](/docs/backends/martian/)) and also tune the `timeout` with the time you consider is necessary for the majority of your SSE sessions.
+
+Here’s an example consuming SSE from a local weather service:
+
+```json
+{
+  "$schema": "https://krakend.io/schema/krakend.json",
+  "version": 3,
+  "endpoints": [
+    {
+      "endpoint": "/weather-stream",
+      "input_headers": [
+        "Content-Type"
+      ],
+      "timeout": "300s",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "host": ["https://weather.example.com"],
+          "url_pattern": "/api/agents/weatherAgent/stream",
+          "encoding": "no-op"
+        }
+      ]
+    }
+  ]
+}
+```
+
+With the approach above, KrakenD handles SSE streams by transparently proxying them with `no-op`, and:
+
+- It keeps the HTTP connection open between the client and the backend SSE server.
+- It forwards event messages as-is without modifying or buffering them.
+- Manipulation, such as filtering or enrichment, is not supported.
+
+Another typical use case for SSE is the consumption of **AI generative models**. For example, the following is an example connecting to **Gemini using SSE**, as you can see, it has no difference with the weather service above:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD AI SSE support",
+  "timeout": "60s",
+  "endpoints": [
+    {
+      "endpoint": "/stream",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Content-Type"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v1beta/models/gemini-2.0-flash:streamGenerateContent?alt=sse&key=xxx",
+          "method": "POST",
+          "encoding": "no-op",
+          "host": [
+            "https://generativelanguage.googleapis.com/"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Notes on the example configuration:
+
+- `endpoint`: Represents the public-facing path where clients connect to receive SSE.
+- `method`: Usually POST for SSE requests, although this varies per implementation.
+- `backend[].url_pattern`: Proxy route on the backend SSE server for event streaming.
+- `backend[].host`: The HTTP server serving SSE events.
+
+## Operational considerations
+
+When implementing streaming, the following considerations are worth noticing:
+
+- Connection persistence: Streaming connections are long-lived. Ensure your KrakenD deployment and underlying infrastructure support stable, persistent HTTP connections. Do not unnecessarily set extremely high timeouts, as this can have unintended side effects.
+- No payload processing: KrakenD does not alter or buffer streaming data in this mode, so backends are responsible for generating valid and properly formatted streams.
+- Scalability: Streaming connections consume resources continuously and keep the server busy at all times.
+- Timeouts: Configure appropriate timeouts on clients, KrakenD, and backend services to avoid premature disconnections.
+- Redeploys: If you have long sessions, a redeployment might wait a long time to drain connections. In that case, remember you can kill sessions once the draining has waited for a configured number of seconds using [`max_shutdown_wait_time`](/docs/service-settings/http-server-settings/#max_shutdown_wait_time)
+- Lost connections: if for whatever reason, the connection between the client and the server is lost, KrakenD does not have a mechanism to reach the client and reconnect automatically. Clients must deal this reconnection.
+
+
+
+---
+
 # [AMQP Consumer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-consumer/)
 
 The AMQP component allows to **send and receive messages to and from a queue** through the API Gateway.
