@@ -4019,7 +4019,7 @@ All service settings are written directly in the root of the configuration file 
 
 The service accepts **numerous configuration options** that you’ll find explained through the rest of the documentation, but here is a preview of the most important ones:
 
-##### Fields of `"false"`
+##### Preview of important service configuration fields
 
 \* required fields
 
@@ -7232,7 +7232,7 @@ The following settings affect **all connections from KrakenD to your services**.
 
 If you want to customize any of the settings below, they must be written at the top level of the configuration.
 
-##### Fields of `"false"`
+##### Settings for KrakenD to your service communication
 
 \* required fields
 
@@ -34403,7 +34403,7 @@ For instance, your client might be sending a `Content-Type` or `Accept` header a
 
 To enable the debug endpoint add the following in the configuration:
 
-##### Fields of `"false"`
+##### Debug endpoint
 
 \* required fields
 
@@ -34647,7 +34647,7 @@ Notice that the `/__echo/` endpoint has two slashes in its definition.
 
 To enable the `/__echo/` endpoint, you should add in the configuration (service level) the flag `echo_endpoint`, and then use it directly by calling `http://krakend:8080/__echo/` or by adding it as a `backend` in any endpoint.
 
-##### Fields of `"false"`
+##### Echo endpoint
 
 \* required fields
 
