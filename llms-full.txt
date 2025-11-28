@@ -28695,7 +28695,7 @@ It’s not that one is better than the other; they serve very different goals.
 
 The quota system requires at least three configuration blocks:
 
-1. A `redis` entry with the [**connection details**](/docs/enterprise/service-settings/redis-connection-pools/) at the `extra_config` of the service level
+1. A `redis` entry with the [**connection details**](/docs/enterprise/service-settings/redis-connection-pools/) at the `extra_config` of the service level. The minimum supported Redis version is `7.4` (as quotas use the `HEXPIRE` command).
 2. A `governance/processors` entry that defines the **global declaration of quota processors** that are responsible for keeping track of counters and rejecting requests.
 3. A `governance/quota` entry that **attaches a processor and enforces the quota**. You can attach this namespace to the service (root of the configuration), or inside endpoints and backends.
 
@@ -35445,7 +35445,7 @@ Defaults to `false`
 
 ##### [`name`](#header_definition-name "Click to copy link to name") * string
 
-The name of the querystring, as declared in `input_query_strings`
+The name of the header, as declared in `input_headers`
 
 ##### [`required`](#header_definition-required "Click to copy link to required") boolean
 
