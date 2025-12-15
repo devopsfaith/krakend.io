@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/Layers</title>
+    <g id="Gráfico" stroke="none" fill="none">
+        <polygon id="Trazado" points="0 0 24 0 24 24 0 24"></polygon>
+        <path d="M11.661,1 C11.895,1 12.125,1.056 12.332,1.163 L20.353,5.312 L20.391,5.313 L22.006,6.148 C22.2003042,6.24788622 22.322454,6.44802486 22.322454,6.6665 C22.322454,6.88497514 22.2003042,7.08511378 22.006,7.185 L12.332,12.189 C11.9110888,12.406435 11.4109112,12.406435 10.99,12.189 L1.316,7.185 C1.12169578,7.08511378 0.999545962,6.88497514 0.999545962,6.6665 C0.999545962,6.44802486 1.12169578,6.24788622 1.316,6.148 L2.931,5.313 L2.969,5.312 L10.99,1.163 C11.198,1.056 11.428,1 11.661,1 Z" id="Trazado" stroke="#4F79FD" stroke-width="2.08333333" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M1.015,10.838 L10.99,15.65 C11.4108705,15.8676025 11.9111295,15.8676025 12.332,15.65 L22.336,10.838" id="Trazado" stroke="#4F79FD" stroke-width="2.08333333" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M1.015,14.142 L10.99,18.954 C11.4108705,19.1716025 11.9111295,19.1716025 12.332,18.954 L22.336,14.142" id="Trazado" stroke="#4F79FD" stroke-width="2.08333333" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M1.015,17.447 L10.99,22.258 C11.4108705,22.4756025 11.9111295,22.4756025 12.332,22.258 L22.336,17.447" id="Trazado" stroke="#4F79FD" stroke-width="2.08333333" stroke-linecap="round" stroke-linejoin="round"></path>
+        <polygon id="Trazado" fill="#4F79FD" fill-rule="nonzero" points="1.494 6.388 11.104 1 22.006 6.388 12 12"></polygon>
+    </g>
+</svg>

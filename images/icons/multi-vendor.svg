@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/multi-vendor</title>
+    <g id="Icons/multi-vendor" stroke="none" fill="none">
+        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        <g id="Plug-Disconnected--Streamline-Ultimate" stroke-width="1" fill-rule="evenodd" transform="translate(1, 1)" stroke="#4F79FD" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.69785658,17.3020987 C6.35174232,18.9559745 9.03321635,18.9559745 10.6870922,17.3020987 L12.1758784,15.8134118 L6.18660306,9.82409679 L4.69785658,11.312883 C3.04397084,12.9667588 3.04397084,15.6482229 4.69785658,17.3020987 Z" id="Path" stroke-width="2"></path>
+            <path d="M17.372227,4.62765874 C15.7183512,2.973773 13.0368871,2.973773 11.3830113,4.62765874 L9.89432442,6.11640522 L15.8835401,12.1056507 L17.372227,10.6168645 C19.0262022,8.96301852 19.0262022,6.28154448 17.372227,4.62765874 L17.372227,4.62765874 Z" id="Path" stroke-width="2"></path>
+            <line x1="11.5535642" y1="7.77570455" x2="9.96931999" y2="9.36001824" id="Path" stroke-width="2"></line>
+            <line x1="14.2243004" y1="10.446411" x2="12.6399569" y2="12.0306552" id="Path" stroke-width="2"></line>
+            <line x1="4.69783671" y1="17.3020987" x2="0" y2="22" id="Path" stroke-width="2"></line>
+            <line x1="22" y1="0" x2="17.3723264" y2="4.6276786" id="Path" stroke-width="2"></line>
+        </g>
+    </g>
+</svg>

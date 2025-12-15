@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/Shield</title>
+    <g id="Gráfico" stroke="none" fill="none">
+        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        <g id="Layer_1_1_" stroke-width="1" fill-rule="evenodd" transform="translate(3, 0)" fill="#4F79FD">
+            <path d="M5.7705,22.4115 L8.919,24 L12.162,22.3935 C15.738,20.6205 18,16.9755 18,12.984 L18,0 C12.3345,2.8335 5.6655,2.8335 0,0 L0,13.0365 C0,17.001 2.232,20.6265 5.7705,22.4115 Z" id="Trazado" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>
