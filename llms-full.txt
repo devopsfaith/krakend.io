@@ -6831,8 +6831,8 @@ You need to define a URL dictionary specifying how requests map to the existing 
             "/whatsup": "/hello"
           },
           "regexp": [
-            ["/hi-there/([\w\d\s]+)/bar", "/hello/${1}"],
-            ["/whats/up/([\w\d\s]+)", "/hey/${1}/whatsup"]
+            ["^/hi-there/([\w\d\s]+)/bar$", "/hello/${1}"],
+            ["^/whats/up/([\w\d\s]+)$", "/hey/${1}/whatsup"]
           ]
         }
       }
