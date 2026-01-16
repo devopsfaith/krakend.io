@@ -1,4 +1,69 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/security/</link><description>Recent content in Security on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 04 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/security/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD EE 2.12.2 update released</title><link>https://www.krakend.io/blog/krakend-ee-2.12.2-release-notes/</link><pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.12.2-release-notes/</guid><description>&lt;p&gt;The release of KrakenD Enterprise 2.12.2 upgrades the Go runtime to version 1.25.5, directly addressing two CVEs discovered in Go&amp;rsquo;s TLS certificate handling:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/security/</link><description>Recent content in Security on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 16 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/security/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.12.1 and EE 2.12.3 update released</title><link>https://www.krakend.io/blog/krakend-2.12.3-ee-2.12.1-ce-release-notes/</link><pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.12.3-ee-2.12.1-ce-release-notes/</guid><description>&lt;p&gt;This minor release of KrakenD Community Edition and Enterprise Edition is a security fix bringing all patches from Go 1.25.6 and &lt;code&gt;golang.org/x/crypto&lt;/code&gt; package.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.12"&gt;🚀 Summary of changes for EEv2.12.3 (patch)&lt;/h2&gt;
+ &lt;p&gt;Recommended security upgrade addressing several vulnerabilities (by the Go team)&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Decreased log level when a tiered ratelimit config does not have global limits (from &lt;code&gt;ERROR&lt;/code&gt; to &lt;code&gt;INFO&lt;/code&gt;)&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Go to 1.25.6 addressing several CVEs with disclosed descriptions:&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="flex items-start"&gt;
+ &lt;p class="ml-5 my-2 text-white"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/77102"&gt;CVE-2025-61728&lt;/a&gt; Super-linear filename indexing causes DoS on malicious ZIPs (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/77101"&gt;CVE-2025-61726&lt;/a&gt; Memory exhaustion from excessive form key-value pairs&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/77113"&gt;CVE-2025-68121&lt;/a&gt; Config.Clone leaks session keys; ignores full cert chain expiration&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/77100"&gt;CVE-2025-61731&lt;/a&gt; CgoPkgConfig flag bypass leads to arbitrary code execution (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/77099"&gt;CVE-2025-68119&lt;/a&gt; VCS toolchain misinterpretation enables code exec/file writes (false positive)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</description></item><item><title>KrakenD EE 2.12.2 update released</title><link>https://www.krakend.io/blog/krakend-ee-2.12.2-release-notes/</link><pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.12.2-release-notes/</guid><description>&lt;p&gt;The release of KrakenD Enterprise 2.12.2 upgrades the Go runtime to version 1.25.5, directly addressing two CVEs discovered in Go&amp;rsquo;s TLS certificate handling:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-61727"&gt;CVE-2025-61727&lt;/a&gt;: An excluded subdomain constraint in a certificate chain does not restrict the usage of wildcard SANs in the leaf certificate. For example, a constraint that excludes &lt;code&gt;test.example.com&lt;/code&gt; does not prevent a leaf certificate from claiming the SAN &lt;code&gt;*.example.com&lt;/code&gt;. &lt;strong&gt;Possible Impact&lt;/strong&gt;: Attackers could bypass subdomain exclusion policies in certificate chains, potentially allowing unauthorized certificate usage.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2025-61729"&gt;CVE-2025-61729&lt;/a&gt;: Within &lt;code&gt;HostnameError.Error()&lt;/code&gt;, there is no limit to the number of hosts printed when constructing an error string. Furthermore, the error string is constructed by repeated string concatenation, leading to quadratic runtime. &lt;strong&gt;Possible Impact&lt;/strong&gt;: A malicious certificate provided by an attacker can result in excessive CPU and memory consumption, potentially causing denial-of-service conditions.&lt;/li&gt;
