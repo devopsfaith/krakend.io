@@ -29455,7 +29455,7 @@ The adoption of OpenTelemetry by these platforms indicates a strong industry shi
 
 OpenTelemetry (for short **OTEL**) offers a comprehensive, unified, and **vendor-neutral** approach to collecting and managing telemetry data, providing enhanced observability and deeper insights into application performance and behavior. It’s particularly beneficial in complex, distributed, and cloud-native environments.
 
-OpenTelemetry captures detailed, contextual information about the operation of your applications. This includes not only **metrics** but also **tracing data** that shows the full lifecycle of requests as they flow through your systems, providing insights into performance bottlenecks, latency issues, and error diagnostics.
+OpenTelemetry captures detailed, contextual information about the operation of your applications. This includes not only **metrics** but also **tracing data** that shows the full lifecycle of requests as they flow through your systems, providing insights into performance bottlenecks, latency issues, and error diagnostics. This OpenTelemetry **does not** support pushing logs. See [logging](/docs/logging/), [GELF](/docs/logging/graylog-gelf/), or [Logstash](/docs/logging/logstash/) instead.
 
 It supports auto-instrumentation and can be integrated seamlessly into cloud-native deployments, making it easier to monitor these dynamic environments.
 
@@ -32818,7 +32818,7 @@ While another configuration customizing the different Log types using variables 
       "stdout": true,
       "format": "default",
       "access_log_format": "custom",
-      "access_log_custom_format": "[AccessLog] %{prefix} %{time} | %{statusCode} | %{latencyMs} | %{clientIP} | %{method} %{scheme}://%{host}%{path}?%{query} %{query.bar} %{header.Authorization} %{jwt.sub}\n",
+      "access_log_custom_format": "[AccessLog] %{prefix} %{time} | %{statusCode} | %{latencyMs} | %{clientIP} | %{method} %{scheme}://%{host}%{path} %{query.bar} %{header.Authorization} %{jwt.sub}\n",
       "backend": {
         "prefix": ">>> ",
         "custom_format": "%{prefix}%{time} | %{statusCode} | %{latencyMs} | %{method} %{host} %{path}\n"
@@ -32994,7 +32994,7 @@ Or you could have a log that includes the JWT subject, the authorization header,
       "syslog": false,
       "stdout": true,
       "access_log_format": "custom",
-      "access_log_custom_format": "[AccessLog] %{prefix} %{time} | %{statusCode} | %{latencyMs} | %{clientIP} | %{method} %{scheme}://%{host}%{path}?%{query} %{query.foo} %{header.Authorization} %{jwt.sub}\n"
+      "access_log_custom_format": "[AccessLog] %{prefix} %{time} | %{statusCode} | %{latencyMs} | %{clientIP} | %{method} %{scheme}://%{host}%{path} %{query.foo} %{header.Authorization} %{jwt.sub}\n"
     }
   }
 }
@@ -33562,7 +33562,7 @@ Or you could have a log that includes the JWT subject, the authorization header 
       "syslog": false,
       "stdout": true,
       "access_log_format": "custom",
-      "access_log_custom_format": "[AccessLog] %{prefix} %{time} | %{statusCode} | %{latencyMs} | %{clientIP} | %{method} %{scheme}://%{host}%{path}?%{query} %{query.bar} %{header.Authorization} %{jwt.sub}\n"
+      "access_log_custom_format": "[AccessLog] %{prefix} %{time} | %{statusCode} | %{latencyMs} | %{clientIP} | %{method} %{scheme}://%{host}%{path} %{query.bar} %{header.Authorization} %{jwt.sub}\n"
     }
   }
 }
