@@ -6076,7 +6076,7 @@ In connection with working as a no-op endpoint, a few remarks worth noticing:
 
 All functionality that is declared at the `extra_config` of the service level (config’s root) and all functionality inside a `backend` works normally.
 
-Components loaded in the `endpoint`’s `extra_config` are **not loaded**, except for the following list that still work:
+Components loaded in the `endpoint`’s `extra_config` or related with endpoint’s HTTP functionality are **not loaded**, including [Dynamic Routing](/docs/enterprise/endpoints/dynamic-routing/) evaluation. The following list are the **exceptions that still work**:
 
 - Security Policies (except for HTTP)
 - JMESpath
@@ -6091,6 +6091,10 @@ Components loaded in the `endpoint`’s `extra_config` are **not loaded**, excep
 - Static responses
 
 Any other HTTP-related components loaded in the `extra_config` are ignored. For instance, you cannot apply JWT validation to all connections intercepted by a catchall, so you should move this logic to a [wildcard](/docs/enterprise/endpoints/wildcard/) instead.
+
+Catchall and Dynamic Routing
+
+Catchall functionality doesn’t execute endpoint’s HTTP-related components, meaning that **declaring Dynamic Routing patterns within a catchall endpoint won’t work** and might produce errors.
 
 
 
