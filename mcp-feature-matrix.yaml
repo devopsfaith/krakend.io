@@ -1,0 +1,872 @@
+sections:
+  - name: CI/CD, GitOps, and development tools
+    description: |
+      Command line tools to integrate in your GitOps pipelines.
+    features:
+    - name: KrakenD Designer
+      description: A visual tool to generate KrakenD configurations
+      ee: false
+      url: https://designer.krakend.io/
+    - name: Audit configuration
+      description: Check security and best practices recommendations of your configuration before going live
+      ee: false
+      url: /docs/enterprise/configuration/audit/
+    - name: Syntax validation and linting
+      description: Validate configuration files (syntax, linting, route declaration testing)
+      ee: false
+      url: /docs/enterprise/configuration/check/
+    - name: Flexible configuration
+      description: Declare the configuration using templates and environment-specific values
+      ee: false
+      url: /docs/configuration/flexible-config/
+    - name: Extended flexible configuration
+      description: Extends the flexible config adding `$ref`, nested directories, multiple settings file formats, conflict handling, debugging and more.
+      ee: true
+      url: /docs/enterprise/configuration/flexible-config/
+    - name: Multi-format configuration
+      description: Write the configuration in JSON, YAML, TOML, HCL and more.
+      ee: false
+      url: /docs/enterprise/configuration/supported-formats/
+    - name: Hot-reload in development
+      description: Speed up development with a specific container with hot-reload functionality
+      ee: false
+      url: /docs/enterprise/developer/hot-reload/
+    - name: IDE integration
+      description: Automatic validation as you type, showing documentation while hovering an attribute, explanation of errors, and autocompletion of properties
+      ee: false
+      url: /docs/enterprise/developer/ide-integration/
+    - name: Plugin builder
+      description: A ready-to-use image to build your custom Go plugins and embed them in KrakenD
+      ee: false
+      url: /docs/extending/writing-plugins/
+    - name: Plugin generator
+      description: A plugin generator that builds all the boilerplate necessary to develop your plugins
+      ee: true
+      url: /docs/enterprise/extending/generating-plugins/
+    - name: End-to-end testing tool
+      description: Integrated tool to write integration tests to launch in your pipeline and check that the functionality works correctly
+      ee: true
+      url: /docs/enterprise/developer/integration-tests/
+    - name: OpenAPI importer
+      namespaces:
+        - documentation/openapi
+      description: Import configurations from OpenAPI + Mocking server generation (Swagger v2 & OpenAPI 3)
+      ee: true
+      url: /docs/enterprise/developer/openapi/
+    - name: OpenAPI exporter
+      namespaces:
+        - documentation/openapi
+      description: Generate OpenAPI documentation from the KrakenD configuration
+      ee: true
+      url: /docs/enterprise/developer/openapi/
+    - name: OpenAPI server
+      namespaces:
+        - documentation/openapi
+      description: Start an API gateway from an OpenAPI definition file.
+      ee: true
+      url: /docs/enterprise/developer/openapi/
+    - name: Postman
+      namespaces:
+        - documentation/postman
+      description: Generate Postman collections during the CI/CD stage
+      ee: true
+      url: /docs/enterprise/developer/postman/
+    - name: DOT image generator
+      description: Generate Graphviz images displaying your configuration logic
+      ee: true
+      url: /docs/enterprise/developer/config2dot/
+    - name: Dump to disk
+      description: Dump requests and responses into a files
+      ee: true
+      url: /docs/enterprise/backends/http-logger/
+  - name: Request and response transformation
+    description: |
+      KrakenD goes beyond the simple proxying to service and offers numerous ways to work with multiple data sources simultaneously.
+    features:
+      - name: Backend For Frontend
+        description: Create an API consumption layer that provides aggregated "views" of several services and returns only the needed data
+        ee: false
+        url: /docs/enterprise/design/backend-for-frontend/
+      - name: Aggregation
+        description: Create endpoints with data views aggregation from multiple APIs or services simultaneously
+        url: /docs/enterprise/endpoints/response-manipulation/#aggregation-and-merging
+      - name: Data transformation
+        description: Filter, group, capture, rename, inject, and more on responses from services.
+        ee: false
+        url: /docs/enterprise/endpoints/response-manipulation/#filtering
+      - name: HTTP Cache headers (for CDN)
+        description: Set automatically cache headers for CDN or intermediate caching
+        ee: false
+        url: /docs/enterprise/service-settings/http-server-settings/#cache_ttl
+      - name: Automatic output encoding
+        description: Automatic output encoding and translation (XML, JSON, RSS, noop)
+        ee: false
+        url: /docs/enterprise/endpoints/content-types/
+      - name: Faster JSON decoding (fastjson)
+        description: A speed-optimized JSON decoder for larger datasets and complex objects
+        ee: true
+        url: /docs/enterprise/backends/supported-encodings/
+      - name: Flatmap
+        namespaces:
+          - proxy
+        description: Manipulate arrays and flatten objects from the response
+        ee: false
+        url: /docs/enterprise/backends/flatmap/
+      - name: Gzip compression
+        description: Ouput compression of responses in gzip format
+        ee: true
+        url: /docs/enterprise/service-settings/gzip/
+      - name: Request manipulation using go templates (body generator)
+        namespaces:
+          - modifier/body-generator
+          - modifier/request-body-generator
+        description: Craft the body you send to a backend through templates, and injecting other values from the user request such as the original body, headers, querystrings or URL parameters.
+        ee: true
+        url: /docs/enterprise/backends/body-generator/
+      - name: Response manipulation using go templates
+        namespaces:
+          - modifier/response-body-generator
+        description: Completely manipulate the response of a backend using Go templates before it is returned to the end-user.
+        ee: true
+        url: /docs/enterprise/backends/response-body-generator/
+      - name: Response manipulation with query language
+        namespaces:
+          - modifier/jmespath
+        description: Select, slice, filter, map, project, flatten, sort, and all sorts of operations through a javascript-like query language
+        ee: true
+        url: /docs/enterprise/endpoints/jmespath/
+      - name: Regular expression replacements
+        namespaces:
+          - modifier/response-body
+        description: Modify the response of your services with regular expressions.
+        ee: true
+        url: /docs/enterprise/endpoints/content-replacer/
+      - name: Conditional request and responses (CEL)
+        namespaces:
+          - validation/cel
+        description: Add validation rules to continue with the request or to return the response
+        ee: false
+        url: /docs/enterprise/endpoints/common-expression-language-cel/
+      - name: Lua scripting
+        namespaces:
+          - modifier/lua-proxy
+          - modifier/lua-endpoint
+          - modifier/lua-backend
+        description: Transform requests and responses with Lua scripts
+        ee: false
+        url: /docs/enterprise/endpoints/lua/
+      - name: Lua advanced helpers
+        namespaces:
+          - modifier/lua-proxy
+          - modifier/lua-endpoint
+          - modifier/lua-backend
+        description: Advanced helpers that run on Go's native implementation rather than Lua for better performance and extended functionality.
+        ee: true
+        url: /docs/enterprise/endpoints/lua-advanced-helpers/
+      - name: Custom Go plugins
+        description: Write your own Go plugins and side-load them with KrakenD to extend the functionality
+        ee: false
+        url: /docs/enterprise/extending/
+      - name: JSON Schema response validation
+        namespaces:
+          - validation/response-json-schema
+        description: Ensure the response passes a JSON schema validation before returning it to the end-user
+        ee: true
+        url: /docs/enterprise/endpoints/response-schema-validator/
+      - name: JSON Schema request validation
+        namespaces:
+          - validation/json-schema
+        description: Validate the request body against a JSON schema
+        ee: false
+        url: /docs/enterprise/endpoints/json-schema/
+      - name: Martian (DSL)
+        namespaces:
+          - modifier/martian
+        description: Statically transform requests and responses through a simple DSL definition
+        ee: false
+        url: /docs/enterprise/backends/martian/
+      - name: Multistrategy error handling
+        namespaces:
+          - backend/http
+        description: Override the policy of returning backend error details with different strategies (delegated, graceful degradation, forward, interpretation)
+        ee: false
+        url: /docs/enterprise/backends/detailed-errors/
+      - name: Cache
+        namespaces:
+          - qos/http-cache
+        description: Store backend responses in memory to reduce the number of calls a user sends to the origin, reducing the network traffic and alleviating your services' pressure.
+        ee: false
+        url: /docs/enterprise/backends/caching/
+      - name: Sequential proxy
+        namespaces:
+          - proxy
+        description: Use the ouput of a previous call to be chained in the next call.
+        ee: false
+        url: /docs/enterprise/endpoints/sequential-proxy/
+      - name: Mocked data
+        namespaces:
+          - proxy
+        description: Add static/stub data as replacement of failing responses or while you are scaffolding your project.
+        ee: false
+        url: /docs/enterprise/endpoints/static-proxy/
+      - name: Workflows
+        namespaces:
+          - workflow
+        description: Create nested and dependent API consumption to complete a job
+        ee: true
+        url: /docs/enterprise/endpoints/workflows/
+  - name: Security
+    description: |
+      KrakenD is secure by default, and has a [zero-trust approach](/docs/design/zero-trust/). It also allows you to add and modify multiple options to protect you from hacking attempts.
+    features:
+      - name: FIPS-140-2 cryptography module
+        description: Binary with a FIPS 140-2 validated encryption module available
+        ee: true
+        url: /docs/enterprise/security/fips-140/
+      - name: Security Policies Engine
+        namespaces:
+          - security/policies
+        description: A powerful engine that evaluates requests, responses and tokens during runtime and allows you to perform business validation logic, ABAC, and RBAC.
+        ee: true
+        url: /docs/enterprise/security-policies/
+      - name: TLS for HTTPS and HTTP/2
+        description: TLS configuration secured by default to TLS 1.3. Multiple certificates are possible.
+        ee: false
+        url: /docs/enterprise/service-settings/tls/
+      - name: Zero-trust parameter forwarding
+        description: Explicit configuration for cookie, query-string, and headers forwarding
+        ee: false
+        url: /docs/enterprise/endpoints/parameter-forwarding/
+      - name: Restrict connections by host
+        namespaces:
+          - security/http
+        description: Define a list of hosts that KrakenD should accept requests to.
+        ee: false
+        url: /docs/enterprise/service-settings/security/#restrict-connections-by-host
+      - name: Clickjacking protection
+        namespaces:
+          - security/http
+        description: OWASP recommendations that add a frame-breaking strategy.
+        ee: false
+        url: /docs/enterprise/service-settings/security/#clickjacking-protection
+      - name: MIME-Sniffing prevention
+        namespaces:
+          - security/http
+        description: Prevent the user's browser from interpreting files as something else than declared by the content type
+        ee: false
+        url: /docs/enterprise/service-settings/security/#mime-sniffing-prevention
+      - name: Cross-site scripting (XSS) protection
+        namespaces:
+          - security/http
+        description: Enables the Cross-site scripting (XSS) filter in the user's browser.
+        ee: false
+        url: /docs/enterprise/service-settings/security/#cross-site-scripting-xss-protection
+      - name: HTTP Strict Transport Security (HSTS)
+        namespaces:
+          - security/http
+        description: Web security policy mechanism to protect websites against protocol downgrade attacks and cookie hijacking
+        ee: false
+        url: /docs/enterprise/service-settings/security/#http-strict-transport-security-hsts
+      - name: HTTP Public Key Pinning (HPKP)
+        namespaces:
+          - security/http
+        description: Resist impersonation by attackers using mis-issued or otherwise fraudulent certificates.
+        ee: false
+        url: /docs/enterprise/service-settings/security/#http-public-key-pinning-hpkp
+      - name: CORS
+        namespaces:
+          - security/cors
+        description: Cross-origin resource sharing
+        ee: false
+        url: /docs/enterprise/service-settings/cors/
+  - name: Routing
+    description: Options to work with routing
+    features:
+    - name: Noop proxy
+      description: Proxy requests to a single backend without manipulation and preserving the response as is.
+      ee: false
+      url: /docs/enterprise/endpoints/no-op/
+    - name: Traffic shadowing/mirroring
+      namespaces:
+        - proxy
+      description: Test new backends in production by sending them copies of the traffic but ignore their responses.
+      ee: false
+      url: /docs/enterprise/backends/shadow-backends/
+    - name: JWT claim-based routing
+      description: JSON Web Token processing to assemble the final upstream URL
+      ee: false
+      url: /docs/enterprise/endpoints/dynamic-routing/#routing-based-on-a-jwt-claim
+    - name: Catchall (Fallback upstream)
+      description: Receives all the traffic from routes and methods that do not resolve to any of the other existing endpoints in the configuration.
+      ee: true
+      url: /docs/enterprise/endpoints/catch-all/
+    - name: Header and query string based dynamic routing
+      description: Header and query string processing to assemble the final upstream URL
+      ee: true
+      url: /docs/enterprise/endpoints/dynamic-routing/
+    - name: Conditional routing
+      namespaces:
+        - backend/conditional
+      description: Route requests to one or multiple backends based on request headers or custom policy expressions.
+      ee: true
+      url: /docs/enterprise/backends/conditional/
+    - name: Wildcard routes
+      description: "Create a single endpoint for a group of URLs sharing a common pattern (e.g.: `/foo/*`)."
+      ee: true
+      url: /docs/enterprise/endpoints/wildcard/
+    - name: URL rewrite
+      namespaces:
+        - plugin/http-server
+      description: Define a set of URLs or regular expressions that are handled by an endpoint
+      ee: true
+      url: /docs/enterprise/endpoints/url-rewrite/
+    - name: Virtual Hosts
+      namespaces:
+        - server/virtualhost
+      description: Run different configurations of KrakenD endpoints based on the host accessing the server.
+      ee: true
+      url: /docs/enterprise/service-settings/virtual-hosts/
+    - name: Configurable client redirects
+      namespaces:
+        - backend/http/client
+      description: Allow the end-user to follow redirects set by services instead of the gateway resolving them.
+      ee: true
+      url: /docs/enterprise/backends/client-redirect/
+  - name: Authorization and authentication
+    description: |
+      Authorization, authentication and related functionalities to protect your endpoints.
+    features:
+    - name: JWT, OpenID Connect, OAuth2
+      description: Authorize tokens coming from third parties or your company identity provider, and apply business logic rules.
+      ee: false
+      url: /docs/enterprise/authorization/jwt-overview/
+    - name: JWT token signing
+      namespaces:
+        - auth/signer
+      description: A wrapper for your existing login endpoint that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.
+      ee: false
+      url: /docs/enterprise/authorization/jwt-signing/
+    - name: Client credentials
+      namespaces:
+        - auth/client-credentials
+      description: OAuth 2.0 Client Credentials Grant to automatically request access tokens before reaching the backend's protected resources.
+      ee: false
+      url: /docs/enterprise/authorization/client-credentials/
+    - name: Basic authentication
+      namespaces:
+        - auth/basic
+      description: Authentication of requests based on .htpasswd files
+      ee: true
+      url: /docs/enterprise/authentication/basic-authentication/
+    - name: API keys
+      namespaces:
+        - auth/api-keys
+      description: Authenticate users with API keys in headers or query strings
+      ee: true
+      url: /docs/enterprise/authentication/api-keys/
+    - name: Token revocation bloom filter
+      namespaces:
+        - auth/revoker
+      description: An RPC listener that allows you to revoke JWT tokens
+      ee: false
+      url: /docs/enterprise/authorization/revoking-tokens/
+    - name: Revoke Server
+      namespaces:
+        - auth/revoker
+      description: An API to revoke tokens through all KrakenD nodes in a cluster
+      ee: true
+      url: /docs/enterprise/authentication/revoke-server/
+    - name: Multiple identity providers per endpoint
+      namespaces:
+        - plugin/http-server
+      description: Support validation of tokens originated in multiple identity providers, internal or external
+      ee: true
+      url: /docs/enterprise/authentication/multiple-identity-providers/
+    - name: mTLS
+      description: Mutual TLS authentication (mTLS) for authentication in business-to-business (B2B) applications where clients provide certificates to connect to KrakenD.
+      ee: false
+      url: /docs/enterprise/authorization/mutual-authentication/
+    - name: NTLM authentication
+      namespaces:
+        - auth/ntlm
+      description: NT Login Manager Authentication against Window backends like Microsoft Dynamics.
+      ee: true
+      url: /docs/enterprise/authentication/ntlm/
+    - name: Google GCP Authentication
+      namespaces:
+        - auth/gcp
+      description: Service-to-service authentication using Google Cloud service accounts
+      ee: true
+      url: /docs/enterprise/authentication/gcloud/
+    - name: AWS SigV4 Authentication
+      namespaces:
+        - auth/aws-sigv4
+      description: Service-to-service authentication using AWS SigV4 service accounts
+      ee: true
+      url: /docs/enterprise/authentication/aws-sigv4/
+  - name: AI Gateway
+    description: |
+      Integrations with AI and LLM models
+    features:
+    - name: AI Gateway
+      namespaces:
+        - ai/llm
+      description: Ability to connect endpoints to AI providers and models
+      ee: false
+      url: /docs/ai-gateway/
+    - name: AI Security
+      namespaces:
+        - ai/llm
+      description: From isolated authorization flows to data masking and exfiltration prevention
+      ee: false
+      url: /docs/ai-gateway/security/
+    - name: AI Budget Control
+      namespaces:
+        - ai/llm
+        - governance/quota
+      description: Granular token usage monitoring and enforcement to keep your AI expenses transparent and within budget
+      ee: true
+      url: /docs/enterprise/ai-gateway/budget-control/
+    - name: AI Governance
+      namespaces:
+        - ai/llm
+      description: Enforce compliance, security, and operational guardrails inline with AI traffic
+      ee: true
+      url: /docs/enterprise/ai-gateway/governance/
+    - name: Unified LLM interface and Prompt Templates
+      namespaces:
+        - ai/llm
+      description: Route to the right LLM, abstract the request and response interface
+      ee: true
+      url: /docs/enterprise/ai-gateway/unified-llm-interface/
+    - name: LLM Routing, Multi-Routing, and aggregation
+      namespaces:
+        - ai/llm
+        - backend/conditional
+      description: Distribute AI requests across one or multiple Large Language Model providers or instances
+      ee: true
+      url: /docs/enterprise/ai-gateway/llm-routing/
+    - name: OpenAI integration
+      namespaces:
+        - ai/llm
+      description: Use OpenAI's API without writing custom integration code
+      ee: true
+      url: /docs/enterprise/ai-gateway/openai/
+    - name: Google Gemini integration
+      namespaces:
+        - ai/llm
+      description: Use Google's Gemini API without writing custom integration code
+      ee: true
+      url: /docs/enterprise/ai-gateway/gemini/
+    - name: Mistral integration
+      namespaces:
+        - ai/llm
+      description: Use Mistral's API without writing custom integration code
+      ee: true
+      url: /docs/enterprise/ai-gateway/mistral/
+    - name: Anthropic integration
+      namespaces:
+        - ai/llm
+      description: Use Anthropic's API without writing custom integration code
+      ee: true
+      url: /docs/enterprise/ai-gateway/anthropic/
+  - name: Services Connectivity
+    description: |
+      Integrations with non-REST services
+    features:
+    - name: MCP Gateway
+      description: Expose an existing MCP server through KrakenD and add security, observability, and traffic management capabilities.
+      ee: false
+      url: /docs/enterprise/ai-gateway/mcp-gateway/
+    - name: MCP Server
+      namespaces:
+        - ai/mcp
+      description: Exposes any of your existing use cases as MCP tools so you can start to apply AI to any of the systems you have already. No external MCP server required.
+      ee: true
+      url: /docs/enterprise/ai-gateway/mcp-server/
+    - name: Protocol translation
+      description: Offer REST content while consuming other protocols from the services like AMQP, Kafka, NATS, gRPC to name a few
+      ee: false
+      url: /docs/enterprise/endpoints/#automatic-protocol-and-encoding-translation
+    - name: Streaming and Server Sent Events (SSE)
+      description: Enable streaming responses for any kind of content or files.
+      ee: true
+      url: /docs/enterprise/endpoints/streaming/
+    - name: gRPC Server
+      namespaces:
+        - grpc
+      description: Create a gRPC server even when you don't have any capable upstream gRPC backend, consuming regular HTTP content.
+      ee: true
+      url: /docs/enterprise/grpc/server/
+    - name: gRPC Client
+      namespaces:
+        - grpc
+        - backend/grpc
+      description: Connect to your gRPC services by providing the .proto files
+      ee: true
+      url: /docs/enterprise/grpc/
+    - name: Static web server
+      namespaces:
+        - server/static-filesystem
+        - backend/static-filesystem
+      description: Enable static web server capabilities to serve javascript applications, CSS, images, etc along with its API.
+      ee: true
+      url: /docs/enterprise/endpoints/serve-static-content/
+    - name: Service discovery
+      description: Connect to services using weighted DNS SRV records
+      ee: false
+      url: /docs/enterprise/backends/service-discovery/
+    - name: GraphQL
+      namespaces:
+        - backend/graphql
+      description: REST to GraphQL transformation and GraphQL gateway as a proxy
+      ee: false
+      url: /docs/enterprise/backends/graphql/
+    - name: Load Balancing
+      description: Balancing egress traffic (to upstream)
+      ee: false
+      url: /docs/enterprise/throttling/load-balancing/
+    - name: Async Agents
+      description: Implement event-driven architectures with Async agents, which react to new events in queues and push data to your backends or webhooks.
+      ee: false
+      url: /docs/enterprise/async/
+    - name: Lambda functions
+      namespaces:
+        - backend/lambda
+      description: Invoke Amazon Lambda functions on a KrakenD endpoint call
+      ee: false
+      url: /docs/enterprise/backends/lambda/
+    - name: SOAP integration
+      namespaces:
+        - backend/soap
+      description: REST to SOAP and request forgery and manipulation to efortlessly modernize legacy services
+      ee: true
+      url: /docs/enterprise/backends/soap/
+    - name: WebSockets multiplexer
+      namespaces:
+        - websocket
+      description: WebSocket Protocol (RFC-6455) to enable two-way multiplexed communication between multiple clients and a single backend host through the API gateway.
+      ee: true
+      url: /docs/enterprise/websockets/
+    - name: Direct WebSockets
+      namespaces:
+        - websocket
+      description: WebSocket proxy to connect clients to backend services directly, keeping a 1:1 relationship.
+      ee: true
+      url: /docs/enterprise/websockets/#direct-communication
+    - name: Intermediary web proxy
+      namespaces:
+        - backend/http/client
+      description: Connections to services through an HTTP corporate proxy
+      ee: true
+      url: /docs/enterprise/backends/http-proxy/
+    - name: AMQP/RabbitMQ Consumer
+      namespaces:
+        - backend/amqp/consumer
+      description: Retrieve messages from a queue and deliver them to the user as a REST endpoint
+      ee: false
+      url: /docs/enterprise/backends/amqp-consumer/
+    - name: AMQP/RabbitMQ Producer
+      namespaces:
+        - backend/amqp/producer
+      description: Publish a REST endpoint that sends messages to a queue automatically.
+      ee: false
+      url: /docs/enterprise/backends/amqp-producer/
+    - name: Azure Service Bus Topic and Subscription
+      namespaces:
+        - backend/pubsub/publisher
+        - backend/pubsub/subscriber
+      description: Enable message queuing and durable publish/subscribe messaging in Azure
+      ee: false
+      url: /docs/enterprise/backends/pubsub/#azure-service-bus-topic-and-subscription
+    - name: Google Cloud PubSub
+      namespaces:
+        - backend/pubsub/publisher
+        - backend/pubsub/subscriber
+      description: Send and receive messages between independent applications using GCP PubSub
+      ee: false
+      url: /docs/enterprise/backends/pubsub/#gcp-pubsub
+    - name: NATS
+      namespaces:
+        - backend/pubsub/publisher
+        - backend/pubsub/subscriber
+      description: Connect to the high performance open source messaging system NATS
+      ee: false
+      url: /docs/enterprise/backends/pubsub/#nats
+    - name: Apache Kafka
+      namespaces:
+        - backend/pubsub/publisher
+        - backend/pubsub/subscriber
+      description: Enable the distributed streaming platform Apache Kafka
+      ee: false
+      url: /docs/enterprise/backends/pubsub/#kafka
+    - name: Amazon SNS
+      namespaces:
+        - backend/pubsub/publisher
+        - backend/pubsub/subscriber
+      description:  Enable exchanging data with topics, push-based, many-to-many in AWS SNS
+      ee: false
+      url: /docs/enterprise/backends/pubsub/#aws-sns
+    - name: Amazon SQS
+      namespaces:
+        - backend/pubsub/publisher
+        - backend/pubsub/subscriber
+      description: Use queues from the managed Amazon Simple Queue Service (SQS)
+      ee: false
+      url: /docs/enterprise/backends/pubsub/#aws-sqs
+  - name: Traffic Management
+    description: |
+      KrakenD offers several ways to protect the usage of your infrastructure that might act at very different levels.
+    features:
+    - name: Concurrent calls
+      description: Improve the response times and decrease error rates by requesting in parallel the same information multiple times. Backend pressure in exchange for better response times.
+      ee: false
+      url: /docs/enterprise/endpoints/concurrent-requests/
+    - name: Circuit breaker
+      namespaces:
+        - qos/circuit-breaker
+      description: The circuit breaker prevents sending more traffic to a failing backend until it recovers, alleviating its pressure under challenging conditions.
+      ee: false
+      url: /docs/enterprise/backends/circuit-breaker/
+    - name: Customizable HTTP Circuit breaker
+      namespaces:
+        - qos/circuit-breaker/http
+      description: Allows to customize which HTTP status codes are valid responses, even if they are not 200 to avoid opening the circuit.
+      ee: true
+      url: /docs/enterprise/backends/http-circuit-breaker/
+    - name: Spike Arrest and Burst
+      description: The Spike Arrest policy ensures a minimum time between different requests. KrakenD will enable Spike Arrest after exhausting the burst capacity of the rate-limiting features.
+      ee: false
+      url: /docs/enterprise/throttling/spike-arrest/
+    - name: Bot detector
+      namespaces:
+        - security/bot-detector
+      description: Discard traffic from bot patterns
+      ee: false
+      url: /docs/enterprise/throttling/botdetector/
+    - name: Granular timeouts
+      description: Define the default timeout but per-endpoint timeouts, idle connections, and other settings.
+      ee: false
+      url: /docs/enterprise/throttling/timeouts/
+    - name: Service rate limit
+      namespaces:
+        - qos/ratelimit/service
+      description: Stateless rate limit to control the throughput of users against the API.
+      ee: true
+      url: /docs/enterprise/service-settings/service-rate-limit/
+    - name: Tiered rate limit
+      namespaces:
+        - qos/ratelimit/tiered
+      description: Rate limit based on tiers/plans, applying different limits depending on the subscription type of the user.
+      ee: true
+      url: /docs/enterprise/service-settings/tiered-rate-limit/
+    - name: Endpoint rate limit
+      namespaces:
+        - qos/ratelimit/router
+      description: Stateless rate limit to control the throughput of users against specific endpoints.
+      ee: false
+      url: /docs/enterprise/endpoints/rate-limit/
+    - name: Stateful rate limit (Redis backed)
+      namespaces:
+        - qos/ratelimit/service/redis
+      description: A Redis database store to centralize all KrakenD node counters.
+      ee: true
+      url: /docs/enterprise/throttling/global-rate-limit/
+    - name: Proxy rate limit
+      namespaces:
+        - qos/ratelimit/proxy
+      description: Restrict the connections KrakenD makes to your backends, independently of users' acrivity.
+      ee: false
+      url: /docs/enterprise/backends/rate-limit/
+    - name: IP Filtering
+      namespaces:
+        - plugin/http-server
+      description: Restrict the traffic to specific to all endpoints based on IP address and CIDR blocks.
+      ee: true
+      url: /docs/enterprise/throttling/ipfilter/
+    - name: Maxmind's GeoIP
+      namespaces:
+        - plugin/http-server
+      description: Forward requests to your services with enrichment coming from Maxmind's GeoIP2 City database
+      ee: true
+      url: /docs/enterprise/endpoints/geoip/
+  - name: Observability
+    description: |
+      Logging, tracing and metrics.
+    features:
+    - name: OpenTelemetry
+      namespaces:
+        - telemetry/opentelemetry
+      description: Push KrakenD metrics and traces to any thrid party supporting OpenTelemetry
+      ee: false
+    - name: OpenTelemetry SaaS authentication
+      namespaces:
+        - telemetry/opentelemetry-security
+      description: Push KrakenD metrics and traces directly to SaaS providers without a local collector
+      ee: true
+      url: /docs/enterprise/telemetry/opentelemetry-security/
+    - name: Granular OpenTelemetry
+      namespaces:
+        - telemetry/opentelemetry
+      description: Override OpenTelemetry behavior on specific endpoints and backends
+      ee: false
+    - name: Exporter Override for OpenTelemetry
+      namespaces:
+        - telemetry/opentelemetry
+      description: Change OpenTelemetry exporters for specific endpoints
+      ee: true
+      url: /docs/enterprise/telemetry/opentelemetry-by-endpoint/
+    - name: Logging
+      namespaces:
+        - telemetry/logging
+      description: Choose where and how to log the gateway activity
+      ee: false
+      url: /docs/logging/
+    - name: Advanced Logging
+      namespaces:
+        - telemetry/logging
+      description: Set custom patterns for logging or add additional parametrizable logging at the backend level
+      ee: true
+      url: /docs/enterprise/logging/
+    - name: Graylog/GELF logging
+      namespaces:
+        - telemetry/gelf
+      description: Send structured events in GELF format to your Graylog Cluster
+      ee: false
+      url: /docs/enterprise/logging/graylog-gelf/
+    - name: Custom access log
+      namespaces:
+        - telemetry/logging
+      description: Define field by field how your access log should look like
+      ee: true
+      url: /docs/enterprise/logging/#customizing-the-access-log
+    - name: Extended metrics
+      namespaces:
+        - telemetry/metrics
+      description: Collect extended metrics to push them to InfluxDB or expose them in a /__stats/ endpoint for you to build a customized dashboard.
+      ee: false
+      url: /docs/enterprise/telemetry/extended-metrics/
+    - name: Jaeger tracing
+      namespaces:
+        - telemetry/opentelemetry
+      description: Submit spans to a Jaeger Collector (HTTP) or Jaeger Agent (UDP) automatically.
+      ee: false
+      url: /docs/enterprise/telemetry/jaeger/
+    - name: AWS X-Ray metrics and traces
+      namespaces:
+        - telemetry/opencensus
+      description: Push to AWS X-RAY end-to-end view of requests as they travel through your application, and the map of your application's underlying components.
+      ee: false
+      url: /docs/enterprise/telemetry/xray/
+    - name: Zipkin tracing
+      namespaces:
+        - telemetry/opencensus
+      description: Export traces to Zipkin to troubleshoot latency problems in service architectures.
+      ee: false
+      url: /docs/enterprise/telemetry/zipkin/
+    - name: Elastic Logstash
+      namespaces:
+        - telemetry/logging
+        - telemetry/logstash
+      description: Application logs in JSON format
+      ee: false
+      url: /docs/enterprise/logging/logstash/
+    - name: ELK Stack dashboard
+      namespaces:
+        - telemetry/logging
+        - telemetry/gelf
+      description: Have KrakenD pushing logs to your Elastic server and visualize them through a Kibana dashboard.
+      url: /docs/enterprise/logging/elk-integration/
+    - name: Prometheus
+      namespaces:
+        - telemetry/opentelemetry
+      description: Expose data to Prometheus, and publish a /metrics endpoint in the selected port.
+      ee: false
+      url: /docs/enterprise/telemetry/prometheus/
+    - name: InfluxDB metrics
+      namespaces:
+        - telemetry/opentelemetry
+        - telemetry/influx
+      description: Export metrics and events to InfluxDB
+      ee: false
+      url: /docs/enterprise/telemetry/influxdb/
+    - name: Grafana Dashboard
+      namespaces:
+        - telemetry/opentelemetry
+        - telemetry/influx
+        - telemetry/metrics
+      description: The preconfigured Grafana dashboard for KrakenD offers valuable information to understand the performance of your services and detect anomalies in the service.
+      ee: false
+      url: /docs/enterprise/telemetry/grafana/
+    - name: Google Cloud's operation suite
+      namespaces:
+        - telemetry/opencensus
+      description: Export metrics and traces to Google Cloud
+      ee: false
+      url: /docs/enterprise/telemetry/stackdriver/
+    - name: Datadog
+      namespaces:
+        - telemetry/opentelemetry
+      description: Push the gateway activity to Datadog, both stats and traces.
+      ee: false
+      url: /docs/enterprise/telemetry/datadog/
+    - name: Auth0/Okta
+      namespaces:
+        - auth/validator
+      description: End-users validation, machine-to-machine, ot gateway-to-machine communication using Auth0.
+      ee: false
+      url: /docs/enterprise/authorization/auth0/
+    - name: Keycloak
+      namespaces:
+        - auth/validator
+      description: The Keycloak integration allows one of the many possible OpenID Connect different security options available in KrakenD.
+      ee: false
+      url: /docs/enterprise/authorization/keycloak/
+    - name: Azure Active Directory
+      namespaces:
+        - auth/validator
+      description: You can use Azure Active Directory and protect endpoints with its JWT integration.
+      ee: false
+      url: /docs/enterprise/authorization/jwt-validation/
+    - name: NewRelic (through OpenTelemetry)
+      namespaces:
+        - telemetry/opentelemetry
+      description: OpenSource users can push metrics and traces to NewRelic through OpenTelemetry, although NewRelic has limitations on the recognized data types (e.g., histograms).
+      ee: false
+      url: /docs/telemetry/opentelemetry/
+    - name: NewRelic (native SDK)
+      namespaces:
+        - auth/newrelic
+      description: NewRelic integration with a custom implementation using the official NewRelic SDK. This is the easiest to setup (just declare an API key) and richest in data option for NewRelic users
+      ee: true
+      url: /docs/enterprise/telemetry/newrelic/
+    - name: Azure OpenTelemetry Collector
+      namespaces:
+        - telemetry/opentelemetry
+      description: The gateway sends all the traces to a local OpenTelemetry Collector that pushes all the data to your Application Insights on Azure Monitor.
+      ee: false
+      url: /docs/enterprise/telemetry/azure/
+  - name: API Governance and API Monetization
+    description: |
+      Monetize API usage with a robust analytics and billing platform, and govern the usage of your APIs
+    features:
+    - name: API Monetization (Moesif integration)
+      namespaces:
+        - telemetry/moesif
+      description: Monitor API usage and bill customers for their usage by directly connecting Stripe or similar tools.
+      ee: true
+      url: /docs/enterprise/governance/moesif/
+    - name: API Governance
+      namespaces:
+        - telemetry/opentelemetry
+      description: Set usage rules on your Moesif dashboard and let KrakenD react in real-time and cut users that are exceeding their quota.
+      ee: true
+      url: /docs/enterprise/governance/moesif/
+    - name: Token Quota Enforcement and Quota Management
+      namespaces:
+        - redis
+        - governance/quota
+        - governance/processors
+      description: Set limits on the number of requests or token usage for each user or client. Valid both for Monetization and LLM cost control.
+      ee: true
+      url: /docs/enterprise/governance/quota/
