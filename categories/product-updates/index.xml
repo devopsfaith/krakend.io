@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Product Updates on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/product-updates/</link><description>Recent content in Product Updates on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 16 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/product-updates/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.12.1 and EE 2.12.3 update released</title><link>https://www.krakend.io/blog/krakend-2.12.3-ee-2.12.1-ce-release-notes/</link><pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.12.3-ee-2.12.1-ce-release-notes/</guid><description>&lt;p&gt;This minor release of KrakenD Community Edition and Enterprise Edition is a security fix bringing all patches from Go 1.25.6 and &lt;code&gt;golang.org/x/crypto&lt;/code&gt; package.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Product Updates on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/product-updates/</link><description>Recent content in Product Updates on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 05 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/product-updates/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD EE 2.12.4 update released</title><link>https://www.krakend.io/blog/krakend-ee-2.12.4-release-notes/</link><pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-ee-2.12.4-release-notes/</guid><description>&lt;p&gt;The release of KrakenD Enterprise 2.12.4 upgrades the Go runtime to version 1.25.7, directly addressing two CVEs discovered in Go&amp;rsquo;s internals&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.12"&gt;🚀 Summary of changes for EEv2.12.4 (patch)&lt;/h2&gt;
+ &lt;p&gt;Recommended security upgrade addressing several vulnerabilities (by the Go team)&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Go to 1.25.7 addressing several CVEs with disclosed descriptions:&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="flex items-start"&gt;
+ &lt;p class="ml-5 my-2 text-white"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/76697"&gt;CVE-2025-61732&lt;/a&gt; A discrepancy between how Go and C/C++ comments were parsed allowed for code smuggling into the resulting cgo binary&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/77217"&gt;CVE-2025-68121&lt;/a&gt; Config.GetConfigForClient is documented to use the original Config&amp;rsquo;s session ticket keys unless explicitly overridden. This can cause unexpected behavior if the returned Config modifies authentication parameters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</description></item><item><title>KrakenD CE 2.12.1 and EE 2.12.3 update released</title><link>https://www.krakend.io/blog/krakend-2.12.3-ee-2.12.1-ce-release-notes/</link><pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.12.3-ee-2.12.1-ce-release-notes/</guid><description>&lt;p&gt;This minor release of KrakenD Community Edition and Enterprise Edition is a security fix bringing all patches from Go 1.25.6 and &lt;code&gt;golang.org/x/crypto&lt;/code&gt; package.&lt;/p&gt;
 
 
 
