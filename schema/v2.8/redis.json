@@ -11,25 +11,18 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "name",
-          "address"
-        ],
+        "required": [ "name", "address" ],
         "properties": {
           "address": {
             "title": "Address",
             "description": "The Redis host where you want to connect using the format `host:port`.",
-            "examples": [
-              "shared.redis.example.com"
-            ],
+            "examples": [ "shared.redis.example.com" ],
             "type": "string"
           },
           "client_name": {
             "title": "Client name",
             "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
-            "examples": [
-              "krakend_pool"
-            ],
+            "examples": [ "krakend_pool" ],
             "type": "string"
           },
           "conn_max_idle_time": {
@@ -98,10 +91,7 @@
           "name": {
             "title": "Connection name",
             "description": "The connection pool name. This is an arbitrary name used to reference this connection in other parts of the configuration needing Redis.",
-            "examples": [
-              "shared_instance",
-              "Redis_for_ratelimit"
-            ],
+            "examples": [ "shared_instance", "Redis_for_ratelimit" ],
             "type": "string"
           },
           "opentelemetry": {

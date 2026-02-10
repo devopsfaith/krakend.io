@@ -34,10 +34,7 @@
       "$id": "#backend_extra_config/backend/lambda/region",
       "title": "AWS Region",
       "description": "The AWS identifier region\n\nSee: https://www.krakend.io/docs/backends/",
-      "examples": [
-        "us-east-1",
-        "eu-west-2"
-      ],
+      "examples": [ "us-east-1", "eu-west-2" ],
       "type": "string"
     }
   },

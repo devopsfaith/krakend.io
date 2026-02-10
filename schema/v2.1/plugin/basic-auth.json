@@ -3,31 +3,21 @@
   "$id": "https://www.krakend.io/schema/v2.1/plugin/basic-auth.json",
   "description": "Enterprise only. The Basic Authentication plugin protects the access to selected endpoints using basic username and password credentials.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
   "type": "object",
-  "required": [
-    "endpoints",
-    "htpasswd_path"
-  ],
+  "required": [ "endpoints", "htpasswd_path" ],
   "properties": {
     "endpoints": {
       "title": "Endpoints",
       "description": "An array to restrict which endpoints are protected with basic authentication. The `endpoints` values must match with the declaration of endpoints in your configuration, including any `{placeholders}` in the path. Use `[\"*\"]` or delete this property to protect all endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
       "examples": [
-        [
-          "*"
-        ],
-        [
-          "/user/{id}",
-          "/checkout"
-        ]
+        [ "*" ],
+        [ "/user/{id}", "/checkout" ]
       ],
       "type": "array"
     },
     "htpasswd_path": {
       "title": "Path to htpasswd file",
       "description": "Absolute Path to the `htpasswd` filename (recommended) or relative `./` to the workdir (less secure).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
-      "examples": [
-        "/path/to/.htpasswd"
-      ],
+      "examples": [ "/path/to/.htpasswd" ],
       "type": "string"
     },
     "users": {

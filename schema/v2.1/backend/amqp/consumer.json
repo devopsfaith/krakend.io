@@ -38,9 +38,7 @@
       "$id": "#backend/amqp/consumer/exchange",
       "title": "Exchange",
       "description": "The exchange name (must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
-      "examples": [
-        "some-exchange"
-      ],
+      "examples": [ "some-exchange" ],
       "type": "string"
     },
     "name": {
@@ -79,9 +77,7 @@
       "$id": "#backend/amqp/consumer/routing_key",
       "title": "Routing keys",
       "description": "The list of routing keys you will use to consume messages.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
-      "examples": [
-        "#"
-      ],
+      "examples": [ "#" ],
       "type": "array"
     }
   },

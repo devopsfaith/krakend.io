@@ -8,9 +8,7 @@
       "title": "API-key validation",
       "description": "Enterprise only. Validates that users of this endpoint pass a valid API-key containing one of the declared roles.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
       "type": "object",
-      "required": [
-        "roles"
-      ],
+      "required": [ "roles" ],
       "properties": {
         "client_max_rate": {
           "title": "Max rate",
@@ -34,10 +32,7 @@
           "$id": "#auth/api-keys/strategy",
           "title": "Strategy",
           "description": "Specifies where to expect the user API key, whether inside a header or as part of the query string. When you change the strategy at the endpoint level, **you should also set the identifier**, otherwise you could have for instance, a query string strategy expecting to have a URL like `/foo?Authorization=YOUR-KEY`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-          "enum": [
-            "header",
-            "query_string"
-          ]
+          "enum": [ "header", "query_string" ]
         }
       },
       "patternProperties": {
@@ -78,9 +73,7 @@
           "$id": "#endpoint_extra_config/proxy/combiner",
           "title": "Custom combiner",
           "description": "For custom builds of KrakenD only",
-          "examples": [
-            "combiner_name"
-          ],
+          "examples": [ "combiner_name" ],
           "type": "string"
         },
         "flatmap_filter": {
@@ -102,10 +95,7 @@
           "title": "Static response",
           "description": "The static proxy injects static data in the final response when the selected strategy matches.\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
           "type": "object",
-          "required": [
-            "data",
-            "strategy"
-          ],
+          "required": [ "data", "strategy" ],
           "properties": {
             "data": {
               "$id": "#endpoint_extra_config/proxy/static/data",

@@ -3,9 +3,7 @@
   "$id": "https://www.krakend.io/schema/v2.3/krakend.json",
   "title": "Schema validation for KrakenD v2.3",
   "type": "object",
-  "required": [
-    "version"
-  ],
+  "required": [ "version" ],
   "properties": {
     "allow_insecure_connections": {
       "$id": "#service/allow_insecure_connections",
@@ -179,19 +177,13 @@
       "title": "Plugin",
       "description": "Enables external plugins that are copied in a specific folder",
       "type": "object",
-      "required": [
-        "pattern",
-        "folder"
-      ],
+      "required": [ "pattern", "folder" ],
       "properties": {
         "pattern": {
           "$id": "#service/plugin/pattern",
           "title": "Pattern",
           "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
-          "examples": [
-            ".so",
-            "-production.so"
-          ],
+          "examples": [ ".so", "-production.so" ],
           "default": ".so",
           "type": "string"
         },
@@ -199,10 +191,7 @@
           "$id": "#service/plugin/folder",
           "title": "Folder",
           "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
-          "examples": [
-            "/opt/krakend/plugins/",
-            "./plugins/"
-          ],
+          "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
           "default": "/opt/krakend/plugins/",
           "type": "string"
         }

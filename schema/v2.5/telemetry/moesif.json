@@ -4,10 +4,7 @@
   "title": "Moesif integration",
   "description": "The Moesif integration helps you understand and monetize API usage with a robust analytics and billing platform.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
   "type": "object",
-  "required": [
-    "application_id",
-    "user_id_headers"
-  ],
+  "required": [ "application_id", "user_id_headers" ],
   "properties": {
     "application_id": {
       "$id": "#telemetry/moesif/application_id",
@@ -46,25 +43,19 @@
         "header": {
           "title": "Company in Header",
           "description": "The company is identified using a header. Provide the header name.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-          "examples": [
-            "X-Tenant"
-          ],
+          "examples": [ "X-Tenant" ],
           "type": "string"
         },
         "jwt_claim": {
           "title": "Company in Claim",
           "description": "The company is stored in a claim inside the JWT. The claim must return a string.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-          "examples": [
-            "company_id"
-          ],
+          "examples": [ "company_id" ],
           "type": "string"
         },
         "query_string": {
           "title": "Company in Query String",
           "description": "The company is always passed inside a query string when calling any URL. Provide the query string name.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-          "examples": [
-            "company"
-          ],
+          "examples": [ "company" ],
           "type": "string"
         }
       },
@@ -85,10 +76,7 @@
       "title": "Request body masks",
       "description": "The list of fields in the request body that you want to mask before sending them to Moesif. You can set `log_body` to `false` to prevent any body being sent.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
       "examples": [
-        [
-          "password",
-          "credit_card"
-        ]
+        [ "password", "credit_card" ]
       ],
       "type": "array",
       "items": {
@@ -100,9 +88,7 @@
       "title": "Request header masks",
       "description": "The list of request headers that you want to mask their values before sending them to Moesif.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
       "examples": [
-        [
-          "Authorization"
-        ]
+        [ "Authorization" ]
       ],
       "type": "array",
       "items": {
@@ -114,10 +100,7 @@
       "title": "Response body masks",
       "description": "The list of fields in the response body that you want to mask before sending them to Moesif. You can set `log_body` to `false` to prevent any body being sent.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
       "examples": [
-        [
-          "password",
-          "credit_card"
-        ]
+        [ "password", "credit_card" ]
       ],
       "type": "array",
       "items": {
@@ -129,9 +112,7 @@
       "title": "Response header masks",
       "description": "The list of response headers that you want to mask their values before sending them to Moesif.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
       "examples": [
-        [
-          "Cookie"
-        ]
+        [ "Cookie" ]
       ],
       "type": "array",
       "items": {
@@ -150,10 +131,7 @@
       "title": "User ID headers",
       "description": "Defines the list of possible headers that can identify a user uniquely. When the header is `Authorization`, it automatically extracts the username if it contains an `Authorization: Basic` value with no additional configuration. If, on the other hand, you use tokens and pass an `Authorization: Bearer`, it will extract the user ID from the JWT claim defined under `user_id_jwt_claim`. If there are multiple headers in the list, all of them are tested in the given order, and the first existing header in the list is used to extract the user ID (successfully or not).\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
       "examples": [
-        [
-          "X-User-ID",
-          "Authorization"
-        ]
+        [ "X-User-ID", "Authorization" ]
       ],
       "type": "array"
     },

@@ -3,9 +3,7 @@
   "$id": "https://www.krakend.io/schema/v2.3/grpc.json",
   "title": "gRPC catalog definition",
   "type": "object",
-  "required": [
-    "catalog"
-  ],
+  "required": [ "catalog" ],
   "properties": {
     "catalog": {
       "title": "Catalog definition",

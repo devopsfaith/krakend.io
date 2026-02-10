@@ -4,13 +4,7 @@
   "title": "Redis ratelimit",
   "description": "Enterprise only. The global rate limit functionality enables a Redis database store to centralize all KrakenD node counters. Instead of having each KrakenD node count its hits, the counters are global and stored in the database.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
   "type": "object",
-  "required": [
-    "host",
-    "tokenizer",
-    "burst",
-    "rate",
-    "period"
-  ],
+  "required": [ "host", "tokenizer", "burst", "rate", "period" ],
   "properties": {
     "burst": {
       "title": "Burst",
@@ -20,10 +14,7 @@
     "host": {
       "title": "Redis host",
       "description": "The URL to the Redis instance that stores the counters using the format `host:port`.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
-      "examples": [
-        "redis",
-        "redis:6379"
-      ],
+      "examples": [ "redis", "redis:6379" ],
       "type": "string"
     },
     "period": {
@@ -40,15 +31,7 @@
     "tokenizer": {
       "title": "Tokenizer",
       "description": "One of the preselected strategies to rate-limit users.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
-      "enum": [
-        "jwt",
-        "ip",
-        "url",
-        "path",
-        "header",
-        "param",
-        "cookie"
-      ]
+      "enum": [ "jwt", "ip", "url", "path", "header", "param", "cookie" ]
     },
     "tokenizer_field": {
       "title": "Tokenizer field",

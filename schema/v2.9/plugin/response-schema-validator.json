@@ -5,9 +5,7 @@
   "description": "Enterprise only. The response schema validator plugin adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
   "deprecated": true,
   "type": "object",
-  "required": [
-    "schema"
-  ],
+  "required": [ "schema" ],
   "properties": {
     "error": {
       "title": "Error definition",

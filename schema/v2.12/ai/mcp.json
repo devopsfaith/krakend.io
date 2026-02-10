@@ -4,27 +4,19 @@
   "title": "MCP functionality",
   "description": "MCP functionality.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
   "type": "object",
-  "required": [
-    "servers"
-  ],
+  "required": [ "servers" ],
   "properties": {
     "servers": {
       "description": "The array of MCP servers available for linking to endpoints. Each object represents a different MCP server. The entry is only the definition of the server. You must create an endpoint that serves as the entrypoint to each server.",
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "name",
-          "version",
-          "title"
-        ],
+        "required": [ "name", "version", "title" ],
         "properties": {
           "title": {
             "title": "MCP Server Title",
             "description": "The description of the purpose of this MCP Server. Provide a meaningful description to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-            "examples": [
-              "Story tracker tools"
-            ],
+            "examples": [ "Story tracker tools" ],
             "type": "string"
           },
           "instructions": {
@@ -42,9 +34,7 @@
           "name": {
             "title": "MCP Server Name",
             "description": "A unique name for MCP server configuration. This name is an identifier used in the logs or when a title is not provided.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-            "examples": [
-              "stories-tracker"
-            ],
+            "examples": [ "stories-tracker" ],
             "type": "string"
           },
           "ping_period": {
@@ -65,19 +55,12 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": [
-                "name",
-                "title",
-                "description",
-                "workflow"
-              ],
+              "required": [ "name", "title", "description", "workflow" ],
               "properties": {
                 "title": {
                   "title": "MCP Server Title",
                   "description": "The description of the purpose of this MCP tool. Provide a meaningful text to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-                  "examples": [
-                    "Story list"
-                  ],
+                  "examples": [ "Story list" ],
                   "type": "string"
                 },
                 "description": {
@@ -92,11 +75,7 @@
                   "title": "Media Type",
                   "description": "The type of the response media.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
                   "default": "text",
-                  "enum": [
-                    "text",
-                    "audio",
-                    "image"
-                  ]
+                  "enum": [ "text", "audio", "image" ]
                 },
                 "input_headers": {
                   "title": "Allowed Headers In",
@@ -106,11 +85,7 @@
                   "uniqueItems": true,
                   "items": {
                     "title": "Forwarded header",
-                    "examples": [
-                      "User-Agent",
-                      "Accept",
-                      "*"
-                    ],
+                    "examples": [ "User-Agent", "Accept", "*" ],
                     "type": "string"
                   }
                 },
@@ -122,9 +97,7 @@
                 "name": {
                   "title": "MCP Tool Name",
                   "description": "A unique name for MCP tool configuration. This name is an identifier used in the logs or when a title is not provided.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-                  "examples": [
-                    "stories-list"
-                  ],
+                  "examples": [ "stories-list" ],
                   "type": "string"
                 },
                 "output_schema": {
@@ -154,9 +127,7 @@
           "version": {
             "title": "Title",
             "description": "The version of the logic behind your MCP Server implementation. This version makes sense to your business and is not linked to anything else.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-            "examples": [
-              "0.2.1"
-            ],
+            "examples": [ "0.2.1" ],
             "type": "string"
           }
         },

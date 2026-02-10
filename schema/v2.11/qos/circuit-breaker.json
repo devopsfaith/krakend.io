@@ -4,11 +4,7 @@
   "title": "Circuit Breaker",
   "description": "The circuit breaker prevents sending more traffic to a failing backend.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
   "type": "object",
-  "required": [
-    "interval",
-    "timeout",
-    "max_errors"
-  ],
+  "required": [ "interval", "timeout", "max_errors" ],
   "properties": {
     "interval": {
       "$id": "#qos/circuit-breaker/interval",
@@ -33,9 +29,7 @@
       "$id": "#qos/circuit-breaker/name",
       "title": "Name",
       "description": "A friendly name to follow this circuit breaker's activity in the logs.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
-      "examples": [
-        "cb-backend-1"
-      ],
+      "examples": [ "cb-backend-1" ],
       "type": "string"
     },
     "timeout": {

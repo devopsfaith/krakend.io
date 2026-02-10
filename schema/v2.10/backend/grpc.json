@@ -88,30 +88,20 @@
     "read_buffer_size": {
       "title": "Read buffer size",
       "description": "Specifies the size of the client buffer reading the gRPC communication in bytes. If the value is unset, or `0`, it uses its default (32KB). Use a negative value to disable the buffer, and if you do there won't be memory pre-allocation to read. To determine the right number, calculate the average size of the responses the gRPC client will receive.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
-      "examples": [
-        32768,
-        8192,
-        -1
-      ],
+      "examples": [ 32768, 8192, -1 ],
       "type": "number"
     },
     "request_naming_convention": {
       "title": "Request naming convention",
       "description": "Defines the naming convention used to format the request. Applies to query strings and JSON field names. By default, the gateway uses `snake_case` which makes use of the standard `encoding/json` package, while when you choose `camelCase` the `protobuf/encoding` deserialization is used instead.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
       "default": "snake_case",
-      "enum": [
-        "camelCase",
-        "snake_case"
-      ]
+      "enum": [ "camelCase", "snake_case" ]
     },
     "response_naming_convention": {
       "title": "Response naming convention",
       "description": "Defines the naming convention used to format the returned data. By default, the gateway uses `snake_case` which makes use of the standard `encoding/json` package, while when you choose `camelCase` the `protobuf/encoding` deserialization is used instead.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
       "default": "snake_case",
-      "enum": [
-        "camelCase",
-        "snake_case"
-      ]
+      "enum": [ "camelCase", "snake_case" ]
     },
     "use_alternate_host_on_error": {
       "title": "Use alternate host on error",

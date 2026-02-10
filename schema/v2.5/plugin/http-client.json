@@ -8,11 +8,7 @@
       "$id": "#plugin/http-client",
       "title": "Plugin name",
       "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
-      "examples": [
-        "no-redirect",
-        "http-logger",
-        "static-filesystem"
-      ],
+      "examples": [ "no-redirect", "http-logger", "static-filesystem" ],
       "type": "string"
     }
   }

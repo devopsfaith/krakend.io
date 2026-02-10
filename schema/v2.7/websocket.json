@@ -44,11 +44,7 @@
       "uniqueItems": true,
       "items": {
         "$id": "#websocket/input_headers/items",
-        "examples": [
-          "User-Agent",
-          "Accept",
-          "*"
-        ],
+        "examples": [ "User-Agent", "Accept", "*" ],
         "type": "string"
       }
     },

@@ -4,9 +4,7 @@
   "title": "Logstash",
   "description": "Enables logstash when the extra_config \"telemetry/logging\" is also present.\n\nSee: https://www.krakend.io/docs/logging/logstash/",
   "type": "object",
-  "required": [
-    "enabled"
-  ],
+  "required": [ "enabled" ],
   "properties": {
     "enabled": {
       "$id": "#enabled",

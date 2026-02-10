@@ -6,25 +6,17 @@
   "type": "object",
   "oneOf": [
     {
-      "required": [
-        "path"
-      ]
+      "required": [ "path" ]
     },
     {
-      "required": [
-        "template"
-      ]
+      "required": [ "template" ]
     }
   ],
   "properties": {
     "content_type": {
       "title": "Content-Type",
       "description": "The `Content-Type` you are generating in the template, so it can be recognized by whoever is using it.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
-      "examples": [
-        "application/json",
-        "application/xml",
-        "text/xml"
-      ],
+      "examples": [ "application/json", "application/xml", "text/xml" ],
       "default": "application/json",
       "type": "string"
     },
@@ -37,9 +29,7 @@
     "path": {
       "title": "Path to template",
       "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
-      "examples": [
-        "./path/to.tmpl"
-      ],
+      "examples": [ "./path/to.tmpl" ],
       "type": "string"
     },
     "template": {

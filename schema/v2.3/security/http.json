@@ -22,9 +22,7 @@
       "$id": "#security/http/content_security_policy",
       "title": "Content-Security-Policy (CSP)",
       "description": "The HTTP Content-Security-Policy (CSP) default-src directive serves as a fallback for the other CSP fetch directives.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
-      "examples": [
-        "default-src 'self';"
-      ],
+      "examples": [ "default-src 'self';" ],
       "default": "",
       "type": "string"
     },
@@ -39,9 +37,7 @@
       "$id": "#security/http/custom_frame_options_value",
       "title": "Clickjacking protection. Frame-Options value",
       "description": "You can add an X-Frame-Options header using custom_frame_options_value with the value of DENY (default behavior) or even set your custom value.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
-      "examples": [
-        "ALLOW-FROM https://example.com"
-      ],
+      "examples": [ "ALLOW-FROM https://example.com" ],
       "default": "",
       "type": "string"
     },
@@ -57,9 +53,7 @@
       "title": "SSL Host",
       "description": "A set of header keys that may hold a proxied hostname value for the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
       "examples": [
-        [
-          "X-Forwarded-Hosts"
-        ]
+        [ "X-Forwarded-Hosts" ]
       ],
       "type": "array"
     },
@@ -91,9 +85,7 @@
       "$id": "#security/http/ssl_host",
       "title": "SSL Host",
       "description": "When the SSL redirect is true, the host where the request is redirected to.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
-      "examples": [
-        "ssl.host.domain"
-      ],
+      "examples": [ "ssl.host.domain" ],
       "default": "ssl.host.domain",
       "type": "string"
     },

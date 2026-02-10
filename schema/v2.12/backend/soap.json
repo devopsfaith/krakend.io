@@ -6,24 +6,17 @@
   "type": "object",
   "oneOf": [
     {
-      "required": [
-        "path"
-      ]
+      "required": [ "path" ]
     },
     {
-      "required": [
-        "template"
-      ]
+      "required": [ "template" ]
     }
   ],
   "properties": {
     "content_type": {
       "title": "Content-Type",
       "description": "The `Content-Type` used in your template, and that will be sent to the SOAP server. This is not the content-type the end-user sent in the request.\n\nSee: https://www.krakend.io/docs/backends/soap/",
-      "examples": [
-        "application/xml",
-        "text/xml"
-      ],
+      "examples": [ "application/xml", "text/xml" ],
       "default": "text/xml",
       "type": "string"
     },
@@ -36,9 +29,7 @@
     "path": {
       "title": "Path to template",
       "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/backends/soap/",
-      "examples": [
-        "./path/to.xml"
-      ],
+      "examples": [ "./path/to.xml" ],
       "type": "string"
     },
     "template": {

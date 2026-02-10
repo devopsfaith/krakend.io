@@ -4,14 +4,10 @@
   "type": "object",
   "anyOf": [
     {
-      "required": [
-        "max_rate"
-      ]
+      "required": [ "max_rate" ]
     },
     {
-      "required": [
-        "client_max_rate"
-      ]
+      "required": [ "client_max_rate" ]
     }
   ],
   "properties": {
@@ -37,9 +33,7 @@
       "$id": "#endpoint_extra_config/qos/ratelimit/router/key",
       "title": "Header key",
       "description": "Available when using `client_max_rate`. Sets the header containing the user identification (e.g., `Authorization`) or IP (e.g.,`X-Original-Forwarded-For`). When the header contains a list of space-separated IPs, it will take the IP from the client that hit the first trusted proxy.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-      "examples": [
-        "X-TOKEN"
-      ],
+      "examples": [ "X-TOKEN" ],
       "type": "string"
     },
     "max_rate": {
@@ -52,10 +46,7 @@
       "$id": "#endpoint_extra_config/qos/ratelimit/router/strategy",
       "title": "Strategy",
       "description": "Available when using `client_max_rate`. Sets the strategy you will use to set client counters. Choose `ip` when the restrictions apply to the client's IP address, or set it to `header` when there is a header that identifies a user uniquely. That header must be defined with the `key` entry.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-      "enum": [
-        "ip",
-        "header"
-      ]
+      "enum": [ "ip", "header" ]
     }
   }
 }

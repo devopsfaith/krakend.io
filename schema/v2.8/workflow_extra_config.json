@@ -28,9 +28,7 @@
           "$id": "#endpoint_extra_config/proxy/combiner",
           "title": "Custom combiner",
           "description": "For custom builds of KrakenD only",
-          "examples": [
-            "combiner_name"
-          ],
+          "examples": [ "combiner_name" ],
           "type": "string"
         },
         "flatmap_filter": {
@@ -52,10 +50,7 @@
           "title": "Static response",
           "description": "The static proxy injects static data in the final response when the selected strategy matches.\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
           "type": "object",
-          "required": [
-            "data",
-            "strategy"
-          ],
+          "required": [ "data", "strategy" ],
           "properties": {
             "data": {
               "$id": "#endpoint_extra_config/proxy/static/data",

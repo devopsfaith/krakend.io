@@ -6,14 +6,10 @@
   "type": "object",
   "anyOf": [
     {
-      "required": [
-        "literal"
-      ]
+      "required": [ "literal" ]
     },
     {
-      "required": [
-        "regexp"
-      ]
+      "required": [ "regexp" ]
     }
   ],
   "properties": {

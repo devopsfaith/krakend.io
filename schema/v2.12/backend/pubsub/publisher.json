@@ -4,9 +4,7 @@
   "title": "Pubsub publisher",
   "description": "Publishes to a topic using the desired driver.\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
   "type": "object",
-  "required": [
-    "topic_url"
-  ],
+  "required": [ "topic_url" ],
   "properties": {
     "topic_url": {
       "$id": "#backend/pubsub/publisher",

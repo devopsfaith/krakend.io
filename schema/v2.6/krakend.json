@@ -3,9 +3,7 @@
   "$id": "https://www.krakend.io/schema/v2.6/krakend.json",
   "title": "Schema validation for KrakenD",
   "type": "object",
-  "required": [
-    "version"
-  ],
+  "required": [ "version" ],
   "properties": {
     "async_agent": {
       "$ref": "async_agent.json"
@@ -134,10 +132,7 @@
       "$id": "#service/listen_ip",
       "title": "Listen IP",
       "description": "The IP address that KrakenD listens to in IPv4 or IPv6. An empty string, or no declaration at all means listening on all interfaces. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses and both are valid for IPv4 and IPv6 simultaneously.",
-      "examples": [
-        "172.12.1.1",
-        "::1"
-      ],
+      "examples": [ "172.12.1.1", "::1" ],
       "default": "0.0.0.0",
       "type": "string"
     },
@@ -182,19 +177,13 @@
       "title": "Plugin",
       "description": "Enables external plugins that are copied in a specific folder",
       "type": "object",
-      "required": [
-        "pattern",
-        "folder"
-      ],
+      "required": [ "pattern", "folder" ],
       "properties": {
         "pattern": {
           "$id": "#service/plugin/pattern",
           "title": "Pattern",
           "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
-          "examples": [
-            ".so",
-            "-production.so"
-          ],
+          "examples": [ ".so", "-production.so" ],
           "default": ".so",
           "type": "string"
         },
@@ -202,10 +191,7 @@
           "$id": "#service/plugin/folder",
           "title": "Folder",
           "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
-          "examples": [
-            "/opt/krakend/plugins/",
-            "./plugins/"
-          ],
+          "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
           "default": "/opt/krakend/plugins/",
           "type": "string"
         }

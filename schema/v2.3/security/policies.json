@@ -6,19 +6,13 @@
   "type": "object",
   "anyOf": [
     {
-      "required": [
-        "req"
-      ]
+      "required": [ "req" ]
     },
     {
-      "required": [
-        "resp"
-      ]
+      "required": [ "resp" ]
     },
     {
-      "required": [
-        "jwt"
-      ]
+      "required": [ "jwt" ]
     }
   ],
   "properties": {
@@ -44,9 +38,7 @@
       "title": "JWT policies",
       "description": "All the policies applied in the JWT context (token validation). **You must configure `auth/validator`** for the policies to run, otherwise they will be skipped. Any policy failing will generate a `401 Unauthorized` error. Works in `endpoint` context only, this option is **not available under `backend`**.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
       "type": "object",
-      "required": [
-        "policies"
-      ],
+      "required": [ "policies" ],
       "properties": {
         "policies": {
           "title": "Policies",
@@ -67,9 +59,7 @@
       "title": "Request policies",
       "description": "All the policies applied in the request context.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
       "type": "object",
-      "required": [
-        "policies"
-      ],
+      "required": [ "policies" ],
       "properties": {
         "error": {
           "type": "object",
@@ -113,9 +103,7 @@
       "title": "Response policies",
       "description": "All the policies applied in the response context.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
       "type": "object",
-      "required": [
-        "policies"
-      ],
+      "required": [ "policies" ],
       "properties": {
         "error": {
           "type": "object",

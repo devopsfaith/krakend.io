@@ -6,24 +6,13 @@
   "type": "object",
   "oneOf": [
     {
-      "required": [
-        "alg",
-        "jwk_local_path",
-        "disable_jwk_security"
-      ]
+      "required": [ "alg", "jwk_local_path", "disable_jwk_security" ]
     },
     {
-      "required": [
-        "alg",
-        "jwk_url"
-      ]
+      "required": [ "alg", "jwk_url" ]
     }
   ],
-  "required": [
-    "alg",
-    "kid",
-    "keys_to_sign"
-  ],
+  "required": [ "alg", "kid", "keys_to_sign" ],
   "properties": {
     "alg": {
       "$id": "#auth/signer/alg",
@@ -49,14 +38,7 @@
       "$id": "#auth/signer/cipher_suites",
       "title": "Cipher suites",
       "description": "Override the default cipher suites (see [JWT validation](https://www.krakend.io/docs/authorization/jwt-signing/)). Unless you have a legacy JWK, **you don't need to set this value**.",
-      "default": [
-        49199,
-        49195,
-        49200,
-        49196,
-        52392,
-        52393
-      ],
+      "default": [ 49199, 49195, 49200, 49196, 52392, 52393 ],
       "type": "array",
       "items": {
         "title": "Object in array",
@@ -126,28 +108,21 @@
       "$id": "#auth/validator/jwk_local_path",
       "title": "JWK local path",
       "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "examples": [
-        "./jwk.txt"
-      ],
+      "examples": [ "./jwk.txt" ],
       "type": "string"
     },
     "jwk_url": {
       "$id": "#auth/signer/jwk_url",
       "title": "JWK URL",
       "description": " The URL to the JWK endpoint with the private keys used to sign the token.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-      "examples": [
-        "http://your-backend/jwk/symmetric.json"
-      ],
+      "examples": [ "http://your-backend/jwk/symmetric.json" ],
       "type": "string"
     },
     "keys_to_sign": {
       "$id": "#auth/signer/keys_to_sign",
       "title": "Keys to sign",
       "description": "List of all the specific keys that need signing (e.g., `refresh_token` and `access_token`).\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-      "examples": [
-        "access_token",
-        "refresh_token"
-      ],
+      "examples": [ "access_token", "refresh_token" ],
       "type": "array",
       "items": {
         "type": "string"
@@ -157,18 +132,13 @@
       "$id": "#auth/signer/kid",
       "title": "Kid",
       "description": "The key ID purpose is to match a specific key, as the jwk_url might contain several keys.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
-      "examples": [
-        "sim2"
-      ],
+      "examples": [ "sim2" ],
       "type": "string"
     },
     "leeway": {
       "title": "Leeway",
       "description": "A margin of extra time where you will still accept the token after its expiration date. You should not accept expired tokens other than enabling two environments that are not perfectly synchronized and have minor clock drifts to accept each other differences. Any value specified here will be rounded to seconds, with a minimum of one second.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-      "examples": [
-        "1m",
-        "1s"
-      ],
+      "examples": [ "1m", "1s" ],
       "default": "1s",
       "$ref": "../timeunits.json#/$defs/timeunit",
       "type": "string"

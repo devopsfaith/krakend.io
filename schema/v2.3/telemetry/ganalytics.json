@@ -5,10 +5,7 @@
   "description": "DEPRECATED. Enterprise only. Generate API Analytics from your API activity, using Google’s Analytics platform as the storage backend.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
   "deprecated": true,
   "type": "object",
-  "required": [
-    "url",
-    "track_id"
-  ],
+  "required": [ "url", "track_id" ],
   "properties": {
     "buffer_size": {
       "$id": "#telemetry/ganalytics/buffer_size",
@@ -34,9 +31,7 @@
       "$id": "#telemetry/ganalytics/track_id",
       "title": "Tracking ID",
       "description": "The tracking ID as provided by Google. It is recommended to create a new property in Google Analytics to track the activity. It usually looks like UA-1234567.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
-      "examples": [
-        "UA-1234567"
-      ],
+      "examples": [ "UA-1234567" ],
       "type": "string"
     },
     "url": {

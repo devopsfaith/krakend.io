@@ -10,17 +10,12 @@
     "v1": {
       "title": "Version v1",
       "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-      "required": [
-        "credentials",
-        "variables"
-      ],
+      "required": [ "credentials", "variables" ],
       "properties": {
         "credentials": {
           "title": "API Key",
           "description": "Your OpenAI API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-          "examples": [
-            "sk-xxxx"
-          ],
+          "examples": [ "sk-xxxx" ],
           "type": "string"
         },
         "debug": {
@@ -43,9 +38,7 @@
           "title": "Template Variables",
           "description": "The variables specific to the OpenAI usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
           "type": "object",
-          "required": [
-            "model"
-          ],
+          "required": [ "model" ],
           "properties": {
             "extra_payload": {
               "title": "Extra Payload",
@@ -60,10 +53,7 @@
             "model": {
               "title": "Model Name",
               "description": "The name of the OpenAI model you want to use. The value you provide is passed as is to OpenAI and KrakenD does not prove if the model is currently accepted by the vendor. Check the available models on OpenAI documentation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-              "examples": [
-                "gpt-5-nano",
-                "gpt-4"
-              ],
+              "examples": [ "gpt-5-nano", "gpt-4" ],
               "type": "string"
             },
             "temperature": {
@@ -84,10 +74,7 @@
               "title": "Truncation Strategy",
               "description": "The strategy to use when truncating messages to fit within the model's context length (, the model will truncate the response to fit the context window by dropping items from the beginning of the conversation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
               "default": "disabled",
-              "enum": [
-                "auto",
-                "disabled"
-              ]
+              "enum": [ "auto", "disabled" ]
             }
           }
         }

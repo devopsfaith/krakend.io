@@ -6,10 +6,7 @@
   "examples": [
     {
       "type": "move",
-      "args": [
-        "a.*.b1.*.c",
-        "a.*.b1.*.d"
-      ]
+      "args": [ "a.*.b1.*.c", "a.*.b1.*.d" ]
     }
   ],
   "type": "array",
@@ -17,19 +14,12 @@
     "$id": "#proxy/flatmap/items",
     "title": "Flatmap operation",
     "type": "object",
-    "required": [
-      "type",
-      "args"
-    ],
+    "required": [ "type", "args" ],
     "properties": {
       "type": {
         "title": "Type",
         "description": "The types of operations are defined as follows.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-        "enum": [
-          "move",
-          "del",
-          "append"
-        ]
+        "enum": [ "move", "del", "append" ]
       },
       "args": {
         "title": "Args",

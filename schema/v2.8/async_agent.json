@@ -6,12 +6,7 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": [
-      "name",
-      "consumer",
-      "backend",
-      "extra_config"
-    ],
+    "required": [ "name", "consumer", "backend", "extra_config" ],
     "properties": {
       "backend": {
         "title": "Backend definition",
@@ -57,9 +52,7 @@
         "$id": "#async_agent/consumer",
         "title": "Consumer",
         "description": "Defines all the settings for each agent consuming messages.\n\nSee: https://www.krakend.io/docs/async/",
-        "required": [
-          "topic"
-        ],
+        "required": [ "topic" ],
         "properties": {
           "max_rate": {
             "title": "Max Rate",
@@ -90,20 +83,11 @@
         "title": "Backend Encoding",
         "description": "Informs KrakenD how to parse the responses of your services.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
         "default": "json",
-        "enum": [
-          "json",
-          "safejson",
-          "xml",
-          "rss",
-          "string",
-          "no-op"
-        ]
+        "enum": [ "json", "safejson", "xml", "rss", "string", "no-op" ]
       },
       "extra_config": {
         "description": "Defines the driver that connects to your queue or PubSub system. In addition, you can place other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware, but adding the driver is mandatory.\n\nSee: https://www.krakend.io/docs/async/",
-        "required": [
-          "async/amqp"
-        ],
+        "required": [ "async/amqp" ],
         "properties": {
           "async/amqp": {
             "title": "Async Agent extra configuration",

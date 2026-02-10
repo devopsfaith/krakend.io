@@ -7,9 +7,7 @@
     "htpasswd_path": {
       "title": "Path to htpasswd file",
       "description": "Absolute Path to the `htpasswd` filename (recommended) or relative `./` to the workdir (less secure).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
-      "examples": [
-        "/path/to/.htpasswd"
-      ],
+      "examples": [ "/path/to/.htpasswd" ],
       "type": "string"
     },
     "users": {

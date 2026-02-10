@@ -3,10 +3,7 @@
   "$id": "https://www.krakend.io/schema/v2.9/workflow.json",
   "title": "Workflow Object",
   "type": "object",
-  "required": [
-    "endpoint",
-    "backend"
-  ],
+  "required": [ "endpoint", "backend" ],
   "properties": {
     "backend": {
       "title": "Backend",
@@ -31,9 +28,7 @@
       "$id": "#workflow/endpoint",
       "title": "Workflow endpoint name",
       "description": "An endpoint name for the workflow that will be used in logs. The name will be appended to the string `/__workflow/` in the logs, and although it does not receive traffic under this route, it is necessary when you want to pass URL `{params}` to the nested backends.\n\nSee: https://www.krakend.io/docs/endpoints/",
-      "examples": [
-        "/workflow-1/{param1}"
-      ],
+      "examples": [ "/workflow-1/{param1}" ],
       "type": "string"
     },
     "extra_config": {
@@ -68,10 +63,7 @@
       "$id": "#workflow/timeout",
       "title": "Timeout",
       "description": "The duration you write in the timeout represents the **whole duration of the pipe**, so it counts the time all your backends take to respond and the processing of all the components involved in the endpoint (the request, fetching data, manipulation, etc.). By default the timeout is taken from the parent endpoint, if redefined **make sure that is smaller than the endpoint's**",
-      "examples": [
-        "2s",
-        "1500ms"
-      ],
+      "examples": [ "2s", "1500ms" ],
       "$ref": "timeunits.json#/$defs/timeunit",
       "type": "string"
     }

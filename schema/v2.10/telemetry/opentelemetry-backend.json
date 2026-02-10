@@ -51,10 +51,7 @@
               "type": "array",
               "items": {
                 "type": "object",
-                "required": [
-                  "key",
-                  "value"
-                ],
+                "required": [ "key", "value" ],
                 "properties": {
                   "key": {
                     "title": "key",
@@ -126,10 +123,7 @@
               "type": "array",
               "items": {
                 "type": "object",
-                "required": [
-                  "key",
-                  "value"
-                ],
+                "required": [ "key", "value" ],
                 "properties": {
                   "key": {
                     "title": "key",

@@ -11,9 +11,7 @@
       "title": "Version v1",
       "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
       "type": "object",
-      "required": [
-        "credentials"
-      ],
+      "required": [ "credentials" ],
       "properties": {
         "credentials": {
           "title": "API Key",

@@ -8,9 +8,7 @@
       "title": "API-key validation",
       "description": "Enterprise only. Validates that users of this endpoint pass a valid API-key containing one of the declared roles.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
       "type": "object",
-      "required": [
-        "roles"
-      ],
+      "required": [ "roles" ],
       "properties": {
         "client_max_rate": {
           "title": "Max rate",
@@ -34,10 +32,7 @@
           "$id": "#auth/api-keys/strategy",
           "title": "Strategy",
           "description": "Specifies where to expect the user API key, whether inside a header or as part of the query string. When you change the strategy at the endpoint level, **you should also set the identifier**, otherwise you could have for instance, a query string strategy expecting to have a URL like `/foo?Authorization=YOUR-KEY`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-          "enum": [
-            "header",
-            "query_string"
-          ]
+          "enum": [ "header", "query_string" ]
         }
       },
       "patternProperties": {
@@ -96,9 +91,7 @@
           "$id": "#endpoint_extra_config/proxy/combiner",
           "title": "Custom combiner",
           "description": "For custom builds of KrakenD only",
-          "examples": [
-            "combiner_name"
-          ],
+          "examples": [ "combiner_name" ],
           "type": "string"
         },
         "decompress_gzip": {
@@ -134,13 +127,8 @@
           "title": "Sequential propagated parameters",
           "description": "The list of parameters you want to propagate from a previous response to the next request. Parameters are accessible by Lua scripts, CEL, security policies, the body generator, or plugins. When you add a `resp`-like parameter in this list, the parameter becomes available to the components mentioned in subsequent calls, **uppercasing the first letter**. For instance, if you add `resp0_user`, you can access in the second, third, etc. backends in Lua to `req:params('Resp0_user')`.The format of the parameters must start with `respX_` or `respX`, where `X` is the backend index from which you want to take the parameter. If you don't set the underscore `_`, you set the whole payload as a parameter. For instance, `resp0` sets a parameter `Resp0` to use in Lua or a Body generator and contains **the entire payload of the backend 0** (as a string). In this extreme case, you must use `no-op` in the backend's output (even the endpoint has a `json` output encoding) and you should access the value in Lua or a plugin. Note that access to **nested parameters** uses a single string with the dot notation inside, e.g.: `req_params['Resp0_f1.f2.f3']` (CEL and Security Policies), or `{{ index .req_params \"Resp0_f1.f2.f3\" }}` (body generators).\n\nSee: https://www.krakend.io/docs/endpoints/sequential-proxy/",
           "examples": [
-            [
-              "resp0"
-            ],
-            [
-              "resp1_my_field",
-              "resp0_user_id"
-            ]
+            [ "resp0" ],
+            [ "resp1_my_field", "resp0_user_id" ]
           ],
           "type": "array",
           "items": {
@@ -155,10 +143,7 @@
           "title": "Static response",
           "description": "The static proxy injects static data in the final response when the selected strategy matches.\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
           "type": "object",
-          "required": [
-            "data",
-            "strategy"
-          ],
+          "required": [ "data", "strategy" ],
           "properties": {
             "data": {
               "$id": "#endpoint_extra_config/proxy/static/data",

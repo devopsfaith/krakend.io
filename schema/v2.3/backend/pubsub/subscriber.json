@@ -4,9 +4,7 @@
   "title": "Pubsub subscriber",
   "description": "Subscribes a backend using the desired driver.\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
   "type": "object",
-  "required": [
-    "subscription_url"
-  ],
+  "required": [ "subscription_url" ],
   "properties": {
     "subscription_url": {
       "$id": "#backend/pubsub/subscriber",

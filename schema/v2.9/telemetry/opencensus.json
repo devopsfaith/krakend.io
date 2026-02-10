@@ -4,9 +4,7 @@
   "title": "Telemetry via Opencensus",
   "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
   "type": "object",
-  "required": [
-    "exporters"
-  ],
+  "required": [ "exporters" ],
   "properties": {
     "enabled_layers": {
       "title": "Enabled Layers",
@@ -86,18 +84,14 @@
               "$id": "#telemetry/opencensus/exporters/datadog/service",
               "title": "Service",
               "description": "Service specifies the service name used for tracing\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-              "examples": [
-                "gateway"
-              ],
+              "examples": [ "gateway" ],
               "type": "string"
             },
             "stats_address": {
               "$id": "#telemetry/opencensus/exporters/datadog/stats_address",
               "title": "Stats address",
               "description": "Specifies the host[:port] address for DogStatsD. To enable ingestion using Unix Domain Socket (UDS) mount your UDS path and reference it in the stats_address using a path like `unix:///var/run/datadog/dsd.socket`.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-              "examples": [
-                "localhost:8125"
-              ],
+              "examples": [ "localhost:8125" ],
               "default": "localhost:8125",
               "type": "string"
             },
@@ -128,45 +122,34 @@
           "title": "Influxdb",
           "description": "Exports data to InfluxDB: A time series database designed to handle high write and query loads.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
           "type": "object",
-          "required": [
-            "address",
-            "db"
-          ],
+          "required": [ "address", "db" ],
           "properties": {
             "address": {
               "$id": "#telemetry/opencensus/exporters/influxdb/address",
               "title": "Address",
               "description": "The URL (including port) where your InfluxDB is installed.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-              "examples": [
-                "http://192.168.99.100:8086"
-              ],
+              "examples": [ "http://192.168.99.100:8086" ],
               "type": "string"
             },
             "db": {
               "$id": "#telemetry/opencensus/exporters/influxdb/db",
               "title": "DB name",
               "description": "The database name\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-              "examples": [
-                "krakend"
-              ],
+              "examples": [ "krakend" ],
               "type": "string"
             },
             "password": {
               "$id": "#telemetry/opencensus/exporters/influxdb/password",
               "title": "Password",
               "description": "The password to access the database\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-              "examples": [
-                "kr4k3nd"
-              ],
+              "examples": [ "kr4k3nd" ],
               "type": "string"
             },
             "timeout": {
               "$id": "#telemetry/opencensus/exporters/influxdb/timeout",
               "title": "Timeout",
               "description": "The maximum time you will wait for InfluxDB to respond.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-              "examples": [
-                "2s"
-              ],
+              "examples": [ "2s" ],
               "$ref": "../timeunits.json#/$defs/timeunit",
               "type": "string"
             },
@@ -174,9 +157,7 @@
               "$id": "#telemetry/opencensus/exporters/influxdb/username",
               "title": "Username",
               "description": "The influxdb username to access the database\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-              "examples": [
-                "krakend"
-              ],
+              "examples": [ "krakend" ],
               "type": "string"
             }
           },
@@ -192,16 +173,10 @@
           "type": "object",
           "oneOf": [
             {
-              "required": [
-                "endpoint",
-                "service_name"
-              ]
+              "required": [ "endpoint", "service_name" ]
             },
             {
-              "required": [
-                "agent_endpoint",
-                "service_name"
-              ]
+              "required": [ "agent_endpoint", "service_name" ]
             }
           ],
           "properties": {
@@ -209,9 +184,7 @@
               "$id": "#telemetry/opencensus/exporters/jaeger/agent_endpoint",
               "title": "Agent Endpoint",
               "description": "The address where the Jaeger Agent is (Thrift over UDP), e.g., `jaeger:6831`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
-              "examples": [
-                "http://192.168.99.100:14268/api/traces"
-              ],
+              "examples": [ "http://192.168.99.100:14268/api/traces" ],
               "type": "string"
             },
             "buffer_max_count": {
@@ -224,18 +197,14 @@
               "$id": "#telemetry/opencensus/exporters/jaeger/endpoint",
               "title": "Collector Endpoint",
               "description": "The full URL including port indicating where your Jaeger Collector is (Thrift over HTTP/S), e.g., `http://jaeger:14268/api/traces`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
-              "examples": [
-                "http://192.168.99.100:14268/api/traces"
-              ],
+              "examples": [ "http://192.168.99.100:14268/api/traces" ],
               "type": "string"
             },
             "service_name": {
               "$id": "#telemetry/opencensus/exporters/jaeger/service_name",
               "title": "Service name",
               "description": "The service name registered in Jaeger\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
-              "examples": [
-                "krakend"
-              ],
+              "examples": [ "krakend" ],
               "type": "string"
             }
           },
@@ -273,18 +242,13 @@
           "title": "Ocagent",
           "description": "Exporting metrics, logs, and events to the OpenCensus Agent.\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
           "type": "object",
-          "required": [
-            "address",
-            "service_name"
-          ],
+          "required": [ "address", "service_name" ],
           "properties": {
             "address": {
               "$id": "#telemetry/opencensus/exporters/ocagent/address",
               "title": "Address",
               "description": "The address of your Azure Monitor collector.\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
-              "examples": [
-                "localhost:55678"
-              ],
+              "examples": [ "localhost:55678" ],
               "type": "string"
             },
             "enable_compression": {
@@ -337,9 +301,7 @@
           "title": "Prometheus",
           "description": "Prometheus is an open-source systems monitoring and alerting toolkit.",
           "type": "object",
-          "required": [
-            "port"
-          ],
+          "required": [ "port" ],
           "properties": {
             "namespace": {
               "$id": "#telemetry/opencensus/exporters/prometheus/namespace",
@@ -351,9 +313,7 @@
               "$id": "#telemetry/opencensus/exporters/prometheus/port",
               "title": "Port",
               "description": "Port on which the Prometheus exporter should listen\n\nSee: https://www.krakend.io/docs/telemetry/prometheus/",
-              "examples": [
-                9091
-              ],
+              "examples": [ 9091 ],
               "type": "integer"
             },
             "tag_host": {
@@ -395,10 +355,7 @@
           "title": "Stackdriver",
           "description": "Export metrics and traces to Google Cloud",
           "type": "object",
-          "required": [
-            "project_id",
-            "default_labels"
-          ],
+          "required": [ "project_id", "default_labels" ],
           "properties": {
             "default_labels": {
               "$id": "#telemetry/opencensus/exporters/stackdriver/default_labels",
@@ -421,9 +378,7 @@
               "$id": "#telemetry/opencensus/exporters/stackdriver/project_id",
               "title": "Project_id",
               "description": "The identifier of your Google Cloud project. The `project_id` **is not the project name**. You can omit this value from the configuration if you have an application credential file for Google.\n\nSee: https://www.krakend.io/docs/telemetry/stackdriver/",
-              "examples": [
-                "ID"
-              ],
+              "examples": [ "ID" ],
               "default": "",
               "type": "string",
               "pattern": "^.*$"
@@ -449,17 +404,10 @@
               ]
             },
             {
-              "required": [
-                "region",
-                "version",
-                "use_env"
-              ]
+              "required": [ "region", "version", "use_env" ]
             }
           ],
-          "required": [
-            "region",
-            "version"
-          ],
+          "required": [ "region", "version" ],
           "properties": {
             "access_key_id": {
               "$id": "#telemetry/opencensus/exporters/xray/access_key_id",
@@ -471,9 +419,7 @@
               "$id": "#telemetry/opencensus/exporters/xray/region",
               "title": "Region",
               "description": "The AWS geographical region, e.g, `us-east-1`.\n\nSee: https://www.krakend.io/docs/telemetry/xray/",
-              "examples": [
-                "eu-west-1"
-              ],
+              "examples": [ "eu-west-1" ],
               "type": "string"
             },
             "secret_access_key": {
@@ -507,27 +453,20 @@
           "title": "Zipkin",
           "description": "Export telemetry data to a Zipkin collector",
           "type": "object",
-          "required": [
-            "collector_url",
-            "service_name"
-          ],
+          "required": [ "collector_url", "service_name" ],
           "properties": {
             "collector_url": {
               "$id": "#telemetry/opencensus/exporters/zipkin/collector_url",
               "title": "Collector URL",
               "description": "The URL (including port and path) where your Zipkin is accepting the spans, e.g., `http://zipkin:9411/api/v2/spans`\n\nSee: https://www.krakend.io/docs/telemetry/zipkin/",
-              "examples": [
-                "http://192.168.99.100:9411/api/v2/spans"
-              ],
+              "examples": [ "http://192.168.99.100:9411/api/v2/spans" ],
               "type": "string"
             },
             "service_name": {
               "$id": "#telemetry/opencensus/exporters/zipkin/service_name",
               "title": "Service name",
               "description": "The service name registered in Zipkin.\n\nSee: https://www.krakend.io/docs/telemetry/zipkin/",
-              "examples": [
-                "krakend"
-              ],
+              "examples": [ "krakend" ],
               "type": "string"
             }
           },

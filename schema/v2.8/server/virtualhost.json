@@ -6,14 +6,10 @@
   "type": "object",
   "oneOf": [
     {
-      "required": [
-        "hosts"
-      ]
+      "required": [ "hosts" ]
     },
     {
-      "required": [
-        "aliased_hosts"
-      ]
+      "required": [ "aliased_hosts" ]
     }
   ],
   "properties": {
@@ -38,10 +34,7 @@
       "title": "Virtualhosts",
       "description": "All recognized virtual hosts by KrakenD must be listed here. The values declared here must match the content of the `Host` header when passed by the client.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
       "examples": [
-        [
-          "api-a.example.com",
-          "api-b.example.com"
-        ]
+        [ "api-a.example.com", "api-b.example.com" ]
       ],
       "type": "array",
       "items": {

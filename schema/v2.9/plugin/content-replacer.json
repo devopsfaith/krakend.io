@@ -8,10 +8,7 @@
   "minProperties": 1,
   "additionalProperties": {
     "type": "object",
-    "required": [
-      "find",
-      "replace"
-    ],
+    "required": [ "find", "replace" ],
     "properties": {
       "find": {
         "title": "Find",

@@ -30,9 +30,7 @@
           "title": "Paths to partials dirs",
           "description": "The [relative](https://www.krakend.io/docs/enterprise/configuration/working-directory/) or absolute paths to the partials directories, each entry is a different path. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
           "examples": [
-            [
-              "partials"
-            ]
+            [ "partials" ]
           ],
           "default": [],
           "type": "array",
@@ -49,9 +47,7 @@
     "ref_key": {
       "title": "$ref key",
       "description": "Instead of using the keyword `$ref` to replace configuration blocks, use another keyword. This is useful when you want to use OpenAPI's `$ref` and Flexible Config's `$ref` together and avoid crossed behavior.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
-      "examples": [
-        "$replace"
-      ],
+      "examples": [ "$replace" ],
       "default": "$ref",
       "type": "string"
     },
@@ -59,10 +55,7 @@
       "title": "Settings",
       "description": "Settings are files expressed in JSON, YAML, ENV, TOML, INI or properties (Java) formats that are parsed and available as a tree like `.filename` inside the templates.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
       "examples": [
-        [
-          "settings/production",
-          "settings/common"
-        ]
+        [ "settings/production", "settings/common" ]
       ],
       "type": "object",
       "properties": {
@@ -76,11 +69,7 @@
           "title": "Allowed suffixes",
           "description": "The list of file suffixes you want the parser to take into account. Non-matching files are ignored and unavailable in the templates.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
           "examples": [
-            [
-              ".yaml",
-              ".json",
-              "krakend.env"
-            ]
+            [ ".yaml", ".json", "krakend.env" ]
           ],
           "default": [
             ".yaml",
@@ -103,18 +92,14 @@
         "dir_field_prefix": {
           "title": "Directory prefix",
           "description": "When converting the settings tree into a traversable variable, add a prefix to directory names.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
-          "examples": [
-            "dir_"
-          ],
+          "examples": [ "dir_" ],
           "default": "",
           "type": "string"
         },
         "paths": {
           "title": "Paths to settings dirs",
           "description": "The [relative](https://www.krakend.io/docs/enterprise/configuration/working-directory/) or absolute paths to the settings directories, each entry is a different path. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
-          "examples": [
-            "settings"
-          ],
+          "examples": [ "settings" ],
           "default": [],
           "type": "array",
           "items": {
@@ -131,18 +116,14 @@
       "title": "Templates",
       "description": "The location of the Go templates you want to use to express your configuration.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
       "examples": [
-        [
-          "templates"
-        ]
+        [ "templates" ]
       ],
       "type": "object",
       "properties": {
         "paths": {
           "title": "Paths to templates dirs",
           "description": "The [relative](https://www.krakend.io/docs/enterprise/configuration/working-directory/) or absolute paths to the templates directories, each entry is a different path. You might have multiple directories when you have templates shared across environments or projects, and then you have dedicated templates for the running environment. Defaults to not use any templates directory. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
-          "examples": [
-            "templates"
-          ],
+          "examples": [ "templates" ],
           "default": [],
           "type": "array",
           "items": {
@@ -153,11 +134,7 @@
           "title": "Undefined variables behavior",
           "description": "How to treat access to unexisting variables in the templates. When the value is `error` the template will fail to compile, when `zero` it will set a zero-value (e.g, empty string), and when the value is `invalid` it will replace the content with the string `<no value>`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
           "default": "error",
-          "enum": [
-            "error",
-            "zero",
-            "invalid"
-          ]
+          "enum": [ "error", "zero", "invalid" ]
         }
       },
       "patternProperties": {

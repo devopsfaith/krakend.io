@@ -1,10 +1,12 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/krakend.json",
-  "title": "Schema validation for the latest version of KrakenD. Consider sticking to the specific version you are using.",
-  "allOf": [
+  "title": "KrakenD Configuration Schema",
+  "description": "Schema validation for the latest version of KrakenD. Consider sticking to the specific version you are using",
+  "examples": [
     {
-      "$ref": "v2.12/krakend.json"
+      "version": 3
     }
-  ]
+  ],
+  "$ref": "v2.13/krakend.json"
 }

@@ -4,10 +4,7 @@
   "title": "Telemetry via influx",
   "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
   "type": "object",
-  "required": [
-    "address",
-    "ttl"
-  ],
+  "required": [ "address", "ttl" ],
   "properties": {
     "address": {
       "$id": "#telemetry/influx/address",

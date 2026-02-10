@@ -25,18 +25,12 @@
               }
             ],
             "type": "object",
-            "required": [
-              "field",
-              "find",
-              "replace"
-            ],
+            "required": [ "field", "find", "replace" ],
             "properties": {
               "field": {
                 "title": "Field to modify",
                 "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                "examples": [
-                  "data.credit_card"
-                ],
+                "examples": [ "data.credit_card" ],
                 "type": "string"
               },
               "find": {
@@ -64,16 +58,12 @@
               }
             ],
             "type": "object",
-            "required": [
-              "field"
-            ],
+            "required": [ "field" ],
             "properties": {
               "field": {
                 "title": "Field to modify",
                 "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                "examples": [
-                  "user.surname"
-                ],
+                "examples": [ "user.surname" ],
                 "type": "string"
               }
             },
@@ -93,18 +83,12 @@
               }
             ],
             "type": "object",
-            "required": [
-              "field",
-              "find",
-              "replace"
-            ],
+            "required": [ "field", "find", "replace" ],
             "properties": {
               "field": {
                 "title": "Field to modify",
                 "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                "examples": [
-                  "data.credit_card"
-                ],
+                "examples": [ "data.credit_card" ],
                 "type": "string"
               },
               "find": {
@@ -115,9 +99,7 @@
               "replace": {
                 "title": "Replace",
                 "description": "The literal string or expression you want to use as a replacement. Use `$` signs to replace captured groups. \n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                "examples": [
-                  "${1}-XXXX"
-                ],
+                "examples": [ "${1}-XXXX" ],
                 "type": "string"
               }
             },
@@ -136,28 +118,18 @@
               }
             ],
             "type": "object",
-            "required": [
-              "field",
-              "find"
-            ],
+            "required": [ "field", "find" ],
             "properties": {
               "field": {
                 "title": "Field to modify",
                 "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                "examples": [
-                  "description"
-                ],
+                "examples": [ "description" ],
                 "type": "string"
               },
               "find": {
                 "title": "Find",
                 "description": "The sequence of characters you want to trim in the response.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                "examples": [
-                  "\r\n",
-                  "\n",
-                  "\t",
-                  " "
-                ],
+                "examples": [ "\r\n", "\n", "\t", " " ],
                 "type": "string"
               }
             },
@@ -175,16 +147,12 @@
               }
             ],
             "type": "object",
-            "required": [
-              "field"
-            ],
+            "required": [ "field" ],
             "properties": {
               "field": {
                 "title": "Field to modify",
                 "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                "examples": [
-                  "user.surname"
-                ],
+                "examples": [ "user.surname" ],
                 "type": "string"
               }
             },

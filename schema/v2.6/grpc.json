@@ -3,9 +3,7 @@
   "$id": "https://www.krakend.io/schema/v2.6/grpc.json",
   "title": "gRPC integration",
   "type": "object",
-  "required": [
-    "catalog"
-  ],
+  "required": [ "catalog" ],
   "properties": {
     "catalog": {
       "title": "Catalog definition",
@@ -75,10 +73,7 @@
                     "input_headers": {
                       "title": "Allowed Headers In",
                       "description": "Defines the list of all client headers that you can use as gRPC metadata.\nBy default, KrakenD won't pass any header from the client to the backend. This list is **case-insensitive**. You can declare headers in lowercase, uppercase, or mixed.\nAn entry `[\"X-Something\"]` forwards a single `X-Something` header to the backend, ignoring everything else. A single star element `[\"*\"]` as value forwards everything to the backend (**it's safer to avoid this option**).",
-                      "examples": [
-                        "X-Custom-Trace",
-                        "*"
-                      ],
+                      "examples": [ "X-Custom-Trace", "*" ],
                       "default": [],
                       "type": "array",
                       "uniqueItems": true,
@@ -89,9 +84,7 @@
                     "name": {
                       "title": "Method name",
                       "description": "The name of the published gRPC method.\n\nSee: https://www.krakend.io/docs/enterprise/grpc/server/",
-                      "examples": [
-                        "FindFlight"
-                      ],
+                      "examples": [ "FindFlight" ],
                       "type": "string"
                     },
                     "payload_params": {
@@ -113,9 +106,7 @@
               "name": {
                 "title": "gRPC name",
                 "description": "The name of the published gRPC service.\n\nSee: https://www.krakend.io/docs/enterprise/grpc/server/",
-                "examples": [
-                  "flight_finder.Flights"
-                ],
+                "examples": [ "flight_finder.Flights" ],
                 "type": "string"
               }
             },

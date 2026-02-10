@@ -4,11 +4,7 @@
   "title": "Attachment of a quota",
   "description": "Attach a quota to the endpoint, backend, or service. Needs a governance/processor namespace.",
   "type": "object",
-  "required": [
-    "quota_name",
-    "tier_key",
-    "tiers"
-  ],
+  "required": [ "quota_name", "tier_key", "tiers" ],
   "properties": {
     "disable_quota_headers": {
       "description": "When set to `true`, the quota headers `X-Quota-Limit`, `X-Quota-Remaining`, and `Retry-After` will not be added to the response. This is useful when you want to hide the quota information from the client.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
@@ -22,17 +18,12 @@
     },
     "quota_name": {
       "description": "Name of the quota you want to reuse, written exactly as declared under the `processors` list.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
-      "examples": [
-        "my_quota"
-      ],
+      "examples": [ "my_quota" ],
       "type": "string"
     },
     "tier_key": {
       "description": "Header or param used to determine the tier. Use `tier_value` and `tier_value_as` on each tier to determine how to match the value.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
-      "examples": [
-        "X-User-Tier",
-        "X-User-ID"
-      ],
+      "examples": [ "X-User-Tier", "X-User-ID" ],
       "type": "string"
     },
     "tiers": {
@@ -40,9 +31,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "rule_name"
-        ],
+        "required": [ "rule_name" ],
         "properties": {
           "key": {
             "description": "The key (e.g., header name, IP, claim name) that contains the identity of the caller, like the user ID of who is doing the request. The key must be present in the request.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
@@ -55,11 +44,7 @@
           "strategy": {
             "description": "Where to find the key containing the identity of the caller. Use `header` for headers, `ip` for the IP address of the caller, and `param` for an endpoint {parameter}.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
             "default": "header",
-            "enum": [
-              "header",
-              "ip",
-              "param"
-            ]
+            "enum": [ "header", "ip", "param" ]
           },
           "tier_value": {
             "description": "Literal value or CEL expression to match.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
@@ -68,11 +53,7 @@
           "tier_value_as": {
             "description": "How to treat the value. In most cases the tier value contains the plan name, like `gold`, so you will choose `literal`. But you can also set in the value a security policy (CEL) that will evaluate to resolve the tier policy accordingly, or put an asterisk `*` to always match and use as your last and default tier.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
             "default": "literal",
-            "enum": [
-              "literal",
-              "policy",
-              "*"
-            ]
+            "enum": [ "literal", "policy", "*" ]
           }
         }
       }
@@ -84,10 +65,7 @@
     "weight_strategy": {
       "description": "Where to find the key containing the counter value to increment. Use `body` for any type of encoding different than `no-op` and `header` for `no-op`.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
       "default": "body",
-      "enum": [
-        "body",
-        "header"
-      ]
+      "enum": [ "body", "header" ]
     }
   },
   "patternProperties": {

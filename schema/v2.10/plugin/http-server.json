@@ -3,9 +3,7 @@
   "$id": "https://www.krakend.io/schema/v2.10/plugin/http-server.json",
   "title": "HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
   "type": "object",
-  "required": [
-    "name"
-  ],
+  "required": [ "name" ],
   "properties": {
     "geoip": {
       "$ref": "geoip.json"
@@ -21,9 +19,7 @@
       "title": "Plugin name",
       "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
       "examples": [
-        [
-          "myplugin"
-        ]
+        [ "myplugin" ]
       ],
       "default": [],
       "type": "array",

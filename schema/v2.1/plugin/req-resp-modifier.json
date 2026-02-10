@@ -14,9 +14,7 @@
       "$id": "#plugin/req-resp-modifier",
       "title": "Plugin name",
       "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/plugin-modifiers/",
-      "examples": [
-        "myplugin"
-      ],
+      "examples": [ "myplugin" ],
       "default": [],
       "type": "array"
     },

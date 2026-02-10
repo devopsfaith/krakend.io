@@ -4,9 +4,7 @@
   "title": "OpenTelemetry",
   "description": "Enables metrics and traces using OpenTelemetry.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
   "type": "object",
-  "required": [
-    "exporters"
-  ],
+  "required": [ "exporters" ],
   "properties": {
     "exporters": {
       "title": "Exporters",
@@ -20,10 +18,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "required": [
-              "name",
-              "host"
-            ],
+            "required": [ "name", "host" ],
             "properties": {
               "disable_metrics": {
                 "title": "Disable metrics",
@@ -45,10 +40,7 @@
               "name": {
                 "title": "Name",
                 "description": "A unique name to identify this exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                "examples": [
-                  "local_prometheus",
-                  "remote_grafana"
-                ],
+                "examples": [ "local_prometheus", "remote_grafana" ],
                 "type": "string"
               },
               "port": {
@@ -77,9 +69,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "required": [
-              "name"
-            ],
+            "required": [ "name" ],
             "properties": {
               "disable_metrics": {
                 "title": "Disable metrics",
@@ -95,20 +85,14 @@
               "listen_ip": {
                 "title": "Listen IP",
                 "description": "The IP address that KrakenD listens to in IPv4 or IPv6. You can, for instance, expose the Prometheus metrics only in a private IP address. An empty string, or no declaration means listening on all interfaces. The inclusion of `::` is intended for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses, which are valid for IPv4 and IPv6 simultaneously.",
-                "examples": [
-                  "172.12.1.1",
-                  "::1"
-                ],
+                "examples": [ "172.12.1.1", "::1" ],
                 "default": "0.0.0.0",
                 "type": "string"
               },
               "name": {
                 "title": "Name",
                 "description": "A unique name to identify this exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                "examples": [
-                  "local_prometheus",
-                  "remote_grafana"
-                ],
+                "examples": [ "local_prometheus", "remote_grafana" ],
                 "type": "string"
               },
               "port": {
@@ -188,10 +172,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": [
-                      "key",
-                      "value"
-                    ],
+                    "required": [ "key", "value" ],
                     "properties": {
                       "key": {
                         "title": "Key",
@@ -263,10 +244,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": [
-                      "key",
-                      "value"
-                    ],
+                    "required": [ "key", "value" ],
                     "properties": {
                       "key": {
                         "title": "Key",
@@ -466,15 +444,8 @@
     "skip_paths": {
       "title": "Skip Paths",
       "description": "The paths you don't want to report. Use the literal value used in the `endpoint` definition, including any `{placeholders}`. In the `global` layer, this attribute works only on metrics, because traces are initiated before there is an endpoint to match against. If you do not want any path skipped, just add an array with an empty string `[\"\"]`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-      "examples": [
-        "/foo/{bar}"
-      ],
-      "default": [
-        "/__health",
-        "/__debug/",
-        "/__echo/",
-        "/__stats/"
-      ],
+      "examples": [ "/foo/{bar}" ],
+      "default": [ "/__health", "/__debug/", "/__echo/", "/__stats/" ],
       "type": "array",
       "items": {
         "type": "string"
@@ -483,9 +454,7 @@
     "trace_sample_rate": {
       "title": "Trace sample rate",
       "description": "The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-      "examples": [
-        0.25
-      ],
+      "examples": [ 0.25 ],
       "default": 1,
       "type": "number",
       "maximum": 1,

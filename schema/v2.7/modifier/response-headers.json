@@ -26,10 +26,7 @@
       "title": "Headers to delete",
       "description": "The list of headers you want to delete. All headers listed will be missing in the response.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
       "examples": [
-        [
-          "X-Krakend",
-          "X-Krakend-Completed"
-        ]
+        [ "X-Krakend", "X-Krakend-Completed" ]
       ],
       "type": "array",
       "minItems": 1,

@@ -19,9 +19,7 @@
     "proxy_address": {
       "title": "Proxy address",
       "description": "The proxy address used to forward the traffic. The address must contain the protocol and the port.\n\nSee: https://www.krakend.io/docs/enterprise/backends/http-client/",
-      "examples": [
-        "http://proxy.corp:9099"
-      ]
+      "examples": [ "http://proxy.corp:9099" ]
     },
     "send_body_on_redirect": {
       "title": "Enable redirect POST",

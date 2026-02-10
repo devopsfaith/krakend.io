@@ -6,21 +6,13 @@
   "type": "object",
   "anyOf": [
     {
-      "required": [
-        "audience"
-      ]
+      "required": [ "audience" ]
     },
     {
-      "required": [
-        "audience",
-        "credentials_file"
-      ]
+      "required": [ "audience", "credentials_file" ]
     },
     {
-      "required": [
-        "audience",
-        "credentials_json"
-      ]
+      "required": [ "audience", "credentials_json" ]
     }
   ],
   "properties": {
@@ -28,18 +20,14 @@
       "$id": "#auth/gcp/audience",
       "title": "Audience",
       "description": "The audience in GCP looks like an URL, and contains the destination service you will ask a token for. Most of the times this URL will match exactly with the `host` entry.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
-      "examples": [
-        "https://gcptest-76fewi6rca-uc.a.run.app"
-      ],
+      "examples": [ "https://gcptest-76fewi6rca-uc.a.run.app" ],
       "type": "string"
     },
     "credentials_file": {
       "$id": "#auth/gcp/credentials_file",
       "title": "Path to credentials file",
       "description": "The relative or absolute path to a credentials file in JSON format that contains all the credentials to authenticate API calls to the given service account.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
-      "examples": [
-        "/etc/krakend/gcp.json"
-      ],
+      "examples": [ "/etc/krakend/gcp.json" ],
       "type": "string"
     },
     "credentials_json": {

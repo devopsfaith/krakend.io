@@ -31,9 +31,7 @@
       "$id": "#backend/amqp/consumer/exchange",
       "title": "Exchange",
       "description": "The exchange name (must have a topic type if already exists).\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
-      "examples": [
-        "some-exchange"
-      ],
+      "examples": [ "some-exchange" ],
       "type": "string"
     },
     "immediate": {

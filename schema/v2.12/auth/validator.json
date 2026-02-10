@@ -6,16 +6,10 @@
   "type": "object",
   "oneOf": [
     {
-      "required": [
-        "alg",
-        "jwk_local_path"
-      ]
+      "required": [ "alg", "jwk_local_path" ]
     },
     {
-      "required": [
-        "alg",
-        "jwk_url"
-      ]
+      "required": [ "alg", "jwk_url" ]
     }
   ],
   "properties": {
@@ -45,9 +39,7 @@
       "title": "Audience",
       "description": "Reject tokens that do not contain ALL audiences declared in the list.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "examples": [
-        [
-          "audience1"
-        ]
+        [ "audience1" ]
       ],
       "type": "array",
       "items": {
@@ -58,9 +50,7 @@
       "$id": "#auth/validator/auth_header_name",
       "title": "Authorization header",
       "description": "Allows to parse the token from a custom header.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "examples": [
-        "X-Custom-Auth"
-      ],
+      "examples": [ "X-Custom-Auth" ],
       "default": "Authorization",
       "type": "string"
     },
@@ -82,14 +72,7 @@
       "$id": "#auth/validator/cipher_suites",
       "title": "Cipher suites",
       "description": "Override the default cipher suites. Use it if you want to enforce an even higher security standard.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "default": [
-        49199,
-        49195,
-        49200,
-        49196,
-        52392,
-        52393
-      ],
+      "default": [ 49199, 49195, 49200, 49196, 52392, 52393 ],
       "type": "array",
       "items": {
         "title": "Object in array",
@@ -124,9 +107,7 @@
       "$id": "#auth/validator/cookie_key",
       "title": "Cookie key",
       "description": "Add the key name of the cookie containing the token when it is not passed in the headers\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "examples": [
-        "cookie_jwt"
-      ],
+      "examples": [ "cookie_jwt" ],
       "type": "string"
     },
     "cypher_key": {
@@ -145,11 +126,7 @@
     "failed_jwk_key_cooldown": {
       "title": "Failed JWK Key cooldown",
       "description": "When a request comes with a token declaring an unknown `kid` (or the key strategy you choose), and the JWK is in a remote destination, KrakenD downloads the JWK from the Identity Provider for its recognition. Suppose there is a network failure, or the key is not in the list (e.g., you rotated the keys without anticipation). In that case, you can tell the gateway not to contact the Identity Provider again during the time specified here. We recommend setting this value, even with a low time (e.g., `10s`), to prevent misconfigurations from hammering your Identity Providers. Any values under one second are ignored.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "examples": [
-        "1m",
-        "10s",
-        "1h"
-      ],
+      "examples": [ "1m", "10s", "1h" ],
       "$ref": "../timeunits.json#/$defs/timeunit",
       "type": "string"
     },
@@ -157,9 +134,7 @@
       "$id": "#auth/validator/issuer",
       "title": "Issuer",
       "description": "When set, tokens not matching the issuer are rejected.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "examples": [
-        "issuer"
-      ],
+      "examples": [ "issuer" ],
       "type": "string"
     },
     "jwk_fingerprints": {
@@ -181,9 +156,7 @@
       "$id": "#auth/validator/jwk_local_path",
       "title": "JWK local path",
       "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "examples": [
-        "./jwk.txt"
-      ],
+      "examples": [ "./jwk.txt" ],
       "type": "string"
     },
     "jwk_url": {
@@ -201,20 +174,12 @@
       "$id": "#auth/validator/key_identify_strategy",
       "title": "Key identify strategy",
       "description": "Allows strategies other than `kid` to load keys.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "enum": [
-        "kid",
-        "x5t",
-        "x5t#S256",
-        "kid_x5t"
-      ]
+      "enum": [ "kid", "x5t", "x5t#S256", "kid_x5t" ]
     },
     "leeway": {
       "title": "Leeway",
       "description": "A margin of time where you will accept an already expired token. You should not accept expired tokens other than enabling two environments that are not perfectly synchronized and have minor clock drifts to accept each other differences. Any value specified here will be rounded to seconds, with a minimum of one second.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "examples": [
-        "1m",
-        "1s"
-      ],
+      "examples": [ "1m", "1s" ],
       "default": "1s",
       "$ref": "../timeunits.json#/$defs/timeunit",
       "type": "string"
@@ -260,9 +225,7 @@
       "$id": "#auth/validator/roles_key",
       "title": "Roles key",
       "description": "When validating users through roles, provide the key name inside the JWT payload that lists their roles. If this key is nested inside another object, add `roles_key_is_nested` and use the dot notation `.` to traverse each level. E.g.: `resource_access.myclient.roles` represents the payload `{resource_access: { myclient: { roles: [\"myrole\"] } }`. Notice that the roles object you choose is a list, not a map.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "examples": [
-        "resource_access.myclient.roles"
-      ],
+      "examples": [ "resource_access.myclient.roles" ],
       "type": "string"
     },
     "roles_key_is_nested": {
@@ -291,10 +254,7 @@
       "title": "Scopes matcher",
       "description": "Defines if the user needs to have in its token at least one of the listed claims (`any`), or `all` of them.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "default": "any",
-      "enum": [
-        "any",
-        "all"
-      ]
+      "enum": [ "any", "all" ]
     },
     "secret_url": {
       "$id": "#auth/validator/secret_url",

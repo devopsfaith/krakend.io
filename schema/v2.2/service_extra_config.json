@@ -41,19 +41,12 @@
       "title": "Cross Origin Resource Sharing",
       "description": "When KrakenD endpoints are consumed from a browser, you might need to enable the Cross-Origin Resource Sharing (CORS) module as browsers restrict cross-origin HTTP requests initiated from scripts.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
       "default": {
-        "allow_methods": [
-          "POST",
-          "GET"
-        ],
-        "allow_origins": [
-          "http://foobar.com"
-        ],
+        "allow_methods": [ "POST", "GET" ],
+        "allow_origins": [ "http://foobar.com" ],
         "max_age": "12h"
       },
       "type": "object",
-      "required": [
-        "allow_origins"
-      ],
+      "required": [ "allow_origins" ],
       "properties": {
         "allow_credentials": {
           "$id": "#service_extra_config/security/cors/allow_credentials",
@@ -97,10 +90,7 @@
           "items": {
             "$id": "#service_extra_config/security/cors/allow_origins/items",
             "title": "Allowed origins list",
-            "examples": [
-              "*",
-              "https://example.com"
-            ],
+            "examples": [ "*", "https://example.com" ],
             "type": "string"
           }
         },
@@ -122,9 +112,7 @@
           "$id": "#service_extra_config/security/cors/max_age",
           "title": "Max age",
           "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-          "examples": [
-            "12h"
-          ],
+          "examples": [ "12h" ],
           "$ref": "timeunits.json#/$defs/timeunit",
           "type": "string"
         }

@@ -4,17 +4,13 @@
   "title": "API-key Authentication",
   "description": "Enterprise only. Enables a Role-Based Access Control (RBAC) mechanism by reading the `Authorization` header of incoming requests.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
   "type": "object",
-  "required": [
-    "keys"
-  ],
+  "required": [ "keys" ],
   "properties": {
     "identifier": {
       "$id": "#auth/api-keys/identifier",
       "title": "Identifier",
       "description": "The header name or the query string name that contains the API key. Defaults to `key` when using the `query_string` strategy and to Authorization when using `header`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-      "examples": [
-        "Authorization"
-      ],
+      "examples": [ "Authorization" ],
       "type": "string"
     },
     "keys": {
@@ -49,10 +45,7 @@
       "$id": "#auth/api-keys/strategy",
       "title": "Strategy",
       "description": "One of header or query_string. Specifies where to expect the user API key, whether inside a header or as part of the query string. Defaults to header.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-      "enum": [
-        "header",
-        "query_string"
-      ]
+      "enum": [ "header", "query_string" ]
     }
   },
   "patternProperties": {

@@ -16,9 +16,7 @@
       "title": "CA certificates",
       "description": "An array with all the CA certificates you would like to validate the server you are connecting to.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
       "examples": [
-        [
-          "ca.pem"
-        ]
+        [ "ca.pem" ]
       ],
       "default": [],
       "type": "array"
@@ -27,11 +25,7 @@
       "$id": "client_tls/cipher_suites",
       "title": "Cipher Suites",
       "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-      "default": [
-        4865,
-        4866,
-        4867
-      ],
+      "default": [ 4865, 4866, 4867 ],
       "type": "array",
       "uniqueItems": true
     },
@@ -39,19 +33,11 @@
       "$id": "client_tls/curve_preferences",
       "title": "Curve identifiers",
       "description": "The list of all the identifiers for the curve preferences. Use `23` for CurveP256, `24` for CurveP384 or `25` for CurveP521.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-      "default": [
-        23,
-        24,
-        25
-      ],
+      "default": [ 23, 24, 25 ],
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "enum": [
-          23,
-          24,
-          25
-        ]
+        "enum": [ 23, 24, 25 ]
       }
     },
     "disable_system_ca_pool": {
@@ -66,26 +52,14 @@
       "title": "Maximum TLS version",
       "description": "Maximum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
       "default": "TLS13",
-      "enum": [
-        "SSL3.0",
-        "TLS10",
-        "TLS11",
-        "TLS12",
-        "TLS13"
-      ]
+      "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ]
     },
     "min_version": {
       "$id": "client_tls/min_version",
       "title": "Minimum TLS version",
       "description": "Minimum TLS version supported. When specifiying very old and insecure versions under TLS12 you must provide the `ciphers_list`.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
       "default": "TLS13",
-      "enum": [
-        "SSL3.0",
-        "TLS10",
-        "TLS11",
-        "TLS12",
-        "TLS13"
-      ]
+      "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ]
     }
   },
   "patternProperties": {

@@ -4,10 +4,7 @@
   "title": "Telemetry via Instana by IBM",
   "description": "Enterprise only. Send metrics and traces to your Instana dashboard.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
   "type": "object",
-  "required": [
-    "AgentHost",
-    "AgentPort"
-  ],
+  "required": [ "AgentHost", "AgentPort" ],
   "properties": {
     "AgentHost": {
       "$id": "#telemetry/opencensus/AgentHost",
@@ -45,12 +42,7 @@
       "$id": "#telemetry/opencensus/LogLevel",
       "title": "Log level",
       "description": "One of Error 0, Warn 1, Info 2 or Debug 3.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
-      "enum": [
-        0,
-        1,
-        2,
-        3
-      ]
+      "enum": [ 0, 1, 2, 3 ]
     },
     "MaxBufferedProfiles": {
       "$id": "#telemetry/opencensus/MaxBufferedProfiles",

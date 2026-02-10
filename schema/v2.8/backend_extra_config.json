@@ -28,14 +28,10 @@
     "backend/http": {
       "oneOf": [
         {
-          "required": [
-            "return_error_details"
-          ]
+          "required": [ "return_error_details" ]
         },
         {
-          "required": [
-            "return_error_code"
-          ]
+          "required": [ "return_error_code" ]
         }
       ],
       "properties": {
@@ -125,20 +121,14 @@
       "$ref": "./security/policies.json",
       "anyOf": [
         {
-          "required": [
-            "req"
-          ]
+          "required": [ "req" ]
         },
         {
-          "required": [
-            "resp"
-          ]
+          "required": [ "resp" ]
         }
       ],
       "not": {
-        "required": [
-          "jwt"
-        ]
+        "required": [ "jwt" ]
       },
       "patternProperties": {
         "^[@$_#]": {}

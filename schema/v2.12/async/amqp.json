@@ -4,11 +4,7 @@
   "title": "Async AMQP Driver",
   "description": "The Async AMQP component enables the AMQP driver for the Async functionality.\n\nSee: https://www.krakend.io/docs/async/amqp/",
   "type": "object",
-  "required": [
-    "name",
-    "host",
-    "exchange"
-  ],
+  "required": [ "name", "host", "exchange" ],
   "properties": {
     "auto_ack": {
       "$id": "#async/amqp/auto_ack",
@@ -35,9 +31,7 @@
       "$id": "#async/amqp/exchange",
       "title": "Exchange",
       "description": "The entity name where messages are retrieved (it will be created, or it must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/async/amqp/",
-      "examples": [
-        "some-exchange"
-      ],
+      "examples": [ "some-exchange" ],
       "type": "string"
     },
     "exclusive": {

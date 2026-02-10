@@ -5,16 +5,10 @@
   "type": "object",
   "anyOf": [
     {
-      "required": [
-        "connection_pool",
-        "max_rate"
-      ]
+      "required": [ "connection_pool", "max_rate" ]
     },
     {
-      "required": [
-        "connection_pool",
-        "client_max_rate"
-      ]
+      "required": [ "connection_pool", "client_max_rate" ]
     }
   ],
   "properties": {
@@ -50,11 +44,7 @@
     "key": {
       "title": "Header or Param key",
       "description": "Available when using `client_max_rate` and you have set a `strategy` equal to `header` or `param`. It makes no sense in other contexts. For `header` it is the header name containing the user identification (e.g., `Authorization` on tokens, or `X-Original-Forwarded-For` for IPs). When they contain a list of space-separated IPs, it will take the IP from the client that hit the first trusted proxy. For `param` it is the name of the placeholder used in the endpoint, like `id_user` for an endpoint `/user/{id_user}`.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
-      "examples": [
-        "X-Tenant",
-        "Authorization",
-        "id_user"
-      ],
+      "examples": [ "X-Tenant", "Authorization", "id_user" ],
       "type": "string"
     },
     "max_rate": {
@@ -71,11 +61,7 @@
     "strategy": {
       "title": "Strategy",
       "description": "Available when using `client_max_rate`. Sets the strategy you will use to set client counters. Choose `ip` when the restrictions apply to the client's IP address, or set it to `header` when there is a header that identifies a user uniquely. That header must be defined with the `key` entry.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
-      "enum": [
-        "ip",
-        "header",
-        "param"
-      ]
+      "enum": [ "ip", "header", "param" ]
     }
   }
 }

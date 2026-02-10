@@ -4,10 +4,7 @@
   "title": "JWK aggregator",
   "description": "Enterprise only. The JWK aggregator plugin allows KrakenD to validate tokens issued by multiple Identity Providers.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
   "type": "object",
-  "required": [
-    "port",
-    "origins"
-  ],
+  "required": [ "port", "origins" ],
   "properties": {
     "cache": {
       "title": "Cache",
@@ -22,9 +19,7 @@
     "port": {
       "title": "Port",
       "description": "The port of the local server doing the aggregation. The port is only accessible within the gateway machine using localhost, and it's never exposed to the external network. Choose any port that is free in the system.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
-      "examples": [
-        9876
-      ],
+      "examples": [ 9876 ],
       "type": "integer"
     }
   },

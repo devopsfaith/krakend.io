@@ -11,10 +11,7 @@
       "title": "Version v1",
       "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
       "type": "object",
-      "required": [
-        "credentials",
-        "variables"
-      ],
+      "required": [ "credentials", "variables" ],
       "properties": {
         "credentials": {
           "title": "API Key",
@@ -41,9 +38,7 @@
           "title": "Model Variables",
           "description": "The variables specific to the Anthropic usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
           "type": "object",
-          "required": [
-            "model"
-          ],
+          "required": [ "model" ],
           "properties": {
             "extra_payload": {
               "title": "Extra Payload",

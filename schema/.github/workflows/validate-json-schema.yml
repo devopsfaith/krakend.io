@@ -5,27 +5,18 @@ permissions:
 jobs:
   test-schema:
     runs-on: ubuntu-latest
+    env:
+      BIN: jsonschema
+      VERSION: v2.13
     steps:
       - uses: actions/checkout@v2
-      - uses: sourcemeta/jsonschema@v7.1.2
-      - name: Ensure JSON Schemas are formatted
-        run: jsonschema fmt --ignore test --check --verbose --extension .json
-      - name: Lint JSON Schemas
-        run: jsonschema lint --fix --ignore test --verbose --extension .json
-      - name: Ensure JSON Schemas are valid with respect to their metaschemas
-        run: jsonschema metaschema --ignore test --verbose --extension .json
-      - name: Run JSON Schema unit tests
-        run: jsonschema test ./test/v2.12 --resolve v2.12
-      - name: Create a unified bundle
-        run: jsonschema bundle v2.12/_root.json --resolve v2.12 --without-id > v2.12/krakend.json
-      - name: Format bundle file
-        run: jsonschema fmt v2.12/krakend.json
-      - uses: EndBug/add-and-commit@v9
-        with:
-          # The arguments for the `git add` command (see the paragraph below for more info)
-          # Default: '.'
-          add: 'v2.12/krakend.json'
-          commit: -sS
+      - uses: sourcemeta/jsonschema@v14.6.0
+      - name: build
+        run: make build
+      - name: test
+        run: make test
+      - name: Fail if krakend.json changed
+        run: git diff --exit-code -- "$VERSION/krakend.json"
       - name: Notify JSON schema
         uses: slackapi/slack-github-action@v2.0.0
         if: ${{ github.head_ref == 'main' || github.ref_name == 'main' }} # check the target branch if it's main

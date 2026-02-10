@@ -51,10 +51,7 @@
               "type": "array",
               "items": {
                 "type": "object",
-                "required": [
-                  "key",
-                  "value"
-                ],
+                "required": [ "key", "value" ],
                 "properties": {
                   "key": {
                     "title": "Key",
@@ -126,10 +123,7 @@
               "type": "array",
               "items": {
                 "type": "object",
-                "required": [
-                  "key",
-                  "value"
-                ],
+                "required": [ "key", "value" ],
                 "properties": {
                   "key": {
                     "title": "Key",
@@ -169,9 +163,7 @@
           "title": "Metrics exporters",
           "description": "Overrides the metrics exporters used in this endpoint",
           "examples": [
-            [
-              "local_prometheus"
-            ]
+            [ "local_prometheus" ]
           ],
           "type": "array",
           "items": {
@@ -187,11 +179,7 @@
           "title": "Trace exporters",
           "description": "Overrides the trace exporters used in this endpoint",
           "examples": [
-            [
-              "debug_jaeger",
-              "newrelic",
-              "local_tempo"
-            ]
+            [ "debug_jaeger", "newrelic", "local_tempo" ]
           ],
           "type": "array",
           "items": {
@@ -201,9 +189,7 @@
         "trace_sample_rate": {
           "title": "Trace sample rate",
           "description": "Overrides the sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
-          "examples": [
-            0.25
-          ],
+          "examples": [ 0.25 ],
           "type": "number",
           "maximum": 1,
           "minimum": 0

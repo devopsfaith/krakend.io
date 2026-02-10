@@ -28,14 +28,10 @@
     "backend/http": {
       "oneOf": [
         {
-          "required": [
-            "return_error_details"
-          ]
+          "required": [ "return_error_details" ]
         },
         {
-          "required": [
-            "return_error_code"
-          ]
+          "required": [ "return_error_code" ]
         }
       ],
       "properties": {

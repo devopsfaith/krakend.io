@@ -21,39 +21,23 @@
       "items": {
         "type": "string"
       },
-      "example": [
-        "Accept-Language"
-      ]
+      "example": [ "Accept-Language" ]
     },
     "allow_methods": {
       "$id": "#security/cors/allow_methods",
       "title": "Allowed methods",
       "description": "An array with all the HTTP methods allowed, in uppercase. Possible values are `GET`, `HEAD`,`POST`,`PUT`,`PATCH`,`DELETE`, or `OPTIONS`\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-      "default": [
-        "GET",
-        "HEAD",
-        "POST"
-      ],
+      "default": [ "GET", "HEAD", "POST" ],
       "type": "array",
       "items": {
-        "enum": [
-          "GET",
-          "HEAD",
-          "POST",
-          "PUT",
-          "PATCH",
-          "DELETE",
-          "OPTIONS"
-        ]
+        "enum": [ "GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS" ]
       }
     },
     "allow_origins": {
       "$id": "#security/cors/allow_origins",
       "title": "Allowed origins",
       "description": "An array with all the origins allowed, the use of one `*` is permitted to allow groups of hosts. Examples of values are `https://example.com`, `https://example.*`, `https://*.example.com` `or just `*` (any origin).\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-      "default": [
-        "*"
-      ],
+      "default": [ "*" ],
       "type": "array",
       "items": {
         "type": "string"
@@ -77,10 +61,7 @@
       "$id": "#security/cors/expose_headers",
       "title": "Expose headers",
       "description": "List of headers that are safe to expose to the API of a CORS API specification.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-      "default": [
-        "Content-Length",
-        "Content-Type"
-      ],
+      "default": [ "Content-Length", "Content-Type" ],
       "type": "array",
       "items": {
         "type": "string"
@@ -105,9 +86,7 @@
       "$id": "#security/cors/options_success_status",
       "title": "Success Status Codes",
       "description": "The HTTP status code that is considered a success.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-      "examples": [
-        200
-      ],
+      "examples": [ 200 ],
       "default": 204,
       "type": "integer"
     }

@@ -2,9 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Schema validation for KrakenD",
   "type": "object",
-  "required": [
-    "version"
-  ],
+  "required": [ "version" ],
   "properties": {
     "async_agent": {
       "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1async_agent.json"
@@ -126,10 +124,7 @@
     "listen_ip": {
       "title": "Listen IP",
       "description": "The IP address that KrakenD listens to in IPv4 or IPv6. An empty string, or no declaration at all means listening on all interfaces. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses and both are valid for IPv4 and IPv6 simultaneously.",
-      "examples": [
-        "172.12.1.1",
-        "::1"
-      ],
+      "examples": [ "172.12.1.1", "::1" ],
       "default": "0.0.0.0",
       "type": "string"
     },
@@ -175,28 +170,19 @@
       "title": "Plugin",
       "description": "Enables external plugins that are copied in a specific folder",
       "type": "object",
-      "required": [
-        "pattern",
-        "folder"
-      ],
+      "required": [ "pattern", "folder" ],
       "properties": {
         "pattern": {
           "title": "Pattern",
           "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
-          "examples": [
-            ".so",
-            "-production.so"
-          ],
+          "examples": [ ".so", "-production.so" ],
           "default": ".so",
           "type": "string"
         },
         "folder": {
           "title": "Folder",
           "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
-          "examples": [
-            "/opt/krakend/plugins/",
-            "./plugins/"
-          ],
+          "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
           "default": "/opt/krakend/plugins/",
           "type": "string"
         }
@@ -276,11 +262,7 @@
       "title": "Async AMQP Driver",
       "description": "The Async AMQP component enables the AMQP driver for the Async functionality.\n\nSee: https://www.krakend.io/docs/async/amqp/",
       "type": "object",
-      "required": [
-        "name",
-        "host",
-        "exchange"
-      ],
+      "required": [ "name", "host", "exchange" ],
       "properties": {
         "auto_ack": {
           "title": "Auto ACK",
@@ -303,9 +285,7 @@
         "exchange": {
           "title": "Exchange",
           "description": "The entity name where messages are retrieved (it will be created, or it must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/async/amqp/",
-          "examples": [
-            "some-exchange"
-          ],
+          "examples": [ "some-exchange" ],
           "type": "string"
         },
         "exclusive": {
@@ -359,12 +339,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "name",
-          "consumer",
-          "backend",
-          "extra_config"
-        ],
+        "required": [ "name", "consumer", "backend", "extra_config" ],
         "properties": {
           "backend": {
             "title": "Backend definition",
@@ -408,9 +383,7 @@
           "consumer": {
             "title": "Consumer",
             "description": "Defines all the settings for each agent consuming messages.\n\nSee: https://www.krakend.io/docs/async/",
-            "required": [
-              "topic"
-            ],
+            "required": [ "topic" ],
             "properties": {
               "max_rate": {
                 "title": "Max Rate",
@@ -440,20 +413,11 @@
             "title": "Backend Encoding",
             "description": "Informs KrakenD how to parse the responses of your services.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
             "default": "json",
-            "enum": [
-              "json",
-              "safejson",
-              "xml",
-              "rss",
-              "string",
-              "no-op"
-            ]
+            "enum": [ "json", "safejson", "xml", "rss", "string", "no-op" ]
           },
           "extra_config": {
             "description": "Defines the driver that connects to your queue or PubSub system. In addition, you can place other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware, but adding the driver is mandatory.\n\nSee: https://www.krakend.io/docs/async/",
-            "required": [
-              "async/amqp"
-            ],
+            "required": [ "async/amqp" ],
             "properties": {
               "async/amqp": {
                 "title": "Async Agent extra configuration",
@@ -479,28 +443,18 @@
       "title": "API-key Authentication",
       "description": "Enterprise only. Enables a Role-Based Access Control (RBAC) mechanism by reading the `Authorization` header of incoming requests.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
       "type": "object",
-      "required": [
-        "keys"
-      ],
+      "required": [ "keys" ],
       "properties": {
         "hash": {
           "title": "Hash",
           "description": "The hashing function used to store the value of the key. When you use `plain` the API key is written as it will passed by the user. The rest of the hashes require you to save the API key after applying the desired function.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
           "default": "plain",
-          "enum": [
-            "plain",
-            "fnv128",
-            "sha256",
-            "sha1"
-          ]
+          "enum": [ "plain", "fnv128", "sha256", "sha1" ]
         },
         "identifier": {
           "title": "Identifier",
           "description": "The header name or the query string name that contains the API key. Defaults to `key` when using the `query_string` strategy and to `Authorization` when using the `header` strategy. The identifier set here is used across all endpoints with API key authentication enabled, but they can override this entry individually.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-          "examples": [
-            "Authorization",
-            "X-Key"
-          ],
+          "examples": [ "Authorization", "X-Key" ],
           "default": "Authorization",
           "type": "string"
         },
@@ -534,18 +488,14 @@
         "propagate_role": {
           "title": "Propagate role as header",
           "description": "The name of a header that will propagate to the backend containing the matching role. The backend receives no header when the string is empty, or the attribute is not declared. Otherwise, the backend receives the declared header name containing **the first matching role of the user**. The header value will be  `ANY` when the endpoint does not require roles. For instance, if an API key has roles `[A, B]`, and the endpoint demands roles `[B, C]`, the backend will receive a header with the value `B`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-          "examples": [
-            "X-Krakend-Role"
-          ],
+          "examples": [ "X-Krakend-Role" ],
           "default": "",
           "type": "string"
         },
         "salt": {
           "title": "Salt",
           "description": "A salt string for the desired hashing function. When provided, the API key is concatenated after the salt string and both hashed together.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-          "examples": [
-            "mySalt"
-          ],
+          "examples": [ "mySalt" ],
           "default": "",
           "type": "string"
         },
@@ -553,10 +503,7 @@
           "title": "Strategy",
           "description": "Specifies where to expect the user API key, whether inside a header or as part of the query string. The strategy set here is used across all endpoints with API key authentication enabled, but they can override this entry individually.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
           "default": "header",
-          "enum": [
-            "header",
-            "query_string"
-          ]
+          "enum": [ "header", "query_string" ]
         }
       },
       "patternProperties": {
@@ -572,9 +519,7 @@
         "htpasswd_path": {
           "title": "Path to htpasswd file",
           "description": "Absolute Path to the `htpasswd` filename (recommended) or relative `./` to the workdir (less secure).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
-          "examples": [
-            "/path/to/.htpasswd"
-          ],
+          "examples": [ "/path/to/.htpasswd" ],
           "type": "string"
         },
         "users": {
@@ -605,11 +550,7 @@
       "title": "OAuth2 client-credentials",
       "description": "2-legged OAuth2 flow: Request to your authorization server an access token to reach protected resources.\n\nSee: https://www.krakend.io/docs/authorization/client-credentials/",
       "type": "object",
-      "required": [
-        "client_id",
-        "client_secret",
-        "token_url"
-      ],
+      "required": [ "client_id", "client_secret", "token_url" ],
       "properties": {
         "client_id": {
           "title": "Client ID",
@@ -619,9 +560,7 @@
         "client_secret": {
           "title": "Client secret",
           "description": "The secret string provided to the Auth server.\n\nSee: https://www.krakend.io/docs/authorization/client-credentials/",
-          "examples": [
-            "mys3cr3t"
-          ],
+          "examples": [ "mys3cr3t" ],
           "type": "string"
         },
         "endpoint_params": {
@@ -629,9 +568,7 @@
           "description": "Any additional parameters you want to include **in the payload** when requesting the token. For instance, adding the `audience` request parameter may denote the target API for which the token should be issued.\n\nSee: https://www.krakend.io/docs/authorization/client-credentials/",
           "examples": [
             {
-              "audience": [
-                "YOUR-AUDIENCE"
-              ]
+              "audience": [ "YOUR-AUDIENCE" ]
             }
           ],
           "type": "object"
@@ -639,9 +576,7 @@
         "scopes": {
           "title": "Scopes",
           "description": "A comma-separated list of scopes needed, e.g.: `scopeA,scopeB`\n\nSee: https://www.krakend.io/docs/authorization/client-credentials/",
-          "examples": [
-            "scopeA,scopeB"
-          ],
+          "examples": [ "scopeA,scopeB" ],
           "type": "string"
         },
         "token_url": {
@@ -665,38 +600,26 @@
       "type": "object",
       "anyOf": [
         {
-          "required": [
-            "audience"
-          ]
+          "required": [ "audience" ]
         },
         {
-          "required": [
-            "audience",
-            "credentials_file"
-          ]
+          "required": [ "audience", "credentials_file" ]
         },
         {
-          "required": [
-            "audience",
-            "credentials_json"
-          ]
+          "required": [ "audience", "credentials_json" ]
         }
       ],
       "properties": {
         "audience": {
           "title": "Audience",
           "description": "The audience in GCP looks like an URL, and contains the destination service you will ask a token for. Most of the times this URL will match exactly with the `host` entry.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
-          "examples": [
-            "https://gcptest-76fewi6rca-uc.a.run.app"
-          ],
+          "examples": [ "https://gcptest-76fewi6rca-uc.a.run.app" ],
           "type": "string"
         },
         "credentials_file": {
           "title": "Path to credentials file",
           "description": "The relative or absolute path to a credentials file in JSON format that contains all the credentials to authenticate API calls to the given service account.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
-          "examples": [
-            "/etc/krakend/gcp.json"
-          ],
+          "examples": [ "/etc/krakend/gcp.json" ],
           "type": "string"
         },
         "credentials_json": {
@@ -734,9 +657,7 @@
       "title": "Shared JWK cache",
       "description": "Enables global configurations for the HTTP client responsible of downloading and caching the JWK URLs for token validation and signing.",
       "type": "object",
-      "required": [
-        "shared_cache_duration"
-      ],
+      "required": [ "shared_cache_duration" ],
       "properties": {
         "shared_cache_duration": {
           "title": "Shared cache duration",
@@ -754,25 +675,18 @@
       "title": "NTLM Authentication",
       "description": "Enterprise only. Enables NTLM authentication between KrakenD and a Microsoft server such as Dynamics.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
       "type": "object",
-      "required": [
-        "user",
-        "password"
-      ],
+      "required": [ "user", "password" ],
       "properties": {
         "password": {
           "title": "Password",
           "description": "The password you will use, in clear text.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
-          "examples": [
-            "myp4ssw0rd"
-          ],
+          "examples": [ "myp4ssw0rd" ],
           "type": "string"
         },
         "user": {
           "title": "User",
           "description": "The username you will send as NTLM authentication user.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
-          "examples": [
-            "krakendclient"
-          ],
+          "examples": [ "krakendclient" ],
           "type": "string"
         }
       },
@@ -786,30 +700,18 @@
       "title": "Revoke Server",
       "description": "The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to revoke JWT tokens that are still valid.",
       "type": "object",
-      "required": [
-        "N",
-        "P",
-        "hash_name",
-        "TTL",
-        "port",
-        "token_keys"
-      ],
+      "required": [ "N", "P", "hash_name", "TTL", "port", "token_keys" ],
       "properties": {
         "N": {
           "title": "Number of elements",
           "description": "The maximum `N`umber of elements you want to keep in the bloom filter. Tens of millions work fine on machines with low resources.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-          "examples": [
-            10000000
-          ],
+          "examples": [ 10000000 ],
           "type": "integer"
         },
         "P": {
           "title": "Probability",
           "description": "The `P`robability of returning a false positive. E.g.,`1e-7` for one false positive every 10 million different tokens. The values `N` and `P` determine the size of the resulting bloom filter to fulfill your expectations. E.g: 0.0000001\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-          "examples": [
-            1e-07,
-            1e-07
-          ],
+          "examples": [ 1e-7, 1e-7 ],
           "type": "number"
         },
         "TTL": {
@@ -820,10 +722,7 @@
         "hash_name": {
           "title": "Hash function name",
           "description": "Either `optimal` (recommended) or `default`. The `optimal` consumes less CPU but has less entropy when generating the hash, although the loss is negligible.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-          "enum": [
-            "optimal",
-            "default"
-          ]
+          "enum": [ "optimal", "default" ]
         },
         "port": {
           "title": "Port",
@@ -833,9 +732,7 @@
         "revoke_server_api_key": {
           "title": "Revoke Server Ping URL",
           "description": "A string used as an exchange API key to secure the communication between the Revoke Server and the KrakenD instances and to consume the REST API of the Revoker Server as well. E.g., a string generated with `uuidgen`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
-          "examples": [
-            "639ee23f-f4c5-40c4-855c-912bf01fae87"
-          ],
+          "examples": [ "639ee23f-f4c5-40c4-855c-912bf01fae87" ],
           "type": "string"
         },
         "revoke_server_max_retries": {
@@ -853,26 +750,20 @@
         "revoke_server_ping_interval": {
           "title": "Revoke Server ping interval",
           "description": "Time the server and the client wait to verify they are alive with each other (health check). Defaults to `30s`. Do not lower this value a lot; otherwise, you will have a lot of internal traffic.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
-          "examples": [
-            "30s"
-          ],
+          "examples": [ "30s" ],
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "revoke_server_ping_url": {
           "title": "Revoke Server Ping URL",
           "description": "The address to the `/instances` endpoint in the Revoke Server.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
-          "examples": [
-            "http://revoke-server:8081/instances"
-          ],
+          "examples": [ "http://revoke-server:8081/instances" ],
           "type": "string"
         },
         "token_keys": {
           "title": "Token keys",
           "description": "The list with all the claims in your JWT payload that need watching. These fields establish the criteria to revoke accesses in the future. The Revoker does not use this value, only the clients.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-          "examples": [
-            "jti"
-          ],
+          "examples": [ "jti" ],
           "type": "array",
           "items": {
             "type": "string"
@@ -891,24 +782,13 @@
       "type": "object",
       "oneOf": [
         {
-          "required": [
-            "alg",
-            "jwk_local_path",
-            "disable_jwk_security"
-          ]
+          "required": [ "alg", "jwk_local_path", "disable_jwk_security" ]
         },
         {
-          "required": [
-            "alg",
-            "jwk_url"
-          ]
+          "required": [ "alg", "jwk_url" ]
         }
       ],
-      "required": [
-        "alg",
-        "kid",
-        "keys_to_sign"
-      ],
+      "required": [ "alg", "kid", "keys_to_sign" ],
       "properties": {
         "alg": {
           "title": "Algorithm",
@@ -932,14 +812,7 @@
         "cipher_suites": {
           "title": "Cipher suites",
           "description": "Override the default cipher suites (see [JWT validation](https://www.krakend.io/docs/authorization/jwt-signing/)). Unless you have a legacy JWK, **you don't need to set this value**.",
-          "default": [
-            49199,
-            49195,
-            49200,
-            49196,
-            52392,
-            52393
-          ],
+          "default": [ 49199, 49195, 49200, 49196, 52392, 52393 ],
           "type": "array",
           "items": {
             "title": "Object in array",
@@ -1003,26 +876,19 @@
         "jwk_local_path": {
           "title": "JWK local path",
           "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "examples": [
-            "./jwk.txt"
-          ],
+          "examples": [ "./jwk.txt" ],
           "type": "string"
         },
         "jwk_url": {
           "title": "JWK URL",
           "description": " The URL to the JWK endpoint with the private keys used to sign the token.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-          "examples": [
-            "http://your-backend/jwk/symmetric.json"
-          ],
+          "examples": [ "http://your-backend/jwk/symmetric.json" ],
           "type": "string"
         },
         "keys_to_sign": {
           "title": "Keys to sign",
           "description": "List of all the specific keys that need signing (e.g., `refresh_token` and `access_token`).\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-          "examples": [
-            "access_token",
-            "refresh_token"
-          ],
+          "examples": [ "access_token", "refresh_token" ],
           "type": "array",
           "items": {
             "type": "string"
@@ -1031,18 +897,13 @@
         "kid": {
           "title": "Kid",
           "description": "The key ID purpose is to match a specific key, as the jwk_url might contain several keys.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
-          "examples": [
-            "sim2"
-          ],
+          "examples": [ "sim2" ],
           "type": "string"
         },
         "leeway": {
           "title": "Leeway",
           "description": "A margin of extra time where you will still accept the token after its expiration date. You should not accept expired tokens other than enabling two environments that are not perfectly synchronized and have minor clock drifts to accept each other differences. Any value specified here will be rounded to seconds, with a minimum of one second.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-          "examples": [
-            "1m",
-            "1s"
-          ],
+          "examples": [ "1m", "1s" ],
           "default": "1s",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
           "type": "string"
@@ -1073,16 +934,10 @@
       "type": "object",
       "oneOf": [
         {
-          "required": [
-            "alg",
-            "jwk_local_path"
-          ]
+          "required": [ "alg", "jwk_local_path" ]
         },
         {
-          "required": [
-            "alg",
-            "jwk_url"
-          ]
+          "required": [ "alg", "jwk_url" ]
         }
       ],
       "properties": {
@@ -1110,9 +965,7 @@
           "title": "Audience",
           "description": "Reject tokens that do not contain ALL audiences declared in the list.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [
-            [
-              "audience1"
-            ]
+            [ "audience1" ]
           ],
           "type": "array",
           "items": {
@@ -1122,9 +975,7 @@
         "auth_header_name": {
           "title": "Authorization header",
           "description": "Allows to parse the token from a custom header.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "examples": [
-            "X-Custom-Auth"
-          ],
+          "examples": [ "X-Custom-Auth" ],
           "default": "Authorization",
           "type": "string"
         },
@@ -1143,14 +994,7 @@
         "cipher_suites": {
           "title": "Cipher suites",
           "description": "Override the default cipher suites. Use it if you want to enforce an even higher security standard.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "default": [
-            49199,
-            49195,
-            49200,
-            49196,
-            52392,
-            52393
-          ],
+          "default": [ 49199, 49195, 49200, 49196, 52392, 52393 ],
           "type": "array",
           "items": {
             "title": "Object in array",
@@ -1184,9 +1028,7 @@
         "cookie_key": {
           "title": "Cookie key",
           "description": "Add the key name of the cookie containing the token when it is not passed in the headers\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "examples": [
-            "cookie_jwt"
-          ],
+          "examples": [ "cookie_jwt" ],
           "type": "string"
         },
         "cypher_key": {
@@ -1203,20 +1045,14 @@
         "failed_jwk_key_cooldown": {
           "title": "Failed JWK Key cooldown",
           "description": "When a request comes with a token declaring an unknown `kid` (or the key strategy you choose), and the JWK is in a remote destination, KrakenD downloads the JWK from the Identity Provider for its recognition. Suppose there is a network failure, or the key is not in the list (e.g., you rotated the keys without anticipation). In that case, you can tell the gateway not to contact the Identity Provider again during the time specified here. We recommend setting this value, even with a low time (e.g., `10s`), to prevent misconfigurations from hammering your Identity Providers. Any values under one second are ignored.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "examples": [
-            "1m",
-            "10s",
-            "1h"
-          ],
+          "examples": [ "1m", "10s", "1h" ],
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "issuer": {
           "title": "Issuer",
           "description": "When set, tokens not matching the issuer are rejected.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "examples": [
-            "issuer"
-          ],
+          "examples": [ "issuer" ],
           "type": "string"
         },
         "jwk_fingerprints": {
@@ -1235,9 +1071,7 @@
         "jwk_local_path": {
           "title": "JWK local path",
           "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "examples": [
-            "./jwk.txt"
-          ],
+          "examples": [ "./jwk.txt" ],
           "type": "string"
         },
         "jwk_url": {
@@ -1253,19 +1087,12 @@
         "key_identify_strategy": {
           "title": "Key identify strategy",
           "description": "Allows strategies other than `kid` to load keys.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "enum": [
-            "kid",
-            "x5t",
-            "kid_x5t"
-          ]
+          "enum": [ "kid", "x5t", "kid_x5t" ]
         },
         "leeway": {
           "title": "Leeway",
           "description": "A margin of time where you will accept an already expired token. You should not accept expired tokens other than enabling two environments that are not perfectly synchronized and have minor clock drifts to accept each other differences. Any value specified here will be rounded to seconds, with a minimum of one second.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "examples": [
-            "1m",
-            "1s"
-          ],
+          "examples": [ "1m", "1s" ],
           "default": "1s",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
           "type": "string"
@@ -1300,9 +1127,7 @@
         "roles_key": {
           "title": "Roles key",
           "description": "When validating users through roles, provide the key name inside the JWT payload that lists their roles. If this key is nested inside another object, add `roles_key_is_nested` and use the dot notation `.` to traverse each level. E.g.: `resource_access.myclient.roles` represents the payload `{resource_access: { myclient: { roles: [\"myrole\"] } }`. Notice that the roles object you choose is a list, not a map.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "examples": [
-            "resource_access.myclient.roles"
-          ],
+          "examples": [ "resource_access.myclient.roles" ],
           "type": "string"
         },
         "roles_key_is_nested": {
@@ -1327,10 +1152,7 @@
           "title": "Scopes matcher",
           "description": "Defines if the user needs to have in its token at least one of the listed claims (`any`), or `all` of them.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "default": "any",
-          "enum": [
-            "any",
-            "all"
-          ]
+          "enum": [ "any", "all" ]
         },
         "secret_url": {
           "title": "Secret's URL",
@@ -1356,18 +1178,13 @@
       "title": "Backend Object",
       "description": "A backend object is an array of all the services that an endpoint connects to. It defines the list of hostnames that connects to and the URL to send or receive the data.",
       "type": "object",
-      "required": [
-        "url_pattern"
-      ],
+      "required": [ "url_pattern" ],
       "properties": {
         "allow": {
           "title": "Allow (data manipulation)",
           "description": "**Only return the fields in the list**. Only the matching fields (case-sensitive) are returned in the final response. Use a dot `.` separator to define nested attributes, e.g.: `a.b` returns `{\"a\":{\"b\": true}}` \n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
           "examples": [
-            [
-              "user_id",
-              "field1.subfield2"
-            ]
+            [ "user_id", "field1.subfield2" ]
           ],
           "type": "array",
           "uniqueItems": true,
@@ -1379,11 +1196,7 @@
           "title": "Deny (data manipulation)",
           "description": "**Don't return the fields in the list**. All matching fields (case-sensitive) defined in the list, are removed from the response. Use a dot `.` separator to define nested attributes, e.g.: `a.b` removes `{\"a\":{\"b\": true}}`.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
           "examples": [
-            [
-              "token",
-              "CVV",
-              "password"
-            ]
+            [ "token", "CVV", "password" ]
           ],
           "type": "array",
           "uniqueItems": true,
@@ -1442,13 +1255,8 @@
           "uniqueItems": true,
           "items": {
             "examples": [
-              [
-                "*"
-              ],
-              [
-                "User-Agent",
-                "Accept"
-              ]
+              [ "*" ],
+              [ "User-Agent", "Accept" ]
             ],
             "type": "string"
           }
@@ -1461,13 +1269,8 @@
           "uniqueItems": true,
           "items": {
             "examples": [
-              [
-                "*"
-              ],
-              [
-                "page",
-                "limit"
-              ]
+              [ "*" ],
+              [ "page", "limit" ]
             ],
             "type": "string"
           }
@@ -1508,39 +1311,25 @@
           "title": "Service Discovery",
           "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.\n\nSee: https://www.krakend.io/docs/backends/",
           "default": "static",
-          "enum": [
-            "static",
-            "dns",
-            "dns-shared"
-          ]
+          "enum": [ "static", "dns", "dns-shared" ]
         },
         "sd_scheme": {
           "title": "Service Discovery Scheme",
           "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) scheme to connect to your backend services.\n\nSee: https://www.krakend.io/docs/backends/",
-          "examples": [
-            "http",
-            "https"
-          ],
+          "examples": [ "http", "https" ],
           "default": "http",
           "type": "string"
         },
         "target": {
           "title": "Target (data manipulation)",
           "description": "Removes the matching object from the reponse and returns only its contents.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
-          "examples": [
-            "data",
-            "content",
-            "response"
-          ],
+          "examples": [ "data", "content", "response" ],
           "type": "string"
         },
         "url_pattern": {
           "title": "URL Pattern",
           "description": "The path inside the service (no protocol, no host, no method). E.g: `/users`. Some functionalities under `extra_config` might drop the requirement of declaring a valid `url_pattern`, but they are exceptions. The URL must be RESTful, if it is not (e.g.: `/url.{some_variable}.json`), then see how to [disable RESTful checking](#disable-restful-checking).\n\nSee: https://www.krakend.io/docs/backends/",
-          "examples": [
-            "/users",
-            "/user/{id_user}"
-          ],
+          "examples": [ "/users", "/user/{id_user}" ],
           "type": "string"
         }
       },
@@ -1554,11 +1343,7 @@
       "title": "AMQP Consumer",
       "description": "The AMQP component allows to send and receive messages to and from a queue through the API Gateway.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
       "type": "object",
-      "required": [
-        "name",
-        "exchange",
-        "routing_key"
-      ],
+      "required": [ "name", "exchange", "routing_key" ],
       "properties": {
         "auto_ack": {
           "title": "Auto ACK",
@@ -1593,9 +1378,7 @@
         "exchange": {
           "title": "Exchange",
           "description": "The exchange name (must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
-          "examples": [
-            "some-exchange"
-          ],
+          "examples": [ "some-exchange" ],
           "type": "string"
         },
         "exclusive": {
@@ -1634,9 +1417,7 @@
         "routing_key": {
           "title": "Routing keys",
           "description": "The list of routing keys you will use to consume messages.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
-          "examples": [
-            "#"
-          ],
+          "examples": [ "#" ],
           "type": "array",
           "items": {
             "type": "string"
@@ -1653,11 +1434,7 @@
       "title": "AMQP Producer",
       "description": "Send messages to a queue through the API Gateway.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
       "type": "object",
-      "required": [
-        "name",
-        "exchange",
-        "routing_key"
-      ],
+      "required": [ "name", "exchange", "routing_key" ],
       "properties": {
         "backoff_strategy": {
           "title": "Backoff strategy",
@@ -1686,9 +1463,7 @@
         "exchange": {
           "title": "Exchange",
           "description": "The exchange name (must have a topic type if already exists).\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
-          "examples": [
-            "some-exchange"
-          ],
+          "examples": [ "some-exchange" ],
           "type": "string"
         },
         "exclusive": {
@@ -1779,33 +1554,22 @@
       "type": "object",
       "oneOf": [
         {
-          "required": [
-            "type",
-            "query"
-          ]
+          "required": [ "type", "query" ]
         },
         {
-          "required": [
-            "type",
-            "query_path"
-          ]
+          "required": [ "type", "query_path" ]
         }
       ],
       "properties": {
         "type": {
           "title": "Query type",
           "description": "The type of query you are declaring, `query` (read), or `mutation` (write).\n\nSee: https://www.krakend.io/docs/backends/graphql/",
-          "enum": [
-            "query",
-            "mutation"
-          ]
+          "enum": [ "query", "mutation" ]
         },
         "operationName": {
           "title": "Operation name",
           "description": "A meaningful and explicit name for your operation, required in multi-operation documents and for helpful debugging and server-side logging.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
-          "examples": [
-            "addMktPreferencesForUser"
-          ],
+          "examples": [ "addMktPreferencesForUser" ],
           "type": "string"
         },
         "query": {
@@ -1819,9 +1583,7 @@
         "query_path": {
           "title": "Query path",
           "description": "Path to the file containing the query. This file is loaded during startup and never checked again, if it changes KrakenD will be unaware of it.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
-          "examples": [
-            "./graphql/mutations/marketing.graphql"
-          ],
+          "examples": [ "./graphql/mutations/marketing.graphql" ],
           "type": "string"
         },
         "variables": {
@@ -1924,30 +1686,20 @@
         "read_buffer_size": {
           "title": "Read buffer size",
           "description": "Specifies the size of the client buffer reading the gRPC communication in bytes. If the value is unset, or `0`, it uses its default (32KB). Use a negative value to disable the buffer, and if you do there won't be memory pre-allocation to read. To determine the right number, calculate the average size of the responses the gRPC client will receive.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
-          "examples": [
-            32768,
-            8192,
-            -1
-          ],
+          "examples": [ 32768, 8192, -1 ],
           "type": "number"
         },
         "request_naming_convention": {
           "title": "Request naming convention",
           "description": "Defines the naming convention used to format the request. Applies to query strings and JSON field names. By default, the gateway uses `snake_case` which makes use of the standard `encoding/json` package, while when you choose `camelCase` the `protobuf/encoding` deserialization is used instead.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
           "default": "snake_case",
-          "enum": [
-            "camelCase",
-            "snake_case"
-          ]
+          "enum": [ "camelCase", "snake_case" ]
         },
         "response_naming_convention": {
           "title": "Response naming convention",
           "description": "Defines the naming convention used to format the returned data. By default, the gateway uses `snake_case` which makes use of the standard `encoding/json` package, while when you choose `camelCase` the `protobuf/encoding` deserialization is used instead.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
           "default": "snake_case",
-          "enum": [
-            "camelCase",
-            "snake_case"
-          ]
+          "enum": [ "camelCase", "snake_case" ]
         },
         "use_alternate_host_on_error": {
           "title": "Use alternate host on error",
@@ -1986,9 +1738,7 @@
         "proxy_address": {
           "title": "Proxy address",
           "description": "The proxy address used to forward the traffic. The address must contain the protocol and the port.\n\nSee: https://www.krakend.io/docs/enterprise/backends/http-client/",
-          "examples": [
-            "http://proxy.corp:9099"
-          ]
+          "examples": [ "http://proxy.corp:9099" ]
         }
       },
       "patternProperties": {
@@ -2026,10 +1776,7 @@
         "region": {
           "title": "AWS Region",
           "description": "The AWS identifier region\n\nSee: https://www.krakend.io/docs/backends/",
-          "examples": [
-            "us-east-1",
-            "eu-west-2"
-          ],
+          "examples": [ "us-east-1", "eu-west-2" ],
           "type": "string"
         }
       },
@@ -2043,9 +1790,7 @@
       "title": "Pubsub publisher",
       "description": "Publishes to a topic using the desired driver.\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
       "type": "object",
-      "required": [
-        "topic_url"
-      ],
+      "required": [ "topic_url" ],
       "properties": {
         "topic_url": {
           "title": "Topic URL",
@@ -2063,9 +1808,7 @@
       "title": "Pubsub subscriber",
       "description": "Subscribes a backend using the desired driver.\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
       "type": "object",
-      "required": [
-        "subscription_url"
-      ],
+      "required": [ "subscription_url" ],
       "properties": {
         "subscription_url": {
           "title": "Subscription URL",
@@ -2085,24 +1828,17 @@
       "type": "object",
       "oneOf": [
         {
-          "required": [
-            "path"
-          ]
+          "required": [ "path" ]
         },
         {
-          "required": [
-            "template"
-          ]
+          "required": [ "template" ]
         }
       ],
       "properties": {
         "content_type": {
           "title": "Content-Type",
           "description": "The `Content-Type` used in your template, and that will be sent to the SOAP server. This is not the content-type the end-user sent in the request.\n\nSee: https://www.krakend.io/docs/backends/soap/",
-          "examples": [
-            "application/xml",
-            "text/xml"
-          ],
+          "examples": [ "application/xml", "text/xml" ],
           "default": "text/xml",
           "type": "string"
         },
@@ -2115,9 +1851,7 @@
         "path": {
           "title": "Path to template",
           "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/backends/soap/",
-          "examples": [
-            "./path/to.xml"
-          ],
+          "examples": [ "./path/to.xml" ],
           "type": "string"
         },
         "template": {
@@ -2136,9 +1870,7 @@
       "title": "Static Filesystem",
       "description": "Enterprise only. Allows you to fetch and serve static content from the disk instead of a remote server, and you can use it to mock data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
       "type": "object",
-      "required": [
-        "path"
-      ],
+      "required": [ "path" ],
       "properties": {
         "directory_listing": {
           "description": "Whether to allow directory listings or not",
@@ -2148,9 +1880,7 @@
         "path": {
           "title": "Path",
           "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-          "examples": [
-            "./static/"
-          ],
+          "examples": [ "./static/" ],
           "type": "string"
         }
       },
@@ -2188,14 +1918,10 @@
         "backend/http": {
           "oneOf": [
             {
-              "required": [
-                "return_error_details"
-              ]
+              "required": [ "return_error_details" ]
             },
             {
-              "required": [
-                "return_error_code"
-              ]
+              "required": [ "return_error_code" ]
             }
           ],
           "properties": {
@@ -2271,15 +1997,10 @@
           "type": "object",
           "oneOf": [
             {
-              "required": [
-                "max_size",
-                "max_items"
-              ]
+              "required": [ "max_size", "max_items" ]
             },
             {
-              "required": [
-                "shared"
-              ]
+              "required": [ "shared" ]
             },
             {
               "maxProperties": 0
@@ -2296,10 +2017,7 @@
             "max_size": {
               "title": "Max size",
               "description": "Enterprise only. To be released on open source on v2.10. The maximum number of bytes you allow the LRU cache to store **for this cache bucket** before starting to do evictions. This is not the total cache you allow to the system, but the number of bytes you reserve to this backend (or its `shared` neighbours). will store before starting to do evictions. When `max_size` is declared, you must declare `max_items` as well.\n\nSee: https://www.krakend.io/docs/backends/caching/",
-              "examples": [
-                104857600,
-                1048576
-              ],
+              "examples": [ 104857600, 1048576 ],
               "type": "integer",
               "minimum": 1024
             },
@@ -2321,20 +2039,14 @@
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1security~1policies.json",
           "anyOf": [
             {
-              "required": [
-                "req"
-              ]
+              "required": [ "req" ]
             },
             {
-              "required": [
-                "resp"
-              ]
+              "required": [ "resp" ]
             }
           ],
           "not": {
-            "required": [
-              "jwt"
-            ]
+            "required": [ "jwt" ]
           },
           "patternProperties": {
             "^[@$_#]": {}
@@ -2377,9 +2089,7 @@
           "title": "CA certificates",
           "description": "An array with all the CA certificates you would like to validate the server you are connecting to.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
           "examples": [
-            [
-              "ca.pem"
-            ]
+            [ "ca.pem" ]
           ],
           "default": [],
           "type": "array"
@@ -2387,11 +2097,7 @@
         "cipher_suites": {
           "title": "Cipher Suites",
           "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-          "default": [
-            4865,
-            4866,
-            4867
-          ],
+          "default": [ 4865, 4866, 4867 ],
           "type": "array",
           "uniqueItems": true
         },
@@ -2401,10 +2107,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": [
-              "certificate",
-              "private_key"
-            ],
+            "required": [ "certificate", "private_key" ],
             "properties": {
               "certificate": {
                 "title": "Certificate",
@@ -2426,19 +2129,11 @@
         "curve_preferences": {
           "title": "Curve identifiers",
           "description": "The list of all the identifiers for the curve preferences. Use `23` for CurveP256, `24` for CurveP384 or `25` for CurveP521.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-          "default": [
-            23,
-            24,
-            25
-          ],
+          "default": [ 23, 24, 25 ],
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "enum": [
-              23,
-              24,
-              25
-            ]
+            "enum": [ 23, 24, 25 ]
           }
         },
         "disable_system_ca_pool": {
@@ -2451,25 +2146,13 @@
           "title": "Maximum TLS version",
           "description": "Maximum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
           "default": "TLS13",
-          "enum": [
-            "SSL3.0",
-            "TLS10",
-            "TLS11",
-            "TLS12",
-            "TLS13"
-          ]
+          "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ]
         },
         "min_version": {
           "title": "Minimum TLS version",
           "description": "Minimum TLS version supported. When specifiying very old and insecure versions under TLS12 you must provide the `ciphers_list`.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
           "default": "TLS13",
-          "enum": [
-            "SSL3.0",
-            "TLS10",
-            "TLS11",
-            "TLS12",
-            "TLS13"
-          ]
+          "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ]
         }
       },
       "patternProperties": {
@@ -2495,11 +2178,7 @@
           "title": "Audience",
           "description": "The list of audiences that will consume this endpoint. These values **do not define the gateway logic** in any way. They are a way to group endpoints and filter them out when generating the OpenAPI documentation. Use `*` to indicate an endpoint will be present in any audience generated.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
-            [
-              "gold",
-              "silver",
-              "*"
-            ]
+            [ "gold", "silver", "*" ]
           ],
           "type": "array",
           "items": {
@@ -2509,9 +2188,7 @@
         "base_path": {
           "title": "Base path",
           "description": "A starting path that is appended to any endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "/v1"
-          ],
+          "examples": [ "/v1" ],
           "type": "string"
         },
         "components_schemas": {
@@ -2521,10 +2198,7 @@
             {
               "Pet": {
                 "type": "object",
-                "required": [
-                  "id",
-                  "name"
-                ]
+                "required": [ "id", "name" ]
               }
             }
           ],
@@ -2533,44 +2207,32 @@
             ".*": {
               "title": "JSON Schema",
               "description": "JSON Schema in base64 or as an object",
-              "type": [
-                "string",
-                "object"
-              ]
+              "type": [ "string", "object" ]
             }
           }
         },
         "contact_email": {
           "title": "Contact email",
           "description": "Email where users of your API can write to.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "/v1"
-          ],
+          "examples": [ "/v1" ],
           "type": "string"
         },
         "contact_name": {
           "title": "Contact name",
           "description": "Contact name.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "/v1"
-          ],
+          "examples": [ "/v1" ],
           "type": "string"
         },
         "contact_url": {
           "title": "Contact URL",
           "description": "Contact URL that users of your API can read.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "/v1"
-          ],
+          "examples": [ "/v1" ],
           "type": "string"
         },
         "example": {
           "title": "Example",
           "description": "**Deprecated in OAS3** (use `response_definition` instead). A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "type": [
-            "object",
-            "string"
-          ]
+          "type": [ "object", "string" ]
         },
         "header_definition": {
           "title": "Header definition",
@@ -2587,9 +2249,7 @@
           "items": {
             "title": "Headers definition",
             "type": "object",
-            "required": [
-              "name"
-            ],
+            "required": [ "name" ],
             "properties": {
               "description": {
                 "title": "Name",
@@ -2602,9 +2262,7 @@
               "type": {
                 "title": "Type",
                 "description": "The type of data according to the OpenAPI spec",
-                "examples": [
-                  "string"
-                ],
+                "examples": [ "string" ],
                 "default": "string",
                 "enum": [
                   "integer",
@@ -2620,10 +2278,7 @@
                 "title": "Enum",
                 "description": "The allowed values for this header",
                 "examples": [
-                  [
-                    "application/json",
-                    "application/xml"
-                  ]
+                  [ "application/json", "application/xml" ]
                 ],
                 "type": "array",
                 "items": {
@@ -2664,9 +2319,7 @@
         "host": {
           "title": "Host",
           "description": "The hostname where you will publish your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "my.api.com"
-          ],
+          "examples": [ "my.api.com" ],
           "type": "string"
         },
         "jwt_key": {
@@ -2678,25 +2331,19 @@
         "license_name": {
           "title": "License name",
           "description": "The license name (e.g.: Apache License)\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "/v1"
-          ],
+          "examples": [ "/v1" ],
           "type": "string"
         },
         "license_url": {
           "title": "License URL",
           "description": "The URL where the license is hosted\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "/v1"
-          ],
+          "examples": [ "/v1" ],
           "type": "string"
         },
         "operation_id": {
           "title": "Operation ID",
           "description": "A unique string identifying the operation identifier. Usually the method + the endpoint. If provided, these IDs must be unique among all operations described in your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "GET/foo"
-          ],
+          "examples": [ "GET/foo" ],
           "type": "string"
         },
         "param_definition": {
@@ -2714,9 +2361,7 @@
           "items": {
             "title": "Parameters",
             "type": "object",
-            "required": [
-              "name"
-            ],
+            "required": [ "name" ],
             "properties": {
               "description": {
                 "title": "Name",
@@ -2726,9 +2371,7 @@
               "type": {
                 "title": "Type",
                 "description": "The type of data according to the OpenAPI spec",
-                "examples": [
-                  "string"
-                ],
+                "examples": [ "string" ],
                 "default": "string",
                 "enum": [
                   "integer",
@@ -2744,10 +2387,7 @@
                 "title": "Enum",
                 "description": "The allowed values for this parameter",
                 "examples": [
-                  [
-                    "application/json",
-                    "application/xml"
-                  ]
+                  [ "application/json", "application/xml" ]
                 ],
                 "type": "array",
                 "items": {
@@ -2800,9 +2440,7 @@
           "items": {
             "title": "Query strings",
             "type": "object",
-            "required": [
-              "name"
-            ],
+            "required": [ "name" ],
             "properties": {
               "description": {
                 "title": "Name",
@@ -2879,9 +2517,7 @@
           ],
           "type": "array",
           "items": {
-            "required": [
-              "content_type"
-            ],
+            "required": [ "content_type" ],
             "properties": {
               "description": {
                 "title": "Description",
@@ -2908,17 +2544,12 @@
               },
               "example_schema": {
                 "description": "A JSON schema that describes the request format for the accepted payload in the endpoint. Use either example or example_schema, but not both.",
-                "type": [
-                  "string",
-                  "object"
-                ]
+                "type": [ "string", "object" ]
               },
               "ref": {
                 "title": "Reference",
                 "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
-                "examples": [
-                  "your_schema_name"
-                ],
+                "examples": [ "your_schema_name" ],
                 "type": "string"
               }
             },
@@ -2947,9 +2578,7 @@
           "patternProperties": {
             "default|^[0-9]+$": {
               "type": "object",
-              "required": [
-                "content_type"
-              ],
+              "required": [ "content_type" ],
               "properties": {
                 "description": {
                   "title": "Description",
@@ -2976,17 +2605,12 @@
                 },
                 "example_schema": {
                   "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
-                  "type": [
-                    "string",
-                    "object"
-                  ]
+                  "type": [ "string", "object" ]
                 },
                 "ref": {
                   "title": "Reference",
                   "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
-                  "examples": [
-                    "your_schema_name"
-                  ],
+                  "examples": [ "your_schema_name" ],
                   "type": "string"
                 }
               },
@@ -3002,14 +2626,9 @@
           "title": "Supported schemes",
           "description": "The list of schemes supported by the API, e.g. `http` or `https`\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
-            [
-              "https",
-              "http"
-            ]
+            [ "https", "http" ]
           ],
-          "default": [
-            "http"
-          ],
+          "default": [ "http" ],
           "type": "array",
           "items": {
             "type": "string"
@@ -3035,9 +2654,7 @@
           "items": {
             "title": "Tags",
             "type": "object",
-            "required": [
-              "name"
-            ],
+            "required": [ "name" ],
             "properties": {
               "description": {
                 "title": "Tag Description",
@@ -3067,17 +2684,13 @@
         "terms_of_service": {
           "title": "Terms of Service",
           "description": "The URL to the terms of service for using this API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "/v1"
-          ],
+          "examples": [ "/v1" ],
           "type": "string"
         },
         "version": {
           "title": "Version",
           "description": "The version numbering you want to apply to this release of API., e.g.: `1.0`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [
-            "1.0"
-          ],
+          "examples": [ "1.0" ],
           "type": "string"
         }
       },
@@ -3106,9 +2719,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": [
-              "name"
-            ],
+            "required": [ "name" ],
             "properties": {
               "description": {
                 "title": "Folder description",
@@ -3136,18 +2747,13 @@
         "name": {
           "title": "Collection Name",
           "description": "The name of the Postman collection you are generating.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
-          "examples": [
-            "KrakenD Config v1"
-          ],
+          "examples": [ "KrakenD Config v1" ],
           "type": "string"
         },
         "version": {
           "title": "Collection Version",
           "description": "The version you assign to this Postman collection you are generating using **semantic versioning**.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
-          "examples": [
-            "1.2.3",
-            "0.7.9"
-          ],
+          "examples": [ "1.2.3", "0.7.9" ],
           "type": "string",
           "pattern": "^[0-9].[0-9].[0-9]+$"
         }
@@ -3174,18 +2780,13 @@
         "folder": {
           "title": "Folder",
           "description": "The folder name where you want to put this endpoint. If you defined folders at the service level, use the same name to reuse their name and description",
-          "examples": [
-            "/Books"
-          ],
+          "examples": [ "/Books" ],
           "type": "string"
         },
         "name": {
           "title": "Endpoint Name",
           "description": "The name of the endpoint you are generating. If you don't set any name the last member path is used.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
-          "examples": [
-            "List books",
-            "Create user"
-          ],
+          "examples": [ "List books", "Create user" ],
           "type": "string"
         }
       },
@@ -3206,10 +2807,7 @@
         "endpoint": "/foo"
       },
       "type": "object",
-      "required": [
-        "endpoint",
-        "backend"
-      ],
+      "required": [ "endpoint", "backend" ],
       "properties": {
         "backend": {
           "title": "Backend",
@@ -3237,11 +2835,7 @@
         "endpoint": {
           "title": "Endpoint",
           "description": "The path of the URL you want to expose. The path is **case-sensitive** and should start with a slash `/`. You can use `{placeholders}` to allow dynamic variables. For example: `/foo/{var}/baz`. You can also add an ending `/*` in the path to enable [wildcards](https://www.krakend.io/docs/enterprise/endpoints/wildcard/) (Enterprise only).\nThe router will try to automatically redirect calls to endpoints with an incorrect case or incorrect trailing slash to its correct version offering a `301`. There are no guarantees that it will succeed and the request might even fail completely while trying (and log an ugly error with a trace). The **safest option** is to [disable automatic redirections](https://www.krakend.io/docs/service-settings/router-options/) by setting to true the flags `disable_redirect_fixed_path` and `disable_redirect_trailing_slash` in the `router` options.\n**Limitations**: URLs do not support colons `:` in their definition. All `{vars}` are meant to be isolated in the path and not to be used to build words, like in `/file.{ext}` [See `disable_rest` for that usage](https://www.krakend.io/docs/service-settings/http-server-settings/#disable_rest).\n\nSee: https://www.krakend.io/docs/endpoints/",
-          "examples": [
-            "/new-endpoint",
-            "/foo/{var}",
-            "/foo/{var1}/{var2}"
-          ],
+          "examples": [ "/new-endpoint", "/foo/{var}", "/foo/{var1}/{var2}" ],
           "type": "string",
           "pattern": "^\\/[^\\*\\?\\&\\%]*(\\/\\*)?$"
         },
@@ -3258,11 +2852,7 @@
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "examples": [
-              "User-Agent",
-              "Accept",
-              "*"
-            ],
+            "examples": [ "User-Agent", "Accept", "*" ],
             "type": "string"
           }
         },
@@ -3273,11 +2863,7 @@
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "examples": [
-              "page",
-              "limit",
-              "*"
-            ],
+            "examples": [ "page", "limit", "*" ],
             "type": "string"
           }
         },
@@ -3285,13 +2871,7 @@
           "title": "Method",
           "description": "The method supported by this endpoint. Create multiple endpoint entries if you need different methods.\n\nSee: https://www.krakend.io/docs/endpoints/",
           "default": "GET",
-          "enum": [
-            "GET",
-            "POST",
-            "PUT",
-            "PATCH",
-            "DELETE"
-          ]
+          "enum": [ "GET", "POST", "PUT", "PATCH", "DELETE" ]
         },
         "output_encoding": {
           "title": "Output encoding",
@@ -3311,10 +2891,7 @@
         "timeout": {
           "title": "Timeout",
           "description": "The duration you write in the timeout represents the **whole duration of the pipe**, so it counts the time all your backends take to respond and the processing of all the components involved in the endpoint (the request, fetching data, manipulation, etc.). Usually specified in seconds (`s`) or milliseconds (`ms`. e.g.: `2000ms` or `2s`). If you don't set any timeout, the timeout is taken from the entry in the service level, or to the system's default",
-          "examples": [
-            "2s",
-            "1500ms"
-          ],
+          "examples": [ "2s", "1500ms" ],
           "default": "2s",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
           "type": "string"
@@ -3334,9 +2911,7 @@
           "title": "API-key validation",
           "description": "Enterprise only. Validates that users of this endpoint pass a valid API-key containing one of the declared roles.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
           "type": "object",
-          "required": [
-            "roles"
-          ],
+          "required": [ "roles" ],
           "properties": {
             "client_max_rate": {
               "title": "Max rate",
@@ -3359,10 +2934,7 @@
             "strategy": {
               "title": "Strategy",
               "description": "Specifies where to expect the user API key, whether inside a header or as part of the query string. When you change the strategy at the endpoint level, **you should also set the identifier**, otherwise you could have for instance, a query string strategy expecting to have a URL like `/foo?Authorization=YOUR-KEY`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-              "enum": [
-                "header",
-                "query_string"
-              ]
+              "enum": [ "header", "query_string" ]
             }
           },
           "patternProperties": {
@@ -3413,9 +2985,7 @@
             "combiner": {
               "title": "Custom combiner",
               "description": "For custom builds of KrakenD only",
-              "examples": [
-                "combiner_name"
-              ],
+              "examples": [ "combiner_name" ],
               "type": "string"
             },
             "decompress_gzip": {
@@ -3449,13 +3019,8 @@
               "title": "Sequential propagated parameters",
               "description": "The list of parameters you want to propagate from a previous response to the next request. Parameters are accessible by Lua scripts, CEL, security policies, the body generator, or plugins. When you add a `resp`-like parameter in this list, the parameter becomes available to the components mentioned in subsequent calls, **uppercasing the first letter**. For instance, if you add `resp0_user`, you can access in the second, third, etc. backends in Lua to `req:params('Resp0_user')`.The format of the parameters must start with `respX_` or `respX`, where `X` is the backend index from which you want to take the parameter. If you don't set the underscore `_`, you set the whole payload as a parameter. For instance, `resp0` sets a parameter `Resp0` to use in Lua or a Body generator and contains **the entire payload of the backend 0** (as a string). In this extreme case, you must use `no-op` in the backend's output (even the endpoint has a `json` output encoding) and you should access the value in Lua or a plugin. Note that access to **nested parameters** uses a single string with the dot notation inside, e.g.: `req_params['Resp0_f1.f2.f3']` (CEL and Security Policies), or `{{ index .req_params \"Resp0_f1.f2.f3\" }}` (body generators).\n\nSee: https://www.krakend.io/docs/endpoints/sequential-proxy/",
               "examples": [
-                [
-                  "resp0"
-                ],
-                [
-                  "resp1_my_field",
-                  "resp0_user_id"
-                ]
+                [ "resp0" ],
+                [ "resp1_my_field", "resp0_user_id" ]
               ],
               "type": "array",
               "items": {
@@ -3469,10 +3034,7 @@
               "title": "Static response",
               "description": "The static proxy injects static data in the final response when the selected strategy matches.\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
               "type": "object",
-              "required": [
-                "data",
-                "strategy"
-              ],
+              "required": [ "data", "strategy" ],
               "properties": {
                 "data": {
                   "title": "Data",
@@ -3553,9 +3115,7 @@
       "title": "gRPC server",
       "description": "Enterprise only. gRPC server integration",
       "type": "object",
-      "required": [
-        "catalog"
-      ],
+      "required": [ "catalog" ],
       "properties": {
         "catalog": {
           "title": "Catalog definition",
@@ -3642,10 +3202,7 @@
                         "input_headers": {
                           "title": "Allowed Headers In",
                           "description": "Defines the list of all client headers that you can use as gRPC metadata.\nBy default, KrakenD won't pass any header from the client to the backend. This list is **case-insensitive**. You can declare headers in lowercase, uppercase, or mixed.\nAn entry `[\"X-Something\"]` forwards a single `X-Something` header to the backend, ignoring everything else. A single star element `[\"*\"]` as value forwards everything to the backend (**it's safer to avoid this option**).",
-                          "examples": [
-                            "X-Custom-Trace",
-                            "*"
-                          ],
+                          "examples": [ "X-Custom-Trace", "*" ],
                           "default": [],
                           "type": "array",
                           "uniqueItems": true,
@@ -3656,9 +3213,7 @@
                         "name": {
                           "title": "Method name",
                           "description": "The name of the published gRPC method.\n\nSee: https://www.krakend.io/docs/enterprise/grpc/server/",
-                          "examples": [
-                            "FindFlight"
-                          ],
+                          "examples": [ "FindFlight" ],
                           "type": "string"
                         },
                         "payload_params": {
@@ -3680,9 +3235,7 @@
                   "name": {
                     "title": "gRPC name",
                     "description": "The name of the published gRPC service.\n\nSee: https://www.krakend.io/docs/enterprise/grpc/server/",
-                    "examples": [
-                      "flight_finder.Flights"
-                    ],
+                    "examples": [ "flight_finder.Flights" ],
                     "type": "string"
                   }
                 },
@@ -3711,25 +3264,17 @@
       "type": "object",
       "oneOf": [
         {
-          "required": [
-            "path"
-          ]
+          "required": [ "path" ]
         },
         {
-          "required": [
-            "template"
-          ]
+          "required": [ "template" ]
         }
       ],
       "properties": {
         "content_type": {
           "title": "Content-Type",
           "description": "The `Content-Type` you are generating in the template, so it can be recognized by whoever is using it.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
-          "examples": [
-            "application/json",
-            "application/xml",
-            "text/xml"
-          ],
+          "examples": [ "application/json", "application/xml", "text/xml" ],
           "default": "application/json",
           "type": "string"
         },
@@ -3742,9 +3287,7 @@
         "path": {
           "title": "Path to template",
           "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
-          "examples": [
-            "./path/to.tmpl"
-          ],
+          "examples": [ "./path/to.tmpl" ],
           "type": "string"
         },
         "template": {
@@ -3764,9 +3307,7 @@
       "title": " JMESPath: Response manipulation with query language",
       "description": "The JMESPath query language allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
       "type": "object",
-      "required": [
-        "expr"
-      ],
+      "required": [ "expr" ],
       "properties": {
         "expr": {
           "title": "Expression",
@@ -3854,10 +3395,7 @@
           "title": "Body Modifier",
           "description": "The body.Modifier changes or sets the body of a request or response. The body must be uncompressed and Base64 encoded.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "body"
-          ],
+          "required": [ "scope", "body" ],
           "properties": {
             "body": {
               "title": "Body in base64",
@@ -3867,26 +3405,16 @@
             "contentType": {
               "title": "Content Type",
               "description": "The content-type representing the body you are setting",
-              "examples": [
-                "application/x-www-form-urlencoded",
-                "text/plain"
-              ],
+              "examples": [ "application/x-www-form-urlencoded", "text/plain" ],
               "type": "string"
             },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             }
           }
@@ -3895,11 +3423,7 @@
           "title": "Cookie Filter",
           "description": "The cookie.Filter executes the contained modifier when a cookie is provided under the name.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifier",
-            "name"
-          ],
+          "required": [ "scope", "modifier", "name" ],
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
@@ -3918,9 +3442,7 @@
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
-              "const": [
-                "request"
-              ]
+              "const": [ "request" ]
             },
             "value": {
               "description": "If besides the cookie name, you set this value, it ensures the cookie has a literal match."
@@ -3931,24 +3453,16 @@
           "title": "Cookie Modifier",
           "description": "Adds a cookie to a request or a response. If you set cookies in a response, the cookies are only set to the client when you use no-op encoding.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "name",
-            "value"
-          ],
+          "required": [ "scope", "name", "value" ],
           "properties": {
             "domain": {
               "description": "Domain of the Cookie you want to set",
-              "examples": [
-                "example.com"
-              ],
+              "examples": [ "example.com" ],
               "type": "string"
             },
             "expires": {
               "description": "Date in RFC 3339 format and is absolute, not relative to the current time.",
-              "examples": [
-                "2025-04-12T23:20:50.52Z"
-              ],
+              "examples": [ "2025-04-12T23:20:50.52Z" ],
               "type": "string"
             },
             "httpOnly": {
@@ -3967,25 +3481,16 @@
             },
             "path": {
               "description": "Path of the Cookie you want to set",
-              "examples": [
-                "/path/to"
-              ],
+              "examples": [ "/path/to" ],
               "type": "string"
             },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             },
             "secure": {
@@ -4003,10 +3508,7 @@
           "title": "FIFO group",
           "description": "The fifo.Group holds a list of modifiers executed in first-in, first-out order.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifiers"
-          ],
+          "required": [ "scope", "modifiers" ],
           "properties": {
             "aggregateErrors": {
               "description": "When true, the group will continue to execute consecutive modifiers when a modifier in the group encounters an error. The Group will then return all errors returned by each modifier after all modifiers have been executed.  When false, if an error is returned by a modifier, the error is returned by ModifyRequest/Response and no further modifiers are run.",
@@ -4024,16 +3526,9 @@
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             }
           }
@@ -4042,11 +3537,7 @@
           "title": "Append a header",
           "description": "\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "name",
-            "value"
-          ],
+          "required": [ "scope", "name", "value" ],
           "properties": {
             "name": {
               "description": "Name of the header you want to append a value. Add the same name under the `input_headers` list to append more values to an existing header passed by the client. In addition, to see the header in the response, you must use `no-op`.",
@@ -4056,16 +3547,9 @@
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             },
             "value": {
@@ -4078,10 +3562,7 @@
           "title": "Blacklist headers",
           "description": "The header.Blacklist removes the listed headers under names in the request and response of the backend.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "names"
-          ],
+          "required": [ "scope", "names" ],
           "properties": {
             "names": {
               "description": "List of all the headers you want to supress from the request or the response. If you want to see the headers in the client, you must use the `output_encoding: no-op`, and if you want the client headers to propagate to the backend, you need to use `input_headers` too.",
@@ -4094,16 +3575,9 @@
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             }
           }
@@ -4112,11 +3586,7 @@
           "title": "Header Copy",
           "description": "The header.Copy lets you duplicate a header using another name\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "from",
-            "to"
-          ],
+          "required": [ "scope", "from", "to" ],
           "properties": {
             "from": {
               "description": "The origin header you want to copy. When the header is provided by the user it must be included in the `input_headers` list.",
@@ -4126,16 +3596,9 @@
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             },
             "to": {
@@ -4148,11 +3611,7 @@
           "title": "Header Filter",
           "description": "The header.Filter executes its contained modifier if the request or response contain a header that matches the defined name and value. The value is optional, and only the header’s existence evaluates when undefined.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifier",
-            "name"
-          ],
+          "required": [ "scope", "modifier", "name" ],
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
@@ -4166,26 +3625,16 @@
             },
             "name": {
               "description": "Name of the header you want to check. You must add under `input_headers` the `name` included in the filter.",
-              "examples": [
-                "X-Some",
-                "Content-Type"
-              ],
+              "examples": [ "X-Some", "Content-Type" ],
               "type": "string"
             },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             },
             "value": {
@@ -4198,9 +3647,7 @@
           "title": "Header Id",
           "description": "\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope"
-          ],
+          "required": [ "scope" ],
           "properties": {
             "header": {
               "title": "Header",
@@ -4211,9 +3658,7 @@
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
-              "const": [
-                "request"
-              ]
+              "const": [ "request" ]
             }
           }
         },
@@ -4221,11 +3666,7 @@
           "title": "Header Modifier",
           "description": "The header.Modifier adds a new header or changes the value of an existing one.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "name",
-            "value"
-          ],
+          "required": [ "scope", "name", "value" ],
           "properties": {
             "name": {
               "description": "Name of the header you want to set",
@@ -4235,16 +3676,9 @@
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             },
             "value": {
@@ -4257,19 +3691,11 @@
           "title": "Header RegexFilter",
           "description": "The header.RegexFilter checks that a regular expression (RE2 syntax) passes on the target header and, if it does, executes the modifier.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifier",
-            "header",
-            "regex"
-          ],
+          "required": [ "scope", "modifier", "header", "regex" ],
           "properties": {
             "header": {
               "description": "Name of the header you want to check. You must add under `input_headers` the `name` included in the filter.",
-              "examples": [
-                "X-Some",
-                "Content-Type"
-              ],
+              "examples": [ "X-Some", "Content-Type" ],
               "type": "string"
             },
             "modifier": {
@@ -4279,26 +3705,16 @@
             },
             "regex": {
               "description": "The regular expression you want to check against the header value",
-              "examples": [
-                ".*localhost.*",
-                "^foo-[a-z]+$"
-              ],
+              "examples": [ ".*localhost.*", "^foo-[a-z]+$" ],
               "type": "string"
             },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             }
           }
@@ -4307,11 +3723,7 @@
           "title": "Port Filter",
           "description": "The port.Filter executes its modifier only when the port matches the one used in the request. It does not support else.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifier",
-            "port"
-          ],
+          "required": [ "scope", "modifier", "port" ],
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
@@ -4330,9 +3742,7 @@
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
-              "const": [
-                "request"
-              ]
+              "const": [ "request" ]
             }
           }
         },
@@ -4342,22 +3752,13 @@
           "type": "object",
           "oneOf": [
             {
-              "required": [
-                "scope",
-                "port"
-              ]
+              "required": [ "scope", "port" ]
             },
             {
-              "required": [
-                "scope",
-                "defaultForScheme"
-              ]
+              "required": [ "scope", "defaultForScheme" ]
             },
             {
-              "required": [
-                "scope",
-                "remove"
-              ]
+              "required": [ "scope", "remove" ]
             }
           ],
           "properties": {
@@ -4376,9 +3777,7 @@
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
-              "const": [
-                "request"
-              ]
+              "const": [ "request" ]
             }
           }
         },
@@ -4386,19 +3785,13 @@
           "title": "Priority group",
           "description": "The priority.Group contains the modifiers you want to execute, but the order in which they are declared is unimportant. Instead, each modifier adds a priority attribute that defines the order in which they are run.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifiers"
-          ],
+          "required": [ "scope", "modifiers" ],
           "properties": {
             "modifiers": {
               "description": "The list of modifiers you want to execute, order specified in the items using `priority`.",
               "type": "array",
               "items": {
-                "required": [
-                  "priority",
-                  "modifier"
-                ],
+                "required": [ "priority", "modifier" ],
                 "properties": {
                   "modifier": {
                     "description": "The modifier definition you want to execute",
@@ -4415,16 +3808,9 @@
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             }
           }
@@ -4433,11 +3819,7 @@
           "title": "QueryString Filter",
           "description": "The querystring.Filter executes the modifier if the request or response contains a query string parameter that matches the defined name and value in the filter.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifier",
-            "name"
-          ],
+          "required": [ "scope", "modifier", "name" ],
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
@@ -4451,26 +3833,16 @@
             },
             "name": {
               "description": "Name of the query string you want to check",
-              "examples": [
-                "page",
-                "limit"
-              ],
+              "examples": [ "page", "limit" ],
               "type": "string"
             },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             },
             "value": {
@@ -4483,26 +3855,17 @@
           "title": "Querystring Modifier",
           "description": "The querystring.Modifier adds a new query string or modifies existing ones in the request.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "name",
-            "value"
-          ],
+          "required": [ "scope", "name", "value" ],
           "properties": {
             "name": {
               "description": "Name of the query string you want to set",
-              "examples": [
-                "page",
-                "limit"
-              ],
+              "examples": [ "page", "limit" ],
               "type": "string"
             },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
-              "const": [
-                "request"
-              ]
+              "const": [ "request" ]
             },
             "value": {
               "description": "The value of the query string you want to set",
@@ -4514,10 +3877,7 @@
           "title": "Stash Modifier",
           "description": "The stash.Modifier creates a new header (or replaces an existing one with a matching name) containing the value of the original URL and all its query string parameters.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "headerName"
-          ],
+          "required": [ "scope", "headerName" ],
           "properties": {
             "headerName": {
               "description": "The header you want to create. If this header is returned to the end-user you must use `no-op` in the `output_encoding` of the endpoint.",
@@ -4527,16 +3887,9 @@
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             }
           }
@@ -4545,10 +3898,7 @@
           "title": "URL Filter",
           "description": "The url.Filter executes its contained modifier if the request URL matches all of the provided parameters.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifier"
-          ],
+          "required": [ "scope", "modifier" ],
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
@@ -4557,9 +3907,7 @@
             },
             "host": {
               "description": "The literal hostname that must match, including the port",
-              "examples": [
-                "localhost:8080"
-              ],
+              "examples": [ "localhost:8080" ],
               "type": "string"
             },
             "modifier": {
@@ -4569,40 +3917,26 @@
             },
             "path": {
               "description": "The `/path` of the URL, without query strings.",
-              "examples": [
-                "/path/to"
-              ],
+              "examples": [ "/path/to" ],
               "type": "string"
             },
             "query": {
               "description": "The query strings you want to check. Use `key1=value1&key2=value2` to check that the request has exactly these keys and values (order is irrelevant, but content not). Suppose the request has more query strings than declared here because the `input_query_strings` allowed them to pass. In that case, the evaluation will be `false`, and the `else` modifier will be executed.",
-              "examples": [
-                "/path/to"
-              ],
+              "examples": [ "/path/to" ],
               "type": "string"
             },
             "scheme": {
               "description": "The literal scheme it must match",
-              "examples": [
-                "http",
-                "https"
-              ],
+              "examples": [ "http", "https" ],
               "type": "string"
             },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
               "enum": [
-                [
-                  "request",
-                  "response"
-                ],
-                [
-                  "request"
-                ],
-                [
-                  "response"
-                ]
+                [ "request", "response" ],
+                [ "request" ],
+                [ "response" ]
               ]
             }
           }
@@ -4611,47 +3945,32 @@
           "title": "URL Modifier",
           "description": "The url.Modifier allows you to change the URL despite what is set in the host and url_pattern combination.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope"
-          ],
+          "required": [ "scope" ],
           "properties": {
             "host": {
               "description": "The hostname part of the URL including the port",
-              "examples": [
-                "example.com",
-                "localhost:8080"
-              ],
+              "examples": [ "example.com", "localhost:8080" ],
               "type": "string"
             },
             "path": {
               "description": "The path part of the URL",
-              "examples": [
-                "/path/to"
-              ],
+              "examples": [ "/path/to" ],
               "type": "string"
             },
             "query": {
               "description": "Sets the query string parameters you want to pass, overwriting anything passed in the request. Notice that if you set a `query`, if the user passes other query string parameters listed under `input_query_strings`, they will be lost, and only the values passed in the modifier will be sent. For such uses, see the `querystring.Modifier`",
-              "examples": [
-                "param=1",
-                "key1=val&key2=val"
-              ],
+              "examples": [ "param=1", "key1=val&key2=val" ],
               "type": "string"
             },
             "scheme": {
               "description": "The scheme to apply",
-              "examples": [
-                "http",
-                "https"
-              ],
+              "examples": [ "http", "https" ],
               "type": "string"
             },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
-              "const": [
-                "request"
-              ]
+              "const": [ "request" ]
             }
           }
         },
@@ -4659,11 +3978,7 @@
           "title": "URL RegexFilter",
           "description": "The url.RegexFilter evaluates a regular expression (RE2 syntax) and executes the modifier desired when it matches, and the modifier declared under else when it does not.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "type": "object",
-          "required": [
-            "scope",
-            "modifier",
-            "regex"
-          ],
+          "required": [ "scope", "modifier", "regex" ],
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
@@ -4682,9 +3997,7 @@
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",
-              "const": [
-                "request"
-              ]
+              "const": [ "request" ]
             }
           }
         }
@@ -4717,18 +4030,12 @@
                   }
                 ],
                 "type": "object",
-                "required": [
-                  "field",
-                  "find",
-                  "replace"
-                ],
+                "required": [ "field", "find", "replace" ],
                 "properties": {
                   "field": {
                     "title": "Field to modify",
                     "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                    "examples": [
-                      "data.credit_card"
-                    ],
+                    "examples": [ "data.credit_card" ],
                     "type": "string"
                   },
                   "find": {
@@ -4756,16 +4063,12 @@
                   }
                 ],
                 "type": "object",
-                "required": [
-                  "field"
-                ],
+                "required": [ "field" ],
                 "properties": {
                   "field": {
                     "title": "Field to modify",
                     "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                    "examples": [
-                      "user.surname"
-                    ],
+                    "examples": [ "user.surname" ],
                     "type": "string"
                   }
                 },
@@ -4785,18 +4088,12 @@
                   }
                 ],
                 "type": "object",
-                "required": [
-                  "field",
-                  "find",
-                  "replace"
-                ],
+                "required": [ "field", "find", "replace" ],
                 "properties": {
                   "field": {
                     "title": "Field to modify",
                     "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                    "examples": [
-                      "data.credit_card"
-                    ],
+                    "examples": [ "data.credit_card" ],
                     "type": "string"
                   },
                   "find": {
@@ -4807,9 +4104,7 @@
                   "replace": {
                     "title": "Replace",
                     "description": "The literal string or expression you want to use as a replacement. Use `$` signs to replace captured groups. \n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                    "examples": [
-                      "${1}-XXXX"
-                    ],
+                    "examples": [ "${1}-XXXX" ],
                     "type": "string"
                   }
                 },
@@ -4828,28 +4123,18 @@
                   }
                 ],
                 "type": "object",
-                "required": [
-                  "field",
-                  "find"
-                ],
+                "required": [ "field", "find" ],
                 "properties": {
                   "field": {
                     "title": "Field to modify",
                     "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                    "examples": [
-                      "description"
-                    ],
+                    "examples": [ "description" ],
                     "type": "string"
                   },
                   "find": {
                     "title": "Find",
                     "description": "The sequence of characters you want to trim in the response.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                    "examples": [
-                      "\r\n",
-                      "\n",
-                      "\t",
-                      " "
-                    ],
+                    "examples": [ "\r\n", "\n", "\t", " " ],
                     "type": "string"
                   }
                 },
@@ -4867,16 +4152,12 @@
                   }
                 ],
                 "type": "object",
-                "required": [
-                  "field"
-                ],
+                "required": [ "field" ],
                 "properties": {
                   "field": {
                     "title": "Field to modify",
                     "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-                    "examples": [
-                      "user.surname"
-                    ],
+                    "examples": [ "user.surname" ],
                     "type": "string"
                   }
                 },
@@ -4910,9 +4191,7 @@
           "description": "The headers you want to add. Every key under `add` is the header name, and the values are declared in an array with all those you want to set. If the header didn't exist previously, it is created with the values you passed. If the header existed, then the new values are appended.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
           "examples": [
             {
-              "X-Hello": [
-                "World"
-              ]
+              "X-Hello": [ "World" ]
             }
           ],
           "type": "object",
@@ -4932,10 +4211,7 @@
           "title": "Headers to delete",
           "description": "The list of headers you want to delete. All headers listed will be missing in the response.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
           "examples": [
-            [
-              "X-Krakend",
-              "X-Krakend-Completed"
-            ]
+            [ "X-Krakend", "X-Krakend-Completed" ]
           ],
           "type": "array",
           "minItems": 1,
@@ -4966,14 +4242,8 @@
           "description": "The headers you want to replace. The key used under `replace` is the header name, and the value an array with all the header values you want to set. The replacement overwrites any other value that could exist in this header.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
           "examples": [
             {
-              "Cache-Control": [
-                "no-store"
-              ],
-              "Vary": [
-                "foo",
-                "bar",
-                "foobar"
-              ]
+              "Cache-Control": [ "no-store" ],
+              "Vary": [ "foo", "bar", "foobar" ]
             }
           ],
           "type": "object",
@@ -5003,10 +4273,7 @@
       "minProperties": 1,
       "additionalProperties": {
         "type": "object",
-        "required": [
-          "find",
-          "replace"
-        ],
+        "required": [ "find", "replace" ],
         "properties": {
           "find": {
             "title": "Find",
@@ -5036,16 +4303,12 @@
       "title": "GeoIP",
       "description": "Enterprise only. The GeoIP integration allows you load Maxmind's GeoIP2 City database (payment and free versions) and enrich all KrakenD calls to your backends with geo data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/geoip/",
       "type": "object",
-      "required": [
-        "citydb_path"
-      ],
+      "required": [ "citydb_path" ],
       "properties": {
         "citydb_path": {
           "title": "CityDB path",
           "description": "The path in the filesystem containing the database in GeoIP2 Binary (`.mmdb`) format. Relative to the working dir or absolute path.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/geoip/",
-          "examples": [
-            "path/to/GeoIP2-City.mmdb"
-          ],
+          "examples": [ "path/to/GeoIP2-City.mmdb" ],
           "type": "string"
         }
       },
@@ -5062,11 +4325,7 @@
         "name": {
           "title": "Plugin name",
           "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
-          "examples": [
-            "no-redirect",
-            "http-logger",
-            "static-filesystem"
-          ],
+          "examples": [ "no-redirect", "http-logger", "static-filesystem" ],
           "type": "string"
         }
       }
@@ -5075,9 +4334,7 @@
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
       "type": "object",
-      "required": [
-        "name"
-      ],
+      "required": [ "name" ],
       "properties": {
         "geoip": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1plugin~1geoip.json"
@@ -5091,9 +4348,7 @@
         "name": {
           "title": "Plugin name",
           "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
-          "examples": [
-            "myplugin"
-          ],
+          "examples": [ "myplugin" ],
           "default": [],
           "type": "array",
           "items": {
@@ -5126,19 +4381,13 @@
       "title": "IP filter",
       "description": "Enterprise only. The IP filtering plugin allows you to restrict the traffic to your API gateway based on the IP address. It works in two different modes (allow or deny) where you define the list of IPs (CIDR blocks) that are authorized to use the API, or that are denied from using the API.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/ipfilter/",
       "type": "object",
-      "required": [
-        "CIDR",
-        "allow"
-      ],
+      "required": [ "CIDR", "allow" ],
       "properties": {
         "CIDR": {
           "title": "CIDR",
           "description": "The CIDR blocks (list of IPs) you want to allow or deny.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/ipfilter/",
           "examples": [
-            [
-              "192.168.0.0/24",
-              "172.17.2.56/32"
-            ]
+            [ "192.168.0.0/24", "172.17.2.56/32" ]
           ],
           "type": "array",
           "items": {
@@ -5155,11 +4404,7 @@
           "title": "Client IP Headers",
           "description": "A custom list of all headers that might contain the real IP of the client. The first matching IP in the list will be used. Default headers are (in order of checking): X-Forwarded-For, X-Real-IP, and X-Appengine-Remote-Addr.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/ipfilter/",
           "examples": [
-            [
-              "X-Forwarded-For",
-              "X-Real-IP",
-              "X-Appengine-Remote-Addr"
-            ]
+            [ "X-Forwarded-For", "X-Real-IP", "X-Appengine-Remote-Addr" ]
           ],
           "type": "array",
           "items": {
@@ -5170,9 +4415,7 @@
           "title": "Trusted proxies",
           "description": "A custom list of all the recognized machines/balancers that proxy the client to your application. This list is used to avoid spoofing when trying to get the real IP of the client.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/ipfilter/",
           "examples": [
-            [
-              "10.0.0.0/16"
-            ]
+            [ "10.0.0.0/16" ]
           ],
           "type": "array",
           "items": {
@@ -5190,10 +4433,7 @@
       "title": "JWK aggregator",
       "description": "Enterprise only. The JWK aggregator plugin allows KrakenD to validate tokens issued by multiple Identity Providers.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
       "type": "object",
-      "required": [
-        "port",
-        "origins"
-      ],
+      "required": [ "port", "origins" ],
       "properties": {
         "cache": {
           "title": "Cache",
@@ -5211,9 +4451,7 @@
         "port": {
           "title": "Port",
           "description": "The port of the local server doing the aggregation. The port is only accessible within the gateway machine using localhost, and it's never exposed to the external network. Choose any port that is free in the system.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
-          "examples": [
-            9876
-          ],
+          "examples": [ 9876 ],
           "type": "integer"
         }
       },
@@ -5228,13 +4466,7 @@
       "description": "Enterprise only. The global rate limit functionality enables a Redis database store to centralize all KrakenD node counters. Instead of having each KrakenD node count its hits, the counters are global and stored in the database.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
       "deprecated": true,
       "type": "object",
-      "required": [
-        "host",
-        "tokenizer",
-        "burst",
-        "rate",
-        "period"
-      ],
+      "required": [ "host", "tokenizer", "burst", "rate", "period" ],
       "properties": {
         "burst": {
           "title": "Burst",
@@ -5244,10 +4476,7 @@
         "host": {
           "title": "Redis host",
           "description": "The URL to the Redis instance that stores the counters using the format `host:port`.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
-          "examples": [
-            "redis",
-            "redis:6379"
-          ],
+          "examples": [ "redis", "redis:6379" ],
           "type": "string"
         },
         "period": {
@@ -5264,15 +4493,7 @@
         "tokenizer": {
           "title": "Tokenizer",
           "description": "One of the preselected strategies to rate-limit users.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
-          "enum": [
-            "jwt",
-            "ip",
-            "url",
-            "path",
-            "header",
-            "param",
-            "cookie"
-          ]
+          "enum": [ "jwt", "ip", "url", "path", "header", "param", "cookie" ]
         },
         "tokenizer_field": {
           "title": "Tokenizer field",
@@ -5299,9 +4520,7 @@
         "name": {
           "title": "Plugin name",
           "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/plugin-modifiers/",
-          "examples": [
-            "myplugin"
-          ],
+          "examples": [ "myplugin" ],
           "default": [],
           "type": "array",
           "items": {
@@ -5319,9 +4538,7 @@
       "description": "Enterprise only. The response schema validator plugin adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
       "deprecated": true,
       "type": "object",
-      "required": [
-        "schema"
-      ],
+      "required": [ "schema" ],
       "properties": {
         "error": {
           "title": "Error definition",
@@ -5369,35 +4586,25 @@
       "description": "Enterprise only. Allows you to fetch and serve static content in two different use cases. When the plugin is used as an http server handler, the static content is for your end-users, giving them CSS, JS, images, or JSON files, to name a few examples. On the other side, when the plugin is used as an http client executor, the KrakenD endpoints use static content as if it were a backend.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
       "deprecated": true,
       "type": "object",
-      "required": [
-        "prefix",
-        "path"
-      ],
+      "required": [ "prefix", "path" ],
       "properties": {
         "path": {
           "title": "Path",
           "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-          "examples": [
-            "./static/"
-          ],
+          "examples": [ "./static/" ],
           "type": "string"
         },
         "prefix": {
           "title": "Prefix",
           "description": "This is the beginning (prefix) of all URLs that are resolved using this plugin. All matching URLs won't be passed to the router, meaning that they are not considered endpoints. Make sure you are not overwriting valid endpoints. When the `prefix` is `/`, then **all traffic is served as static** and you must declare a prefix under `skip` (e.g.: `/api`) to match endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-          "examples": [
-            "/media/assets"
-          ],
+          "examples": [ "/media/assets" ],
           "type": "string"
         },
         "skip": {
           "title": "Skip paths",
           "description": "An array with all the prefix URLs that despite they could match with the `prefix`, you don't want to treat them as static content and pass them to the router.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
           "examples": [
-            [
-              "/media/ignore/this/directory",
-              "/media/file.json"
-            ]
+            [ "/media/ignore/this/directory", "/media/file.json" ]
           ],
           "type": "array",
           "items": {
@@ -5417,14 +4624,10 @@
       "type": "object",
       "anyOf": [
         {
-          "required": [
-            "literal"
-          ]
+          "required": [ "literal" ]
         },
         {
-          "required": [
-            "regexp"
-          ]
+          "required": [ "regexp" ]
         }
       ],
       "properties": {
@@ -5462,18 +4665,13 @@
       "description": "Enterprise only. The Virtual Host plugin allows you to run different configurations of KrakenD endpoints based on the host accessing the server.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
       "deprecated": true,
       "type": "object",
-      "required": [
-        "hosts"
-      ],
+      "required": [ "hosts" ],
       "properties": {
         "hosts": {
           "title": "Virtualhosts",
           "description": "All recognized virtual hosts by KrakenD must be listed here. The values declared here must match the content of the `Host` header when passed by the client.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
           "examples": [
-            [
-              "api-a.host.com",
-              "api-b.host.com"
-            ]
+            [ "api-a.host.com", "api-b.host.com" ]
           ],
           "type": "array",
           "items": {
@@ -5491,19 +4689,14 @@
       "title": "Wildcard",
       "description": "Enterprise only. Enables wildcard processing of requests without declaring all endpoint subresrouces.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/wildcard/",
       "type": "object",
-      "required": [
-        "endpoints"
-      ],
+      "required": [ "endpoints" ],
       "properties": {
         "endpoints": {
           "title": "Endpoints",
           "description": "The key of the map is the KrakenD endpoint that receives all the wildcard traffic. The value is an array with all the user paths that match this wildcard (you don't need to declare the subresources).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/wildcard/",
           "examples": [
             {
-              "/__wildcard/foo": [
-                "/foo",
-                "/aliasfoo"
-              ]
+              "/__wildcard/foo": [ "/foo", "/aliasfoo" ]
             }
           ],
           "type": "object"
@@ -5544,29 +4737,19 @@
       "examples": [
         {
           "type": "move",
-          "args": [
-            "a.*.b1.*.c",
-            "a.*.b1.*.d"
-          ]
+          "args": [ "a.*.b1.*.c", "a.*.b1.*.d" ]
         }
       ],
       "type": "array",
       "items": {
         "title": "Flatmap operation",
         "type": "object",
-        "required": [
-          "type",
-          "args"
-        ],
+        "required": [ "type", "args" ],
         "properties": {
           "type": {
             "title": "Type",
             "description": "The types of operations are defined as follows.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-            "enum": [
-              "move",
-              "del",
-              "append"
-            ]
+            "enum": [ "move", "del", "append" ]
           },
           "args": {
             "title": "Args",
@@ -5588,11 +4771,7 @@
       "title": "Circuit Breaker",
       "description": "The circuit breaker prevents sending more traffic to a failing backend.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
       "type": "object",
-      "required": [
-        "interval",
-        "timeout",
-        "max_errors"
-      ],
+      "required": [ "interval", "timeout", "max_errors" ],
       "properties": {
         "interval": {
           "title": "Interval",
@@ -5613,9 +4792,7 @@
         "name": {
           "title": "Name",
           "description": "A friendly name to follow this circuit breaker's activity in the logs.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
-          "examples": [
-            "cb-backend-1"
-          ],
+          "examples": [ "cb-backend-1" ],
           "type": "string"
         },
         "timeout": {
@@ -5634,10 +4811,7 @@
       "title": "Backend Ratelimit",
       "description": "Restrict the rate of requests KrakenD makes to your backends.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
       "type": "object",
-      "required": [
-        "max_rate",
-        "capacity"
-      ],
+      "required": [ "max_rate", "capacity" ],
       "properties": {
         "capacity": {
           "title": "Capacity",
@@ -5655,9 +4829,7 @@
         "max_rate": {
           "title": "Max rate",
           "description": "Maximum requests per second you want to accept in this backend.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
-          "examples": [
-            0.5
-          ],
+          "examples": [ 0.5 ],
           "type": "number"
         }
       },
@@ -5672,28 +4844,16 @@
       "type": "object",
       "anyOf": [
         {
-          "required": [
-            "connection_pool",
-            "max_rate"
-          ]
+          "required": [ "connection_pool", "max_rate" ]
         },
         {
-          "required": [
-            "connection_pool",
-            "client_max_rate"
-          ]
+          "required": [ "connection_pool", "client_max_rate" ]
         },
         {
-          "required": [
-            "connection_name",
-            "max_rate"
-          ]
+          "required": [ "connection_name", "max_rate" ]
         },
         {
-          "required": [
-            "connection_name",
-            "client_max_rate"
-          ]
+          "required": [ "connection_name", "client_max_rate" ]
         }
       ],
       "properties": {
@@ -5735,11 +4895,7 @@
         "key": {
           "title": "Header or Param key",
           "description": "Available when using `client_max_rate` and you have set a `strategy` equal to `header` or `param`. It makes no sense in other contexts. For `header` it is the header name containing the user identification (e.g., `Authorization` on tokens, or `X-Original-Forwarded-For` for IPs). When they contain a list of space-separated IPs, it will take the IP from the client that hit the first trusted proxy. For `param` it is the name of the placeholder used in the endpoint, like `id_user` for an endpoint `/user/{id_user}`.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
-          "examples": [
-            "X-Tenant",
-            "Authorization",
-            "id_user"
-          ],
+          "examples": [ "X-Tenant", "Authorization", "id_user" ],
           "type": "string"
         },
         "max_rate": {
@@ -5756,11 +4912,7 @@
         "strategy": {
           "title": "Strategy",
           "description": "Available when using `client_max_rate`. Sets the strategy you will use to set client counters. Choose `ip` when the restrictions apply to the client's IP address, or set it to `header` when there is a header that identifies a user uniquely. That header must be defined with the `key` entry.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
-          "enum": [
-            "ip",
-            "header",
-            "param"
-          ]
+          "enum": [ "ip", "header", "param" ]
         }
       }
     },
@@ -5770,14 +4922,10 @@
       "type": "object",
       "anyOf": [
         {
-          "required": [
-            "max_rate"
-          ]
+          "required": [ "max_rate" ]
         },
         {
-          "required": [
-            "client_max_rate"
-          ]
+          "required": [ "client_max_rate" ]
         }
       ],
       "properties": {
@@ -5821,11 +4969,7 @@
         "key": {
           "title": "Header or Param key",
           "description": "Available when using `client_max_rate` and you have set a `strategy` equal to `header` or `param`. It makes no sense in other contexts. For `header` it is the header name containing the user identification (e.g., `Authorization` on tokens, or `X-Original-Forwarded-For` for IPs). When they contain a list of space-separated IPs, it will take the IP from the client that hit the first trusted proxy. For `param` it is the name of the placeholder used in the endpoint, like `id_user` for an endpoint `/user/{id_user}`.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-          "examples": [
-            "X-Tenant",
-            "Authorization",
-            "id_user"
-          ],
+          "examples": [ "X-Tenant", "Authorization", "id_user" ],
           "type": "string"
         },
         "max_rate": {
@@ -5842,11 +4986,7 @@
         "strategy": {
           "title": "Strategy",
           "description": "Available when using `client_max_rate`. Sets the strategy you will use to set client counters. Choose `ip` when the restrictions apply to the client's IP address, or set it to `header` when there is a header that identifies a user uniquely. That header must be defined with the `key` entry.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-          "enum": [
-            "ip",
-            "header",
-            "param"
-          ]
+          "enum": [ "ip", "header", "param" ]
         }
       },
       "patternProperties": {
@@ -5859,10 +4999,7 @@
       "title": "Tiered Rate Limit",
       "description": "Enterprise only. Apply ratelimit based on tier match.",
       "type": "object",
-      "required": [
-        "tier_key",
-        "tiers"
-      ],
+      "required": [ "tier_key", "tiers" ],
       "properties": {
         "tier_key": {
           "title": "Tier key",
@@ -5903,11 +5040,7 @@
                 "title": "Tier value as",
                 "description": "Determines how to parse the value found in the tier header. When `literal` is used, the exact value of the header is compared against the tier name. When `policy` is used, the value is used to evaluate a policy. When `*` is used, all values will match. Make sure to put the `*` as the last tier; otherwise the rest will be ignored.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "default": "literal",
-                "enum": [
-                  "literal",
-                  "policy",
-                  "*"
-                ]
+                "enum": [ "literal", "policy", "*" ]
               }
             }
           }
@@ -5926,19 +5059,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": [
-              "name",
-              "addresses"
-            ],
+            "required": [ "name", "addresses" ],
             "properties": {
               "addresses": {
                 "title": "Addresses",
                 "description": "The list of redis members that conform the cluster using the format `host:port`. All members must be WRITEABLE",
                 "examples": [
-                  [
-                    "192.168.1.45:6379",
-                    "192.168.1.52:6379"
-                  ]
+                  [ "192.168.1.45:6379", "192.168.1.52:6379" ]
                 ],
                 "type": "array",
                 "items": {
@@ -5950,9 +5077,7 @@
               "client_name": {
                 "title": "Client name",
                 "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
-                "examples": [
-                  "krakend_pool"
-                ],
+                "examples": [ "krakend_pool" ],
                 "type": "string"
               },
               "conn_max_idle_time": {
@@ -6021,10 +5146,7 @@
               "name": {
                 "title": "Connection name",
                 "description": "The connection pool name. This is an arbitrary name used to reference this connection in other parts of the configuration needing Redis.",
-                "examples": [
-                  "shared_instance",
-                  "Redis_for_ratelimit"
-                ],
+                "examples": [ "shared_instance", "Redis_for_ratelimit" ],
                 "type": "string"
               },
               "opentelemetry": {
@@ -6105,25 +5227,18 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": [
-              "name",
-              "address"
-            ],
+            "required": [ "name", "address" ],
             "properties": {
               "address": {
                 "title": "Address",
                 "description": "The Redis host where you want to connect using the format `host:port`.",
-                "examples": [
-                  "shared.redis.example.com"
-                ],
+                "examples": [ "shared.redis.example.com" ],
                 "type": "string"
               },
               "client_name": {
                 "title": "Client name",
                 "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
-                "examples": [
-                  "krakend_pool"
-                ],
+                "examples": [ "krakend_pool" ],
                 "type": "string"
               },
               "conn_max_idle_time": {
@@ -6192,10 +5307,7 @@
               "name": {
                 "title": "Connection name",
                 "description": "The connection pool name. This is an arbitrary name used to reference this connection in other parts of the configuration needing Redis.",
-                "examples": [
-                  "shared_instance",
-                  "Redis_for_ratelimit"
-                ],
+                "examples": [ "shared_instance", "Redis_for_ratelimit" ],
                 "type": "string"
               },
               "opentelemetry": {
@@ -6439,10 +5551,7 @@
         "allow": {
           "title": "Allow",
           "description": "An array with EXACT MATCHES of trusted user agents that can connect.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
-          "examples": [
-            "MyAndroidClient/1.0",
-            "Pingdom.com_bot_version_1.1"
-          ],
+          "examples": [ "MyAndroidClient/1.0", "Pingdom.com_bot_version_1.1" ],
           "default": [],
           "type": "array",
           "items": {
@@ -6452,17 +5561,13 @@
         "cache_size": {
           "title": "Cache size",
           "description": "Size of the LRU cache that helps speed the bot detection. The size is the mumber of users agents that you want to keep in memory.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
-          "examples": [
-            1000
-          ],
+          "examples": [ 1000 ],
           "type": "integer"
         },
         "deny": {
           "title": "Deny",
           "description": "An array with EXACT MATCHES of undesired bots, to reject immediately.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
-          "examples": [
-            "facebookexternalhit/1.1"
-          ],
+          "examples": [ "facebookexternalhit/1.1" ],
           "default": [],
           "type": "array",
           "items": {
@@ -6478,10 +5583,7 @@
         "patterns": {
           "title": "Bot patterns",
           "description": "An array with all the regular expressions that define bots. Matching bots are rejected.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
-          "examples": [
-            "GoogleBot.*",
-            "(facebookexternalhit)/.*"
-          ],
+          "examples": [ "GoogleBot.*", "(facebookexternalhit)/.*" ],
           "default": [],
           "type": "array",
           "items": {
@@ -6514,18 +5616,12 @@
           "items": {
             "type": "string"
           },
-          "example": [
-            "Accept-Language"
-          ]
+          "example": [ "Accept-Language" ]
         },
         "allow_methods": {
           "title": "Allowed methods",
           "description": "An array with all the HTTP methods allowed, in uppercase. Possible values are `GET`, `HEAD`,`POST`,`PUT`,`PATCH`,`DELETE`, or `OPTIONS`\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-          "default": [
-            "GET",
-            "HEAD",
-            "POST"
-          ],
+          "default": [ "GET", "HEAD", "POST" ],
           "type": "array",
           "items": {
             "enum": [
@@ -6542,9 +5638,7 @@
         "allow_origins": {
           "title": "Allowed origins",
           "description": "An array with all the origins allowed, examples of values are `https://example.com`, or `*` (any origin).\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-          "default": [
-            "*"
-          ],
+          "default": [ "*" ],
           "type": "array",
           "items": {
             "type": "string"
@@ -6565,10 +5659,7 @@
         "expose_headers": {
           "title": "Expose headers",
           "description": "List of headers that are safe to expose to the API of a CORS API specification.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-          "default": [
-            "Content-Length",
-            "Content-Type"
-          ],
+          "default": [ "Content-Length", "Content-Type" ],
           "type": "array",
           "items": {
             "type": "string"
@@ -6590,9 +5681,7 @@
         "options_success_status": {
           "title": "Success Status Codes",
           "description": "The HTTP status code that is considered a success.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-          "examples": [
-            200
-          ],
+          "examples": [ 200 ],
           "default": 204,
           "type": "integer"
         }
@@ -6631,9 +5720,7 @@
         "content_security_policy": {
           "title": "Content-Security-Policy (CSP)",
           "description": "The HTTP Content-Security-Policy (CSP) default-src directive serves as a fallback for the other CSP fetch directives.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
-          "examples": [
-            "default-src 'self';"
-          ],
+          "examples": [ "default-src 'self';" ],
           "default": "",
           "type": "string"
         },
@@ -6646,9 +5733,7 @@
         "custom_frame_options_value": {
           "title": "Clickjacking protection. Frame-Options value",
           "description": "You can add an X-Frame-Options header using custom_frame_options_value with the value of DENY (default behavior) or even set your custom value.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
-          "examples": [
-            "ALLOW-FROM https://example.com"
-          ],
+          "examples": [ "ALLOW-FROM https://example.com" ],
           "default": "",
           "type": "string"
         },
@@ -6668,9 +5753,7 @@
           "title": "SSL Host",
           "description": "A set of header keys that may hold a proxied hostname value for the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
           "examples": [
-            [
-              "X-Forwarded-Hosts"
-            ]
+            [ "X-Forwarded-Hosts" ]
           ],
           "type": "array",
           "items": {
@@ -6701,9 +5784,7 @@
         "ssl_host": {
           "title": "SSL Host",
           "description": "When the SSL redirect is true, the host where the request is redirected to.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
-          "examples": [
-            "ssl.host.domain"
-          ],
+          "examples": [ "ssl.host.domain" ],
           "default": "ssl.host.domain",
           "type": "string"
         },
@@ -6748,19 +5829,13 @@
       "type": "object",
       "anyOf": [
         {
-          "required": [
-            "req"
-          ]
+          "required": [ "req" ]
         },
         {
-          "required": [
-            "resp"
-          ]
+          "required": [ "resp" ]
         },
         {
-          "required": [
-            "jwt"
-          ]
+          "required": [ "jwt" ]
         }
       ],
       "properties": {
@@ -6786,9 +5861,7 @@
           "title": "JWT policies",
           "description": "All the policies applied in the JWT context (token validation). **You must configure `auth/validator`** for the policies to run, otherwise they will be skipped. Any policy failing will generate a `401 Unauthorized` error. Works in the `endpoint` context only, and is not available under `backend`.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
           "type": "object",
-          "required": [
-            "policies"
-          ],
+          "required": [ "policies" ],
           "properties": {
             "policies": {
               "title": "Policies",
@@ -6809,9 +5882,7 @@
           "title": "Request policies",
           "description": "All the policies applied in the request context.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
           "type": "object",
-          "required": [
-            "policies"
-          ],
+          "required": [ "policies" ],
           "properties": {
             "error": {
               "type": "object",
@@ -6855,9 +5926,7 @@
           "title": "Response policies",
           "description": "All the policies applied in the response context.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
           "type": "object",
-          "required": [
-            "policies"
-          ],
+          "required": [ "policies" ],
           "properties": {
             "error": {
               "type": "object",
@@ -6908,10 +5977,7 @@
       "title": "Static Filesystem",
       "description": "Enterprise only. Allows you to fetch and serve static content by registering a static web server for a set of defined paths (the prefixes).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
       "type": "object",
-      "required": [
-        "prefix",
-        "path"
-      ],
+      "required": [ "prefix", "path" ],
       "properties": {
         "directory_listing": {
           "description": "Whether to allow directory listings or not",
@@ -6921,27 +5987,20 @@
         "path": {
           "title": "Path",
           "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-          "examples": [
-            "./static/"
-          ],
+          "examples": [ "./static/" ],
           "type": "string"
         },
         "prefix": {
           "title": "Prefix",
           "description": "This is the beginning (prefix) of all URLs that are resolved using this plugin. All matching URLs won't be passed to the router, meaning that they are not considered endpoints. Make sure you are not overwriting valid endpoints. When the `prefix` is `/`, then **all traffic is served as static** and you must declare a prefix under `skip` (e.g.: `/api`) to match endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-          "examples": [
-            "/media/assets"
-          ],
+          "examples": [ "/media/assets" ],
           "type": "string"
         },
         "skip": {
           "title": "Skip paths",
           "description": "An array with all the prefix URLs that despite they could match with the `prefix`, you don't want to treat them as static content and pass them to the router.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
           "examples": [
-            [
-              "/media/ignore/this/directory",
-              "/media/file.json"
-            ]
+            [ "/media/ignore/this/directory", "/media/file.json" ]
           ],
           "type": "array",
           "items": {
@@ -6961,14 +6020,10 @@
       "type": "object",
       "oneOf": [
         {
-          "required": [
-            "hosts"
-          ]
+          "required": [ "hosts" ]
         },
         {
-          "required": [
-            "aliased_hosts"
-          ]
+          "required": [ "aliased_hosts" ]
         }
       ],
       "properties": {
@@ -6993,10 +6048,7 @@
           "title": "Virtualhosts",
           "description": "All recognized virtual hosts by KrakenD must be listed here. The values declared here must match the content of the `Host` header when passed by the client.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
           "examples": [
-            [
-              "api-a.example.com",
-              "api-b.example.com"
-            ]
+            [ "api-a.example.com", "api-b.example.com" ]
           ],
           "type": "array",
           "items": {
@@ -7070,19 +6122,12 @@
           "title": "Cross Origin Resource Sharing",
           "description": "When KrakenD endpoints are consumed from a browser, you might need to enable the Cross-Origin Resource Sharing (CORS) module as browsers restrict cross-origin HTTP requests initiated from scripts.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
           "default": {
-            "allow_methods": [
-              "POST",
-              "GET"
-            ],
-            "allow_origins": [
-              "http://foobar.com"
-            ],
+            "allow_methods": [ "POST", "GET" ],
+            "allow_origins": [ "http://foobar.com" ],
             "max_age": "12h"
           },
           "type": "object",
-          "required": [
-            "allow_origins"
-          ],
+          "required": [ "allow_origins" ],
           "properties": {
             "allow_credentials": {
               "title": "Allow_credentials",
@@ -7123,10 +6168,7 @@
               "type": "array",
               "items": {
                 "title": "Allowed origins list",
-                "examples": [
-                  "*",
-                  "https://example.com"
-                ],
+                "examples": [ "*", "https://example.com" ],
                 "type": "string"
               }
             },
@@ -7148,9 +6190,7 @@
             "max_age": {
               "title": "Max age",
               "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-              "examples": [
-                "12h"
-              ],
+              "examples": [ "12h" ],
               "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
               "type": "string"
             }
@@ -7206,10 +6246,7 @@
       "title": "GELF",
       "description": "Send structured events in GELF format to your Graylog Cluster.\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
       "type": "object",
-      "required": [
-        "address",
-        "enable_tcp"
-      ],
+      "required": [ "address", "enable_tcp" ],
       "properties": {
         "address": {
           "title": "Address",
@@ -7232,10 +6269,7 @@
       "title": "Telemetry via influx",
       "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
       "type": "object",
-      "required": [
-        "address",
-        "ttl"
-      ],
+      "required": [ "address", "ttl" ],
       "properties": {
         "address": {
           "title": "Address",
@@ -7280,18 +6314,12 @@
       "title": "Improved logging",
       "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/logging/",
       "type": "object",
-      "required": [
-        "level"
-      ],
+      "required": [ "level" ],
       "properties": {
         "format": {
           "title": "Application log format",
           "description": "Specify the format of the application logs: default, logstash, or custom.\nThe custom format needs an additional key \"custom_format\".\nThe \"logstash\" format needs the \"telemetry/logstash\" component added too.\n\nSee: https://www.krakend.io/docs/logging/",
-          "examples": [
-            "default",
-            "logstash",
-            "custom"
-          ],
+          "examples": [ "default", "logstash", "custom" ],
           "default": "default",
           "type": "string"
         },
@@ -7308,13 +6336,7 @@
           "title": "Access log format",
           "description": "Enterprise only. Enable a formatter for the access log. You can write your own pattern using the `custom` value, or you can use one of the predefined ones.\n\nSee: https://www.krakend.io/docs/logging/",
           "default": "",
-          "enum": [
-            "default",
-            "httpdCommon",
-            "httpdCombine",
-            "json",
-            "custom"
-          ]
+          "enum": [ "default", "httpdCommon", "httpdCombine", "json", "custom" ]
         },
         "access_log_missing_key_marker": {
           "title": "Access log format missing key",
@@ -7335,13 +6357,7 @@
         "level": {
           "title": "Log Level",
           "description": "What type of **reporting level** do you expect from the application? The options below go from more verbose to least. Use the `DEBUG` level in the development stages but not in production. Some components can add extra verbosity while in DEBUG mode and send **multiline content**, which is not always suitable for automated log parsing.\n\nSee: https://www.krakend.io/docs/logging/",
-          "enum": [
-            "DEBUG",
-            "INFO",
-            "WARNING",
-            "ERROR",
-            "CRITICAL"
-          ]
+          "enum": [ "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" ]
         },
         "prefix": {
           "title": "Prefix",
@@ -7386,9 +6402,7 @@
       "title": "Logstash",
       "description": "Enables logstash when the extra_config \"telemetry/logging\" is also present.\n\nSee: https://www.krakend.io/docs/logging/logstash/",
       "type": "object",
-      "required": [
-        "enabled"
-      ],
+      "required": [ "enabled" ],
       "properties": {
         "enabled": {
           "title": "Enabled",
@@ -7456,10 +6470,7 @@
       "title": "Moesif integration",
       "description": "The Moesif integration helps you understand and monetize API usage with a robust analytics and billing platform.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
       "type": "object",
-      "required": [
-        "application_id",
-        "user_id_headers"
-      ],
+      "required": [ "application_id", "user_id_headers" ],
       "properties": {
         "application_id": {
           "title": "Collector Application ID",
@@ -7493,25 +6504,19 @@
             "header": {
               "title": "Company in Header",
               "description": "The company is identified using a header. Provide the header name.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-              "examples": [
-                "X-Tenant"
-              ],
+              "examples": [ "X-Tenant" ],
               "type": "string"
             },
             "jwt_claim": {
               "title": "Company in Claim",
               "description": "The company is stored in a claim inside the JWT. The claim must return a string.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-              "examples": [
-                "company_id"
-              ],
+              "examples": [ "company_id" ],
               "type": "string"
             },
             "query_string": {
               "title": "Company in Query String",
               "description": "The company is always passed inside a query string when calling any URL. Provide the query string name.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-              "examples": [
-                "company"
-              ],
+              "examples": [ "company" ],
               "type": "string"
             }
           },
@@ -7541,10 +6546,7 @@
           "title": "Request body masks",
           "description": "The list of fields in the request body that you want to mask before sending them to Moesif. You can set `log_body` to `false` to prevent any body being sent.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
           "examples": [
-            [
-              "password",
-              "credit_card"
-            ]
+            [ "password", "credit_card" ]
           ],
           "type": "array",
           "items": {
@@ -7555,9 +6557,7 @@
           "title": "Request header masks",
           "description": "The list of request headers that you want to mask their values before sending them to Moesif.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
           "examples": [
-            [
-              "Authorization"
-            ]
+            [ "Authorization" ]
           ],
           "type": "array",
           "items": {
@@ -7568,10 +6568,7 @@
           "title": "Response body masks",
           "description": "The list of fields in the response body that you want to mask before sending them to Moesif. You can set `log_body` to `false` to prevent any body being sent.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
           "examples": [
-            [
-              "password",
-              "credit_card"
-            ]
+            [ "password", "credit_card" ]
           ],
           "type": "array",
           "items": {
@@ -7582,9 +6579,7 @@
           "title": "Response header masks",
           "description": "The list of response headers that you want to mask their values before sending them to Moesif.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
           "examples": [
-            [
-              "Cookie"
-            ]
+            [ "Cookie" ]
           ],
           "type": "array",
           "items": {
@@ -7610,10 +6605,7 @@
           "title": "User ID headers",
           "description": "Defines the list of possible headers that can identify a user uniquely. When the header is `Authorization`, it automatically extracts the username if it contains an `Authorization: Basic` value with no additional configuration. If, on the other hand, you use tokens and pass an `Authorization: Bearer`, it will extract the user ID from the JWT claim defined under `user_id_jwt_claim`. If there are multiple headers in the list, all of them are tested in the given order, and the first existing header in the list is used to extract the user ID (successfully or not).\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
           "examples": [
-            [
-              "X-User-ID",
-              "Authorization"
-            ]
+            [ "X-User-ID", "Authorization" ]
           ],
           "type": "array",
           "items": {
@@ -7623,10 +6615,7 @@
         "user_id_jwt_claim": {
           "title": "User ID JWT claim",
           "description": "When using JWT tokens, it defines which claim contains the user ID. The claim value you access must be of type string. You can access nested structured using the dot `.` separator. When using dots, literals with an exact match containing the dot are checked first.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-          "examples": [
-            "sub",
-            "user.id"
-          ],
+          "examples": [ "sub", "user.id" ],
           "default": "sub",
           "type": "string"
         }
@@ -7641,9 +6630,7 @@
       "title": "NewRelic exporter",
       "description": "The New Relic integration lets you push KrakenD metrics and distributed traces to your New Relic dashboard. It uses internally the official New Relic SDK and brings its features to your APM dashboard.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
       "type": "object",
-      "required": [
-        "license"
-      ],
+      "required": [ "license" ],
       "properties": {
         "debug": {
           "title": "Enable debug",
@@ -7655,9 +6642,7 @@
           "title": "Headers to pass",
           "description": "Defines an explicit list of headers sent during the client request that will be reported to NewRelic, in addition to the default headers NewRelic sets. Setting the `[\"*\"]` value will send all headers sent by the client to NewRelic. Whether you declare this setting or not, you will usually receive from the NewRelic SDK the `Accept`, `Content-Type`, `User-Agent`, and `Referer` headers.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
           "examples": [
-            [
-              "*"
-            ]
+            [ "*" ]
           ],
           "type": "array",
           "items": {
@@ -7680,9 +6665,7 @@
       "title": "Telemetry via Opencensus",
       "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
       "type": "object",
-      "required": [
-        "exporters"
-      ],
+      "required": [ "exporters" ],
       "properties": {
         "enabled_layers": {
           "title": "Enabled Layers",
@@ -7756,17 +6739,13 @@
                 "service": {
                   "title": "Service",
                   "description": "Service specifies the service name used for tracing\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-                  "examples": [
-                    "gateway"
-                  ],
+                  "examples": [ "gateway" ],
                   "type": "string"
                 },
                 "stats_address": {
                   "title": "Stats address",
                   "description": "Specifies the host[:port] address for DogStatsD. To enable ingestion using Unix Domain Socket (UDS) mount your UDS path and reference it in the stats_address using a path like `unix:///var/run/datadog/dsd.socket`.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-                  "examples": [
-                    "localhost:8125"
-                  ],
+                  "examples": [ "localhost:8125" ],
                   "default": "localhost:8125",
                   "type": "string"
                 },
@@ -7794,50 +6773,37 @@
               "title": "Influxdb",
               "description": "Exports data to InfluxDB: A time series database designed to handle high write and query loads.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
               "type": "object",
-              "required": [
-                "address",
-                "db"
-              ],
+              "required": [ "address", "db" ],
               "properties": {
                 "address": {
                   "title": "Address",
                   "description": "The URL (including port) where your InfluxDB is installed.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-                  "examples": [
-                    "http://192.168.99.100:8086"
-                  ],
+                  "examples": [ "http://192.168.99.100:8086" ],
                   "type": "string"
                 },
                 "db": {
                   "title": "DB name",
                   "description": "The database name\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-                  "examples": [
-                    "krakend"
-                  ],
+                  "examples": [ "krakend" ],
                   "type": "string"
                 },
                 "password": {
                   "title": "Password",
                   "description": "The password to access the database\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-                  "examples": [
-                    "kr4k3nd"
-                  ],
+                  "examples": [ "kr4k3nd" ],
                   "type": "string"
                 },
                 "timeout": {
                   "title": "Timeout",
                   "description": "The maximum time you will wait for InfluxDB to respond.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-                  "examples": [
-                    "2s"
-                  ],
+                  "examples": [ "2s" ],
                   "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
                   "type": "string"
                 },
                 "username": {
                   "title": "Username",
                   "description": "The influxdb username to access the database\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-                  "examples": [
-                    "krakend"
-                  ],
+                  "examples": [ "krakend" ],
                   "type": "string"
                 }
               },
@@ -7852,25 +6818,17 @@
               "type": "object",
               "oneOf": [
                 {
-                  "required": [
-                    "endpoint",
-                    "service_name"
-                  ]
+                  "required": [ "endpoint", "service_name" ]
                 },
                 {
-                  "required": [
-                    "agent_endpoint",
-                    "service_name"
-                  ]
+                  "required": [ "agent_endpoint", "service_name" ]
                 }
               ],
               "properties": {
                 "agent_endpoint": {
                   "title": "Agent Endpoint",
                   "description": "The address where the Jaeger Agent is (Thrift over UDP), e.g., `jaeger:6831`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
-                  "examples": [
-                    "http://192.168.99.100:14268/api/traces"
-                  ],
+                  "examples": [ "http://192.168.99.100:14268/api/traces" ],
                   "type": "string"
                 },
                 "buffer_max_count": {
@@ -7881,17 +6839,13 @@
                 "endpoint": {
                   "title": "Collector Endpoint",
                   "description": "The full URL including port indicating where your Jaeger Collector is (Thrift over HTTP/S), e.g., `http://jaeger:14268/api/traces`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
-                  "examples": [
-                    "http://192.168.99.100:14268/api/traces"
-                  ],
+                  "examples": [ "http://192.168.99.100:14268/api/traces" ],
                   "type": "string"
                 },
                 "service_name": {
                   "title": "Service name",
                   "description": "The service name registered in Jaeger\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
-                  "examples": [
-                    "krakend"
-                  ],
+                  "examples": [ "krakend" ],
                   "type": "string"
                 }
               },
@@ -7927,17 +6881,12 @@
               "title": "Ocagent",
               "description": "Exporting metrics, logs, and events to the OpenCensus Agent.\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
               "type": "object",
-              "required": [
-                "address",
-                "service_name"
-              ],
+              "required": [ "address", "service_name" ],
               "properties": {
                 "address": {
                   "title": "Address",
                   "description": "The address of your Azure Monitor collector.\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
-                  "examples": [
-                    "localhost:55678"
-                  ],
+                  "examples": [ "localhost:55678" ],
                   "type": "string"
                 },
                 "enable_compression": {
@@ -7984,9 +6933,7 @@
               "title": "Prometheus",
               "description": "Prometheus is an open-source systems monitoring and alerting toolkit.",
               "type": "object",
-              "required": [
-                "port"
-              ],
+              "required": [ "port" ],
               "properties": {
                 "namespace": {
                   "title": "Namespace",
@@ -7996,9 +6943,7 @@
                 "port": {
                   "title": "Port",
                   "description": "Port on which the Prometheus exporter should listen\n\nSee: https://www.krakend.io/docs/telemetry/prometheus/",
-                  "examples": [
-                    9091
-                  ],
+                  "examples": [ 9091 ],
                   "type": "integer"
                 },
                 "tag_host": {
@@ -8035,10 +6980,7 @@
               "title": "Stackdriver",
               "description": "Export metrics and traces to Google Cloud",
               "type": "object",
-              "required": [
-                "project_id",
-                "default_labels"
-              ],
+              "required": [ "project_id", "default_labels" ],
               "properties": {
                 "default_labels": {
                   "title": "Default_labels",
@@ -8058,9 +7000,7 @@
                 "project_id": {
                   "title": "Project_id",
                   "description": "The identifier of your Google Cloud project. The `project_id` **is not the project name**. You can omit this value from the configuration if you have an application credential file for Google.\n\nSee: https://www.krakend.io/docs/telemetry/stackdriver/",
-                  "examples": [
-                    "ID"
-                  ],
+                  "examples": [ "ID" ],
                   "default": "",
                   "type": "string",
                   "pattern": "^.*$"
@@ -8085,17 +7025,10 @@
                   ]
                 },
                 {
-                  "required": [
-                    "region",
-                    "version",
-                    "use_env"
-                  ]
+                  "required": [ "region", "version", "use_env" ]
                 }
               ],
-              "required": [
-                "region",
-                "version"
-              ],
+              "required": [ "region", "version" ],
               "properties": {
                 "access_key_id": {
                   "title": "AWS access key id",
@@ -8105,9 +7038,7 @@
                 "region": {
                   "title": "Region",
                   "description": "The AWS geographical region, e.g, `us-east-1`.\n\nSee: https://www.krakend.io/docs/telemetry/xray/",
-                  "examples": [
-                    "eu-west-1"
-                  ],
+                  "examples": [ "eu-west-1" ],
                   "type": "string"
                 },
                 "secret_access_key": {
@@ -8137,25 +7068,18 @@
               "title": "Zipkin",
               "description": "Export telemetry data to a Zipkin collector",
               "type": "object",
-              "required": [
-                "collector_url",
-                "service_name"
-              ],
+              "required": [ "collector_url", "service_name" ],
               "properties": {
                 "collector_url": {
                   "title": "Collector URL",
                   "description": "The URL (including port and path) where your Zipkin is accepting the spans, e.g., `http://zipkin:9411/api/v2/spans`\n\nSee: https://www.krakend.io/docs/telemetry/zipkin/",
-                  "examples": [
-                    "http://192.168.99.100:9411/api/v2/spans"
-                  ],
+                  "examples": [ "http://192.168.99.100:9411/api/v2/spans" ],
                   "type": "string"
                 },
                 "service_name": {
                   "title": "Service name",
                   "description": "The service name registered in Zipkin.\n\nSee: https://www.krakend.io/docs/telemetry/zipkin/",
-                  "examples": [
-                    "krakend"
-                  ],
+                  "examples": [ "krakend" ],
                   "type": "string"
                 }
               },
@@ -8242,10 +7166,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": [
-                      "key",
-                      "value"
-                    ],
+                    "required": [ "key", "value" ],
                     "properties": {
                       "key": {
                         "title": "key",
@@ -8317,10 +7238,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": [
-                      "key",
-                      "value"
-                    ],
+                    "required": [ "key", "value" ],
                     "properties": {
                       "key": {
                         "title": "key",
@@ -8409,10 +7327,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": [
-                      "key",
-                      "value"
-                    ],
+                    "required": [ "key", "value" ],
                     "properties": {
                       "key": {
                         "title": "Key",
@@ -8484,10 +7399,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": [
-                      "key",
-                      "value"
-                    ],
+                    "required": [ "key", "value" ],
                     "properties": {
                       "key": {
                         "title": "Key",
@@ -8527,9 +7439,7 @@
               "title": "Metrics exporters",
               "description": "Overrides the metrics exporters used in this endpoint",
               "examples": [
-                [
-                  "local_prometheus"
-                ]
+                [ "local_prometheus" ]
               ],
               "type": "array",
               "items": {
@@ -8545,11 +7455,7 @@
               "title": "Trace exporters",
               "description": "Overrides the trace exporters used in this endpoint",
               "examples": [
-                [
-                  "debug_jaeger",
-                  "newrelic",
-                  "local_tempo"
-                ]
+                [ "debug_jaeger", "newrelic", "local_tempo" ]
               ],
               "type": "array",
               "items": {
@@ -8559,9 +7465,7 @@
             "trace_sample_rate": {
               "title": "Trace sample rate",
               "description": "Overrides the sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
-              "examples": [
-                0.25
-              ],
+              "examples": [ 0.25 ],
               "type": "number",
               "maximum": 1,
               "minimum": 0
@@ -8702,9 +7606,7 @@
       "title": "OpenTelemetry Security",
       "description": "Enables the security layer needed to use OpenTelemetry through the Internet, like pushing data to a SaaS provider.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-security/",
       "type": "object",
-      "required": [
-        "otlp"
-      ],
+      "required": [ "otlp" ],
       "properties": {
         "otlp": {
           "title": "OTLP exporters",
@@ -8712,10 +7614,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "required": [
-              "name",
-              "headers"
-            ],
+            "required": [ "name", "headers" ],
             "properties": {
               "headers": {
                 "title": "Headers",
@@ -8732,10 +7631,7 @@
               "name": {
                 "title": "Name",
                 "description": "The **exact name** you used to define the exporter under `telemetry/opentelemetry`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-security/",
-                "examples": [
-                  "newrelic",
-                  "remote_datadog"
-                ],
+                "examples": [ "newrelic", "remote_datadog" ],
                 "type": "string"
               }
             },
@@ -8756,9 +7652,7 @@
       "title": "OpenTelemetry",
       "description": "Enables metrics and traces using OpenTelemetry.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
       "type": "object",
-      "required": [
-        "exporters"
-      ],
+      "required": [ "exporters" ],
       "properties": {
         "exporters": {
           "title": "Exporters",
@@ -8772,10 +7666,7 @@
               "type": "array",
               "minItems": 1,
               "items": {
-                "required": [
-                  "name",
-                  "host"
-                ],
+                "required": [ "name", "host" ],
                 "properties": {
                   "disable_metrics": {
                     "title": "Disable metrics",
@@ -8797,10 +7688,7 @@
                   "name": {
                     "title": "Name",
                     "description": "A unique name to identify this exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                    "examples": [
-                      "local_prometheus",
-                      "remote_grafana"
-                    ],
+                    "examples": [ "local_prometheus", "remote_grafana" ],
                     "type": "string"
                   },
                   "port": {
@@ -8829,9 +7717,7 @@
               "type": "array",
               "minItems": 1,
               "items": {
-                "required": [
-                  "name"
-                ],
+                "required": [ "name" ],
                 "properties": {
                   "disable_metrics": {
                     "title": "Disable metrics",
@@ -8847,20 +7733,14 @@
                   "listen_ip": {
                     "title": "Listen IP",
                     "description": "The IP address that KrakenD listens to in IPv4 or IPv6. You can, for instance, expose the Prometheus metrics only in a private IP address. An empty string, or no declaration means listening on all interfaces. The inclusion of `::` is intended for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses, which are valid for IPv4 and IPv6 simultaneously.",
-                    "examples": [
-                      "172.12.1.1",
-                      "::1"
-                    ],
+                    "examples": [ "172.12.1.1", "::1" ],
                     "default": "0.0.0.0",
                     "type": "string"
                   },
                   "name": {
                     "title": "Name",
                     "description": "A unique name to identify this exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                    "examples": [
-                      "local_prometheus",
-                      "remote_grafana"
-                    ],
+                    "examples": [ "local_prometheus", "remote_grafana" ],
                     "type": "string"
                   },
                   "port": {
@@ -9006,10 +7886,7 @@
                       "type": "array",
                       "items": {
                         "type": "object",
-                        "required": [
-                          "key",
-                          "value"
-                        ],
+                        "required": [ "key", "value" ],
                         "properties": {
                           "key": {
                             "title": "Key",
@@ -9081,10 +7958,7 @@
                       "type": "array",
                       "items": {
                         "type": "object",
-                        "required": [
-                          "key",
-                          "value"
-                        ],
+                        "required": [ "key", "value" ],
                         "properties": {
                           "key": {
                             "title": "Key",
@@ -9167,10 +8041,7 @@
                 "semantic_convention": {
                   "title": "Semantic convention naming",
                   "description": "The semantic convention naming you want to use. The default is an empty string which uses the original naming convention prior to 1.27. For the semantic convention of 1.27 and higher, use `1.27`\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                  "enum": [
-                    "",
-                    "1.27"
-                  ]
+                  "enum": [ "", "1.27" ]
                 },
                 "traces_static_attributes": {
                   "title": "Static attributes",
@@ -9292,15 +8163,8 @@
         "skip_paths": {
           "title": "Skip Paths",
           "description": "The paths you don't want to report. Use the literal value used in the `endpoint` definition, including any `{placeholders}`. In the `global` layer, this attribute works only on metrics, because traces are initiated before there is an endpoint to match against. If you do not want any path skipped, just add an array with an empty string `[\"\"]`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-          "examples": [
-            "/foo/{bar}"
-          ],
-          "default": [
-            "/__health",
-            "/__debug/",
-            "/__echo/",
-            "/__stats/"
-          ],
+          "examples": [ "/foo/{bar}" ],
+          "default": [ "/__health", "/__debug/", "/__echo/", "/__stats/" ],
           "type": "array",
           "items": {
             "type": "string"
@@ -9309,9 +8173,7 @@
         "trace_sample_rate": {
           "title": "Trace sample rate",
           "description": "The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-          "examples": [
-            0.25
-          ],
+          "examples": [ 0.25 ],
           "default": 1,
           "type": "number",
           "maximum": 1,
@@ -9342,9 +8204,7 @@
       "anyOf": [
         {
           "type": "object",
-          "required": [
-            "keys"
-          ]
+          "required": [ "keys" ]
         },
         {
           "type": "null"
@@ -9355,9 +8215,7 @@
           "title": "CA certificates (for mTLS)",
           "description": "An array with all the CA certificates you would like to load to KrakenD **when using mTLS**, in addition to the certificates present in the system's CA. Each certificate in the list is a relative or absolute path to the PEM file. If you have a format other than PEM, you must convert the certificate to PEM using a conversion tool. See also `disable_system_ca_pool` to avoid system's CA.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
           "examples": [
-            [
-              "ca.pem"
-            ]
+            [ "ca.pem" ]
           ],
           "default": [],
           "type": "array",
@@ -9368,11 +8226,7 @@
         "cipher_suites": {
           "title": "Cipher Suites",
           "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-          "default": [
-            4865,
-            4866,
-            4867
-          ],
+          "default": [ 4865, 4866, 4867 ],
           "type": "array",
           "uniqueItems": true,
           "items": {
@@ -9382,19 +8236,11 @@
         "curve_preferences": {
           "title": "Curve identifiers",
           "description": "The list of all the identifiers for the curve preferences. Use `23` for CurveP256, `24` for CurveP384 or `25` for CurveP521.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-          "default": [
-            23,
-            24,
-            25
-          ],
+          "default": [ 23, 24, 25 ],
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "enum": [
-              23,
-              24,
-              25
-            ]
+            "enum": [ 23, 24, 25 ]
           }
         },
         "disable_system_ca_pool": {
@@ -9424,20 +8270,14 @@
               "private_key": {
                 "title": "Private key",
                 "description": "Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-                "examples": [
-                  "/path/to/key.pem",
-                  "./certs/key.pem"
-                ],
+                "examples": [ "/path/to/key.pem", "./certs/key.pem" ],
                 "default": "./certs/key.pem",
                 "type": "string"
               },
               "public_key": {
                 "title": "Public key",
                 "description": "Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-                "examples": [
-                  "/path/to/cert.pem",
-                  "./certs/cert.pem"
-                ],
+                "examples": [ "/path/to/cert.pem", "./certs/cert.pem" ],
                 "default": "./certs/cert.pem",
                 "type": "string"
               }
@@ -9448,25 +8288,13 @@
           "title": "Maximum TLS version",
           "description": "Maximum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
           "default": "TLS13",
-          "enum": [
-            "SSL3.0",
-            "TLS10",
-            "TLS11",
-            "TLS12",
-            "TLS13"
-          ]
+          "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ]
         },
         "min_version": {
           "title": "Minimum TLS version",
           "description": "Minimum TLS version supported. When specifiying very old and insecure versions under TLS12 you must provide the `ciphers_list`.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
           "default": "TLS13",
-          "enum": [
-            "SSL3.0",
-            "TLS10",
-            "TLS11",
-            "TLS12",
-            "TLS13"
-          ]
+          "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ]
         }
       },
       "patternProperties": {
@@ -9483,16 +8311,12 @@
       "items": {
         "title": "Object in array",
         "type": "object",
-        "required": [
-          "check_expr"
-        ],
+        "required": [ "check_expr" ],
         "properties": {
           "check_expr": {
             "title": "Check expression",
             "description": "The expression that evaluates as a boolean, you can write here any conditional. If the result of the expression is `true`, the execution continues. See in the docs how to use additional variables to retrieve data from requests, responses, and tokens.\n\nSee: https://www.krakend.io/docs/endpoints/common-expression-language-cel/",
-            "examples": [
-              "int(req_params.Id) % 3 == 0"
-            ],
+            "examples": [ "int(req_params.Id) % 3 == 0" ],
             "type": "string"
           }
         },
@@ -9507,9 +8331,7 @@
       "title": "Response Schema Validator",
       "description": "Enterprise only. The response schema validator adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
       "type": "object",
-      "required": [
-        "schema"
-      ],
+      "required": [ "schema" ],
       "properties": {
         "error": {
           "title": "Error definition",
@@ -9531,9 +8353,7 @@
             "content_type": {
               "title": "Content-Type",
               "description": "The Content-Type header you want to set back in the response when you are setting a custom `body`",
-              "examples": [
-                "application/json"
-              ],
+              "examples": [ "application/json" ],
               "default": "text/plain",
               "type": "string"
             },
@@ -9605,12 +8425,7 @@
         "input_headers": {
           "title": "Allowed Headers In",
           "description": "Defines which input headers are allowed to pass to the backend. You don't need to declare the `input_headers` at the endpoint. Use `*` to pass all headers (not recommended, use explicit values instead). There are a few headers that won't be propagated regardless of your configuration, which are: `Upgrade`, `Connection`, `Sec-Websocket-Extensions`, `Sec-Websocket-Version`, and `Sec-Websocket-Key`.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
-          "examples": [
-            "Authorization",
-            "User-Agent",
-            "Accept",
-            "*"
-          ],
+          "examples": [ "Authorization", "User-Agent", "Accept", "*" ],
           "default": [],
           "type": "array",
           "uniqueItems": true,
@@ -9664,9 +8479,7 @@
           "title": "Subprotocols",
           "description": "The list of subprotocols that the client can use to connect to the websocket.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
           "examples": [
-            [
-              "streamlit"
-            ]
+            [ "streamlit" ]
           ],
           "default": [],
           "type": "array",
@@ -9703,10 +8516,7 @@
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Workflow Object",
       "type": "object",
-      "required": [
-        "endpoint",
-        "backend"
-      ],
+      "required": [ "endpoint", "backend" ],
       "properties": {
         "backend": {
           "title": "Backend",
@@ -9729,9 +8539,7 @@
         "endpoint": {
           "title": "Workflow endpoint name",
           "description": "An endpoint name for the workflow that will be used in logs. The name will be appended to the string `/__workflow/` in the logs, and although it does not receive traffic under this route, it is necessary when you want to pass URL `{params}` to the nested backends.\n\nSee: https://www.krakend.io/docs/endpoints/",
-          "examples": [
-            "/workflow-1/{param1}"
-          ],
+          "examples": [ "/workflow-1/{param1}" ],
           "type": "string"
         },
         "extra_config": {
@@ -9763,10 +8571,7 @@
         "timeout": {
           "title": "Timeout",
           "description": "The duration you write in the timeout represents the **whole duration of the pipe**, so it counts the time all your backends take to respond and the processing of all the components involved in the endpoint (the request, fetching data, manipulation, etc.). By default the timeout is taken from the parent endpoint, if redefined **make sure that is smaller than the endpoint's**",
-          "examples": [
-            "2s",
-            "1500ms"
-          ],
+          "examples": [ "2s", "1500ms" ],
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
           "type": "string"
         }
@@ -9803,9 +8608,7 @@
             "combiner": {
               "title": "Custom combiner",
               "description": "For custom builds of KrakenD only",
-              "examples": [
-                "combiner_name"
-              ],
+              "examples": [ "combiner_name" ],
               "type": "string"
             },
             "flatmap_filter": {
@@ -9824,13 +8627,8 @@
               "title": "Sequential propagated parameters",
               "description": "The list of parameters you want to propagate from a previous response to the next request. Parameters are accessible by Lua scripts, CEL, security policies, the body generator, or plugins. When you add a `resp`-like parameter in this list, the parameter becomes available to the components mentioned in subsequent calls, **uppercasing the first letter**. For instance, if you add `resp0_user`, you can access in the second, third, etc. backends in Lua to `req:params('Resp0_user')`.The format of the parameters must start with `respX_` or `respX`, where `X` is the backend index from which you want to take the parameter. If you don't set the underscore `_`, you set the whole payload as a parameter. For instance, `resp0` sets a parameter `Resp0` to use in Lua or a Body generator and contains **the entire payload of the backend 0** (as a string). In this extreme case, you must use `no-op` in the backend's output (even the endpoint has a `json` output encoding) and you should access the value in Lua or a plugin. Note that access to **nested parameters** uses a single string with the dot notation inside, e.g.: `req_params['Resp0_f1.f2.f3']` (CEL and Security Policies), or `{{ index .req_params \"Resp0_f1.f2.f3\" }}` (body generators).\n\nSee: https://www.krakend.io/docs/endpoints/sequential-proxy/",
               "examples": [
-                [
-                  "resp0"
-                ],
-                [
-                  "resp1_my_field",
-                  "resp0_user_id"
-                ]
+                [ "resp0" ],
+                [ "resp1_my_field", "resp0_user_id" ]
               ],
               "type": "array",
               "items": {
@@ -9844,10 +8642,7 @@
               "title": "Static response",
               "description": "The static proxy injects static data in the final response when the selected strategy matches.\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
               "type": "object",
-              "required": [
-                "data",
-                "strategy"
-              ],
+              "required": [ "data", "strategy" ],
               "properties": {
                 "data": {
                   "title": "Data",

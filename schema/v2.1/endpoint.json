@@ -11,10 +11,7 @@
     "endpoint": "/foo"
   },
   "type": "object",
-  "required": [
-    "endpoint",
-    "backend"
-  ],
+  "required": [ "endpoint", "backend" ],
   "properties": {
     "backend": {
       "title": "Backend",
@@ -44,11 +41,7 @@
       "$id": "#endpoint/endpoint",
       "title": "Endpoint",
       "description": "The exact string resource URL you want to expose. You can use `{placeholders}` to use variables when needed. URLs do not support colons `:` in their definition. Endpoints should start with slash `/`. Example: `/foo/{var}`. If `{vars}` are placed in the middle words, like in `/var{iable}` you must set in the root level `disable_rest` strict checking.\n\nSee: https://www.krakend.io/docs/endpoints/",
-      "examples": [
-        "/new-endpoint",
-        "/foo/{var}",
-        "/foo/{var1}/{var2}"
-      ],
+      "examples": [ "/new-endpoint", "/foo/{var}", "/foo/{var1}/{var2}" ],
       "type": "string",
       "pattern": "^/[^:]*$"
     },
@@ -67,11 +60,7 @@
       "uniqueItems": true,
       "items": {
         "$id": "#endpoint/input_headers/items",
-        "examples": [
-          "User-Agent",
-          "Accept",
-          "*"
-        ],
+        "examples": [ "User-Agent", "Accept", "*" ],
         "type": "string"
       }
     },
@@ -84,11 +73,7 @@
       "uniqueItems": true,
       "items": {
         "$id": "#endpoint/input_query_strings/items",
-        "examples": [
-          "page",
-          "limit",
-          "*"
-        ],
+        "examples": [ "page", "limit", "*" ],
         "type": "string"
       }
     },
@@ -97,13 +82,7 @@
       "title": "Method",
       "description": "The method supported by this endpoint. Create multiple endpoint entries if you need different methods.\n\nSee: https://www.krakend.io/docs/endpoints/",
       "default": "GET",
-      "enum": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ]
+      "enum": [ "GET", "POST", "PUT", "PATCH", "DELETE" ]
     },
     "output_encoding": {
       "$id": "#endpoint/output_encoding",
@@ -125,10 +104,7 @@
       "$id": "#endpoint/timeout",
       "title": "Timeout",
       "description": "The duration you write in the timeout represents the **whole duration of the pipe**, so it counts the time all your backends take to respond and the processing of all the components involved in the endpoint (the request, fetching data, manipulation, etc.). Usually specified in seconds (`s`) or milliseconds (`ms`. e.g.: `2000ms` or `2s`). If you don't set any timeout, the timeout is taken from the entry in the service level, or to the system's default",
-      "examples": [
-        "2s",
-        "1500ms"
-      ],
+      "examples": [ "2s", "1500ms" ],
       "default": "2s",
       "$ref": "timeunits.json#/$defs/timeunit",
       "type": "string"

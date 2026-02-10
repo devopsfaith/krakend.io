@@ -4,19 +4,13 @@
   "title": "Logging",
   "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/logging/",
   "type": "object",
-  "required": [
-    "level"
-  ],
+  "required": [ "level" ],
   "properties": {
     "format": {
       "$id": "#format",
       "title": "Application log format",
       "description": "Specify the format of the application logs: default, logstash, or custom.\nThe custom format needs an additional key \"custom_format\".\n\nSee: https://www.krakend.io/docs/logging/",
-      "examples": [
-        "default",
-        "logstash",
-        "custom"
-      ],
+      "examples": [ "default", "logstash", "custom" ],
       "default": "default",
       "type": "string"
     },
@@ -35,13 +29,7 @@
       "title": "Access log format",
       "description": "Enterprise only. Enable a formatter for the access log. You can write your own pattern using the `custom` value, or you can use one of the predefined ones.\n\nSee: https://www.krakend.io/docs/logging/",
       "default": "",
-      "enum": [
-        "default",
-        "httpdCommon",
-        "httpdCombine",
-        "json",
-        "custom"
-      ]
+      "enum": [ "default", "httpdCommon", "httpdCombine", "json", "custom" ]
     },
     "access_log_missing_key_marker": {
       "$id": "#access_log_missing_key_marker",
@@ -72,13 +60,7 @@
       "$id": "#level",
       "title": "Log Level",
       "description": "What type of **reporting level** do you expect from the application? The options below go from more verbose to least. Use the `DEBUG` level in the development stages but not in production. Some components can add extra verbosity while in DEBUG mode and send **multiline content**, which is not always suitable for automated log parsing.\n\nSee: https://www.krakend.io/docs/logging/",
-      "enum": [
-        "DEBUG",
-        "INFO",
-        "WARNING",
-        "ERROR",
-        "CRITICAL"
-      ]
+      "enum": [ "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" ]
     },
     "prefix": {
       "$id": "#prefix",

@@ -21,9 +21,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": [ "name" ],
         "properties": {
           "description": {
             "title": "Folder description",
@@ -52,19 +50,14 @@
       "$id": "#documentation/postman/name",
       "title": "Collection Name",
       "description": "The name of the Postman collection you are generating.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
-      "examples": [
-        "KrakenD Config v1"
-      ],
+      "examples": [ "KrakenD Config v1" ],
       "type": "string"
     },
     "version": {
       "$id": "#documentation/postman/version",
       "title": "Collection Version",
       "description": "The version you assign to this Postman collection you are generating using **semantic versioning**.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
-      "examples": [
-        "1.2.3",
-        "0.7.9"
-      ],
+      "examples": [ "1.2.3", "0.7.9" ],
       "type": "string",
       "pattern": "^[0-9].[0-9].[0-9]+$"
     }

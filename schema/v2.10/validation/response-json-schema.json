@@ -4,9 +4,7 @@
   "title": "Response Schema Validator",
   "description": "Enterprise only. The response schema validator adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
   "type": "object",
-  "required": [
-    "schema"
-  ],
+  "required": [ "schema" ],
   "properties": {
     "error": {
       "title": "Error definition",
@@ -28,9 +26,7 @@
         "content_type": {
           "title": "Content-Type",
           "description": "The Content-Type header you want to set back in the response when you are setting a custom `body`",
-          "examples": [
-            "application/json"
-          ],
+          "examples": [ "application/json" ],
           "default": "text/plain",
           "type": "string"
         },
