@@ -29799,6 +29799,12 @@ The semantic convention naming you want to use. The default is an empty string w
 
 Possible values are: `""` , `"1.27"`
 
+##### [`skip_headers`](#global-skip_headers "Click to copy link to skip_headers") array Show properties
+
+A list of headers you want to skip when reporting the headers from the request. This is useful to avoid reporting sensitive data.
+
+Example: `["X-Request-Api-Key","X-Signature"]`
+
 ##### [`traces_static_attributes`](#global-traces_static_attributes "Click to copy link to traces_static_attributes") array Show properties
 
 Static attributes you want to pass for traces.
@@ -29848,6 +29854,12 @@ The value of the static attribute you want to send
 Whether you want to report all headers that passed from the request to the proxy layer (`input_headers` policy in the endpoint plus KrakenD’s headers).
 
 Defaults to `false`
+
+##### [`skip_headers`](#proxy-skip_headers "Click to copy link to skip_headers") array Show properties
+
+A list of headers you want to skip when reporting headers passed to the proxy layer. This is useful to avoid reporting sensitive data.
+
+Example: `["X-Sensitive-Data","X-Signature"]`
 
 ##### [`traces_static_attributes`](#proxy-traces_static_attributes "Click to copy link to traces_static_attributes") array Show properties
 
