@@ -4921,6 +4921,14 @@ Protect endpoints from public usage by [validating JWT tokens](https://www.krake
 
 [Scripting with Lua](https://www.krakend.io/docs/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.
 
+##### [`modifier/request-body-extractor`](https://www.krakend.io/docs/endpoints/#modifier%2frequest-body-extractor "Click to copy link to modifier/request-body-extractor") object
+
+**Enterprise only.** [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings. Runs in the proxy pipeline.
+
+##### [`modifier/request-body-extractor/early`](https://www.krakend.io/docs/endpoints/#modifier%2frequest-body-extractor%2fearly "Click to copy link to modifier/request-body-extractor/early") object
+
+**Enterprise only.** [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings. Runs at the HTTP handler level before authentication and all other handlers.
+
 ##### [`modifier/request-body-generator`](https://www.krakend.io/docs/endpoints/#modifier%2frequest-body-generator "Click to copy link to modifier/request-body-generator") object
 
 **Enterprise only.** Freely [transform the request body/payload](https://www.krakend.io/backends/body-generator/) you will send to your services using a templating system.
@@ -7022,10 +7030,6 @@ Defaults to `false`
 List of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs) from which to trust request’s headers that contain alternative client IP when `forwarded_by_client_ip` is `true`. When declared **you must** configure `forwarded_by_client_ip` set to `true`, and optionally `remote_ip_headers`.
 
 Schema: [https://www.krakend.io/schema/v2.13/router.json](https://www.krakend.io/schema/v2.13/router.json "JSON schema definition")
-
-Caution with `disable_redirect_fixed_path`
-
-This flag can lead to the malfunctioning of your router. If your API configuration has paths that could collide, leave its value with the **safe choice** `disable_redirect_fixed_path=true` to avoid possible panics.
 
 ## Return the real client IP
 
@@ -11335,9 +11339,15 @@ Defaults to `"json"`
 
 Defines the driver that connects to your queue or PubSub system. In addition, you can place other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware, but adding the driver is mandatory.
 
-##### [`async/amqp`](#extra_config-async%2famqp "Click to copy link to async/amqp") *
+\* Required **one of**: ( `async/amqp` ) , or ( `async/kafka` )
+
+##### [`async/amqp`](#extra_config-async%2famqp "Click to copy link to async/amqp")
 
 [See the configuration for async/amqp](https://www.krakend.io/docs/async/amqp/)
+
+##### [`async/kafka`](#extra_config-async%2fkafka "Click to copy link to async/kafka")
+
+config details to consume from kafka topics
 
 ##### [`name`](https://www.krakend.io/docs/async/#name "Click to copy link to name") * string
 
@@ -24955,7 +24965,7 @@ The `max_rate` and `client_max_rate` configurations are under a common namespace
 For instance, let’s start with a simple and mixed example that sets two limits:
 
 - `50` requests every `10m` (10 minutes) among all clients
-- `5` requests per client every `10m`.
+- `5` requests per client every `10m`, identified by ip.
 
 ```json
 {
@@ -24964,7 +24974,9 @@ For instance, let’s start with a simple and mixed example that sets two limits
       "qos/ratelimit/router": {
           "max_rate": 50,
           "every": "10m",
-          "client_max_rate": 5
+          "client_max_rate": 5,
+          "client_capacity": 5,
+          "strategy": "ip"
       }
     }
 }
@@ -25063,7 +25075,9 @@ Example:
       "qos/ratelimit/router": {
           "@comment":"20 requests every 5 minutes",
           "client_max_rate": 20,
-          "every": "5m"
+          "client_capacity": 20,
+          "every": "5m",
+          "strategy": "ip"
     }
   }
 }
@@ -25122,6 +25136,7 @@ Setting a rate limit for every issued token could be as easy as:
     },
     "qos/ratelimit/router": {
       "client_max_rate": 100,
+      "client_capacity": 100,
       "every": "1h",
       "strategy": "header",
       "key": "Authorization"
@@ -25152,6 +25167,7 @@ You could have a configuration like this:
     },
     "qos/ratelimit/router": {
       "client_max_rate": 100,
+      "client_capacity": 100,
       "every": "1h",
       "strategy": "header",
       "key": "x-limit-department"
@@ -25176,6 +25192,7 @@ In that case, you can rate limit the parameter of the endpoint as follows:
   "extra_config": {
     "qos/ratelimit/router": {
       "client_max_rate": 5,
+      "client_capacity": 5,
       "every": "1m",
       "strategy": "param",
       "key": "customer_id"
@@ -25224,7 +25241,9 @@ Example:
   "extra_config": {
     "qos/ratelimit/router": {
       "client_max_rate": 5,
+      "client_capacity": 5,
       "every": "1m",
+      "strategy": "ip",
       "num_shards": 2048,
       "cleanup_period": "60s",
       "cleanup_threads": 1
@@ -25282,6 +25301,7 @@ Configuration:
         "qos/ratelimit/router": {
           "max_rate": 50,
           "client_max_rate": 5,
+          "client_capacity": 5,
           "strategy": "ip"
         }
       }
@@ -25291,6 +25311,7 @@ Configuration:
       "extra_config": {
         "qos/ratelimit/router": {
           "client_max_rate": 10,
+          "client_capacity": 10,
           "strategy": "header",
           "key": "X-Auth-Token"
         }
@@ -25324,7 +25345,8 @@ The configuration would be:
     "@comment": "Client rate limit of 30 reqs/day",
     "client_max_rate": 30,
     "client_capacity": 30,
-    "every": "24h"
+    "every": "24h",
+    "strategy": "ip"
   }
 }
 ```
@@ -33565,8 +33587,8 @@ For example, you can customize your pattern like this:
 Similarly, only on Enterprise you can customize how the access log prints. The following `access_log_format` values are available:
 
 - `default`: Uses `%{prefix} %{time} [AccessLog] |%{statusCode}| %{latencyMs} | %{clientIP} | %{method} %{path}\n` as pattern.
-- `httpdCommon`: Uses `%{clientIP} - - [%{time}] \"%{method} %{path} %{proto}\" %{statusCode} -\n` as in the Apache HTTPd log format
-- `httpdCombined`: The Apache HTTPd Combined log format `%{clientIP} - - [%{time}] \"%{method} %{path} %{proto}\" %{statusCode} - \"%{header.Referer}\" \"%{header.User-Agent}\"\n`
+- `httpdCommon`: Uses `%{clientIP} - - [%{time}] \"%{method} %{uri} %{proto}\" %{statusCode} -\n` as in the Apache HTTPd log format
+- `httpdCombined`: The Apache HTTPd Combined log format `%{clientIP} - - [%{time}] \"%{method} %{uri} %{proto}\" %{statusCode} - \"%{header.Referer}\" \"%{header.User-Agent}\"\n`
 - `json`: Uses `{\"prefix\":\"%{prefix}\", \"time\":\"%{time}\", \"status_code\":%{statusCode}, \"latency\":\"%{latency}\", \"client_ip\":\"%{clientIP}\", \"method\":\"%{method}\", \"path\":\"%{path}\"}\n`
 - `custom`: Write your own pattern, as defined in the `access_log_custom_format` attribute.
 
@@ -33577,17 +33599,20 @@ When the `access_log_format` is set to `custom`, you can use these variables und
 - `%{prefix}`: The value you have set under the `prefix` attribute.
 - `%{time}`: The time when the the access finished. The layout prints a format like 2006/01/02 - 15:04:05.000
 - `%{statusCode}`: The response status code as given to the consumer
-- `%{latencyMs}`: The operation latency in milliseconds with 3 decimals (microsecond resolution). This computes the time of the request from beginning to end.
-- `%{latency}`: The operation latency in seconds with 3 decimals
+- `%{latency}`: The latency in seconds. The default format is `.3fs` (3 decimal float + `s` for seconds). This computes the time of the request from beginning to end.
+- `%{latencyMs}`: The latency in milliseconds. The default format is `.3fms` (3 decimal float + `ms` for milliseconds). This computes the time of the request from beginning to end.
+- `%{latencyUs}`: The latency in microseconds. The default format is `.3fus` (3 decimal float + `us` for microseconds). This computes the time of the request from beginning to end.
+- `%{latencyNs}`: The latency in nanoseconds. The default format is `dns` (integer + `ns` for nanoseconds). This computes the time of the request from beginning to end.
 - `%{clientIP}`: The real IP of the client
 - `%{method}`: The HTTP verb used
-- `%{path}`: The endpoint path
+- `%{path}`: The endpoint path, does not include the query string (e.g., `/path/to/endpoint`)
+- `%{uri}`: The endpoint path and query string (e.g., `/path/to/endpoint?foo=bar&doe=baz`)
 - `%{host}`: The host of the URL
 - `%{header.xxx}`: The value of a specific header, where `xxx` is the header name.
-- `%{scheme}`: The scheme used (e.g., http, https, ws)
+- `%{scheme}`: The scheme used (e.g., `http`, `https`, `ws`)
 - `%{jwt.xxx}`: The value of a specific claim in the token, where `xxx` is the claim name (only first level, non-nested, claims).
 - `%{query}`: The query strings passed in the request
-- `%{proto}`: The protocol used (e.g., HTTP/1.0, HTTP/2, etc)
+- `%{proto}`: The protocol used (e.g., `HTTP/1.0`, `HTTP/2`, etc.)
 
 For instance, you could **print the access log in JSON format** as follows:
 
@@ -33618,7 +33643,7 @@ Or you could have a log that includes the JWT subject, the authorization header 
       "syslog": false,
       "stdout": true,
       "access_log_format": "custom",
-      "access_log_custom_format": "[AccessLog] %{prefix} %{time} | %{statusCode} | %{latencyMs} | %{clientIP} | %{method} %{scheme}://%{host}%{path} %{query.bar} %{header.Authorization} %{jwt.sub}\n"
+      "access_log_custom_format": "[AccessLog] %{prefix} %{time} | %{statusCode} | %{latencyMs} | %{clientIP} | %{method} %{scheme}://%{host}%{path}?%{query} %{query.bar} %{header.Authorization} %{jwt.sub}\n"
     }
   }
 }
