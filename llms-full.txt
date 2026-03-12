@@ -40778,6 +40778,12 @@ func (r registerer) RegisterRedisSelectors(cs func(string) *redis.Client, ccs fu
 
 The critical detail is retrieving the Redis client outside the inner handler function. Calling the selector inside the handler adds lookup overhead to every request.
 
+## Example: Using Redis in a Middleware Plugin
+
+The `examples` repository contains a full working stack that demonstrates Redis injection in a middleware plugin:
+
+[View the middleware plugin example](https://github.com/krakend/examples/tree/main/11.plugins-and-redis "View the middleware plugin example")
+
 
 
 ---
@@ -41124,6 +41130,12 @@ type windowStatusWrapper interface {
 	Allowed() bool
 }
 ```
+
+## Example: Using Quota Processors in a Real Use Case
+
+The `examples` repository contains a full stack showcasing quota processor injection at work. It focuses on applying quotas to `no-op` streaming responses.
+
+[Check example](https://github.com/krakend/examples/tree/main/12.plugins-and-quotas "Check example")
 
 
 
