@@ -73,10 +73,12 @@
 - [AMQP Consumer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-consumer/): Integrate AMQP consumers into KrakenD API Gateway for seamless communication with message queue systems like RabbitMQ
 - [AMQP Producer Integration in the API Gateway (RabbitMQ)](https://www.krakend.io/docs/backends/amqp-producer/): Integrate AMQP producers with KrakenD for seamless communication with backend systems. Follow our documentation to set up reliable and scalable messaging with Advanced Message Queuing Protocol (AMQP).
 - [Publisher/Subscribe with Kafka, NATS and cloud systems](https://www.krakend.io/docs/backends/pubsub/): Integrate Pub-Sub backend into KrakenD API Gateway to enable event-driven communication and real-time data updates in your API ecosystem
+- [Kafka PubSub with Extended Connectivity](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/): Use advanced connection options to securely connect to Kafka services with mTLS or SASL.
 - [GraphQL Backend Integration](https://www.krakend.io/docs/backends/graphql/): Integrate GraphQL backends into KrakenD API Gateway to leverage the power of GraphQL in your microservices architecture
 - [AWS Lambda Integration](https://www.krakend.io/docs/backends/lambda/): Integrate AWS Lambda functions into KrakenD API Gateway to leverage serverless computing for scalable and event-driven API processing
 - [Event-Driven API Gateway: Async Agents](https://www.krakend.io/docs/async/): Learn how to leverage asynchronous processing in KrakenD API Gateway to implement an event based pattern
 - [AMQP driver for the Asynchronous Agent](https://www.krakend.io/docs/async/amqp/): Leverage Asynchronous AMQP Agents in KrakenD for high-performance messaging and event-driven architectures
+- [Kafka Driver for the Asynchronous Agent](https://www.krakend.io/docs/enterprise/async/kafka/): Use the Kafka driver for KrakenD async agents to subscribe to Kafka topics and trigger backend actions on new events.
 
 
 ## Request and Response Manipulation
@@ -90,6 +92,7 @@
 - [Caching Strategies](https://www.krakend.io/docs/backends/caching/): Learn how to implement effective caching strategies in KrakenD API Gateway to improve API performance and reduce backend load
 - [Array manipulation](https://www.krakend.io/docs/backends/flatmap/): Integrate the FlatMap backend into KrakenD API Gateway for array data transformation and mapping operations in your API ecosystem
 - [Response header transformation](https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/): Add, replace, or delete headers at the service level, applying the conditions to all endpoints simultaneously before the headers reach the end-users
+- [Body to header and query string extractor](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/): Extract fields from the incoming request body and promote them to request headers or query strings at different stages of the KrakenD pipeline.
 - [Request manipulation with templates](https://www.krakend.io/docs/enterprise/backends/body-generator/): Explore the body generator backend feature in KrakenD API Gateway, allowing dynamic generation of request bodies for advanced API interactions.
 - [GeoIP integration: Location-based services](https://www.krakend.io/docs/enterprise/endpoints/geoip/): Leverage GeoIP endpoints in KrakenD Enterprise for location-based services and enrich your API responses
 - [Static modification of requests and responses with Martian](https://www.krakend.io/docs/backends/martian/): Learn how to integrate the Martian component into KrakenD API Gateway, enabling static request and response transformations for your APIs
@@ -170,6 +173,7 @@
 - [Google Gemini integration](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/): Connect to Google Gemini APIs using an abstracted interface allowing you to concentrate on content rather than format
 - [Mistral Integration](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/): KrakenD integration to connect to Mistral without setting the full payload of the API interaction.
 - [Anthropic integration](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/): Connect to Anthropic APIs using an abstracted interface allowing you to concentrate on content rather than format
+- [Amazon Web Services Bedrock integration](https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/): Connect to AWS Bedrock APIs using an abstracted interface, allowing you to concentrate on content rather than format
 - [Connecting to other AI vendors](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/): Generic approach to connect to AI vendors with no pre-defined LLM interface
 - [AI usage monitoring](https://www.krakend.io/docs/ai-gateway/usage-monitoring/): Use OpenTelemetry for monitoring API gateway traffic, including AI calls, with your existing providers.
 
@@ -234,6 +238,8 @@
 - [HTTP Client Plugins for KrakenD API Gateway](https://www.krakend.io/docs/extending/http-client-plugins/): Learn how to extend the functionality of KrakenD API Gateway by utilizing HTTP client plugins, enabling customized communication with external services
 - [Extending KrakenD with Request and Response Plugin Modifiers](https://www.krakend.io/docs/extending/plugin-modifiers/): Learn how to extend the functionality of KrakenD API Gateway by utilizing plugin modifiers, enabling customized request and response processing
 - [Middleware Plugins for KrakenD API Gateway](https://www.krakend.io/docs/enterprise/extending/middleware-plugins/): Discover how to write Middleware plugins for KrakenD API Gateway, enabling you to customize server behaviors and implement custom logic.
+- [Injecting Redis into KrakenD Plugins](https://www.krakend.io/docs/enterprise/extending/injecting-redis-in-plugins/): Use KrakenD's managed Redis connections in any plugin type to add a shared persistence layer without managing connection pools or clusters yourself.
+- [Injecting Quota Processors in Plugins](https://www.krakend.io/docs/enterprise/extending/injecting-quota-processors-in-plugins/): Inject KrakenD's built-in Quota Processor into any custom plugin to enforce usage limits without managing quota state, time windows, or storage.
 - [Lua Scripting](https://www.krakend.io/docs/endpoints/lua/): Explore the power of Lua scripting in KrakenD API Gateway, allowing you to customize and extend the behavior of your API gateway
 - [Lua advanced helpers](https://www.krakend.io/docs/enterprise/endpoints/lua-advanced-helpers/): Extend the functionality of your Lua scripts with additional helpers that run natively on Go for optimal performance and advanced functionality
 

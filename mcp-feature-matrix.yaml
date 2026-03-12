@@ -116,6 +116,13 @@ sections:
         description: Ouput compression of responses in gzip format
         ee: true
         url: /docs/enterprise/service-settings/gzip/
+      - name: Request body extractor
+        namespaces:
+          - modifier/request-body-extractor
+          - modifier/request-body-extractor/early
+        description: Extract fields from the incoming request body and promote them to request headers or query strings at different stages of the pipeline
+        ee: true
+        url: /docs/enterprise/endpoints/request-body-extractor/
       - name: Request manipulation using go templates (body generator)
         namespaces:
           - modifier/body-generator
@@ -470,6 +477,12 @@ sections:
       description: Use Anthropic's API without writing custom integration code
       ee: true
       url: /docs/enterprise/ai-gateway/anthropic/
+    - name: AWS Bedrock integration
+      namespaces:
+        - ai/llm
+      description: Use Bedrock's API without writing custom integration code
+      ee: true
+      url: /docs/enterprise/ai-gateway/bedrock/
   - name: Services Connectivity
     description: |
       Integrations with non-REST services
@@ -530,6 +543,10 @@ sections:
       description: Implement event-driven architectures with Async agents, which react to new events in queues and push data to your backends or webhooks.
       ee: false
       url: /docs/enterprise/async/
+    - name: Kafka Async Agents
+      description: Implement event-driven architectures with Kafka async agents, which react to new events in queues and push data to your backends or webhooks.
+      ee: true
+      url: /docs/enterprise/async/kafka
     - name: Lambda functions
       namespaces:
         - backend/lambda
@@ -600,6 +617,13 @@ sections:
       description: Enable the distributed streaming platform Apache Kafka
       ee: false
       url: /docs/enterprise/backends/pubsub/#kafka
+    - name: Advanced Apache Kafka
+      namespaces:
+        - backend/pubsub/publisher/kafka
+        - backend/pubsub/subscriber/kafka
+      description: Enable advanced kafka connection for reading from and writing to Apache Kafka
+      ee: true
+      url: /docs/enterprise/backends/pubsub/kafka/
     - name: Amazon SNS
       namespaces:
         - backend/pubsub/publisher
@@ -699,6 +723,7 @@ sections:
         - telemetry/opentelemetry
       description: Push KrakenD metrics and traces to any thrid party supporting OpenTelemetry
       ee: false
+      url: /docs/telemetry/opentelemetry/
     - name: OpenTelemetry SaaS authentication
       namespaces:
         - telemetry/opentelemetry-security
@@ -710,6 +735,7 @@ sections:
         - telemetry/opentelemetry
       description: Override OpenTelemetry behavior on specific endpoints and backends
       ee: false
+      url: /docs/telemetry/opentelemetry-by-endpoint/
     - name: Exporter Override for OpenTelemetry
       namespaces:
         - telemetry/opentelemetry
