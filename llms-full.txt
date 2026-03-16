@@ -34169,7 +34169,7 @@ Most of the times, the communication between KrakenD and the collector happens i
 
 ---
 
-# [New Relic Telemetry Integration (native DSK) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/telemetry/newrelic/)
+# [New Relic Telemetry Integration (native SDK) (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/telemetry/newrelic/)
 
 The New Relic native integration lets you push KrakenD **metrics and distributed traces** to your New Relic dashboard. It uses internally the official New Relic SDK and brings its features to your **APM dashboard**.
 
