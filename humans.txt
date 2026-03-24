@@ -10,10 +10,10 @@ LinkedIn: https://www.linkedin.com/in/alombarte/
 CTO: Daniel López
 LinkedIn: https://www.linkedin.com/in/daniel-lopez-alarcon-09b54b31/
 
-Service Reliability Director: Daniel Ortiz
+CIO: Daniel Ortiz
 LinkedIn: https://www.linkedin.com/in/dortiz-krakend/
 
-Business Director: Albert García
+CSO: Albert García
 LinkedIn: https://www.linkedin.com/in/obokaman/
 
 Senior Engineer: David Hontecillas
@@ -22,11 +22,17 @@ LinkedIn: https://www.linkedin.com/in/hontecillas/
 Senior Engineer: Jorge Tarrero
 LinkedIn: https://www.linkedin.com/in/jorge-tarrero-mart%C3%ADn-39731348/
 
-Finance: Luis Martin
-LinkedIn: https://www.linkedin.com/in/luismartinmartinez/
+Senior Engineer: Narcis Davins
+LinkedIn: https://www.linkedin.com/in/narcis-davins/
 
 Technical Account Executive: Toni Pinel
 LinkedIn: https://www.linkedin.com/in/tonipinel/
+
+Finance Manager: Rute Paulo
+LinkedIn: https://www.linkedin.com/in/rutepaulo/
+
+Account Executive: Blerim Berisha
+LinkedIn: https://www.linkedin.com/in/blerimberisha/
 
 
 /* ABOUT */
