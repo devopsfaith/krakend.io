@@ -34,6 +34,9 @@ LinkedIn: https://www.linkedin.com/in/rutepaulo/
 Account Executive: Blerim Berisha
 LinkedIn: https://www.linkedin.com/in/blerimberisha/
 
+Partner Manager: Giovanna Martinez
+LinkedIn: https://www.linkedin.com/in/giovannadertonio/
+
 
 /* ABOUT */
 KrakenD: API management, simplified and supercharged. Crafted by developers who care. Experience seamless performance.
