@@ -123,7 +123,7 @@ If you are already familiar with Docker, the easiest way to get started is by pu
 Pull KrakenD Enterprise 
 
 ```
-$docker pull krakend/krakend-ee:2.13.1
+$docker pull krakend/krakend-ee:2.13.2
 ```
 
 After this command you will have in your local computer the krakend enterprise container.
@@ -200,9 +200,9 @@ Minimum supported versions are Debian 8, and Ubuntu 16.x.
 
 You can also download the `tar.gz` and decompress it anywhere. Instructions to check the SHA and PGP signature [here](/docs/overview/verifying-packages/).
 
-[Download latest `tar.gz` (AMD64)](https://download.krakend.io/bin/krakend-ee_2.13.1_amd64_generic-linux.tar.gz)
+[Download latest `tar.gz` (AMD64)](https://download.krakend.io/bin/krakend-ee_2.13.2_amd64_generic-linux.tar.gz)
 
-[Download latest `tar.gz` (ARM64)](https://download.krakend.io/bin/krakend-ee_2.13.1_arm64_generic-linux.tar.gz)
+[Download latest `tar.gz` (ARM64)](https://download.krakend.io/bin/krakend-ee_2.13.2_arm64_generic-linux.tar.gz)
 
 Once you have downloaded and uncompressed the binary, you should move the contents to each folder. You will need root permissions or add `sudo` to some of these commands:
 
@@ -354,7 +354,7 @@ $krakend
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.1-ee
+Version: 2.13.2-ee
 
 KrakenD is a high-performance API gateway that helps you publish, secure, control, and monitor your services
 
@@ -449,7 +449,7 @@ $krakend run -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.3
+Version: 2.13.4
 
 The API Gateway builder
 
@@ -506,7 +506,7 @@ Or if you use Docker:
 Command to start KrakenD with Docker 
 
 ```
-$docker run -p "8080:8080" -v $PWD:/etc/krakend/ krakend:2.13.3 run -c krakend.json
+$docker run -p "8080:8080" -v $PWD:/etc/krakend/ krakend:2.13.4 run -c krakend.json
 ```
 
 Now KrakenD is listening on `8080`, and you can see it working under `http://localhost:8080/__health`.
@@ -1245,7 +1245,7 @@ $krakend check --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.3
+Version: 2.13.4
 
 Validates that the active configuration file has a valid syntax to run the service.
 Change the configuration file by using the --config flag
@@ -1606,7 +1606,7 @@ $krakend audit --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.3
+Version: 2.13.4
 
 Audits a KrakenD configuration.
 
@@ -5460,7 +5460,7 @@ The following headers are sent to the backends with default values, but if you a
 
 - `Content-Type`, the one passed in the request (if passed)
 - `Accept-Encoding`, set by KrakenD to `gzip`, unless you add it to the `input_headers`
-- `User-Agent` Contains the value `KrakenD Version 2.13.3`, unless you add it to the `input_headers`
+- `User-Agent` Contains the value `KrakenD Version 2.13.4`, unless you add it to the `input_headers`
 
 Needless to say that you can add any other header that is not listed in this page under `input_headers` and KrakenD will forward it to the backend.
 
@@ -8376,7 +8376,7 @@ Response 
 $curl -iG http://localhost:8080/cel\?foo\=A
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-X-Krakend: Version 2.13.3
+X-Krakend: Version 2.13.4
 X-Krakend-Completed: false
 Date: Tue, 22 Feb 2022 17:26:12 GMT
 Content-Length: 114
@@ -11802,7 +11802,7 @@ Term 
 $docker run --rm -it -p "8080:8080" \
     -e "AWS_PROFILE=default" \
     -v "/home/user/.aws:/home/krakend/.aws:ro" \
-    -v "$PWD:/etc/krakend" krakend:2.13.3
+    -v "$PWD:/etc/krakend" krakend:2.13.4
 ```
 
 Passing the credentials directly:
@@ -11814,7 +11814,7 @@ $docker run --rm -it -p "8080:8080" \
     -e "AWS_ACCESS_KEY_ID=XXX" \
     -e "AWS_SECRET_ACCESS_KEY=XXX" \
     -e "AWS_REGION=eu-west-1" \
-    -v "$PWD:/etc/krakend" krakend:2.13.3
+    -v "$PWD:/etc/krakend" krakend:2.13.4
 ```
 
 ### Header forwarding
@@ -17865,7 +17865,7 @@ Term 
 ```
 $curl -i -X POST -d '{"invalid": true}' http://localhost:8080/address
 HTTP/1.1 400 Bad Request
-X-Krakend: Version 2.13.3
+X-Krakend: Version 2.13.4
 X-Krakend-Completed: false
 Date: Thu, 17 Nov 2022 08:57:53 GMT
 Content-Length: 96
@@ -23697,7 +23697,7 @@ $krakend revoker --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.1
+Version: 2.13.2
 
 Starts a revocation service.
 
@@ -25087,7 +25087,7 @@ Let’s open a terminal now and from the folder where we create our `krakend.jso
 Start the gateway with your configuration 
 
 ```
-$docker run --rm -v "$PWD:/etc/krakend" -p "8080:8080" krakend:2.13.3
+$docker run --rm -v "$PWD:/etc/krakend" -p "8080:8080" krakend:2.13.4
 ```
 
 The API Gateway is listening in port `8080` now, let’s check the `/__health` endpoint, which is unprotected:
@@ -25259,7 +25259,7 @@ Mounting the AWS profile 
 $docker run --rm -it -p "8080:8080" \
     -e "AWS_PROFILE=default" \
     -v "/home/user/.aws:/home/krakend/.aws:ro" \
-    -v "$PWD:/etc/krakend" krakend/krakend-ee:2.13.1
+    -v "$PWD:/etc/krakend" krakend/krakend-ee:2.13.2
 ```
 
 Passing the credentials directly:
@@ -25271,7 +25271,7 @@ $docker run --rm -it -p "8080:8080" \
     -e "AWS_ACCESS_KEY_ID=XXX" \
     -e "AWS_SECRET_ACCESS_KEY=XXX" \
     -e "AWS_REGION=eu-west-1" \
-    -v "$PWD:/etc/krakend" krakend/krakend-ee:2.13.1
+    -v "$PWD:/etc/krakend" krakend/krakend-ee:2.13.2
 ```
 
 
@@ -33041,7 +33041,7 @@ Notice that the three services declare volumes to pick the configuration.
 version: "3"
 services:
   krakend:
-    image: "krakend:2.13.3"
+    image: "krakend:2.13.4"
     ports:
       - "8080:8080"
     volumes:
@@ -33493,7 +33493,7 @@ Here’s an example of how to run the Datadog agent together with KrakenD in a d
 version: '3'
 services:
   krakend:
-    image: krakend:2.13.3
+    image: krakend:2.13.4
     volumes:
       - "./:/etc/krakend"
     command: ["run", "-c", "krakend.json"]
@@ -33773,7 +33773,7 @@ You can test this setup by running the **All in One** official Jaeger image and 
 version: "3"
 services:
   krakend:
-    image: krakend:2.13.3
+    image: krakend:2.13.4
     volumes:
       - "./:/etc/krakend"
     ports:
@@ -34080,7 +34080,7 @@ You can start the OpenTelemetry Collector with Azure’s compatibility using its
 version: "3"
 services:
   krakend:
-    image: krakend:2.13.3
+    image: krakend:2.13.4
     command: [ "krakend", "run", "-d", "-c", "/etc/krakend/krakend.json"]
     volumes:
       - ./:/etc/krakend
@@ -36036,7 +36036,7 @@ DEBUG: Method: GET
 DEBUG: URL: /__debug/default
 DEBUG: Query: map[]
 DEBUG: Params: [{param /default}]
-DEBUG: Headers: map[User-Agent:[KrakenD Version 2.13.3] X-Forwarded-For:[::1] Accept-Encoding:[gzip]]
+DEBUG: Headers: map[User-Agent:[KrakenD Version 2.13.4] X-Forwarded-For:[::1] Accept-Encoding:[gzip]]
 DEBUG: Body:
 [GIN] 2018/11/27 - 22:32:44 | 200 |     118.543µs |             ::1 | GET      /__debug/default
 [GIN] 2018/11/27 - 22:32:44 | 200 |     565.971µs |             ::1 | GET      /default-behavior?a=1&b=2&c=3
@@ -36144,7 +36144,7 @@ To install the integration tests you only need to run the following lines in any
 Installing the integration tool 
 
 ```
-$go install github.com/krakend/krakend-ce/v2/cmd/krakend-integration@v2.13.3
+$go install github.com/krakend/krakend-ce/v2/cmd/krakend-integration@v2.13.4
 ```
 
 After this you should have a new binary `krakend-integration` in your PATH. To use it you will to execute:
@@ -36376,7 +36376,7 @@ $krakend openapi export -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.1
+Version: 2.13.2
 
 Generates the OpenAPI descriptor for the gateway based on the configuration file.
 
@@ -36452,7 +36452,7 @@ $krakend openapi import -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.1
+Version: 2.13.2
 
 Generates a KrakenD configuration from your OpenAPI specification.
 
@@ -37657,7 +37657,7 @@ $krakend generate postman -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.1
+Version: 2.13.2
 Generates the Postman descriptor for the gateway based on the configuration file.
 Usage:
   krakend generate postman [flags]
@@ -37868,7 +37868,7 @@ $krakend generate config2dot -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.1
+Version: 2.13.2
 
 Generates a DOT graph from your KrakenD configuration.
 Usage:
@@ -38235,7 +38235,7 @@ $krakend e2e -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.1
+Version: 2.13.2
 
 Executes an end to end test for the gateway based on the configuration file and a set of specs.
 
@@ -38353,7 +38353,7 @@ For example, a call to `http://localhost:8081/param_forwarding/hey/yo?a=1&b=1&du
             "gzip"
         ],
         "User-Agent": [
-            "KrakenD Version 2.13.1"
+            "KrakenD Version 2.13.2"
         ],
         "X-Forwarded-Host": [
             "localhost:8080"
@@ -38694,8 +38694,8 @@ There are two builders you should use, depending on where you want to run the pl
 
 | Architecture                                                        | Alpine (Docker)                                          | Non-Docker (on-premises)                                               |
 |---------------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------|
-| [AMD64](/docs/extending/writing-plugins/#compile-plugins-for-amd64) | `krakend/builder:2.13.3`                                 | `krakend/builder:2.13.3-linux-generic`                                 |
-| [ARM64](/docs/extending/writing-plugins/#compile-plugins-for-arm64) | `krakend/builder:2.13.3` with cross-compile instructions | `krakend/builder:2.13.3-linux-generic` with cross-compile instructions |
+| [AMD64](/docs/extending/writing-plugins/#compile-plugins-for-amd64) | `krakend/builder:2.13.4`                                 | `krakend/builder:2.13.4-linux-generic`                                 |
+| [ARM64](/docs/extending/writing-plugins/#compile-plugins-for-arm64) | `krakend/builder:2.13.4` with cross-compile instructions | `krakend/builder:2.13.4-linux-generic` with cross-compile instructions |
 
 When using Docker to deploy your gateway, our official KrakenD container uses [**Alpine**](https://hub.docker.com/_/alpine) as the base image. Therefore, to use your custom plugins, they must compile using the Alpine builder.
 
@@ -38706,17 +38706,17 @@ To build your plugin for **Docker targets**, you only need to execute the follow
 Build your plugin for Alpine 
 
 ```
-$docker run -it -v "$PWD:/app" -w /app krakend/builder:2.13.3 go build -buildmode=plugin -o yourplugin.so .
+$docker run -it -v "$PWD:/app" -w /app krakend/builder:2.13.4 go build -buildmode=plugin -o yourplugin.so .
 ```
 
-The command will generate a `yourplugin.so` file (name it as you please) that you can now copy into a `krakend:2.13.3` Docker image, and load it as described in [injecting plugins](/docs/extending/injecting-plugins/). **Never use a tag that mismatches the builder and KrakenD**. If you want to load the plugin in a KrakenD version `x.y.x` make sure to build it on a builder `x.y.z`. Using `.so` files that were compiled in a builder with a different version, will mostly fail.
+The command will generate a `yourplugin.so` file (name it as you please) that you can now copy into a `krakend:2.13.4` Docker image, and load it as described in [injecting plugins](/docs/extending/injecting-plugins/). **Never use a tag that mismatches the builder and KrakenD**. If you want to load the plugin in a KrakenD version `x.y.x` make sure to build it on a builder `x.y.z`. Using `.so` files that were compiled in a builder with a different version, will mostly fail.
 
 To build the plugin for **on-premises installations**, use the following command instead:
 
 Build your plugin for Non-Docker 
 
 ```
-$docker run -it -v "$PWD:/app" -w /app krakend/builder:2.13.3-linux-generic go build -buildmode=plugin -o yourplugin.so .
+$docker run -it -v "$PWD:/app" -w /app krakend/builder:2.13.4-linux-generic go build -buildmode=plugin -o yourplugin.so .
 ```
 
 ### Compile plugins for ARM64
@@ -38733,7 +38733,7 @@ $docker run -it -v "$PWD:/app" -w /app \
 -e "CC=aarch64-linux-musl-gcc" \
 -e "GOARCH=arm64" \
 -e "GOHOSTARCH=amd64" \
-krakend/builder:2.13.3 \
+krakend/builder:2.13.4 \
 go build -ldflags='-extldflags=-fuse-ld=bfd -extld=aarch64-linux-musl-gcc' \
 -buildmode=plugin -o yourplugin.so .
 ```
@@ -38748,7 +38748,7 @@ $docker run -it -v "$PWD:/app" -w /app \
 -e "CC=aarch64-linux-gnu-gcc" \
 -e "GOARCH=arm64" \
 -e "GOHOSTARCH=amd64" \
-krakend/builder:2.13.3-linux-generic \
+krakend/builder:2.13.4-linux-generic \
 go build -ldflags='-extldflags=-fuse-ld=bfd -extld=aarch64-linux-gnu-gcc' \
 -buildmode=plugin -o yourplugin.so .
 ```
@@ -38803,7 +38803,7 @@ $krakend plugin init -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.1-ee
+Version: 2.13.2-ee
 
 Generates the necessary boilerplate to develop a new plugin
 
@@ -38834,7 +38834,7 @@ $docker run --rm -it \
  -e "KRAKEND_LICENSE_PATH=/LICENSE"\
  -v "$PWD/LICENSE:/LICENSE:ro" \
  -v "$PWD/plugins:/app" \
- krakend/krakend-ee:2.13.1 plugin init --name myplugin --type handler
+ krakend/krakend-ee:2.13.2 plugin init --name myplugin --type handler
 ```
 
 The command above **assumes you have a `LICENSE` file in the current directory**.
@@ -38853,24 +38853,24 @@ Initialize go modules 
 
 ```
 $cd plugins/handler-myplugin
-docker run -it -v $PWD:/app -w /app krakend/builder-ee:2.13.1 make go.mod
+docker run -it -v $PWD:/app -w /app krakend/builder-ee:2.13.2 make go.mod
 ```
 
 ## 3. Compile the plugin
 
-With the source files ready, you can compile the plugin. The following commands assume that you want to run this plugin inside the official image `krakend/krakend-ee:2.13.1` or in a Docker file that extends `FROM` this one.
+With the source files ready, you can compile the plugin. The following commands assume that you want to run this plugin inside the official image `krakend/krakend-ee:2.13.2` or in a Docker file that extends `FROM` this one.
 
 Compile the plugin 
 
 ```
-$docker run -it -v $PWD:/app -w /app krakend/builder-ee:2.13.1 make amd64
+$docker run -it -v $PWD:/app -w /app krakend/builder-ee:2.13.2 make amd64
 ```
 
 This will generate the compiled plugin binary `myplugin-amd64.so` compatible with KrakenD running on AMD64 Docker.
 
 Compilation for non-Docker
 
-Use the image `krakend/builder-ee::2.13.1-linux-generic` to compile your plugins that run in a non-Docker environment. In addition, if your architecture is ARM64 you must edit the `Makefile` and switch the commented `CROSSCOMPILER` variable.
+Use the image `krakend/builder-ee::2.13.2-linux-generic` to compile your plugins that run in a non-Docker environment. In addition, if your architecture is ARM64 you must edit the `Makefile` and switch the commented `CROSSCOMPILER` variable.
 
 ## 4. Inject the plugin and run
 
@@ -38907,15 +38907,15 @@ $krakend check-plugin -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.3
+Version: 2.13.4
 
 Checks your plugin dependencies are compatible and proposes commands to update your dependencies.
 
 Usage:
-  krakend 2.13.3 [flags]
+  krakend 2.13.4 [flags]
 
 Examples:
- krakend 2.13.3 -g 1.19.0 -s ./go.sum -f
+ krakend 2.13.4 -g 1.19.0 -s ./go.sum -f
 
 Flags:
   -f, --format        Shows fix commands to update your dependencies
@@ -39049,7 +39049,7 @@ $krakend test-plugin -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 2.13.3
+Version: 2.13.4
 
 Tests that one or more plugins are loadable into KrakenD.
 
@@ -39120,7 +39120,7 @@ You can see the list of plugins available today with a `ls /opt/krakend/plugins`
 Getting the plugins list from a terminal 
 
 ```
-$docker run --rm --entrypoint=/bin/ls krakend/krakend-ee:2.13.1 /opt/krakend/plugins
+$docker run --rm --entrypoint=/bin/ls krakend/krakend-ee:2.13.2 /opt/krakend/plugins
 ```
 
 There are four types of plugins in KrakenD:
@@ -39627,7 +39627,7 @@ Build your plugin 
 
 ```
 $docker run -it -v "$PWD:/app" -w /app \
-krakend/builder:2.13.3 \
+krakend/builder:2.13.4 \
 go build -buildmode=plugin -o krakend-server-example.so .
 ```
 
@@ -39896,7 +39896,7 @@ Build your plugin 
 
 ```
 $docker run -it -v "$PWD:/app" -w /app \
-krakend/builder:2.13.3 \
+krakend/builder:2.13.4 \
 go build -buildmode=plugin -o krakend-client-example.so .
 ```
 
@@ -40195,7 +40195,7 @@ Build your plugin 
 
 ```
 $docker run -it -v "$PWD:/app" -w /app \
-krakend/builder:2.13.3 \
+krakend/builder:2.13.4 \
 go build -buildmode=plugin -o krakend-debugger.so .
 ```
 
@@ -40402,7 +40402,7 @@ $docker run --rm -it \
  -e "KRAKEND_LICENSE_PATH=/LICENSE"\
  -v "$PWD/LICENSE:/LICENSE:ro"
  -v "$PWD/plugins:/app" \
- krakend/krakend-ee:2.13.1 plugin init --name my-mw --type middleware
+ krakend/krakend-ee:2.13.2 plugin init --name my-mw --type middleware
 ```
 
 See the following `main.go` that modifies the data adding an `acme` field and modifying the path.
@@ -42253,7 +42253,7 @@ stages:
 # This step is only needed in Enterprise
 check-license:
   stage: license
-  image: krakend:2.13.3
+  image: krakend:2.13.4
   script:
     # Checks if the LICENSE file (must exist in the path) is valid for the next 90 days.
     # If it isn't, the deployment will fail, just to draw your attention. Lower the value afterwards.
@@ -42262,7 +42262,7 @@ check-license:
 # Example to check the configuration using flexible configuration
 check_config:
   stage: test
-  image: krakend:2.13.3
+  image: krakend:2.13.4
   variables:
     FC_ENABLE: 1
     FC_PARTIALS: $CI_PROJECT_DIR/config/partials
