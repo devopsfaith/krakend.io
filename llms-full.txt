@@ -31463,6 +31463,32 @@ Once you configure the OpenTelemetry component, KrakenD will start reporting met
 
 **The presence of the metrics and the traces described below depend on the [OpenTelemetry configuration](/docs/telemetry/opentelemetry/#opentelemetry-configuration).**
 
+## How to access telemetry data
+
+Once the OpenTelemetry configuration is in place, KrakenD will start to push metrics and traces as specified to the providers of your choice. The telemetry data is treated differently by each of the providers, and you might find slight differences depending on what you use. For instance, most OTEL integrations will use a dot in the metric name as a separator, while Prometheus will use an underscore instead.
+
+In addition, for metrics that are an histogram, providers will add a suffix to the metric. For instance, on Prometheus you will find a metric documented as `http_server_duration` but in Prometheus **will add automatic suffixes** as follow:
+
+- `http_server_duration_bucket`: Counts how many observations fall into each range.
+- `http_server_duration_sum`: Tracks the total sum of all recorded values.
+- `http_server_duration_count`: Counts the total number of recorded observations.
+
+This is a sample of what you will find:
+
+### Metrics of the `sample` layer
+
+Description of what the metric is about
+
+[`metric.name` `metric_name` datatype](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-example-metric.name "Permalink to metric.name")
+
+The description of the metric goes here. Notice the metric format above for OTEL or Prometheus.
+
+→ [`dimension.name`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-example-metric.name-dimension.name "Permalink to dimension.name") type
+
+Description of the dimension and what it represents.
+
+Below you’ll find all possible metrics and traces
+
 ## Data exposed in the global layer
 
 The `global` layer reveals all timings in and out of KrakenD. If you have custom server plugins, their timings are also included here. Enable this layer when you want to see the complete picture of the gateway.
@@ -31473,7 +31499,7 @@ You will have metrics, traces, or both available depending on the exporter you u
 
 Present when you have an exporter able to collect metrics and the `global` attribute configured inside `layers`
 
-[`http.server.duration`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-global-http.server.duration "Permalink to http.server.duration") float
+[`http.server.duration` `http_server_duration` float](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-global-http.server.duration "Permalink to http.server.duration")
 
 Histogram of the time in seconds that it takes to produce the response
 
@@ -31489,7 +31515,7 @@ The matched endpoint path
 
 The method sent by the user (GET, POST, etc.)
 
-[`http.server.response.size`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-global-http.server.response.size "Permalink to http.server.response.size") integer
+[`http.server.response.size` `http_server_response_size` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-global-http.server.response.size "Permalink to http.server.response.size")
 
 Histogram of the size of the body produced for the response in bytes
 
@@ -31509,7 +31535,7 @@ The method sent by the user (GET, POST, etc.)
 
 Present when you have an exporter able to collect traces and the `global` attribute configured inside `layers`. In case an error happens, the span will record the error and set the span status to error (value = 1), in case of success the span status is set to ok (value = 2) as per the OTEL definition.
 
-[`/foo/123`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-global-%2ffoo%2f123 "Permalink to /foo/123") string
+[`/foo/123` string](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-global-%2ffoo%2f123 "Permalink to /foo/123")
 
 A span is created with the name of the requested path and is depicted as `/foo/123` as an example.
 
@@ -31549,7 +31575,7 @@ The proxy layer starts counting **after processing the HTTP request** and compre
 
 Present when you have an exporter able to collect metrics and the `proxy` attribute configured inside `layers`
 
-[`krakend.proxy.duration`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-proxy-krakend.proxy.duration "Permalink to krakend.proxy.duration") float
+[`krakend.proxy.duration` `krakend_proxy_duration` float](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-proxy-krakend.proxy.duration "Permalink to krakend.proxy.duration")
 
 Histogram of the time in seconds that it takes to produce the response
 
@@ -31581,7 +31607,7 @@ The method sent by the user (GET, POST, etc.)
 
 Present when you have an exporter able to collect traces and the `proxy` attribute configured inside `layers`. The spans revealed here include aggregation.
 
-[`/foo/123`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-proxy-%2ffoo%2f123 "Permalink to /foo/123") string
+[`/foo/123` string](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-proxy-%2ffoo%2f123 "Permalink to /foo/123")
 
 A span is created with the name of the requested path and is depicted as `/foo/123` as an example.
 
@@ -31625,7 +31651,7 @@ The backend layer monitors the activity of a single backend request and response
 
 Present when you have an exporter able to collect metrics and the `backend` attribute configured inside `layers`. To see all `http.client` metrics you need to enable the `round_trip` in the backend layer. To see the `http.client.request.` header you must enable the `read_payload` flag
 
-[`krakend.backend.duration`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-krakend.backend.duration "Permalink to krakend.backend.duration") float
+[`krakend.backend.duration` `krakend_backend_duration` float](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-krakend.backend.duration "Permalink to krakend.backend.duration")
 
 Histogram of the time in seconds that it takes to produce the response. The metric includes the whole timing, including any used to perform manipulations at the backend level.
 
@@ -31661,7 +31687,7 @@ Contains the value `backend`. It’s meant to filter traces of this stage.
 
 Targeted hosts. In case more than one is provided, these are joined with `_`.
 
-[`http.client.request.started.count`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.started.count "Permalink to http.client.request.started.count") integer
+[`http.client.request.started.count` `http_client_request_started_count` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.started.count "Permalink to http.client.request.started.count")
 
 The number of requests started.
 
@@ -31677,7 +31703,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.request.failed.count`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.failed.count "Permalink to http.client.request.failed.count") integer
+[`http.client.request.failed.count` `http_client_request_failed_count` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.failed.count "Permalink to http.client.request.failed.count")
 
 The number of requests that failed.
 
@@ -31693,7 +31719,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.request.canceled.count`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.canceled.count "Permalink to http.client.request.canceled.count") integer
+[`http.client.request.canceled.count` `http_client_request_canceled_count` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.canceled.count "Permalink to http.client.request.canceled.count")
 
 The number of requests canceled.
 
@@ -31709,7 +31735,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.request.timedout.count`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.timedout.count "Permalink to http.client.request.timedout.count") integer
+[`http.client.request.timedout.count` `http_client_request_timedout_count` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.timedout.count "Permalink to http.client.request.timedout.count")
 
 The number of requests that timed-out.
 
@@ -31725,7 +31751,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.request.content.length`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.content.length "Permalink to http.client.request.content.length") integer
+[`http.client.request.content.length` `http_client_request_content_length` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.content.length "Permalink to http.client.request.content.length")
 
 Counter with the sum of bytes in the `Content-Length` header.
 
@@ -31741,7 +31767,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.duration`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.duration "Permalink to http.client.duration") integer
+[`http.client.duration` `http_client_duration` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.duration "Permalink to http.client.duration")
 
 Histogram with the seconds taken until receiving the first byte of the response.
 
@@ -31757,7 +31783,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.response.size`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.response.size "Permalink to http.client.response.size") integer
+[`http.client.response.size` `http_client_response_size` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.response.size "Permalink to http.client.response.size")
 
 Histogram with the size of response bodies in bytes as reported in the `Content-Lenght` header. When the header is absent, the metric does not exist.
 
@@ -31773,7 +31799,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.response.no-content-length`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.response.no-content-length "Permalink to http.client.response.no-content-length") integer
+[`http.client.response.no-content-length` `http_client_response_no-content-length` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.response.no-content-length "Permalink to http.client.response.no-content-length")
 
 When the `Content-Length` is not set, this metric is created. If you sum the number of `http.client.response.size` and the value of `http.client.response.no-content-length` they represent the total responses.
 
@@ -31789,7 +31815,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.request.get-conn.duration`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.get-conn.duration "Permalink to http.client.request.get-conn.duration") float
+[`http.client.request.get-conn.duration` `http_client_request_get-conn_duration` float](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.get-conn.duration "Permalink to http.client.request.get-conn.duration")
 
 Reports the duration of the connection with the backend in seconds, excluding any data processing time. Requires the flag `detailed_connection`
 
@@ -31805,7 +31831,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.request.tls.duration`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.tls.duration "Permalink to http.client.request.tls.duration") float
+[`http.client.request.tls.duration` `http_client_request_tls_duration` float](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.tls.duration "Permalink to http.client.request.tls.duration")
 
 Reports the duration of the TLS negotiation in seconds.
 
@@ -31821,7 +31847,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.request.dns.duration`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.dns.duration "Permalink to http.client.request.dns.duration") float
+[`http.client.request.dns.duration` `http_client_request_dns_duration` float](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.dns.duration "Permalink to http.client.request.dns.duration")
 
 Reports the duration of the DNS retrieval in seconds.
 
@@ -31837,7 +31863,7 @@ The resolved `url_pattern` for this route.
 
 Contains the value `backend-request`. It’s meant to filter traces of this stage.
 
-[`http.client.request.read.size`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.size "Permalink to http.client.request.read.size") integer
+[`http.client.request.read.size` `http_client_request_read_size` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.size "Permalink to http.client.request.read.size")
 
 Number of read bytes.
 
@@ -31865,7 +31891,7 @@ Contains the value `backend-request`. It’s meant to filter traces of this stag
 
 Targeted host.
 
-[`http.client.request.read.size-hist`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.size-hist "Permalink to http.client.request.read.size-hist") integer
+[`http.client.request.read.size-hist` `http_client_request_read_size-hist` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.size-hist "Permalink to http.client.request.read.size-hist")
 
 Histogram with the read bytes.
 
@@ -31893,7 +31919,7 @@ Contains the value `backend-request`. It’s meant to filter traces of this stag
 
 Targeted host.
 
-[`http.client.request.read.time`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.time "Permalink to http.client.request.read.time") integer
+[`http.client.request.read.time` `http_client_request_read_time` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.time "Permalink to http.client.request.read.time")
 
 Counter with seconds spent reading the body payload of the response.
 
@@ -31921,7 +31947,7 @@ Contains the value `backend-request`. It’s meant to filter traces of this stag
 
 Targeted host.
 
-[`http.client.request.read.time-hist`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.time-hist "Permalink to http.client.request.read.time-hist") integer
+[`http.client.request.read.time-hist` `http_client_request_read_time-hist` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.time-hist "Permalink to http.client.request.read.time-hist")
 
 Histogram with the seconds spent reading the body.
 
@@ -31949,7 +31975,7 @@ Contains the value `backend-request`. It’s meant to filter traces of this stag
 
 Targeted host.
 
-[`http.client.request.read.errors`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.errors "Permalink to http.client.request.read.errors") integer
+[`http.client.request.read.errors` `http_client_request_read_errors` integer](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.errors "Permalink to http.client.request.read.errors")
 
 A counter with the number of errors that happened reading the response body.
 
@@ -31981,7 +32007,7 @@ Targeted host.
 
 Present when you have an exporter able to collect traces and the `backend` attribute configured inside `layers`. There is a span for the `backend` part, which includes possible backend manipulations, and another span for the `backend-request`, which include the interaction with the backend.
 
-[`/my-pattern`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-%2fmy-pattern "Permalink to /my-pattern") string
+[`/my-pattern` string](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-%2fmy-pattern "Permalink to /my-pattern")
 
 A span is created with the name of the resolved `url_pattern` is depicted as `/my-pattern` as an example.
 
@@ -32025,7 +32051,7 @@ The associated method of the parent endpoint.
 
 Targeted hosts. In case more than one is provided, these are joined with `_`.
 
-[`/my-pattern`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-%2fmy-pattern "Permalink to /my-pattern") string
+[`/my-pattern` string](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-%2fmy-pattern "Permalink to /my-pattern")
 
 A span is created with the name of the resolved `url_pattern` is depicted as `/my-pattern` as an example. Notice that this span shares the name with the previous but is for the `backend-request` instead of `backend`.
 
@@ -32089,7 +32115,7 @@ The complete address used to retrieve the content, including protocol, port and 
 
 The user agent used when connecting
 
-[`http.client.request.read.tracker`](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.tracker "Permalink to http.client.request.read.tracker") string
+[`http.client.request.read.tracker` `http_client_request_read_tracker` string](https://www.krakend.io/docs/telemetry/opentelemetry-layers-metrics/#layer-backend-http.client.request.read.tracker "Permalink to http.client.request.read.tracker")
 
 When the `read_payload` option is set to true in the configuration, the time spent to read the body. Enable only in debugging scenarios.
 
