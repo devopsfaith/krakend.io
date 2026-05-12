@@ -1,4 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Product Updates on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/product-updates/</link><description>Recent content in Product Updates on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 08 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/product-updates/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.13.4 and EE 2.13.2 update released</title><link>https://www.krakend.io/blog/krakend-2.13.2-ee-2.13.4-ce-release-notes/</link><pubDate>Wed, 08 Apr 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.2-ee-2.13.4-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades the Golang version to 1.25.9 to address several disclosed CVEs. It also addresses &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34986"&gt;CVE-2026-34986&lt;/a&gt;, which &lt;strong&gt;does not affect&lt;/strong&gt; the KrakenD &lt;a href="https://www.krakend.io/docs/authorization/jwt-validation/"&gt;&lt;code&gt;auth/validator&lt;/code&gt;&lt;/a&gt; component due to the lack of JWE support.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Product Updates on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/product-updates/</link><description>Recent content in Product Updates on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sat, 11 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/product-updates/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.13.5 and EE 2.13.3 update released</title><link>https://www.krakend.io/blog/krakend-2.13.3-ee-2.13.5-ce-release-notes/</link><pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.3-ee-2.13.5-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades the Golang version to 1.25.10 to address several disclosed CVEs. It also addresses a set of vulnerabilities in both OTPL exporters and Prometheus-dependendant components.&lt;/p&gt;
+&lt;p&gt;Additionally, we&amp;rsquo;ve introduced an important bump to the &lt;a href="https://www.krakend.io/docs/enterprise/authentication/ntlm/"&gt;&lt;code&gt;auth/ntlm&lt;/code&gt;&lt;/a&gt; component (Enterprise-only) addressing addressing &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32952"&gt;CVE-2026-32952&lt;/a&gt; and many other improvements.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.13"&gt;🚀 Summary of changes for EEv2.13.3 (patch)&lt;/h2&gt;
+ &lt;p&gt;Recommended security upgrade addressing several vulnerabilities&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded &lt;a href="https://www.krakend.io/docs/enterprise/authentication/ntlm/"&gt;&lt;code&gt;auth/ntlm&lt;/code&gt;&lt;/a&gt; component addressing &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32952"&gt;CVE-2026-32952&lt;/a&gt;.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded OTLP HTTP exporters addressing &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39882"&gt;CVE-2026-39882&lt;/a&gt;.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Prometheus dependency addressing &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42154"&gt;CVE-2026-42154&lt;/a&gt;, &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42151"&gt;CVE-2026-42151&lt;/a&gt; and &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-40179"&gt;CVE-2026-40179&lt;/a&gt;.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Go to 1.25.10, addressing several CVEs with disclosed descriptions:&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="flex items-start"&gt;
+ &lt;p class="ml-5 my-2 text-white"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/79070"&gt;CVE-2026-42501&lt;/a&gt; &lt;code&gt;cmd/go&lt;/code&gt;: malicious module proxy can bypass checksum database (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78584"&gt;CVE-2026-39819&lt;/a&gt; &lt;code&gt;cmd/go&lt;/code&gt;: &amp;ldquo;go bug&amp;rdquo; follows symlinks in predictable temporary filenames (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78778"&gt;CVE-2026-39817&lt;/a&gt; &lt;code&gt;cmd/go&lt;/code&gt;: &amp;ldquo;go tool pack&amp;rdquo; does not sanitize output paths (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78948"&gt;CVE-2026-39825&lt;/a&gt; &lt;code&gt;net/http/httputil&lt;/code&gt;: ReverseProxy forwards queries with more than urlmaxqueryparams parameters&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/79006"&gt;CVE-2026-39836&lt;/a&gt; &lt;code&gt;net&lt;/code&gt;: panic in Dial and LookupPort when handling NUL byte on Windows (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78803"&gt;CVE-2026-33811&lt;/a&gt; &lt;code&gt;net&lt;/code&gt;: crash when handling long CNAME response&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78987"&gt;CVE-2026-42499&lt;/a&gt; &lt;code&gt;net/mail&lt;/code&gt;: quadratic string concatenation in consumePhrase (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78566"&gt;CVE-2026-39820&lt;/a&gt; &lt;code&gt;net/mail&lt;/code&gt;: quadratic string concatentation in consumeComment (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78476"&gt;CVE-2026-33814&lt;/a&gt; &lt;code&gt;net/http&lt;/code&gt;: infinite loop in HTTP/2 transport when given bad SETTINGS_MAX_FRAME_SIZE&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78981"&gt;CVE-2026-39826&lt;/a&gt; &lt;code&gt;html/template&lt;/code&gt;: escaper bypass leads to XSS (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/78913"&gt;CVE-2026-39823&lt;/a&gt; &lt;code&gt;html/template&lt;/code&gt;: bypass of meta content URL escaping causes XSS (false positive)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</description></item><item><title>KrakenD CE 2.13.4 and EE 2.13.2 update released</title><link>https://www.krakend.io/blog/krakend-2.13.2-ee-2.13.4-ce-release-notes/</link><pubDate>Wed, 08 Apr 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.2-ee-2.13.4-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades the Golang version to 1.25.9 to address several disclosed CVEs. It also addresses &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34986"&gt;CVE-2026-34986&lt;/a&gt;, which &lt;strong&gt;does not affect&lt;/strong&gt; the KrakenD &lt;a href="https://www.krakend.io/docs/authorization/jwt-validation/"&gt;&lt;code&gt;auth/validator&lt;/code&gt;&lt;/a&gt; component due to the lack of JWE support.&lt;/p&gt;
 &lt;p&gt;Additionally, this patch release includes KrakenD Enterprise fixes for the &lt;a href="https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/"&gt;&lt;code&gt;modifier/request-body-extractor&lt;/code&gt;&lt;/a&gt;, whose headers were not correctly propagated to the dynamic routing component, and a problem with &lt;a href="https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/"&gt;Virtual Hosts&lt;/a&gt; feature that could expose URLs with internal &lt;code&gt;__virtual&lt;/code&gt; path component.&lt;/p&gt;</description></item><item><title>KrakenD CE 2.13.3 and EE 2.13.1 update released</title><link>https://www.krakend.io/blog/krakend-2.13.1-ee-2.13.3-ce-release-notes/</link><pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.1-ee-2.13.3-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition introduces a security fix for the gRPC feature (EE) and other gRPC-dependant components (CE).&lt;/p&gt;
 &lt;p&gt;It addresses &lt;a href="https://www.tenable.com/cve/CVE-2026-33186"&gt;CVE-2026-33186&lt;/a&gt; which, although its critical categorization, it &lt;strong&gt;does not affect&lt;/strong&gt; the KrakenD gRPC server feature due to the lack of usage of custom interceptors, authorization and others. Additionally, the &lt;a href="https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/"&gt;MCP Server&lt;/a&gt; library was upgraded to address a potential vulnerability in the JSON payloads encoding process.&lt;/p&gt;
 
