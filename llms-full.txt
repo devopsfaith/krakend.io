@@ -13825,6 +13825,10 @@ Example: `"./path/to.tmpl"`
 
 An inline base64 encoded Go template with the body you want to generate. This option is useful if you want to have the template embedded in the configuration instead of an external file.
 
+##### [`variables`](https://www.krakend.io/docs/enterprise/backends/response-body-generator/#variables "Click to copy link to variables") object
+
+An object traversable with dots with any content you want to be available to the template.
+
 Schema: [https://www.krakend.io/schema/v2.13/modifier/body-generator.json](https://www.krakend.io/schema/v2.13/modifier/body-generator.json "JSON schema definition")
 
 ## Template variables
@@ -15263,6 +15267,10 @@ Example: `"./path/to.tmpl"`
 ##### [`template`](https://www.krakend.io/docs/enterprise/backends/body-generator/#template "Click to copy link to template") string
 
 An inline base64 encoded Go template with the body you want to generate. This option is useful if you want to have the template embedded in the configuration instead of an external file.
+
+##### [`variables`](https://www.krakend.io/docs/enterprise/backends/body-generator/#variables "Click to copy link to variables") object
+
+An object traversable with dots with any content you want to be available to the template.
 
 Schema: [https://www.krakend.io/schema/v2.13/modifier/body-generator.json](https://www.krakend.io/schema/v2.13/modifier/body-generator.json "JSON schema definition")
 
