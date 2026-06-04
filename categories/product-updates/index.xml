@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Product Updates on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/product-updates/</link><description>Recent content in Product Updates on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 26 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/product-updates/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.13.6 and EE 2.13.4 update released</title><link>https://www.krakend.io/blog/krakend-2.13.4-ee-2.13.6-ce-release-notes/</link><pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.4-ee-2.13.6-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Golang components to address several disclosed CVEs. Most of these vulnerabilities do not affect KrakenD and are marked as false-positives.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Product Updates on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/product-updates/</link><description>Recent content in Product Updates on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/product-updates/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.13.7 and EE 2.13.5 update released</title><link>https://www.krakend.io/blog/krakend-2.13.5-ee-2.13.7-ce-release-notes/</link><pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.5-ee-2.13.7-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Go to 1.25.11 to address several disclosed CVEs. Check our &lt;a href="https://www.krakend.io/security-advisories/"&gt;security advisories&lt;/a&gt; page for more details:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-42504/"&gt;CVE-2026-42504&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-42507/"&gt;CVE-2026-42507&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-27145/"&gt;CVE-2026-27145&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.13"&gt;🚀 Summary of changes for EEv2.13.5 (patch)&lt;/h2&gt;
+ &lt;p&gt;Recommended security upgrade addressing several vulnerabilities by the Go team&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Go to 1.25.11, addressing several CVEs with disclosed descriptions:&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="flex items-start"&gt;
+ &lt;p class="ml-5 my-2 text-white"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/79217"&gt;CVE-2026-42504&lt;/a&gt; &lt;code&gt;mime&lt;/code&gt;: quadratic complexity in WordDecoder.DecodeHeader&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/79346"&gt;CVE-2026-42507&lt;/a&gt; &lt;code&gt;net/textproto&lt;/code&gt;: arbitrary input are included in errors without any escaping&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://go.dev/issue/79694"&gt;CVE-2026-27145&lt;/a&gt; &lt;code&gt;crypto/x509&lt;/code&gt;: split candidate hostname only once&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</description></item><item><title>KrakenD CE 2.13.6 and EE 2.13.4 update released</title><link>https://www.krakend.io/blog/krakend-2.13.4-ee-2.13.6-ce-release-notes/</link><pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.4-ee-2.13.6-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Golang components to address several disclosed CVEs. Most of these vulnerabilities do not affect KrakenD and are marked as false-positives.&lt;/p&gt;
 &lt;h2 id="golangorgxnet"&gt;golang.org/x/net&lt;/h2&gt;
 &lt;p&gt;The &lt;code&gt;x/net&lt;/code&gt; CVEs target the HTML parser. KrakenD does not render HTML from user input. The &lt;code&gt;x/net/idna&lt;/code&gt; CVE is more broadly relevant as it affects hostname resolution.&lt;/p&gt;
 &lt;h2 id="golangorgxcrypto"&gt;golang.org/x/crypto&lt;/h2&gt;
