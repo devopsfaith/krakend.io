@@ -419,14 +419,14 @@ sections:
       namespaces:
         - ai/llm
       description: Ability to connect endpoints to AI providers and models
-      ee: false
-      url: /docs/ai-gateway/
+      ee: true
+      url: /docs/enterprise/ai-gateway/
     - name: AI Security
       namespaces:
         - ai/llm
       description: From isolated authorization flows to data masking and exfiltration prevention
-      ee: false
-      url: /docs/ai-gateway/security/
+      ee: true
+      url: /docs/enterprise/ai-gateway/security/
     - name: AI Budget Control
       namespaces:
         - ai/llm

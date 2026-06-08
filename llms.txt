@@ -161,12 +161,12 @@
 
 
 ## AI Gateway
-- [AI Gateway - API Gateway for LLMs](https://www.krakend.io/docs/ai-gateway/): Discover how KrakenD transforms your API Gateway into a full-featured AI Gateway, with token enforcement, multi-LLM orchestration, and LLM security.
-- [AI Security](https://www.krakend.io/docs/ai-gateway/security/): Protect sensitive data and secure LLM access using KrakenD’s API-level AI security capabilities like isolated auth and data masking.
+- [AI Gateway - API Gateway for LLMs](https://www.krakend.io/docs/enterprise/ai-gateway/): Discover how KrakenD transforms your API Gateway into a full-featured AI Gateway, with token enforcement, multi-LLM orchestration, and LLM security.
+- [AI Security](https://www.krakend.io/docs/enterprise/ai-gateway/security/): Protect sensitive data and secure LLM access using KrakenD’s API-level AI security capabilities like isolated auth and data masking.
 - [AI Token Cost Control & Quotas](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/): KrakenD lets you enforce LLM token quotas per user, tier, or endpoint, with dynamic routing to cost-efficient models.
 - [AI Governance](https://www.krakend.io/docs/enterprise/ai-gateway/governance/): Enforce rate limits, validate prompts, and route multi-LLM traffic with policy-based governance in KrakenD's AI Gateway.
 - [Unified LLM Interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/): Simplify multi-LLM integration by exposing a single, consistent API through KrakenD's unified LLM interface.
-- [MCP Gateway](https://www.krakend.io/docs/ai-gateway/mcp-gateway/): Protect a third-party MCP server through KrakenD and add security, observability, and traffic management features.
+- [MCP Gateway](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-gateway/): Protect a third-party MCP server through KrakenD and add security, observability, and traffic management features.
 - [MCP Server](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/): Create a local MCP server entrypoint that serves the desired MCP configuration.
 - [LLM Routing](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/): Simplify multi-LLM integration by exposing a single, consistent API through KrakenD’s unified LLM interface.
 - [OpenAI Integration](https://www.krakend.io/docs/enterprise/ai-gateway/openai/): KrakenD integration to connect to OpenAI without setting the full payload of the API interaction.
@@ -175,7 +175,7 @@
 - [Anthropic integration](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/): Connect to Anthropic APIs using an abstracted interface allowing you to concentrate on content rather than format
 - [Amazon Web Services Bedrock integration](https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/): Connect to AWS Bedrock APIs using an abstracted interface, allowing you to concentrate on content rather than format
 - [Connecting to other AI vendors](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/): Generic approach to connect to AI vendors with no pre-defined LLM interface
-- [AI usage monitoring](https://www.krakend.io/docs/ai-gateway/usage-monitoring/): Use OpenTelemetry for monitoring API gateway traffic, including AI calls, with your existing providers.
+- [AI usage monitoring](https://www.krakend.io/docs/enterprise/ai-gateway/usage-monitoring/): Use OpenTelemetry for monitoring API gateway traffic, including AI calls, with your existing providers.
 
 
 ## Governance and Monetization

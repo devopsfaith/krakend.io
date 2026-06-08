@@ -27835,7 +27835,7 @@ Depending on the rate limit you implement, you might see rejected connections wi
 
 ---
 
-# [AI Gateway - API Gateway for LLMs](https://www.krakend.io/docs/ai-gateway/)
+# [AI Gateway - API Gateway for LLMs (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/)
 
 KrakenD’s AI Gateway capabilities extend your existing API infrastructure with controls to securely route, govern, and optimize Artificial Intelligence workloads at scale. The functionality offers a straightforward integration without extra layers, products, or complexity. It brings the speed, flexibility, and clarity you are already familiar with.
 
@@ -27857,16 +27857,16 @@ An AI Gateway ensures AI services are integrated reliably, securely, and cost-ef
 
 ## Overview of KrakenD capabilities for AI gateway
 
-To implement an AI Gateway with KrakenD, **you don’t need to install an additional product** as everything is already bundled in KrakenD to serve dually as an API Gateway and AI Gateway.
+To implement an AI Gateway with KrakenD, **you don’t need to install an additional product** as everything is already bundled in KrakenD to serve dually as an API Gateway and AI Gateway. To run AI gateway capabilities make sure your license [supports AI Gateway capabilities](/docs/enterprise/overview/license-file/#license-info).
 
 KrakenD meets multiple operational demands when AI calls are involved, enabling you to secure sensitive data, transform data, control costs, enforce governance policies, and simplify development with minimal overhead. Without reinventing your infrastructure, you can keep your stack clean and scale and effectively adopt AI traffic.
 
 The core functionality of KrakenD as an AI Gateway is classified under these four categories, each covering many use cases:
 
-1. [Unified LLM interface](/docs/enterprise/ai-gateway/unified-llm-interface/) Enterprise
-2. [Security](/docs/ai-gateway/security/)
-3. [Cost Control](/docs/enterprise/ai-gateway/budget-control/) Enterprise
-4. [Governance](/docs/enterprise/ai-gateway/governance/) Enterprise
+1. [Unified LLM interface](/docs/enterprise/ai-gateway/unified-llm-interface/)
+2. [Security](/docs/enterprise/ai-gateway/security/)
+3. [Cost Control](/docs/enterprise/ai-gateway/budget-control/)
+4. [Governance](/docs/enterprise/ai-gateway/governance/)
 
 See each section for the functionalities included.
 
@@ -27874,25 +27874,25 @@ See each section for the functionalities included.
 
 Developers face complexity in integrating multiple LLM providers and managing proprietary APIs. KrakenD’s AI Gateway simplifies this by providing a unified configuration that abstracts vendor-specific differences for API users. With standard AI API specs, easy protocol compatibility, and built-in telemetry endpoints, development teams can build once and deploy AI applications everywhere with less friction and overhead.
 
-[Explore AI Gateway Unified LLM interface](/docs/ai-gateway/unified-llm-interface/)
+[Explore AI Gateway Unified LLM interface](/docs/enterprise/ai-gateway/unified-llm-interface/)
 
 ### AI Security
 
 Protecting sensitive AI data and controlling access is essential for trustworthy AI workloads. KrakenD’s AI Gateway integrates multiple layers of security at the edge to enforce **zero-trust AI operations**. From isolated authentication flows to data masking and exfiltration prevention, you can safeguard data traveling between clients and LLM providers without altering your existing API infrastructure.
 
-[Explore AI Gateway Security functionality](/docs/ai-gateway/security/)
+[Explore AI Gateway Security functionality](/docs/enterprise/ai-gateway/security/)
 
 ### Cost Control
 
 AI workloads can quickly generate unpredictable and excessive costs. The key to a successful adoption is being able to control expenses. KrakenD’s AI Gateway provides granular token usage monitoring and enforcement to keep your AI expenses transparent and within budget.
 
-[Explore AI Gateway Cost Control](/docs/enterprise/ai-gateway/budget-control/) Enterprise
+[Explore AI Gateway Cost Control](/docs/enterprise/ai-gateway/budget-control/)
 
 ### Governance
 
 Strong governance policies must be in place to deploy AI responsibly at scale. KrakenD’s AI Gateway delivers comprehensive control via **multi-LLM routing**, prompt and response validation, rate limiting, and reusable prompt templates. These capabilities allow you to enforce compliance, security, and quality guardrails in line, reducing risk and standardizing AI interactions across teams or tenants.
 
-[Explore AI Governance](/docs/enterprise/ai-gateway/governance/) Enterprise
+[Explore AI Governance](/docs/enterprise/ai-gateway/governance/)
 
 ### Quickstart with KrakenD AI Gateway
 
@@ -27923,7 +27923,7 @@ Below is a simple example configuration snippet to enable AI Gateway capabilitie
                   "request"
                 ],
                 "name": "Authorization",
-                "value": "Bearer YOUR_OPENI_API_KEY"
+                "value": "Bearer YOUR_OPENAI_API_KEY"
               }
             }
           }
@@ -27940,7 +27940,7 @@ There are many other possibilities; look at the rest of the AI sections.
 
 ---
 
-# [AI Security](https://www.krakend.io/docs/ai-gateway/security/)
+# [AI Security (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/security/)
 
 Protecting sensitive AI data and controlling access is essential for trustworthy AI workloads. KrakenD’s AI Gateway integrates multiple layers of security at the edge to enforce zero-trust AI operations. From isolated authorization flows to data masking and exfiltration prevention, you can safeguard data traveling between clients and LLM providers without altering your existing API infrastructure.
 
@@ -28041,7 +28041,7 @@ Data masking is especially useful when front-end clients, external consumers, or
 
 ### AI Static Response Masking
 
-In KrakenD Enterprise , **data masking in the response** can be done using the [regexp modifier](/docs/enterprise/endpoints/content-replacer/#regular-expression-modifier) inside the `modifier/response-body` namespace, while in the Open Source edition you must employ Lua Scripts. This allows you to define masking rules directly in your gateway configuration.
+In KrakenD, **data masking in the response** can be done using the [regexp modifier](/docs/enterprise/endpoints/content-replacer/#regular-expression-modifier) inside the `modifier/response-body` namespace, while in the Open Source edition you must employ Lua Scripts. This allows you to define masking rules directly in your gateway configuration.
 
 To accomplish this:
 
@@ -28049,7 +28049,7 @@ To accomplish this:
 - When the response passes through KrakenD, matching values are transformed
 - The original sensitive values never leave the gateway.
 
-Example Enterprise :
+Example:
 
 ```json
 {
@@ -28091,7 +28091,7 @@ This is a simple example with a generic regular expression, but you can stack as
 
 ### AI Static Prompt Masking
 
-You can also apply **static data masking in the request** before it reaches the backend or the LLM using the [Body generator](/docs/enterprise/backends/body-generator/) Enterprise .
+You can also apply **static data masking in the request** before it reaches the backend or the LLM using the [Body generator](/docs/enterprise/backends/body-generator/).
 
 Suppose your users are sending a payload that could contain something sensitive, and you would like to apply a regexp before it passes to the LLM. For instance:
 
@@ -28162,10 +28162,10 @@ As with data masking, exfiltration prevention can be static or dynamic.
 Here are some indications to avoid exfiltration using **static patterns**:
 
 - Use an [allow list](/docs/backends/data-manipulation/#allow) for APIs that should return a limited set of attributes
-- Use [Security Policies](/docs/enterprise/security-policies/) Enterprise to check necessary roles and conditions to deliver content
-- Use [Regex Masking or Redaction](/docs/ai-gateway/security/#data-masking--data-loss-prevention) on fields that must not be exfiltrated in full.
+- Use [Security Policies](/docs/enterprise/security-policies/) to check necessary roles and conditions to deliver content
+- Use [Regex Masking or Redaction](/docs/enterprise/ai-gateway/security/#data-masking--data-loss-prevention) on fields that must not be exfiltrated in full.
 - Use custom logic in [request and response modifier plugins](/docs/extending/plugin-modifiers/)
-- Instead of allowing open LLM queries, use [prompt templates](/docs/enterprise/ai-gateway/governance/#prompt-templates) Enterprise
+- Instead of allowing open LLM queries, use [prompt templates](/docs/enterprise/ai-gateway/governance/#prompt-templates)
 
 For **dynamic operation**, you can delegate the output to an LLM that will refine the response. To do that, you can add a [sequential proxy](/docs/endpoints/sequential-proxy/) step as the second backend, as explained in the chapter above.
 
@@ -28244,7 +28244,7 @@ Components that you can use are:
 - [JSON Schema Validator](/docs/endpoints/json-schema/) to make sure that payload passed adheres to your business rules, including the usage of regexp patterns or complex data structures.
 - [Request Body Modifier](/docs/enterprise/backends/response-body-generator/) to filter or craft the body sent before passing it to the LLM
 - [Limit the request size](/docs/enterprise/endpoints/maximum-request-size/#limit-the-maximum-request-size-to-an-endpoint)
-- [Use Prompt Templates](/docs/ai-gateway/unified-llm-interface/#vendor-transformation) and generate the prompt instead of requesting it to the user.
+- [Use Prompt Templates](/docs/enterprise/ai-gateway/unified-llm-interface/#vendor-transformation) and generate the prompt instead of requesting it to the user.
 
 ## Response Guardrails
 
@@ -28325,7 +28325,7 @@ See each vendor documentation.
 
 ---
 
-# [MCP Gateway](https://www.krakend.io/docs/ai-gateway/mcp-gateway/)
+# [MCP Gateway (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-gateway/)
 
 The Model Context Protocol (MCP) Gateway in KrakenD enables transparent communication between an **MCP agent** and a **third-party MCP server** through a `no-op` endpoint. This setup allows KrakenD to forward messages with minimal processing while enriching the communication path with additional layers and functionality such as:
 
@@ -28333,15 +28333,15 @@ The Model Context Protocol (MCP) Gateway in KrakenD enables transparent communic
 - Add [observability](/docs/telemetry/)
 - [Throttle](/docs/throttling/) the usage of the MCP
 - Add [CORS](/docs/service-settings/cors/)
-- Add [IP filtering](/docs/enterprise/throttling/ipfilter/) Enterprise
+- Add [IP filtering](/docs/enterprise/throttling/ipfilter/)
 - Add [security policies](/docs/enterprise/security-policies/) or [CEL expressions](/docs/endpoints/common-expression-language-cel/) with business logic
 - Move the passing of headers to the gateway and make the client unaware with [Martian](/docs/backends/martian/)
-- Limit the [payload size](/docs/enterprise/endpoints/maximum-request-size/) of the requests Enterprise
+- Limit the [payload size](/docs/enterprise/endpoints/maximum-request-size/) of the requests
 - And a long etcetera, check the documentation menu.
 
 Use KrakenD’s MCP Gateway to **connect MCP agents to external MCP servers** that lack sufficient Enterprise-ready features, leveraging KrakenD as a secure, observable, and manageable gateway. This feature relays MCP agent content directly to the MCP server while enabling configurable middlewares to enhance protocol flow control and monitoring.
 
-KrakenD can also be the [MCP Server](/docs/enterprise/ai-gateway/mcp-server/) if needed Enterprise
+KrakenD can also be the [MCP Server](/docs/enterprise/ai-gateway/mcp-server/) if needed
 
 Example use cases:
 
@@ -30042,7 +30042,7 @@ Another example with Cohere:
 
 ---
 
-# [AI usage monitoring](https://www.krakend.io/docs/ai-gateway/usage-monitoring/)
+# [AI usage monitoring (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/usage-monitoring/)
 
 Monitoring AI backends in KrakenD does not require special treatment. AI services are integrated and handled just like any other backend in your API Gateway. Your existing monitoring tools and practices, such as [OpenTelemetry](/docs/telemetry/opentelemetry/), remain fully applicable.
 
