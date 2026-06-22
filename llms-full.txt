@@ -59,7 +59,7 @@ If you’d like to try KrakenD Enterprise at no charge or commitment, [get in to
 
 # [KrakenD Community Edition Documentation](https://www.krakend.io/docs/overview/)
 
-KrakenD is an extensible, declarative, **high-performance open-source API Gateway**.
+KrakenD is an extensible, declarative, [**high-performance open-source API Gateway**](/open-source/).
 
 Its core functionality is to create an API that acts as an aggregator of many microservices into single endpoints, doing the heavy-lifting automatically for you: aggregate, transform, filter, decode, throttle, auth, and more.
 
@@ -331,7 +331,7 @@ You can also [download](/download/) the `tar.gz` and decompress it anywhere. Ins
 
 ## Compile from source
 
-As KrakenD is open source you can opt for [building the binary](https://github.com/krakend/krakend-ce). The binary you will produce is the same you can get in our download page, only that compiling it yourself always feels good!
+As KrakenD is [open source](/open-source/) you can opt for [building the binary](https://github.com/krakend/krakend-ce). The binary you will produce is the same you can get in our download page, only that compiling it yourself always feels good!
 
 
 
@@ -3005,7 +3005,7 @@ Different usage on Enterprise and Open Source
 
 The **Enterprise version** of the Flexible Configuration uses the [Extended Flexible Config](/docs/enterprise/configuration/flexible-config/) engine, which **simplifies** the operation, allows using nested directories, recursivity, or the `$ref` operator, and needs none of the following variables amongst other features.
 
-Still, all your open source-based templates are 100% compatible with the Enterprise counterpart.
+Still, all your [open source edition](/open-source/) templates are 100% compatible with the Enterprise counterpart.
 
 The **environment variables** of the flexible configuration are:
 
@@ -38578,7 +38578,7 @@ Both Lua and Go plugins allow you to extend KrakenD’s capabilities, but their 
 
 ## What about forking?
 
-Open-source users might be tempted to fork the source code to add modifications. Our recommended way to customize KrakenD is always through plugins or scripts, and you **should avoid forking the code** if you want to keep up to date with the product’s progress and security vulnerabilities. We have seen over and over forked projects that are left behind because companies don’t have the resources to keep up.
+Users of the [KrakenD Community Edition](/open-source/) might be tempted to fork the source code to add modifications. Our recommended way to customize KrakenD is always through plugins or scripts, and you **should avoid forking the code** if you want to keep up to date with the product’s progress and security vulnerabilities. We have seen over and over forked projects that are left behind because companies don’t have the resources to keep up.
 
 
 
@@ -38687,7 +38687,7 @@ Enterprise users
 
 In KrakenD Enterprise, you only need to run the command `krakend plugin init` to create all the boilerplate necessary to build a plugin. [See documentation](/docs/enterprise/extending/generating-plugins/)
 
-KrakenD open-source users need to create a Go file and implement the interface, as shown in every type of plugin.
+KrakenD [open-source](/open-source/) users need to create a Go file and implement the interface, as shown in every type of plugin.
 
 When the interface is correct, implement the rest of the custom logic you’d like to have.
 
@@ -43504,7 +43504,7 @@ If you had a quick look at our git repositories or the documentation, you might 
 ## TL;DR; Difference between Lura, KrakenD, and Enterprise
 
 - [**Lura**](https://luraproject.org) is the KrakenD’s engine. Formerly known as “**KrakenD framework**” until we [donated it to The Linux Foundation on 2021](/blog/krakend-framework-joins-the-linux-foundation/). It is not a product itself but a toolkit/set of libraries to build API gateways. KrakenD founders are in the steering committee of Lura at The Linux Foundation.
-- **KrakenD** is driven by the company KRAKEND S.L.U, and is our open-source API Gateway ready to use.
+- **KrakenD** is driven by the company KRAKEND S.L.U, and is our [open-source API Gateway](/open-source/) ready to use.
 - **KrakenD Enterprise** is our commercial version with added functionality and includes services to businesses.
 
 ### Lura Project
