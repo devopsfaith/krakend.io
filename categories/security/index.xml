@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/security/</link><description>Recent content in Security on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/security/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.13.8 and EE 2.13.6 update released</title><link>https://www.krakend.io/blog/krakend-2.13.6-ee-2.13.8-ce-release-notes/</link><pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.6-ee-2.13.8-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Go to 1.25.12 to address several disclosed CVEs. Check our &lt;a href="https://www.krakend.io/security-advisories/"&gt;security advisories&lt;/a&gt; page for more details:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/security/</link><description>Recent content in Security on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 14 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/security/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.13.9 and EE 2.13.7 update released</title><link>https://www.krakend.io/blog/krakend-2.13.7-ee-2.13.9-ce-release-notes/</link><pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.7-ee-2.13.9-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Go to 1.25.13 to address several disclosed CVEs. Check our &lt;a href="https://www.krakend.io/security-advisories/"&gt;security advisories&lt;/a&gt; page for more details:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-56865/"&gt;CVE-2026-56865&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-56864/"&gt;CVE-2026-56864&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-56859/"&gt;CVE-2026-56859&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-56853/"&gt;CVE-2026-56853&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-56860/"&gt;CVE-2026-56860&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-46600/"&gt;CVE-2026-46600&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-56862/"&gt;CVE-2026-56862&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-56858/"&gt;CVE-2026-56858&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-39821/"&gt;CVE-2026-39821&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-33818/"&gt;CVE-2026-33818&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It also adresses an OpenTelemtry and a grpc vulnerabilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-41178/"&gt;CVE-2026-41178&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/advisories/GHSA-hrxh-6v49-42gf"&gt;GHSA-hrxh-6v49-42gf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.13"&gt;🚀 Summary of changes for EEv2.13.7 (patch)&lt;/h2&gt;
+ &lt;p&gt;Recommended security upgrade addressing several vulnerabilities by the Go team&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Go to 1.25.13, addressing several CVEs with discloded descriptions:&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="flex items-start"&gt;
+ &lt;p class="ml-5 my-2 text-white"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56865"&gt;CVE-2026-56865&lt;/a&gt; &lt;code&gt;x/mod/sumdb/tlog&lt;/code&gt;: fix transparency log tile verification bypass (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56864"&gt;CVE-2026-56864&lt;/a&gt; &lt;code&gt;x/mod/sumdb&lt;/code&gt;: ignore unrelated, unauthenticated hashes in Lookup (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56859"&gt;CVE-2026-56859&lt;/a&gt; &lt;code&gt;encoding/xml&lt;/code&gt;: add recursion depth guard during decode&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56853"&gt;CVE-2026-56853&lt;/a&gt; &lt;code&gt;net/http&lt;/code&gt;: apply ReadHeaderTimeout when doing unencrypted HTTP/2 check&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56860"&gt;CVE-2026-56860&lt;/a&gt; &lt;code&gt;net/url&lt;/code&gt;: avoid quadratic complexity in resolvePath&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-46600"&gt;CVE-2026-46600&lt;/a&gt; &lt;code&gt;golang.org/x/net/dns/dnsmessage&lt;/code&gt;: panic when parsing invalid SVCB record (false posivite)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56862"&gt;CVE-2026-56862&lt;/a&gt; &lt;code&gt;crypto/tls&lt;/code&gt;: limit handshake messages we are willing to accept post-handshake&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56858"&gt;CVE-2026-56858&lt;/a&gt; &lt;code&gt;html/template&lt;/code&gt;: fix Javascript regexp context tracking (false positive)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39821"&gt;CVE-2026-39821&lt;/a&gt; &lt;code&gt;x/net/idna&lt;/code&gt;: failure to reject ASCII-only Punycode-encoded labels&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33818"&gt;CVE-2026-33818&lt;/a&gt; &lt;code&gt;encoding/asn1&lt;/code&gt;: enforce maximum recursion depth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</description></item><item><title>KrakenD CE 2.13.8 and EE 2.13.6 update released</title><link>https://www.krakend.io/blog/krakend-2.13.6-ee-2.13.8-ce-release-notes/</link><pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.6-ee-2.13.8-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Go to 1.25.12 to address several disclosed CVEs. Check our &lt;a href="https://www.krakend.io/security-advisories/"&gt;security advisories&lt;/a&gt; page for more details:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-39822/"&gt;CVE-2026-39822&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-42505/"&gt;CVE-2026-42505&lt;/a&gt;&lt;/li&gt;
