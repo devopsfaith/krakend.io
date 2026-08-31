@@ -19658,19 +19658,19 @@ All the policies applied in the response context.
 
 ##### [`error`](#resp-error "Click to copy link to error") object
 
-##### [`body`](#error-body "Click to copy link to body") string
+##### [`body`](#error-body-2 "Click to copy link to body") string
 
 Leave an empty string to use the validation error, or write a string with the error response body. This error is NOT returned in the response, but in the application logs, unless you enable `return_detailed_errors` in the `router` section. You can add escaped JSON, XML, etc in the string and add a Content-Type.
 
 Defaults to `""`
 
-##### [`content_type`](#error-content_type "Click to copy link to content_type") string
+##### [`content_type`](#error-content_type-2 "Click to copy link to content_type") string
 
 The Content-Type header you’d like to send with the error response. When unset, uses `text/plain` by default.
 
 Defaults to `"text/plain"`
 
-##### [`status`](#error-status "Click to copy link to status") integer
+##### [`status`](#error-status-2 "Click to copy link to status") integer
 
 The HTTP status code you want to return when the validation fails.
 
@@ -31223,11 +31223,11 @@ Example: `[{"key":"my_trace_attr","value":"my_trace_val"}]`
 
 Each item of static\_attributes accepts the following properties:
 
-##### [`key`](#static_attributes-key "Click to copy link to key") * string
+##### [`key`](#static_attributes-key-2 "Click to copy link to key") * string
 
 The key, tag, or label name you want to use.
 
-##### [`value`](#static_attributes-value "Click to copy link to value") * string
+##### [`value`](#static_attributes-value-2 "Click to copy link to value") * string
 
 The static value you want to assign to this key.
 
@@ -31321,11 +31321,11 @@ Static attributes you want to pass for metrics.
 
 Each item of metrics\_static\_attributes accepts the following properties:
 
-##### [`key`](#metrics_static_attributes-key "Click to copy link to key") string
+##### [`key`](#metrics_static_attributes-key-2 "Click to copy link to key") string
 
 The key of the static attribute you want to send
 
-##### [`value`](#metrics_static_attributes-value "Click to copy link to value") string
+##### [`value`](#metrics_static_attributes-value-2 "Click to copy link to value") string
 
 The value of the static attribute you want to send
 
@@ -31347,11 +31347,11 @@ Static attributes you want to pass for traces.
 
 Each item of traces\_static\_attributes accepts the following properties:
 
-##### [`key`](#traces_static_attributes-key "Click to copy link to key") string
+##### [`key`](#traces_static_attributes-key-2 "Click to copy link to key") string
 
 The key of the static attribute you want to send
 
-##### [`value`](#traces_static_attributes-value "Click to copy link to value") string
+##### [`value`](#traces_static_attributes-value-2 "Click to copy link to value") string
 
 The value of the static attribute you want to send
 
@@ -32442,13 +32442,13 @@ Example: `[{"key":"my_metric_attr","value":"my_metric_val"}]`
 
 Each item of static\_attributes accepts the following properties:
 
-##### [`key`](#static_attributes-key "Click to copy link to key") * string
+##### [`key`](#static_attributes-key-2 "Click to copy link to key") * string
 
 the key, tag, or label name you want to use.
 
 see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
 
-##### [`value`](#static_attributes-value "Click to copy link to value") * string
+##### [`value`](#static_attributes-value-2 "Click to copy link to value") * string
 
 the static value you want to assign to this key.
 
@@ -32631,11 +32631,11 @@ Example: `[{"key":"my_trace_attr","value":"my_trace_val"}]`
 
 Each item of static\_attributes accepts the following properties:
 
-##### [`key`](#static_attributes-key "Click to copy link to key") * string
+##### [`key`](#static_attributes-key-2 "Click to copy link to key") * string
 
 The key, tag, or label name you want to use.
 
-##### [`value`](#static_attributes-value "Click to copy link to value") * string
+##### [`value`](#static_attributes-value-2 "Click to copy link to value") * string
 
 The static value you want to assign to this key.
 
@@ -32719,11 +32719,11 @@ Static attributes you want to pass for metrics.
 
 Each item of metrics\_static\_attributes accepts the following properties:
 
-##### [`key`](#metrics_static_attributes-key "Click to copy link to key") string
+##### [`key`](#metrics_static_attributes-key-2 "Click to copy link to key") string
 
 The key of the static attribute you want to send
 
-##### [`value`](#metrics_static_attributes-value "Click to copy link to value") string
+##### [`value`](#metrics_static_attributes-value-2 "Click to copy link to value") string
 
 The value of the static attribute you want to send
 
@@ -32745,11 +32745,11 @@ Static attributes you want to pass for traces.
 
 Each item of traces\_static\_attributes accepts the following properties:
 
-##### [`key`](#traces_static_attributes-key "Click to copy link to key") string
+##### [`key`](#traces_static_attributes-key-2 "Click to copy link to key") string
 
 The key of the static attribute you want to send
 
-##### [`value`](#traces_static_attributes-value "Click to copy link to value") string
+##### [`value`](#traces_static_attributes-value-2 "Click to copy link to value") string
 
 The value of the static attribute you want to send
 
@@ -32894,13 +32894,13 @@ Example: `[{"key":"my_metric_attr","value":"my_metric_val"}]`
 
 Each item of static\_attributes accepts the following properties:
 
-##### [`key`](#static_attributes-key "Click to copy link to key") * string
+##### [`key`](#static_attributes-key-2 "Click to copy link to key") * string
 
 the key, tag, or label name you want to use.
 
 see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
 
-##### [`value`](#static_attributes-value "Click to copy link to value") * string
+##### [`value`](#static_attributes-value-2 "Click to copy link to value") * string
 
 the static value you want to assign to this key.
 
@@ -38157,17 +38157,17 @@ Each item of next accepts the following properties:
 
 The input request definition. At least you should define the URL used to connect to KrakenD
 
-##### [`body`](#in-body "Click to copy link to body") object, array, string
+##### [`body`](#in-body-2 "Click to copy link to body") object, array, string
 
 If you want to add a payload in the request, set its body here
 
-##### [`header`](#in-header "Click to copy link to header") object
+##### [`header`](#in-header-2 "Click to copy link to header") object
 
 An optional map of headers you want to include in the request.
 
 Example: `{"User-Agent":"krakend e2e tool"}`
 
-##### [`method`](#in-method "Click to copy link to method")
+##### [`method`](#in-method-2 "Click to copy link to method")
 
 The method sent in the request
 
@@ -38175,7 +38175,7 @@ Possible values are: `"GET"` , `"POST"` , `"PUT"` , `"PATCH"` , `"DELETE"`
 
 Defaults to `"GET"`
 
-##### [`url`](#in-url "Click to copy link to url") * string
+##### [`url`](#in-url-2 "Click to copy link to url") * string
 
 The full URL you want to use in the request, including schema, host, port, path, and any additional query string parameters you might need.
 
@@ -38217,13 +38217,13 @@ The expected response from the server
 
 \* Required **any of**: ( `status_code` ) , or ( `status_code` + `body` ) , or ( `status_code` + `schema` )
 
-##### [`body`](#out-body "Click to copy link to body") string, object
+##### [`body`](#out-body-2 "Click to copy link to body") string, object
 
 The expected returned body by the response as a string or JSON object. Remove this body field when you don’t want to check its contents, when the response does not have a body, or when you want to use the schema instead.
 
 Example: `"http://localhost:8080/__debug/something"`
 
-##### [`header`](#out-header "Click to copy link to header") object
+##### [`header`](#out-header-2 "Click to copy link to header") object
 
 Checks that all headers included in the response match the provided values. You only need to declare the relevant headers you want, as the rest are ignored. As headers, by RFC definition, can be multiple, you must always use an array to express the values you want to check. You can also check that **a specific header does not exist** in the response declaring an empty value `[""]`.
 
@@ -38231,11 +38231,11 @@ Example: `{"Cache-Control":[""],"X-Krakend-Completed":["true"],"content-type":["
 
 Properties of `header` can use a name matching the pattern `.*`, and their content is an `array`
 
-##### [`schema`](#out-schema "Click to copy link to schema") object
+##### [`schema`](#out-schema-2 "Click to copy link to schema") object
 
 A JSON Schema object that validates the response. This option allows you to work with responses that the literal value is not that important and you want to check the structure of the returned document instead. If the response matches the schema definition, the test passes. If you define a `schema` and a `body` simultaneously only the schema is validated.
 
-##### [`status_code`](#out-status_code "Click to copy link to status_code") integer
+##### [`status_code`](#out-status_code-2 "Click to copy link to status_code") integer
 
 The integer value of the HTTP status code returned by the server.
 
