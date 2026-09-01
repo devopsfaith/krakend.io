@@ -546,7 +546,7 @@ sections:
     - name: Kafka Async Agents
       description: Implement event-driven architectures with Kafka async agents, which react to new events in queues and push data to your backends or webhooks.
       ee: true
-      url: /docs/enterprise/async/kafka
+      url: /docs/enterprise/async/kafka/
     - name: Lambda functions
       namespaces:
         - backend/lambda

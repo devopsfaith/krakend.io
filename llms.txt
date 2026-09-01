@@ -2,8 +2,8 @@
 
 
 ## Getting Started
-- [KrakenD API Gateway - Enterprise Edition Overview](https://www.krakend.io/docs/enterprise/overview/): Explore the features and capabilities of the enterprise edition of KrakenD API Gateway, empowering you to manage APIs at an enterprise scale
 - [KrakenD Community Edition Documentation](https://www.krakend.io/docs/overview/): Explore the comprehensive documentation for KrakenD API Gateway, including an overview, guides, and best practices
+- [KrakenD Enterprise Edition Documentation](https://www.krakend.io/docs/enterprise/overview/): Explore the features and capabilities of the enterprise edition of KrakenD API Gateway, empowering you to manage APIs at an enterprise scale
 - [Installing KrakenD Enterprise](https://www.krakend.io/docs/enterprise/overview/installing/): Get step-by-step instructions for installing the Enterprise Edition of KrakenD API Gateway to unlock advanced features and scalability
 - [KrakenD API Gateway Installation Guide](https://www.krakend.io/docs/overview/installing/): Follow our step-by-step installation guide to set up and configure KrakenD API Gateway, enabling efficient and scalable API management.
 - [Running KrakenD Enterprise: Available commands](https://www.krakend.io/docs/enterprise/overview/run/): Get started with KrakenD Enterprise command, and learn all possible subcommands to run the software and perform checks in your CI/CD pipeline
