@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <title>icons/governance-identity</title>
+    <g id="icons/governance-identity" stroke="none" fill="none">
+        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        <path fill-rule="evenodd" clip-rule="evenodd" fill="#4F79FD" d="M12 1.5L20 4.7V11c0 5.7-3.6 10.9-8 12.4C7.6 21.9 4 16.7 4 11V4.7L12 1.5zm0 2.15L6 6.05V11c0 4.6 2.7 8.9 6 10.3 3.3-1.4 6-5.7 6-10.3V6.05l-6-2.4z"/>
+        <circle cx="12" cy="9.6" r="2.15" fill="#4F79FD"/>
+        <path fill="#4F79FD" d="M8.3 16.1c0-2.3 2.9-3.5 3.7-3.5s3.7 1.2 3.7 3.5c0 .28-.1.5-.3.66-1 .84-2.2 1.34-3.4 1.34s-2.4-.5-3.4-1.34a.9.9 0 0 1-.3-.66z"/>
+    </g>
+</svg>

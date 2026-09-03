@@ -1,0 +1,31 @@
+<svg viewBox="0 0 640 680" width="640" height="680" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pricingChartTitle" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <title id="pricingChartTitle">What happens to your gateway cost when traffic grows</title>
+
+  <line x1="50" y1="40.0" x2="50" y2="480.0" stroke="#313742" stroke-width="1.5" />
+  <line x1="50" y1="480.0" x2="600" y2="480.0" stroke="#313742" stroke-width="1.5" />
+
+  <!-- Apigee: 36 monthly points across 3 years, jagged month to month, with a Nov/Dec traffic spike (x1.2) and an August lull (÷1.2) every year, trending up overall. -->
+  <path d="M 50.0,459.0 L 65.7,459.4 L 81.4,438.6 L 97.1,445.4 L 112.9,429.0 L 128.6,425.2 L 144.3,419.6 L 160.0,433.8 L 175.7,402.0 L 191.4,411.0 L 207.1,378.0 L 222.9,381.4 L 238.6,388.0 L 254.3,386.6 L 270.0,364.0 L 285.7,369.0 L 301.4,350.8 L 317.1,357.8 L 332.9,324.0 L 348.6,349.0 L 364.3,294.2 L 380.0,297.0 L 395.7,233.6 L 411.4,229.6 L 427.1,257.0 L 442.9,251.0 L 458.6,224.0 L 474.3,224.4 L 490.0,201.4 L 505.7,204.0 L 521.4,177.2 L 537.1,224.8 L 552.9,142.8 L 568.6,143.4 L 584.3,46.8 L 600.0,40.0" fill="none" stroke="#fc4c01" stroke-width="4" stroke-linecap="round" />
+  <g fill="#fc4c01">
+    <circle cx="50.0" cy="459.0" r="2" /><circle cx="65.7" cy="459.4" r="2" /><circle cx="81.4" cy="438.6" r="2" /><circle cx="97.1" cy="445.4" r="2" /><circle cx="112.9" cy="429.0" r="2" /><circle cx="128.6" cy="425.2" r="2" /><circle cx="144.3" cy="419.6" r="2" /><circle cx="160.0" cy="433.8" r="2" /><circle cx="175.7" cy="402.0" r="2" /><circle cx="191.4" cy="411.0" r="2" /><circle cx="207.1" cy="378.0" r="2" /><circle cx="222.9" cy="381.4" r="2" /><circle cx="238.6" cy="388.0" r="2" /><circle cx="254.3" cy="386.6" r="2" /><circle cx="270.0" cy="364.0" r="2" /><circle cx="285.7" cy="369.0" r="2" /><circle cx="301.4" cy="350.8" r="2" /><circle cx="317.1" cy="357.8" r="2" /><circle cx="332.9" cy="324.0" r="2" /><circle cx="348.6" cy="349.0" r="2" /><circle cx="364.3" cy="294.2" r="2" /><circle cx="380.0" cy="297.0" r="2" /><circle cx="395.7" cy="233.6" r="2" /><circle cx="411.4" cy="229.6" r="2" /><circle cx="427.1" cy="257.0" r="2" /><circle cx="442.9" cy="251.0" r="2" /><circle cx="458.6" cy="224.0" r="2" /><circle cx="474.3" cy="224.4" r="2" /><circle cx="490.0" cy="201.4" r="2" /><circle cx="505.7" cy="204.0" r="2" /><circle cx="521.4" cy="177.2" r="2" /><circle cx="537.1" cy="224.8" r="2" /><circle cx="552.9" cy="142.8" r="2" /><circle cx="568.6" cy="143.4" r="2" /><circle cx="584.3" cy="46.8" r="2" /><circle cx="600.0" cy="40.0" r="2" />
+  </g>
+
+  <!-- KrakenD: flat per instance tier for year 1 and most of year 2, one plan change mid-year 2, a big jump, still well below Apigee's trend on nearly every month. -->
+  <path d="M 50,433.6 L 309.2,433.6 L 309.2,334.6 L 600,334.6" fill="none" stroke="#ab83ff" stroke-width="4" stroke-linecap="round" />
+
+  <line x1="230.8" y1="472.0" x2="230.8" y2="488.0" stroke="#313742" stroke-width="1.5" />
+  <line x1="419.2" y1="472.0" x2="419.2" y2="488.0" stroke="#313742" stroke-width="1.5" />
+
+  <text x="136.4" y="516.0" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="0.04em" fill="#717da3">Year 1</text>
+  <text x="325.0" y="516.0" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="0.04em" fill="#717da3">Year 2</text>
+  <text x="513.5" y="516.0" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="0.04em" fill="#717da3">Year 3</text>
+
+  <text x="18" y="260.0" text-anchor="middle" transform="rotate(-90 18 260)" font-size="13" fill="#a2a9be">Cost</text>
+
+  <!-- Legend -->
+  <line x1="50" y1="592.0" x2="70" y2="592.0" stroke="#ab83ff" stroke-width="4" stroke-linecap="round" />
+  <text x="78" y="600.0" font-size="15" fill="#c9d3ee">KrakenD: flat-tiered, predictable pricing</text>
+
+  <line x1="50" y1="624.0" x2="70" y2="624.0" stroke="#fc4c01" stroke-width="4" stroke-linecap="round" />
+  <text x="78" y="632.0" font-size="15" fill="#c9d3ee">Google Apigee: volatile month to month, accelerating as it grows</text>
+</svg>

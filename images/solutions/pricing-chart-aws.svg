@@ -1,0 +1,42 @@
+<svg viewBox="0 0 640 680" width="640" height="680" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pricingChartTitle" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <title id="pricingChartTitle">What your gateway costs when traffic grows</title>
+
+  <text x="325" y="15.0" text-anchor="middle" font-size="12" font-style="italic" fill="#717da3">Shown: AWS per-request fee only.</text>
+  <text x="325" y="29.0" text-anchor="middle" font-size="12" font-style="italic" fill="#717da3">Real bills also add data transfer, caching, and logging.</text>
+
+  <line x1="50" y1="40.0" x2="50" y2="480.0" stroke="#313742" stroke-width="1.5" />
+  <line x1="50" y1="480.0" x2="600" y2="480.0" stroke="#313742" stroke-width="1.5" />
+
+  <!-- AWS REST API: $3.50/million requests, flat rate applied across the range (1M=$3.5, 100M=$350, 500M=$1,750, 1B=$3,500). -->
+  <path d="M 50,479.56 L 233,436 L 417,260 L 600,40" fill="none" stroke="#ff9900" stroke-width="4" stroke-linecap="round" />
+  <g fill="#ff9900">
+    <circle cx="50" cy="479.56" r="4" /><circle cx="233" cy="436" r="4" /><circle cx="417" cy="260" r="4" /><circle cx="600" cy="40" r="4" />
+  </g>
+
+  <!-- AWS HTTP API: $1.00/million for first 300M, $0.90/million beyond (1M=$1, 100M=$100, 500M=$480, 1B=$930). -->
+  <path d="M 50,479.87 L 233,467.43 L 417,419.66 L 600,363.09" fill="none" stroke="#ffc266" stroke-width="4" stroke-linecap="round" />
+  <g fill="#ffc266">
+    <circle cx="50" cy="479.87" r="4" /><circle cx="233" cy="467.43" r="4" /><circle cx="417" cy="419.66" r="4" /><circle cx="600" cy="363.09" r="4" />
+  </g>
+
+  <!-- KrakenD: flat per-plan-tier reference line, does not change with traffic. Crosses AWS REST just past 100M and AWS HTTP between 500M and 1B. -->
+  <line x1="50" y1="400.0" x2="600" y2="400.0" stroke="#ab83ff" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10" />
+
+  <text x="50" y="512.0" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="0.04em" fill="#717da3">1M</text>
+  <text x="233" y="512.0" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="0.04em" fill="#717da3">100M</text>
+  <text x="417" y="512.0" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="0.04em" fill="#717da3">500M</text>
+  <text x="600" y="512.0" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="0.04em" fill="#717da3">1B</text>
+  <text x="325" y="536.0" text-anchor="middle" font-size="12" letter-spacing="0.02em" fill="#a2a9be">Monthly API Requests</text>
+
+  <text x="18" y="260.0" text-anchor="middle" transform="rotate(-90 18 260)" font-size="13" fill="#a2a9be">Monthly Cost (USD)</text>
+
+  <!-- Legend -->
+  <line x1="50" y1="576.0" x2="70" y2="576.0" stroke="#ab83ff" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 8" />
+  <text x="78" y="584.0" font-size="15" fill="#c9d3ee">KrakenD: flat-tiered plans, predictable at every scale</text>
+
+  <line x1="50" y1="608.0" x2="70" y2="608.0" stroke="#ff9900" stroke-width="4" stroke-linecap="round" />
+  <text x="78" y="616.0" font-size="15" fill="#c9d3ee">AWS REST API: $3.50/million requests</text>
+
+  <line x1="50" y1="640.0" x2="70" y2="640.0" stroke="#ffc266" stroke-width="4" stroke-linecap="round" />
+  <text x="78" y="648.0" font-size="15" fill="#c9d3ee">AWS HTTP API: $1.00/million (tiered beyond 300M)</text>
+</svg>

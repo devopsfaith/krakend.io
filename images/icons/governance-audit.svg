@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <title>icons/governance-audit</title>
+    <g id="icons/governance-audit" stroke="none" fill="none">
+        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        <path fill-rule="evenodd" clip-rule="evenodd" fill="#4F79FD" d="M8.5 2.5h7c.83 0 1.5.67 1.5 1.5v.5h1a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2h1V4c0-.83.67-1.5 1.5-1.5zm0 1.7c-.17 0-.3.13-.3.3v1.2h7.6V4.5c0-.17-.13-.3-.3-.3h-7zM6 6.2a.3.3 0 0 0-.3.3V19.5c0 .17.13.3.3.3h12a.3.3 0 0 0 .3-.3V6.5a.3.3 0 0 0-.3-.3h-1v.7c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 0 1 7 6.9v-.7H6z"/>
+        <path fill="#4F79FD" d="M8.3 11.2h7.4v1.4H8.3v-1.4zm0 3.1h7.4v1.4H8.3v-1.4zm0 3.1h4.8v1.4H8.3v-1.4z"/>
+    </g>
+</svg>

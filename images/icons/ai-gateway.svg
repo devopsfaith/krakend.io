@@ -2,7 +2,7 @@
 <svg width="22" height="22" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>icons/Docs/AI Gateway2</title>
     <g stroke="none" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
-        <g stroke="currentColor" transform="translate(1, 1.2667)">
+        <g stroke="#4F79FD" transform="translate(1, 1.2667)">
             <path d="M3.83202667,6.666664 C4.9366,6.666664 5.83202667,5.77123733 5.83202667,4.666664 C5.83202667,3.562104 4.9366,2.666664 3.83202667,2.666664 C2.72746667,2.666664 1.83202667,3.562104 1.83202667,4.666664 C1.83202667,5.77123733 2.72746667,6.666664 3.83202667,6.666664 Z" stroke-width="2"></path>
             <line x1="5.83202667" y1="4.666664" x2="12.9973333" y2="4.666664" stroke-width="2"></line>
             <path d="M2,16.6666507 C3.10457333,16.6666507 4,15.771184 4,14.6666507 C4,13.5621173 3.10457333,12.6666507 2,12.6666507 C0.895426667,12.6666507 0,13.5621173 0,14.6666507 C0,15.771184 0.895426667,16.6666507 2,16.6666507 Z" stroke-width="2"></path>
