@@ -1,4 +1,106 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Product Updates on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/product-updates/</link><description>Recent content in Product Updates on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 20 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/product-updates/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.13.10 and EE 2.13.8 update released</title><link>https://www.krakend.io/blog/krakend-2.13.8-ee-2.13.10-ce-release-notes/</link><pubDate>Thu, 20 Aug 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.8-ee-2.13.10-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Go to 1.26.7 to address an &lt;a href="https://go.dev/issue/80876"&gt;issue with HTTP2&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Product Updates on KrakenD - Open source API Gateway</title><link>https://www.krakend.io/categories/product-updates/</link><description>Recent content in Product Updates on KrakenD - Open source API Gateway</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Tue, 08 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.krakend.io/categories/product-updates/index.xml" rel="self" type="application/rss+xml"/><item><title>KrakenD CE 2.13.11 and EE 2.13.9 update released</title><link>https://www.krakend.io/blog/krakend-2.13.9-ee-2.13.11-ce-release-notes/</link><pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.9-ee-2.13.11-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Go to 1.26.8 and refreshes several third-party dependencies to address recently disclosed CVEs.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;x/crypto&lt;/code&gt; library upgrade addresses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-56855/"&gt;CVE-2026-56855&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-78662/"&gt;CVE-2026-78662&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;code&gt;grpc&lt;/code&gt; and &lt;code&gt;amqp&lt;/code&gt; dependency upgrades address:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-84304/"&gt;CVE-2026-84304&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-79921/"&gt;CVE-2026-79921&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Check our &lt;a href="https://www.krakend.io/security-advisories/"&gt;security advisories&lt;/a&gt; page for more details on how each CVE affects KrakenD.&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class="release"&gt;
+ &lt;h2 id="summary-of-changes-EEv2.13"&gt;🚀 Summary of changes for EEv2.13.9 (patch)&lt;/h2&gt;
+ &lt;p&gt;Recommended security upgrade addressing several vulnerabilities&lt;/p&gt;
+ &lt;ul&gt;
+ 
+ 
+ &lt;li class="type type-upgrade"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#AB83FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M12.375 1.5v16.419M6.75 5.605 12.375 1.5 18 5.515M15.891 17.919H8.859M15.891 22.024H8.859"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded Go to 1.26.8&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-bugfix"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;defs&gt;
+&lt;path id="71489rl6sa" d="m0 0 23.25 23.25H0z"/&gt;
+&lt;path id="0rryb6ow7c" d="m0 0 21 21H0z"/&gt;
+&lt;/defs&gt;
+&lt;g fill="none" fill-rule="evenodd"&gt;
+&lt;g transform="translate(0 .75)"&gt;
+&lt;mask id="qvci4fb0ob" fill="#fff"&gt;
+&lt;use xlink:href="#71489rl6sa"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#qvci4fb0ob)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M17.86 7.492a1.368 1.368 0 0 1-.422-.984V5.455c0-.9-.756-1.63-1.688-1.63H9c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M8.25 3.961c-.6-1.028-.988-.968-1.14-2.149C7.11.578 8.19.733 8.73.733M16.5 3.961c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M2.25 11.973a3.527 3.527 0 0 0 4.219 0M2.25 16.137a3.527 3.527 0 0 0 4.219 0M22.5 11.973a3.527 3.527 0 0 1-4.219 0M22.5 16.137a3.527 3.527 0 0 1-4.219 0M7.303 6.665l5.072 5.373 5.072-5.373M12.375 12.038v9.712"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;g transform="translate(3)"&gt;
+&lt;mask id="tz63xu58kd" fill="#fff"&gt;
+&lt;use xlink:href="#0rryb6ow7c" transform="rotate(180 10.5 10.5)"/&gt;
+&lt;/mask&gt;
+&lt;g mask="url(#tz63xu58kd)" stroke="#FF4545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.612"&gt;
+&lt;path d="M14.86 8.242a1.368 1.368 0 0 1-.422-.984V6.205c0-.9-.756-1.63-1.688-1.63H6c-.932 0-1.688.73-1.688 1.63v1.053c0 .369-.151.723-.421.984-.27.26-.42.61-.422.978v9.206c0 1.8 1.687 4.074 5.906 4.074 4.219 0 5.906-2.275 5.906-4.074v-9.2c0-.37-.151-.723-.422-.984h0z"/&gt;
+&lt;path d="M5.25 4.711c-.6-1.028-.988-.968-1.14-2.149 0-1.234 1.08-1.079 1.62-1.079M13.5 4.711c.6-1.028.988-.968 1.14-2.149 0-1.234-1.08-1.079-1.62-1.079M-.75 12.723a3.527 3.527 0 0 0 4.219 0M-.75 16.887a3.527 3.527 0 0 0 4.219 0M19.5 12.723a3.527 3.527 0 0 1-4.219 0M19.5 16.887a3.527 3.527 0 0 1-4.219 0M4.303 7.415l5.072 5.373 5.072-5.373M9.375 13.538V22.5"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;path stroke="#FF4545" stroke-width="1.5" stroke-linecap="round" d="m1.5 1.5 21 21"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Fixed a problem in &lt;a href="https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/"&gt;Virtual Hosts&lt;/a&gt; feature that could lead to wrong redirections when the &lt;code&gt;router&lt;/code&gt; namespace is missing.&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded &lt;code&gt;x/crypto&lt;/code&gt;, addressing &lt;a href="https://go.dev/issue/81317"&gt;CVE-2026-56855&lt;/a&gt; and &lt;a href="https://go.dev/issue/81316"&gt;CVE-2026-78662&lt;/a&gt;&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded &lt;code&gt;grpc&lt;/code&gt; dependency, addressing &lt;a href="https://nvd.nist.gov/vuln/detail/cve-2026-84304"&gt;CVE-2026-84304&lt;/a&gt;&lt;/li&gt;
+ 
+ 
+ 
+ &lt;li class="type type-security"&gt;&lt;svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;g stroke="#5DE3FF" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;
+&lt;path d="M3 3.163a.91.91 0 0 1 .908-.913c2.046 1.009 4.618 1.509 7.717 1.5 3.1-.009 5.671-.509 7.717-1.5a.91.91 0 0 1 .908.913v5.72c0 6.027-3.32 10.81-8.625 13.617C6.32 19.693 2.999 14.91 3 8.882V3.163z"/&gt;
+&lt;path d="m16.172 8.25-4.89 4.726a.832.832 0 0 1-.577.232.832.832 0 0 1-.579-.232L8.25 11.164"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+
+ Upgraded &lt;code&gt;amqp&lt;/code&gt; dependency, addressing &lt;a href="https://nvd.nist.gov/vuln/detail/cve-2026-79921"&gt;CVE-2026-79921&lt;/a&gt;&lt;/li&gt;
+ 
+ 
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Upgrading to the latest version is always advised.
+ &lt;/p&gt;</description></item><item><title>KrakenD CE 2.13.10 and EE 2.13.8 update released</title><link>https://www.krakend.io/blog/krakend-2.13.8-ee-2.13.10-ce-release-notes/</link><pubDate>Thu, 20 Aug 2026 00:00:00 +0000</pubDate><guid>https://www.krakend.io/blog/krakend-2.13.8-ee-2.13.10-ce-release-notes/</guid><description>&lt;p&gt;This patch release of KrakenD Community Edition and Enterprise Edition upgrades Go to 1.26.7 to address an &lt;a href="https://go.dev/issue/80876"&gt;issue with HTTP2&lt;/a&gt;.&lt;/p&gt;
 
 
 
@@ -8,7 +110,7 @@
 
 &lt;div class="release"&gt;
  &lt;h2 id="summary-of-changes-EEv2.13"&gt;🚀 Summary of changes for EEv2.13.8 (patch)&lt;/h2&gt;
- &lt;p&gt;Recommended security upgraded addressing a vulnerability by the Go team&lt;/p&gt;
+ &lt;p&gt;Recommended security upgrade addressing a vulnerability by the Go team&lt;/p&gt;
  &lt;ul&gt;
  
  
@@ -43,7 +145,7 @@
 &lt;p&gt;It also adresses an OpenTelemtry and a grpc vulnerabilities:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/cve-2026-41178/"&gt;CVE-2026-41178&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/advisories/GHSA-hrxh-6v49-42gf"&gt;GHSA-hrxh-6v49-42gf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.krakend.io/security-advisories/ghsa-hrxh-6v49-42gf/"&gt;GHSA-hrxh-6v49-42gf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
