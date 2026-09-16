@@ -108,6 +108,29 @@
         });
       });
     }
+    const initReadMore = () => {
+      cards.forEach((card) => {
+        const text = card.querySelector(".card-text--clamped");
+        const more = card.querySelector(".partners-card__more");
+        if (!text || !more) return;
+        more.toggleAttribute("hidden", text.scrollHeight <= text.clientHeight + 1);
+      });
+    };
+    cards.forEach((card) => {
+      const text = card.querySelector(".card-text--clamped");
+      const more = card.querySelector(".partners-card__more");
+      if (!text || !more) return;
+      more.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        text.classList.remove("card-text--clamped");
+        more.remove();
+      });
+    });
+    initReadMore();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(initReadMore);
+    }
     setActive("all");
   })();
 })();
