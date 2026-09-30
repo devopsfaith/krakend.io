@@ -37,8 +37,8 @@ sections:
       url: /docs/enterprise/developer/ide-integration/
     - name: Plugin builder
       description: A ready-to-use image to build your custom Go plugins and embed them in KrakenD
-      ee: false
-      url: /docs/extending/writing-plugins/
+      ee: true
+      url: /docs/enterprise/extending/writing-plugins/
     - name: Plugin generator
       description: A plugin generator that builds all the boilerplate necessary to develop your plugins
       ee: true
@@ -113,7 +113,7 @@ sections:
         ee: false
         url: /docs/enterprise/backends/flatmap/
       - name: Gzip compression
-        description: Ouput compression of responses in gzip format
+        description: Output compression of responses in gzip format, with profiles that favor speed or smaller responses
         ee: true
         url: /docs/enterprise/service-settings/gzip/
       - name: Request body extractor
@@ -154,26 +154,6 @@ sections:
         description: Add validation rules to continue with the request or to return the response
         ee: false
         url: /docs/enterprise/endpoints/common-expression-language-cel/
-      - name: Lua scripting
-        namespaces:
-          - modifier/lua-proxy
-          - modifier/lua-endpoint
-          - modifier/lua-backend
-        description: Transform requests and responses with Lua scripts
-        ee: false
-        url: /docs/enterprise/endpoints/lua/
-      - name: Lua advanced helpers
-        namespaces:
-          - modifier/lua-proxy
-          - modifier/lua-endpoint
-          - modifier/lua-backend
-        description: Advanced helpers that run on Go's native implementation rather than Lua for better performance and extended functionality.
-        ee: true
-        url: /docs/enterprise/endpoints/lua-advanced-helpers/
-      - name: Custom Go plugins
-        description: Write your own Go plugins and side-load them with KrakenD to extend the functionality
-        ee: false
-        url: /docs/enterprise/extending/
       - name: JSON Schema response validation
         namespaces:
           - validation/response-json-schema
@@ -311,6 +291,12 @@ sections:
       description: Header and query string processing to assemble the final upstream URL
       ee: true
       url: /docs/enterprise/endpoints/dynamic-routing/
+    - name: Fallback proxy
+      namespaces:
+        - proxy
+      description: Treat the backends of an endpoint as a prioritized list, calling the next one only when the previous one fails
+      ee: true
+      url: /docs/enterprise/endpoints/fallback-proxy/
     - name: Conditional routing
       namespaces:
         - backend/conditional
@@ -453,6 +439,37 @@ sections:
       description: Distribute AI requests across one or multiple Large Language Model providers or instances
       ee: true
       url: /docs/enterprise/ai-gateway/llm-routing/
+    - name: AI Router
+      namespaces:
+        - ai/router
+        - ai/classifiers
+      description: Select the LLM provider on every request using header or CEL gates, the Not Diamond prompt classifier, and failover providers
+      ee: true
+      url: /docs/enterprise/ai-gateway/ai-router/
+    - name: LLM Provider Inventory
+      namespaces:
+        - ai/providers
+      description: Declare every LLM provider once, with its model and credentials, and reference it by name from any backend
+      ee: true
+      url: /docs/enterprise/ai-gateway/unified-llm-interface/#llm-provider-inventory
+    - name: LLM Streaming
+      namespaces:
+        - ai/llm
+      description: Stream LLM completions token by token from any vendor, optionally normalized to the OpenAI or Anthropic format
+      ee: true
+      url: /docs/enterprise/ai-gateway/llm-streaming/
+    - name: Semantic Cache
+      namespaces:
+        - ai/semantic-cache
+      description: Return stored responses for requests with the same meaning, cutting token spend and latency
+      ee: true
+      url: /docs/enterprise/ai-gateway/semantic-cache/
+    - name: Prompt Guard
+      namespaces:
+        - ai/prompt-guard
+      description: Block prompt injection, jailbreaks, and malicious payloads with default guards, regular expressions, CEL policies, or an external classifier
+      ee: true
+      url: /docs/enterprise/ai-gateway/prompt-guard/
     - name: OpenAI integration
       namespaces:
         - ai/llm
@@ -483,6 +500,12 @@ sections:
       description: Use Bedrock's API without writing custom integration code
       ee: true
       url: /docs/enterprise/ai-gateway/bedrock/
+    - name: Alibaba Cloud (Qwen) integration
+      namespaces:
+        - ai/llm
+      description: Use Alibaba Cloud's Qwen models without writing custom integration code
+      ee: true
+      url: /docs/enterprise/ai-gateway/alibaba/
   - name: Services Connectivity
     description: |
       Integrations with non-REST services
@@ -494,7 +517,7 @@ sections:
     - name: MCP Server
       namespaces:
         - ai/mcp
-      description: Exposes any of your existing use cases as MCP tools so you can start to apply AI to any of the systems you have already. No external MCP server required.
+      description: Exposes any of your existing use cases as MCP tools so you can start to apply AI to any of the systems you have already, with authentication and per-client tool filtering. No external MCP server required.
       ee: true
       url: /docs/enterprise/ai-gateway/mcp-server/
     - name: Protocol translation
@@ -505,6 +528,14 @@ sections:
       description: Enable streaming responses for any kind of content or files.
       ee: true
       url: /docs/enterprise/endpoints/streaming/
+    - name: Streaming manipulation
+      namespaces:
+        - modifier/jmespath
+        - modifier/response-body
+        - governance/quota
+      description: Filter, transform, and meter each message of an SSE, NDJSON, or AWS event-stream response on the fly, while it flows to the client.
+      ee: true
+      url: /docs/enterprise/endpoints/streaming/#manipulating-streamed-responses
     - name: gRPC Server
       namespaces:
         - grpc
@@ -766,27 +797,21 @@ sections:
       description: Define field by field how your access log should look like
       ee: true
       url: /docs/enterprise/logging/#customizing-the-access-log
-    - name: Extended metrics
-      namespaces:
-        - telemetry/metrics
-      description: Collect extended metrics to push them to InfluxDB or expose them in a /__stats/ endpoint for you to build a customized dashboard.
-      ee: false
-      url: /docs/enterprise/telemetry/extended-metrics/
     - name: Jaeger tracing
       namespaces:
         - telemetry/opentelemetry
       description: Submit spans to a Jaeger Collector (HTTP) or Jaeger Agent (UDP) automatically.
       ee: false
       url: /docs/enterprise/telemetry/jaeger/
-    - name: AWS X-Ray metrics and traces
+    - name: AWS X-Ray metrics
       namespaces:
-        - telemetry/opencensus
+        - telemetry/opentelemetry
       description: Push to AWS X-RAY end-to-end view of requests as they travel through your application, and the map of your application's underlying components.
       ee: false
       url: /docs/enterprise/telemetry/xray/
     - name: Zipkin tracing
       namespaces:
-        - telemetry/opencensus
+        - telemetry/opentelemetry
       description: Export traces to Zipkin to troubleshoot latency problems in service architectures.
       ee: false
       url: /docs/enterprise/telemetry/zipkin/
@@ -812,24 +837,15 @@ sections:
     - name: InfluxDB metrics
       namespaces:
         - telemetry/opentelemetry
-        - telemetry/influx
       description: Export metrics and events to InfluxDB
       ee: false
       url: /docs/enterprise/telemetry/influxdb/
     - name: Grafana Dashboard
       namespaces:
         - telemetry/opentelemetry
-        - telemetry/influx
-        - telemetry/metrics
       description: The preconfigured Grafana dashboard for KrakenD offers valuable information to understand the performance of your services and detect anomalies in the service.
       ee: false
       url: /docs/enterprise/telemetry/grafana/
-    - name: Google Cloud's operation suite
-      namespaces:
-        - telemetry/opencensus
-      description: Export metrics and traces to Google Cloud
-      ee: false
-      url: /docs/enterprise/telemetry/stackdriver/
     - name: Datadog
       namespaces:
         - telemetry/opentelemetry
@@ -896,3 +912,76 @@ sections:
       description: Set limits on the number of requests or token usage for each user or client. Valid both for Monetization and LLM cost control.
       ee: true
       url: /docs/enterprise/governance/quota/
+  - name: Custom plugins and extensibility
+    description: |
+      Extend KrakenD with your own code at any stage of the pipeline, using Go plugins or Lua scripts.
+    features:
+    - name: Custom Go plugins
+      namespaces:
+        - plugin
+      description: Side-load your own compiled Go plugins (`.so`) declaring the folder and pattern to scan, and extend KrakenD with any functionality
+      ee: true
+      url: /docs/enterprise/extending/
+    - name: HTTP server plugins
+      namespaces:
+        - plugin/http-server
+      description: Replace or wrap the whole HTTP handler of the gateway to run your code before the router, having full control of the request and the response
+      ee: true
+      url: /docs/enterprise/extending/http-server-plugins/
+    - name: HTTP client plugins
+      namespaces:
+        - plugin/http-client
+      description: Replace the HTTP client used to talk to your backends, adding custom protocols, signatures, or authentication mechanisms
+      ee: true
+      url: /docs/enterprise/extending/http-client-plugins/
+    - name: Request and response modifier plugins
+      namespaces:
+        - plugin/req-resp-modifier
+      description: Modify requests and responses at the proxy layer, with access to the aggregated data of all backends
+      ee: true
+      url: /docs/enterprise/extending/plugin-modifiers/
+    - name: Middleware plugins
+      namespaces:
+        - plugin/middleware
+      description: Inject your code as a middleware in the proxy stack (endpoint or backend level) to run logic before and after the call, and even decide to skip it
+      ee: true
+      url: /docs/enterprise/extending/middleware-plugins/
+    - name: Redis injection in plugins
+      namespaces:
+        - redis
+        - plugin
+      description: Reuse KrakenD's managed Redis connections and pools inside any plugin type to add a shared persistence layer without managing connections yourself
+      ee: true
+      url: /docs/enterprise/extending/injecting-redis-in-plugins/
+    - name: Quota processors injection in plugins
+      namespaces:
+        - governance/processors
+        - governance/quota
+        - plugin
+      description: Inject KrakenD's built-in quota processor into your plugins to enforce usage limits without managing quota state, time windows, or storage
+      ee: true
+      url: /docs/enterprise/extending/injecting-quota-processors-in-plugins/
+    - name: Lua scripting
+      namespaces:
+        - modifier/lua-proxy
+        - modifier/lua-endpoint
+        - modifier/lua-backend
+      description: Transform requests and responses with Lua scripts
+      ee: false
+      url: /docs/enterprise/endpoints/lua/
+    - name: Lua advanced helpers
+      namespaces:
+        - modifier/lua-proxy
+        - modifier/lua-endpoint
+        - modifier/lua-backend
+      description: Advanced helpers that run on Go's native implementation rather than Lua for better performance and extended functionality.
+      ee: true
+      url: /docs/enterprise/endpoints/lua-advanced-helpers/
+    - name: Plugin dependency checker
+      description: Check that your plugins are compatible and loadable by the KrakenD binary before deploying them
+      ee: true
+      url: /docs/enterprise/extending/check-plugin/
+    - name: Plugin testing
+      description: Load your compiled plugins in KrakenD and test their behavior before deploying them to production
+      ee: true
+      url: /docs/enterprise/extending/test-plugin/
