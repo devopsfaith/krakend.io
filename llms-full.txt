@@ -4975,7 +4975,7 @@ An alias of `modifier/response-body-generator`
 
 ##### [`plugin/middleware`](https://www.krakend.io/docs/endpoints/#plugin%2fmiddleware "Click to copy link to plugin/middleware") object
 
-**Enterprise only.** Inject your own [Go middleware plugins](https://www.krakend.io/docs/extending/injecting-plugins/)
+**Enterprise only.** Inject your own [Go middleware plugins](https://www.krakend.io/docs/enterprise/extending/injecting-plugins/)
 
 ##### [`plugin/req-resp-modifier`](https://www.krakend.io/docs/endpoints/#plugin%2freq-resp-modifier "Click to copy link to plugin/req-resp-modifier") object
 
