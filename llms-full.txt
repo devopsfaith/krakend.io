@@ -8050,6 +8050,7 @@ To upgrade when you are more than one version away from the latest, adjust the c
 Configuration changes needed to upgrade to v3.0:
 
 - All previous configurations used `version: 3`. Migrate your configuration and use `version: 4` instead.
+- Endpoint logs now include the HTTP method of the request, which was not previously logged. Ensure your log parsing and monitoring tools are updated accordingly.
 - Plugins are no longer supported in the Community Edition, and the `check-plugin` and `test-plugin` commands are gone. See [Dropping plugin support in KrakenD Open Source and Lura](/blog/dropping-plugins-support-on-community/).
 - Removed OpenCensus (`telemetry/opencensus`) and all its exporters. Use [OpenTelemetry](/docs/telemetry/opentelemetry/) instead.
 - Removed the InfluxDB component (`telemetry/influx`). Use [OpenTelemetry](/docs/telemetry/opentelemetry/) instead.
