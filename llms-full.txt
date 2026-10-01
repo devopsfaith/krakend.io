@@ -1263,7 +1263,6 @@ Once a provider exists in the inventory, components reference it by `name`. The 
   "method": "POST",
   "backend": [
     {
-      "url_pattern": "/notused",
       "extra_config": {
         "ai/llm": {
           "provider": "cheap-quick"
@@ -1274,7 +1273,7 @@ Once a provider exists in the inventory, components reference it by `name`. The 
 }
 ```
 
-The backend above resolves the `cheap-quick` provider from the inventory and uses its vendor, endpoint, model, and credentials, so it needs no `host`. Because the provider is referenced by name, you can reuse it across many backends and change its definition in one place. To choose among several providers on each request based on headers, policies, or a classifier, use the [AI Router](/docs/enterprise/ai-gateway/ai-router/).
+The backend above resolves the `cheap-quick` provider from the inventory and uses its vendor, endpoint, model, and credentials, so it needs neither `host` nor `url_pattern`. Because the provider is referenced by name, you can reuse it across many backends and change its definition in one place. To choose among several providers on each request based on headers, policies, or a classifier, use the [AI Router](/docs/enterprise/ai-gateway/ai-router/).
 
 ### Default Endpoints and Models
 
@@ -1963,11 +1962,6 @@ The following configuration defines the providers, gates, and a classifier once 
       ],
       "backend": [
         {
-          "host": [
-            "https://api.example.com"
-          ],
-          "url_pattern": "/v1/chat",
-          "@comment": "host and url_pattern are placeholders; the selected provider determines the real upstream.",
           "extra_config": {
             "ai/router": {
               "routes": [
@@ -2004,10 +1998,6 @@ The following configuration defines the providers, gates, and a classifier once 
       ],
       "backend": [
         {
-          "host": [
-            "https://api.example.com"
-          ],
-          "url_pattern": "/v1/route",
           "extra_config": {
             "ai/router": {
               "failover": "gpt-default",
@@ -16355,9 +16345,9 @@ You don’t need to set an Amazon API Gateway in the middle, as KrakenD does thi
 
 ## Lambda configuration
 
-Dummy hosts and url\_pattern
+No host or url\_pattern needed
 
-Notice in the examples that the `host` and `url_pattern` are needed as per the [backend definition](/docs/backends/), but KrakenD will never use them when connecting to a Lambda. Feel free to add any value in there, but the entry must be present.
+A Lambda backend does not need the `host` and `url_pattern` fields of the [backend definition](/docs/backends/), as KrakenD never uses them when connecting to a Lambda. If you have them in your configuration, KrakenD ignores them.
 
 The inclusion requires you to add the code in the `extra_config` of your `backend` section using the `backend/lambda` namespace.
 
@@ -16466,8 +16456,6 @@ The configuration would be:
   "endpoint": "/call-a-lambda",
   "backend": [
     {
-      "host": ["ignore"],
-      "url_pattern": "/ignore",
       "extra_config": {
         "backend/lambda": {
           "function_param_name": "Function_name",
@@ -16512,8 +16500,6 @@ When you associate a KrakenD endpoint to a unique lambda function, use this conf
   "endpoint": "/call-a-lambda",
   "backend": [
     {
-      "host": ["ignore"],
-      "url_pattern": "/ignore",
       "extra_config": {
         "backend/lambda": {
           "function_name": "myLambdaFunction",
@@ -16547,8 +16533,6 @@ When the name of the Lambda depends on a parameter passed in the endpoint, use t
   "endpoint": "/call-a-lambda/{lambda}",
   "backend": [
     {
-      "host": ["ignore"],
-      "url_pattern": "/ignore",
       "extra_config": {
         "backend/lambda": {
           "function_param_name": "Lambda",
