@@ -5149,6 +5149,162 @@ Schema: [https://www.krakend.io/schema/v3.0/ai/mcp\_endpoint.json](https://www.k
 
 You can write any value on the `host` and `url_pattern` of your backend, as once you add the `ai/mcp` these become irrelevant (the endpoint connects to the MCP server you just created). On the `timeout` make sure to use a value that is suitable for the services you are exposing through MCP.
 
+## MCP Tool Filtering by Audience
+
+The **tool filtering** restricts the tools an MCP server exposes according to the audience of each request. Instead of declaring a separate MCP server for every type of consumer, you declare one server with all its tools, tag each tool with the `audiences` allowed to use it, and tell KrakenD where to read the audience of the request. Use it when the same MCP server serves different profiles, such as administrators, support agents, or developers, and each one must see only the tools that belong to them.
+
+KrakenD applies the filter to the two MCP methods that deal with tools:
+
+- `tools/list` omits the tools that do not match the request audience, so the AI agent never learns they exist.
+- `tools/call` rejects calls to the tools that do not match, even when the client knows their name.
+
+Read the audience from a trusted source
+
+KrakenD trusts the audience values it reads from the request. If the client sets the header or the path param freely, it can choose its own audience and unlock any tool. Make sure the audience comes from a source you control, such as a header set by your authentication layer, and never from unverified client input.
+
+To enable the filtering, add `tool_audience_source` to the server declaration and `audiences` to each tool. For example, the following configuration declares a server with three tools for different audiences, reading the audience from the `X-Role` header:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/v3.0/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/mcp": {
+      "servers": [
+        {
+          "name": "store-tools",
+          "title": "Store tools",
+          "version": "1.0.0",
+          "instructions": "Provides tools to check the status of the store and manage orders",
+          "json_response": true,
+          "tool_audience_source": {
+            "header_name": "X-Role",
+            "on_absent_value": "deny"
+          },
+          "tools": [
+            {
+              "name": "list-orders",
+              "title": "List orders",
+              "description": "Lists the latest orders of the store",
+              "audiences": ["support", "admin"],
+              "workflow": {
+                "endpoint": "/__mcp/list-orders",
+                "backend": [
+                  {
+                    "host": ["https://api.example.com"],
+                    "url_pattern": "/orders"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "refund-order",
+              "title": "Refund order",
+              "description": "Refunds the last order of the store",
+              "audiences": ["admin"],
+              "workflow": {
+                "endpoint": "/__mcp/refund-order",
+                "backend": [
+                  {
+                    "host": ["https://api.example.com"],
+                    "url_pattern": "/orders/last/refund",
+                    "method": "POST"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "store-status",
+              "title": "Store status",
+              "description": "Returns the current status of the store",
+              "audiences": ["*"],
+              "workflow": {
+                "endpoint": "/__mcp/store-status",
+                "backend": [
+                  {
+                    "host": ["https://api.example.com"],
+                    "url_pattern": "/status"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/mcp",
+      "method": "POST",
+      "timeout": "10s",
+      "backend": [
+        {
+          "url_pattern": "/ignore",
+          "host": ["ignore"]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "store-tools"
+        }
+      }
+    }
+  ]
+}
+```
+
+KrakenD reads the `X-Role` header of every request and exposes a tool when any of the header values matches an entry in its `audiences`. The header accepts several values, either repeated or separated by commas, so a single request can carry more than one audience. The `*` entry in `store-status` matches any audience, which makes the tool available to every request that carries one.
+
+### Audience in the Path
+
+You can read the audience from a path param of the endpoint instead of a header. Set `param_name` to the name of the param, without curly braces, and declare it in the endpoint URL. The param accepts several values separated by commas.
+
+For instance, the following snippet replaces the `tool_audience_source` of the previous example:
+
+```json
+{
+  "tool_audience_source": {
+    "param_name": "audience",
+    "on_absent_value": "deny"
+  }
+}
+```
+
+And the endpoint that serves as the entrypoint declares the `{audience}` param:
+
+```json
+{
+  "endpoint": "/mcp/{audience}",
+  "method": "POST",
+  "timeout": "10s",
+  "backend": [
+    {
+      "url_pattern": "/ignore",
+      "host": ["ignore"]
+    }
+  ],
+  "extra_config": {
+    "ai/mcp": {
+      "server_name": "store-tools"
+    }
+  }
+}
+```
+
+An MCP client connecting to `/mcp/support` gets the tools of the `support` audience, and one connecting to `/mcp/support,admin` gets the tools of both. This approach is useful when the MCP client cannot send custom headers, as you can hand each consumer a different URL.
+
+When you set both `header_name` and `param_name`, KrakenD merges the values of the two sources and exposes the tools that match any of them.
+
+### Behavior When the Audience Is Absent
+
+The `on_absent_value` field decides what happens when the request carries no audience, because the header or the param is missing or empty:
+
+- `deny` (default): KrakenD lists no tools and rejects every tool call. Choose it when every consumer must identify itself, as an unidentified request gets no access at all.
+- `allow`: KrakenD lists and accepts calls to all the tools of the server. Choose it when the filtering only narrows down the tools for known audiences, and anonymous consumers can use everything.
+
+Mind that `allow` exposes every tool, including those restricted to specific audiences. If a tool is sensitive, keep the default `deny`.
+
 
 
 ---
