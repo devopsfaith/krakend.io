@@ -11141,7 +11141,7 @@ Schema: [https://www.krakend.io/schema/v3.0/server/virtualhost.json](https://www
 
 ## Declaring endpoints
 
-When you enable the virtual host plugin, KrakenD first checks the `Host` header and tries to match an endpoint with the format `/__virtual/{host}/path` in the configuration. For instance, if the user is accessing `example.com/path`, you must declare an endpoint `/__virtual/example.com/path`.
+When you enable the `server/virtualhost` component, KrakenD first checks the `Host` header and tries to match an endpoint with the format `/__virtual/{host}/path` in the configuration. For instance, if the user is accessing `example.com/path`, you must declare an endpoint `/__virtual/example.com/path`.
 
 If the configuration does not have a `/__virtual/` endpoint with the requested `example.com` host, the gateway resolves to the default endpoint `/path` if it exists or returns a `404` otherwise.
 
@@ -11358,7 +11358,7 @@ Example of configuration:
 
 ## Migration from old plugin
 
-Prior to v2.3 the `no-redirect` plugin offered this functionality, and is now deprecated as it is supported natively. If you used the plugin you will need to execute the following change in your configuration:
+KrakenD Enterprise v2.3 deprecated the `no-redirect` plugin in favor of the native HTTP client options, and v3.0 removed it. If you used the plugin, apply the following change to your configuration:
 
 ```diff
 "extra_config": {
@@ -11790,7 +11790,7 @@ The `backend/http/client` offers more options.
 
 ## Migration from old plugin
 
-Prior to v2.3 the `http-proxy` plugin offered this functionality, and is now deprecated as it is supported natively with the configuration explained above. If you used the plugin you will need to execute the following change in your configuration files:
+KrakenD Enterprise v2.3 deprecated the `http-proxy` plugin in favor of the native configuration explained above, and v3.0 removed it. If you used the plugin, apply the following change to your configuration files:
 
 ```diff
 "extra_config": {
@@ -27003,9 +27003,9 @@ Finally, your backend should have this list somewhere, and when a new user regis
 
 The Basic Authentication functionality protects access to selected endpoints using basic username and password credentials. The functionality works at the router level, and the backend is never hit when the authentication fails.
 
-The plugin version is now deprecated
+No longer a plugin
 
-Prior to v2.2, the basic authentication was provided by a plugin. The plugin’s usage is still supported for backward compatibility but is considered deprecated. Please follow the steps at the end of this document to upgrade.
+KrakenD Enterprise v2.2 deprecated the `basic-auth` plugin in favor of the native `auth/basic` component, and v3.0 removed it. If your configuration still uses the plugin, follow the steps to [upgrade from plugin-based Basic Auth](/#upgrade-from-plugin-based-basic-auth).
 
 ## How does it work
 
@@ -27056,7 +27056,7 @@ For instance:
       "extra_config": {
         "@comment": "Exceptionally an endpoint can override all settings",
         "auth/basic": {
-          "htpasswd_path": "/path/to/.htpasswd_secondary",
+          "htpasswd_path": "/path/to/.htpasswd_secondary"
         }
       }
     }
@@ -27119,19 +27119,17 @@ To delete users, edit the file and remove the desired line.
 
 ## Upgrade from plugin-based Basic Auth
 
-If you used the basic authentication plugin previous to v2.2, then you should switch to the new configuration format for the new core component that offers the following **benefits**:
+KrakenD Enterprise v2.2 deprecated the basic authentication plugin, and v3.0 removed it. If your configuration still uses the plugin, you must switch to the configuration format of the core component, which offers the following **benefits**:
 
 - Now, all rejections appear in the telemetry
 - You can override the configuration at the endpoint level
 - Easier to maintain configuration
 
-The basic auth plugin is considered deprecated, although it’s still supported for backward compatibility.
-
 ### Configuration upgrade
 
-Below you can find the same configuration for the deprecated plugin and the core component.
+Below you can find the same configuration for the removed plugin and the core component.
 
-**DEPRECATED configuration**:
+**Plugin configuration (removed in v3.0)**:
 
 ```json
 {
@@ -27159,7 +27157,7 @@ Below you can find the same configuration for the deprecated plugin and the core
 }
 ```
 
-**CURRENT configuration**:
+**Core component configuration**:
 
 ```json
 {
@@ -27187,7 +27185,7 @@ Below you can find the same configuration for the deprecated plugin and the core
             "extra_config": {
                 "auth/basic": {
                     "@comment": "Additionally an endpoint can override any settings",
-                    "htpasswd_path": "/path/to/.htpasswd_secondary",
+                    "htpasswd_path": "/path/to/.htpasswd_secondary"
                 }
             }
         }
@@ -27197,7 +27195,7 @@ Below you can find the same configuration for the deprecated plugin and the core
 
 As you can see, your configuration in the plugin moves to a new `extra_config` section named `auth/basic`. And instead of having a list of endpoints, you declare the usage directly in the endpoint. In summary:
 
-- You don’t longer need the `plugins` entry
+- You no longer need the `plugin` entry
 - The global configuration moves:
   
   - From `extra_config` / `plugin/http-server`/ `basic-auth`
@@ -32168,7 +32166,7 @@ Schema: [https://www.krakend.io/schema/v3.0/qos/ratelimit/redis.json](https://ww
 
 ## Migrating from the old Redis plugin (legacy)
 
-Before EE v2.8, an external Redis plugin offered this functionality and is now considered **deprecated**. The native namespace `qos/ratelimit/service/redis` replaces this plugin and offers a better way of dealing with stateful functionality.
+KrakenD Enterprise v2.8 deprecated the `redis-ratelimit` plugin in favor of the native namespace `qos/ratelimit/service/redis`, which offers a better way of dealing with stateful functionality, and v3.0 removed it.
 
 To migrate, you need to remove the plugin configuration from your settings, and put the values in the new namespace.
 
