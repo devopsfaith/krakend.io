@@ -13316,7 +13316,7 @@ While working with the SOAP integration, you might find it useful to set the `de
 For instance:
 
 ```log
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: /websamples.countryinfo/CountryInfoService.wso][SOAP] Template variables:
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: GET /country/:country -> POST /websamples.countryinfo/CountryInfoService.wso][SOAP] Template variables:
  {
   "req_headers": {
     "Accept": [
@@ -13341,8 +13341,8 @@ yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: /websamples.countryinfo/CountryInfo
   "req_path": "/websamples.countryinfo/CountryInfoService.wso",
   "req_querystring": {}
 }
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: /websamples.countryinfo/CountryInfoService.wso][SOAP] Generated content-type: text/xml
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: /websamples.countryinfo/CountryInfoService.wso][SOAP] Generated body:
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: GET /country/:country -> POST /websamples.countryinfo/CountryInfoService.wso][SOAP] Generated content-type: text/xml
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: GET /country/:country -> POST /websamples.countryinfo/CountryInfoService.wso][SOAP] Generated body:
  <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
@@ -18675,7 +18675,7 @@ Notice that since you are writing a JSON response by hand, you must **take care 
 Another problem you might face is that you see an error like this in the logs:
 
 ```log
-KRAKEND ERROR: [ENDPOINT: /test] invalid character 'm' looking for beginning of value
+KRAKEND ERROR: [ENDPOINT: GET /test] invalid character 'm' looking for beginning of value
 ```
 
 The `m` stands for the word`map[...]`, which indicates that you are printing the native Go data structure in the template instead of its JSON value.
@@ -18776,7 +18776,7 @@ Use the flag for faster development! But remove it in production. It is designed
 When something is not working, **read carefully the log**, as in case the templates cannot be rendered or found (the relative path could be different than you expect), you will see lines showing the problem:
 
 ```log
-KRAKEND DEBUG: [BACKEND: /foo][body-generator] open ./body.json.tmpl: no such file or directory
+KRAKEND DEBUG: [BACKEND: GET /foo -> GET /bar][body-generator] open ./body.json.tmpl: no such file or directory
 ```
 
 ## Embedding templates in base64
@@ -20326,7 +20326,7 @@ Use the flag for faster development! But remove it in production. It is designed
 It is also important to look at the rest of the log lines, as in case the templates cannot be rendered or found (the relative path could be different than you expect) you will see lines showing the problem:
 
 ```log
-KRAKEND DEBUG: [BACKEND: /foo][body-generator] open ./body.json.tmpl: no such file or directory
+KRAKEND DEBUG: [BACKEND: GET /foo -> GET /bar][body-generator] open ./body.json.tmpl: no such file or directory
 ```
 
 ## Embedding templates in base64
@@ -29046,7 +29046,7 @@ Schema: [https://www.krakend.io/schema/v3.0/auth/client-credentials.json](https:
 When you add the client credentials component in a backend, when the first request comes in, KrakenD will send a request to the identity server asking for a new token using the `client_id` and `client_secret` provided in the configuration before reaching the backend. You will see the associated error log if the token exchange URL or credentials fail. For instance:
 
 ```
-KRAKEND ERROR: [ENDPOINT: /test] Post "http://localhost:8080/test": oauth2: "invalid_client" "Bad client credentials"
+KRAKEND ERROR: [ENDPOINT: GET /test] Post "http://localhost:8080/test": oauth2: "invalid_client" "Bad client credentials"
 ```
 
 If the token exchange succeeds, KrakenD stores the token in memory, which will be reused in future requests. The `expires_in` parameter in the response from an identity provider typically denotes **for how many seconds a token is valid before it expires** (as specified in the [RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)).
@@ -37631,8 +37631,8 @@ When the `format` of the logging format is `logstash` then the output of the app
 ```
 {"@timestamp":"2022-06-15T15:37:02.619+00:00", "@version": 1, "level": "DEBUG", "message": "[SERVICE: Gin] Debug enabled", "module": "KRAKEND"}
 {"@timestamp":"2022-06-15T15:37:02.619+00:00", "@version": 1, "level": "INFO", "message": "Starting the KrakenD instance", "module": "KRAKEND"}
-{"@timestamp":"2022-06-15T15:37:02.619+00:00", "@version": 1, "level": "DEBUG", "message": "[ENDPOINT: /test] Building the proxy pipe", "module": "KRAKEND"}
-{"@timestamp":"2022-06-15T15:37:02.619+00:00", "@version": 1, "level": "DEBUG", "message": "[BACKEND: /404] Building the backend pipe", "module": "KRAKEND"}
+{"@timestamp":"2022-06-15T15:37:02.619+00:00", "@version": 1, "level": "DEBUG", "message": "[ENDPOINT: GET /test] Building the proxy pipe", "module": "KRAKEND"}
+{"@timestamp":"2022-06-15T15:37:02.619+00:00", "@version": 1, "level": "DEBUG", "message": "[BACKEND: GET /test -> GET /404] Building the backend pipe", "module": "KRAKEND"}
 ```
 
 The application **access log** will still show in plain text. For example, you might see the application logs in JSON and the **application logs** in JSON. For example:
@@ -41947,11 +41947,11 @@ yyyy/mm/dd hh:mm:ss KRAKEND INFO: [SERVICE: Handler Plugin] Total plugins loaded
 yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [SERVICE: Modifier Plugin] plugin #0 (krakend-server-example/krakend-server-example.so): plugin: symbol ModifierRegisterer not found in plugin krakend-server-example
 yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [SERVICE: Plugin Loader] Loading process completed
 yyyy/mm/dd hh:mm:ss KRAKEND INFO: Starting the KrakenD instance
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: /test/:id] Building the proxy pipe
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: /__health] Building the backend pipe
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: /test/:id] Building the http handler
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: /test/:id][JWTSigner] Signer disabled
-yyyy/mm/dd hh:mm:ss KRAKEND INFO: [ENDPOINT: /test/:id][JWTValidator] Validator disabled for this endpoint
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: GET /test/:id] Building the proxy pipe
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: GET /test/:id -> GET /__health] Building the backend pipe
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: GET /test/:id] Building the http handler
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: GET /test/:id][JWTSigner] Signer disabled
+yyyy/mm/dd hh:mm:ss KRAKEND INFO: [ENDPOINT: GET /test/:id][JWTValidator] Validator disabled for this endpoint
 yyyy/mm/dd hh:mm:ss KRAKEND INFO: [SERVICE: Gin] Listening on port: 8080
 yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: The plugin is now hijacking the path /hijack-me
 yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [PLUGIN: Server] Injecting plugin krakend-server-example
@@ -42211,13 +42211,13 @@ yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [SERVICE: Handler Plugin] plugin #0 (krakend-
 yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [SERVICE: Modifier Plugin] plugin #0 (krakend-client-example/krakend-client-example.so): plugin: symbol ModifierRegisterer not found in plugin krakend-client-example
 yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [SERVICE: Plugin Loader] Loading process completed
 yyyy/mm/dd hh:mm:ss KRAKEND INFO: Starting the KrakenD instance
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: /test/:id] Building the proxy pipe
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: /__health] Building the backend pipe
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: GET /test/:id] Building the proxy pipe
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: GET /test/:id -> GET /__health] Building the backend pipe
 yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: The plugin is now hijacking the path /hijack-me
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: /__health] Injecting plugin krakend-client-example
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: /test/:id] Building the http handler
-yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: /test/:id][JWTSigner] Signer disabled
-yyyy/mm/dd hh:mm:ss KRAKEND INFO: [ENDPOINT: /test/:id][JWTValidator] Validator disabled for this endpoint
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [BACKEND: GET /test/:id -> GET /__health] Injecting plugin krakend-client-example
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: GET /test/:id] Building the http handler
+yyyy/mm/dd hh:mm:ss KRAKEND DEBUG: [ENDPOINT: GET /test/:id][JWTSigner] Signer disabled
+yyyy/mm/dd hh:mm:ss KRAKEND INFO: [ENDPOINT: GET /test/:id][JWTValidator] Validator disabled for this endpoint
 yyyy/mm/dd hh:mm:ss KRAKEND INFO: [SERVICE: Gin] Listening on port: 8080
 ...
 ```
@@ -42230,7 +42230,7 @@ The essential lines are:
 
 - `[PLUGIN: krakend-client-example] Logger loaded` printed by the plugin logger we introduced in our code telling us that the plugin is loaded
 - The `[SERVICE: Executor Plugin] Total plugins loaded: 1` telling us there is one type of plugin for this type
-- `[BACKEND: /__health] Injecting plugin krakend-client-example` telling us that the plugin is loaded AND injected by the configuration.
+- `[BACKEND: GET /test/:id -> GET /__health] Injecting plugin krakend-client-example` telling us that the plugin is loaded AND injected by the configuration.
 
 If you see these lines, you did great! Your plugin is working.
 
