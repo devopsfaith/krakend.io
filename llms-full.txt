@@ -5139,6 +5139,141 @@ Schema: [https://www.krakend.io/schema/v3.0/ai/mcp\_endpoint.json](https://www.k
 
 You can write any value on the `host` and `url_pattern` of your backend, as once you add the `ai/mcp` these become irrelevant (the endpoint connects to the MCP server you just created). On the `timeout` make sure to use a value that is suitable for the services you are exposing through MCP.
 
+## MCP Server Authorization with OAuth
+
+The **MCP authorization** protects your MCP servers with the OAuth 2.1 flow that the [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) defines, so only authenticated AI agents can list and call your tools. In this flow, KrakenD acts as the resource server: it validates the access token of every MCP request and announces which authorization server issues those tokens. Your existing identity provider (Keycloak, Auth0, Okta, or any other OAuth 2.1 server) keeps the user login and the token issuing.
+
+You don’t need any custom code to make it work. Two built-in features of KrakenD Enterprise cover the whole resource server role:
+
+1. The [JWT validation](/docs/authorization/jwt-validation/) on the MCP entrypoint rejects requests without a valid token.
+2. The [static filesystem](/docs/enterprise/endpoints/serve-static-content/) serves the OAuth 2.0 Protected Resource Metadata ([RFC 9728](https://datatracker.ietf.org/doc/html/rfc9728)), the document MCP clients read to discover your authorization server.
+
+MCP authorization requires HTTPS
+
+MCP clients only complete the OAuth flow against HTTPS URLs, both for the MCP server and the authorization server. Enable [TLS](/docs/service-settings/tls/) in KrakenD, or terminate TLS in a load balancer or reverse proxy in front of it, and use the public HTTPS URLs in the metadata document.
+
+The following diagram shows how an MCP client connects to a protected MCP server for the first time:
+
+![ai-gateway-mcp-auth.seq.mmd diagram](/images/documentation/diagrams/ai-gateway-mcp-auth.seq.mmd.svg)
+
+The client sends a first request without a token and receives a `401 Unauthorized`. Then it fetches the metadata document from a well-known URL, learns the authorization server, and completes the login there. From then on, it sends the access token in the `Authorization: Bearer` header of every MCP request, and KrakenD validates it before running any tool.
+
+### Protecting the MCP Entrypoint with JWT Validation
+
+To require a token, add the `auth/validator` namespace to the endpoint that serves as the MCP entrypoint. For example, the following configuration protects the `/mcp` endpoint with the tokens issued by a Keycloak realm, and only accepts users with the `mcp-user` role:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/v3.0/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/mcp": {
+      "servers": [
+        {
+          "name": "store-tools",
+          "title": "Store tools",
+          "version": "1.0.0",
+          "instructions": "Provides tools to check the status of the store",
+          "tools": [
+            {
+              "name": "store-status",
+              "title": "Store status",
+              "description": "Returns the current status of the store",
+              "workflow": {
+                "endpoint": "/__mcp/store-status",
+                "backend": [
+                  {
+                    "host": ["https://api.example.com"],
+                    "url_pattern": "/status"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/mcp",
+      "method": "POST",
+      "timeout": "10s",
+      "backend": [
+        {
+          "url_pattern": "/ignore",
+          "host": ["ignore"]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "store-tools"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.example.com/realms/krakend/protocol/openid-connect/certs",
+          "issuer": "https://idp.example.com/realms/krakend",
+          "audience": ["https://mcp.example.com/mcp"],
+          "roles_key": "realm_access.roles",
+          "roles_key_is_nested": true,
+          "roles": ["mcp-user"]
+        }
+      }
+    }
+  ]
+}
+```
+
+KrakenD checks the signature of the token against the `jwk_url` of your identity provider, its issuer, its audience, and its roles. Requests with a missing, expired, or invalid token get a `401 Unauthorized`, which is the response that starts the OAuth flow on the MCP client. Valid tokens that lack the `mcp-user` role get a `403 Forbidden`.
+
+The MCP specification requires the MCP server to accept only the tokens issued for it, so set the `audience` to the public URL of your MCP endpoint and configure your identity provider to include it in the `aud` claim. This prevents agents from reusing tokens issued for other services. You can combine this validation with the [tool filtering](/docs/enterprise/ai-gateway/mcp-server/#mcp-tool-filtering-by-audience) below, for instance by [propagating a claim](/docs/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers) as the header that sets the audience of the tools.
+
+### Announcing the Authorization Server with Protected Resource Metadata
+
+MCP clients need to know which authorization server issues the tokens for your MCP server. The specification offers two discovery mechanisms, a `resource_metadata` parameter in the `WWW-Authenticate` header of the `401` response, or a document served on a well-known URL. MCP clients must support both, so serving the well-known URL is enough.
+
+The well-known URL inserts `/.well-known/oauth-protected-resource` before the path of the MCP endpoint. For an MCP server on `https://mcp.example.com/mcp`, the client requests `https://mcp.example.com/.well-known/oauth-protected-resource/mcp`, and when it does not exist, falls back to `https://mcp.example.com/.well-known/oauth-protected-resource`.
+
+To serve the document from KrakenD, add a [wildcard endpoint](/docs/enterprise/endpoints/wildcard/) with a `backend/static-filesystem` backend to the `endpoints` list of the previous example:
+
+```json
+{
+  "endpoint": "/.well-known/*",
+  "method": "GET",
+  "output_encoding": "no-op",
+  "backend": [
+    {
+      "url_pattern": "/",
+      "host": ["http://ignore"],
+      "extra_config": {
+        "backend/static-filesystem": {
+          "path": "/etc/krakend/well_known"
+        }
+      }
+    }
+  ]
+}
+```
+
+Then save the metadata document in the file `/etc/krakend/well_known/oauth-protected-resource/mcp`. The path of the file under the `path` directory matches the path of the request after `/.well-known/`, so a single endpoint serves the metadata of all your MCP servers. Its content looks like this:
+
+```json
+{
+  "resource": "https://mcp.example.com/mcp",
+  "authorization_servers": ["https://idp.example.com/realms/krakend"],
+  "bearer_methods_supported": ["header"],
+  "scopes_supported": ["openid", "roles"]
+}
+```
+
+The `resource` is the public URL of your MCP endpoint and must match the `audience` you validate. The `authorization_servers` lists the issuers the client can use to get a token, and the client discovers their login and token endpoints from their own metadata. The `scopes_supported` tells the client which scopes to request during the login.
+
+### Example: MCP Authorization in a Real Use Case
+
+The `examples` repository contains a full stack showcasing MCP authorization at work. It runs KrakenD with a Keycloak identity provider and an nginx proxy that terminates TLS with self-signed certificates, so you can connect a real MCP client like Claude Code to a protected MCP server.
+
+[Check example](https://github.com/krakend/examples/tree/main/ai_gateway/mcp_auth "Check example")
+
 ## MCP Tool Filtering by Audience
 
 The **tool filtering** restricts the tools an MCP server exposes according to the audience of each request. Instead of declaring a separate MCP server for every type of consumer, you declare one server with all its tools, tag each tool with the `audiences` allowed to use it, and tell KrakenD where to read the audience of the request. Use it when the same MCP server serves different profiles, such as administrators, support agents, or developers, and each one must see only the tools that belong to them.
