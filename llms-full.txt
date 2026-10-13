@@ -1551,7 +1551,7 @@ Then the user calls one endpoint or the other, and the API offers one endpoint p
 
 # [AI Router for LLM Provider Selection (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/)
 
-The **AI Router** selects which LLM provider from your [provider inventory](/docs/enterprise/ai-gateway/unified-llm-interface/#llm-provider-inventory) handles each request. It matches requests with reusable **gates** (header or policy conditions), organizes them into an ordered decision tree, and can hand the final choice to a **classifier** that picks the best provider from a candidate list. A failover guarantees a provider even when nothing matches. Because routes reference providers by name, the client sends its request to a single endpoint and never selects a model or vendor; the router decides.
+The **AI Router** selects which LLM provider from your [provider inventory](/docs/enterprise/ai-gateway/unified-llm-interface/#llm-provider-inventory) handles each request. It matches requests with reusable **gates** (header or policy conditions), organizes them into an ordered decision tree, and can hand the final choice to a **classifier** that picks the best provider from a candidate list. A failover takes over when a classifier or the chosen provider fails, and a final route without gates catches the requests that match no other route. Because routes reference providers by name, the client sends its request to a single endpoint and never selects a model or vendor; the router decides.
 
 Requires the provider inventory
 
@@ -1561,7 +1561,7 @@ Routes and classifiers reference providers by `name`, so define your providers f
 
 You configure routing in two places. Gates and classifiers are shared, reusable definitions declared once at the service level under the `ai/classifiers` namespace. The routing rules that use them live in a backend’s `extra_config` under the `ai/router` namespace, in an ordered `routes` list.
 
-For each request, KrakenD evaluates the routes from top to bottom and uses the first one that matches. A route matches when all of its gates pass; a route with no gates always matches, so you can use it as an inline fallback. When the matching route names a `provider`, the router forwards the request to that provider from the inventory. When it names a `classifier` and a list of `providers`, the classifier chooses among them. Routes can also nest, forming a decision tree: a gated route holds its own `routes`, evaluated only when its gates pass.
+For each request, KrakenD evaluates the routes from top to bottom and uses the first one that matches. A route matches when all of its gates pass; a route with no gates always matches, so you can use it as an inline fallback. When no route matches and there is no such route, the request fails: the failover does not apply to requests that match no route. When the matching route names a `provider`, the router forwards the request to that provider from the inventory. When it names a `classifier` and a list of `providers`, the classifier chooses among them. Routes can also nest, forming a decision tree: a gated route holds its own `routes`, evaluated only when its gates pass.
 
 Route on signals the client cannot forge
 
@@ -1820,20 +1820,34 @@ Instead of a single `provider`, a route can name a `classifier` and a list of ca
           "coding-basic"
         ],
         "failover": "coding-basic"
+      },
+      {
+        "provider": "cheap-quick"
       }
     ]
   }
 }
 ```
 
-Enterprise requests are handed to the `smart` classifier, which picks among `cheap-quick`, `gemini-flash`, and `coding-basic`. If the classifier cannot return a choice, the route’s own `failover` sends the request to `coding-basic`.
+Enterprise requests are handed to the `smart` classifier, which picks among `cheap-quick`, `gemini-flash`, and `coding-basic`. If the classifier cannot return a choice, or the provider it picked fails, the route’s own `failover` sends the request to `coding-basic`. Every other request falls through to `cheap-quick`, the final route without gates; if `cheap-quick` fails, the router-level `failover` sends the request to `gpt-default`.
 
-### Failover
+### Failover and Fallback
 
-The router supports a failover at two levels:
+The router has two different safety nets.
 
-- **Route failover**: a `failover` inside a classifier route names the provider used when that route’s classifier cannot return a choice. It requires a `classifier` and takes precedence over the router-level failover.
-- **Router failover**: the `failover` next to `routes` names the provider used when no route matches, or when a classifier fails and its route sets no failover of its own. It is the safety net for the whole router, and an alternative to a trailing route without gates.
+**Failover** handles errors. It names the provider that serves the request when a classifier cannot return a choice, or when the provider a route chose fails (an error response from the provider). You can set it at two levels:
+
+- **Route failover**: a `failover` inside a route covers that route. On a route with a `provider`, it serves the request when that provider fails. On a route with a `classifier`, it serves the request when the classifier cannot return a choice or the provider it chose fails. It takes precedence over the router-level failover.
+- **Router failover**: the `failover` next to `routes` covers every route that sets no failover of its own, whether it names a `provider` or a `classifier`.
+
+**Fallback** handles requests that match no route. Place a route without `gates` and without `classifier` last in `routes`: it always matches, so it catches every request the routes above it do not. The failover does not apply to requests that match no route. Without a fallback route, such a request fails with an error.
+
+| Situation                                        | Who serves the request                                        |
+|--------------------------------------------------|---------------------------------------------------------------|
+| A route matches and its provider answers         | That provider                                                 |
+| The classifier of a route cannot return a choice | The route failover, or else the router failover               |
+| The provider a route chose fails                 | The route failover, or else the router failover               |
+| No route matches                                 | The final route without gates; without one, the request fails |
 
 The following fields are available under the backend-level `ai/router` namespace:
 
@@ -1843,26 +1857,57 @@ The following fields are available under the backend-level `ai/router` namespace
 
 ##### [`failover`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#failover "Click to copy link to failover") string
 
-The name of the provider in the `ai/providers` inventory that handles the request when no route matches, or when a classifier cannot return a choice and its route sets no `failover` of its own. It is the safety net of the whole router, and an alternative to a trailing route without `gates`.
+The name of the provider in the `ai/providers` inventory that handles the request when a classifier cannot return a choice, or when the provider a route chose fails, and that route sets no `failover` of its own. It does not apply to requests that match no route: place a route without `gates` last in `routes` for those.
 
 Example: `"gpt-default"`
 
 ##### [`routes`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#routes "Click to copy link to routes") * array
 
-The ordered list of routes. KrakenD evaluates them from top to bottom and uses the first one that matches. A route without `gates` always matches, so place it last as an inline fallback.
+The ordered list of routes. KrakenD evaluates them from top to bottom and uses the first one that matches. A route without `gates` always matches, so place it last as the fallback for requests that match no other route; without it, such a request fails, even with a `failover`.
 
 Schema: [https://www.krakend.io/schema/v3.0/ai/router.json](https://www.krakend.io/schema/v3.0/ai/router.json "JSON schema definition")
 
 Each object in the `routes` list accepts the following fields:
 
-| Field        | Description                                                                                                                                                                                        |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `gates`      | The names of the gates declared in `ai/classifiers` that must all pass for the route to match. Omit it to create a route that always matches.                                                      |
-| `provider`   | The name of the provider in the inventory that handles the request when the route matches. You cannot use it together with `classifier`.                                                           |
-| `classifier` | The name of a classifier declared in `ai/classifiers` that chooses the best provider from the `providers` list. You cannot use it together with `provider`.                                        |
-| `providers`  | The names of the providers the `classifier` chooses from. It requires a `classifier`.                                                                                                              |
-| `failover`   | The provider that handles the request when the `classifier` of this route cannot return a choice. It requires a `classifier` and takes precedence over the router-level `failover`.                |
-| `routes`     | The ordered list of nested routes that KrakenD evaluates only when the gates of this route pass. Nested routes can go to any depth, and a route that only groups other routes needs no `provider`. |
+##### Fields of Route
+
+\* required fields
+
+##### [`classifier`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#classifier "Click to copy link to classifier") string
+
+The name of a classifier declared in `ai/classifiers` that chooses the best provider from the `providers` list. You cannot use it together with `provider`.
+
+Example: `"smart"`
+
+##### [`failover`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#failover "Click to copy link to failover") string
+
+The provider to use when this route fails. A route fails when its provider returns an error or its classifier cannot pick one. It overrides the router-level `failover`. You cannot use it with `routes`.
+
+Example: `"gpt-default"`
+
+##### [`gates`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#gates "Click to copy link to gates") array of strings
+
+The names of the gates declared in `ai/classifiers` that must all pass for the route to match. Omit it to create a route that always matches.
+
+Example: `["plan_enterprise","usecase_code"]`
+
+##### [`provider`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#provider "Click to copy link to provider") string
+
+The name of the provider in the `ai/providers` inventory that handles the request when the route matches. You cannot use it together with `classifier`.
+
+Example: `"cheap-quick"`
+
+##### [`providers`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#providers "Click to copy link to providers") array of strings
+
+The names of the providers in the `ai/providers` inventory that the `classifier` chooses from. It requires a `classifier`.
+
+Example: `["cheap-quick","gemini-flash","coding-basic"]`
+
+##### [`routes`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#routes "Click to copy link to routes") array
+
+The ordered list of routes that KrakenD evaluates only when the gates of this route pass. Nested routes can go to any depth, forming a decision tree, and a route that only groups other routes needs no `provider`.
+
+Schema: [https://www.krakend.io/schema/v3.0/ai/router.json](https://www.krakend.io/schema/v3.0/ai/router.json "JSON schema definition")
 
 ## Configuration Example
 
@@ -2010,6 +2055,9 @@ The following configuration defines the providers, gates, and a classifier once 
                     "gemini-flash",
                     "coding-basic"
                   ]
+                },
+                {
+                  "provider": "cheap-quick"
                 }
               ]
             }
@@ -2021,7 +2069,7 @@ The following configuration defines the providers, gates, and a classifier once 
 }
 ```
 
-On the `/v1/chat` endpoint, enterprise-plan requests enter the nested branch and route to `coding-team` for code tasks or to `gemini-flash` otherwise, pro-plan requests go to `coding-basic`, and any other request falls through to `cheap-quick`. On the `/v1/route` endpoint, enterprise requests are classified by `smart` across three candidate providers, and `gpt-default` serves as the failover when no route matches or the classifier cannot decide.
+On the `/v1/chat` endpoint, enterprise-plan requests enter the nested branch and route to `coding-team` for code tasks or to `gemini-flash` otherwise, pro-plan requests go to `coding-basic`, and any other request falls through to `cheap-quick`. On the `/v1/route` endpoint, enterprise requests are classified by `smart` across three candidate providers; when `smart` cannot decide or the provider it picked fails, `gpt-default` serves them as the failover. Any other request falls through to `cheap-quick`, the final route without gates, and `gpt-default` also takes over if `cheap-quick` fails.
 
 The AI Router is the inventory-based way to choose a provider per request. For the other routing strategies, such as conditional or path-based routing, see [LLM Routing](/docs/enterprise/ai-gateway/llm-routing/).
 
