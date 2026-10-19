@@ -4370,6 +4370,18 @@ Downloading an embedding model 
 $krakend ai download-model -model sentence-transformers/all-MiniLM-L6-v2
 ```
 
+### Model Download Cache Directory
+
+The `download-model` command first downloads the model files into a local Hugging Face cache, and then copies them to the `--path` directory. The cache lives in `$XDG_CACHE_HOME/huggingface/hub`, or in `$HOME/.cache/huggingface/hub` when `XDG_CACHE_HOME` is not set. When the model is already in the cache, the command reuses it and skips the download.
+
+The download fails when you run the command as a system user without a home directory and `XDG_CACHE_HOME` is not set. To choose the cache location, set the `XDG_CACHE_HOME` environment variable:
+
+Setting the download cache directory 
+
+```
+$XDG_CACHE_HOME=/tmp/cache krakend ai download-model -model sentence-transformers/all-MiniLM-L6-v2
+```
+
 ## Service Configuration
 
 Declare the shared resources in the root `extra_config`. You need a [Redis connection pool](/docs/enterprise/service-settings/redis-connection-pools/), which the semantic cache uses as its vector storage, and the embedders under the `ai/semantic-cache` namespace. The optional [OpenTelemetry](/docs/enterprise/telemetry/opentelemetry/) block below exposes the cache hit and miss metrics through the [Prometheus](/docs/enterprise/telemetry/prometheus/) exporter:
