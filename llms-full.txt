@@ -41796,6 +41796,8 @@ Security risk of passthrough
 
 With `passthrough`, traffic flows through the endpoint as if the plugin did not exist. Never use it with plugins that enforce security, such as authentication, authorization, or IP filtering: a load failure would silently expose the endpoints they protect.
 
+`on_load_error` and `on_load_default_error` only apply while KrakenD loads the plugin. After loading it, KrakenD calls the plugin factory and continues running whatever the factory returns, regardless of these properties. If a factory failure must stop KrakenD or reject all incoming requests, handle it in your plugin code, for instance, by calling `os.Exit` or `logger.Fatal`, or by returning a handler that rejects every request.
+
 Combine both properties to treat plugins differently according to their role. For example, a security plugin must prevent KrakenD from starting when it fails, while an optional enrichment plugin can be skipped:
 
 ```json
