@@ -1,4 +1,88 @@
-# KrakenD API Gateway Documentation
+# KrakenD
+
+> KrakenD is a high-performance, stateless API and AI gateway. The Community Edition is open source and self-hosted; the Enterprise Edition adds security, governance, AI Gateway and MCP Server features with commercial support.
+
+## Full text
+
+- [KrakenD Community Edition](https://www.krakend.io/llms-full-ce.txt): the open source landing and the Community Edition docs in one file
+- [KrakenD Enterprise](https://www.krakend.io/llms-full-ee.txt): the Enterprise landing and the Enterprise-only docs
+- [KrakenD AI Gateway](https://www.krakend.io/llms-full-ai-gateway.txt): the AI Gateway and MCP Server landings and the AI Gateway docs
+- [All documentation](https://www.krakend.io/llms-full.txt): every current docs page
+
+
+## Products
+- [Open Source API Gateway, Self-Hosted](https://www.krakend.io/open-source/): KrakenD is an open-source, zero-DB, self-hosted API gateway for aggregation, transformation, and security. KrakenD runs anywhere—GitOps-ready and lightning fast.
+- [Enterprise API Gateway for Security & Compliance](https://www.krakend.io/enterprise/): Enterprise-grade API gateway with SSO, RBAC, security policies, quotas, and analytics. Predictable pricing, dedicated support, and seamless migration.
+- [One Gateway for APIs and AI](https://www.krakend.io/ai-gateway/): A production-grade API gateway with native AI capabilities. Route, secure and govern any LLM call from the same infrastructure your APIs already run on.
+- [MCP Server for APIs: Expose Your APIs as AI Agent Tools](https://www.krakend.io/mcp-server/): KrakenD's built-in MCP Server exposes your existing APIs as tools for AI agents, with auth, rate limiting and governance already in place. No new infrastructure.
+- [Key KrakenD Features - Open Source VS Enterprise](https://www.krakend.io/features/): Discover the key features and capabilities offered by KrakenD API Gateway, empowering you to build robust and scalable microservices architectures
+- [Download KrakenD API Gateway](https://www.krakend.io/download/): Get the latest version of KrakenD API Gateway and empower your microservices architecture with high-performance API management. On-premises, in the cloud, self-hosted...
+- [KrakenD API Gateway Support - Get Help and Assistance](https://www.krakend.io/support/): Access the support resources for KrakenD API Gateway, including documentation, forums, and contact information, to get help and assistance with your implementation
+- [KrakenD Pricing FAQ](https://www.krakend.io/faq-pricing/): Discover how KrakenD Enterprise licensing works. From what defines an instance, to onboarding, auto-scaling, support coverage, and update policies. Learn what happens if you switch between open-source and Enterprise, and how global support time zones and languages are managed.
+
+
+## Comparisons and migration
+- [KrakenD vs Kong: API Gateway Comparison & Pricing](https://www.krakend.io/krakend-vs-kong/): Compare KrakenD vs Kong: stateless config and flat-tiered pricing versus Lua plugins, a database-backed control plane, and traffic-based Enterprise pricing.
+- [KrakenD vs Tyk: API Gateway Comparison & Pricing](https://www.krakend.io/krakend-vs-tyk/): Compare KrakenD vs Tyk: both started open source, only one stayed that way. See the G2 data and what changed when Tyk closed its Kubernetes Operator.
+- [KrakenD vs Google Apigee: API Gateway Comparison & Pricing](https://www.krakend.io/krakend-vs-apigee/): Compare KrakenD vs Google Apigee: flat-tiered pricing and no Google Cloud lock-in versus a per-call pricing model that grows with your traffic.
+- [KrakenD vs AWS API Gateway: Comparison & Pricing](https://www.krakend.io/krakend-vs-aws-api-gateway/): Compare KrakenD vs AWS API Gateway: flat-tiered pricing and any-cloud portability versus per-million-request pricing locked to the AWS ecosystem.
+- [API Gateway Migration Guides & Comparisons](https://www.krakend.io/api-gateway-migration/): Compare KrakenD against Kong, Google Apigee, Tyk, and AWS API Gateway, plus a migration guide for each: what changes, what stays, how to move.
+- [Migrate From Kong to KrakenD](https://www.krakend.io/api-gateway-migration/kong/): Kong works, until every upgrade becomes a project. See what changes when Lua plugins and a stateful control plane give way to declarative, stateless config.
+- [Migrate From Tyk to KrakenD](https://www.krakend.io/api-gateway-migration/tyk/): Tyk calls it open source. Check what's actually in the free tier. See what changes when a dashboard-driven control plane gives way to stateless config.
+- [Migrate From Google Apigee to KrakenD](https://www.krakend.io/api-gateway-migration/apigee/): Google Apigee grows with your traffic. So does your bill. See what changes when per-call pricing and a Google Cloud control plane give way to flat, stateless config.
+- [Migrate From AWS API Gateway to KrakenD](https://www.krakend.io/api-gateway-migration/aws-api-gateway/): AWS API Gateway is great if you plan to stay on AWS forever. See what changes when per-request pricing and AWS lock-in give way to flat, portable config.
+
+
+## Solutions
+- [Monolith to Microservices: The API Gateway Layer That Makes It Safe](https://www.krakend.io/solutions/monolith-to-microservices/): Extracting services from a monolith breaks clients unless something composes the responses. Here's how KrakenD makes incremental migration safe, with the strangler fig pattern.
+- [AI Governance: What It Is and How to Implement It](https://www.krakend.io/solutions/ai-governance/): AI governance is the policies and controls that determine who calls which model, at what cost, and with what data. Here's how to implement it, no new platform.
+- [KrakenD for Banks & Financial Institutions](https://www.krakend.io/solutions/open-banking/): Expose Open Banking APIs without losing control. KrakenD helps banks and regulated financial institutions secure partner access, reduce audit scope, and deliver predictable low-latency APIs at scale.
+- [KrakenD for E-Commerce](https://www.krakend.io/solutions/e-commerce/): Scale your e-commerce platform with KrakenD. Handle Black Friday traffic spikes, protect checkout performance, and boost conversions with ultra-low latency APIs, flat-rate pricing, and zero vendor lock-in.
+- [KrakenD for e-Government](https://www.krakend.io/solutions/e-government/): Modernize government digital services without compromising data sovereignty. KrakenD is an air-gapped, on-prem API and AI Gateway built for legacy systems, audits, and classified environments.
+
+
+## Case studies
+- [Every Change Reviewed, Every Peak Absorbed: Paribu's API Gateway](https://www.krakend.io/case-study/paribu/): Turkish fintech Paribu runs its trading API on KrakenD Enterprise with configuration as code, letting 15+ teams ship 500+ routes through reviewed PRs.
+- [How UniGroup Retired GraphQL for a Self-Serve API Gateway](https://www.krakend.io/case-study/unigroup/): UniGroup chose KrakenD over Tyk to replace a tightly-coupled GraphQL gateway, letting engineering teams self-serve new endpoints without depending on the platform team.
+- [How Moniepoint Scaled to 102M Daily API Calls with KrakenD](https://www.krakend.io/case-study/moniepoint/): Moniepoint, the African banking fintech, runs 102 million API requests a day on a per-team KrakenD architecture that hit zero infrastructure incidents.
+- [How Hivebrite made their APIs AI-agent-ready with KrakenD](https://www.krakend.io/case-study/hivebrite/): Hivebrite, the community engagement platform behind 2,000+ networks, generates its REST API, MCP tools, and audience-scoped docs from a single OpenAPI contract through KrakenD, with zero duplicated gateway config.
+- [How Showpo Rebuilt Its API Layer for a Global Headless Migration](https://www.krakend.io/case-study/showpo/): Showpo, a $100M+ Australian fashion brand, replatformed to a headless Shopify Plus stack and used KrakenD as its BFF to cut backend load by ~40% and deliver zero-downtime deployments.
+- [How Linex Travel reduced product launch time by 70% with KrakenD](https://www.krakend.io/case-study/linex-travel/): Linex Travel, a Colombian loyalty-tech platform serving over 60 million users, uses KrakenD's JWT-based dynamic routing to serve every business model, marketplace, and payment mode from a single API layer.
+- [How Delly's Scaled their API Platform with KrakenD](https://www.krakend.io/case-study/dellys/): Discover how Delly's, Brazil's largest food service distributor, uses KrakenD API Gateway to centralize routing, reduce costs, and scale its microservices.
+- [How Neostella Built an API-First Legal Platform with KrakenD](https://www.krakend.io/case-study/neostella/): Discover how Neostella powers a secure, scalable, API-first legal platform using KrakenD API Gateway for centralized security, traffic management, and observability.
+- [How Suvoda Scaled eClinical Integrations with KrakenD](https://www.krakend.io/case-study/suvoda/): Discover how Suvoda unified its API layer with KrakenD API Gateway to streamline secure healthcare integrations and accelerate partner onboarding.
+- [How Culture Amp Streamlined API Management with KrakenD](https://www.krakend.io/case-study/cultureamp/): Discover how Culture Amp achieved increased developer velocity, reliable routing, and operational stability using KrakenD API Gateway.
+- [How Neo4j Scaled Internal API Infrastructure with KrakenD](https://www.krakend.io/case-study/neo4j/): Discover how Neo4j scaled its internal API architecture and simplified authentication workflows using KrakenD API Gateway.
+- [How Diebold Nixdorf Simplified their Retail API Platform](https://www.krakend.io/case-study/diebold-nixdorf/): Read the case study on how Diebold Nixdorf, a global leader in finance & connected commerce, implemented KrakenD API Gateway to streamline their API management and improve performance
+- [MyCarrier: One Powerful API for Smarter Logistics](https://www.krakend.io/case-study/mycarrier/): See how MyCarrier unified microservices into one seamless API, bringing control and security to logistics.
+- [lastminute.com Case Study: Success Story](https://www.krakend.io/case-study/lastminute/): Transforming API Governance and Development with KrakenD at lastminute.com
+- [DigitalRoute Case Study: Success Story](https://www.krakend.io/case-study/digitalroute/): KrakenD case study for DigitalRoute: Transforming data pipelines into public APIs
+- [Coop Atlantique Case Study: Success Story](https://www.krakend.io/case-study/coop-atlantique/): KrakenD case study for Coop Atlantique: Exposing securely services powered by SAP.
+- [Bloom Credit: Multi-Provider API Security with KrakenD](https://www.krakend.io/case-study/bloom-credit/): Learn how Bloom Credit used KrakenD to unify API security and scale transaction handling in fintech.
+- [Jobteaser Case Study: Scalable Public APIs with KrakenD](https://www.krakend.io/case-study/jobteaser/): Discover how JobTeaser, Europe’s leading career platform for young talent, transformed its API infrastructure with KrakenD. Learn about their challenges, integration, and long-term commitment to KrakenD for scalable, versatile API management.
+- [OnchainPLM Case Study: Success Story](https://www.krakend.io/case-study/onchainplm/): OnchainPLM modernized its gateway with KrakenD, achieving agile deployments, easy customization, and improved product delivery for their cloud-native PLM solutions
+- [Instill AI Case Study: Success Story](https://www.krakend.io/case-study/instill/): Discover how Instill AI is offering innovative no-code tools to fuel APIs behind Artificial Intelligence, designed to transform unstructured data into meaningful data representations
+- [Bikefolder Case Study: Success Story](https://www.krakend.io/case-study/bikefolder/): Read about how BikeFolder.com prepared for future challenges and growth with the high-performance KrakenD API Gateway deployed on Amazon Web Services.
+- [Rainbow Smile Case Study: Success Story](https://www.krakend.io/case-study/rainbow-smile/): Rainbow Smile, the second largest retail chain in Russia, implemented KrakenD and saw a 10% reduction in TTM and a 70% increase in hypothesis testing speed.
+- [Case Study: Child Rescue Coalition](https://www.krakend.io/case-study/child-rescue-coalition/): KrakenD case study for CRC: Protecting API communications with our law enforcement partners to protect children from sexual exploitation
+- [Rappi - KrakenD API Gateway Case Study](https://www.krakend.io/case-study/rappi/): Read the case study on how Rappi, a leading delivery platform, implemented KrakenD API Gateway to streamline their API management and improve performance
+- [Pretty Technical Case Study: Success Story](https://www.krakend.io/case-study/pretty-technical/): KrakenD case study for Pretty Technical: Saving hours of engineering effort to compose microservices and nanoservices safely
+- [AlfaStrakhovanie Case Study - Success Stories](https://www.krakend.io/case-study/alfa-strakhovanie/): Watch the recorded session of Viktor Bushmin (Lead System Architect) explaining the success case of KrakenD at AlfaStrakhovanie
+- [Afosto Case Study: Success Story](https://www.krakend.io/case-study/afosto/): KrakenD case study for Afosto: Achieving a great reduction of operational overhead to drive headless e-commerce
+- [4data Case Study: Success Story](https://www.krakend.io/case-study/4data/): KrakenD case study for 4data: Protecting APIs on a Swiss cloud-services company because KrakenD is easy to use, with a small footprint, and good performance
+- [Xiachufang (下厨房) Case Study: Success Story](https://www.krakend.io/case-study/xiachufang/): KrakenD case study for 下厨房: With around 70 million unique users, Xiachufang is the biggest cuisine community in China
+- [Hepsiburada Case Study - Success Stories](https://www.krakend.io/case-study/hepsiburada/): Read how Hepsiburada (a 150M visits/month Turkish eCommerce) leveraged KrakenD to achieve success with their API strategies with 500 microservices
+- [Perx Case Study: Success Story](https://www.krakend.io/case-study/perx/): KrakenD case study for Perx: Controlling the traffic for web marketing platforms and data management solutions for car manufacturing companies and dealers
+- [Privalia Case Study: Success Story](https://www.krakend.io/case-study/privalia/): KrakenD case study for Privalia: How KrakenD allowed an efortlessly Salesforce integration with internal company's microservices
+- [i2S by GFI Case Study: Success Story](https://www.krakend.io/case-study/i2s/): KrakenD case study for i2S: entry point to consume all the micro-services for insurance companies and fund management societies
+- [Open Room Inc Case Study: Success Story](https://www.krakend.io/case-study/openroom/): KrakenD case study for OpenRoom: API Gateway to expose various Real Estate applications and reduce latency and bandwidth.
+- [Adevinta Spain Case Study: Success Story](https://www.krakend.io/case-study/adevinta/): KrakenD case study for Adevinta: Replacing Zuul gateways by blazing fast KrakenDs with declarative configuration managed by any developer
+- [Delivery Club (Mail.ru group) Case Study: Success Story](https://www.krakend.io/case-study/mailru/): KrakenD case study for Delivery Club: processing ingoing and outgoing traffic on the largest online food delivery in Russia
+- [Dusdusan.com (Indonesia) Case Study: Success Story](https://www.krakend.io/case-study/dusdusan/): KrakenD case study for Dusdusan: Backend for Frontend pattern on an Indonesian E-commerce mobile app to let frontend teams become autonomous.
+- [Letgo Case Study: Success Story](https://www.krakend.io/case-study/letgo/): KrakenD case study for Letgo: Second hand selling application with multiple KrakenD gateways for the UI experience of each client (Android, iOS, web...)
+- [Pearson Education Case Study: Success Story](https://www.krakend.io/case-study/pearson/): KrakenD case study for Pearson: Provide parents with a wide range of resources to support children's progress in learning through KrakenD.
+- [MTS Travel Case Study: Success Story](https://www.krakend.io/case-study/mts-travel/): First-hand testimony of MTS Travel lead developer Vladimir Kalugin using KrakenD to support their microservices architecture
+- [iContainers Case Study: Success Story](https://www.krakend.io/case-study/icontainers/): KrakenD case study for iContainers: Third party API data aggregation from multiple ocean freight providers to merge results of all the services into endpoints
 
 
 ## Getting Started
