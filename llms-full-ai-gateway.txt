@@ -2,7 +2,7 @@
 # [One Gateway for APIs and AI](https://www.krakend.io/ai-gateway/)
 KrakenD: AI Gateway
 
-# One Gateway for APIs & AI Workloads.
+# Self-Hosted AI Gateway: LLM Routing & AI Governance
 
 A unified control layer for APIs and AI workloads.  
 Run AI on infrastructure you already trust. No new components required.
