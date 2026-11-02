@@ -1561,7 +1561,7 @@ Routes and classifiers reference providers by `name`, so define your providers f
 
 You configure routing in two places. Gates and classifiers are shared, reusable definitions declared once at the service level under the `ai/classifiers` namespace. The routing rules that use them live in a backend’s `extra_config` under the `ai/router` namespace, in an ordered `routes` list.
 
-For each request, KrakenD evaluates the routes from top to bottom and uses the first one that matches. A route matches when all of its gates pass; a route with no gates always matches, so you can use it as an inline fallback. When no route matches and there is no such route, the request fails: the failover does not apply to requests that match no route. When the matching route names a `provider`, the router forwards the request to that provider from the inventory. When it names a `classifier` and a list of `providers`, the classifier chooses among them. Routes can also nest, forming a decision tree: a gated route holds its own `routes`, evaluated only when its gates pass.
+For each request, KrakenD evaluates the routes from top to bottom and uses the first one that matches. A route matches when any of its gates passes; a route with no gates always matches, so you can use it as an inline fallback. When no route matches and there is no such route, the request fails: the failover does not apply to requests that match no route. When the matching route names a `provider`, the router forwards the request to that provider from the inventory. When it names a `classifier` and a list of `providers`, the classifier chooses among them. Routes can also nest, forming a decision tree: a gated route holds its own `routes`, evaluated only when its gates pass. Nesting is how you require several gates at once.
 
 Route on signals the client cannot forge
 
@@ -1752,7 +1752,7 @@ Add the `ai/router` namespace to a backend’s `extra_config`. It holds an order
 
 ### Matching with Gates
 
-Each route lists the `gates` it requires, and matches only when all of them pass. A route with no `gates` always matches, so place it last as an inline fallback. A matching route forwards the request to its `provider`:
+Each route lists the `gates` it checks. KrakenD evaluates them in order, and the route matches as soon as one of them passes. A route with no `gates` always matches, so place it last as an inline fallback. A matching route forwards the request to its `provider`:
 
 ```json
 {
@@ -1771,6 +1771,8 @@ Each route lists the `gates` it requires, and matches only when all of them pass
 ```
 
 Pro-plan requests go to `coding-basic`; every other request falls through to `cheap-quick`.
+
+Listing several gates in one route combines them with OR: `"gates": ["plan_pro", "region_eu"]` matches every pro-plan request and every EU request. To require all of them (AND), nest the routes as shown in [Nested Routes and Decision Trees](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#nested-routes-and-decision-trees), or combine the checks in a single [policy gate](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#policy-gates), for example `getHeader('X-Plan') == 'pro' && getHeader('X-Region') == 'eu'`.
 
 ### Nested Routes and Decision Trees
 
@@ -1800,7 +1802,7 @@ The `routes` field is recursive. A gated route can hold its own `routes`, evalua
 }
 ```
 
-Enterprise-plan requests enter the branch and route to `coding-team` for code tasks (gate `usecase_code`), or to the branch fallback `gemini-flash`. Any other plan skips the branch and hits the top-level fallback `cheap-quick`.
+Enterprise-plan requests enter the branch and route to `coding-team` for code tasks (gate `usecase_code`), or to the branch fallback `gemini-flash`. Only requests that pass both `plan_enterprise` and `usecase_code` reach `coding-team`: each nesting level adds a condition. Any other plan skips the branch and hits the top-level fallback `cheap-quick`.
 
 ### Classifier Routes
 
