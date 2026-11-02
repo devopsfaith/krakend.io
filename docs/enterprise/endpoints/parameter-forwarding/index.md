@@ -229,7 +229,7 @@ The following headers are sent to the backends with default values, but if you a
 
 - `Content-Type`, the one passed in the request (if passed)
 - `Accept-Encoding`, set by KrakenD to `gzip`, unless you add it to the `input_headers`
-- `User-Agent` Contains the value `KrakenD Version 3.0.2`, unless you add it to the `input_headers`
+- `User-Agent` Contains the value `KrakenD Version 3.0.3`, unless you add it to the `input_headers`
 
 Needless to say that you can add any other header that is not listed in this page under `input_headers` and KrakenD will forward it to the backend.
 

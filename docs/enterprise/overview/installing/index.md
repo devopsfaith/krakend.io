@@ -19,7 +19,7 @@ If you are already familiar with Docker, the easiest way to get started is by pu
 Pull KrakenD Enterprise 
 
 ```
-$docker pull krakend/krakend-ee:3.0.2
+$docker pull krakend/krakend-ee:3.0.3
 ```
 
 After this command you will have in your local computer the krakend enterprise container.
@@ -96,9 +96,9 @@ Minimum supported versions are Debian 8, and Ubuntu 16.x.
 
 You can also download the `tar.gz` and decompress it anywhere. Instructions to check the SHA and PGP signature [here](https://www.krakend.io/docs/overview/verifying-packages/).
 
-[Download latest `tar.gz` (AMD64)](https://download.krakend.io/bin/krakend-ee_3.0.2_amd64_generic-linux.tar.gz)
+[Download latest `tar.gz` (AMD64)](https://download.krakend.io/bin/krakend-ee_3.0.3_amd64_generic-linux.tar.gz)
 
-[Download latest `tar.gz` (ARM64)](https://download.krakend.io/bin/krakend-ee_3.0.2_arm64_generic-linux.tar.gz)
+[Download latest `tar.gz` (ARM64)](https://download.krakend.io/bin/krakend-ee_3.0.3_arm64_generic-linux.tar.gz)
 
 Once you have downloaded and uncompressed the binary, you should move the contents to each folder. You will need root permissions or add `sudo` to some of these commands:
 

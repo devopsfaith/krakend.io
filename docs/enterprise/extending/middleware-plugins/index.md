@@ -31,7 +31,7 @@ $docker run --rm -it \
  -e "KRAKEND_LICENSE_PATH=/LICENSE"\
  -v "$PWD/LICENSE:/LICENSE:ro"
  -v "$PWD/plugins:/app" \
- krakend/krakend-ee:3.0.2 plugin init --name my-mw --type middleware
+ krakend/krakend-ee:3.0.3 plugin init --name my-mw --type middleware
 ```
 
 See the following `main.go` that modifies the data adding an `acme` field and modifying the path.

@@ -23,7 +23,7 @@ $krakend plugin init -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.2-ee
+Version: 3.0.3-ee
 
 Generates the necessary boilerplate to develop a new plugin
 
@@ -54,7 +54,7 @@ $docker run --rm -it \
  -e "KRAKEND_LICENSE_PATH=/LICENSE"\
  -v "$PWD/LICENSE:/LICENSE:ro" \
  -v "$PWD/plugins:/app" \
- krakend/krakend-ee:3.0.2 plugin init --name myplugin --type handler
+ krakend/krakend-ee:3.0.3 plugin init --name myplugin --type handler
 ```
 
 The command above **assumes you have a `LICENSE` file in the current directory**.
@@ -73,24 +73,24 @@ Initialize go modules 
 
 ```
 $cd plugins/handler-myplugin
-docker run -it -v $PWD:/app -w /app krakend/builder-ee:3.0.2 make go.mod
+docker run -it -v $PWD:/app -w /app krakend/builder-ee:3.0.3 make go.mod
 ```
 
 ## 3. Compile the plugin
 
-With the source files ready, you can compile the plugin. The following commands assume that you want to run this plugin inside the official image `krakend/krakend-ee:3.0.2` or in a Docker file that extends `FROM` this one.
+With the source files ready, you can compile the plugin. The following commands assume that you want to run this plugin inside the official image `krakend/krakend-ee:3.0.3` or in a Docker file that extends `FROM` this one.
 
 Compile the plugin 
 
 ```
-$docker run -it -v $PWD:/app -w /app krakend/builder-ee:3.0.2 make amd64
+$docker run -it -v $PWD:/app -w /app krakend/builder-ee:3.0.3 make amd64
 ```
 
 This will generate the compiled plugin binary `myplugin-amd64.so` compatible with KrakenD running on AMD64 Docker.
 
 Compilation for non-Docker
 
-Use the image `krakend/builder-ee::3.0.2-linux-generic` to compile your plugins that run in a non-Docker environment. In addition, if your architecture is ARM64 you must edit the `Makefile` and switch the commented `CROSSCOMPILER` variable.
+Use the image `krakend/builder-ee::3.0.3-linux-generic` to compile your plugins that run in a non-Docker environment. In addition, if your architecture is ARM64 you must edit the `Makefile` and switch the commented `CROSSCOMPILER` variable.
 
 ## 4. Inject the plugin and run
 

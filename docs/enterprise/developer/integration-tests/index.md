@@ -274,7 +274,7 @@ $krakend e2e -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.2
+Version: 3.0.3
 
 Executes an end to end test for the gateway based on the configuration file and a set of specs.
 
@@ -392,7 +392,7 @@ For example, a call to `http://localhost:8081/param_forwarding/hey/yo?a=1&b=1&du
             "gzip"
         ],
         "User-Agent": [
-            "KrakenD Version 3.0.2"
+            "KrakenD Version 3.0.3"
         ],
         "X-Forwarded-Host": [
             "localhost:8080"

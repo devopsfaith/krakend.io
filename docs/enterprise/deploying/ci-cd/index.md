@@ -46,7 +46,7 @@ stages:
 # This step is only needed in Enterprise
 check-license:
   stage: license
-  image: krakend/krakend-ee:3.0.2
+  image: krakend/krakend-ee:3.0.3
   script:
     # Checks if the LICENSE file (must exist in the path) is valid for the next 90 days.
     # If it isn't, the deployment will fail, just to draw your attention. Lower the value afterwards.
@@ -55,7 +55,7 @@ check-license:
 # Example to check the configuration using flexible configuration
 check_config:
   stage: test
-  image: krakend/krakend-ee:3.0.2
+  image: krakend/krakend-ee:3.0.3
   variables:
     FC_ENABLE: 1
     FC_PARTIALS: $CI_PROJECT_DIR/config/partials

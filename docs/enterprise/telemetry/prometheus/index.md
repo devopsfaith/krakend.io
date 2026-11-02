@@ -108,7 +108,7 @@ Notice that the three services declare volumes to pick the configuration.
 version: "3"
 services:
   krakend:
-    image: "krakend/krakend-ee:3.0.2"
+    image: "krakend/krakend-ee:3.0.3"
     ports:
       - "8080:8080"
     volumes:

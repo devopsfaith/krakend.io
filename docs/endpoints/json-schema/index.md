@@ -116,7 +116,7 @@ Term 
 ```
 $curl -i -X POST -d '{"invalid": true}' http://localhost:8080/address
 HTTP/1.1 400 Bad Request
-X-Krakend: Version 3.0.2
+X-Krakend: Version 3.0.3
 X-Krakend-Completed: false
 Date: Thu, 17 Nov 2022 08:57:53 GMT
 Content-Length: 96

@@ -146,8 +146,8 @@ There are two builders you should use, depending on where you want to run the pl
 
 | Architecture                                                                   | Alpine (Docker)                                            | Non-Docker (on-premises)                                                 |
 |--------------------------------------------------------------------------------|------------------------------------------------------------|--------------------------------------------------------------------------|
-| [AMD64](https://www.krakend.io/docs/enterprise/extending/writing-plugins/#compile-plugins-for-amd64) | `krakend/builder-ee:3.0.2`                                 | `krakend/builder-ee:3.0.2-linux-generic`                                 |
-| [ARM64](https://www.krakend.io/docs/enterprise/extending/writing-plugins/#compile-plugins-for-arm64) | `krakend/builder-ee:3.0.2` with cross-compile instructions | `krakend/builder-ee:3.0.2-linux-generic` with cross-compile instructions |
+| [AMD64](https://www.krakend.io/docs/enterprise/extending/writing-plugins/#compile-plugins-for-amd64) | `krakend/builder-ee:3.0.3`                                 | `krakend/builder-ee:3.0.3-linux-generic`                                 |
+| [ARM64](https://www.krakend.io/docs/enterprise/extending/writing-plugins/#compile-plugins-for-arm64) | `krakend/builder-ee:3.0.3` with cross-compile instructions | `krakend/builder-ee:3.0.3-linux-generic` with cross-compile instructions |
 
 When using Docker to deploy your gateway, our official KrakenD container uses [**Alpine**](https://hub.docker.com/_/alpine) as the base image. Therefore, to use your custom plugins, they must compile using the Alpine builder.
 
@@ -158,17 +158,17 @@ To build your plugin for **Docker targets**, you only need to execute the follow
 Build your plugin for Alpine 
 
 ```
-$docker run -it -v "$PWD:/app" -w /app krakend/builder-ee:3.0.2 go build -buildmode=plugin -o yourplugin.so .
+$docker run -it -v "$PWD:/app" -w /app krakend/builder-ee:3.0.3 go build -buildmode=plugin -o yourplugin.so .
 ```
 
-The command will generate a `yourplugin.so` file (name it as you please) that you can now copy into a `krakend/krakend-ee:3.0.2` Docker image, and load it as described in [injecting plugins](https://www.krakend.io/docs/enterprise/extending/injecting-plugins/). **Never use a tag that mismatches the builder and KrakenD**. If you want to load the plugin in a KrakenD version `x.y.x` make sure to build it on a builder `x.y.z`. Using `.so` files that were compiled in a builder with a different version, will mostly fail.
+The command will generate a `yourplugin.so` file (name it as you please) that you can now copy into a `krakend/krakend-ee:3.0.3` Docker image, and load it as described in [injecting plugins](https://www.krakend.io/docs/enterprise/extending/injecting-plugins/). **Never use a tag that mismatches the builder and KrakenD**. If you want to load the plugin in a KrakenD version `x.y.x` make sure to build it on a builder `x.y.z`. Using `.so` files that were compiled in a builder with a different version, will mostly fail.
 
 To build the plugin for **on-premises installations**, use the following command instead:
 
 Build your plugin for Non-Docker 
 
 ```
-$docker run -it -v "$PWD:/app" -w /app krakend/builder-ee:3.0.2-linux-generic go build -buildmode=plugin -o yourplugin.so .
+$docker run -it -v "$PWD:/app" -w /app krakend/builder-ee:3.0.3-linux-generic go build -buildmode=plugin -o yourplugin.so .
 ```
 
 ### Compile plugins for ARM64
@@ -185,7 +185,7 @@ $docker run -it -v "$PWD:/app" -w /app \
 -e "CC=aarch64-linux-musl-gcc" \
 -e "GOARCH=arm64" \
 -e "GOHOSTARCH=amd64" \
-krakend/builder-ee:3.0.2 \
+krakend/builder-ee:3.0.3 \
 go build -ldflags='-extldflags=-fuse-ld=bfd -extld=aarch64-linux-musl-gcc' \
 -buildmode=plugin -o yourplugin.so .
 ```
@@ -200,7 +200,7 @@ $docker run -it -v "$PWD:/app" -w /app \
 -e "CC=aarch64-linux-gnu-gcc" \
 -e "GOARCH=arm64" \
 -e "GOHOSTARCH=amd64" \
-krakend/builder-ee:3.0.2-linux-generic \
+krakend/builder-ee:3.0.3-linux-generic \
 go build -ldflags='-extldflags=-fuse-ld=bfd -extld=aarch64-linux-gnu-gcc' \
 -buildmode=plugin -o yourplugin.so .
 ```

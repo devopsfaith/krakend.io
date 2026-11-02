@@ -29,7 +29,7 @@ $krakend generate postman -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.2
+Version: 3.0.3
 Generates the Postman descriptor for the gateway based on the configuration file.
 Usage:
   krakend generate postman [flags]

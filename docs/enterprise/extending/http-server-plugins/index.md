@@ -156,7 +156,7 @@ Build your plugin 
 
 ```
 $docker run -it -v "$PWD:/app" -w /app \
-krakend/builder-ee:3.0.2 \
+krakend/builder-ee:3.0.3 \
 go build -buildmode=plugin -o krakend-server-example.so .
 ```
 

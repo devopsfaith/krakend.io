@@ -28,7 +28,7 @@ $krakend report --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.2
+Version: 3.0.3
 
 Generates a report package file to share with the KrakenD support team.
 

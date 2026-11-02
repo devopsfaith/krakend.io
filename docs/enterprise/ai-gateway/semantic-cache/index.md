@@ -35,7 +35,7 @@ $krakend ai download-model -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.2-ee
+Version: 3.0.3-ee
 
 Download model from Hugging Face. Model needs to have onnx format
 

@@ -29,15 +29,15 @@ $krakend plugin check -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.2
+Version: 3.0.3
 
 Checks your plugin dependencies are compatible and proposes commands to update your dependencies.
 
 Usage:
-  krakend 3.0.2 [flags]
+  krakend 3.0.3 [flags]
 
 Examples:
- krakend 3.0.2 -g 1.19.0 -s ./go.sum -f
+ krakend 3.0.3 -g 1.19.0 -s ./go.sum -f
 
 Flags:
   -f, --format        Shows fix commands to update your dependencies

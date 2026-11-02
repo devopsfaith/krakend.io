@@ -28,7 +28,7 @@ To list the plugins of the version you are running, list the contents of the fol
 Listing the built-in plugins 
 
 ```
-$docker run --rm --entrypoint=/bin/ls krakend/krakend-ee:3.0.2 /opt/krakend/plugins
+$docker run --rm --entrypoint=/bin/ls krakend/krakend-ee:3.0.3 /opt/krakend/plugins
 ```
 
 Removed built-in plugins

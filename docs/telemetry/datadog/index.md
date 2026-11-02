@@ -107,7 +107,7 @@ Here’s an example of how to run the Datadog agent together with KrakenD in a d
 version: '3'
 services:
   krakend:
-    image: krakend:3.0.2
+    image: krakend:3.0.3
     volumes:
       - "./:/etc/krakend"
     command: ["run", "-c", "krakend.json"]
