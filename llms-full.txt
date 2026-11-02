@@ -3943,14 +3943,14 @@ A `policy` guard evaluates a list of CEL `expressions` against the request. The 
   "severity": "medium",
   "config": {
     "expressions": [
-      "meta.method == 'POST'",
-      "size(body) <= 8192"
+      "meta.method != 'POST'",
+      "size(body) > 8192"
     ]
   }
 }
 ```
 
-Each expression returns a boolean and decides whether the request is allowed to continue. The policy above only lets through `POST` requests whose body is 8 KB or smaller. Use `body` to inspect the raw payload and `meta` to reason about the request headers, parameters, method, path, query string, and URL.
+The guard blocks the request when any of its expressions evaluates to `true`, so write each expression as a condition to block. The policy above blocks any request that is not a `POST` and any request whose body is larger than 8 KB, so only `POST` requests of 8 KB or less get through. An expression that cannot be evaluated, for example one that reads a `meta` field that does not exist, does not block the request. Use `body` to inspect the raw payload and `meta` to reason about the request headers, parameters, method, path, query string, and URL.
 
 ## Selecting Guards per Endpoint or Backend
 
@@ -4191,8 +4191,8 @@ The following configuration defines four guards at the service level and applies
           "severity": "medium",
           "config": {
             "expressions": [
-              "meta.method == 'POST'",
-              "size(body) <= 8192"
+              "meta.method != 'POST'",
+              "size(body) > 8192"
             ]
           }
         }
