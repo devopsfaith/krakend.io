@@ -972,9 +972,9 @@
             },
             "gates": {
               "title": "Gates",
-              "description": "The names of the gates declared in `ai/classifiers` that must all pass for the route to match. Omit it to create a route that always matches.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "description": "The names of the gates declared in `ai/classifiers` that this route checks, in order. The route matches as soon as one of them passes. To require several gates at once, nest routes instead of listing the gates together. Omit it to create a route that always matches.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
               "examples": [
-                [ "plan_enterprise", "usecase_code" ]
+                [ "plan_pro", "plan_enterprise" ]
               ],
               "type": "array",
               "minItems": 1,
@@ -6951,7 +6951,7 @@
     "https://www.krakend.io/schema/v3.0/security/http.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "HTTP Security",
-      "description": "Security through HTTP headers, including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+      "description": "Security through HTTP headers, including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
       "type": "object",
       "properties": {
         "allowed_hosts": {
@@ -7021,10 +7021,11 @@
         },
         "hpkp_public_key": {
           "title": "HTTP Public Key Pinning (HPKP)",
-          "description": "HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+          "description": "Deprecated: KrakenD ignores this setting and does not send the `Public-Key-Pins` header. Browsers no longer support HTTP Public Key Pinning (HPKP), so remove it from your configuration.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
           "examples": [
             "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]"
           ],
+          "deprecated": true,
           "default": "",
           "type": "string",
           "@sensitive": 2
@@ -7284,7 +7285,7 @@
             },
             "trace_sample_rate": {
               "title": "Trace sample rate",
-              "description": "Overrides the sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
+              "description": "Overrides the sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system. Do not rely on a value of `0` to stop sampling on this endpoint: at the service level, KrakenD treats `0` as unset and reports every trace.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
               "examples": [ 0.25 ],
               "type": "number",
               "maximum": 1,
@@ -7825,7 +7826,7 @@
           "type": "object"
         },
         "security/http": {
-          "description": "[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.",
+          "description": "[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1http.json",
           "type": "object"
         },
@@ -8086,7 +8087,7 @@
         },
         "gates": {
           "title": "Gates",
-          "description": "The list of gates available to the routes. A gate is a named matching condition, and a route matches only when all the gates it lists pass. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "description": "The list of gates available to the routes. A gate is a named matching condition, and a route matches when any of the gates it lists passes. To require several gates at once, nest routes. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
           "type": "array",
           "items": {
             "type": "object",
@@ -8555,10 +8556,10 @@
           "properties": {
             "expressions": {
               "title": "Expressions",
-              "description": "The list of CEL expressions to evaluate. Each expression returns a boolean that decides whether the request can continue. Use `body` to inspect the raw payload as a string, and `meta` to access the request `headers`, `params`, `method`, `path`, `query`, and `url`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+              "description": "The list of CEL expressions to evaluate. The guard blocks the request when any expression evaluates to `true`; an expression that cannot be evaluated does not block. Use `body` to inspect the raw payload as a string, and `meta` to access the request `headers`, `params`, `method`, `path`, `query`, and `url`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
               "type": "array",
               "items": {
-                "examples": [ "size(body) <= 8192", "meta.method == 'POST'" ],
+                "examples": [ "size(body) > 8192", "meta.method != 'POST'" ],
                 "type": "string",
                 "minLength": 1
               }
@@ -11810,7 +11811,7 @@
         },
         "trace_sample_rate": {
           "title": "Trace sample rate",
-          "description": "The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+          "description": "The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system. A value of `0` does not stop sampling: KrakenD treats it as unset and applies the default `1`, reporting every trace. To stop reporting traces, set `disable_traces` to `true` in the exporters instead.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
           "examples": [ 0.25 ],
           "default": 1,
           "type": "number",

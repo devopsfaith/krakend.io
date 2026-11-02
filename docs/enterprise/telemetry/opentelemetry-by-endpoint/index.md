@@ -203,7 +203,7 @@ Example: `["debug_jaeger","newrelic","local_tempo"]`
 
 ##### [`trace_sample_rate`](#exporters_override-trace_sample_rate "Click to copy link to trace_sample_rate") number
 
-Overrides the sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.
+Overrides the sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system. Do not rely on a value of `0` to stop sampling on this endpoint: at the service level, KrakenD treats `0` as unset and reports every trace.
 
 Example: `0.25`
 
@@ -296,6 +296,10 @@ The key of the static attribute you want to send
 The value of the static attribute you want to send
 
 Schema: [https://www.krakend.io/schema/v3.0/telemetry/opentelemetry-endpoint.json](https://www.krakend.io/schema/v3.0/telemetry/opentelemetry-endpoint.json "JSON schema definition")
+
+Do not use a trace sample rate of 0 to stop tracing
+
+Do not rely on a `trace_sample_rate` of `0` to stop sampling on an endpoint. At the service level, KrakenD treats `0` as an unset value and reports every trace (see [OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)). To keep only a small share of traces, use a small positive rate such as `0.01`.
 
 ## Backend Override of metrics and traces
 

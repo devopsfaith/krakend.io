@@ -254,12 +254,6 @@ sections:
         description: Web security policy mechanism to protect websites against protocol downgrade attacks and cookie hijacking
         ee: false
         url: /docs/enterprise/service-settings/security/#http-strict-transport-security-hsts
-      - name: HTTP Public Key Pinning (HPKP)
-        namespaces:
-          - security/http
-        description: Resist impersonation by attackers using mis-issued or otherwise fraudulent certificates.
-        ee: false
-        url: /docs/enterprise/service-settings/security/#http-public-key-pinning-hpkp
       - name: CORS
         namespaces:
           - security/cors

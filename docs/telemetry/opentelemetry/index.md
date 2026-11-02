@@ -436,13 +436,17 @@ Defaults to `["/__health","/__debug/","/__echo/","/__stats/"]`
 
 ##### [`trace_sample_rate`](https://www.krakend.io/docs/telemetry/opentelemetry/#trace_sample_rate "Click to copy link to trace_sample_rate") number
 
-The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.
+The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system. A value of `0` does not stop sampling: KrakenD treats it as unset and applies the default `1`, reporting every trace. To stop reporting traces, set `disable_traces` to `true` in the exporters instead.
 
 Example: `0.25`
 
 Defaults to `1`
 
 Schema: [https://www.krakend.io/schema/v3.0/telemetry/opentelemetry.json](https://www.krakend.io/schema/v3.0/telemetry/opentelemetry.json "JSON schema definition")
+
+A trace sample rate of 0 reports every trace
+
+Setting `trace_sample_rate` to `0` does not turn sampling off. KrakenD treats `0` as an unset value and applies the default rate of `1`, so it reports every trace. To stop sending traces, set `disable_traces` to `true` in each exporter. To keep only a small share of traces, use a small positive rate such as `0.01`.
 
 Here’s an example with a Grafana Tempo and a Prometheus.
 

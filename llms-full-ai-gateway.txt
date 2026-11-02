@@ -1108,7 +1108,7 @@ Defaults to `"cost"`
 
 ##### [`gates`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#gates "Click to copy link to gates") array of objects
 
-The list of gates available to the routes. A gate is a named matching condition, and a route matches only when all the gates it lists pass. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.
+The list of gates available to the routes. A gate is a named matching condition, and a route matches when any of the gates it lists passes. To require several gates at once, nest routes. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.
 
 Each item of gates accepts the following properties:
 
@@ -1293,9 +1293,9 @@ Example: `"gpt-default"`
 
 ##### [`gates`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#gates "Click to copy link to gates") array of strings
 
-The names of the gates declared in `ai/classifiers` that must all pass for the route to match. Omit it to create a route that always matches.
+The names of the gates declared in `ai/classifiers` that this route checks, in order. The route matches as soon as one of them passes. To require several gates at once, nest routes instead of listing the gates together. Omit it to create a route that always matches.
 
-Example: `["plan_enterprise","usecase_code"]`
+Example: `["plan_pro","plan_enterprise"]`
 
 ##### [`provider`](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/#provider "Click to copy link to provider") string
 

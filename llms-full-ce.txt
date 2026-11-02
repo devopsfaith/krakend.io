@@ -52,7 +52,7 @@ Use KrakenD to front your services, creating tailored endpoints with precise fie
 
 ### Secure by Default
 
-KrakenD adopts zero-trust by default and allows you to add all kinds of HTTP security features. Enable CORS, OAuth, SSL, multiple certificates, and guard against threats like clickjacking, XSS, MIME-sniffing, HSTS, HPKP, and more.
+KrakenD adopts zero-trust by default and allows you to add all kinds of HTTP security features. Enable CORS, OAuth, SSL, multiple certificates, and guard against threats like clickjacking, XSS, MIME-sniffing, HSTS, and more.
 
 ### On-prem, Hybrid, or Cloud Native
 
@@ -3643,7 +3643,7 @@ Define [Cross-Origin Resource Sharing (CORS)](https://www.krakend.io/docs/enterp
 
 ##### [`security/http`](https://www.krakend.io/docs/endpoints/#security%2fhttp "Click to copy link to security/http") object
 
-[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.
+[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.
 
 ##### [`security/policies`](https://www.krakend.io/docs/endpoints/#security%2fpolicies "Click to copy link to security/policies") object
 
@@ -10924,7 +10924,6 @@ KrakenD follows **OWASP best practices** and security recommendations, incorpora
 - [Host Restriction](https://www.krakend.io/docs/service-settings/security/#restrict-connections-by-host): Restrict connections by host, defining a list of backends that the API gateway can communicate with.
 - [Cross-Origin Resource Sharing (CORS)](https://www.krakend.io/docs/service-settings/cors/) lets you control and limit which domains can access APIs, protecting against cross-origin attacks.
 - [HTTP Strict Transport Security (HSTS)](https://www.krakend.io/docs/service-settings/security/#http-strict-transport-security-hsts) makes sure that all interactions with the gateway use HTTPS, mitigating protocol downgrade attacks.
-- **Public Key Pinning**: To [prevent certificate forgery](https://www.krakend.io/docs/service-settings/security/#http-public-key-pinning-hpkp), HPKP allows you to “pin” a public key, ensuring clients connect to the intended service.
 - **Clickjacking Protection**: To activate frame-busting mechanisms by [configuring X-Frame-Options headers](https://www.krakend.io/docs/service-settings/security/#clickjacking-protection).
 - **Cross-Site Scripting (XSS) Protection**: Mitigate XSS attacks by adding relevant security headers like [X-XSS-Protection](https://www.krakend.io/docs/service-settings/security/#cross-site-scripting-xss-protection), protecting clients from malicious script injections.
 - **MIME Sniffing Prevention** prevents browsers from [MIME sniffing](https://www.krakend.io/docs/service-settings/security/#mime-sniffing-prevention) and interpreting files as a different content type than declared by using the X-Content-Type-Options header.
@@ -11607,7 +11606,6 @@ The following configuration describes all possible options:
         "frame_deny": true,
         "referrer_policy": "same-origin",
         "custom_frame_options_value": "ALLOW-FROM https://example.com",
-        "hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
         "content_type_nosniff": true,
         "browser_xss_filter": true,
         "content_security_policy": "default-src 'self';",
@@ -11678,9 +11676,9 @@ A set of header keys that may hold a proxied hostname value for the request.
 
 Example: `["X-Forwarded-Hosts"]`
 
-##### [`hpkp_public_key`](https://www.krakend.io/docs/service-settings/security/#hpkp_public_key "Click to copy link to hpkp_public_key") string
+##### [`hpkp_public_key`](https://www.krakend.io/docs/service-settings/security/#hpkp_public_key "Click to copy link to hpkp_public_key") string Deprecated
 
-HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).
+Deprecated: KrakenD ignores this setting and does not send the `Public-Key-Pins` header. Browsers no longer support HTTP Public Key Pinning (HPKP), so remove it from your configuration.
 
 Example: `"pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]"`
 
@@ -11783,13 +11781,9 @@ OWASP defines the HSTS as
 
 ### HTTP Public Key Pinning (HPKP)
 
-Use `hpkp_public_key`
+HPKP is deprecated and has no effect
 
-OWASP defines the HPKP as
-
-> HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).
-
-**This feature must be used with caution because there is a risk that hosts may make themselves unavailable by pinning to a set of public key hashes that becomes invalid.**
+KrakenD ignores `hpkp_public_key` and does not send the `Public-Key-Pins` header. Browsers no longer support HTTP Public Key Pinning (HPKP), so KrakenD dropped the feature. Remove `hpkp_public_key` from your configuration: `krakend check` still accepts it, so existing configurations keep working, but it does not pin any key.
 
 ## OAuth2
 
@@ -15483,13 +15477,17 @@ Defaults to `["/__health","/__debug/","/__echo/","/__stats/"]`
 
 ##### [`trace_sample_rate`](https://www.krakend.io/docs/telemetry/opentelemetry/#trace_sample_rate "Click to copy link to trace_sample_rate") number
 
-The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.
+The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system. A value of `0` does not stop sampling: KrakenD treats it as unset and applies the default `1`, reporting every trace. To stop reporting traces, set `disable_traces` to `true` in the exporters instead.
 
 Example: `0.25`
 
 Defaults to `1`
 
 Schema: [https://www.krakend.io/schema/v3.0/telemetry/opentelemetry.json](https://www.krakend.io/schema/v3.0/telemetry/opentelemetry.json "JSON schema definition")
+
+A trace sample rate of 0 reports every trace
+
+Setting `trace_sample_rate` to `0` does not turn sampling off. KrakenD treats `0` as an unset value and applies the default rate of `1`, so it reports every trace. To stop sending traces, set `disable_traces` to `true` in each exporter. To keep only a small share of traces, use a small positive rate such as `0.01`.
 
 Here’s an example with a Grafana Tempo and a Prometheus.
 

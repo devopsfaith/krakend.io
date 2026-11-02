@@ -370,7 +370,7 @@ Define [Cross-Origin Resource Sharing (CORS)](https://www.krakend.io/docs/enterp
 
 ##### [`security/http`](https://www.krakend.io/docs/endpoints/#security%2fhttp "Click to copy link to security/http") object
 
-[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.
+[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.
 
 ##### [`security/policies`](https://www.krakend.io/docs/endpoints/#security%2fpolicies "Click to copy link to security/policies") object
 

@@ -29,7 +29,6 @@ The following configuration describes all possible options:
         "frame_deny": true,
         "referrer_policy": "same-origin",
         "custom_frame_options_value": "ALLOW-FROM https://example.com",
-        "hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
         "content_type_nosniff": true,
         "browser_xss_filter": true,
         "content_security_policy": "default-src 'self';",
@@ -100,9 +99,9 @@ A set of header keys that may hold a proxied hostname value for the request.
 
 Example: `["X-Forwarded-Hosts"]`
 
-##### [`hpkp_public_key`](https://www.krakend.io/docs/enterprise/service-settings/security/#hpkp_public_key "Click to copy link to hpkp_public_key") string
+##### [`hpkp_public_key`](https://www.krakend.io/docs/enterprise/service-settings/security/#hpkp_public_key "Click to copy link to hpkp_public_key") string Deprecated
 
-HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).
+Deprecated: KrakenD ignores this setting and does not send the `Public-Key-Pins` header. Browsers no longer support HTTP Public Key Pinning (HPKP), so remove it from your configuration.
 
 Example: `"pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]"`
 
@@ -205,13 +204,9 @@ OWASP defines the HSTS as
 
 ### HTTP Public Key Pinning (HPKP)
 
-Use `hpkp_public_key`
+HPKP is deprecated and has no effect
 
-OWASP defines the HPKP as
-
-> HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).
-
-**This feature must be used with caution because there is a risk that hosts may make themselves unavailable by pinning to a set of public key hashes that becomes invalid.**
+KrakenD ignores `hpkp_public_key` and does not send the `Public-Key-Pins` header. Browsers no longer support HTTP Public Key Pinning (HPKP), so KrakenD dropped the feature. Remove `hpkp_public_key` from your configuration: `krakend check` still accepts it, so existing configurations keep working, but it does not pin any key.
 
 ## OAuth2
 
