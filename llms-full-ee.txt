@@ -17564,7 +17564,7 @@ $tree /etc/krakend
     └── some-other-test.json
 ```
 
-KrakenD will run all the tests declared in the folder alphabetically (according to the file sorting of the OS).
+KrakenD runs all the test files in the folder concurrently, so their results appear in a different order on every run. Keep each test independent: do not rely on the state another test file leaves behind. When a scenario needs several calls in a fixed order, declare them in a single test file using `next` (see below).
 
 ### Test Case files
 
