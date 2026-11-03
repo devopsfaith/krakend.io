@@ -320,12 +320,13 @@ The default guards below are grouped by the kind of attack they detect, to make 
 
 ## Prompt Guard Metrics and Traces
 
-When you enable [OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/), Prompt Guard reports the `krakend.promptguard.check` counter, which increases every time a prompt guard runs. It carries the following attributes:
+When you enable [OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/), Prompt Guard reports the `krakend.promptguard.check` counter, which increases every time a prompt guard runs. On the Prometheus exporter it appears as `krakend_promptguard_check_requests_total`. It carries the following attributes:
 
-- `blocker`: the category or name of the guard that blocked the request. It is empty when the request passes.
+- `krakend_promptguard_blocked`: `true` when a guard blocked the request, and `false` when the request passed.
 - `http_route`: the endpoint that received the request.
-- `http_method`: the HTTP method of the request.
-- `krakend_backend`: the `url_pattern` of the backend, when you set Prompt Guard at the backend level.
+- `krakend_backend`: the `url_pattern` of the backend, when you set Prompt Guard at the backend level. It is empty when you set Prompt Guard at the endpoint level.
+
+The counter does not record which guard blocked the request: blocks by different guards on the same route add up in the same series.
 
 Prompt Guard also adds its result as an attribute of the current trace.
 
