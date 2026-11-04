@@ -3219,11 +3219,11 @@ For **dynamic operation**, you can delegate the output to an LLM that will refin
 
 # [Prompt Guard for LLM and Agent Endpoints (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/)
 
-**Prompt Guard** inspects the body payload of incoming requests and blocks content that matches known attack patterns, such as prompt injection, jailbreaks, or data exfiltration attempts. It applies one or more *guards* to the request and rejects the call when a guard flags the payload as malicious. Because it operates on the raw request body, you can add it to **any endpoint that accepts a body**, not only to those connected to an LLM backend. KrakenD ships with a set of default guards that protect your endpoints out of the box, and you can extend or restrict them through configuration.
+**Prompt Guard** inspects the body payload of incoming requests and blocks content that matches known attack patterns, such as prompt injection, jailbreaks, or data exfiltration attempts. It applies one or more *guards* to the request and rejects the call when a guard flags the payload as malicious. Because it operates on the raw request body, you can add it to **any endpoint that accepts a body**, not only to those connected to an LLM backend. KrakenD ships with a set of default guards that block well-known attack phrasings as soon as you enable Prompt Guard, and you can extend or restrict them through configuration.
 
 Security notice
 
-Prompt guards evaluate untrusted user input. The `policy` guard can additionally reference request metadata such as headers, query strings, and the URL. Review which guards you enable per endpoint and keep the default guards active unless you have a specific reason to disable them.
+Prompt guards evaluate untrusted user input. The `policy` guard can additionally reference request metadata such as headers, query strings, and the URL. Review which guards you enable per endpoint and keep the default guards active unless you have a specific reason to disable them. The default guards are a first layer of defense, not complete protection: they only detect the phrasings their patterns know.
 
 ## How Prompt Guard Works
 
@@ -3235,7 +3235,7 @@ Three kinds of guards are available:
 - **Classifier**: sends the body to an external service that returns a score.
 - **Policy**: evaluates CEL expressions against the body and request metadata.
 
-The default guards are a large set of regular expressions covering common attack categories. KrakenD merges all regex guards (defaults and your own) into a single set so it can test every pattern in one pass, which keeps evaluation fast even when the number of patterns is high.
+The default guards are a large set of regular expressions covering common attack categories. They match known phrasings of each attack, so a request that asks for the same thing in different words gets through. Use them as a fast first layer, and add a [classifier guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/#classifier-guards) alongside them when you need detection based on the meaning of the request rather than its wording. KrakenD merges all regex guards (defaults and your own) into a single set so it can test every pattern in one pass, which keeps evaluation fast even when the number of patterns is high.
 
 ## Enabling Prompt Guard
 

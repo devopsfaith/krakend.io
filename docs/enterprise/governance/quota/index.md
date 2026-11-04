@@ -248,7 +248,7 @@ The amount of the limit. This is the maximum number of requests that can be made
 
 The time unit for the limit.
 
-Possible values are: `"second"` , `"minute"` , `"hour"` , `"day"` , `"week"` , `"month"` , `"year"`
+Possible values are: `"hour"` , `"day"` , `"week"` , `"month"` , `"year"`
 
 ##### [`name`](#rules-name "Click to copy link to name") * string
 
