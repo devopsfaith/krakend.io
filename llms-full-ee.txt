@@ -19656,7 +19656,7 @@ The **request and response modifier plugins are not middlewares, but modifier fu
 
 KrakenD **executes the request and response modifiers in the order they are declared at the configuration**. See the [example](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/#example) below.
 
-![http handler plugin](https://www.krakend.io/images/documentation/request-response-plugin.png)
+![Request and response modifiers executed in order](https://www.krakend.io/images/documentation/diagrams/plugin-modifiers-flow.mmd.svg)
 
 ## Possibilities of req/resp modifiers
 
