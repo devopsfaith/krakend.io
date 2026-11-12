@@ -6,12 +6,12 @@ How to make sure what you are downloading is legit.
 
 ## PGP
 
-We will check the detached signature [PGP](https://download.krakend.io/bin/krakend_3.0.3_amd64_generic-linux.tar.gz.asc) against our package [KrakenD](https://download.krakend.io/bin/krakend_3.0.3_amd64_generic-linux.tar.gz).
+We will check the detached signature [PGP](https://download.krakend.io/bin/krakend_3.0.4_amd64_generic-linux.tar.gz.asc) against our package [KrakenD](https://download.krakend.io/bin/krakend_3.0.4_amd64_generic-linux.tar.gz).
 
 Term 
 
 ```
-$gpg --verify krakend_3.0.3_amd64_generic-linux.tar.gz.asc krakend_3.0.3_amd64_generic-linux.tar.gz
+$gpg --verify krakend_3.0.4_amd64_generic-linux.tar.gz.asc krakend_3.0.4_amd64_generic-linux.tar.gz
 gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2
 gpg: Can't check signature: public key not found
 ```
@@ -34,7 +34,7 @@ Now you can verify the signature of the package:
 Term 
 
 ```
-$gpg --verify krakend_3.0.3_amd64_generic-linux.tar.gz.asc krakend_3.0.3_amd64_generic-linux.tar.gz
+$gpg --verify krakend_3.0.4_amd64_generic-linux.tar.gz.asc krakend_3.0.4_amd64_generic-linux.tar.gz
 gpg: Signature made Sun Mar 10 18:17:18 2019 UTC using RSA key ID 5DE6FD698AD6FDD2
 gpg: Good signature from "Devops Faith Package Manager <packages@devops.faith>"
 gpg: WARNING: This key is not certified with a trusted signature!
@@ -44,12 +44,12 @@ Primary key fingerprint: 5B27 0F2E 01E3 75FD 9D56  35E2 5DE6 FD69 8AD6 FDD2
 
 ## SHA256
 
-To make sure the binary downloaded matches our SHA256 ensure the next 2 commands produce the same [SHA](https://download.krakend.io/bin/krakend_3.0.3_amd64_generic-linux.tar.gz.sha256) output.
+To make sure the binary downloaded matches our SHA256 ensure the next 2 commands produce the same [SHA](https://download.krakend.io/bin/krakend_3.0.4_amd64_generic-linux.tar.gz.sha256) output.
 
 Term 
 
 ```
-$shasum -a 256 -b krakend_3.0.3_amd64_generic-linux.tar.gz
+$shasum -a 256 -b krakend_3.0.4_amd64_generic-linux.tar.gz
 ```
 
 Compare it to:
@@ -57,5 +57,5 @@ Compare it to:
 Term 
 
 ```
-$curl https://download.krakend.io/bin/krakend_3.0.3_amd64_generic-linux.tar.gz.sha256
+$curl https://download.krakend.io/bin/krakend_3.0.4_amd64_generic-linux.tar.gz.sha256
 ```

@@ -95,7 +95,7 @@ Let’s open a terminal now and from the folder where we create our `krakend.jso
 Start the gateway with your configuration 
 
 ```
-$docker run --rm -v "$PWD:/etc/krakend" -p "8080:8080" krakend:3.0.3
+$docker run --rm -v "$PWD:/etc/krakend" -p "8080:8080" krakend:3.0.4
 ```
 
 The API Gateway is listening in port `8080` now, let’s check the `/__health` endpoint, which is unprotected:

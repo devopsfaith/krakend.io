@@ -347,7 +347,7 @@ $krakend run -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.3
+Version: 3.0.4
 
 The API Gateway builder
 
@@ -403,7 +403,7 @@ Or if you use Docker:
 Command to start KrakenD with Docker 
 
 ```
-$docker run -p "8080:8080" -v $PWD:/etc/krakend/ krakend:3.0.3 run -c krakend.json
+$docker run -p "8080:8080" -v $PWD:/etc/krakend/ krakend:3.0.4 run -c krakend.json
 ```
 
 Now KrakenD is listening on `8080`, and you can see it working under `http://localhost:8080/__health`.
@@ -828,7 +828,7 @@ $krakend check --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.3
+Version: 3.0.4
 
 Validates that the active configuration file has a valid syntax to run the service.
 Change the configuration file by using the --config flag
@@ -1181,7 +1181,7 @@ $krakend audit --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.3
+Version: 3.0.4
 
 Audits a KrakenD configuration.
 
@@ -4096,7 +4096,7 @@ The following headers are sent to the backends with default values, but if you a
 
 - `Content-Type`, the one passed in the request (if passed)
 - `Accept-Encoding`, set by KrakenD to `gzip`, unless you add it to the `input_headers`
-- `User-Agent` Contains the value `KrakenD Version 3.0.3`, unless you add it to the `input_headers`
+- `User-Agent` Contains the value `KrakenD Version 3.0.4`, unless you add it to the `input_headers`
 
 Needless to say that you can add any other header that is not listed in this page under `input_headers` and KrakenD will forward it to the backend.
 
@@ -5734,7 +5734,7 @@ Response 
 $curl -iG http://localhost:8080/cel\?foo\=A
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-X-Krakend: Version 3.0.3
+X-Krakend: Version 3.0.4
 X-Krakend-Completed: false
 Date: Tue, 22 Feb 2022 17:26:12 GMT
 Content-Length: 114
@@ -6979,7 +6979,7 @@ Term 
 $docker run --rm -it -p "8080:8080" \
     -e "AWS_PROFILE=default" \
     -v "/home/user/.aws:/home/krakend/.aws:ro" \
-    -v "$PWD:/etc/krakend" krakend:3.0.3
+    -v "$PWD:/etc/krakend" krakend:3.0.4
 ```
 
 Passing the credentials directly:
@@ -6991,7 +6991,7 @@ $docker run --rm -it -p "8080:8080" \
     -e "AWS_ACCESS_KEY_ID=XXX" \
     -e "AWS_SECRET_ACCESS_KEY=XXX" \
     -e "AWS_REGION=eu-west-1" \
-    -v "$PWD:/etc/krakend" krakend:3.0.3
+    -v "$PWD:/etc/krakend" krakend:3.0.4
 ```
 
 ### Header forwarding
@@ -10850,7 +10850,7 @@ Term 
 ```
 $curl -i -X POST -d '{"invalid": true}' http://localhost:8080/address
 HTTP/1.1 400 Bad Request
-X-Krakend: Version 3.0.3
+X-Krakend: Version 3.0.4
 X-Krakend-Completed: false
 Date: Thu, 17 Nov 2022 08:57:53 GMT
 Content-Length: 96
@@ -13601,7 +13601,7 @@ Let’s open a terminal now and from the folder where we create our `krakend.jso
 Start the gateway with your configuration 
 
 ```
-$docker run --rm -v "$PWD:/etc/krakend" -p "8080:8080" krakend:3.0.3
+$docker run --rm -v "$PWD:/etc/krakend" -p "8080:8080" krakend:3.0.4
 ```
 
 The API Gateway is listening in port `8080` now, let’s check the `/__health` endpoint, which is unprotected:
@@ -16668,7 +16668,7 @@ Notice that the three services declare volumes to pick the configuration.
 version: "3"
 services:
   krakend:
-    image: "krakend:3.0.3"
+    image: "krakend:3.0.4"
     ports:
       - "8080:8080"
     volumes:
@@ -16999,7 +16999,7 @@ Here’s an example of how to run the Datadog agent together with KrakenD in a d
 version: '3'
 services:
   krakend:
-    image: krakend:3.0.3
+    image: krakend:3.0.4
     volumes:
       - "./:/etc/krakend"
     command: ["run", "-c", "krakend.json"]
@@ -17195,7 +17195,7 @@ You can test this setup by running the **All in One** official Jaeger image and 
 version: "3"
 services:
   krakend:
-    image: krakend:3.0.3
+    image: krakend:3.0.4
     volumes:
       - "./:/etc/krakend"
     ports:
@@ -17270,7 +17270,7 @@ You can start the OpenTelemetry Collector with Azure’s compatibility using its
 ```yaml
 services:
   krakend:
-    image: krakend:3.0.3
+    image: krakend:3.0.4
     command: [ "krakend", "run", "-d", "-c", "/etc/krakend/krakend.json"]
     volumes:
       - ./:/etc/krakend
@@ -18213,7 +18213,7 @@ DEBUG: Method: GET
 DEBUG: URL: /__debug/default
 DEBUG: Query: map[]
 DEBUG: Params: [{param /default}]
-DEBUG: Headers: map[User-Agent:[KrakenD Version 3.0.3] X-Forwarded-For:[::1] Accept-Encoding:[gzip]]
+DEBUG: Headers: map[User-Agent:[KrakenD Version 3.0.4] X-Forwarded-For:[::1] Accept-Encoding:[gzip]]
 DEBUG: Body:
 [GIN] 2018/11/27 - 22:32:44 | 200 |     118.543µs |             ::1 | GET      /__debug/default
 [GIN] 2018/11/27 - 22:32:44 | 200 |     565.971µs |             ::1 | GET      /default-behavior?a=1&b=2&c=3
@@ -18321,7 +18321,7 @@ To install the integration tests you only need to run the following lines in any
 Installing the integration tool 
 
 ```
-$go install github.com/krakend/krakend-ce/v2/cmd/krakend-integration@v3.0.3
+$go install github.com/krakend/krakend-ce/v2/cmd/krakend-integration@v3.0.4
 ```
 
 After this you should have a new binary `krakend-integration` in your PATH. To use it you will to execute:
@@ -19395,7 +19395,7 @@ stages:
 # This step is only needed in Enterprise
 check-license:
   stage: license
-  image: krakend:3.0.3
+  image: krakend:3.0.4
   script:
     # Checks if the LICENSE file (must exist in the path) is valid for the next 90 days.
     # If it isn't, the deployment will fail, just to draw your attention. Lower the value afterwards.
@@ -19404,7 +19404,7 @@ check-license:
 # Example to check the configuration using flexible configuration
 check_config:
   stage: test
-  image: krakend:3.0.3
+  image: krakend:3.0.4
   variables:
     FC_ENABLE: 1
     FC_PARTIALS: $CI_PROJECT_DIR/config/partials

@@ -19,7 +19,7 @@ $krakend
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.3-ee
+Version: 3.0.4-ee
 
 KrakenD is a high-performance API gateway that helps you publish, secure, control, and monitor your services
 

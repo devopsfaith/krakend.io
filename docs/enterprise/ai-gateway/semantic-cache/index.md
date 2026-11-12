@@ -20,7 +20,7 @@ The semantic cache needs three things in place: an embedding model in ONNX forma
 
 ## Downloading an Embedding Model
 
-The embedding model is not included in the KrakenD distribution; you must provide it. Either add it manually to the models directory, or download it from Hugging Face with the built-in command. The model must be in ONNX format.
+KrakenD does not include the embedding model in its distribution; you must provide it. Either add it manually to the models directory, or download it from Hugging Face with the built-in command. The model must be in ONNX format.
 
 The krakend ai download-model command 
 
@@ -35,7 +35,7 @@ $krakend ai download-model -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.3-ee
+Version: 3.0.4-ee
 
 Download model from Hugging Face. Model needs to have onnx format
 
@@ -43,34 +43,81 @@ Usage:
   krakend ai download-model [flags]
 
 Examples:
-krakend ai download-model -model sentence-transformers/all-MiniLM-L6-v2
+krakend ai download-model --model sentence-transformers/all-MiniLM-L6-v2
 
 Flags:
+  -d, --cache-dir string   path to use for model download cache, defaults to a temp dir
   -h, --help               help for download-model
   -m, --model string       model to download (default "sentence-transformers/all-MiniLM-L6-v2")
   -o, --onnx-path string   model .onnx file (default "onnx/model.onnx")
   -p, --path string        path where to download models to (default "/etc/krakend/models")
+  -t, --timeout string     download timeout (default "1m")
   -v, --verbose            verbose mode
 ````
+
+The command accepts the following flags:
+
+- `--model` (`-m`): The Hugging Face model to download. Defaults to `sentence-transformers/all-MiniLM-L6-v2`.
+- `--onnx-path` (`-o`): The path of the `.onnx` file inside the model repository. Defaults to `onnx/model.onnx`.
+- `--path` (`-p`): The directory where KrakenD writes the model. Defaults to `/etc/krakend/models`. The model ends up in a subfolder named `<org>_<model>`, such as `/etc/krakend/models/sentence-transformers_all-MiniLM-L6-v2`.
+- `--cache-dir` (`-d`): The directory that caches the downloaded files. Defaults to a temporary directory that the command deletes when it finishes. See [model download cache directory](https://www.krakend.io/docs/enterprise/ai-gateway/semantic-cache/#model-download-cache-directory) below.
+- `--timeout` (`-t`): The maximum time for the whole download, all files together, as a duration with a unit such as `30s`, `5m` or `1h`. Defaults to `1m`.
+- `--verbose` (`-v`): Prints additional details while downloading.
 
 To download the default model into the default `/etc/krakend/models` directory:
 
 Downloading an embedding model 
 
 ```
-$krakend ai download-model -model sentence-transformers/all-MiniLM-L6-v2
+$krakend ai download-model --model sentence-transformers/all-MiniLM-L6-v2
+```
+
+With Docker, mount a host directory on `/etc/krakend/models` so the model stays on your host after the container exits. The container runs as the `krakend` user (UID `1000`), so the host directory must exist and be writable by UID `1000`. Otherwise, Docker creates it as `root` and the download fails with a `permission denied` error. Create the directory first, and change its owner with `sudo chown 1000 models` if your host user is not UID `1000`:
+
+Downloading an embedding model with Docker 
+
+```
+$mkdir -p models
+docker run --rm -v "$PWD/models:/etc/krakend/models" krakend/krakend-ee:3.0 ai download-model
+```
+
+The container downloads the default model and writes it to the `models` directory on your host, inside the `sentence-transformers_all-MiniLM-L6-v2` subfolder. When the download finishes, the command prints:
+
+```log
+OK: model successfully downloaded to:   /etc/krakend/models/sentence-transformers_all-MiniLM-L6-v2
 ```
 
 ### Model Download Cache Directory
 
-The `download-model` command first downloads the model files into a local Hugging Face cache, and then copies them to the `--path` directory. The cache lives in `$XDG_CACHE_HOME/huggingface/hub`, or in `$HOME/.cache/huggingface/hub` when `XDG_CACHE_HOME` is not set. When the model is already in the cache, the command reuses it and skips the download.
+The `download-model` command first downloads the model files into a cache directory, and then copies them to the `--path` directory. By default, the cache is a temporary directory under the operating system’s temp folder (`$TMPDIR`, or `/tmp` on Linux) that the command deletes when it finishes. As a result, every run downloads the full model again (about 87 MiB for the default model) and copies it to `--path` again, even when `--path` already contains it.
 
-The download fails when you run the command as a system user without a home directory and `XDG_CACHE_HOME` is not set. To choose the cache location, set the `XDG_CACHE_HOME` environment variable:
+To keep the downloaded files between runs, set `--cache-dir` to a persistent directory. When the model is already in the cache, the command reuses it and does not use the network at all. With Docker, mount a host directory for the cache. As with the models directory, both directories must exist and be writable by UID `1000`:
 
-Setting the download cache directory 
+Reusing the download cache between runs 
 
 ```
-$XDG_CACHE_HOME=/tmp/cache krakend ai download-model -model sentence-transformers/all-MiniLM-L6-v2
+$mkdir -p models hf-cache
+docker run --rm \
+  -v "$PWD/hf-cache:/cache" \
+  -v "$PWD/models:/etc/krakend/models" \
+  krakend/krakend-ee:3.0 ai download-model --cache-dir /cache
+```
+
+The first run downloads the model into `hf-cache` and copies it to `models`. Later runs find the files in `hf-cache` and skip the download. Every run ends with the same message:
+
+```log
+OK: model successfully downloaded to:   /etc/krakend/models/sentence-transformers_all-MiniLM-L6-v2
+```
+
+Cache location before v3.0.4
+
+Versions before v3.0.4 do not have the `--cache-dir` and `--timeout` flags. They always cache the download in `$XDG_CACHE_HOME/huggingface/hub`, or in `$HOME/.cache/huggingface/hub` when `XDG_CACHE_HOME` is not set. The official Docker image runs as the `krakend` user, which has no home directory, so the download fails with a `permission denied` error. Set `XDG_CACHE_HOME` to a writable directory to work around it. The `models` directory must also be writable by UID `1000`:
+
+Downloading a model with v3.0.3 or earlier 
+
+```
+$mkdir -p models
+docker run --rm -e XDG_CACHE_HOME=/tmp/cache -v "$PWD/models:/etc/krakend/models" krakend/krakend-ee:3.0.3 ai download-model
 ```
 
 ## Service Configuration

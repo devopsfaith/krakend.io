@@ -40,7 +40,7 @@ $krakend revoker --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.3
+Version: 3.0.4
 
 Starts a revocation service.
 

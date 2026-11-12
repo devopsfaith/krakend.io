@@ -41,7 +41,7 @@ You can start the OpenTelemetry Collector with Azure’s compatibility using its
 ```yaml
 services:
   krakend:
-    image: krakend/krakend-ee:3.0.3
+    image: krakend/krakend-ee:3.0.4
     command: [ "krakend", "run", "-d", "-c", "/etc/krakend/krakend.json"]
     volumes:
       - ./:/etc/krakend

@@ -56,7 +56,7 @@ To install the integration tests you only need to run the following lines in any
 Installing the integration tool 
 
 ```
-$go install github.com/krakend/krakend-ce/v2/cmd/krakend-integration@v3.0.3
+$go install github.com/krakend/krakend-ce/v2/cmd/krakend-integration@v3.0.4
 ```
 
 After this you should have a new binary `krakend-integration` in your PATH. To use it you will to execute:

@@ -424,7 +424,7 @@ Response 
 $curl -iG http://localhost:8080/cel\?foo\=A
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-X-Krakend: Version 3.0.3
+X-Krakend: Version 3.0.4
 X-Krakend-Completed: false
 Date: Tue, 22 Feb 2022 17:26:12 GMT
 Content-Length: 114

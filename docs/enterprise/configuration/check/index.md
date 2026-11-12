@@ -48,7 +48,7 @@ $krakend check --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.3
+Version: 3.0.4
 
 Validates that the active configuration file has a valid syntax to run the service.
 Change the configuration file by using the --config flag

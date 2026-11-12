@@ -92,7 +92,7 @@ Term 
 $docker run --rm -it -p "8080:8080" \
     -e "AWS_PROFILE=default" \
     -v "/home/user/.aws:/home/krakend/.aws:ro" \
-    -v "$PWD:/etc/krakend" krakend:3.0.3
+    -v "$PWD:/etc/krakend" krakend:3.0.4
 ```
 
 Passing the credentials directly:
@@ -104,7 +104,7 @@ $docker run --rm -it -p "8080:8080" \
     -e "AWS_ACCESS_KEY_ID=XXX" \
     -e "AWS_SECRET_ACCESS_KEY=XXX" \
     -e "AWS_REGION=eu-west-1" \
-    -v "$PWD:/etc/krakend" krakend:3.0.3
+    -v "$PWD:/etc/krakend" krakend:3.0.4
 ```
 
 ### Header forwarding
