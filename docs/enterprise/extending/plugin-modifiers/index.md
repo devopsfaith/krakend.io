@@ -49,7 +49,6 @@ import (
     "fmt"
     "io"
     "net/url"
-    "github.com/luraproject/lura/v2/proxy"
 )
 
 func main() {}
@@ -59,8 +58,7 @@ func init() {
 }
 
 // ModifierRegisterer is the symbol the plugin loader will be looking for. It must
-// implement the plugin.Registerer interface
-// https://github.com/luraproject/lura/blob/master/proxy/plugin/modifier.go#L71
+// implement the RegisterModifiers method below
 var ModifierRegisterer = registerer("krakend-debugger")
 
 type registerer string
@@ -81,9 +79,9 @@ func (r registerer) RegisterModifiers(f func(
 }
 ```
 
-As with other KrakenD plugins, the loader looks for a given symbol (in this case, “ModifierRegisterer”) and, if found, the loader checks if the symbol implements the `plugin.Registerer` interface. Once the plugin is validated, the loader registers the modifiers from the plugin by calling the exposed `RegisterModifiers` method.
+As with other KrakenD plugins, the loader looks for a given symbol (in this case, “ModifierRegisterer”) and, if found, the loader checks if the symbol implements the `RegisterModifiers` method. Once the plugin is validated, the loader registers the modifiers from the plugin by calling the exposed `RegisterModifiers` method.
 
-For the debugger plugin we’ll register two different modifiers: `requestDump` and `responseDump`. The modifiers are registered under the same namespace so both will be injected with a single config line. In order to avoid weird dependency collisions, the `modifierFactory` signature uses basic types and `interface{}`, so some type assertion against the interfaces declared at the [`proxy` package](https://github.com/luraproject/lura/blob/master/proxy/plugin.go#L187-L209) are required. Include the interfaces into your plugin by adding the following lines:
+For the debugger plugin we’ll register two different modifiers: `requestDump` and `responseDump`. The modifiers are registered under the same namespace so both will be injected with a single config line. In order to avoid weird dependency collisions, the `modifierFactory` signature uses basic types and `interface{}`, so your modifiers need a type assertion against the request and response interfaces. Your plugin does not import any KrakenD package: declare the interfaces in it by adding the following lines:
 
 ```go
 // RequestWrapper is an interface for passing proxy request between the krakend pipe
@@ -195,7 +193,7 @@ func (r registerer) responseDump(
 }
 ```
 
-You can also refer [this example](https://github.com/luraproject/lura/blob/v2.0.1/proxy/plugin/tests/main.go) on how to update the request and [this example](https://github.com/luraproject/lura/blob/master/proxy/plugin.go#L130) on how to update the response.
+The modifiers above only read the request and the response. To change them, return your own type implementing `RequestWrapper` or `ResponseWrapper` instead of `input`. The `requestWrapper` and `responseWrapper` types in the [middleware plugin example](https://www.krakend.io/docs/enterprise/extending/middleware-plugins/#example-building-your-first-middleware-plugin) show how to build one.
 
 ### Building the plugin
 
