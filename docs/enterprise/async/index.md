@@ -83,7 +83,7 @@ The configuration accepts the following parameters:
 
 ##### [`backend`](https://www.krakend.io/docs/enterprise/async/#backend "Click to copy link to backend") * array
 
-The [backend definition](https://www.krakend.io/docs/backends/) (as you might have in any endpoint) indicating where the event data is sent. It is a full backend object definition, with all its possible options, transformations, filters, validations, etc.
+The [backend definition](https://www.krakend.io/docs/enterprise/backends/) (as you might have in any endpoint) indicating where the event data is sent. It is a full backend object definition, with all its possible options, transformations, filters, validations, etc.
 
 ##### [`connection`](https://www.krakend.io/docs/enterprise/async/#connection "Click to copy link to connection") object
 
@@ -153,7 +153,7 @@ Defines the driver that connects to your queue or PubSub system. In addition, yo
 
 ##### [`async/amqp`](#extra_config-async%2famqp "Click to copy link to async/amqp")
 
-[See the configuration for async/amqp](https://www.krakend.io/docs/async/amqp/)
+[See the configuration for async/amqp](https://www.krakend.io/docs/enterprise/async/amqp/)
 
 ##### [`async/kafka`](#extra_config-async%2fkafka "Click to copy link to async/kafka")
 

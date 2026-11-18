@@ -47,7 +47,7 @@ Defaults to `0`
 
 ##### [`disable_access_log`](https://www.krakend.io/docs/enterprise/service-settings/router-options/#disable_access_log "Click to copy link to disable_access_log") boolean
 
-Stops registering access requests to KrakenD in the logs. You can still have a [Backend Log](https://www.krakend.io/docs/logging/#backend) if needed.
+Stops registering access requests to KrakenD in the logs. You can still have a [Backend Log](https://www.krakend.io/docs/enterprise/logging/#backend) if needed.
 
 Defaults to `false`
 

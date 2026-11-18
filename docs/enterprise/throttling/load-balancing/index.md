@@ -34,11 +34,11 @@ In essence, there are two relevant entries on `backend` you have to be aware of 
 
 ##### [`host`](https://www.krakend.io/docs/enterprise/throttling/load-balancing/#host "Click to copy link to host") array of strings
 
-An array with all the available hosts to [load balance](https://www.krakend.io/docs/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: `https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration’s root level, and the service fails starting when there is none.
+An array with all the available hosts to [load balance](https://www.krakend.io/docs/enterprise/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: `https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration’s root level, and the service fails starting when there is none.
 
 ##### [`sd`](https://www.krakend.io/docs/enterprise/throttling/load-balancing/#sd "Click to copy link to sd")
 
-The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.
+The [Service Discovery](https://www.krakend.io/docs/enterprise/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.
 
 Possible values are: `"static"` , `"dns"` , `"dns-shared"`
 

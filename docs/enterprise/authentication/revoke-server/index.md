@@ -182,10 +182,10 @@ Schema: [https://www.krakend.io/schema/v3.0/auth/revoker.json](https://www.krake
 
 The Revoke Server also accepts settings from:
 
-- [Any HTTP server setting](https://www.krakend.io/docs/service-settings/http-server-settings/) except `sequential_start` and `cache_ttl`
-- [Any HTTP transport setting](https://www.krakend.io/docs/service-settings/http-transport-settings/) except `disable_rest`
-- [Any TLS setting](https://www.krakend.io/docs/service-settings/tls/)
-- [Any improved logging setting](https://www.krakend.io/docs/logging/)
+- [Any HTTP server setting](https://www.krakend.io/docs/enterprise/service-settings/http-server-settings/) except `sequential_start` and `cache_ttl`
+- [Any HTTP transport setting](https://www.krakend.io/docs/enterprise/service-settings/http-transport-settings/) except `disable_rest`
+- [Any TLS setting](https://www.krakend.io/docs/enterprise/service-settings/tls/)
+- [Any improved logging setting](https://www.krakend.io/docs/enterprise/logging/)
 
 ## Registering to the Revoke Server
 

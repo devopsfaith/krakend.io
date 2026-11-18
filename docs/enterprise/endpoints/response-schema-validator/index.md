@@ -10,7 +10,7 @@ Before returning the response, you can define the minimum response fields and th
 
 Validation of responses, not requests
 
-This component validates that the response from the server of after content aggregation/manipulation in KrakenD has the desired attributes. To validate the user input on requests use the [`validation/json-schema`](https://www.krakend.io/docs/endpoints/json-schema/) instead.
+This component validates that the response from the server of after content aggregation/manipulation in KrakenD has the desired attributes. To validate the user input on requests use the [`validation/json-schema`](https://www.krakend.io/docs/enterprise/endpoints/json-schema/) instead.
 
 You can use this plugin in conjunction with other components and perform validations, and you can insert it either in the endpoint section or the backend section. For instance, it can be part of a sequential proxy call and decide that the response does not have enough data to move forward and cancel the cascading connection.
 

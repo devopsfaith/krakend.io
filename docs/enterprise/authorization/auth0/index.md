@@ -12,7 +12,7 @@ Auth0 can authenticate users and machines, and KrakenD knows your business APIs 
 
 ## The Auth0 - KrakenD integration
 
-JSON web tokens (JWT) are an open standard ([RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)) that define a way for securely transmitting information between parties. JWT tokens are compact, secure (digitally signed), and have become an industry-standard used at internet scale. KrakenD supports [any system using this open standard](https://www.krakend.io/docs/authorization/jwt-validation/), and Auth0 has been its preferred SaaS integration.
+JSON web tokens (JWT) are an open standard ([RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)) that define a way for securely transmitting information between parties. JWT tokens are compact, secure (digitally signed), and have become an industry-standard used at internet scale. KrakenD supports [any system using this open standard](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/), and Auth0 has been its preferred SaaS integration.
 
 KrakenD offers integration with Auth0 at three different levels:
 
@@ -167,7 +167,7 @@ Some possibilities are:
 - Define scopes and validate them on KrakenD
 - Propagate claims to your backends.
 
-All of this is possible by [declaring more elements into the configuration](https://www.krakend.io/docs/authorization/jwt-validation/).
+All of this is possible by [declaring more elements into the configuration](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/).
 
 ### Conclusion
 

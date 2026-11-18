@@ -22,7 +22,7 @@ Defines the list of all headers allowed to reach the backend when passed.
 
 By default, KrakenD won’t pass any header from the client to the backend. This list is **case-insensitive**. You can declare headers in lowercase, uppercase, or mixed.
 
-An entry `["Cookie"]` forwards all cookies, and a single star element `["*"]` as value forwards everything to the backend (**it’s safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)
+An entry `["Cookie"]` forwards all cookies, and a single star element `["*"]` as value forwards everything to the backend (**it’s safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#headers-forwarding)
 
 Defaults to `[]`
 

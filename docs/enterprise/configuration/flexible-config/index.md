@@ -4,7 +4,7 @@
 
 Source: https://www.krakend.io/docs/enterprise/configuration/flexible-config/
 
-The **Extended Flexible Configuration** allows you to express your KrakenD configuration using **multiple files**, reusing code blocks, and injecting external data through a **templates system**. It is called “Extended” because it uses an engine more capable and easier to use than its [open source alternative](https://www.krakend.io/docs/configuration/flexible-config/), while it remains 100% compatible.
+The **Extended Flexible Configuration** allows you to express your KrakenD configuration using **multiple files**, reusing code blocks, and injecting external data through a **templates system**. It is called “Extended” because it uses an engine more capable and easier to use than its [open source alternative](https://www.krakend.io/docs/enterprise/configuration/flexible-config/), while it remains 100% compatible.
 
 In its simplest form, you can do things like:
 
@@ -52,7 +52,7 @@ Here’s another simple example:
 }
 ```
 
-The example above is a template with a conditional that it renders as a JSON file. Still, you can encode your configuration files in any of the [supported formats](https://www.krakend.io/docs/configuration/supported-formats/) (`json`, `yaml`, `toml`, etc.), as the template engine is agnostic of its contents.
+The example above is a template with a conditional that it renders as a JSON file. Still, you can encode your configuration files in any of the [supported formats](https://www.krakend.io/docs/enterprise/configuration/supported-formats/) (`json`, `yaml`, `toml`, etc.), as the template engine is agnostic of its contents.
 
 Templates are based on the `text/template` [Go library](https://golang.org/pkg/text/template/), and we recommend you start reading our [introduction to templates](https://www.krakend.io/docs/enterprise/configuration/templates/)
 

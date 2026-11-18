@@ -223,7 +223,7 @@ Defines the list of all headers allowed to reach the backend when passed.
 
 By default, KrakenD won’t pass any header from the client to the backend. This list is **case-insensitive**. You can declare headers in lowercase, uppercase, or mixed.
 
-An entry `["Cookie"]` forwards all cookies, and a single star element `["*"]` as value forwards everything to the backend (**it’s safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)
+An entry `["Cookie"]` forwards all cookies, and a single star element `["*"]` as value forwards everything to the backend (**it’s safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#headers-forwarding)
 
 Defaults to `[]`
 
@@ -342,12 +342,12 @@ The **MCP authorization** protects your MCP servers with the OAuth 2.1 flow that
 
 You don’t need any custom code to make it work. Two built-in features of KrakenD Enterprise cover the whole resource server role:
 
-1. The [JWT validation](https://www.krakend.io/docs/authorization/jwt-validation/) on the MCP entrypoint rejects requests without a valid token.
+1. The [JWT validation](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) on the MCP entrypoint rejects requests without a valid token.
 2. The [static filesystem](https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/) serves the OAuth 2.0 Protected Resource Metadata ([RFC 9728](https://datatracker.ietf.org/doc/html/rfc9728)), the document MCP clients read to discover your authorization server.
 
 MCP authorization requires HTTPS
 
-MCP clients only complete the OAuth flow against HTTPS URLs, both for the MCP server and the authorization server. Enable [TLS](https://www.krakend.io/docs/service-settings/tls/) in KrakenD, or terminate TLS in a load balancer or reverse proxy in front of it, and use the public HTTPS URLs in the metadata document.
+MCP clients only complete the OAuth flow against HTTPS URLs, both for the MCP server and the authorization server. Enable [TLS](https://www.krakend.io/docs/enterprise/service-settings/tls/) in KrakenD, or terminate TLS in a load balancer or reverse proxy in front of it, and use the public HTTPS URLs in the metadata document.
 
 The following diagram shows how an MCP client connects to a protected MCP server for the first time:
 
@@ -423,7 +423,7 @@ To require a token, add the `auth/validator` namespace to the endpoint that serv
 
 KrakenD checks the signature of the token against the `jwk_url` of your identity provider, its issuer, its audience, and its roles. Requests with a missing, expired, or invalid token get a `401 Unauthorized`, which is the response that starts the OAuth flow on the MCP client. Valid tokens that lack the `mcp-user` role get a `403 Forbidden`.
 
-The MCP specification requires the MCP server to accept only the tokens issued for it, so set the `audience` to the public URL of your MCP endpoint and configure your identity provider to include it in the `aud` claim. This prevents agents from reusing tokens issued for other services. You can combine this validation with the [tool filtering](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/#mcp-tool-filtering-by-audience) below, for instance by [propagating a claim](https://www.krakend.io/docs/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers) as the header that sets the audience of the tools.
+The MCP specification requires the MCP server to accept only the tokens issued for it, so set the `audience` to the public URL of your MCP endpoint and configure your identity provider to include it in the `aud` claim. This prevents agents from reusing tokens issued for other services. You can combine this validation with the [tool filtering](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/#mcp-tool-filtering-by-audience) below, for instance by [propagating a claim](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers) as the header that sets the audience of the tools.
 
 ### Announcing the Authorization Server with Protected Resource Metadata
 

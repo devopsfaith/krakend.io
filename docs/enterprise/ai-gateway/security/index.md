@@ -23,18 +23,18 @@ KrakenD separates the authentication flows between consumers and LLM on your AI 
 
 Although **most LLM models use API Key authentication**, you don’t need to adopt a less secure pattern when it comes to consumers, neither share your provider API key with them. Instead, you may want to integrate your user base through your existing Identity Provider and demand JWT tokens to use AI through the gateway. Then, you leave the API Key usage only between the gateway and the LLM without being exposed anywhere else.
 
-KrakenD allows you to separate the two sides with the configuration that best suits your needs. The example above would use [JWT Validation](https://www.krakend.io/docs/authorization/jwt-validation/) at the endpoint level (what the consumer sees), and API Key protection at the backend level (what the gateway uses to talk to the LLM).
+KrakenD allows you to separate the two sides with the configuration that best suits your needs. The example above would use [JWT Validation](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) at the endpoint level (what the consumer sees), and API Key protection at the backend level (what the gateway uses to talk to the LLM).
 
 See:
 
-- [JWT Validation](https://www.krakend.io/docs/authorization/jwt-validation/)
+- [JWT Validation](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/)
 - API Key Protection (see below)
 
 ## API Key Protection
 
 Even if your API is internal and not open to the world, you might want to safeguard API keys required by LLM providers and not share secrets with the rest of the company.
 
-To do so, you can configure the gateway to **inject an Authorization header**; this API key remains in the configuration or an environment variable. This can be done using a [Martian modifier](https://www.krakend.io/docs/backends/martian/#header-modifier), as depicted below:
+To do so, you can configure the gateway to **inject an Authorization header**; this API key remains in the configuration or an environment variable. This can be done using a [Martian modifier](https://www.krakend.io/docs/enterprise/backends/martian/#header-modifier), as depicted below:
 
 ```json
 {
@@ -71,7 +71,7 @@ To do so, you can configure the gateway to **inject an Authorization header**; t
 
 The example above would automatically add your OpenAI API key when calling the `/ChatGPT` endpoint on KrakenD. In this example, end-users would not be required to provide any kind of authentication (e.g., internal API), as the endpoint does not include JWT validation.
 
-You can test the snippet above, replacing `YOUR_OPENAI_API_KEY` with your valid API KEY and test. You can also use enable [Flexible Configuration](https://www.krakend.io/docs/configuration/flexible-config/) and inject the API KEY from an env var using `"value": "Bearer {{ env "YOUR_OPENAI_API_KEY" }}"`.
+You can test the snippet above, replacing `YOUR_OPENAI_API_KEY` with your valid API KEY and test. You can also use enable [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/) and inject the API KEY from an env var using `"value": "Bearer {{ env "YOUR_OPENAI_API_KEY" }}"`.
 
 With this config, you can call ChatGPT:
 
@@ -90,11 +90,11 @@ curl http://localhost:8080/chatgpt \
 
 If you have ChatGPT quota you should be able to see the response from ChatGPT without adding the authentication.
 
-For more options on how to set static headers on external requests, see the [Martian API Key modifier](https://www.krakend.io/docs/backends/martian/#header-modifier)
+For more options on how to set static headers on external requests, see the [Martian API Key modifier](https://www.krakend.io/docs/enterprise/backends/martian/#header-modifier)
 
 ## Data Masking & Data Loss Prevention
 
-Thanks to the [**request and response transformation components**](https://www.krakend.io/docs/request-response-manipulation/) on KrakenD, you can easily apply data masking to protect sensitive information from being exposed in APIs by modifying the data before it leaves KrakenD. But also when you don’t want end-users to pass sensitive content to the LLM.
+Thanks to the [**request and response transformation components**](https://www.krakend.io/docs/enterprise/request-response-manipulation/) on KrakenD, you can easily apply data masking to protect sensitive information from being exposed in APIs by modifying the data before it leaves KrakenD. But also when you don’t want end-users to pass sensitive content to the LLM.
 
 There are two types of data masking:
 
@@ -212,7 +212,7 @@ The payload the LLM would receive under these conditions would be
 
 A more sophisticated way of masking incoming or outgoing data is to delegate the request or the response to an LLM that will manipulate the request or the response using more sophisticated mechanisms.
 
-To do this, you have to configure a [sequential proxy](https://www.krakend.io/docs/endpoints/sequential-proxy/) where you:
+To do this, you have to configure a [sequential proxy](https://www.krakend.io/docs/enterprise/endpoints/sequential-proxy/) where you:
 
 1. Add the LLM in the first place to modify a request
 2. Add the LLM in the second place (after querying your backend) to modify the response.
@@ -225,10 +225,10 @@ As with data masking, exfiltration prevention can be static or dynamic.
 
 Here are some indications to avoid exfiltration using **static patterns**:
 
-- Use an [allow list](https://www.krakend.io/docs/backends/data-manipulation/#allow) for APIs that should return a limited set of attributes
+- Use an [allow list](https://www.krakend.io/docs/enterprise/backends/data-manipulation/#allow) for APIs that should return a limited set of attributes
 - Use [Security Policies](https://www.krakend.io/docs/enterprise/security-policies/) to check necessary roles and conditions to deliver content
 - Use [Regex Masking or Redaction](https://www.krakend.io/docs/enterprise/ai-gateway/security/#data-masking--data-loss-prevention) on fields that must not be exfiltrated in full.
 - Use custom logic in [request and response modifier plugins](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/)
 - Instead of allowing open LLM queries, use [prompt templates](https://www.krakend.io/docs/enterprise/ai-gateway/governance/#prompt-templates)
 
-For **dynamic operation**, you can delegate the output to an LLM that will refine the response. To do that, you can add a [sequential proxy](https://www.krakend.io/docs/endpoints/sequential-proxy/) step as the second backend, as explained in the chapter above.
+For **dynamic operation**, you can delegate the output to an LLM that will refine the response. To do that, you can add a [sequential proxy](https://www.krakend.io/docs/enterprise/endpoints/sequential-proxy/) step as the second backend, as explained in the chapter above.

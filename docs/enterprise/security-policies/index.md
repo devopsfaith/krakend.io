@@ -14,7 +14,7 @@ A policy is a test rule based on the [CEL language](https://www.krakend.io/docs/
 has(JWT.department) && JWT.department in ["marketing", "sales"]
 ```
 
-The policy above checks if the JWT token contains a claim named `department` and its value is one of the listed ones. If it doesn’t there is a configurable error. The [JWT validator](https://www.krakend.io/docs/authorization/jwt-validation/) would have previously validated that the token is valid, signed, and so on.
+The policy above checks if the JWT token contains a claim named `department` and its value is one of the listed ones. If it doesn’t there is a configurable error. The [JWT validator](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) would have previously validated that the token is valid, signed, and so on.
 
 ### What can you do with policies?
 

@@ -122,7 +122,7 @@ Possible values are: `"EdDSA"` , `"HS256"` , `"HS384"` , `"HS512"` , `"RS256"` ,
 
 ##### [`cipher_suites`](https://www.krakend.io/docs/enterprise/authorization/jwt-signing/#cipher_suites "Click to copy link to cipher_suites") array
 
-Override the default cipher suites (see [JWT validation](https://www.krakend.io/docs/authorization/jwt-signing/)). Unless you have a legacy JWK, **you don’t need to set this value**.
+Override the default cipher suites (see [JWT validation](https://www.krakend.io/docs/enterprise/authorization/jwt-signing/)). Unless you have a legacy JWK, **you don’t need to set this value**.
 
 Defaults to `[49199,49195,49200,49196,52392,52393]`
 
@@ -186,7 +186,7 @@ Defaults to `"1s"`
 
 ##### [`secret_url`](https://www.krakend.io/docs/enterprise/authorization/jwt-signing/#secret_url "Click to copy link to secret_url") string
 
-An URL with a custom scheme using one of the supported providers (e.g.: `awskms://keyID`) ([see providers](https://www.krakend.io/docs/authorization/jwt-validation/#accepted-providers-for-encrypting-payloads)).
+An URL with a custom scheme using one of the supported providers (e.g.: `awskms://keyID`) ([see providers](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/#accepted-providers-for-encrypting-payloads)).
 
 Examples: `"base64key://smGbjm71Nxd1Ig5FS0wj9SlbzAIrnolCz9bQQ6uAhl4="` , `"awskms://keyID"` , `"azurekeyvault://keyID"` , `"gcpkms://projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEY_RING]/cryptoKeys/[KEY]"` , `"hashivault://keyID"`
 

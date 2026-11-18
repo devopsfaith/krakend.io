@@ -161,7 +161,7 @@ You don’t need to use the variables in the `url_pattern` as part of the path, 
 
 ## Routing based on a JWT claim
 
-You can inject claims to the backend’s final URL if you are using the [JWT validator](https://www.krakend.io/docs/authorization/jwt-validation/) in the same endpoint through the `{JWT.}` variable. For instance, you could declare a `url_pattern` making use of `{JWT.sub}`, where `sub` is a first-level claim of your JWT payload (you cannot traverse nested claims).
+You can inject claims to the backend’s final URL if you are using the [JWT validator](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) in the same endpoint through the `{JWT.}` variable. For instance, you could declare a `url_pattern` making use of `{JWT.sub}`, where `sub` is a first-level claim of your JWT payload (you cannot traverse nested claims).
 
 For instance, when your JWT payload is represented by something like this:
 

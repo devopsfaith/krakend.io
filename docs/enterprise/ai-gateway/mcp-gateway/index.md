@@ -6,13 +6,13 @@ Source: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-gateway/
 
 The Model Context Protocol (MCP) Gateway in KrakenD enables transparent communication between an **MCP agent** and a **third-party MCP server** through a `no-op` endpoint. This setup allows KrakenD to forward messages with minimal processing while enriching the communication path with additional layers and functionality such as:
 
-- Adding [authorization](https://www.krakend.io/docs/authorization/) and other security options
-- Add [observability](https://www.krakend.io/docs/telemetry/)
-- [Throttle](https://www.krakend.io/docs/throttling/) the usage of the MCP
-- Add [CORS](https://www.krakend.io/docs/service-settings/cors/)
+- Adding [authorization](https://www.krakend.io/docs/enterprise/authorization/) and other security options
+- Add [observability](https://www.krakend.io/docs/enterprise/telemetry/)
+- [Throttle](https://www.krakend.io/docs/enterprise/throttling/) the usage of the MCP
+- Add [CORS](https://www.krakend.io/docs/enterprise/service-settings/cors/)
 - Add [IP filtering](https://www.krakend.io/docs/enterprise/throttling/ipfilter/)
-- Add [security policies](https://www.krakend.io/docs/enterprise/security-policies/) or [CEL expressions](https://www.krakend.io/docs/endpoints/common-expression-language-cel/) with business logic
-- Move the passing of headers to the gateway and make the client unaware with [Martian](https://www.krakend.io/docs/backends/martian/)
+- Add [security policies](https://www.krakend.io/docs/enterprise/security-policies/) or [CEL expressions](https://www.krakend.io/docs/enterprise/endpoints/common-expression-language-cel/) with business logic
+- Move the passing of headers to the gateway and make the client unaware with [Martian](https://www.krakend.io/docs/enterprise/backends/martian/)
 - Limit the [payload size](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/) of the requests
 - And a long etcetera, check the documentation menu.
 
@@ -92,7 +92,7 @@ Line-by-Line:
 
 - `method`: Three endpoints, as we want to allow MCP communication through `GET`, `POST` and `DELETE`. Being the `POST` the most important.
 - `output_encoding`: The `no-op` encoding allows transparent MCP communication. This is a must.
-- `input_headers`: Depending on the MCP technology, you might need forwarding headers to the MCP server. Or you can add [Martian](https://www.krakend.io/docs/backends/martian/) and inject them at the gateway level if they have constant values and you don’t want the MCP agent to know.
+- `input_headers`: Depending on the MCP technology, you might need forwarding headers to the MCP server. Or you can add [Martian](https://www.krakend.io/docs/enterprise/backends/martian/) and inject them at the gateway level if they have constant values and you don’t want the MCP agent to know.
 - `endpoint`: `/mcp` defines the KrakenD endpoint exposed to MCP agents, whatever route you want this to be.
 - `host`: Remote MCP server address to forward MCP messages.
 

@@ -24,7 +24,7 @@ The possible configurations and values for `sd` are:
 
 ##### [`sd`](https://www.krakend.io/docs/enterprise/backends/service-discovery/#sd "Click to copy link to sd")
 
-The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.
+The [Service Discovery](https://www.krakend.io/docs/enterprise/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.
 
 Possible values are: `"static"` , `"dns"` , `"dns-shared"`
 
@@ -32,7 +32,7 @@ Defaults to `"static"`
 
 ##### [`sd_scheme`](https://www.krakend.io/docs/enterprise/backends/service-discovery/#sd_scheme "Click to copy link to sd_scheme") string
 
-The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) scheme to connect to your backend services.
+The [Service Discovery](https://www.krakend.io/docs/enterprise/backends/service-discovery/) scheme to connect to your backend services.
 
 Examples: `"http"` , `"https"`
 

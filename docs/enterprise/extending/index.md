@@ -22,7 +22,7 @@ Both Lua and Go plugins allow you to extend KrakenD’s capabilities, but their 
 - Lua is best for quick, simple, runtime modifications, and it is the extensibility option of the Community Edition
 - Go is best for complex, performance-critical, or testable extensions, and requires the [Enterprise Edition](https://www.krakend.io/enterprise/)
 
-[Get started with Lua](https://www.krakend.io/docs/endpoints/lua/ "Get started with Lua") [Get started with Go Plugins](https://www.krakend.io/docs/enterprise/extending/writing-plugins/ " Get started with Go Plugins")
+[Get started with Lua](https://www.krakend.io/docs/enterprise/endpoints/lua/ "Get started with Lua") [Get started with Go Plugins](https://www.krakend.io/docs/enterprise/extending/writing-plugins/ " Get started with Go Plugins")
 
 ## Extending with Lua
 

@@ -59,7 +59,7 @@ At the backend level, the inclusion of the `backend/grpc` object **with no conte
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/backends/grpc/#client_tls "Click to copy link to client_tls")
 
-Enables specific TLS connection options when using the gRPC service. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).
+Enables specific TLS connection options when using the gRPC service. Supports all options under [TLS client settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings).
 
 ##### [`disable_query_params`](https://www.krakend.io/docs/enterprise/backends/grpc/#disable_query_params "Click to copy link to disable_query_params") boolean
 

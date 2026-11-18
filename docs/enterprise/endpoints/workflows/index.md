@@ -74,7 +74,7 @@ You’ll find the following configuration familiar as it is like an `endpoint` w
 
 ##### [`backend`](https://www.krakend.io/docs/enterprise/endpoints/workflows/#backend "Click to copy link to backend") * array of objects
 
-List of all the [backend objects](https://www.krakend.io/docs/backends/) called within this workflow. Each backend can initiate another workflow if needed.
+List of all the [backend objects](https://www.krakend.io/docs/enterprise/backends/) called within this workflow. Each backend can initiate another workflow if needed.
 
 ##### [`concurrent_calls`](https://www.krakend.io/docs/enterprise/endpoints/workflows/#concurrent_calls "Click to copy link to concurrent_calls") integer
 
@@ -100,7 +100,7 @@ Defaults to `false`
 
 ##### [`output_encoding`](https://www.krakend.io/docs/enterprise/endpoints/workflows/#output_encoding "Click to copy link to output_encoding")
 
-The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/endpoints/content-types/)
+The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/enterprise/endpoints/content-types/)
 
 Possible values are: `"json"` , `"json-collection"` , `"yaml"` , `"fast-json"` , `"xml"` , `"negotiate"` , `"string"` , `"no-op"`
 

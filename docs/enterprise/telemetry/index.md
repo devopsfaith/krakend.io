@@ -60,4 +60,4 @@ If you want to use a third-party SaaS and delegate the data to a vendor, here is
 
 The adoption of OpenTelemetry by these platforms indicates a strong industry shift towards standardized, open-source observability solutions. **You should test the ones you need on KrakenD** and ensure they deliver what you seek; from KrakenD, we are unfamiliar with every vendor out there.
 
-[Configure OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/ "Configure OpenTelemetry")
+[Configure OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/ "Configure OpenTelemetry")

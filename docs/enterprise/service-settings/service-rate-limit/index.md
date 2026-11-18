@@ -4,14 +4,14 @@
 
 Source: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/
 
-The service rate limit feature allows you to set the **maximum requests per second** a user or group of users can do to KrakenD and works analogously to the [endpoint rate limit](https://www.krakend.io/docs/endpoints/rate-limit/). There are two different strategies to set limits that you can use, simultaneously or individually:
+The service rate limit feature allows you to set the **maximum requests per second** a user or group of users can do to KrakenD and works analogously to the [endpoint rate limit](https://www.krakend.io/docs/enterprise/endpoints/rate-limit/). There are two different strategies to set limits that you can use, simultaneously or individually:
 
 - **Service rate-limit**: Defines the rate-limit that **all users** of your API can do together, sharing the same counter. For instance, you might want to limit the interaction from users to KrakenD to 10,000 requests/second to avoid a possible DDoS propagating to your backend services.
 - **Client rate-limit**: Rate-limits what an individual user can do against all endpoints. For instance, a personal JWT token can make 100 requests/second to the API.
 
-Both types keep **in-memory** an updated [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) expressing the remaining requests for a user or group of users.
+Both types keep **in-memory** an updated [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) expressing the remaining requests for a user or group of users.
 
-For additional types of rate-limiting see the [Traffic management overview](https://www.krakend.io/docs/throttling/).
+For additional types of rate-limiting see the [Traffic management overview](https://www.krakend.io/docs/enterprise/throttling/).
 
 ## Service rate-limiting (`max_rate`)
 
@@ -19,15 +19,15 @@ The service rate limit acts on the number of simultaneous transactions KrakenD a
 
 It consumes an insignificant amount of memory as it only needs **one counter for the whole system**.
 
-When the users connected to an endpoint together exceed the `max_rate`, KrakenD starts to reject connections with a status code `503 Service Unavailable` and enables a [Spike Arrest](https://www.krakend.io/docs/throttling/spike-arrest/) policy
+When the users connected to an endpoint together exceed the `max_rate`, KrakenD starts to reject connections with a status code `503 Service Unavailable` and enables a [Spike Arrest](https://www.krakend.io/docs/enterprise/throttling/spike-arrest/) policy
 
 ## Service client rate-limiting (`client_max_rate`)
 
-The client or user rate limit applies to an individual user to all endpoints. Each endpoint can additionally have [sub-limit rates](https://www.krakend.io/docs/endpoints/rate-limit/), but all users are subject to the same rate.
+The client or user rate limit applies to an individual user to all endpoints. Each endpoint can additionally have [sub-limit rates](https://www.krakend.io/docs/enterprise/endpoints/rate-limit/), but all users are subject to the same rate.
 
 The `client_max_rate` tracks one counter per different client.
 
-When a single user connected to an endpoint exceeds their `client_max_rate`, KrakenD starts to reject connections with a status code `429 Too Many Requests` and enables a [Spike Arrest](https://www.krakend.io/docs/throttling/spike-arrest/) policy
+When a single user connected to an endpoint exceeds their `client_max_rate`, KrakenD starts to reject connections with a status code `429 Too Many Requests` and enables a [Spike Arrest](https://www.krakend.io/docs/enterprise/throttling/spike-arrest/) policy
 
 ## Service rate-limiting configuration
 
@@ -54,7 +54,7 @@ Minimum configuration needs **any of**: `max_rate` , or `client_max_rate`
 
 ##### [`capacity`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#capacity "Click to copy link to capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
 
 Defaults to `1`
 
@@ -74,13 +74,13 @@ Defaults to `1`
 
 ##### [`client_capacity`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#client_capacity "Click to copy link to client_capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
 
 Defaults to `1`
 
 ##### [`client_max_rate`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#client_max_rate "Click to copy link to client_max_rate") number
 
-Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
+Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
 
 ##### [`every`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#every "Click to copy link to every") string
 
@@ -98,7 +98,7 @@ Examples: `"X-Tenant"` , `"Authorization"` , `"id_user"`
 
 ##### [`max_rate`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#max_rate "Click to copy link to max_rate") number
 
-Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
+Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
 
 ##### [`num_shards`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#num_shards "Click to copy link to num_shards") integer
 

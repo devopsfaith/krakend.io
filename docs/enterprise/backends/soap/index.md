@@ -10,7 +10,7 @@ KrakenD has the native capability of dealing with multiple encodings, like XML o
 
 You can afterward **manipulate the responses back** to get the desired output, regardless of the end user’s encoding or method.
 
-The SOAP integration introduces **templates** to craft the body sent as an underlying SOAP XML contract to the server, while the end-user doesn’t see any of that. You can decide to keep the SOAP response modified or “as is”, return JSON content, or another [encoding](https://www.krakend.io/docs/endpoints/content-types/).
+The SOAP integration introduces **templates** to craft the body sent as an underlying SOAP XML contract to the server, while the end-user doesn’t see any of that. You can decide to keep the SOAP response modified or “as is”, return JSON content, or another [encoding](https://www.krakend.io/docs/enterprise/endpoints/content-types/).
 
 ### Configuration
 
@@ -226,7 +226,7 @@ When we start the server with access to these two files, we get beautiful JSON c
 - The `method` we are sending to the SOAP service is a `POST`, but we allow a GET to the end-user, e.g., `GET /country/US`
 - The `path` defines where the external template is, using a relative dir `./` based on KrakenD’s [working directory](https://www.krakend.io/docs/enterprise/configuration/working-directory/), but it can also be an absolute path.
 
-Finally, there are a few additional [basic manipulation](https://www.krakend.io/docs/backends/data-manipulation/) options, that strip undesired content:
+Finally, there are a few additional [basic manipulation](https://www.krakend.io/docs/enterprise/backends/data-manipulation/) options, that strip undesired content:
 
 - `target` traverses the response to a specific path and ignores everything else.
 - `mapping` renames the field to something friendlier
@@ -238,7 +238,7 @@ To summarize, the host `http://webservices.oorsprong.org` receives a POST reques
 
 ## Helping your SOAP development
 
-While working with the SOAP integration, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/logging/) is `DEBUG`):
+While working with the SOAP integration, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/enterprise/logging/) is `DEBUG`):
 
 - All the variables available in the template
 - The final generated body, after compiling the template and injecting the variables

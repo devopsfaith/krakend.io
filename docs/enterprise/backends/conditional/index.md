@@ -38,7 +38,7 @@ The configuration options are:
 
 ##### [`name`](https://www.krakend.io/docs/enterprise/backends/conditional/#name "Click to copy link to name") string
 
-Only used with the `header` strategy. It is the name of the header you want to use for the evaluation in the [canonical format of the MIME header](https://www.krakend.io/docs/endpoints/parameter-forwarding/#case-sensitive-and-case-insensitive-parameters). **Make sure to declare the header** in the `input_headers` list of the endpoint.
+Only used with the `header` strategy. It is the name of the header you want to use for the evaluation in the [canonical format of the MIME header](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#case-sensitive-and-case-insensitive-parameters). **Make sure to declare the header** in the `input_headers` list of the endpoint.
 
 Example: `"X-Test"`
 
@@ -66,7 +66,7 @@ Best Practices
 
 ## Conditional Routing based on JWT claims
 
-If you want the Conditional Routing to access JWT tokens, make sure to [propagate claims as headers](https://www.krakend.io/docs/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers) and add them to the `input_headers` list of the endpoint.
+If you want the Conditional Routing to access JWT tokens, make sure to [propagate claims as headers](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers) and add them to the `input_headers` list of the endpoint.
 
 Once this is done, you can access the claim values using their propagated header names.
 

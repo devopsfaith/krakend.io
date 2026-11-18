@@ -239,7 +239,7 @@ As you can see above, there is a path `custom_template.tmpl` that we will also s
 }
 ```
 
-This is mostly understanding [templates](https://www.krakend.io/docs/configuration/templates/), but let’s dissect it:
+This is mostly understanding [templates](https://www.krakend.io/docs/enterprise/configuration/templates/), but let’s dissect it:
 
 - We want our colleagues to know what this does, so we add comments `{{/* .... */}}`
 - We set a variable `$returned_data` that uses the `pick` function, which creates a new dictionary with the selected fields. The `pick` function extracts the fields from the `.resp_body`, which contains all the fields from Github.
@@ -253,7 +253,7 @@ You can test this configuration and play with it.
 
 ## Debugging the template
 
-While working with the response body generator modifier, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/logging/) is `DEBUG`):
+While working with the response body generator modifier, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/enterprise/logging/) is `DEBUG`):
 
 - All the variables available in the template
 - The final generated body, after compiling the template and injecting the variables

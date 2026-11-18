@@ -8,7 +8,7 @@ The IP filtering plugin allows you to restrict the traffic to your API gateway b
 
 The filtering applies globally to all endpoints, or to only specific endpoints **depending on the placement of the configuration**.
 
-When an IP is rejected, the consumer of the endpoint receives a **403 Forbidden** status code. When the functionality is at the endpoint level, the consumer receives a `500` unless you have enabled [returning the HTTP status code of a single backend](https://www.krakend.io/docs/backends/detailed-errors/#return-the-http-status-code-of-a-single-backend).
+When an IP is rejected, the consumer of the endpoint receives a **403 Forbidden** status code. When the functionality is at the endpoint level, the consumer receives a `500` unless you have enabled [returning the HTTP status code of a single backend](https://www.krakend.io/docs/enterprise/backends/detailed-errors/#return-the-http-status-code-of-a-single-backend).
 
 The basic plugin declaration looks like this, and goes inside the `plugins` list of a `plugin/http-server` or `plugin/req-resp-modifier` namespace (see the examples below):
 

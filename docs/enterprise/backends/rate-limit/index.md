@@ -36,7 +36,7 @@ These are the parameters you can set:
 
 ##### [`capacity`](https://www.krakend.io/docs/enterprise/backends/rate-limit/#capacity "Click to copy link to capacity") * integer
 
-The capacity according to the [token bucket algorithm](https://www.krakend.io/docs/throttling/token-bucket/). Defines the maximum requests you can do in an instant (including the zero moment when you start the gateway), and can be larger or smaller than the `max_rate`. When unsure, use the same value of `max_rate`, so the maximum number of requests can be consumed at once.
+The capacity according to the [token bucket algorithm](https://www.krakend.io/docs/enterprise/throttling/token-bucket/). Defines the maximum requests you can do in an instant (including the zero moment when you start the gateway), and can be larger or smaller than the `max_rate`. When unsure, use the same value of `max_rate`, so the maximum number of requests can be consumed at once.
 
 Defaults to `1`
 

@@ -97,7 +97,7 @@ Configuration changes needed to upgrade to v2.5:
 Configuration changes needed to upgrade to v2.4:
 
 - The flag `allow_insecure_connections` was relocated under `client_tls` in v2.3 and the old location on `tls` is no longer supported.
-- The [flag `prefer_server_cipher_suites`](https://www.krakend.io/docs/v2.3/service-settings/tls/#prefer_server_cipher_suites) is no longer supported. Servers now select the best mutually supported cipher suite automatically based on the logic that considers inferred client hardware, server hardware, and security.
+- The [flag `prefer_server_cipher_suites`](https://archive.krakend.io/api-gateway/v2.3/service-settings/tls/#prefer_server_cipher_suites) is no longer supported. Servers now select the best mutually supported cipher suite automatically based on the logic that considers inferred client hardware, server hardware, and security.
 
 ## Upgrade to CE v2.3
 

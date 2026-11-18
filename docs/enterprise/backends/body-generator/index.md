@@ -125,7 +125,7 @@ It contains a string with the method used to access the backend service, for ins
 
 ### Sprig functions
 
-In addition to the variables, the template system accepts [Sprig Functions](https://www.krakend.io/docs/configuration/flexible-config/#sprig-functions).
+In addition to the variables, the template system accepts [Sprig Functions](https://www.krakend.io/docs/enterprise/configuration/flexible-config/#sprig-functions).
 
 ### Accessing req\_params with dynamic routing
 
@@ -309,7 +309,7 @@ You would have the expected replacement when running KrakenD and calling the end
 
 ## Debugging the POST template
 
-While working with the body generator modifier, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/logging/) is `DEBUG`):
+While working with the body generator modifier, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/enterprise/logging/) is `DEBUG`):
 
 - All the variables available in the template
 - The final generated body, after compiling the template and injecting the variables

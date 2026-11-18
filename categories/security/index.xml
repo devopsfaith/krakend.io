@@ -660,7 +660,7 @@ The CVE is now available, published as &lt;a href="https://www.cve.org/cverecord
  
  
  &lt;li class="type type-deprecation"&gt;&lt;svg width="24" height="24" aria-hidden="true"&gt;&lt;use href="https://www.krakend.io/images/icons/sprite-changelog.min.37b7f18494ec22dc38742fd7d00974a6.svg#changelog-deprecation"/&gt;&lt;/svg&gt;
- The &lt;a href="https://www.krakend.io/docs/v2.3/service-settings/tls/#prefer_server_cipher_suites"&gt;flag &lt;code&gt;prefer_server_cipher_suites&lt;/code&gt;&lt;/a&gt; is no longer supported. Servers now select the best mutually supported cipher suite automatically based on the logic that considers inferred client hardware, server hardware, and security.&lt;/li&gt;
+ The &lt;a href="https://archive.krakend.io/api-gateway/v2.3/service-settings/tls/#prefer_server_cipher_suites"&gt;flag &lt;code&gt;prefer_server_cipher_suites&lt;/code&gt;&lt;/a&gt; is no longer supported. Servers now select the best mutually supported cipher suite automatically based on the logic that considers inferred client hardware, server hardware, and security.&lt;/li&gt;
  
  
  &lt;/ul&gt;

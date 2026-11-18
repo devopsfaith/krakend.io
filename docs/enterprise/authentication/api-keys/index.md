@@ -742,6 +742,6 @@ do
 done
 ```
 
-Then you would use the output above to create a partial file `api-keys.json` that would be used on KrakenD with [Flexible Configuration](https://www.krakend.io/docs/configuration/flexible-config/).
+Then you would use the output above to create a partial file `api-keys.json` that would be used on KrakenD with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/).
 
 Finally, your backend should have this list somewhere, and when a new user registers, you assign one of the free keys to the new user. You can deploy from time to time when you are running out of API keys in the pool or if you want to write the assignment in the configuration.

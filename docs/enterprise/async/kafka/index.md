@@ -10,7 +10,7 @@ This driver differs from the [Kafka backend consumer](https://www.krakend.io/doc
 
 ## Driver Configuration
 
-Place the Kafka driver inside the `extra_config` of the [async component](https://www.krakend.io/docs/async/) to subscribe to one or more topics:
+Place the Kafka driver inside the `extra_config` of the [async component](https://www.krakend.io/docs/enterprise/async/) to subscribe to one or more topics:
 
 ```json
 {
@@ -74,7 +74,7 @@ Defaults to `"KrakenD v[X].[Y].[Z]"`
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/async/kafka/#client_tls "Click to copy link to client_tls") object
 
-Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).
+Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings).
 
 ##### [`dial_timeout`](https://www.krakend.io/docs/enterprise/async/kafka/#dial_timeout "Click to copy link to dial_timeout") string
 

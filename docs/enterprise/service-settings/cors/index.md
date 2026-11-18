@@ -100,7 +100,7 @@ Defaults to `"0h"`
 
 ##### [`options_passthrough`](https://www.krakend.io/docs/enterprise/service-settings/cors/#options_passthrough "Click to copy link to options_passthrough") boolean
 
-Instructs preflight to let other potential next handlers to process the OPTIONS method. Turn this on when you set the [`auto_opts` flag in the router to `true`](https://www.krakend.io/docs/service-settings/router-options/#auto_options).
+Instructs preflight to let other potential next handlers to process the OPTIONS method. Turn this on when you set the [`auto_opts` flag in the router to `true`](https://www.krakend.io/docs/enterprise/service-settings/router-options/#auto_options).
 
 Defaults to `false`
 

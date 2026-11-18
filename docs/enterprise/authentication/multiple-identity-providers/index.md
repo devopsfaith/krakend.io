@@ -12,7 +12,7 @@ The plugin generates a **virtual JWK URL** that can validate any token generated
 
 All `origins` are fetched in parallel. If the `cache` is set to `true,` the Identity Server’s responses are cached in memory individually for the time specified in their `Cache-Control` header. **You must set a cache policy to avoid hammering the Identity Server on each request**.
 
-In addition to the aggregator cache, you can also enable [shared caching](https://www.krakend.io/docs/authorization/jwk-caching/#shared-jwk-cache) for JWT validation.
+In addition to the aggregator cache, you can also enable [shared caching](https://www.krakend.io/docs/enterprise/authorization/jwk-caching/#shared-jwk-cache) for JWT validation.
 
 ## Configuration
 
@@ -118,11 +118,11 @@ In addition to the configuration above, the endpoints must point to the new serv
 
 And that’s all you need to support multiple identity providers’ origin! You can change the exposed port. There is no specific reason to keep the `9876`.
 
-If you want even better caching, you can also enable the [global shared JWK cache](https://www.krakend.io/docs/authorization/jwk-caching/#shared-jwk-cache), which is reused between endpoints.
+If you want even better caching, you can also enable the [global shared JWK cache](https://www.krakend.io/docs/enterprise/authorization/jwk-caching/#shared-jwk-cache), which is reused between endpoints.
 
 ## Dealing with token differences
 
-While the aggregation functionality allows the [JWT validator](https://www.krakend.io/docs/authorization/jwt-validation/) to accept tokens from several providers, you might need to go beyond simple validation and enforce additional business rules on tokens that have completely different structures, and they represent information like `scopes` using different fields and structures (e.g., string vs array). The [security policies](https://www.krakend.io/docs/enterprise/security-policies/) allow you to overcome any limitations of the validator options and provide more fine-grained control.
+While the aggregation functionality allows the [JWT validator](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) to accept tokens from several providers, you might need to go beyond simple validation and enforce additional business rules on tokens that have completely different structures, and they represent information like `scopes` using different fields and structures (e.g., string vs array). The [security policies](https://www.krakend.io/docs/enterprise/security-policies/) allow you to overcome any limitations of the validator options and provide more fine-grained control.
 
 Let’s see an example below.
 

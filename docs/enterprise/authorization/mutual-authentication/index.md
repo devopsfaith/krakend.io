@@ -96,7 +96,7 @@ Each item of keys accepts the following properties:
 
 ##### [`private_key`](#keys-private_key "Click to copy link to private_key") string
 
-Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).
+Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/enterprise/configuration/working-directory/).
 
 Examples: `"/path/to/key.pem"` , `"./certs/key.pem"`
 
@@ -104,7 +104,7 @@ Defaults to `"./certs/key.pem"`
 
 ##### [`public_key`](#keys-public_key "Click to copy link to public_key") string
 
-Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).
+Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/enterprise/configuration/working-directory/).
 
 Examples: `"/path/to/cert.pem"` , `"./certs/cert.pem"`
 

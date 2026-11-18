@@ -18,7 +18,7 @@ To do so, include the `backend/http/client` namespace in the `backend`’s extra
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/backends/http-client/#client_tls "Click to copy link to client_tls")
 
-Allows to set specific transport settings when using TLS in your upstream services. See the global [Client TLS options](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings) for the list of all supported options.
+Allows to set specific transport settings when using TLS in your upstream services. See the global [Client TLS options](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings) for the list of all supported options.
 
 ##### [`no_redirect`](https://www.krakend.io/docs/enterprise/backends/http-client/#no_redirect "Click to copy link to no_redirect") boolean
 

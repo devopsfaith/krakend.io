@@ -26,7 +26,7 @@ Once the data is pushed to Moesif, from Moesif itself, you can:
 
 Streaming incompatible
 
-The activation of this component disables [streaming](https://www.krakend.io/docs/endpoints/no-op/) on all endpoints (and the full response uses buffering instead).
+The activation of this component disables [streaming](https://www.krakend.io/docs/enterprise/endpoints/no-op/) on all endpoints (and the full response uses buffering instead).
 
 ## Monetization and API Analytics configuration
 

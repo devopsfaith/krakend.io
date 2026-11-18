@@ -273,7 +273,7 @@ Minimum supported versions are Debian 8, and Ubuntu 16.x.
 
 ### Generic Linux (`tar.gz`)
 
-You can also download the `tar.gz` and decompress it anywhere. Instructions to check the SHA and PGP signature [here](https://www.krakend.io/docs/overview/verifying-packages/).
+You can also download the `tar.gz` and decompress it anywhere. Instructions to check the SHA and PGP signature [here](https://www.krakend.io/docs/enterprise/overview/verifying-packages/).
 
 [Download latest `tar.gz` (AMD64)](https://download.krakend.io/bin/krakend-ee_3.0.4_amd64_generic-linux.tar.gz)
 
@@ -851,7 +851,7 @@ KrakenD uses `./schema/krakend.json` both to decide which fields to redact and t
 
 # [Extended Flexible Configuration (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/configuration/flexible-config/)
 
-The **Extended Flexible Configuration** allows you to express your KrakenD configuration using **multiple files**, reusing code blocks, and injecting external data through a **templates system**. It is called “Extended” because it uses an engine more capable and easier to use than its [open source alternative](https://www.krakend.io/docs/configuration/flexible-config/), while it remains 100% compatible.
+The **Extended Flexible Configuration** allows you to express your KrakenD configuration using **multiple files**, reusing code blocks, and injecting external data through a **templates system**. It is called “Extended” because it uses an engine more capable and easier to use than its [open source alternative](https://www.krakend.io/docs/enterprise/configuration/flexible-config/), while it remains 100% compatible.
 
 In its simplest form, you can do things like:
 
@@ -899,7 +899,7 @@ Here’s another simple example:
 }
 ```
 
-The example above is a template with a conditional that it renders as a JSON file. Still, you can encode your configuration files in any of the [supported formats](https://www.krakend.io/docs/configuration/supported-formats/) (`json`, `yaml`, `toml`, etc.), as the template engine is agnostic of its contents.
+The example above is a template with a conditional that it renders as a JSON file. Still, you can encode your configuration files in any of the [supported formats](https://www.krakend.io/docs/enterprise/configuration/supported-formats/) (`json`, `yaml`, `toml`, etc.), as the template engine is agnostic of its contents.
 
 Templates are based on the `text/template` [Go library](https://golang.org/pkg/text/template/), and we recommend you start reading our [introduction to templates](https://www.krakend.io/docs/enterprise/configuration/templates/)
 
@@ -1369,7 +1369,7 @@ Note: on Alpine-based containers, like the KrakenD image, you need to do an `apk
 
 # [Hot Reload Feature (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/developer/hot-reload/)
 
-The Docker tag `:watch` is a **development-phase image** that allows you to **restart KrakenD automatically after saving** or changing files inside the configuration folder, although **is not recommended for production workloads**. It works whether you use [flexible configuration](https://www.krakend.io/docs/configuration/flexible-config/) or a single file (`krakend.json` or any other [supported format](https://www.krakend.io/docs/configuration/supported-formats/)).
+The Docker tag `:watch` is a **development-phase image** that allows you to **restart KrakenD automatically after saving** or changing files inside the configuration folder, although **is not recommended for production workloads**. It works whether you use [flexible configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/) or a single file (`krakend.json` or any other [supported format](https://www.krakend.io/docs/enterprise/configuration/supported-formats/)).
 
 The watch is a regular KrakenD binary wrapped in a [reflex watcher](https://github.com/cespare/reflex). When it detects that any piece inside the configuration has changed, it restarts the service, applying the changes. This behavior is very convenient while developing as it allows you to test new changes without manually restarting KrakenD back and forth
 
@@ -1383,7 +1383,7 @@ Simple KrakenD watch 
 $docker run --rm -v "$PWD:/etc/krakend" krakend/krakend-ee:watch
 ```
 
-When you use [flexible configuration](https://www.krakend.io/docs/configuration/flexible-config/), you can pass the environment variables when starting the container. For instance:
+When you use [flexible configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/), you can pass the environment variables when starting the container. For instance:
 
 Hot reload with Flexible Configuration 
 
@@ -1411,7 +1411,7 @@ As we said, in the introduction, this tag is for development. Because you might 
 - **Performance**: This is the #1 reason, and strong enough. **KrakenD focuses on performance**, and during startup, calculates routes and decision trees, and the configuration is never read again.
 - **GitOps**: We believe an API contract must go under the version control system and, after that, be released (and through CI/CD if possible), but never altered at runtime by throwing curls or whatever (Stick to [POLA](https://en.wikipedia.org/wiki/Principle_of_least_astonishment)).
 - **Consistency**: Imagine yourself distributing configuration updates in an ecosystem like the one KrakenD is offering: **independent, non-coordinated, multi-region, and stateless**. It would require you to develop complex strategies to ensure consistency that is far out of the scope of an API Gateway.
-- **It happens in other servers, too**: You are used to this behavior from Varnish, Apache, Nginx, Mysql, or any other major service. All of them are reloaded when configuration changes and the Internet is still running. [Blue/green deployment](https://www.krakend.io/docs/deploying/#use-bluegreen-or-similar-deployment-strategy) and similar approaches were invented to ensure there is never downtime even if you change the service.
+- **It happens in other servers, too**: You are used to this behavior from Varnish, Apache, Nginx, Mysql, or any other major service. All of them are reloaded when configuration changes and the Internet is still running. [Blue/green deployment](https://www.krakend.io/docs/enterprise/deploying/#use-bluegreen-or-similar-deployment-strategy) and similar approaches were invented to ensure there is never downtime even if you change the service.
 
 
 
@@ -2145,7 +2145,7 @@ You don’t need to use the variables in the `url_pattern` as part of the path, 
 
 ## Routing based on a JWT claim
 
-You can inject claims to the backend’s final URL if you are using the [JWT validator](https://www.krakend.io/docs/authorization/jwt-validation/) in the same endpoint through the `{JWT.}` variable. For instance, you could declare a `url_pattern` making use of `{JWT.sub}`, where `sub` is a first-level claim of your JWT payload (you cannot traverse nested claims).
+You can inject claims to the backend’s final URL if you are using the [JWT validator](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) in the same endpoint through the `{JWT.}` variable. For instance, you could declare a `url_pattern` making use of `{JWT.sub}`, where `sub` is a first-level claim of your JWT payload (you cannot traverse nested claims).
 
 For instance, when your JWT payload is represented by something like this:
 
@@ -2400,7 +2400,7 @@ The configuration options are:
 
 ##### [`name`](https://www.krakend.io/docs/enterprise/backends/conditional/#name "Click to copy link to name") string
 
-Only used with the `header` strategy. It is the name of the header you want to use for the evaluation in the [canonical format of the MIME header](https://www.krakend.io/docs/endpoints/parameter-forwarding/#case-sensitive-and-case-insensitive-parameters). **Make sure to declare the header** in the `input_headers` list of the endpoint.
+Only used with the `header` strategy. It is the name of the header you want to use for the evaluation in the [canonical format of the MIME header](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#case-sensitive-and-case-insensitive-parameters). **Make sure to declare the header** in the `input_headers` list of the endpoint.
 
 Example: `"X-Test"`
 
@@ -2428,7 +2428,7 @@ Best Practices
 
 ## Conditional Routing based on JWT claims
 
-If you want the Conditional Routing to access JWT tokens, make sure to [propagate claims as headers](https://www.krakend.io/docs/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers) and add them to the `input_headers` list of the endpoint.
+If you want the Conditional Routing to access JWT tokens, make sure to [propagate claims as headers](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers) and add them to the `input_headers` list of the endpoint.
 
 Once this is done, you can access the claim values using their propagated header names.
 
@@ -3103,7 +3103,7 @@ To do so, include the `backend/http/client` namespace in the `backend`’s extra
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/backends/http-client/#client_tls "Click to copy link to client_tls")
 
-Allows to set specific transport settings when using TLS in your upstream services. See the global [Client TLS options](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings) for the list of all supported options.
+Allows to set specific transport settings when using TLS in your upstream services. See the global [Client TLS options](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings) for the list of all supported options.
 
 ##### [`no_redirect`](https://www.krakend.io/docs/enterprise/backends/http-client/#no_redirect "Click to copy link to no_redirect") boolean
 
@@ -3180,7 +3180,7 @@ KrakenD has the native capability of dealing with multiple encodings, like XML o
 
 You can afterward **manipulate the responses back** to get the desired output, regardless of the end user’s encoding or method.
 
-The SOAP integration introduces **templates** to craft the body sent as an underlying SOAP XML contract to the server, while the end-user doesn’t see any of that. You can decide to keep the SOAP response modified or “as is”, return JSON content, or another [encoding](https://www.krakend.io/docs/endpoints/content-types/).
+The SOAP integration introduces **templates** to craft the body sent as an underlying SOAP XML contract to the server, while the end-user doesn’t see any of that. You can decide to keep the SOAP response modified or “as is”, return JSON content, or another [encoding](https://www.krakend.io/docs/enterprise/endpoints/content-types/).
 
 ### Configuration
 
@@ -3396,7 +3396,7 @@ When we start the server with access to these two files, we get beautiful JSON c
 - The `method` we are sending to the SOAP service is a `POST`, but we allow a GET to the end-user, e.g., `GET /country/US`
 - The `path` defines where the external template is, using a relative dir `./` based on KrakenD’s [working directory](https://www.krakend.io/docs/enterprise/configuration/working-directory/), but it can also be an absolute path.
 
-Finally, there are a few additional [basic manipulation](https://www.krakend.io/docs/backends/data-manipulation/) options, that strip undesired content:
+Finally, there are a few additional [basic manipulation](https://www.krakend.io/docs/enterprise/backends/data-manipulation/) options, that strip undesired content:
 
 - `target` traverses the response to a specific path and ignores everything else.
 - `mapping` renames the field to something friendlier
@@ -3408,7 +3408,7 @@ To summarize, the host `http://webservices.oorsprong.org` receives a POST reques
 
 ## Helping your SOAP development
 
-While working with the SOAP integration, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/logging/) is `DEBUG`):
+While working with the SOAP integration, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/enterprise/logging/) is `DEBUG`):
 
 - All the variables available in the template
 - The final generated body, after compiling the template and injecting the variables
@@ -4089,7 +4089,7 @@ At the backend level, the inclusion of the `backend/grpc` object **with no conte
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/backends/grpc/#client_tls "Click to copy link to client_tls")
 
-Enables specific TLS connection options when using the gRPC service. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).
+Enables specific TLS connection options when using the gRPC service. Supports all options under [TLS client settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings).
 
 ##### [`disable_query_params`](https://www.krakend.io/docs/enterprise/backends/grpc/#disable_query_params "Click to copy link to disable_query_params") boolean
 
@@ -4467,7 +4467,7 @@ Each item of methods accepts the following properties:
 
 ##### [`backend`](#methods-backend "Click to copy link to backend") array of objects
 
-An array with all the [backend objects](https://www.krakend.io/docs/backends/) mapped to this method
+An array with all the [backend objects](https://www.krakend.io/docs/enterprise/backends/) mapped to this method
 
 ##### [`extra_config`](#methods-extra_config "Click to copy link to extra_config") object
 
@@ -4625,9 +4625,9 @@ Manipulation requires a JSON payload per message
 
 Use `no-op` when you don’t need to inspect, filter, or transform the stream at all, for instance, a video feed or any format KrakenD doesn’t need to understand. Streaming endpoints are declared as any other endpoint and do not require an additional namespace or configuration to function. At the configuration level, there are basically three things you need to take into account when writing the `endpoint` configuration:
 
-1. `output_encoding`: Set it to [`no-op`](https://www.krakend.io/docs/endpoints/no-op/) (proxy only - no merging of responses possible, and no manipulation components apply).
+1. `output_encoding`: Set it to [`no-op`](https://www.krakend.io/docs/enterprise/endpoints/no-op/) (proxy only - no merging of responses possible, and no manipulation components apply).
 2. `timeout`: The timeout you add in the endpoint must cover enough time to maintain the persistent connection between the client and backend alive without closing prematurely.
-3. `input_headers`: If the server requires special headers, let them pass, or statically set them using a [Martian modifier](https://www.krakend.io/docs/backends/martian/)
+3. `input_headers`: If the server requires special headers, let them pass, or statically set them using a [Martian modifier](https://www.krakend.io/docs/enterprise/backends/martian/)
 
 That would be the important stuff to keep in mind in terms of configuration. The following example is for an endpoint that **streams videos** of a short duration (timeout set to max. 5 minutes) and serves it to the client as chunks become available:
 
@@ -4666,7 +4666,7 @@ When you add streaming to your API, always **set the long timeout inside the str
 
 SSE is a protocol that allows servers to push real-time updates to browsers or clients over a single HTTP connection, using a lightweight, text-based stream. SSE is designed to continuously send updates like notifications, live feeds, or real-time metrics without the overhead of [WebSockets](https://www.krakend.io/docs/enterprise/websockets/) complexity. Unlike WebSockets, SSE uses simple HTTP and is easier to implement for unidirectional real-time data flow.
 
-Set `output_encoding` and the backend’s `encoding` to `sse` when you want KrakenD to parse each event of the stream, which is what makes [`modifier/jmespath`](https://www.krakend.io/docs/enterprise/endpoints/jmespath/), [`modifier/response-body`](https://www.krakend.io/docs/enterprise/endpoints/content-replacer/), and [`governance/quota`](https://www.krakend.io/docs/enterprise/governance/quota/) usable on the endpoint (see [Manipulating Streamed Responses](https://www.krakend.io/docs/enterprise/endpoints/streaming/#manipulating-streamed-responses)). If you don’t need any of those, `no-op` also proxies SSE traffic and requires one field less to configure. Either way, as SSE formats the content as `text/event-stream`, you will probably need to pass the `Content-Type` to your server to make it work (whether in `input_headers` or setting it using [Martian](https://www.krakend.io/docs/backends/martian/)) and also tune the `timeout` with the time you consider is necessary for the majority of your SSE sessions.
+Set `output_encoding` and the backend’s `encoding` to `sse` when you want KrakenD to parse each event of the stream, which is what makes [`modifier/jmespath`](https://www.krakend.io/docs/enterprise/endpoints/jmespath/), [`modifier/response-body`](https://www.krakend.io/docs/enterprise/endpoints/content-replacer/), and [`governance/quota`](https://www.krakend.io/docs/enterprise/governance/quota/) usable on the endpoint (see [Manipulating Streamed Responses](https://www.krakend.io/docs/enterprise/endpoints/streaming/#manipulating-streamed-responses)). If you don’t need any of those, `no-op` also proxies SSE traffic and requires one field less to configure. Either way, as SSE formats the content as `text/event-stream`, you will probably need to pass the `Content-Type` to your server to make it work (whether in `input_headers` or setting it using [Martian](https://www.krakend.io/docs/enterprise/backends/martian/)) and also tune the `timeout` with the time you consider is necessary for the majority of your SSE sessions.
 
 Here’s an example consuming SSE from a local weather service:
 
@@ -4915,7 +4915,7 @@ When implementing streaming, the following considerations are worth noticing:
 - Payload processing: With `no-op`, KrakenD never alters or buffers streaming data, so backends are responsible for generating valid and properly formatted streams. With `sse`, `ndjson`, and `eventstream`, only [`modifier/jmespath`](https://www.krakend.io/docs/enterprise/endpoints/jmespath/), [`modifier/response-body`](https://www.krakend.io/docs/enterprise/endpoints/content-replacer/), and [`governance/quota`](https://www.krakend.io/docs/enterprise/governance/quota/) can inspect or change the content; no other manipulation component runs against a stream.
 - Scalability: Streaming connections consume resources continuously and keep the server busy at all times.
 - Timeouts: Configure appropriate timeouts on clients, KrakenD, and backend services to avoid premature disconnections.
-- Redeploys: If you have long sessions, a redeployment might wait a long time to drain connections. In that case, remember you can kill sessions once the draining has waited for a configured number of seconds using [`max_shutdown_wait_time`](https://www.krakend.io/docs/service-settings/http-server-settings/#max_shutdown_wait_time)
+- Redeploys: If you have long sessions, a redeployment might wait a long time to drain connections. In that case, remember you can kill sessions once the draining has waited for a configured number of seconds using [`max_shutdown_wait_time`](https://www.krakend.io/docs/enterprise/service-settings/http-server-settings/#max_shutdown_wait_time)
 - Lost connections: if for whatever reason, the connection between the client and the server is lost, KrakenD does not have a mechanism to reach the client and reconnect automatically. Clients must deal this reconnection.
 
 
@@ -5029,7 +5029,7 @@ Defaults to `"KrakenD v[X].[Y].[Z]"`
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/#client_tls "Click to copy link to client_tls") object
 
-Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).
+Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings).
 
 ##### [`dial_timeout`](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/#dial_timeout "Click to copy link to dial_timeout") string
 
@@ -5334,7 +5334,7 @@ Defaults to `"KrakenD v[X].[Y].[Z]"`
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/#client_tls "Click to copy link to client_tls") object
 
-Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).
+Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings).
 
 ##### [`dial_timeout`](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/#dial_timeout "Click to copy link to dial_timeout") string
 
@@ -5546,7 +5546,7 @@ This driver differs from the [Kafka backend consumer](https://www.krakend.io/doc
 
 ## Driver Configuration
 
-Place the Kafka driver inside the `extra_config` of the [async component](https://www.krakend.io/docs/async/) to subscribe to one or more topics:
+Place the Kafka driver inside the `extra_config` of the [async component](https://www.krakend.io/docs/enterprise/async/) to subscribe to one or more topics:
 
 ```json
 {
@@ -5610,7 +5610,7 @@ Defaults to `"KrakenD v[X].[Y].[Z]"`
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/async/kafka/#client_tls "Click to copy link to client_tls") object
 
-Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).
+Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings).
 
 ##### [`dial_timeout`](https://www.krakend.io/docs/enterprise/async/kafka/#dial_timeout "Click to copy link to dial_timeout") string
 
@@ -6257,7 +6257,7 @@ Schema: [https://www.krakend.io/schema/v3.0/modifier/jmespath.json](https://www.
 
 As it happens with the rest of the content in KrakenD, depending on the type of content that the JMESPath expression returns, KrakenD will wrap it or not inside a key:
 
-- `collection`: When the backend returns an array, KrakenD adds the `collection`. You can remove this `collection` key in the final response by setting the `output_encoding` in the endpoint to `json-collection` ([see content types](https://www.krakend.io/docs/endpoints/content-types/))
+- `collection`: When the backend returns an array, KrakenD adds the `collection`. You can remove this `collection` key in the final response by setting the `output_encoding` in the endpoint to `json-collection` ([see content types](https://www.krakend.io/docs/enterprise/endpoints/content-types/))
 - `content`: when the JMESPath expression returns just a **string**, a **boolean**, or a **number**, then KrakenD adds a `content` wrapper. You can remove it automatically when setting the `output_encoding` to `string`.
 
 Reusing the same example above, the following configurations have these effects:
@@ -6544,7 +6544,7 @@ As you can see above, there is a path `custom_template.tmpl` that we will also s
 }
 ```
 
-This is mostly understanding [templates](https://www.krakend.io/docs/configuration/templates/), but let’s dissect it:
+This is mostly understanding [templates](https://www.krakend.io/docs/enterprise/configuration/templates/), but let’s dissect it:
 
 - We want our colleagues to know what this does, so we add comments `{{/* .... */}}`
 - We set a variable `$returned_data` that uses the `pick` function, which creates a new dictionary with the selected fields. The `pick` function extracts the fields from the `.resp_body`, which contains all the fields from Github.
@@ -6558,7 +6558,7 @@ You can test this configuration and play with it.
 
 ## Debugging the template
 
-While working with the response body generator modifier, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/logging/) is `DEBUG`):
+While working with the response body generator modifier, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/enterprise/logging/) is `DEBUG`):
 
 - All the variables available in the template
 - The final generated body, after compiling the template and injecting the variables
@@ -7378,7 +7378,7 @@ It contains a string with the method used to access the backend service, for ins
 
 ### Sprig functions
 
-In addition to the variables, the template system accepts [Sprig Functions](https://www.krakend.io/docs/configuration/flexible-config/#sprig-functions).
+In addition to the variables, the template system accepts [Sprig Functions](https://www.krakend.io/docs/enterprise/configuration/flexible-config/#sprig-functions).
 
 ### Accessing req\_params with dynamic routing
 
@@ -7562,7 +7562,7 @@ You would have the expected replacement when running KrakenD and calling the end
 
 ## Debugging the POST template
 
-While working with the body generator modifier, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/logging/) is `DEBUG`):
+While working with the body generator modifier, you might find it useful to set the `debug` flag to true. This flag (that you should not use in production) outputs the following information in the console (when the [debug level](https://www.krakend.io/docs/enterprise/logging/) is `DEBUG`):
 
 - All the variables available in the template
 - The final generated body, after compiling the template and injecting the variables
@@ -7820,7 +7820,7 @@ Before returning the response, you can define the minimum response fields and th
 
 Validation of responses, not requests
 
-This component validates that the response from the server of after content aggregation/manipulation in KrakenD has the desired attributes. To validate the user input on requests use the [`validation/json-schema`](https://www.krakend.io/docs/endpoints/json-schema/) instead.
+This component validates that the response from the server of after content aggregation/manipulation in KrakenD has the desired attributes. To validate the user input on requests use the [`validation/json-schema`](https://www.krakend.io/docs/enterprise/endpoints/json-schema/) instead.
 
 You can use this plugin in conjunction with other components and perform validations, and you can insert it either in the endpoint section or the backend section. For instance, it can be part of a sequential proxy call and decide that the response does not have enough data to move forward and cancel the cascading connection.
 
@@ -8145,7 +8145,7 @@ You’ll find the following configuration familiar as it is like an `endpoint` w
 
 ##### [`backend`](https://www.krakend.io/docs/enterprise/endpoints/workflows/#backend "Click to copy link to backend") * array of objects
 
-List of all the [backend objects](https://www.krakend.io/docs/backends/) called within this workflow. Each backend can initiate another workflow if needed.
+List of all the [backend objects](https://www.krakend.io/docs/enterprise/backends/) called within this workflow. Each backend can initiate another workflow if needed.
 
 ##### [`concurrent_calls`](https://www.krakend.io/docs/enterprise/endpoints/workflows/#concurrent_calls "Click to copy link to concurrent_calls") integer
 
@@ -8171,7 +8171,7 @@ Defaults to `false`
 
 ##### [`output_encoding`](https://www.krakend.io/docs/enterprise/endpoints/workflows/#output_encoding "Click to copy link to output_encoding")
 
-The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/endpoints/content-types/)
+The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/enterprise/endpoints/content-types/)
 
 Possible values are: `"json"` , `"json-collection"` , `"yaml"` , `"fast-json"` , `"xml"` , `"negotiate"` , `"string"` , `"no-op"`
 
@@ -8434,7 +8434,7 @@ A policy is a test rule based on the [CEL language](https://www.krakend.io/docs/
 has(JWT.department) && JWT.department in ["marketing", "sales"]
 ```
 
-The policy above checks if the JWT token contains a claim named `department` and its value is one of the listed ones. If it doesn’t there is a configurable error. The [JWT validator](https://www.krakend.io/docs/authorization/jwt-validation/) would have previously validated that the token is valid, signed, and so on.
+The policy above checks if the JWT token contains a claim named `department` and its value is one of the listed ones. If it doesn’t there is a configurable error. The [JWT validator](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) would have previously validated that the token is valid, signed, and so on.
 
 ### What can you do with policies?
 
@@ -8674,7 +8674,7 @@ Schema: [https://www.krakend.io/schema/v3.0/security/policies.json](https://www.
 
 # [Security Policies language and syntax (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/security-policies/policy-language/)
 
-The policies language and syntax look nearly identical to **C++, Go, Java, and Typescript** and is based on Google’s CEL [built-in functions](https://www.krakend.io/docs/enterprise/security-policies/policy-language/) and [advanced macros](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/). If you have existing validation using the [CEL Component](https://www.krakend.io/docs/endpoints/common-expression-language-cel/), you can also port them as policies.
+The policies language and syntax look nearly identical to **C++, Go, Java, and Typescript** and is based on Google’s CEL [built-in functions](https://www.krakend.io/docs/enterprise/security-policies/policy-language/) and [advanced macros](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/). If you have existing validation using the [CEL Component](https://www.krakend.io/docs/enterprise/endpoints/common-expression-language-cel/), you can also port them as policies.
 
 The policy language is used in CEL Validation, Security Policies, and in the Tiered Rate Limit.
 
@@ -8760,7 +8760,7 @@ You can use the following variables inside policies:
   
   All **`req_params` capitalize the first letter**.
   
-  E.g., an `"endpoint": "/users/{id_user}"` will set a variable `req_params.Id_user` containing the value of the parameter passed in the request. When you use the [sequential proxy](https://www.krakend.io/docs/endpoints/sequential-proxy/#chaining-the-requests) you also have under `req_params.RespX_field` the response of a previous backend call (where `X` is the sequence number and `field` the object you want to retrieve.
+  E.g., an `"endpoint": "/users/{id_user}"` will set a variable `req_params.Id_user` containing the value of the parameter passed in the request. When you use the [sequential proxy](https://www.krakend.io/docs/enterprise/endpoints/sequential-proxy/#chaining-the-requests) you also have under `req_params.RespX_field` the response of a previous backend call (where `X` is the sequence number and `field` the object you want to retrieve.
 - `req_headers`: A map with all the headers received in its **canonical form** (converts the first letter and any letter following a hyphen to upper case; the rest are converted to lowercase. For example, the canonical key for `accept-encoding` is `Accept-Encoding`). The value of the map **is an array**, as you can have a header declared multiple times (e.g., multiple cookies with `Set-Cookie`). For example, you can access headers like this: `req_headers['X-Forwarded-For']`.
   
   Do not forget `input_headers`!
@@ -11179,7 +11179,7 @@ do
 done
 ```
 
-Then you would use the output above to create a partial file `api-keys.json` that would be used on KrakenD with [Flexible Configuration](https://www.krakend.io/docs/configuration/flexible-config/).
+Then you would use the output above to create a partial file `api-keys.json` that would be used on KrakenD with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/).
 
 Finally, your backend should have this list somewhere, and when a new user registers, you assign one of the free keys to the new user. You can deploy from time to time when you are running out of API keys in the pool or if you want to write the assignment in the configuration.
 
@@ -11576,10 +11576,10 @@ Schema: [https://www.krakend.io/schema/v3.0/auth/revoker.json](https://www.krake
 
 The Revoke Server also accepts settings from:
 
-- [Any HTTP server setting](https://www.krakend.io/docs/service-settings/http-server-settings/) except `sequential_start` and `cache_ttl`
-- [Any HTTP transport setting](https://www.krakend.io/docs/service-settings/http-transport-settings/) except `disable_rest`
-- [Any TLS setting](https://www.krakend.io/docs/service-settings/tls/)
-- [Any improved logging setting](https://www.krakend.io/docs/logging/)
+- [Any HTTP server setting](https://www.krakend.io/docs/enterprise/service-settings/http-server-settings/) except `sequential_start` and `cache_ttl`
+- [Any HTTP transport setting](https://www.krakend.io/docs/enterprise/service-settings/http-transport-settings/) except `disable_rest`
+- [Any TLS setting](https://www.krakend.io/docs/enterprise/service-settings/tls/)
+- [Any improved logging setting](https://www.krakend.io/docs/enterprise/logging/)
 
 ## Registering to the Revoke Server
 
@@ -11849,7 +11849,7 @@ The plugin generates a **virtual JWK URL** that can validate any token generated
 
 All `origins` are fetched in parallel. If the `cache` is set to `true,` the Identity Server’s responses are cached in memory individually for the time specified in their `Cache-Control` header. **You must set a cache policy to avoid hammering the Identity Server on each request**.
 
-In addition to the aggregator cache, you can also enable [shared caching](https://www.krakend.io/docs/authorization/jwk-caching/#shared-jwk-cache) for JWT validation.
+In addition to the aggregator cache, you can also enable [shared caching](https://www.krakend.io/docs/enterprise/authorization/jwk-caching/#shared-jwk-cache) for JWT validation.
 
 ## Configuration
 
@@ -11955,11 +11955,11 @@ In addition to the configuration above, the endpoints must point to the new serv
 
 And that’s all you need to support multiple identity providers’ origin! You can change the exposed port. There is no specific reason to keep the `9876`.
 
-If you want even better caching, you can also enable the [global shared JWK cache](https://www.krakend.io/docs/authorization/jwk-caching/#shared-jwk-cache), which is reused between endpoints.
+If you want even better caching, you can also enable the [global shared JWK cache](https://www.krakend.io/docs/enterprise/authorization/jwk-caching/#shared-jwk-cache), which is reused between endpoints.
 
 ## Dealing with token differences
 
-While the aggregation functionality allows the [JWT validator](https://www.krakend.io/docs/authorization/jwt-validation/) to accept tokens from several providers, you might need to go beyond simple validation and enforce additional business rules on tokens that have completely different structures, and they represent information like `scopes` using different fields and structures (e.g., string vs array). The [security policies](https://www.krakend.io/docs/enterprise/security-policies/) allow you to overcome any limitations of the validator options and provide more fine-grained control.
+While the aggregation functionality allows the [JWT validator](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) to accept tokens from several providers, you might need to go beyond simple validation and enforce additional business rules on tokens that have completely different structures, and they represent information like `scopes` using different fields and structures (e.g., string vs array). The [security policies](https://www.krakend.io/docs/enterprise/security-policies/) allow you to overcome any limitations of the validator options and provide more fine-grained control.
 
 Let’s see an example below.
 
@@ -12083,7 +12083,7 @@ As you can see, the security policy implements any needed logic, moving the resp
 
 # [Google Cloud service-to-service authentication (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/authentication/gcloud/)
 
-KrakenD supports the three different **service-to-service authentication** mechanisms Google Cloud provides: **Service Accounts** (this page), [OAuth 2.0](https://www.krakend.io/docs/authorization/client-credentials/), and [Mutual TLS Authentication](https://www.krakend.io/docs/authorization/mutual-authentication/).
+KrakenD supports the three different **service-to-service authentication** mechanisms Google Cloud provides: **Service Accounts** (this page), [OAuth 2.0](https://www.krakend.io/docs/enterprise/authorization/client-credentials/), and [Mutual TLS Authentication](https://www.krakend.io/docs/enterprise/authorization/mutual-authentication/).
 
 A **service account** is a special type of Google account that belongs to an application or a virtual machine. Service accounts are used to authenticate requests to Google Cloud APIs and services or when connecting to your Google Cloud Run services if you added an option “Require Authentication”.
 
@@ -12812,14 +12812,14 @@ Since v3.0, the HTTP Circuit Breaker reports its state transitions and evaluated
 
 # [Service Rate Limiting to Control API Usage (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/)
 
-The service rate limit feature allows you to set the **maximum requests per second** a user or group of users can do to KrakenD and works analogously to the [endpoint rate limit](https://www.krakend.io/docs/endpoints/rate-limit/). There are two different strategies to set limits that you can use, simultaneously or individually:
+The service rate limit feature allows you to set the **maximum requests per second** a user or group of users can do to KrakenD and works analogously to the [endpoint rate limit](https://www.krakend.io/docs/enterprise/endpoints/rate-limit/). There are two different strategies to set limits that you can use, simultaneously or individually:
 
 - **Service rate-limit**: Defines the rate-limit that **all users** of your API can do together, sharing the same counter. For instance, you might want to limit the interaction from users to KrakenD to 10,000 requests/second to avoid a possible DDoS propagating to your backend services.
 - **Client rate-limit**: Rate-limits what an individual user can do against all endpoints. For instance, a personal JWT token can make 100 requests/second to the API.
 
-Both types keep **in-memory** an updated [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) expressing the remaining requests for a user or group of users.
+Both types keep **in-memory** an updated [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) expressing the remaining requests for a user or group of users.
 
-For additional types of rate-limiting see the [Traffic management overview](https://www.krakend.io/docs/throttling/).
+For additional types of rate-limiting see the [Traffic management overview](https://www.krakend.io/docs/enterprise/throttling/).
 
 ## Service rate-limiting (`max_rate`)
 
@@ -12827,15 +12827,15 @@ The service rate limit acts on the number of simultaneous transactions KrakenD a
 
 It consumes an insignificant amount of memory as it only needs **one counter for the whole system**.
 
-When the users connected to an endpoint together exceed the `max_rate`, KrakenD starts to reject connections with a status code `503 Service Unavailable` and enables a [Spike Arrest](https://www.krakend.io/docs/throttling/spike-arrest/) policy
+When the users connected to an endpoint together exceed the `max_rate`, KrakenD starts to reject connections with a status code `503 Service Unavailable` and enables a [Spike Arrest](https://www.krakend.io/docs/enterprise/throttling/spike-arrest/) policy
 
 ## Service client rate-limiting (`client_max_rate`)
 
-The client or user rate limit applies to an individual user to all endpoints. Each endpoint can additionally have [sub-limit rates](https://www.krakend.io/docs/endpoints/rate-limit/), but all users are subject to the same rate.
+The client or user rate limit applies to an individual user to all endpoints. Each endpoint can additionally have [sub-limit rates](https://www.krakend.io/docs/enterprise/endpoints/rate-limit/), but all users are subject to the same rate.
 
 The `client_max_rate` tracks one counter per different client.
 
-When a single user connected to an endpoint exceeds their `client_max_rate`, KrakenD starts to reject connections with a status code `429 Too Many Requests` and enables a [Spike Arrest](https://www.krakend.io/docs/throttling/spike-arrest/) policy
+When a single user connected to an endpoint exceeds their `client_max_rate`, KrakenD starts to reject connections with a status code `429 Too Many Requests` and enables a [Spike Arrest](https://www.krakend.io/docs/enterprise/throttling/spike-arrest/) policy
 
 ## Service rate-limiting configuration
 
@@ -12862,7 +12862,7 @@ Minimum configuration needs **any of**: `max_rate` , or `client_max_rate`
 
 ##### [`capacity`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#capacity "Click to copy link to capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
 
 Defaults to `1`
 
@@ -12882,13 +12882,13 @@ Defaults to `1`
 
 ##### [`client_capacity`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#client_capacity "Click to copy link to client_capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
 
 Defaults to `1`
 
 ##### [`client_max_rate`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#client_max_rate "Click to copy link to client_max_rate") number
 
-Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
+Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
 
 ##### [`every`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#every "Click to copy link to every") string
 
@@ -12906,7 +12906,7 @@ Examples: `"X-Tenant"` , `"Authorization"` , `"id_user"`
 
 ##### [`max_rate`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#max_rate "Click to copy link to max_rate") number
 
-Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
+Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
 
 ##### [`num_shards`](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/#num_shards "Click to copy link to num_shards") integer
 
@@ -13029,7 +13029,7 @@ Minimum configuration needs **any of**: `max_rate` , or `client_max_rate`
 
 ##### [`capacity`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#capacity "Click to copy link to capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
 
 Defaults to `1`
 
@@ -13049,13 +13049,13 @@ Defaults to `1`
 
 ##### [`client_capacity`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#client_capacity "Click to copy link to client_capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
 
 Defaults to `1`
 
 ##### [`client_max_rate`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#client_max_rate "Click to copy link to client_max_rate") number
 
-Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
+Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
 
 ##### [`every`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#every "Click to copy link to every") string
 
@@ -13073,7 +13073,7 @@ Examples: `"X-Tenant"` , `"Authorization"` , `"id_user"`
 
 ##### [`max_rate`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#max_rate "Click to copy link to max_rate") number
 
-Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
+Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
 
 ##### [`num_shards`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#num_shards "Click to copy link to num_shards") integer
 
@@ -13174,19 +13174,19 @@ Minimum configuration needs **any of**: `connection_pool` + `max_rate` , or `con
 
 ##### [`capacity`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#capacity "Click to copy link to capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
 
 Defaults to `1`
 
 ##### [`client_capacity`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#client_capacity "Click to copy link to client_capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
 
 Defaults to `1`
 
 ##### [`client_max_rate`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#client_max_rate "Click to copy link to client_max_rate") number
 
-Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
+Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
 
 ##### [`connection_name`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#connection_name "Click to copy link to connection_name") string
 
@@ -13212,7 +13212,7 @@ Examples: `"X-Tenant"` , `"Authorization"` , `"id_user"`
 
 ##### [`max_rate`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#max_rate "Click to copy link to max_rate") number
 
-Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
+Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
 
 ##### [`on_failure_allow`](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/#on_failure_allow "Click to copy link to on_failure_allow") boolean
 
@@ -13448,19 +13448,19 @@ Minimum configuration needs **any of**: `connection_pool` + `max_rate` , or `con
 
 ##### [`capacity`](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/#capacity "Click to copy link to capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
 
 Defaults to `1`
 
 ##### [`client_capacity`](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/#client_capacity "Click to copy link to client_capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
 
 Defaults to `1`
 
 ##### [`client_max_rate`](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/#client_max_rate "Click to copy link to client_max_rate") number
 
-Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
+Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
 
 ##### [`connection_name`](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/#connection_name "Click to copy link to connection_name") string
 
@@ -13486,7 +13486,7 @@ Examples: `"X-Tenant"` , `"Authorization"` , `"id_user"`
 
 ##### [`max_rate`](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/#max_rate "Click to copy link to max_rate") number
 
-Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
+Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
 
 ##### [`on_failure_allow`](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/#on_failure_allow "Click to copy link to on_failure_allow") boolean
 
@@ -13568,19 +13568,19 @@ Minimum configuration needs **any of**: `connection_pool` + `max_rate` , or `con
 
 ##### [`capacity`](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/#capacity "Click to copy link to capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.
 
 Defaults to `1`
 
 ##### [`client_capacity`](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/#client_capacity "Click to copy link to client_capacity") integer
 
-Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
+Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/enterprise/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.
 
 Defaults to `1`
 
 ##### [`client_max_rate`](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/#client_max_rate "Click to copy link to client_max_rate") number
 
-Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
+Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.
 
 ##### [`connection_name`](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/#connection_name "Click to copy link to connection_name") string
 
@@ -13606,7 +13606,7 @@ Examples: `"X-Tenant"` , `"Authorization"` , `"id_user"`
 
 ##### [`max_rate`](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/#max_rate "Click to copy link to max_rate") number
 
-Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
+Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/enterprise/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.
 
 ##### [`on_failure_allow`](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/#on_failure_allow "Click to copy link to on_failure_allow") boolean
 
@@ -13711,7 +13711,7 @@ The IP filtering plugin allows you to restrict the traffic to your API gateway b
 
 The filtering applies globally to all endpoints, or to only specific endpoints **depending on the placement of the configuration**.
 
-When an IP is rejected, the consumer of the endpoint receives a **403 Forbidden** status code. When the functionality is at the endpoint level, the consumer receives a `500` unless you have enabled [returning the HTTP status code of a single backend](https://www.krakend.io/docs/backends/detailed-errors/#return-the-http-status-code-of-a-single-backend).
+When an IP is rejected, the consumer of the endpoint receives a **403 Forbidden** status code. When the functionality is at the endpoint level, the consumer receives a `500` unless you have enabled [returning the HTTP status code of a single backend](https://www.krakend.io/docs/enterprise/backends/detailed-errors/#return-the-http-status-code-of-a-single-backend).
 
 The basic plugin declaration looks like this, and goes inside the `plugins` list of a `plugin/http-server` or `plugin/req-resp-modifier` namespace (see the examples below):
 
@@ -14080,7 +14080,7 @@ Example: `10000000`
 
 The `P`robability of returning a false positive. E.g.,`1e-7` for one false positive every 10 million different tokens. The values `N` and `P` determine the size of the resulting bloom filter to fulfill your expectations. E.g: 0.0000001
 
-See: [https://www.krakend.io/docs/authorization/revoking-tokens/](https://www.krakend.io/docs/authorization/revoking-tokens/)
+See: [https://www.krakend.io/docs/authorization/revoking-tokens/](https://www.krakend.io/docs/enterprise/authorization/revoking-tokens/)
 
 Example: `1e-7`
 
@@ -14096,7 +14096,7 @@ Defaults to `"30m"`
 
 Either `optimal` (recommended) or `default`. The `optimal` consumes less CPU but has less entropy when generating the hash, although the loss is negligible.
 
-See: [https://www.krakend.io/docs/authorization/revoking-tokens/](https://www.krakend.io/docs/authorization/revoking-tokens/)
+See: [https://www.krakend.io/docs/authorization/revoking-tokens/](https://www.krakend.io/docs/enterprise/authorization/revoking-tokens/)
 
 Possible values are: `"optimal"` , `"default"`
 
@@ -14391,7 +14391,7 @@ Bronze users: 100 req/day
 Anonymous users: 10 req/day
 ```
 
-Gold and Bronze users are known to you, and they set a header name `X-User-ID` (that could be [propagated by a JWT token](https://www.krakend.io/docs/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers)) containing their identifier. Anonymous users on the other side, use the API without an identificator and you will limit based on the IP address they are using.
+Gold and Bronze users are known to you, and they set a header name `X-User-ID` (that could be [propagated by a JWT token](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers)) containing their identifier. Anonymous users on the other side, use the API without an identificator and you will limit based on the IP address they are using.
 
 This idea is expressed with the following configuration `tiers` for the `governance/quota`:
 
@@ -14456,7 +14456,7 @@ Once the data is pushed to Moesif, from Moesif itself, you can:
 
 Streaming incompatible
 
-The activation of this component disables [streaming](https://www.krakend.io/docs/endpoints/no-op/) on all endpoints (and the full response uses buffering instead).
+The activation of this component disables [streaming](https://www.krakend.io/docs/enterprise/endpoints/no-op/) on all endpoints (and the full response uses buffering instead).
 
 ## Monetization and API Analytics configuration
 
@@ -14978,7 +14978,7 @@ Defaults to `false`
 
 a list of tags or labels you want to associate with these metrics.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 Example: `[{"key":"my_metric_attr","value":"my_metric_val"}]`
 
@@ -14988,13 +14988,13 @@ Each item of static\_attributes accepts the following properties:
 
 the key, tag, or label name you want to use.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 ##### [`value`](#static_attributes-value "Click to copy link to value") * string
 
 the static value you want to assign to this key.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 ##### [`traces`](#backend-traces "Click to copy link to traces") object
 
@@ -15038,7 +15038,7 @@ Example: `["X-Backend-Secret","X-All-Secret"]`
 
 a list of tags or labels you want to associate with these metrics.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 Example: `[{"key":"my_metric_attr","value":"my_metric_val"}]`
 
@@ -15048,13 +15048,13 @@ Each item of static\_attributes accepts the following properties:
 
 the key, tag, or label name you want to use.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 ##### [`value`](#static_attributes-value-2 "Click to copy link to value") * string
 
 the static value you want to assign to this key.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 Schema: [https://www.krakend.io/schema/v3.0/telemetry/opentelemetry-backend.json](https://www.krakend.io/schema/v3.0/telemetry/opentelemetry-backend.json "JSON schema definition")
 
@@ -15153,7 +15153,7 @@ The New Relic native integration lets you push KrakenD **metrics and distributed
 
 How is the native SDK integration different from OpenTelemetry?
 
-Open-source and Enterprise users can also report traces and metrics to New Relic using the [OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/) integration. Nevertheless, New Relic supports an OTLP specification dated from November 2021 (`v1.8.0`), which is two years behind the current OTLP protocol at the time of writing. The native SDK component in KrakenD uses their official toolset, and sends richer data and is easier to set up without needing an external collector.
+Open-source and Enterprise users can also report traces and metrics to New Relic using the [OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/) integration. Nevertheless, New Relic supports an OTLP specification dated from November 2021 (`v1.8.0`), which is two years behind the current OTLP protocol at the time of writing. The native SDK component in KrakenD uses their official toolset, and sends richer data and is easier to set up without needing an external collector.
 
 Examples of the data you can see on New Relic:
 
@@ -15220,7 +15220,7 @@ Schema: [https://www.krakend.io/schema/v3.0/telemetry/newrelic.json](https://www
 
 If you don’t see reports in your New Relic account after sending activity to KrakenD, enable the `debug` flag locally to see what is happening. The logs will show information to help you understand what is going on.
 
-The [logger](https://www.krakend.io/docs/logging/) should be configured with a `DEBUG` level to see these messages.
+The [logger](https://www.krakend.io/docs/enterprise/logging/) should be configured with a `DEBUG` level to see these messages.
 
 ## Getting your API Key from New Relic
 
@@ -17574,7 +17574,7 @@ Sometimes, a test case needs to have multiple calls to validate a scenario. When
 
 The test case file must follow the [e2e schema](https://www.krakend.io/schema/v3.0/e2e.json) (explained below) to work correctly, but the **tool does not validate the JSON format of each test case during runtime** (this makes processing faster).
 
-Here’s an example of test you can save under `specs/test1.json` and run it with any KrakenD configuration ([`debug_endpoint`](https://www.krakend.io/docs/endpoints/debug-endpoint/) set to `true` required):
+Here’s an example of test you can save under `specs/test1.json` and run it with any KrakenD configuration ([`debug_endpoint`](https://www.krakend.io/docs/enterprise/endpoints/debug-endpoint/) set to `true` required):
 
 ```json
 {
@@ -17757,7 +17757,7 @@ Schema: [https://www.krakend.io/schema/v3.0/e2e.json](https://www.krakend.io/sch
 
 When the response of your backend is not deterministic, instead of checking the response against a `body` trying to find an exact payload, you can test it against a **JSON Schema**, using the `schema` attribute.
 
-For instance, our [health endpoint](https://www.krakend.io/docs/service-settings/health/) returns the date after every request. It would be impossible to test it literally, as the date changes between executions. The following test would make sure that it works by comparing the response with a schema:
+For instance, our [health endpoint](https://www.krakend.io/docs/enterprise/service-settings/health/) returns the date after every request. It would be impossible to test it literally, as the date changes between executions. The following test would make sure that it works by comparing the response with a schema:
 
 ```json
 {
@@ -17898,7 +17898,7 @@ In addition to the KrakenD service used to test the configuration, the command `
 
 You can see the code of these endpoints below [here](https://github.com/krakend/krakend-ce/blob/master/tests/integration.go#L424-L429).
 
-In addition to the endpoints below, you can also use the [echo](https://www.krakend.io/docs/endpoints/echo-endpoint/) and [debug](https://www.krakend.io/docs/endpoints/debug-endpoint/) endpoints of KrakenD (not this service)
+In addition to the endpoints below, you can also use the [echo](https://www.krakend.io/docs/enterprise/endpoints/echo-endpoint/) and [debug](https://www.krakend.io/docs/enterprise/endpoints/debug-endpoint/) endpoints of KrakenD (not this service)
 
 ### Endpoint `/param_forwarding/*`
 

@@ -14,7 +14,7 @@ If you want to customize any of the settings below, they must be written at the 
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/service-settings/http-transport-settings/#client_tls "Click to copy link to client_tls")
 
-Allows to set specific transport settings when using TLS in your upstream services. See [TLS Client](https://www.krakend.io/docs/service-settings/tls/) for more settings
+Allows to set specific transport settings when using TLS in your upstream services. See [TLS Client](https://www.krakend.io/docs/enterprise/service-settings/tls/) for more settings
 
 ##### [`dialer_fallback_delay`](https://www.krakend.io/docs/enterprise/service-settings/http-transport-settings/#dialer_fallback_delay "Click to copy link to dialer_fallback_delay") string
 

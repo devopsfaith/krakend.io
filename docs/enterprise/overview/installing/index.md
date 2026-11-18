@@ -94,7 +94,7 @@ Minimum supported versions are Debian 8, and Ubuntu 16.x.
 
 ### Generic Linux (`tar.gz`)
 
-You can also download the `tar.gz` and decompress it anywhere. Instructions to check the SHA and PGP signature [here](https://www.krakend.io/docs/overview/verifying-packages/).
+You can also download the `tar.gz` and decompress it anywhere. Instructions to check the SHA and PGP signature [here](https://www.krakend.io/docs/enterprise/overview/verifying-packages/).
 
 [Download latest `tar.gz` (AMD64)](https://download.krakend.io/bin/krakend-ee_3.0.4_amd64_generic-linux.tar.gz)
 

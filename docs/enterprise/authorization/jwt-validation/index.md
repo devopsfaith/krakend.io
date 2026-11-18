@@ -178,7 +178,7 @@ Example: `"./jwk.txt"`
 
 ##### [`jwk_url`](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/#jwk_url "Click to copy link to jwk_url") string
 
-The URL to the JWK endpoint with the public keys used to verify the token’s authenticity and integrity. Use with `cache` to avoid re-downloading the key on every request. Consider enabling [shared caching](https://www.krakend.io/docs/authorization/jwk-caching/) too. The identity server will receive an HTTP(s) request from KrakenD with a KrakenD user agent, and the identity server must reply with a JSON object and a content-type `application/jwk-set+json` or `application/json`.
+The URL to the JWK endpoint with the public keys used to verify the token’s authenticity and integrity. Use with `cache` to avoid re-downloading the key on every request. Consider enabling [shared caching](https://www.krakend.io/docs/enterprise/authorization/jwk-caching/) too. The identity server will receive an HTTP(s) request from KrakenD with a KrakenD user agent, and the identity server must reply with a JSON object and a content-type `application/jwk-set+json` or `application/json`.
 
 Examples: `"https://some-domain.auth0.com/.well-known/jwks.json"` , `"http://KEYCLOAK:8080/auth/realms/master/protocol/openid-connect/certs"` , `"https://yourOktaBaseUrl/v1/keys"`
 

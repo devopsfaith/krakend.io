@@ -219,7 +219,7 @@ HIGH
 
 Rationale
 
-Properly securing endpoints through authorization is crucial for the security of your API. JWT is a recommended method for stateless authorization, as it ensures that the token is valid and has not been tampered with. [Add JWT validation](https://www.krakend.io/docs/authorization/jwt-validation/)
+Properly securing endpoints through authorization is crucial for the security of your API. JWT is a recommended method for stateless authorization, as it ensures that the token is valid and has not been tampered with. [Add JWT validation](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/)
 
 ### 2. HTTP transport
 
@@ -239,7 +239,7 @@ HIGH
 
 Rationale
 
-This recommendation ensures that KrakenD is configured to only allow secure connections using TLS. This helps to prevent man-in-the-middle attacks and other forms of eavesdropping. [Disallow insecure connections](https://www.krakend.io/docs/service-settings/tls/#allow_insecure_connections)
+This recommendation ensures that KrakenD is configured to only allow secure connections using TLS. This helps to prevent man-in-the-middle attacks and other forms of eavesdropping. [Disallow insecure connections](https://www.krakend.io/docs/enterprise/service-settings/tls/#allow_insecure_connections)
 
 Recommendation
 
@@ -251,7 +251,7 @@ HIGH
 
 Rationale
 
-This recommendation ensures that KrakenD is either configured to use TLS or that a terminator is used in front of KrakenD to handle the encryption. This helps to prevent man-in-the-middle attacks and other forms of eavesdropping. [Enable TLS](https://www.krakend.io/docs/service-settings/tls/)
+This recommendation ensures that KrakenD is either configured to use TLS or that a terminator is used in front of KrakenD to handle the encryption. This helps to prevent man-in-the-middle attacks and other forms of eavesdropping. [Enable TLS](https://www.krakend.io/docs/enterprise/service-settings/tls/)
 
 Recommendation
 
@@ -263,7 +263,7 @@ CRITICAL
 
 Rationale
 
-This recommendation ensures that TLS configuration does not have a disable flag to override it. Without this, communication between clients and KrakenD would be unencrypted and susceptible to eavesdropping and man-in-the-middle attacks. [Remove `disable`](https://www.krakend.io/docs/service-settings/tls/#disabled)
+This recommendation ensures that TLS configuration does not have a disable flag to override it. Without this, communication between clients and KrakenD would be unencrypted and susceptible to eavesdropping and man-in-the-middle attacks. [Remove `disable`](https://www.krakend.io/docs/enterprise/service-settings/tls/#disabled)
 
 Recommendation
 
@@ -275,7 +275,7 @@ HIGH
 
 Rationale
 
-It is important to enable HTTP security header checks to ensure that your system is protected against common web-based attacks such as cross-site scripting (XSS) and clickjacking. [Enable http security](https://www.krakend.io/docs/service-settings/security/)
+It is important to enable HTTP security header checks to ensure that your system is protected against common web-based attacks such as cross-site scripting (XSS) and clickjacking. [Enable http security](https://www.krakend.io/docs/enterprise/service-settings/security/)
 
 Recommendation
 
@@ -287,7 +287,7 @@ HIGH
 
 Rationale
 
-The h2c flag uses HTTP/2 in clear text. Use HTTP/2 over TLS instead (no flag declaration). [Disable h2c](https://www.krakend.io/docs/service-settings/router-options/)
+The h2c flag uses HTTP/2 in clear text. Use HTTP/2 over TLS instead (no flag declaration). [Disable h2c](https://www.krakend.io/docs/enterprise/service-settings/router-options/)
 
 Recommendation
 
@@ -315,7 +315,7 @@ MEDIUM
 
 Rationale
 
-It is important to hide the KrakenD version banner in order to prevent attackers from identifying vulnerabilities in your specific version of the software. Add the flag [hide\_version\_header](https://www.krakend.io/docs/service-settings/router-options/#hide_version_header).
+It is important to hide the KrakenD version banner in order to prevent attackers from identifying vulnerabilities in your specific version of the software. Add the flag [hide\_version\_header](https://www.krakend.io/docs/enterprise/service-settings/router-options/#hide_version_header).
 
 Recommendation
 
@@ -327,7 +327,7 @@ HIGH
 
 Rationale
 
-Cross-Origin Resource Sharing allows secure communication between different domains, which is crucial for protecting against cross-site scripting (XSS) attacks. [Enable CORS](https://www.krakend.io/docs/service-settings/cors/)
+Cross-Origin Resource Sharing allows secure communication between different domains, which is crucial for protecting against cross-site scripting (XSS) attacks. [Enable CORS](https://www.krakend.io/docs/enterprise/service-settings/cors/)
 
 Recommendation
 
@@ -339,7 +339,7 @@ HIGH
 
 Rationale
 
-Enabling the wildcard pollutes your backends and opens the door to malicious attackers to get through the gateway and scan your backend for vulnerabilities. [Avoid wildcard headers](https://www.krakend.io/docs/endpoints/parameter-forwarding/)
+Enabling the wildcard pollutes your backends and opens the door to malicious attackers to get through the gateway and scan your backend for vulnerabilities. [Avoid wildcard headers](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/)
 
 Recommendation
 
@@ -351,7 +351,7 @@ HIGH
 
 Rationale
 
-Enabling the wildcard pollutes your backends and opens the door to malicious attackers to get through the gateway and scan your backend for vulnerabilities. [Avoid wildcard query strings](https://www.krakend.io/docs/endpoints/parameter-forwarding/)
+Enabling the wildcard pollutes your backends and opens the door to malicious attackers to get through the gateway and scan your backend for vulnerabilities. [Avoid wildcard query strings](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/)
 
 Recommendation
 
@@ -379,7 +379,7 @@ MEDIUM
 
 Rationale
 
-There are cache components that do not set any limit to the amount of RAM the system can use, and a backend misconfiguration could lead to an unstable/crashing system. Add the flag [max\_size](https://www.krakend.io/docs/backends/caching/#qos/http-cache-max_size) and [max\_items](https://www.krakend.io/docs/backends/caching/#qos/http-cache-max_items) to your `qos/http-cache` configuration to limit the bytes you allow.
+There are cache components that do not set any limit to the amount of RAM the system can use, and a backend misconfiguration could lead to an unstable/crashing system. Add the flag [max\_size](https://www.krakend.io/docs/enterprise/backends/caching/#qos/http-cache-max_size) and [max\_items](https://www.krakend.io/docs/enterprise/backends/caching/#qos/http-cache-max_items) to your `qos/http-cache` configuration to limit the bytes you allow.
 
 ### 3. Traffic Management
 
@@ -399,7 +399,7 @@ LOW
 
 Rationale
 
-Enabling a Bot detector can prevent unwanted crawling, and impacting performance for legitimate users. [Enable a bot detector](https://www.krakend.io/docs/throttling/botdetector/)
+Enabling a Bot detector can prevent unwanted crawling, and impacting performance for legitimate users. [Enable a bot detector](https://www.krakend.io/docs/enterprise/throttling/botdetector/)
 
 Recommendation
 
@@ -411,7 +411,7 @@ HIGH
 
 Rationale
 
-Implementing a rate-limiting strategy can prevent a single user or service from overloading your API and impacting performance for other users. It also helps to prevent abuse and unwanted usage patterns. [Add throttling](https://www.krakend.io/docs/throttling/)
+Implementing a rate-limiting strategy can prevent a single user or service from overloading your API and impacting performance for other users. It also helps to prevent abuse and unwanted usage patterns. [Add throttling](https://www.krakend.io/docs/enterprise/throttling/)
 
 Recommendation
 
@@ -423,7 +423,7 @@ HIGH
 
 Rationale
 
-Implementing a circuit breaker can protect your backends from being overwhelmed by requests in case of a service failure or unexpected traffic spike, by automatically stopping requests from being sent to the backend until the issue is resolved. [Add a circuit breaker](https://www.krakend.io/docs/backends/circuit-breaker/)
+Implementing a circuit breaker can protect your backends from being overwhelmed by requests in case of a service failure or unexpected traffic spike, by automatically stopping requests from being sent to the backend until the issue is resolved. [Add a circuit breaker](https://www.krakend.io/docs/enterprise/backends/circuit-breaker/)
 
 ### 3.2 Retry policies
 
@@ -443,7 +443,7 @@ LOW
 
 Rationale
 
-Having short timeouts can help prevent slow requests from holding up the system and causing delays for other users. A timeout of 3 seconds or less is considered high enough and should be sufficient for most use cases. [Lower the timeout](https://www.krakend.io/docs/endpoints/#timeout)
+Having short timeouts can help prevent slow requests from holding up the system and causing delays for other users. A timeout of 3 seconds or less is considered high enough and should be sufficient for most use cases. [Lower the timeout](https://www.krakend.io/docs/enterprise/endpoints/#timeout)
 
 Recommendation
 
@@ -455,7 +455,7 @@ MEDIUM
 
 Rationale
 
-Having medium-length timeouts can help prevent slow requests from holding up the system and causing delays for other users. A timeout of 5 seconds or more is considered high and should not be used in most of the cases. [Lower the timeout](https://www.krakend.io/docs/endpoints/#timeout)
+Having medium-length timeouts can help prevent slow requests from holding up the system and causing delays for other users. A timeout of 5 seconds or more is considered high and should not be used in most of the cases. [Lower the timeout](https://www.krakend.io/docs/enterprise/endpoints/#timeout)
 
 Recommendation
 
@@ -467,7 +467,7 @@ HIGH
 
 Rationale
 
-Having long timeouts can help prevent slow requests from holding up the system and causing delays for other users. A timeout of 30 seconds or more is considered very high. [Lower the timeout](https://www.krakend.io/docs/endpoints/#timeout)
+Having long timeouts can help prevent slow requests from holding up the system and causing delays for other users. A timeout of 30 seconds or more is considered very high. [Lower the timeout](https://www.krakend.io/docs/enterprise/endpoints/#timeout)
 
 Recommendation
 
@@ -479,7 +479,7 @@ CRITICAL
 
 Rationale
 
-Having timeouts set above 1 minute can lead to security vulnerabilities such as denial of service attacks. It’s important to ensure that your timeouts are always low to prevent these types of issues. [Lower the timeout](https://www.krakend.io/docs/endpoints/#timeout)
+Having timeouts set above 1 minute can lead to security vulnerabilities such as denial of service attacks. It’s important to ensure that your timeouts are always low to prevent these types of issues. [Lower the timeout](https://www.krakend.io/docs/enterprise/endpoints/#timeout)
 
 ### 4. Telemetry
 
@@ -499,7 +499,7 @@ MEDIUM
 
 Rationale
 
-Having a telemetry system in place is crucial for monitoring the performance and health of your KrakenD service. It allows you to track metrics such as request count, response time, and error rate. [Add metrics](https://www.krakend.io/docs/telemetry/)
+Having a telemetry system in place is crucial for monitoring the performance and health of your KrakenD service. It allows you to track metrics such as request count, response time, and error rate. [Add metrics](https://www.krakend.io/docs/enterprise/telemetry/)
 
 Recommendation
 
@@ -527,7 +527,7 @@ MEDIUM
 
 Rationale
 
-Implementing a telemetry system, such as OpenTracing, allows for better tracking and debugging of requests and can help identify issues or performance bottlenecks. [Add tracing](https://www.krakend.io/docs/telemetry/)
+Implementing a telemetry system, such as OpenTracing, allows for better tracking and debugging of requests and can help identify issues or performance bottlenecks. [Add tracing](https://www.krakend.io/docs/enterprise/telemetry/)
 
 ### 4.3 Logging
 
@@ -543,7 +543,7 @@ MEDIUM
 
 Rationale
 
-The improved logging component allows for better parsing of logs, making it easier to identify and troubleshoot issues. This is a recommended configuration to have in place. [Add logging](https://www.krakend.io/docs/logging/)
+The improved logging component allows for better parsing of logs, making it easier to identify and troubleshoot issues. This is a recommended configuration to have in place. [Add logging](https://www.krakend.io/docs/enterprise/logging/)
 
 ### 5. API Gateway
 
@@ -563,7 +563,7 @@ LOW
 
 Rationale
 
-RESTful endpoint structure is a best practice for API design and makes it easier for developers to understand and consume your API. Make sure that your endpoints are organized in a logical and consistent manner, and that they follow the standard CRUD operations. [Remove `disable_rest`](https://www.krakend.io/docs/service-settings/http-transport-settings/#disable_rest)
+RESTful endpoint structure is a best practice for API design and makes it easier for developers to understand and consume your API. Make sure that your endpoints are organized in a logical and consistent manner, and that they follow the standard CRUD operations. [Remove `disable_rest`](https://www.krakend.io/docs/enterprise/service-settings/http-transport-settings/#disable_rest)
 
 Recommendation
 
@@ -575,7 +575,7 @@ LOW
 
 Rationale
 
-The `/__debug/` endpoint is a special endpoint that is used for debugging and testing purposes, and despite is considered safe to use in production, it’s not necessary in production environments. [Remove the debug endpoint](https://www.krakend.io/docs/endpoints/debug-endpoint/).
+The `/__debug/` endpoint is a special endpoint that is used for debugging and testing purposes, and despite is considered safe to use in production, it’s not necessary in production environments. [Remove the debug endpoint](https://www.krakend.io/docs/enterprise/endpoints/debug-endpoint/).
 
 Recommendation
 
@@ -587,7 +587,7 @@ LOW
 
 Rationale
 
-The `/__echo/` endpoint is a special endpoint that is used for debugging and testing purposes. It’s not necessary in production environments. [Remove the echo endpoint](https://www.krakend.io/docs/endpoints/echo-endpoint/).
+The `/__echo/` endpoint is a special endpoint that is used for debugging and testing purposes. It’s not necessary in production environments. [Remove the echo endpoint](https://www.krakend.io/docs/enterprise/endpoints/echo-endpoint/).
 
 Recommendation
 
@@ -635,7 +635,7 @@ MEDIUM
 
 Rationale
 
-Using sequential calls is considered an anti-pattern because when you make a network service dependent on the other, you are increasing the latency, decreasing the performance, and augmenting the error rate. [Avoid sequential proxy](https://www.krakend.io/docs/endpoints/sequential-proxy/#do-you-really-need-a-sequential-proxy)
+Using sequential calls is considered an anti-pattern because when you make a network service dependent on the other, you are increasing the latency, decreasing the performance, and augmenting the error rate. [Avoid sequential proxy](https://www.krakend.io/docs/enterprise/endpoints/sequential-proxy/#do-you-really-need-a-sequential-proxy)
 
 ### 5.2 Proxy pipe
 
@@ -651,7 +651,7 @@ CRITICAL
 
 Rationale
 
-Having at least one backend per endpoint ensures that the endpoint is functional and can handle incoming requests. [Add a backend](https://www.krakend.io/docs/backends/)
+Having at least one backend per endpoint ensures that the endpoint is functional and can handle incoming requests. [Add a backend](https://www.krakend.io/docs/enterprise/backends/)
 
 Recommendation
 
@@ -695,7 +695,7 @@ LOW
 
 Rationale
 
-Starting too many async agents one after the other can cause delays during startup. Ensure that async agents are started asynchronoulsy by [disabling sequential start](https://www.krakend.io/docs/service-settings/http-server-settings/#sequential_start).
+Starting too many async agents one after the other can cause delays during startup. Ensure that async agents are started asynchronoulsy by [disabling sequential start](https://www.krakend.io/docs/enterprise/service-settings/http-server-settings/#sequential_start).
 
 ### 7. Deprecated components
 
@@ -827,7 +827,7 @@ HIGH
 
 Rationale
 
-Avoid using deprecated component telemetry/ganalytics. [Upgrade to OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/).
+Avoid using deprecated component telemetry/ganalytics. [Upgrade to OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/).
 
 Recommendation
 
@@ -839,7 +839,7 @@ HIGH
 
 Rationale
 
-Avoid using deprecated component telemetry/instana. [Upgrade to OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/).
+Avoid using deprecated component telemetry/instana. [Upgrade to OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/).
 
 Recommendation
 
@@ -851,7 +851,7 @@ HIGH
 
 Rationale
 
-Avoid using deprecated component telemetry/opencensus. [Upgrade to OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/).
+Avoid using deprecated component telemetry/opencensus. [Upgrade to OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/).
 
 Recommendation
 
@@ -863,7 +863,7 @@ HIGH
 
 Rationale
 
-Avoid using deprecated component telemetry/influx. [Upgrade to OpenTelemetry](https://www.krakend.io/docs/telemetry/influxdb/).
+Avoid using deprecated component telemetry/influx. [Upgrade to OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/influxdb/).
 
 ### 7.3 Deprecated configuration options
 
@@ -879,4 +879,4 @@ MEDIUM
 
 Rationale
 
-Avoid using `private_key` and `public_key` directly under `tls` and place them inside the `keys` array. See [TLS Server Settings](https://www.krakend.io/docs/service-settings/tls/#tls-server-settings)
+Avoid using `private_key` and `public_key` directly under `tls` and place them inside the `keys` array. See [TLS Server Settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#tls-server-settings)

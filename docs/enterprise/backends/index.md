@@ -55,7 +55,7 @@ Defaults to `false`
 
 ##### [`encoding`](https://www.krakend.io/docs/enterprise/backends/#encoding "Click to copy link to encoding")
 
-Defines your [needed encoding](https://www.krakend.io/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint’s `encoding`, or to `json` if not defined anywhere else. Notice that `fast-json` and `yaml` are for **Enterprise only.**
+Defines your [needed encoding](https://www.krakend.io/docs/enterprise/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint’s `encoding`, or to `json` if not defined anywhere else. Notice that `fast-json` and `yaml` are for **Enterprise only.**
 
 Possible values are: `"json"` , `"safejson"` , `"fast-json"` , `"xml"` , `"rss"` , `"string"` , `"no-op"` , `"yaml"`
 
@@ -73,13 +73,13 @@ Defaults to `"backend1"`
 
 ##### [`host`](https://www.krakend.io/docs/enterprise/backends/#host "Click to copy link to host") array of strings
 
-An array with all the available hosts to [load balance](https://www.krakend.io/docs/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: `https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration’s root level, and the service fails starting when there is none.
+An array with all the available hosts to [load balance](https://www.krakend.io/docs/enterprise/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: `https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration’s root level, and the service fails starting when there is none.
 
 ##### [`input_headers`](https://www.krakend.io/docs/enterprise/backends/#input_headers "Click to copy link to input_headers") array of strings
 
 A second level of header filtering that defines the list of all headers allowed to reach this backend when different than the endpoint.
 
-By default, all headers in the endpoint `input_headers` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[""]` to explicitly remove all headers. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)
+By default, all headers in the endpoint `input_headers` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[""]` to explicitly remove all headers. See [headers forwarding](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#headers-forwarding)
 
 Examples: `[""]` , `["User-Agent","Accept"]`
 
@@ -89,7 +89,7 @@ Defaults to `[]`
 
 A second level of query string filtering that defines the list of all query strings allowed to reach this backend when different than the endpoint.
 
-By default, all query strings in the endpoint `input_query_strings` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[""]` to explicitly remove all query strings. See [query strings forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#query-string-forwarding)
+By default, all query strings in the endpoint `input_query_strings` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[""]` to explicitly remove all query strings. See [query strings forwarding](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#query-string-forwarding)
 
 Examples: `[""]` , `["page","limit"]`
 
@@ -117,7 +117,7 @@ Defaults to `"GET"`
 
 ##### [`sd`](https://www.krakend.io/docs/enterprise/backends/#sd "Click to copy link to sd")
 
-The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.
+The [Service Discovery](https://www.krakend.io/docs/enterprise/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.
 
 Possible values are: `"static"` , `"dns"` , `"dns-shared"`
 
@@ -125,7 +125,7 @@ Defaults to `"static"`
 
 ##### [`sd_scheme`](https://www.krakend.io/docs/enterprise/backends/#sd_scheme "Click to copy link to sd_scheme") string
 
-The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) scheme to connect to your backend services.
+The [Service Discovery](https://www.krakend.io/docs/enterprise/backends/service-discovery/) scheme to connect to your backend services.
 
 Examples: `"http"` , `"https"`
 

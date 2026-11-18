@@ -374,7 +374,7 @@ Defaults to `false`
 
 a list of tags or labels you want to associate with these metrics.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 Example: `[{"key":"my_metric_attr","value":"my_metric_val"}]`
 
@@ -384,13 +384,13 @@ Each item of static\_attributes accepts the following properties:
 
 the key, tag, or label name you want to use.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 ##### [`value`](#static_attributes-value "Click to copy link to value") * string
 
 the static value you want to assign to this key.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 ##### [`traces`](#backend-traces "Click to copy link to traces") object
 
@@ -434,7 +434,7 @@ Example: `["X-Backend-Secret","X-All-Secret"]`
 
 a list of tags or labels you want to associate with these metrics.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 Example: `[{"key":"my_metric_attr","value":"my_metric_val"}]`
 
@@ -444,12 +444,12 @@ Each item of static\_attributes accepts the following properties:
 
 the key, tag, or label name you want to use.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 ##### [`value`](#static_attributes-value-2 "Click to copy link to value") * string
 
 the static value you want to assign to this key.
 
-see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/telemetry/opentelemetry/)
+see: [https://www.krakend.io/docs/telemetry/opentelemetry/](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/)
 
 Schema: [https://www.krakend.io/schema/v3.0/telemetry/opentelemetry-backend.json](https://www.krakend.io/schema/v3.0/telemetry/opentelemetry-backend.json "JSON schema definition")

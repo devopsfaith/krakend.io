@@ -69,7 +69,7 @@ Schema: [https://www.krakend.io/schema/v3.0/modifier/jmespath.json](https://www.
 
 As it happens with the rest of the content in KrakenD, depending on the type of content that the JMESPath expression returns, KrakenD will wrap it or not inside a key:
 
-- `collection`: When the backend returns an array, KrakenD adds the `collection`. You can remove this `collection` key in the final response by setting the `output_encoding` in the endpoint to `json-collection` ([see content types](https://www.krakend.io/docs/endpoints/content-types/))
+- `collection`: When the backend returns an array, KrakenD adds the `collection`. You can remove this `collection` key in the final response by setting the `output_encoding` in the endpoint to `json-collection` ([see content types](https://www.krakend.io/docs/enterprise/endpoints/content-types/))
 - `content`: when the JMESPath expression returns just a **string**, a **boolean**, or a **number**, then KrakenD adds a `content` wrapper. You can remove it automatically when setting the `output_encoding` to `string`.
 
 Reusing the same example above, the following configurations have these effects:

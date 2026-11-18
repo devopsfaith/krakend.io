@@ -4,7 +4,7 @@
 
 Source: https://www.krakend.io/docs/enterprise/authentication/gcloud/
 
-KrakenD supports the three different **service-to-service authentication** mechanisms Google Cloud provides: **Service Accounts** (this page), [OAuth 2.0](https://www.krakend.io/docs/authorization/client-credentials/), and [Mutual TLS Authentication](https://www.krakend.io/docs/authorization/mutual-authentication/).
+KrakenD supports the three different **service-to-service authentication** mechanisms Google Cloud provides: **Service Accounts** (this page), [OAuth 2.0](https://www.krakend.io/docs/enterprise/authorization/client-credentials/), and [Mutual TLS Authentication](https://www.krakend.io/docs/enterprise/authorization/mutual-authentication/).
 
 A **service account** is a special type of Google account that belongs to an application or a virtual machine. Service accounts are used to authenticate requests to Google Cloud APIs and services or when connecting to your Google Cloud Run services if you added an option “Require Authentication”.
 

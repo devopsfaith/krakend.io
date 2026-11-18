@@ -117,7 +117,7 @@ Each item of methods accepts the following properties:
 
 ##### [`backend`](#methods-backend "Click to copy link to backend") array of objects
 
-An array with all the [backend objects](https://www.krakend.io/docs/backends/) mapped to this method
+An array with all the [backend objects](https://www.krakend.io/docs/enterprise/backends/) mapped to this method
 
 ##### [`extra_config`](#methods-extra_config "Click to copy link to extra_config") object
 

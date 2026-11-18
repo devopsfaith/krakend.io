@@ -86,7 +86,7 @@ Defaults to `false`
 
 ##### [`sources`](https://www.krakend.io/docs/enterprise/endpoints/lua/#sources "Click to copy link to sources") array of strings
 
-An array with all the Lua files that will be processed. If no path is provided (e.g., `myfile.lua`) the file loads from the [working directory](https://www.krakend.io/docs/configuration/working-directory/).
+An array with all the Lua files that will be processed. If no path is provided (e.g., `myfile.lua`) the file loads from the [working directory](https://www.krakend.io/docs/enterprise/configuration/working-directory/).
 
 Schema: [https://www.krakend.io/schema/v3.0/modifier/lua.json](https://www.krakend.io/schema/v3.0/modifier/lua.json "JSON schema definition")
 

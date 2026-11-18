@@ -4,7 +4,7 @@
 
 Source: https://www.krakend.io/docs/enterprise/security-policies/policy-language/
 
-The policies language and syntax look nearly identical to **C++, Go, Java, and Typescript** and is based on Google’s CEL [built-in functions](https://www.krakend.io/docs/enterprise/security-policies/policy-language/) and [advanced macros](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/). If you have existing validation using the [CEL Component](https://www.krakend.io/docs/endpoints/common-expression-language-cel/), you can also port them as policies.
+The policies language and syntax look nearly identical to **C++, Go, Java, and Typescript** and is based on Google’s CEL [built-in functions](https://www.krakend.io/docs/enterprise/security-policies/policy-language/) and [advanced macros](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/). If you have existing validation using the [CEL Component](https://www.krakend.io/docs/enterprise/endpoints/common-expression-language-cel/), you can also port them as policies.
 
 The policy language is used in CEL Validation, Security Policies, and in the Tiered Rate Limit.
 
@@ -90,7 +90,7 @@ You can use the following variables inside policies:
   
   All **`req_params` capitalize the first letter**.
   
-  E.g., an `"endpoint": "/users/{id_user}"` will set a variable `req_params.Id_user` containing the value of the parameter passed in the request. When you use the [sequential proxy](https://www.krakend.io/docs/endpoints/sequential-proxy/#chaining-the-requests) you also have under `req_params.RespX_field` the response of a previous backend call (where `X` is the sequence number and `field` the object you want to retrieve.
+  E.g., an `"endpoint": "/users/{id_user}"` will set a variable `req_params.Id_user` containing the value of the parameter passed in the request. When you use the [sequential proxy](https://www.krakend.io/docs/enterprise/endpoints/sequential-proxy/#chaining-the-requests) you also have under `req_params.RespX_field` the response of a previous backend call (where `X` is the sequence number and `field` the object you want to retrieve.
 - `req_headers`: A map with all the headers received in its **canonical form** (converts the first letter and any letter following a hyphen to upper case; the rest are converted to lowercase. For example, the canonical key for `accept-encoding` is `Accept-Encoding`). The value of the map **is an array**, as you can have a header declared multiple times (e.g., multiple cookies with `Set-Cookie`). For example, you can access headers like this: `req_headers['X-Forwarded-For']`.
   
   Do not forget `input_headers`!

@@ -8,7 +8,7 @@ The New Relic native integration lets you push KrakenD **metrics and distributed
 
 How is the native SDK integration different from OpenTelemetry?
 
-Open-source and Enterprise users can also report traces and metrics to New Relic using the [OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/) integration. Nevertheless, New Relic supports an OTLP specification dated from November 2021 (`v1.8.0`), which is two years behind the current OTLP protocol at the time of writing. The native SDK component in KrakenD uses their official toolset, and sends richer data and is easier to set up without needing an external collector.
+Open-source and Enterprise users can also report traces and metrics to New Relic using the [OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/) integration. Nevertheless, New Relic supports an OTLP specification dated from November 2021 (`v1.8.0`), which is two years behind the current OTLP protocol at the time of writing. The native SDK component in KrakenD uses their official toolset, and sends richer data and is easier to set up without needing an external collector.
 
 Examples of the data you can see on New Relic:
 
@@ -75,7 +75,7 @@ Schema: [https://www.krakend.io/schema/v3.0/telemetry/newrelic.json](https://www
 
 If you don’t see reports in your New Relic account after sending activity to KrakenD, enable the `debug` flag locally to see what is happening. The logs will show information to help you understand what is going on.
 
-The [logger](https://www.krakend.io/docs/logging/) should be configured with a `DEBUG` level to see these messages.
+The [logger](https://www.krakend.io/docs/enterprise/logging/) should be configured with a `DEBUG` level to see these messages.
 
 ## Getting your API Key from New Relic
 

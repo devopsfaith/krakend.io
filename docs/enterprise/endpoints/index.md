@@ -62,11 +62,11 @@ When declaring `endpoints` objects in the configuration, the following fields ar
 
 ##### [`backend`](https://www.krakend.io/docs/enterprise/endpoints/#backend "Click to copy link to backend") * array of objects
 
-An array with all the backend services you want to use in this endpoint. See [the backend object](https://www.krakend.io/docs/backends/) documentation to know all the available options, they are omitted here for brevity.
+An array with all the backend services you want to use in this endpoint. See [the backend object](https://www.krakend.io/docs/enterprise/backends/) documentation to know all the available options, they are omitted here for brevity.
 
 ##### [`cache_ttl`](https://www.krakend.io/docs/enterprise/endpoints/#cache_ttl "Click to copy link to cache_ttl")
 
-Sets or overrides the cache headers to inform how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` in the root of the configuration if any. This attribute **does not cache** content but tells others how to do it. For caching, see [Caching Backend Responses](https://www.krakend.io/docs/backends/caching/).
+Sets or overrides the cache headers to inform how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` in the root of the configuration if any. This attribute **does not cache** content but tells others how to do it. For caching, see [Caching Backend Responses](https://www.krakend.io/docs/enterprise/backends/caching/).
 
 Specify units using `ns` (nanoseconds), `us` or `µs` (microseconds), `ms` (milliseconds), `s` (seconds), `m` (minutes), or `h` (hours).
 
@@ -80,9 +80,9 @@ Defaults to `1`
 
 The path of the URL you want to expose. The path is **case-sensitive** and should start with a slash `/`. You can use `{placeholders}` to allow dynamic variables. For example: `/foo/{var}/baz`. You can also add an ending `/*` in the path to enable [wildcards](https://www.krakend.io/docs/enterprise/endpoints/wildcard/). **Enterprise only.**
 
-The router will try to automatically redirect calls to endpoints with an incorrect case or incorrect trailing slash to its correct version offering a `301`. There are no guarantees that it will succeed and the request might even fail completely while trying (and log an ugly error with a trace). The **safest option** is to [disable automatic redirections](https://www.krakend.io/docs/service-settings/router-options/) by setting to true the flags `disable_redirect_fixed_path` and `disable_redirect_trailing_slash` in the `router` options.
+The router will try to automatically redirect calls to endpoints with an incorrect case or incorrect trailing slash to its correct version offering a `301`. There are no guarantees that it will succeed and the request might even fail completely while trying (and log an ugly error with a trace). The **safest option** is to [disable automatic redirections](https://www.krakend.io/docs/enterprise/service-settings/router-options/) by setting to true the flags `disable_redirect_fixed_path` and `disable_redirect_trailing_slash` in the `router` options.
 
-**Limitations**: URLs do not support colons `:` in their definition. All `{vars}` are meant to be isolated in the path and not to be used to build words, like in `/file.{ext}` [See `disable_rest` for that usage](https://www.krakend.io/docs/service-settings/http-server-settings/#disable_rest).
+**Limitations**: URLs do not support colons `:` in their definition. All `{vars}` are meant to be isolated in the path and not to be used to build words, like in `/file.{ext}` [See `disable_rest` for that usage](https://www.krakend.io/docs/enterprise/service-settings/http-server-settings/#disable_rest).
 
 Examples: `"/new-endpoint"` , `"/foo/{var}"` , `"/foo/{var1}/{var2}"`
 
@@ -96,7 +96,7 @@ Defines the list of all headers allowed to reach the backend when passed.
 
 By default, KrakenD won’t pass any header from the client to the backend. This list is **case-insensitive**. You can declare headers in lowercase, uppercase, or mixed.
 
-An entry `["Cookie"]` forwards all cookies, and a single star element `["*"]` as value forwards everything to the backend (**it’s safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)
+An entry `["Cookie"]` forwards all cookies, and a single star element `["*"]` as value forwards everything to the backend (**it’s safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#headers-forwarding)
 
 Defaults to `[]`
 
@@ -120,7 +120,7 @@ Defaults to `"GET"`
 
 ##### [`output_encoding`](https://www.krakend.io/docs/enterprise/endpoints/#output_encoding "Click to copy link to output_encoding")
 
-The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/endpoints/content-types/)
+The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/enterprise/endpoints/content-types/)
 
 Possible values are: `"json"` , `"json-collection"` , `"yaml"` , `"fast-json"` , `"xml"` , `"negotiate"` , `"string"` , `"no-op"` , `"streaming"` , `"sse"` , `"ndjson"` , `"eventstream"`
 
@@ -286,11 +286,11 @@ The `extra_config` entry of any endpoint can include additional components that 
 
 ##### [`auth/signer`](https://www.krakend.io/docs/enterprise/endpoints/#auth%2fsigner "Click to copy link to auth/signer") object
 
-A component that [cryptographically signs tokens](https://www.krakend.io/docs/authorization/jwt-signing/) generated by your legacy login system (without JWT signing) to be later validated by the `auth/validator` component.
+A component that [cryptographically signs tokens](https://www.krakend.io/docs/enterprise/authorization/jwt-signing/) generated by your legacy login system (without JWT signing) to be later validated by the `auth/validator` component.
 
 ##### [`auth/validator`](https://www.krakend.io/docs/enterprise/endpoints/#auth%2fvalidator "Click to copy link to auth/validator") object
 
-Protect endpoints from public usage by [validating JWT tokens](https://www.krakend.io/docs/authorization/jwt-validation/) generated by any industry-standard OpenID Connect (OIDC) integration.
+Protect endpoints from public usage by [validating JWT tokens](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/) generated by any industry-standard OpenID Connect (OIDC) integration.
 
 ##### [`documentation/openapi`](https://www.krakend.io/docs/enterprise/endpoints/#documentation%2fopenapi "Click to copy link to documentation/openapi") object
 
@@ -310,11 +310,11 @@ Protect endpoints from public usage by [validating JWT tokens](https://www.krake
 
 ##### [`modifier/lua-endpoint`](https://www.krakend.io/docs/enterprise/endpoints/#modifier%2flua-endpoint "Click to copy link to modifier/lua-endpoint") object
 
-[Scripting with Lua](https://www.krakend.io/docs/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.
+[Scripting with Lua](https://www.krakend.io/docs/enterprise/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.
 
 ##### [`modifier/lua-proxy`](https://www.krakend.io/docs/enterprise/endpoints/#modifier%2flua-proxy "Click to copy link to modifier/lua-proxy") object
 
-[Scripting with Lua](https://www.krakend.io/docs/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.
+[Scripting with Lua](https://www.krakend.io/docs/enterprise/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.
 
 ##### [`modifier/request-body-extractor`](https://www.krakend.io/docs/enterprise/endpoints/#modifier%2frequest-body-extractor "Click to copy link to modifier/request-body-extractor") object
 
@@ -362,7 +362,7 @@ The router rate limit feature allows you to set a [number of maximum requests pe
 
 ##### [`security/bot-detector`](https://www.krakend.io/docs/enterprise/endpoints/#security%2fbot-detector "Click to copy link to security/bot-detector") object
 
-The [bot detector](https://www.krakend.io/docs/throttling/botdetector/) module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.
+The [bot detector](https://www.krakend.io/docs/enterprise/throttling/botdetector/) module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.
 
 ##### [`security/cors`](https://www.krakend.io/docs/enterprise/endpoints/#security%2fcors "Click to copy link to security/cors") object
 
@@ -370,7 +370,7 @@ Define [Cross-Origin Resource Sharing (CORS)](https://www.krakend.io/docs/enterp
 
 ##### [`security/http`](https://www.krakend.io/docs/enterprise/endpoints/#security%2fhttp "Click to copy link to security/http") object
 
-[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.
+[Security HTTP headers](https://www.krakend.io/docs/enterprise/service-settings/security/), including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.
 
 ##### [`security/policies`](https://www.krakend.io/docs/enterprise/endpoints/#security%2fpolicies "Click to copy link to security/policies") object
 
@@ -378,15 +378,15 @@ Define [Cross-Origin Resource Sharing (CORS)](https://www.krakend.io/docs/enterp
 
 ##### [`telemetry/opentelemetry`](https://www.krakend.io/docs/enterprise/endpoints/#telemetry%2fopentelemetry "Click to copy link to telemetry/opentelemetry") object
 
-Enables metrics and traces using [OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/).
+Enables metrics and traces using [OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/).
 
 ##### [`validation/cel`](https://www.krakend.io/docs/enterprise/endpoints/#validation%2fcel "Click to copy link to validation/cel") array
 
-The [Common Expression Language (CEL)](https://www.krakend.io/docs/endpoints/common-expression-language-cel/) middleware enables expression evaluation, when an expression returns false, KrakenD does not return the content as the condition has failed. Otherwise, if all expressions returned true, the content is served.
+The [Common Expression Language (CEL)](https://www.krakend.io/docs/enterprise/endpoints/common-expression-language-cel/) middleware enables expression evaluation, when an expression returns false, KrakenD does not return the content as the condition has failed. Otherwise, if all expressions returned true, the content is served.
 
 ##### [`validation/json-schema`](https://www.krakend.io/docs/enterprise/endpoints/#validation%2fjson-schema "Click to copy link to validation/json-schema") object
 
-Apply [automatic validations using a JSON Schema](https://www.krakend.io/docs/endpoints/json-schema/) definition before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields’ values.
+Apply [automatic validations using a JSON Schema](https://www.krakend.io/docs/enterprise/endpoints/json-schema/) definition before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields’ values.
 
 ##### [`validation/response-json-schema`](https://www.krakend.io/docs/enterprise/endpoints/#validation%2fresponse-json-schema "Click to copy link to validation/response-json-schema") object
 

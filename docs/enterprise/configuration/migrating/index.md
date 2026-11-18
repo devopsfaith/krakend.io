@@ -107,11 +107,11 @@ Configuration changes needed to upgrade to v2.4:
 
 - The static filesystem plugin has been deprecated. [Upgrade to the native functionality](https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/#upgrading-from-the-old-static-plugin-before-v24).
 - The virtual host plugin has been deprecated. [Upgrade to the native functionality](https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/#upgrading-from-the-old-virtualhost-plugin-before-v24).
-- The [Instana integration](https://www.krakend.io/docs/enterprise/v2.3/telemetry/instana/) was deprecated in previous versions and has been removed.
-- The [Google Analytics integration](https://www.krakend.io/docs/enterprise/v2.3/telemetry/google-analytics/) was deprecated in previous versions and has been removed.
+- The [Instana integration](https://archive.krakend.io/api-gateway/enterprise/v2.3/telemetry/instana/) was deprecated in previous versions and has been removed.
+- The [Google Analytics integration](https://archive.krakend.io/api-gateway/enterprise/v2.3/telemetry/google-analytics/) was deprecated in previous versions and has been removed.
 - When the license is missing or expired, the Enterprise binary will not try to run in open source mode as there might be security implications, such as not understanding security policies.
 - The flag `tls.allow_insecure_connections` has been relocated under `client_tls.allow_insecure_connections` in v2.3, and the old location is no longer supported.
-- The [flag `prefer_server_cipher_suites`](https://www.krakend.io/docs/v2.3/service-settings/tls/#prefer_server_cipher_suites) is no longer supported. Servers now select the best mutually supported cipher suite automatically based on the logic that considers inferred client hardware, server hardware, and security.
+- The [flag `prefer_server_cipher_suites`](https://archive.krakend.io/api-gateway/v2.3/service-settings/tls/#prefer_server_cipher_suites) is no longer supported. Servers now select the best mutually supported cipher suite automatically based on the logic that considers inferred client hardware, server hardware, and security.
 
 ## Upgrade to EE v2.3
 
@@ -124,8 +124,8 @@ Configuration changes needed to upgrade to v2.3:
 - The HTTP proxy plugin is deprecated as the functionality is natively supported as an [HTTP Client option](https://www.krakend.io/docs/enterprise/backends/http-client/).
 - The no-redirect plugin is deprecated as the functionality is natively supported as an [HTTP Client option](https://www.krakend.io/docs/enterprise/backends/http-client/).
 - The `allow_insecure_connections` property at the service level now moves under `client_tls` &gt; `allow_insecure_connections`.
-- The [Instana integration](https://www.krakend.io/docs/enterprise/v2.3/telemetry/instana/) is deprecated and will be removed in future releases.
-- The [Google Analytics integration](https://www.krakend.io/docs/enterprise/v2.3/telemetry/google-analytics/) is deprecated and will be removed in future releases.
+- The [Instana integration](https://archive.krakend.io/api-gateway/enterprise/v2.3/telemetry/instana/) is deprecated and will be removed in future releases.
+- The [Google Analytics integration](https://archive.krakend.io/api-gateway/enterprise/v2.3/telemetry/google-analytics/) is deprecated and will be removed in future releases.
 
 ## Upgrade to EE v2.2
 

@@ -4,7 +4,7 @@
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/usage-monitoring/
 
-Monitoring AI backends in KrakenD does not require special treatment. AI services are integrated and handled just like any other backend in your API Gateway. Your existing monitoring tools and practices, such as [OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/), remain fully applicable.
+Monitoring AI backends in KrakenD does not require special treatment. AI services are integrated and handled just like any other backend in your API Gateway. Your existing monitoring tools and practices, such as [OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/), remain fully applicable.
 
 AI backends, regardless of their complexity, respond to API calls just like any other backend service. KrakenD treats AI integrations as regular backends. This simplifies observability and operational consistency by applying proven monitoring frameworks without specialized or separate tooling.
 

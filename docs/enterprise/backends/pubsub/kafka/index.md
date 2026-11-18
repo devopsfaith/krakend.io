@@ -109,7 +109,7 @@ Defaults to `"KrakenD v[X].[Y].[Z]"`
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/#client_tls "Click to copy link to client_tls") object
 
-Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).
+Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings).
 
 ##### [`dial_timeout`](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/#dial_timeout "Click to copy link to dial_timeout") string
 
@@ -414,7 +414,7 @@ Defaults to `"KrakenD v[X].[Y].[Z]"`
 
 ##### [`client_tls`](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/#client_tls "Click to copy link to client_tls") object
 
-Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).
+Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings).
 
 ##### [`dial_timeout`](https://www.krakend.io/docs/enterprise/backends/pubsub/kafka/#dial_timeout "Click to copy link to dial_timeout") string
 

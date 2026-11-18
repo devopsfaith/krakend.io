@@ -41,7 +41,7 @@ Sometimes, a test case needs to have multiple calls to validate a scenario. When
 
 The test case file must follow the [e2e schema](https://www.krakend.io/schema/v3.0/e2e.json) (explained below) to work correctly, but the **tool does not validate the JSON format of each test case during runtime** (this makes processing faster).
 
-Here’s an example of test you can save under `specs/test1.json` and run it with any KrakenD configuration ([`debug_endpoint`](https://www.krakend.io/docs/endpoints/debug-endpoint/) set to `true` required):
+Here’s an example of test you can save under `specs/test1.json` and run it with any KrakenD configuration ([`debug_endpoint`](https://www.krakend.io/docs/enterprise/endpoints/debug-endpoint/) set to `true` required):
 
 ```json
 {
@@ -224,7 +224,7 @@ Schema: [https://www.krakend.io/schema/v3.0/e2e.json](https://www.krakend.io/sch
 
 When the response of your backend is not deterministic, instead of checking the response against a `body` trying to find an exact payload, you can test it against a **JSON Schema**, using the `schema` attribute.
 
-For instance, our [health endpoint](https://www.krakend.io/docs/service-settings/health/) returns the date after every request. It would be impossible to test it literally, as the date changes between executions. The following test would make sure that it works by comparing the response with a schema:
+For instance, our [health endpoint](https://www.krakend.io/docs/enterprise/service-settings/health/) returns the date after every request. It would be impossible to test it literally, as the date changes between executions. The following test would make sure that it works by comparing the response with a schema:
 
 ```json
 {
@@ -365,7 +365,7 @@ In addition to the KrakenD service used to test the configuration, the command `
 
 You can see the code of these endpoints below [here](https://github.com/krakend/krakend-ce/blob/master/tests/integration.go#L424-L429).
 
-In addition to the endpoints below, you can also use the [echo](https://www.krakend.io/docs/endpoints/echo-endpoint/) and [debug](https://www.krakend.io/docs/endpoints/debug-endpoint/) endpoints of KrakenD (not this service)
+In addition to the endpoints below, you can also use the [echo](https://www.krakend.io/docs/enterprise/endpoints/echo-endpoint/) and [debug](https://www.krakend.io/docs/enterprise/endpoints/debug-endpoint/) endpoints of KrakenD (not this service)
 
 ### Endpoint `/param_forwarding/*`
 

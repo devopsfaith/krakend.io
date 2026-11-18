@@ -19,7 +19,7 @@ What prompt policies can do:
 Components that you can use are:
 
 - [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) to block prompt injection, jailbreaks, and malicious payloads with regular expressions, CEL policies, or an external classifier.
-- [JSON Schema Validator](https://www.krakend.io/docs/endpoints/json-schema/) to make sure that payload passed adheres to your business rules, including the usage of regexp patterns or complex data structures.
+- [JSON Schema Validator](https://www.krakend.io/docs/enterprise/endpoints/json-schema/) to make sure that payload passed adheres to your business rules, including the usage of regexp patterns or complex data structures.
 - [Request Body Modifier](https://www.krakend.io/docs/enterprise/backends/response-body-generator/) to filter or craft the body sent before passing it to the LLM
 - [Limit the request size](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/#limit-the-maximum-request-size-to-an-endpoint)
 - [Use Prompt Templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#vendor-transformation) and generate the prompt instead of requesting it to the user.

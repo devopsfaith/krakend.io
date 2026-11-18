@@ -204,7 +204,7 @@ Example: `10000000`
 
 The `P`robability of returning a false positive. E.g.,`1e-7` for one false positive every 10 million different tokens. The values `N` and `P` determine the size of the resulting bloom filter to fulfill your expectations. E.g: 0.0000001
 
-See: [https://www.krakend.io/docs/authorization/revoking-tokens/](https://www.krakend.io/docs/authorization/revoking-tokens/)
+See: [https://www.krakend.io/docs/authorization/revoking-tokens/](https://www.krakend.io/docs/enterprise/authorization/revoking-tokens/)
 
 Example: `1e-7`
 
@@ -220,7 +220,7 @@ Defaults to `"30m"`
 
 Either `optimal` (recommended) or `default`. The `optimal` consumes less CPU but has less entropy when generating the hash, although the loss is negligible.
 
-See: [https://www.krakend.io/docs/authorization/revoking-tokens/](https://www.krakend.io/docs/authorization/revoking-tokens/)
+See: [https://www.krakend.io/docs/authorization/revoking-tokens/](https://www.krakend.io/docs/enterprise/authorization/revoking-tokens/)
 
 Possible values are: `"optimal"` , `"default"`
 
@@ -515,7 +515,7 @@ Bronze users: 100 req/day
 Anonymous users: 10 req/day
 ```
 
-Gold and Bronze users are known to you, and they set a header name `X-User-ID` (that could be [propagated by a JWT token](https://www.krakend.io/docs/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers)) containing their identifier. Anonymous users on the other side, use the API without an identificator and you will limit based on the IP address they are using.
+Gold and Bronze users are known to you, and they set a header name `X-User-ID` (that could be [propagated by a JWT token](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers)) containing their identifier. Anonymous users on the other side, use the API without an identificator and you will limit based on the IP address they are using.
 
 This idea is expressed with the following configuration `tiers` for the `governance/quota`:
 
