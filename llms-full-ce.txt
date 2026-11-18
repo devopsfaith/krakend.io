@@ -2635,11 +2635,11 @@ The following list of variables only set the desired values when you have its as
 
 `KRAKEND_CACHE_TTL`string
 
-Overrides `cache_ttl` in the configuration. Sets a default `Cache-Control: public, max-age=%d` header to all endpoints where `%d` is the conversion to seconds of any duration you write, indicating for how long the client (or CDN) can cache the content of the request. You can override this value per endpoint, but setting an endpoint to 0 will use the default value instead. Notice that KrakenD does not cache the content with this parameter, but tells the client how to do it. Defaults to `0s` (no cache). **For KrakenD cache, see [backend caching](https://www.krakend.io/docs/backends/caching/)**.
+Overrides [`cache_ttl`](https://www.krakend.io/docs/service-settings/http-server-settings/#cache_ttl) in the configuration. Sets a default `Cache-Control: public, max-age=%d` header to all endpoints where `%d` is the conversion to seconds of any duration you write, indicating for how long the client (or CDN) can cache the content of the request. You can override this value per endpoint, but setting an endpoint to 0 will use the default value instead. Notice that KrakenD does not cache the content with this parameter, but tells the client how to do it. Defaults to `0s` (no cache). **For KrakenD cache, see [backend caching](https://www.krakend.io/docs/backends/caching/)**.
 
 `KRAKEND_DEBUG_ENDPOINT`boolean
 
-Overrides `debug_endpoint` in the configuration. Enables the `/__debug/` endpoint for this configuration. You can safely enable it in production.
+Overrides [`debug_endpoint`](https://www.krakend.io/docs/endpoints/debug-endpoint/#debug_endpoint) in the configuration. Enables the `/__debug/` endpoint for this configuration. You can safely enable it in production.
 
 `KRAKEND_DIALER_FALLBACK_DELAY`string
 
@@ -2663,7 +2663,7 @@ Overrides [`disable_keep_alives`](https://www.krakend.io/docs/service-settings/h
 
 `KRAKEND_DISABLE_REST`boolean
 
-Overrides `disable_rest` in the configuration. Endpoints require in its `endpoint` definition the usage of a RESTful pattern. If you require unrestful patterns, like `/file.{ext}` (instead of its RESTful counterpart `/file/{ext}`), then you must set this parameter to `true`. You can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definitino, and therefore the remaining path after `{ext}` is ignored by the router.
+Overrides [`disable_rest`](https://www.krakend.io/docs/service-settings/http-server-settings/#disable_rest) in the configuration. Endpoints require in its `endpoint` definition the usage of a RESTful pattern. If you require unrestful patterns, like `/file.{ext}` (instead of its RESTful counterpart `/file/{ext}`), then you must set this parameter to `true`. You can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definition, and therefore the remaining path after `{ext}` is ignored by the router.
 
 `KRAKEND_DNS_CACHE_TTL`string
 
@@ -2671,7 +2671,7 @@ Overrides [`dns_cache_ttl`](https://www.krakend.io/docs/backends/service-discove
 
 `KRAKEND_ECHO_ENDPOINT`boolean
 
-Overrides `echo_endpoint` in the configuration. Enables the `/__echo/` endpoint for this configuration, that returns information about the incoming request. When using /\_\_echo as a backend you can check the actual headers and content a backend receives after all the zero-trust filtering.
+Overrides [`echo_endpoint`](https://www.krakend.io/docs/endpoints/echo-endpoint/#echo_endpoint) in the configuration. Enables the `/__echo/` endpoint for this configuration, that returns information about the incoming request. When using /\_\_echo as a backend you can check the actual headers and content a backend receives after all the zero-trust filtering.
 
 `KRAKEND_EXPECT_CONTINUE_TIMEOUT`string
 
@@ -2687,7 +2687,7 @@ Overrides [`idle_timeout`](https://www.krakend.io/docs/service-settings/http-ser
 
 `KRAKEND_LISTEN_IP`string
 
-Overrides `listen_ip` in the configuration. The IP address that KrakenD listens to in IPv4 or IPv6. An empty string, or no declaration at all means listening on all interfaces. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses and both are valid for IPv4 and IPv6 simultaneously.
+Overrides [`listen_ip`](https://www.krakend.io/docs/service-settings/http-server-settings/#listen_ip) in the configuration. The IP address that KrakenD listens to in IPv4 or IPv6. An empty string, or no declaration at all means listening on all interfaces. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses and both are valid for IPv4 and IPv6 simultaneously.
 
 `KRAKEND_MAX_HEADER_BYTES`integer
 
@@ -2711,7 +2711,7 @@ Overrides `name` in the configuration. Used in telemetry. A friendly name, title
 
 `KRAKEND_PORT`integer
 
-Overrides `port` in the configuration. The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user
+Overrides [`port`](https://www.krakend.io/docs/service-settings/http-server-settings/#port) in the configuration. The TCP port where KrakenD listens. Recommended value is in the range 1024-65535 to run as an unprivileged user.
 
 `KRAKEND_READ_HEADER_TIMEOUT`string
 
@@ -3201,7 +3201,7 @@ Defaults to `"json"`
 
 ##### [`port`](https://www.krakend.io/docs/service-settings/#port "Click to copy link to port") integer
 
-The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user
+The TCP port where KrakenD listens. Recommended value is in the range 1024-65535 to run as an unprivileged user.
 
 Defaults to `8080`
 
@@ -3254,7 +3254,7 @@ Defaults to `"0s"`
 
 Endpoints require in its `endpoint` definition the usage of a RESTful pattern. If you require unrestful patterns, like `/file.{ext}` (instead of its RESTful counterpart `/file/{ext}`), then you must set this parameter to `true`.
 
-You can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definitino, and therefore the remaining path after `{ext}` is ignored by the router.
+You can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definition, and therefore the remaining path after `{ext}` is ignored by the router.
 
 Defaults to `false`
 
@@ -3290,7 +3290,7 @@ Defaults to `"0s"`
 
 ##### [`port`](https://www.krakend.io/docs/service-settings/http-server-settings/#port "Click to copy link to port") integer
 
-The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user
+The TCP port where KrakenD listens. Recommended value is in the range 1024-65535 to run as an unprivileged user.
 
 Defaults to `8080`
 

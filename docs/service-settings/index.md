@@ -76,7 +76,7 @@ Defaults to `"json"`
 
 ##### [`port`](https://www.krakend.io/docs/service-settings/#port "Click to copy link to port") integer
 
-The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user
+The TCP port where KrakenD listens. Recommended value is in the range 1024-65535 to run as an unprivileged user.
 
 Defaults to `8080`
 

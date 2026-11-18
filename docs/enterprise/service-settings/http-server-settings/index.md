@@ -24,7 +24,7 @@ Defaults to `"0s"`
 
 Endpoints require in its `endpoint` definition the usage of a RESTful pattern. If you require unrestful patterns, like `/file.{ext}` (instead of its RESTful counterpart `/file/{ext}`), then you must set this parameter to `true`.
 
-You can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definitino, and therefore the remaining path after `{ext}` is ignored by the router.
+You can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definition, and therefore the remaining path after `{ext}` is ignored by the router.
 
 Defaults to `false`
 
@@ -60,7 +60,7 @@ Defaults to `"0s"`
 
 ##### [`port`](https://www.krakend.io/docs/enterprise/service-settings/http-server-settings/#port "Click to copy link to port") integer
 
-The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user
+The TCP port where KrakenD listens. Recommended value is in the range 1024-65535 to run as an unprivileged user.
 
 Defaults to `8080`
 
