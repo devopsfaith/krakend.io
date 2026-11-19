@@ -120,7 +120,7 @@ You can test this setup by running the **All in One** official Jaeger image and 
 version: "3"
 services:
   krakend:
-    image: krakend:3.0.4
+    image: krakend:3.0.5
     volumes:
       - "./:/etc/krakend"
     ports:

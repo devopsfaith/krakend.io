@@ -29,7 +29,7 @@ $krakend generate config2dot -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.4
+Version: 3.0.5
 
 Generates a DOT graph from your KrakenD configuration.
 Usage:
