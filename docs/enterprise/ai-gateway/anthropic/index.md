@@ -148,7 +148,7 @@ Defaults to `1024`
 
 The name of the Anthropic model you want to use.
 
-Examples: `"claude-opus-4-1-20250805"` , `"claude-sonnet-4-20250514"` , `"claude-3-7-sonnet-latest"` , `"claude-3-5-haiku-latest"`
+Examples: `"claude-haiku-4-5"` , `"claude-sonnet-5-5"` , `"claude-opus-5-5"`
 
 ##### [`stop_sequences`](#variables-stop_sequences "Click to copy link to stop_sequences") array of strings
 
@@ -156,15 +156,15 @@ An array of sequences where the model will stop generating further tokens if fou
 
 ##### [`temperature`](#variables-temperature "Click to copy link to temperature") number
 
-The temperature is used for sampling during response generation, which occurs when topP and topK are applied. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require a less open-ended or creative response, while higher temperatures can lead to more diverse or creative results.
+The temperature is used for sampling during response generation, which occurs when topP and topK are applied. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require a less open-ended or creative response, while higher temperatures can lead to more diverse or creative results. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.
 
 ##### [`top_k`](#variables-top_k "Click to copy link to top_k") integer
 
-Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model’s vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature.
+Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model’s vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.
 
 ##### [`top_p`](#variables-top_p "Click to copy link to top_p") number
 
-Top-P changes how the model selects tokens for output. Tokens are selected from the most probable to least probable until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-P value is 0.5, then the model will select either A or B as the next token by using temperature and excludes C as a candidate.
+Top-P changes how the model selects tokens for output. Tokens are selected from the most probable to least probable until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-P value is 0.5, then the model will select either A or B as the next token by using temperature and excludes C as a candidate. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.
 
 Schema: [https://www.krakend.io/schema/v3.0/ai/anthropic.json](https://www.krakend.io/schema/v3.0/ai/anthropic.json "JSON schema definition")
 
