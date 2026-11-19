@@ -1,18 +1,67 @@
 # Mistral Integration
 
-> KrakenD integration to connect to Mistral without setting the full payload of the API interaction.
+> Connect KrakenD to Mistral models through the unified LLM interface, from the provider inventory or an inline backend configuration.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/
 
-The Mistral integration enables KrakenD to talk to Mistral’s AI services, allowing you to embed powerful language model capabilities into your API workflows without custom coding. Use this interface when you want to connect Mistral for tasks like intelligent automation, conversational AI, content generation, or other LLM-driven functionalities inside your existing API infrastructure.
+The **Mistral integration** connects KrakenD to the [Mistral Chat Completions API](https://docs.mistral.ai/api/) through the `ai/llm` component of the [unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/). Clients send only the prompt in the [unified request format](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#request-format), and KrakenD builds the Mistral payload, authenticates with your credentials, and returns the [unified response](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#response-format). Use it to offer Mistral models behind your own API without sharing your credentials with clients. Because clients never see the Mistral API, you can move them to another model or vendor later without changing a line of their code.
 
-This component abstracts the complexities of communicating with [Mistral’s AI API](https://docs.mistral.ai/api/). When an API request hits your KrakenD endpoint configured with the Mistral interface, KrakenD automatically constructs the necessary Mistral API payload, handles authentication, and processes the responses uniformly. This consistent integration also allows if needed to switch between different LLM vendors without changing client-facing interfaces.
+Keep the Mistral credentials out of the configuration file
 
-In essence, the user sends the textual content or instructions, and KrakenD manages the complete interaction with Mistral behind the scenes.
+Inject the `credentials` through an environment variable with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/) instead of writing them in plain text, and restrict access to the configuration file.
 
-## Configuration of the Mistral integration
+## Declaring Mistral in the Provider Inventory
 
-To enable the Mistral interface, you add a backend configuration in KrakenD with the `extra_config` key under the `ai/llm` namespace. Example:
+The recommended way to connect to Mistral is to declare it once in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) and reference it by name from every backend that needs it. The following configuration declares a `mistral` provider and exposes it on `/mistral`:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/providers": {
+      "providers": [
+        {
+          "name": "mistral",
+          "provider": "mistral",
+          "model": "mistral-small-latest",
+          "credentials": "xxx",
+          "variables": {
+            "max_tokens": 500
+          }
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/mistral",
+      "method": "POST",
+      "backend": [
+        {
+          "extra_config": {
+            "ai/llm": {
+              "provider": "mistral"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The backend needs neither `host` nor `url_pattern`, because the inventory knows the Mistral endpoint. Any other backend, or the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/), can reuse the `mistral` provider by name. Clients call the endpoint like this:
+
+Send a prompt to Mistral through KrakenD 
+
+```
+$curl -XPOST --json '{"instructions": "Answer in one sentence", "contents": "What is an API gateway?"}' http://localhost:8080/mistral
+```
+
+## Inline Mistral Configuration
+
+Instead of a provider reference, you can write the Mistral configuration in the backend itself, under the `mistral` key of the `ai/llm` namespace and the `v1` API version. In this case, the backend sets the `host` and `url_pattern` of the Mistral API:
 
 ```json
 {
@@ -24,15 +73,14 @@ To enable the Mistral interface, you add a backend configuration in KrakenD with
         "https://api.mistral.ai"
       ],
       "url_pattern": "/v1/chat/completions",
-      "method": "POST",
       "extra_config": {
         "ai/llm": {
           "mistral": {
             "v1": {
-              "credentials": "xxxxxxxxx",
-              "debug": false,
+              "credentials": "xxx",
               "variables": {
-                "model": "mistral-small-latest"
+                "model": "mistral-small-latest",
+                "max_tokens": 500
               }
             }
           }
@@ -43,20 +91,16 @@ To enable the Mistral interface, you add a backend configuration in KrakenD with
 }
 ```
 
-To interact with the LLM, the user can send in the request:
+This backend behaves like the previous example. Use the inline form when no other backend shares this configuration.
 
-- `instructions` (optional): If you want to add a system prompt
-- `contents`: The content you want to send to the template
+## Mistral Configuration Options
 
-Like this:
+The provider entry of the inventory and the inline block accept the same `credentials`, `variables`, `input_template`, `output_template`, and `debug` options. KrakenD sends the `credentials` as a bearer token in the `Authorization` header. Keep in mind:
 
-Using the endpoint 
+- The inline block requires `variables.model`. In the inventory, `model` is optional and defaults to `mistral-small-latest`.
+- `n` defaults to `1` and `safe_prompt` to `false`. Set `safe_prompt` to `true` to let Mistral prepend its safety prompt.
 
-```
-$curl -XPOST --json '{"instructions": "Act as a 1000 dollar consultant", "contents": "Tell me a consultant joke"}' http://localhost:8080/mistral
-```
-
-The configuration options are:
+These are the fields of the inline `mistral` block. The keys of its `variables` object are also the ones a provider entry accepts:
 
 ##### Fields of Mistral integration
 
@@ -132,34 +176,26 @@ A float value between 0 and 1 that controls the nucleus sampling for text genera
 
 Schema: [https://www.krakend.io/schema/v3.0/ai/mistral.json](https://www.krakend.io/schema/v3.0/ai/mistral.json "JSON schema definition")
 
-This design keeps user input clean and focused only on content, while KrakenD handles building the full API request.
+## Streaming Mistral Responses
 
-## Customizing the payload sent and received from Mistral
+To forward the tokens as Mistral produces them, set the endpoint’s `output_encoding` to `streaming`. When the backend references a provider, also set `streaming` to `true` in the provider entry. Mistral streams through the same `/v1/chat/completions` endpoint, so nothing else changes. [LLM Streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/) explains the `format` option, which presents the stream in the OpenAI or Anthropic format.
 
-As it happens with all LLM interfaces of KrakenD, you can completely replace the request and the response so you have a custom interaction with the LLM. While the default template should allow you to accomplish any day to day job, you might need to extend it using your own template.
+## Default Mistral Prompt Templates
 
-You may override the input and output Go templates by specifying:
+KrakenD talks to Mistral through a pair of default [prompt templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates). Replace either of them with your own [Go template](https://pkg.go.dev/text/template) file through `input_template` or `output_template` when you need a different payload or response. Use the defaults below as the starting point.
 
-- `input_template`: Path to a custom template controlling how the request data is formatted before sending to Mistral.
-- `output_template`: Path to a custom template to transform and extract the desired pieces from Mistral’s response.
+### Default Input Template
 
-See below how to change this interaction
+KrakenD builds the input template when it starts, writing the values of your `variables` into it. It only writes the `temperature`, `top_p`, `max_tokens`, `random_seed`, and `model` lines when they have a value. With the configuration of the examples above, the payload sent to Mistral comes from this template:
 
-### Default input\_template for Mistral v1
-
-When you don’t set any `input_template`, KrakenD will create the JSON payload sent to Mistral using the following template:
-
-```gotmpl
+```go-text-template
 {
-	"model": {{ .variables.model | toJson }},
-	{{ $temperature :=  .variables.temperature }}{{ if ge $temperature 0.0 }}"temperature": {{ $temperature }},{{ end }}
-	{{ $top_p := .variables.top_p }}{{ if ge $top_p 0.0 }}"top_p": {{ $top_p }},{{ end }}
-	{{ $max_tokens := .variables.max_tokens }}{{ if ge $max_tokens 0 }}"max_tokens": {{ $max_tokens }},{{ end }}
-	{{ $random_seed := .variables.random_seed }}{{ if ge $random_seed 0 }}"random_seed": {{ $random_seed }},{{ end }}
-	"n":  {{ .variables.n }},
+	"max_tokens": 500,
+	"model": "mistral-small-latest",
+	"n": 1,
 	"stream": false,
-	"stop":  {{ .variables.stop | toJson }},
-	"safe_prompt":  {{ .variables.safe_prompt }},
+	"stop": [],
+	"safe_prompt": false,
 	"messages": [
 	{{- if hasKey .req_body "instructions" }}
 		{
@@ -175,11 +211,13 @@ When you don’t set any `input_template`, KrakenD will create the JSON payload 
 }
 ```
 
-### Default output\_template for Mistral v1
+When you write your own input template, read your values from `.variables`, for example `{{ .variables.temperature }}`, and the extra attributes from `.variables.extra_payload`.
 
-When you don’t declare an `output_template`, the response from the AI is transformed to have the following format:
+### Default Output Template
 
-```gotmpl
+The default output template returns the generated text in `ai_gateway_response` and the token count of `usage.total_tokens` in `usage`:
+
+```go-text-template
 {
 	"ai_gateway_response":
 	[
@@ -198,13 +236,4 @@ When you don’t declare an `output_template`, the response from the AI is trans
 }
 ```
 
-If you are not confortable receiveing the response in the `ai_gateway_response` field, you can add to the backend a mapping attribute to use another name, without changing the template:
-
-```json
-{
-	"url_pattern": "...",
-	"mapping": {
-		"ai_gateway_response": "my_response"
-	}
-}
-```
+If your own output template drops the `usage` field, the [token budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) can no longer count the tokens of the response.

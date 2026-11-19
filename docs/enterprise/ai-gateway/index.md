@@ -1,97 +1,83 @@
-# AI Gateway - API Gateway for LLMs
+# AI Gateway for LLMs and AI Agents
 
-> Discover how KrakenD transforms your API Gateway into a full-featured AI Gateway, with token enforcement, multi-LLM orchestration, and LLM security.
+> Run KrakenD as an AI Gateway that connects, routes, protects, budgets, and monitors LLM and agent traffic from the same binary as your API Gateway.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/
 
-KrakenD’s AI Gateway capabilities extend your existing API infrastructure with controls to securely route, govern, and optimize Artificial Intelligence workloads at scale. The functionality offers a straightforward integration without extra layers, products, or complexity. It brings the speed, flexibility, and clarity you are already familiar with.
+The **KrakenD AI Gateway** is the set of KrakenD Enterprise components that put Large Language Models (LLMs) and AI agents behind your API infrastructure. It connects your endpoints to the major LLM vendors through a single interface, chooses the model of each request, blocks malicious prompts, enforces token budgets, and reports the token consumption of every call. Use it when your applications, teams, or customers consume AI services and you need to control who uses which model, how much it costs, and what data reaches the vendors. It runs in the same binary and configuration as your API Gateway, so there is no extra product, control plane, or deployment to operate.
 
-## What is an AI Gateway?
+License requirement
 
-An AI Gateway is a specialized API Gateway designed to handle Artificial Intelligence workloads by providing secure, scalable, and manageable access to Large Language Models (LLMs) and other AI services. It acts as a control layer that routes AI-related traffic, enforces security and cost policies, and simplifies integration with multiple AI providers, helping developers manage AI services as part of their existing API ecosystem.
+The AI Gateway components require a license that includes the AI Gateway. Check the [license info](https://www.krakend.io/docs/enterprise/overview/license-file/#license-info) of your LICENSE file.
 
-## Why do developers need AI control layers?
+## What Is an AI Gateway?
 
-As AI adoption grows, so do concerns about security, governance, cost, and complexity. Developers need a dedicated control layer to:
+An **AI Gateway** is an API Gateway specialized in AI workloads. It sits between the consumers and the LLM vendors, so the credentials, the model choice, and the security and cost policies live in one place instead of in every application. Consumers get a stable API, while you keep the freedom to change models and vendors behind it.
 
-- Protect sensitive AI data and enforce zero-trust security.
-- Control and monitor token usage to avoid overspending.
-- Manage multiple LLMs with unified, standardized configuration.
-- Enforce governance policies such as rate limiting, prompt validation, and compliance checks.
-- Simplify AI integration by abstracting vendor-specific APIs.
+## AI Gateway Capabilities
 
-An AI Gateway ensures AI services are integrated reliably, securely, and cost-effectively within a company’s API infrastructure.
+The AI Gateway documentation follows the tasks you need to solve when you put LLMs in production. Each capability is a KrakenD component that you add to the configuration.
 
-## Overview of KrakenD capabilities for AI gateway
+### Connecting to LLMs
 
-To implement an AI Gateway with KrakenD, **you don’t need to install an additional product** as everything is already bundled in KrakenD to serve dually as an API Gateway and AI Gateway. To run AI gateway capabilities make sure your license [supports AI Gateway capabilities](https://www.krakend.io/docs/enterprise/overview/license-file/#license-info).
+- The [Unified LLM Interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/) (`ai/llm`) gives clients one request and response format for every vendor, while KrakenD builds each vendor payload with prompt templates.
+- The [LLM Provider Inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) (`ai/providers`) declares each provider once, with its vendor, model, and credentials, so any backend references it by name.
+- Built-in integrations connect to [OpenAI](https://www.krakend.io/docs/enterprise/ai-gateway/openai/), [Google Gemini](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/), [Mistral](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/), [Anthropic](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/), [Amazon Bedrock](https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/), and [Alibaba Cloud Qwen](https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/), and to [other vendors and OpenAI-compatible servers](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/) such as Ollama.
+- [LLM Streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/) forwards the tokens as the model produces them, optionally in the OpenAI or Anthropic format whatever the vendor.
 
-KrakenD meets multiple operational demands when AI calls are involved, enabling you to secure sensitive data, transform data, control costs, enforce governance policies, and simplify development with minimal overhead. Without reinventing your infrastructure, you can keep your stack clean and scale and effectively adopt AI traffic.
+### Routing Requests to the Right Model
 
-The core functionality of KrakenD as an AI Gateway is classified under these four categories, each covering many use cases:
+- The [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/) (`ai/router`) chooses the provider of each request with header or policy gates, a classifier that picks the best model, and failover providers.
+- [LLM Routing Strategies](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/) cover the other patterns: one endpoint per provider, vendor-native passthrough, multi-LLM aggregation, and mixing LLM and non-LLM backends.
 
-1. [Unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/)
-2. [Security](https://www.krakend.io/docs/enterprise/ai-gateway/security/)
-3. [Cost Control](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/)
-4. [Governance](https://www.krakend.io/docs/enterprise/ai-gateway/governance/)
+### Protecting Prompts and Data
 
-See each section for the functionalities included.
+- [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) (`ai/prompt-guard`) blocks prompt injection, jailbreaks, and data exfiltration attempts with default guards, regular expressions, CEL policies, or an external classifier.
+- [AI Gateway Security](https://www.krakend.io/docs/enterprise/ai-gateway/security/) isolates the consumer authentication from the vendor credentials, masks sensitive data, and prevents exfiltration.
 
-### Unified LLM interface
+### Controlling the Costs
 
-Developers face complexity in integrating multiple LLM providers and managing proprietary APIs. KrakenD’s AI Gateway simplifies this by providing a unified configuration that abstracts vendor-specific differences for API users. With standard AI API specs, easy protocol compatibility, and built-in telemetry endpoints, development teams can build once and deploy AI applications everywhere with less friction and overhead.
+- [Token Budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) cap the tokens each user, plan, or tenant consumes per hour, day, or month, with the quota component.
+- The [Semantic Cache](https://www.krakend.io/docs/enterprise/ai-gateway/semantic-cache/) (`ai/semantic-cache`) returns a stored response when a new prompt means the same as a previous one, without calling the LLM.
 
-[Explore AI Gateway Unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/)
+### Observing AI Traffic
 
-### AI Security
+- [AI Monitoring](https://www.krakend.io/docs/enterprise/ai-gateway/usage-monitoring/) reports the input, output, and total tokens of every call per provider and model through OpenTelemetry, together with the Prompt Guard and semantic cache metrics.
 
-Protecting sensitive AI data and controlling access is essential for trustworthy AI workloads. KrakenD’s AI Gateway integrates multiple layers of security at the edge to enforce **zero-trust AI operations**. From isolated authentication flows to data masking and exfiltration prevention, you can safeguard data traveling between clients and LLM providers without altering your existing API infrastructure.
+### Connecting AI Agents with MCP
 
-[Explore AI Gateway Security functionality](https://www.krakend.io/docs/enterprise/ai-gateway/security/)
+- The [MCP Server](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/) (`ai/mcp`) exposes your existing APIs and services as Model Context Protocol (MCP) tools for AI agents, with authorization and per-client tool filtering.
+- The [MCP Gateway](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-gateway/) puts third-party MCP servers behind KrakenD to add authorization, rate limits, and observability.
 
-### Cost Control
+## Quickstart
 
-AI workloads can quickly generate unpredictable and excessive costs. The key to a successful adoption is being able to control expenses. KrakenD’s AI Gateway provides granular token usage monitoring and enforcement to keep your AI expenses transparent and within budget.
-
-[Explore AI Gateway Cost Control](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/)
-
-### Governance
-
-Strong governance policies must be in place to deploy AI responsibly at scale. KrakenD’s AI Gateway delivers comprehensive control via **multi-LLM routing**, prompt and response validation, rate limiting, and reusable prompt templates. These capabilities allow you to enforce compliance, security, and quality guardrails in line, reducing risk and standardizing AI interactions across teams or tenants.
-
-[Explore AI Governance](https://www.krakend.io/docs/enterprise/ai-gateway/governance/)
-
-### Quickstart with KrakenD AI Gateway
-
-Below is a simple example configuration snippet to enable AI Gateway capabilities in KrakenD. It includes just LLM routing, but as you can see above, there are many other components.
+The following configuration declares an OpenAI provider in the inventory and exposes it on `/chat`. Replace `xxx` with your OpenAI API key, or inject it from an environment variable with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/):
 
 ```json
 {
-  "version": 4,
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "host": [
-    "localhost:8080"
-  ],
-  "echo_endpoint": true,
+  "version": 4,
+  "extra_config": {
+    "ai/providers": {
+      "providers": [
+        {
+          "name": "chat",
+          "provider": "openai",
+          "model": "gpt-5-nano",
+          "credentials": "xxx"
+        }
+      ]
+    }
+  },
   "endpoints": [
     {
-      "endpoint": "/llm/openai",
+      "endpoint": "/chat",
       "method": "POST",
       "backend": [
         {
-          "host": [
-            "https://api.openai.com"
-          ],
-          "url_pattern": "/v1/chat/completions",
           "extra_config": {
-            "modifier/martian": {
-              "header.Modifier": {
-                "scope": [
-                  "request"
-                ],
-                "name": "Authorization",
-                "value": "Bearer YOUR_OPENAI_API_KEY"
-              }
+            "ai/llm": {
+              "provider": "chat"
             }
           }
         }
@@ -101,4 +87,27 @@ Below is a simple example configuration snippet to enable AI Gateway capabilitie
 }
 ```
 
-There are many other possibilities; look at the rest of the AI sections.
+Save it as `krakend.json`, start KrakenD, and send a prompt:
+
+Send a prompt through the AI Gateway 
+
+```
+$curl -XPOST --json '{"instructions": "Answer in one sentence", "contents": "What is an API gateway?"}' http://localhost:8080/chat
+```
+
+KrakenD builds the OpenAI request, adds the API key, and returns the [unified response](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#response-format) with the generated text and the tokens consumed:
+
+```json
+{
+  "ai_gateway_response": [
+    {
+      "contents": [
+        "An API gateway is a single entry point that routes, secures, and manages the traffic between clients and backend services."
+      ]
+    }
+  ],
+  "usage": "52"
+}
+```
+
+From here, add authentication to the endpoint, more providers to the inventory, an [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/) to choose among them, and a [token budget](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) to cap the spend.

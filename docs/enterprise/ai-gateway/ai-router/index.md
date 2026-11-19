@@ -4,11 +4,11 @@
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/
 
-The **AI Router** selects which LLM provider from your [provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#llm-provider-inventory) handles each request. It matches requests with reusable **gates** (header or policy conditions), organizes them into an ordered decision tree, and can hand the final choice to a **classifier** that picks the best provider from a candidate list. A failover takes over when a classifier or the chosen provider fails, and a final route without gates catches the requests that match no other route. Because routes reference providers by name, the client sends its request to a single endpoint and never selects a model or vendor; the router decides.
+The **AI Router** selects which LLM provider from your [provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) handles each request. It matches requests with reusable **gates** (header or policy conditions), organizes them into an ordered decision tree, and can hand the final choice to a **classifier** that picks the best provider from a candidate list. A failover takes over when a classifier or the chosen provider fails, and a final route without gates catches the requests that match no other route. Because routes reference providers by name, the client sends its request to a single endpoint and never selects a model or vendor; the router decides.
 
 Requires the provider inventory
 
-Routes and classifiers reference providers by `name`, so define your providers first in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#llm-provider-inventory) (`ai/providers`). The router resolves the vendor, model, endpoint, and credentials from that inventory.
+Routes and classifiers reference providers by `name`, so define your providers first in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) (`ai/providers`). The router resolves the vendor, model, endpoint, and credentials from that inventory.
 
 ## How the AI Router Works
 
@@ -526,4 +526,4 @@ The following configuration defines the providers, gates, and a classifier once 
 
 On the `/v1/chat` endpoint, enterprise-plan requests enter the nested branch and route to `coding-team` for code tasks or to `gemini-flash` otherwise, pro-plan requests go to `coding-basic`, and any other request falls through to `cheap-quick`. On the `/v1/route` endpoint, enterprise requests are classified by `smart` across three candidate providers; when `smart` cannot decide or the provider it picked fails, `gpt-default` serves them as the failover. Any other request falls through to `cheap-quick`, the final route without gates, and `gpt-default` also takes over if `cheap-quick` fails.
 
-The AI Router is the inventory-based way to choose a provider per request. For the other routing strategies, such as conditional or path-based routing, see [LLM Routing](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/).
+The AI Router is the inventory-based way to choose a provider per request. For other strategies, such as vendor-native passthrough, multi-LLM aggregation, or mixing LLM and non-LLM backends, see [LLM Routing Strategies](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/).

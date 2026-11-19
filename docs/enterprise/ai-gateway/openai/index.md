@@ -1,18 +1,67 @@
 # OpenAI Integration
 
-> KrakenD integration to connect to OpenAI without setting the full payload of the API interaction.
+> Connect KrakenD to OpenAI models through the unified LLM interface, from the provider inventory or an inline backend configuration.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/openai/
 
-The OpenAI interface allows KrakenD to use [OpenAI’s API](https://platform.openai.com/docs/overview) **without writing custom integration code**, enabling intelligent automation, content generation, or any LLM-powered use case within your existing API infrastructure.
+The **OpenAI integration** connects KrakenD to the [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses) through the `ai/llm` component of the [unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/). Clients send only the prompt in the [unified request format](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#request-format), and KrakenD builds the OpenAI payload, authenticates with your credentials, and returns the [unified response](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#response-format). Use it to offer OpenAI models behind your own API without sharing your credentials with clients. Because clients never see the OpenAI API, you can move them to another model or vendor later without changing a line of their code.
 
-This component abstracts you from the OpenAI API usage allowing the consumer to concentrate on the prompt only, as for each request to an endpoint, KrakenD will create the **OpenAI request** with all the necessary elements in their API, and will return a **unified response**, so if you use other vendors you have a consitent use of LLM models.
+Keep the OpenAI credentials out of the configuration file
 
-In other words, the user sends the content, like “tell me a joke!”, and then KrakenD builds the API payload necessary to talk to OpenAI.
+Inject the `credentials` through an environment variable with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/) instead of writing them in plain text, and restrict access to the configuration file.
 
-This OpenAI interface configures a backend within KrakenD that transparently forwards REST requests to OpenAI’s API endpoints. It manages authentication, versioning, and payload formatting using its custom templating system. This way, you can easily call OpenAI models without writing custom integration code.
+## Declaring OpenAI in the Provider Inventory
 
-A simple configuration looks like this:
+The recommended way to connect to OpenAI is to declare it once in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) and reference it by name from every backend that needs it. The following configuration declares a `gpt` provider and exposes it on `/openai`:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/providers": {
+      "providers": [
+        {
+          "name": "gpt",
+          "provider": "openai",
+          "model": "gpt-5-nano",
+          "credentials": "xxx",
+          "variables": {
+            "max_output_tokens": 500
+          }
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/openai",
+      "method": "POST",
+      "backend": [
+        {
+          "extra_config": {
+            "ai/llm": {
+              "provider": "gpt"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The backend needs neither `host` nor `url_pattern`, because the inventory knows the OpenAI endpoint. Any other backend, or the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/), can reuse the `gpt` provider by name. Clients call the endpoint like this:
+
+Send a prompt to OpenAI through KrakenD 
+
+```
+$curl -XPOST --json '{"instructions": "Answer in one sentence", "contents": "What is an API gateway?"}' http://localhost:8080/openai
+```
+
+## Inline OpenAI Configuration
+
+Instead of a provider reference, you can write the OpenAI configuration in the backend itself, under the `openai` key of the `ai/llm` namespace and the `v1` API version. In this case, the backend sets the `host` and `url_pattern` of the OpenAI API:
 
 ```json
 {
@@ -20,17 +69,18 @@ A simple configuration looks like this:
   "method": "POST",
   "backend": [
     {
-      "host": ["https://api.openai.com"],
+      "host": [
+        "https://api.openai.com"
+      ],
       "url_pattern": "/v1/responses",
-      "method": "POST",
       "extra_config": {
         "ai/llm": {
           "openai": {
             "v1": {
-              "credentials": "xx-yy-zz",
-              "debug": false,
+              "credentials": "xxx",
               "variables": {
-                "model": "gpt-5-nano"
+                "model": "gpt-5-nano",
+                "max_output_tokens": 500
               }
             }
           }
@@ -41,22 +91,16 @@ A simple configuration looks like this:
 }
 ```
 
-To interact with the LLM, the user can send in the request:
+This backend behaves like the previous example. Use the inline form when no other backend shares this configuration.
 
-- `instructions` (optional): If you want to add a system prompt
-- `contents`: The content you want to send to the template
+## OpenAI Configuration Options
 
-Like this:
+The provider entry of the inventory and the inline block accept the same `credentials`, `variables`, `input_template`, `output_template`, and `debug` options. KrakenD sends the `credentials` as a bearer token in the `Authorization` header. Keep in mind:
 
-Using the endpoint 
+- The inline block requires `variables.model`. In the inventory, `model` is optional and defaults to `gpt-5.4-mini`.
+- `truncation` defaults to `disabled`, so OpenAI returns an error instead of silently dropping part of a long conversation.
 
-```
-$curl -XPOST --json '{"instructions": "Act as a 1000 dollar consultant", "contents": "Tell me a consultant joke"}' http://localhost:8080/openapi
-```
-
-## Configuration of OpenAI
-
-The configuration of OpenAI requires you to add under your backend `extra_config` the `ai/llm` namespace with the `openai` vendor.
+These are the fields of the inline `openai` block. The keys of its `variables` object are also the ones a provider entry accepts:
 
 ##### Fields of OpenAI integration
 
@@ -122,27 +166,22 @@ Defaults to `"disabled"`
 
 Schema: [https://www.krakend.io/schema/v3.0/ai/openai.json](https://www.krakend.io/schema/v3.0/ai/openai.json "JSON schema definition")
 
-## Customizing the payload sent and received from OpenAI
+## Streaming OpenAI Responses
 
-As it happens with all LLM interfaces of KrakenD, you can completely replace the request and the response so you have a custom interaction with the LLM. While the default template should allow you to accomplish any day to day job, you might need to extend it using your own template.
+To forward the tokens as OpenAI produces them, set the endpoint’s `output_encoding` to `streaming`. When the backend references a provider, also set `streaming` to `true` in the provider entry. OpenAI streams through the same `/v1/responses` endpoint, so nothing else changes. [LLM Streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/) explains the `format` option, which presents the stream in the OpenAI or Anthropic format.
 
-You may override the input and output Go templates by specifying:
+## Default OpenAI Prompt Templates
 
-- `input_template`: Path to a custom template controlling how the request data is formatted before sending to OpenAI.
-- `output_template`: Path to a custom template to transform and extract the desired pieces from OpenAI’s response.
+KrakenD talks to OpenAI through a pair of default [prompt templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates). Replace either of them with your own [Go template](https://pkg.go.dev/text/template) file through `input_template` or `output_template` when you need a different payload or response. Use the defaults below as the starting point.
 
-See below how to change this interaction
+### Default Input Template
 
-### Default input\_template for v1
+KrakenD builds the input template when it starts, writing the values of your `variables` into it. It only writes the `temperature`, `top_p`, `max_output_tokens`, and `model` lines when they have a value. With the configuration of the examples above, the payload sent to OpenAI comes from this template:
 
-When you don’t set any `input_template`, KrakenD will create the JSON payload sent to OpenAI using the following template:
-
-```gotmpl
+```go-text-template
 {
-	"model": {{ .variables.model | toJson }},
-	{{ $max_output_tokens := .variables.max_output_tokens }}{{ if ge $max_output_tokens 0 }}"max_output_tokens": {{ $max_output_tokens }},{{ end }}
-	{{ $temperature := .variables.temperature }}{{ if ge $temperature 0.0 }}"temperature": {{ $temperature }},{{ end }}
-	{{ $top_p := .variables.top_p }}{{ if ge $top_p 0.0 }}"top_p": {{ $top_p }},{{ end }}
+	"max_output_tokens": 500,
+	"model": "gpt-5-nano",
 	"stream": false,
 	"truncation": "disabled",
 	{{ if hasKey .req_body "instructions" }}"instructions": {{ .req_body.instructions | toJson }},{{ end }}
@@ -150,13 +189,13 @@ When you don’t set any `input_template`, KrakenD will create the JSON payload 
 }
 ```
 
-Remember you can access your own `variables` declared in the configuration using `{{ .variables.xxx }}`.
+When you write your own input template, read your values from `.variables`, for example `{{ .variables.temperature }}`, and the extra attributes from `.variables.extra_payload`.
 
-### Default output\_template for v1
+### Default Output Template
 
-When you don’t declare an `output_template`, the response from the AI is transformed to have the following format:
+The default output template returns the generated text in `ai_gateway_response` and the token count of `usage.total_tokens` in `usage`:
 
-```gotmpl
+```go-text-template
 {
 	"ai_gateway_response": [
 		{{ if gt (len .resp_body.output) 0 }}
@@ -177,3 +216,5 @@ When you don’t declare an `output_template`, the response from the AI is trans
 	"usage": "{{ .resp_body.usage.total_tokens }}"
 }
 ```
+
+If your own output template drops the `usage` field, the [token budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) can no longer count the tokens of the response.

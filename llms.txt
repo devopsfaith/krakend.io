@@ -100,25 +100,25 @@
 
 
 ## AI Gateway
-- [AI Gateway - API Gateway for LLMs](https://www.krakend.io/docs/enterprise/ai-gateway/): Discover how KrakenD transforms your API Gateway into a full-featured AI Gateway, with token enforcement, multi-LLM orchestration, and LLM security.
-- [Unified LLM Interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/): Simplify multi-LLM integration by exposing a single, consistent API through KrakenD's unified LLM interface.
-- [LLM Routing](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/): Simplify multi-LLM integration by exposing a single, consistent API through KrakenD’s unified LLM interface.
+- [AI Gateway for LLMs and AI Agents](https://www.krakend.io/docs/enterprise/ai-gateway/): Run KrakenD as an AI Gateway that connects, routes, protects, budgets, and monitors LLM and agent traffic from the same binary as your API Gateway.
+- [Unified LLM Interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/): Connect backends to OpenAI, Gemini, Anthropic, Mistral, Bedrock, or Qwen with the ai/llm component and give clients one request and response format.
+- [LLM Provider Inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/): Declare each LLM provider once with its vendor, model, and credentials using ai/providers, and reference it by name from any backend or the AI Router.
+- [LLM Routing Strategies](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/): Choose how KrakenD routes AI traffic, from the AI Router and per-provider endpoints to vendor passthrough, multi-LLM aggregation, and conditional backends.
 - [AI Router for LLM Provider Selection](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/): Route each request to an LLM provider using named gates, an external classifier, and a failover with the ai/router and ai/classifiers namespaces.
-- [Streaming LLM Responses with the AI Gateway](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/): Stream LLM completions token by token through KrakenD's ai/llm component, optionally normalized to a single vendor format regardless of the backend.
-- [OpenAI Integration](https://www.krakend.io/docs/enterprise/ai-gateway/openai/): KrakenD integration to connect to OpenAI without setting the full payload of the API interaction.
-- [Google Gemini integration](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/): Connect to Google Gemini APIs using an abstracted interface allowing you to concentrate on content rather than format
-- [Mistral Integration](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/): KrakenD integration to connect to Mistral without setting the full payload of the API interaction.
-- [Anthropic integration](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/): Connect to Anthropic APIs using an abstracted interface allowing you to concentrate on content rather than format
-- [Amazon Web Services Bedrock integration](https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/): Connect to AWS Bedrock APIs using an abstracted interface, allowing you to concentrate on content rather than format
-- [Alibaba Cloud Qwen Integration](https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/): KrakenD integration to connect to Alibaba Cloud Qwen models without setting the full payload of the API interaction.
-- [Connecting to other AI vendors](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/): Generic approach to connect to AI vendors with no pre-defined LLM interface
-- [AI Security](https://www.krakend.io/docs/enterprise/ai-gateway/security/): Protect sensitive data and secure LLM access using KrakenD’s API-level AI security capabilities like isolated auth and data masking.
+- [Streaming LLM Responses with the AI Gateway](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/): Stream LLM completions token by token through KrakenD's ai/llm component, optionally normalized to the OpenAI or Anthropic format whatever the vendor.
+- [OpenAI Integration](https://www.krakend.io/docs/enterprise/ai-gateway/openai/): Connect KrakenD to OpenAI models through the unified LLM interface, from the provider inventory or an inline backend configuration.
+- [Google Gemini Integration](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/): Connect KrakenD to Google Gemini models through the unified LLM interface, from the provider inventory or an inline backend configuration.
+- [Mistral Integration](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/): Connect KrakenD to Mistral models through the unified LLM interface, from the provider inventory or an inline backend configuration.
+- [Anthropic Integration](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/): Connect KrakenD to Anthropic Claude models through the unified LLM interface, from the provider inventory or an inline backend configuration.
+- [Amazon Bedrock Integration](https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/): Connect KrakenD to the models of Amazon Bedrock through the unified LLM interface, from the provider inventory or an inline backend configuration.
+- [Alibaba Cloud Qwen Integration](https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/): Connect KrakenD to Alibaba Cloud Qwen models through the unified LLM interface, from the provider inventory or an inline backend configuration.
+- [Other AI Vendors and OpenAI-Compatible Servers](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/): Connect KrakenD to LLM vendors and self-hosted servers without a dedicated integration, through an OpenAI-compatible provider or your own templates.
 - [Prompt Guard for LLM and Agent Endpoints](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/): Block prompt injection, jailbreaks, and malicious payloads on any endpoint with KrakenD Prompt Guard, using regex, classifier, and policy guards.
-- [AI Token Cost Control & Quotas](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/): KrakenD lets you enforce LLM token quotas per user, tier, or endpoint, with dynamic routing to cost-efficient models.
+- [AI Gateway Security and Data Protection](https://www.krakend.io/docs/enterprise/ai-gateway/security/): Secure LLM traffic with KrakenD by isolating consumer and vendor authentication, protecting API keys, masking sensitive data, and preventing exfiltration.
+- [LLM Token Budgets with Quotas](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/): Enforce LLM token budgets per user, plan, or tenant with KrakenD quotas that count the tokens of every response, including streamed ones.
 - [Semantic Cache for LLM and Agent Responses](https://www.krakend.io/docs/enterprise/ai-gateway/semantic-cache/): Cache LLM and backend responses by the semantic meaning of the request with the ai/semantic-cache namespace to cut token cost and latency.
-- [AI Governance](https://www.krakend.io/docs/enterprise/ai-gateway/governance/): Enforce rate limits, validate prompts, and route multi-LLM traffic with policy-based governance in KrakenD's AI Gateway.
-- [AI usage monitoring](https://www.krakend.io/docs/enterprise/ai-gateway/usage-monitoring/): Use OpenTelemetry for monitoring API gateway traffic, including AI calls, with your existing providers.
-- [MCP Gateway](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-gateway/): Protect a third-party MCP server through KrakenD and add security, observability, and traffic management features.
+- [AI Gateway Monitoring with OpenTelemetry](https://www.krakend.io/docs/enterprise/ai-gateway/usage-monitoring/): Monitor LLM token consumption per provider and model, and the activity of Prompt Guard and the semantic cache, with KrakenD's OpenTelemetry metrics and traces.
+- [MCP Gateway for Third-Party MCP Servers](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-gateway/): Put third-party MCP servers behind KrakenD to add authorization, rate limits, observability, and other gateway controls without changing the server.
 - [MCP Server](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/): Create a local MCP server entrypoint that serves the desired MCP configuration.
 
 

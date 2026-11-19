@@ -1,254 +1,253 @@
-# LLM Routing
+# LLM Routing Strategies
 
-> Simplify multi-LLM integration by exposing a single, consistent API through KrakenD’s unified LLM interface.
+> Choose how KrakenD routes AI traffic, from the AI Router and per-provider endpoints to vendor passthrough, multi-LLM aggregation, and conditional backends.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/
 
-KrakenD’s AI Proxy and LLM routing feature enables you to distribute AI requests across one or multiple Large Language Model providers or instances.
+**LLM routing** decides which Large Language Model (LLM) serves each request that reaches your AI endpoints. In KrakenD, the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/) covers the most common case: it picks one provider from the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) on every request, based on headers, policies, JWT claims, or a classifier, with failover when a provider fails. Other needs, such as giving clients the vendor’s own API, asking several models at once, or mixing AI and non-AI backends, use other KrakenD features described on this page. Choosing the right strategy keeps model selection under your control instead of the client’s.
 
-LLM Routing on KrakenD supports both single-provider and multi-provider. You can configure endpoints that can connect to a specific LLM model, or based on policies, change the model on the fly, or they even make simultaneous requests to different providers to aggregate their responses.
+## Choosing a Routing Strategy
 
-To implement single or multi-LLM routing in KrakenD, like dynamically selecting between different Large Language Model (LLM) providers like OpenAI, Mistral, Anthropic, or custom models, there are several clean, scalable strategies depending on how you want to choose the provider:
+Pick the strategy that matches what you need:
 
-- Just proxy to the AI vendor
-- Conditional routing
-- Header-based routing
-- JWT claim-based routing
-- Path-based routing
-- Other non-standard routing logic
+| You need to                                                                                            | Use                                                                                             |
+|--------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| Choose one provider per request from headers, JWT claims, CEL policies, or a classifier, with failover | [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/#routing-with-the-ai-router)                |
+| Offer a fixed provider on each endpoint, such as `/llm/openai` and `/llm/anthropic`                    | [One endpoint per provider](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/#one-endpoint-per-provider) |
+| Let clients use the vendor’s own API, for example through its SDK                                      | [Vendor-native passthrough](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/#vendor-native-passthrough) |
+| Ask several LLMs at once and return all the answers                                                    | [Multi-LLM aggregation](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/#multi-llm-aggregation)         |
+| Send some requests to an LLM and the rest to a regular backend                                         | [Conditional routing](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/#mixing-llm-and-non-llm-backends) |
 
-To pick a provider from the [provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#llm-provider-inventory) on every request, using gates, an external classifier, and failover, see the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/).
+## Routing with the AI Router
 
-## AI Proxy
+The [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/) evaluates an ordered list of routes in the `ai/router` namespace of a backend, and each route sends the request to a provider of the inventory when its **gates** pass. Clients call a single endpoint and never choose the model.
 
-Not a recommended option, but in case you want to couple your application to the LLM vendor, and let the user to use directly the LLM vendor API with no transformation or adaptation on KrakenD, you can treat the provider as a regular `no-op` backend with no specific AI configuration. In addition to the proxying, you might want to hide the authentication part on KrakenD, and for that you can use [Martian headers](https://www.krakend.io/docs/enterprise/backends/martian/).
-
-The following example is a direct consumption of OpenAI API through KrakenD with no modification other than doing the auto-authentication (caution, this endpoint would be public as there is no auth validation):
-
-```json
-{
-  "endpoint": "/chat",
-  "output_encoding": "no-op",
-  "method": "POST",
-  "backend": [
-    {
-      "host": [
-        "https://api.openai.com"
-      ],
-      "url_pattern": "/v1/chat/completions",
-      "encoding": "no-op",
-      "extra_config": {
-        "modifier/martian": {
-          "header.Modifier": {
-            "scope": [
-              "request"
-            ],
-            "name": "Authorization",
-            "value": "Bearer YOUR_OPENI_API_KEY"
-          }
-        }
-      }
-    }
-  ]
-}
-```
-
-## Conditional Routing
-
-The [Conditional Routing](https://www.krakend.io/docs/enterprise/backends/conditional/) allows you to set simple or complex policies defining which backend should the gateway hit and fallback to an alternative when policies do not evaluate to true.
-
-The idea is that you define multiple backends on a single endpoint, and set the policies that will satisfy the usage of a specific backend. If your policies are not mutually exclusive, you can connect to multiple LLMs too.
-
-The **optional** `fallback` option allows you to connect to a default backend when the rest of the conditions failed.
-
-Here’s a practical example of conditional routing, that based on a request header `X-Model` decides whether to get content from Gemini, OpenAI, or fallback to Anthropic for any other case:
+Route on values the client cannot forge. A JWT claim is a good example: the following configuration validates the token, [propagates](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/#propagate-jwt-claims-as-request-headers) its `plan` claim as the `X-Plan` header, and sends `premium` users to a larger model:
 
 ```json
 {
-  "endpoint": "/llm",
-  "input_headers": [
-    "X-Model"
-  ],
-  "backend": [
-    {
-      "host": [
-        "https://generativelanguage.googleapis.com"
-      ],
-      "url_pattern": "/v1beta/models/gemini-2.5-flash:generateContent",
-      "method": "POST",
-      "extra_config": {
-        "backend/conditional": {
-          "strategy": "header",
-          "name": "X-Model",
-          "value": "gemini"
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/providers": {
+      "providers": [
+        {
+          "name": "small",
+          "provider": "openai",
+          "model": "gpt-5-nano",
+          "credentials": "xxx"
         },
-        "ai/llm": {
-          "gemini": {
-            "v1beta": {
-              "credentials": "XXX_YYY_ZZZ",
-              "debug": true,
-              "variables": {
-                "candidates": 3
-              }
-            }
-          }
+        {
+          "name": "large",
+          "provider": "anthropic",
+          "model": "claude-sonnet-4-6",
+          "credentials": "xxx"
         }
-      }
+      ]
     },
-    {
-      "host": [
-        "https://api.openai.com"
-      ],
-      "url_pattern": "/v1/responses",
-      "method": "POST",
-      "extra_config": {
-        "backend/conditional": {
-          "strategy": "header",
-          "name": "X-Model",
-          "value": "openai"
-        },
-        "ai/llm": {
-          "openai": {
-            "v1": {
-              "credentials": "xx-yy-zz",
-              "debug": false,
-              "variables": {
-                "model": "gpt-5-nano"
-              }
-            }
+    "ai/classifiers": {
+      "gates": [
+        {
+          "name": "plan_premium",
+          "rule": "header",
+          "header": {
+            "name": "X-Plan",
+            "value": "premium"
           }
         }
-      }
-    },
-    {
-      "url_pattern": "/v1/messages",
-      "host": [
-        "https://api.anthropic.com"
-      ],
-      "extra_config": {
-        "backend/conditional": {
-          "strategy": "fallback"
-        },
-        "ai/llm": {
-          "anthropic": {
-            "v1": {
-              "credentials": "xxxxx",
-              "debug": false,
-              "variables": {
-                "model": "claude-3-7-sonnet-latest"
-              }
-            }
-          }
-        }
-      }
+      ]
     }
-  ]
-}
-```
-
-For more information on how to do conditions, including writing custom policies (the example only checks literals on headers), see the [Conditional Routing documentation](https://www.krakend.io/docs/enterprise/backends/conditional/)
-
-With the example above (and setting your credentials in the config) you could interact with the three different models like this:
-
-Routing to the right LLM 
-
-```
-$curl -XPOST -H'X-Model' --json '{"instructions": "Act as a 1000 dollar consultant", "input": "Tell me a consultant joke"}' http://localhost:8080/llm
-```
-
-### Header-based LLM routing
-
-While this can be done with the Conditional Routing too, you can use [Dynamic Routing](https://www.krakend.io/docs/enterprise/endpoints/dynamic-routing/) as another approach to allow end-users set a specific header with the desired model to use, and from here, the gateway chooses the route. For instance, say you want to integrate with two providers and let the consumer of the API Gateway decide which one to use based on a header:
-
-![ai-gateway-proxy-header.mmd diagram](https://www.krakend.io/images/documentation/diagrams/ai-gateway-proxy-header.mmd.svg)
-
-The consumer would send a request like this:
-
-```
-POST /multi-llm
-X-LLM: openai
-```
-
-And the gateway uses the header’s value to route to the appropriate backend.
-
-### JWT claim-based LLM routing
-
-Similarly to header routing, you can use data in claims to route to the proper LLM. For instance, when you issue a JWT token, you could add a claim that specifies what LLM to use based on role, business policies, etc.
-
-As opposed to header-based routing, this method is transparent to the user, who does not have any control over the model used, because it is enforced by a policy in the Identity Provider.
-
-It would work with the same configuration you use in the header-based routing, only that you use the JWT instead:
-
-```json
-{
-  "url_pattern": "/_llm/{jwt.preferred_ai_model}"
-}
-```
-
-Another more sophisticated way of JWT routing, would be using a policy. As the policies do not have direct access to JWT data, you need to propagate the desired claims as headers and then apply the policy.
-
-For instance, notice the `propagate_claims` that is later used on the `backend/conditional`’s policy:
-
-```json
-{
-      "endpoint": "/jwt-routing-policy",
+  },
+  "endpoints": [
+    {
+      "endpoint": "/chat",
       "method": "POST",
+      "input_headers": ["X-Plan"],
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "https://some-domain.example.com/.well-known/jwks.json",
+          "jwk_url": "https://idp.example.com/.well-known/jwks.json",
           "cache": true,
-          "@comment": "Take the claim ai_model from the JWT and send it as header.",
           "propagate_claims": [
-            [ "ai_model", "X-Ai-Model" ],
-            [ "ai_enable", "X-Ai-Enable" ]
+            ["plan", "X-Plan"]
           ]
         }
       },
-      "input_headers": [
-        "X-Ai-Model"
-      ],
       "backend": [
         {
-          "method": "POST",
-          "host": ["https://api.openai.com"],
-          "url_pattern": "/v1/responses",
           "extra_config": {
-            "backend/conditional": {
-              "strategy": "policy",
-              "value": "req_header('X-Ai-Model') == 'openai' && req_header('X-Ai-Enable') == 'yes'"
-            },
-            "ai/llm": {
-              "openai": {
-                "credentials": "xxxx",
-                "version": "v1",
-                "debug": false,
-                "variables": {
-                  "model": "gpt-5-nano"
+            "ai/router": {
+              "routes": [
+                {
+                  "provider": "large",
+                  "gates": ["plan_premium"]
+                },
+                {
+                  "provider": "small"
                 }
-              }
-            }
-          }
-        },
-        {
-          "url_pattern": "/condition-B-non-AI",
-          "host": ["http://localhost:8080"],
-          "method": "POST",
-          "extra_config": {
-            "backend/conditional": {
-              "strategy": "fallback"
+              ]
             }
           }
         }
       ]
     }
+  ]
+}
 ```
 
-### Path-based LLM routing
+Users whose token carries `"plan": "premium"` reach the `large` provider, and everyone else falls through to `small`. Because the identity provider issues the claim and KrakenD sets the header from the validated token, users cannot pick the model themselves. The [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/) page covers policy gates, nested decision trees, classifiers, and failover.
 
-This type of routing is delegated to the end-user, and is the simplest way of routing because you directly declare the endpoints you want to use, e.g.:
+## One Endpoint per Provider
 
-- `/llm/openai`
-- `/llm/mistral`
+The simplest strategy declares one endpoint for each provider and lets the client choose by calling one or the other. With the `small` and `large` providers of the previous example, each endpoint has a backend that references its provider:
 
-Then the user calls one endpoint or the other, and the API offers one endpoint per provider.
+```json
+{
+  "endpoints": [
+    {
+      "endpoint": "/llm/openai",
+      "method": "POST",
+      "backend": [
+        {
+          "extra_config": {
+            "ai/llm": {
+              "provider": "small"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/llm/anthropic",
+      "method": "POST",
+      "backend": [
+        {
+          "extra_config": {
+            "ai/llm": {
+              "provider": "large"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+Both endpoints accept the same [unified request format](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#request-format), so switching vendors is a matter of changing the path. Use it when the client legitimately decides the model, for example in an internal tool, and protect each endpoint with its own authorization or [quota](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) when the costs differ.
+
+## Vendor-Native Passthrough
+
+Some clients need the vendor’s own API, for instance an official SDK or a coding agent that uses features beyond a prompt, such as tools or file uploads. In that case, proxy the vendor API without any AI processing, using the [`no-op` encoding](https://www.krakend.io/docs/enterprise/endpoints/no-op/), and keep the API key on the gateway with a [Martian header modifier](https://www.krakend.io/docs/enterprise/backends/martian/#header-modifier):
+
+```json
+{
+  "endpoint": "/v1/responses",
+  "method": "POST",
+  "output_encoding": "no-op",
+  "extra_config": {
+    "auth/validator": {
+      "alg": "RS256",
+      "jwk_url": "https://idp.example.com/.well-known/jwks.json",
+      "cache": true
+    }
+  },
+  "backend": [
+    {
+      "host": ["https://api.openai.com"],
+      "url_pattern": "/v1/responses",
+      "encoding": "no-op",
+      "extra_config": {
+        "modifier/martian": {
+          "header.Modifier": {
+            "scope": ["request"],
+            "name": "Authorization",
+            "value": "Bearer YOUR_OPENAI_API_KEY"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+Clients point their OpenAI SDK at KrakenD and authenticate with their own JWT, while only the gateway knows the OpenAI key. KrakenD forwards the payload as is, so you lose what the `ai/llm` component adds: the payload stays under the client’s control, the response keeps the vendor format, and KrakenD does not report token metrics.
+
+When your clients only need chat and streaming, consider the [`format` option of LLM streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/#normalizing-the-output-format-with-format) instead. It accepts requests in the OpenAI or Anthropic format and serves them from any vendor, keeping the token metrics and the provider inventory.
+
+## Multi-LLM Aggregation
+
+To ask several models the same question in a single call, add one backend per provider to the endpoint. KrakenD calls them in parallel and merges their responses, and the [`group`](https://www.krakend.io/docs/enterprise/backends/data-manipulation/#grouping) option keeps each answer under its own key:
+
+```json
+{
+  "endpoint": "/compare",
+  "method": "POST",
+  "backend": [
+    {
+      "group": "openai",
+      "extra_config": {
+        "ai/llm": {
+          "provider": "small"
+        }
+      }
+    },
+    {
+      "group": "anthropic",
+      "extra_config": {
+        "ai/llm": {
+          "provider": "large"
+        }
+      }
+    }
+  ]
+}
+```
+
+The response contains an `openai` and an `anthropic` object, each with its own `ai_gateway_response` and `usage`. Use it to compare models, or to let the client pick the best answer. Every call consumes tokens from each provider.
+
+## Mixing LLM and Non-LLM Backends
+
+[Conditional Routing](https://www.krakend.io/docs/enterprise/backends/conditional/) decides which backend of an endpoint runs, with header or policy conditions and a `fallback` backend. Use it when only some requests need an LLM and the rest go to a regular service. For example, premium users get an answer generated by an LLM, while everyone else gets the results of the regular search service:
+
+```json
+{
+  "endpoint": "/search",
+  "method": "POST",
+  "input_headers": ["X-Plan"],
+  "extra_config": {
+    "auth/validator": {
+      "alg": "RS256",
+      "jwk_url": "https://idp.example.com/.well-known/jwks.json",
+      "cache": true,
+      "propagate_claims": [
+        ["plan", "X-Plan"]
+      ]
+    }
+  },
+  "backend": [
+    {
+      "extra_config": {
+        "backend/conditional": {
+          "strategy": "policy",
+          "value": "getHeader('X-Plan') == 'premium'"
+        },
+        "ai/llm": {
+          "provider": "large"
+        }
+      }
+    },
+    {
+      "host": ["http://search.example.com"],
+      "url_pattern": "/search",
+      "extra_config": {
+        "backend/conditional": {
+          "strategy": "fallback"
+        }
+      }
+    }
+  ]
+}
+```
+
+The policy reads the propagated claim, which is why `X-Plan` is in the `input_headers` list. When it evaluates to `false`, the `fallback` backend serves the request. To choose among several LLMs instead of between an LLM and a regular backend, prefer the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/#routing-with-the-ai-router), which adds classifiers and failover.

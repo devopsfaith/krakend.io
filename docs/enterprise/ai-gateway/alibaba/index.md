@@ -1,18 +1,67 @@
 # Alibaba Cloud Qwen Integration
 
-> KrakenD integration to connect to Alibaba Cloud Qwen models without setting the full payload of the API interaction.
+> Connect KrakenD to Alibaba Cloud Qwen models through the unified LLM interface, from the provider inventory or an inline backend configuration.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/
 
-The **Alibaba Cloud** integration enables KrakenD to talk to the Qwen family of models through [Alibaba Cloud Model Studio](https://www.alibabacloud.com/help/en/model-studio/), allowing you to embed language model capabilities into your API workflows without custom coding. Use it when you want to connect Qwen for tasks like intelligent automation, conversational AI, content generation, or other LLM-driven functionalities inside your existing API infrastructure.
+The **Alibaba Cloud integration** connects KrakenD to the [Alibaba Cloud Model Studio](https://www.alibabacloud.com/help/en/model-studio/) OpenAI-compatible Responses API through the `ai/llm` component of the [unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/). Clients send only the prompt in the [unified request format](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#request-format), and KrakenD builds the Alibaba Cloud payload, authenticates with your credentials, and returns the [unified response](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#response-format). Use it to offer Alibaba Cloud models behind your own API without sharing your credentials with clients. Because clients never see the Alibaba Cloud API, you can move them to another model or vendor later without changing a line of their code.
 
-This component abstracts the complexities of communicating with Alibaba’s API. When an API request hits your KrakenD endpoint configured with the Alibaba interface, KrakenD automatically constructs the necessary payload, handles authentication, and processes the responses uniformly. This consistent integration also allows you to switch between different LLM vendors without changing client-facing interfaces.
+Keep the Alibaba Cloud credentials out of the configuration file
 
-In essence, the user sends the textual content or instructions, and KrakenD manages the complete interaction with Alibaba behind the scenes.
+Inject the `credentials` through an environment variable with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/) instead of writing them in plain text, and restrict access to the configuration file.
 
-## Configuration of the Alibaba Integration
+## Declaring Alibaba Cloud in the Provider Inventory
 
-To enable the Alibaba interface, add a backend in KrakenD with the `alibaba` vendor under the `ai/llm` namespace of its `extra_config`. For example:
+The recommended way to connect to Alibaba Cloud is to declare it once in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) and reference it by name from every backend that needs it. The following configuration declares a `qwen` provider and exposes it on `/qwen`:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/providers": {
+      "providers": [
+        {
+          "name": "qwen",
+          "provider": "alibaba",
+          "model": "qwen3.8-flash",
+          "credentials": "xxx",
+          "variables": {
+            "max_output_tokens": 500
+          }
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/qwen",
+      "method": "POST",
+      "backend": [
+        {
+          "extra_config": {
+            "ai/llm": {
+              "provider": "qwen"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The backend needs neither `host` nor `url_pattern`, because the inventory knows the Alibaba Cloud endpoint. Any other backend, or the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/), can reuse the `qwen` provider by name. Clients call the endpoint like this:
+
+Send a prompt to Alibaba Cloud through KrakenD 
+
+```
+$curl -XPOST --json '{"instructions": "Answer in one sentence", "contents": "What is an API gateway?"}' http://localhost:8080/qwen
+```
+
+## Inline Alibaba Cloud Configuration
+
+Instead of a provider reference, you can write the Alibaba Cloud configuration in the backend itself, under the `alibaba` key of the `ai/llm` namespace and the `v1` API version. In this case, the backend sets the `host` and `url_pattern` of the Alibaba Cloud API:
 
 ```json
 {
@@ -24,15 +73,14 @@ To enable the Alibaba interface, add a backend in KrakenD with the `alibaba` ven
         "https://token-plan.ap-southeast-1.maas.aliyuncs.com"
       ],
       "url_pattern": "/compatible-mode/v1/responses",
-      "method": "POST",
       "extra_config": {
         "ai/llm": {
           "alibaba": {
             "v1": {
-              "credentials": "sk-xxxx",
-              "debug": false,
+              "credentials": "xxx",
               "variables": {
-                "model": "qwen3.8-flash"
+                "model": "qwen3.8-flash",
+                "max_output_tokens": 500
               }
             }
           }
@@ -43,22 +91,17 @@ To enable the Alibaba interface, add a backend in KrakenD with the `alibaba` ven
 }
 ```
 
-The `host` and `url_pattern` above point to Alibaba’s default endpoint. Change the `host` to reach the region where your Model Studio account lives. The `credentials` hold your Alibaba API key; set them through an environment variable instead of writing the key in the configuration.
+This backend behaves like the previous example. Use the inline form when no other backend shares this configuration.
 
-To interact with the LLM, the user can send in the request:
+## Alibaba Cloud Configuration Options
 
-- `instructions` (optional): If you want to add a system prompt
-- `contents`: The content you want to send to the template
+The provider entry of the inventory and the inline block accept the same `credentials`, `variables`, `input_template`, `output_template`, and `debug` options. KrakenD sends the `credentials` as a bearer token in the `Authorization` header. Keep in mind:
 
-Like this:
+- The inline block requires `variables.model`. In the inventory, `model` is optional and defaults to `qwen3.8-flash`.
+- The default endpoint targets the `ap-southeast-1` region. Set `endpoint` in the inventory, or `host` in an inline block, to use another region.
+- `truncation` defaults to `disabled`, so the API returns an error instead of silently dropping part of a long conversation.
 
-Using the endpoint 
-
-```
-$curl -XPOST --json '{"instructions": "Act as a 1000 dollar consultant", "contents": "Tell me a consultant joke"}' http://localhost:8080/qwen
-```
-
-The configuration options are:
+These are the fields of the inline `alibaba` block. The keys of its `variables` object are also the ones a provider entry accepts:
 
 ##### Fields of Alibaba integration
 
@@ -124,48 +167,55 @@ Defaults to `"disabled"`
 
 Schema: [https://www.krakend.io/schema/v3.0/ai/alibaba.json](https://www.krakend.io/schema/v3.0/ai/alibaba.json "JSON schema definition")
 
-This design keeps user input clean and focused only on content, while KrakenD handles building the full API request.
+## Streaming Alibaba Cloud Responses
 
-## Declaring Alibaba in the Provider Inventory
+To forward the tokens as Alibaba Cloud produces them, set the endpoint’s `output_encoding` to `streaming`. When the backend references a provider, also set `streaming` to `true` in the provider entry. Alibaba Cloud streams through the same `/compatible-mode/v1/responses` endpoint, so nothing else changes. [LLM Streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/) explains the `format` option, which presents the stream in the OpenAI or Anthropic format.
 
-Instead of repeating the configuration in every backend, you can declare Alibaba once in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#llm-provider-inventory) and reference it by name from `ai/llm` or the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/). When you omit `endpoint` and `model`, the inventory uses Alibaba’s default endpoint and the `qwen3.8-flash` model:
+## Default Alibaba Cloud Prompt Templates
 
-```json
+KrakenD talks to Alibaba Cloud through a pair of default [prompt templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates). Replace either of them with your own [Go template](https://pkg.go.dev/text/template) file through `input_template` or `output_template` when you need a different payload or response. Use the defaults below as the starting point.
+
+### Default Input Template
+
+KrakenD builds the input template when it starts, writing the values of your `variables` into it. It only writes the `temperature`, `top_p`, `max_output_tokens`, and `model` lines when they have a value. With the configuration of the examples above, the payload sent to Alibaba Cloud comes from this template:
+
+```go-text-template
 {
-  "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 4,
-  "extra_config": {
-    "ai/providers": {
-      "providers": [
-        {
-          "name": "qwen",
-          "provider": "alibaba",
-          "credentials": "sk-xxxx"
-        }
-      ]
-    }
-  }
+	"max_output_tokens": 500,
+	"model": "qwen3.8-flash",
+	"stream": false,
+	"truncation": "disabled",
+	{{ if hasKey .req_body "instructions" }}"instructions": {{ .req_body.instructions | toJson }},{{ end }}
+	"input": {{ .req_body.contents | toJson }}
 }
 ```
 
-## Customizing the Payload Sent and Received from Alibaba
+When you write your own input template, read your values from `.variables`, for example `{{ .variables.temperature }}`, and the extra attributes from `.variables.extra_payload`.
 
-As it happens with all LLM interfaces of KrakenD, you can completely replace the request and the response so you have a custom interaction with the LLM. While the default template should allow you to accomplish any day to day job, you might need to extend it using your own template.
+### Default Output Template
 
-You may override the input and output Go templates by specifying:
+The default output template returns the generated text in `ai_gateway_response` and the token count of `usage.total_tokens` in `usage`:
 
-- `input_template`: Path to a custom template controlling how the request data is formatted before sending it to Alibaba.
-- `output_template`: Path to a custom template to transform and extract the desired pieces from Alibaba’s response.
-
-Use `variables.extra_payload` to pass additional attributes to your custom `input_template`, accessible as `{{ .variables.extra_payload.yourchosenkey }}`.
-
-When you don’t declare an `output_template`, the response from the AI is returned inside the `ai_gateway_response` field. If you prefer another name, add a `mapping` attribute to the backend without changing the template:
-
-```json
+```go-text-template
 {
-  "url_pattern": "/compatible-mode/v1/responses",
-  "mapping": {
-    "ai_gateway_response": "my_response"
-  }
+	"ai_gateway_response": [
+		{{ if gt (len .resp_body.output) 0 }}
+		{
+			"contents": [
+			{{ range $output := .resp_body.output }}
+			{{ if hasKey $output "content" }}
+				{{ range $index, $part := $output.content }}
+				{{ if $index }},{{ end }}
+				{{ $part.text | toJson }}
+				{{ end }}
+			{{ end }}
+			{{ end }}
+			]
+		}
+		{{ end }}
+	],
+	"usage": "{{ .resp_body.usage.total_tokens }}"
 }
 ```
+
+If your own output template drops the `usage` field, the [token budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) can no longer count the tokens of the response.

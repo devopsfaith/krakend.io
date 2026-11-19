@@ -1,18 +1,67 @@
-# Google Gemini integration
+# Google Gemini Integration
 
-> Connect to Google Gemini APIs using an abstracted interface allowing you to concentrate on content rather than format
+> Connect KrakenD to Google Gemini models through the unified LLM interface, from the provider inventory or an inline backend configuration.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/
 
-The Gemini interface allows KrakenD to use [Gemini’s API](https://ai.google.dev/gemini-api/docs) **without writing custom integration code**, enabling intelligent automation, content generation, or any LLM-powered use case within your existing API infrastructure.
+The **Google Gemini integration** connects KrakenD to the [Gemini API](https://ai.google.dev/api/generate-content) through the `ai/llm` component of the [unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/). Clients send only the prompt in the [unified request format](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#request-format), and KrakenD builds the Google Gemini payload, authenticates with your credentials, and returns the [unified response](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#response-format). Use it to offer Google Gemini models behind your own API without sharing your credentials with clients. Because clients never see the Google Gemini API, you can move them to another model or vendor later without changing a line of their code.
 
-This component abstracts you from the Gemini API usage allowing the consumer to concentrate on the prompt only, as for each request to an endpoint, KrakenD will create the **Gemini request** with all the necessary elements in their API, and will return a **unified response**, so if you use other vendors you have a consitent use of LLM models.
+Keep the Google Gemini credentials out of the configuration file
 
-In other words, the user sends the content, like “tell me a joke!”, and then KrakenD builds the API payload necessary to talk to Gemini.
+Inject the `credentials` through an environment variable with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/) instead of writing them in plain text, and restrict access to the configuration file.
 
-This Gemini interface configures a backend within KrakenD that transparently forwards REST requests to Gemini’s API endpoints. It manages authentication, versioning, and payload formatting using its custom templating system. This way, you can easily call Gemini models without writing custom integration code.
+## Declaring Google Gemini in the Provider Inventory
 
-A simple configuration looks like this:
+The recommended way to connect to Google Gemini is to declare it once in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) and reference it by name from every backend that needs it. The following configuration declares a `gemini` provider and exposes it on `/gemini`:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/providers": {
+      "providers": [
+        {
+          "name": "gemini",
+          "provider": "gemini",
+          "model": "gemini-2.5-flash",
+          "credentials": "xxx",
+          "variables": {
+            "max_output_tokens": 500
+          }
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/gemini",
+      "method": "POST",
+      "backend": [
+        {
+          "extra_config": {
+            "ai/llm": {
+              "provider": "gemini"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The backend needs neither `host` nor `url_pattern`, because the inventory knows the Google Gemini endpoint. Any other backend, or the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/), can reuse the `gemini` provider by name. Clients call the endpoint like this:
+
+Send a prompt to Google Gemini through KrakenD 
+
+```
+$curl -XPOST --json '{"instructions": "Answer in one sentence", "contents": "What is an API gateway?"}' http://localhost:8080/gemini
+```
+
+## Inline Google Gemini Configuration
+
+Instead of a provider reference, you can write the Google Gemini configuration in the backend itself, under the `gemini` key of the `ai/llm` namespace and the `v1beta` API version. In this case, the backend sets the `host` and `url_pattern` of the Google Gemini API:
 
 ```json
 {
@@ -24,15 +73,13 @@ A simple configuration looks like this:
         "https://generativelanguage.googleapis.com"
       ],
       "url_pattern": "/v1beta/models/gemini-2.5-flash:generateContent",
-      "method": "POST",
       "extra_config": {
         "ai/llm": {
           "gemini": {
             "v1beta": {
-              "credentials": "XXX_YYY_ZZZ",
-              "debug": true,
+              "credentials": "xxx",
               "variables": {
-                "candidates": 3
+                "max_output_tokens": 500
               }
             }
           }
@@ -43,22 +90,16 @@ A simple configuration looks like this:
 }
 ```
 
-To interact with the LLM, the user can send in the request:
+This backend behaves like the previous example. Use the inline form when no other backend shares this configuration.
 
-- `instructions` (optional): If you want to add a system prompt
-- `contents`: The content you want to send to the template
+## Google Gemini Configuration Options
 
-Like this:
+The provider entry of the inventory and the inline block accept the same `credentials`, `variables`, `input_template`, `output_template`, and `debug` options. KrakenD sends the `credentials` in the `x-goog-api-key` header. Keep in mind:
 
-Using the endpoint 
+- Gemini selects the model in the URL, not in the payload. In the inventory, KrakenD builds the URL from `model`, which defaults to `gemini-3.5-flash`. In an inline block, write the model in `url_pattern`, as in `/v1beta/models/gemini-2.5-flash:generateContent`.
+- `candidate_count` defaults to `1`. When you ask for more candidates, the response lists the text of every candidate in `contents`.
 
-```
-$curl -XPOST --json '{"instructions": "Act as a 1000 dollar consultant", "contents": "Tell me a consultant joke"}' http://localhost:8080/gemini
-```
-
-## Configuration of Gemini
-
-The configuration of Gemini requires you to add under your backend `extra_config` the `ai/llm` namespace with the `Gemini` vendor.
+These are the fields of the inline `gemini` block. The keys of its `variables` object are also the ones a provider entry accepts:
 
 ##### Fields of Google Gemini integration
 
@@ -122,30 +163,24 @@ Top-P changes how the model selects tokens for output. Tokens are selected from 
 
 Schema: [https://www.krakend.io/schema/v3.0/ai/gemini.json](https://www.krakend.io/schema/v3.0/ai/gemini.json "JSON schema definition")
 
-## Customizing the payload sent and received from Gemini
+## Streaming Google Gemini Responses
 
-As it happens with all LLM interfaces of KrakenD, you can completely replace the request and the response so you have a custom interaction with the LLM. While the default template should allow you to accomplish any day to day job, you might need to extend it using your own template.
+To forward the tokens as Google Gemini produces them, set the endpoint’s `output_encoding` to `streaming`. When the backend references a provider, also set `streaming` to `true` in the provider entry. Gemini streams through a different method, `streamGenerateContent`, with the `alt=sse` query string. A streaming provider in the inventory switches to it automatically. An inline backend must set it in `url_pattern`, as in `/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse`. [LLM Streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/) explains the `format` option, which presents the stream in the OpenAI or Anthropic format.
 
-You may override the input and output Go templates by specifying:
+## Default Google Gemini Prompt Templates
 
-- `input_template`: Path to a custom template controlling how the request data is formatted before sending to Gemini.
-- `output_template`: Path to a custom template to transform and extract the desired pieces from Gemini’s response.
+KrakenD talks to Google Gemini through a pair of default [prompt templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates). Replace either of them with your own [Go template](https://pkg.go.dev/text/template) file through `input_template` or `output_template` when you need a different payload or response. Use the defaults below as the starting point.
 
-See below how to change this interaction
+### Default Input Template
 
-### Default input\_template for Gemini v1beta
+KrakenD builds the input template when it starts, writing the values of your `variables` into it. It only writes the `maxOutputTokens`, `temperature`, `topP`, and `topK` lines when they have a value. With the configuration of the examples above, the payload sent to Google Gemini comes from this template:
 
-When you don’t set any `input_template`, KrakenD will create the JSON payload sent to Gemini using the following template:
-
-```gotmpl
+```go-text-template
 {
 	"generationConfig": {
-		{{ $max_tokens := .variables.max_tokens }}{{ if ge $max_tokens 0 }}"maxOutputTokens": {{ $max_tokens }},{{ end }}
-		{{ $temperature := .variables.temperature }}{{ if ge $temperature 0.0 }}"temperature": {{ $temperature }},{{ end }}
-		{{ $top_p := .variables.top_p }}{{ if ge $top_p 0.0 }}"topP": {{ $top_p }},{{ end }}
-		{{ $top_k := .variables.top_k }}{{ if ge $top_k 0 }}"topK": {{ $top_k }},{{ end }}
-		"candidateCount": {{ .variables.candidate_count | toJson }},
-		"stopSequences": {{ .variables.stop_sequences | toJson }}
+		"maxOutputTokens": 500,
+		"candidateCount": 1,
+		"stopSequences": []
 	},
 	{{- if hasKey .req_body "instructions" }}
 	"system_instruction": {
@@ -168,13 +203,13 @@ When you don’t set any `input_template`, KrakenD will create the JSON payload 
 }
 ```
 
-Remember you can access your own `variables` declared in the configuration using `{{ .variables.xxx }}`.
+When you write your own input template, read your values from `.variables`, for example `{{ .variables.temperature }}`, and the extra attributes from `.variables.extra_payload`.
 
-### Default output\_template for Gemini v1beta
+### Default Output Template
 
-When you don’t declare an `output_template`, the response from the AI is transformed to have the following format:
+The default output template returns the generated text in `ai_gateway_response` and the token count of `usageMetadata.totalTokenCount` in `usage`:
 
-```gotmpl
+```go-text-template
 {
 	"ai_gateway_response":
 	[
@@ -194,3 +229,5 @@ When you don’t declare an `output_template`, the response from the AI is trans
 	"usage": "{{ .resp_body.usageMetadata.totalTokenCount }}"
 }
 ```
+
+If your own output template drops the `usage` field, the [token budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) can no longer count the tokens of the response.

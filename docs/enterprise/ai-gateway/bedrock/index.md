@@ -1,18 +1,67 @@
-# Amazon Web Services Bedrock integration
+# Amazon Bedrock Integration
 
-> Connect to AWS Bedrock APIs using an abstracted interface, allowing you to concentrate on content rather than format
+> Connect KrakenD to the models of Amazon Bedrock through the unified LLM interface, from the provider inventory or an inline backend configuration.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/
 
-The Bedrock interface allows KrakenD to use [Bedrock’s Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-call.html) **without writing custom integration code**, enabling intelligent automation, content generation, or any LLM-powered use case within your existing API infrastructure.
+The **Amazon Bedrock integration** connects KrakenD to the [Bedrock Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-call.html) through the `ai/llm` component of the [unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/). Clients send only the prompt in the [unified request format](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#request-format), and KrakenD builds the Amazon Bedrock payload, authenticates with your credentials, and returns the [unified response](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#response-format). Use it to offer Amazon Bedrock models behind your own API without sharing your credentials with clients. Because clients never see the Amazon Bedrock API, you can move them to another model or vendor later without changing a line of their code.
 
-This component abstracts you from the Bedrock API, allowing the consumer to focus solely on the prompt. For each request to an endpoint, KrakenD will create the **Bedrock request** with all the necessary elements in its API and return a **unified response**, so if you use other vendors, you have a consistent use of LLM models.
+Keep the Amazon Bedrock credentials out of the configuration file
 
-In other words, the user sends content, like “tell me a joke!”, and KrakenD builds the API payload needed to talk to Bedrock.
+Inject the `credentials` through an environment variable with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/) instead of writing them in plain text, and restrict access to the configuration file.
 
-This Bedrock interface configures a backend within KrakenD that transparently forwards REST requests to Bedrock’s API endpoints. It manages authentication, versioning, and payload formatting using its custom templating system. This way, you can easily call Bedrock models without writing custom integration code.
+## Declaring Amazon Bedrock in the Provider Inventory
 
-A simple configuration looks like this:
+The recommended way to connect to Amazon Bedrock is to declare it once in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) and reference it by name from every backend that needs it. The following configuration declares a `nova` provider and exposes it on `/bedrock`:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/providers": {
+      "providers": [
+        {
+          "name": "nova",
+          "provider": "bedrock",
+          "model": "eu.amazon.nova-lite-v1:0",
+          "credentials": "xxx",
+          "variables": {
+            "max_tokens": 500
+          }
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/bedrock",
+      "method": "POST",
+      "backend": [
+        {
+          "extra_config": {
+            "ai/llm": {
+              "provider": "nova"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The backend needs neither `host` nor `url_pattern`, because the inventory knows the Amazon Bedrock endpoint. Any other backend, or the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/), can reuse the `nova` provider by name. Clients call the endpoint like this:
+
+Send a prompt to Amazon Bedrock through KrakenD 
+
+```
+$curl -XPOST --json '{"instructions": "Answer in one sentence", "contents": "What is an API gateway?"}' http://localhost:8080/bedrock
+```
+
+## Inline Amazon Bedrock Configuration
+
+Instead of a provider reference, you can write the Amazon Bedrock configuration in the backend itself, under the `bedrock` key of the `ai/llm` namespace and the `v1` API version. In this case, the backend sets the `host` and `url_pattern` of the Amazon Bedrock API:
 
 ```json
 {
@@ -23,16 +72,14 @@ A simple configuration looks like this:
       "host": [
         "https://bedrock-runtime.eu-west-1.amazonaws.com"
       ],
-      "url_pattern": "/model/eu.meta.llama3-2-1b-instruct-v1:0/converse",
-      "method": "POST",
+      "url_pattern": "/model/eu.amazon.nova-lite-v1:0/converse",
       "extra_config": {
         "ai/llm": {
           "bedrock": {
             "v1": {
-              "credentials": "bedrock-api-key-xxx",
-              "debug": true,
+              "credentials": "xxx",
               "variables": {
-                "max_tokens": 1500
+                "max_tokens": 500
               }
             }
           }
@@ -43,22 +90,15 @@ A simple configuration looks like this:
 }
 ```
 
-To interact with the LLM, the user can send in the request:
+This backend behaves like the previous example. Use the inline form when no other backend shares this configuration.
 
-- `instructions` (optional): If you want to add a system prompt
-- `contents`: The content you want to send to the template
+## Amazon Bedrock Configuration Options
 
-Like this:
+The provider entry of the inventory and the inline block accept the same `credentials`, `variables`, `input_template`, `output_template`, and `debug` options. KrakenD sends the `credentials`, a [Bedrock API key](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html), as a bearer token in the `Authorization` header. Keep in mind:
 
-Using the endpoint 
+- Bedrock selects the model and the region in the URL, not in the payload. In the inventory, KrakenD builds the URL from `model`, which defaults to `eu.amazon.nova-lite-v1:0`, and targets the `eu-west-1` region; set `endpoint` to use another region. In an inline block, write the region in `host` and the model in `url_pattern`.
 
-```
-$curl -XPOST --json '{"instructions": "Act as a 1000 dollar consultant", "contents": "Tell me a consultant joke"}' http://localhost:8080/bedrock
-```
-
-## Configuration of Bedrock
-
-The Bedrock configuration requires you to add the `ai/llm` namespace under your backend’ extra\_config’, with the `Bedrock` vendor.
+These are the fields of the inline `bedrock` block. The keys of its `variables` object are also the ones a provider entry accepts:
 
 ##### Fields of Bedrock integration
 
@@ -116,29 +156,23 @@ A float value between 0 and 1 that controls the nucleus sampling for text genera
 
 Schema: [https://www.krakend.io/schema/v3.0/ai/bedrock.json](https://www.krakend.io/schema/v3.0/ai/bedrock.json "JSON schema definition")
 
-## Customizing the payload sent and received from Bedrock
+## Streaming Amazon Bedrock Responses
 
-As with all KrakenD LLM interfaces, you can completely replace the request and response to have a custom interaction with the LLM. While the default template should allow you to accomplish any day-to-day job, you might need to extend it using your own template.
+To forward the tokens as Amazon Bedrock produces them, set the endpoint’s `output_encoding` to `streaming`. When the backend references a provider, also set `streaming` to `true` in the provider entry. Bedrock streams through a different method, `converse-stream`, and uses the binary `eventstream` framing instead of Server-Sent Events. A streaming provider in the inventory switches to it automatically. An inline backend must set it in `url_pattern`, as in `/model/eu.amazon.nova-lite-v1:0/converse-stream`. With `format` set to `openai` or `anthropic`, clients receive Server-Sent Events. [LLM Streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/) explains the `format` option, which presents the stream in the OpenAI or Anthropic format.
 
-You may override the input and output Go templates by specifying:
+## Default Amazon Bedrock Prompt Templates
 
-- `input_template`: Path to a custom template controlling how the request data is formatted before sending to Bedrock.
-- `output_template`: Path to a custom template to transform and extract the desired pieces from Bedrock’s response.
+KrakenD talks to Amazon Bedrock through a pair of default [prompt templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates). Replace either of them with your own [Go template](https://pkg.go.dev/text/template) file through `input_template` or `output_template` when you need a different payload or response. Use the defaults below as the starting point.
 
-See below how to change this interaction.
+### Default Input Template
 
-### Default input\_template for Bedrock v1
+KrakenD builds the input template when it starts, writing the values of your `variables` into it. It only writes the `maxTokens`, `temperature`, `topP`, and `topK` lines when they have a value. With the configuration of the examples above, the payload sent to Amazon Bedrock comes from this template:
 
-When you don’t set any `input_template`, KrakenD will create the JSON payload sent to Bedrock using the following template:
-
-```gotmpl
+```go-text-template
 {
 	"inferenceConfig": {
-		{{ $max_tokens := .variables.max_tokens }}{{ if ge $max_tokens 0 }}"maxTokens": {{ $max_tokens }},{{ end }}
-		{{ $temperature := .variables.temperature }}{{ if ge $temperature 0.0 }}"temperature": {{ $temperature }},{{ end }}
-		{{ $top_p := .variables.top_p }}{{ if ge $top_p 0.0 }}"topP": {{ $top_p }},{{ end }}
-		{{ $top_k := .variables.top_k }}{{ if ge $top_k 0 }}"topK": {{ $top_k }},{{ end }}
-		"stopSequences": {{ .variables.stop_sequences | toJson }}
+		"maxTokens": 500,
+		"stopSequences": []
 	},
 	{{- if hasKey .req_body "instructions" }}
 	"system": [
@@ -160,13 +194,13 @@ When you don’t set any `input_template`, KrakenD will create the JSON payload 
 }
 ```
 
-Remember, you can access your own `variables` declared in the configuration using `{{ .variables.xxx }}`.
+When you write your own input template, read your values from `.variables`, for example `{{ .variables.temperature }}`, and the extra attributes from `.variables.extra_payload`.
 
-### Default output\_template for Bedrock v1
+### Default Output Template
 
-When you don’t declare an `output_template`, the response from the AI is transformed to have the following format:
+The default output template returns the generated text in `ai_gateway_response` and the token count of `usage.totalTokens` in `usage`:
 
-```gotmpl
+```go-text-template
 {
 	"ai_gateway_response":
 	[
@@ -184,3 +218,5 @@ When you don’t declare an `output_template`, the response from the AI is trans
 	"usage": "{{ .resp_body.usage.totalTokens }}"
 }
 ```
+
+If your own output template drops the `usage` field, the [token budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) can no longer count the tokens of the response.

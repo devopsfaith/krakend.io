@@ -411,21 +411,28 @@ sections:
       namespaces:
         - ai/llm
         - governance/quota
-      description: Granular token usage monitoring and enforcement to keep your AI expenses transparent and within budget
+      description: Token budgets per user, plan, or tenant, enforced with quotas that count the tokens of every LLM response
       ee: true
       url: /docs/enterprise/ai-gateway/budget-control/
     - name: AI Governance
       namespaces:
         - ai/llm
-      description: Enforce compliance, security, and operational guardrails inline with AI traffic
+      description: Restrict prompts with JSON Schema validation, size limits, prompt templates, and rate limits alongside Prompt Guard
       ee: true
-      url: /docs/enterprise/ai-gateway/governance/
+      url: /docs/enterprise/ai-gateway/prompt-guard/#complementary-prompt-controls
     - name: Unified LLM interface and Prompt Templates
       namespaces:
         - ai/llm
-      description: Route to the right LLM, abstract the request and response interface
+      description: One request and response format for every LLM vendor, with customizable prompt templates
       ee: true
       url: /docs/enterprise/ai-gateway/unified-llm-interface/
+    - name: AI Monitoring
+      namespaces:
+        - ai/llm
+        - telemetry/opentelemetry
+      description: Input, output, and total token metrics per provider and model through OpenTelemetry
+      ee: true
+      url: /docs/enterprise/ai-gateway/usage-monitoring/
     - name: LLM Routing, Multi-Routing, and aggregation
       namespaces:
         - ai/llm
@@ -445,7 +452,7 @@ sections:
         - ai/providers
       description: Declare every LLM provider once, with its model and credentials, and reference it by name from any backend
       ee: true
-      url: /docs/enterprise/ai-gateway/unified-llm-interface/#llm-provider-inventory
+      url: /docs/enterprise/ai-gateway/provider-inventory/
     - name: LLM Streaming
       namespaces:
         - ai/llm

@@ -445,4 +445,69 @@ The following configuration defines four guards at the service level and applies
 }
 ```
 
-The root `extra_config` defines the guards `block_jailbreak_terms`, `block_sensitive_terms`, `injection_classifier`, and `payload_policy`. Each endpoint selects `block_jailbreak_terms` and `injection_classifier` by name, keeps the remaining default guards, and disables both the `medium`-severity defaults and the `unicode_steganography` group. The first endpoint guards the whole endpoint, while the second guards a single backend. This feature complements [AI Security](https://www.krakend.io/docs/enterprise/ai-gateway/security/) and [AI Governance](https://www.krakend.io/docs/enterprise/ai-gateway/governance/) to harden the requests reaching your LLMs and agents.
+The root `extra_config` defines the guards `block_jailbreak_terms`, `block_sensitive_terms`, `injection_classifier`, and `payload_policy`. Each endpoint selects `block_jailbreak_terms` and `injection_classifier` by name, keeps the remaining default guards, and disables both the `medium`-severity defaults and the `unicode_steganography` group. The first endpoint guards the whole endpoint, while the second guards a single backend.
+
+## Complementary Prompt Controls
+
+Prompt Guard detects malicious content, but other KrakenD components restrict what a prompt can be before any guard runs. Combine them on the same endpoint to reduce what reaches your LLMs:
+
+- [JSON Schema validation](https://www.krakend.io/docs/enterprise/endpoints/json-schema/) rejects requests whose body does not follow the structure you expect, such as an unknown field or a prompt longer than a limit.
+- The [maximum request size](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/#limit-the-maximum-request-size-to-an-endpoint) rejects oversized payloads with a `413` status code before KrakenD reads them.
+- [Prompt templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates) fix the system prompt and the vendor payload on the gateway, so clients only provide the content.
+- [Rate limits](https://www.krakend.io/docs/enterprise/endpoints/rate-limit/) and [token budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) cap how much each user, team, or tenant can send.
+
+The following endpoint applies all of them. It validates the JWT and propagates its `team` claim, limits the body size and structure, runs the default guards, and allows each team ten requests per minute:
+
+```json
+{
+  "endpoint": "/chat",
+  "method": "POST",
+  "input_headers": ["X-Team"],
+  "extra_config": {
+    "auth/validator": {
+      "alg": "RS256",
+      "jwk_url": "https://idp.example.com/.well-known/jwks.json",
+      "cache": true,
+      "propagate_claims": [
+        ["team", "X-Team"]
+      ]
+    },
+    "proxy": {
+      "max_payload": 16384
+    },
+    "validation/json-schema": {
+      "type": "object",
+      "required": ["contents"],
+      "properties": {
+        "contents": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "instructions": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "additionalProperties": false
+    },
+    "ai/prompt-guard": {},
+    "qos/ratelimit/router": {
+      "client_max_rate": 10,
+      "every": "1m",
+      "strategy": "header",
+      "key": "X-Team"
+    }
+  },
+  "backend": [
+    {
+      "extra_config": {
+        "ai/llm": {
+          "provider": "chat"
+        }
+      }
+    }
+  ]
+}
+```
+
+Requests larger than 16 KB, with fields other than `contents` and `instructions`, or with a prompt longer than 4000 characters never reach the guards. The rate limit counts the requests of each team separately, using the header KrakenD sets from the validated token. The `chat` provider comes from the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/). For the data that leaves the gateway, see [AI Security](https://www.krakend.io/docs/enterprise/ai-gateway/security/).

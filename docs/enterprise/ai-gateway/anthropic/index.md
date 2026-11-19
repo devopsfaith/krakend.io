@@ -1,18 +1,67 @@
-# Anthropic integration
+# Anthropic Integration
 
-> Connect to Anthropic APIs using an abstracted interface allowing you to concentrate on content rather than format
+> Connect KrakenD to Anthropic Claude models through the unified LLM interface, from the provider inventory or an inline backend configuration.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/
 
-The Anthropic interface allows KrakenD to use [Anthropic’s API (Claude)](https://docs.claude.com/en/home) **without writing custom integration code**, enabling intelligent automation, content generation, or any LLM-powered use case within your existing API infrastructure.
+The **Anthropic integration** connects KrakenD to the [Anthropic Messages API](https://docs.claude.com/en/api/messages) through the `ai/llm` component of the [unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/). Clients send only the prompt in the [unified request format](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#request-format), and KrakenD builds the Anthropic payload, authenticates with your credentials, and returns the [unified response](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#response-format). Use it to offer Anthropic models behind your own API without sharing your credentials with clients. Because clients never see the Anthropic API, you can move them to another model or vendor later without changing a line of their code.
 
-This component abstracts you from the Anthropic API usage allowing the consumer to concentrate on the prompt only, as for each request to an endpoint, KrakenD will create the **Anthropic request** with all the necessary elements in their API, and will return a **unified response**, so if you use other vendors you have a consitent use of LLM models.
+Keep the Anthropic credentials out of the configuration file
 
-In other words, the user sends the content, like “tell me a joke!”, and then KrakenD builds the API payload necessary to talk to Anthropic.
+Inject the `credentials` through an environment variable with [Flexible Configuration](https://www.krakend.io/docs/enterprise/configuration/flexible-config/) instead of writing them in plain text, and restrict access to the configuration file.
 
-This Anthropic interface configures a backend within KrakenD that transparently forwards REST requests to Anthropic’s API endpoints. It manages authentication, versioning, and payload formatting using its custom templating system. This way, you can easily call Anthropic models without writing custom integration code.
+## Declaring Anthropic in the Provider Inventory
 
-A simple configuration looks like this:
+The recommended way to connect to Anthropic is to declare it once in the [LLM provider inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) and reference it by name from every backend that needs it. The following configuration declares a `claude` provider and exposes it on `/anthropic`:
+
+```json
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 4,
+  "extra_config": {
+    "ai/providers": {
+      "providers": [
+        {
+          "name": "claude",
+          "provider": "anthropic",
+          "model": "claude-haiku-4-5",
+          "credentials": "xxx",
+          "variables": {
+            "max_tokens": 500
+          }
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/anthropic",
+      "method": "POST",
+      "backend": [
+        {
+          "extra_config": {
+            "ai/llm": {
+              "provider": "claude"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The backend needs neither `host` nor `url_pattern`, because the inventory knows the Anthropic endpoint. Any other backend, or the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/), can reuse the `claude` provider by name. Clients call the endpoint like this:
+
+Send a prompt to Anthropic through KrakenD 
+
+```
+$curl -XPOST --json '{"instructions": "Answer in one sentence", "contents": "What is an API gateway?"}' http://localhost:8080/anthropic
+```
+
+## Inline Anthropic Configuration
+
+Instead of a provider reference, you can write the Anthropic configuration in the backend itself, under the `anthropic` key of the `ai/llm` namespace and the `v1` API version. In this case, the backend sets the `host` and `url_pattern` of the Anthropic API:
 
 ```json
 {
@@ -20,18 +69,18 @@ A simple configuration looks like this:
   "method": "POST",
   "backend": [
     {
-      "url_pattern": "/v1/messages",
       "host": [
         "https://api.anthropic.com"
       ],
+      "url_pattern": "/v1/messages",
       "extra_config": {
         "ai/llm": {
           "anthropic": {
             "v1": {
-              "credentials": "xxxxx",
-              "debug": false,
+              "credentials": "xxx",
               "variables": {
-                "model": "claude-opus-4-1-20250805"
+                "model": "claude-haiku-4-5",
+                "max_tokens": 500
               }
             }
           }
@@ -42,22 +91,18 @@ A simple configuration looks like this:
 }
 ```
 
-To interact with the LLM, the user can send in the request:
+This backend behaves like the previous example. Use the inline form when no other backend shares this configuration.
 
-- `instructions` (optional): If you want to add a system prompt
-- `contents`: The content you want to send to the template
+## Anthropic Configuration Options
 
-Like this:
+The provider entry of the inventory and the inline block accept the same `credentials`, `variables`, `input_template`, `output_template`, and `debug` options. KrakenD sends the `credentials` in the `X-Api-Key` header, together with the `anthropic-version: 2023-06-01` header the API requires. Keep in mind:
 
-Using the endpoint 
+- The inline block requires `variables.model`. In the inventory, `model` is optional and defaults to `claude-haiku-4-5`.
+- `max_tokens` defaults to `1024`, because the Messages API requires it on every request.
+- KrakenD sends `instructions` as a system prompt marked for Anthropic’s prompt caching, with a five-minute `ephemeral` cache. Requests that repeat the same system prompt can reuse the cached prefix.
+- The token usage in the response adds up the input and output tokens.
 
-```
-$curl -XPOST --json '{"instructions": "Act as a 1000 dollar consultant", "contents": "Tell me a consultant joke"}' http://localhost:8080/anthropic
-```
-
-## Configuration of Anthropic
-
-The configuration of Anthropic requires you to add under your backend `extra_config` the `ai/llm` namespace with the `anthropic` vendor.
+These are the fields of the inline `anthropic` block. The keys of its `variables` object are also the ones a provider entry accepts:
 
 ##### Fields of Anthropic integration
 
@@ -123,30 +168,24 @@ Top-P changes how the model selects tokens for output. Tokens are selected from 
 
 Schema: [https://www.krakend.io/schema/v3.0/ai/anthropic.json](https://www.krakend.io/schema/v3.0/ai/anthropic.json "JSON schema definition")
 
-## Customizing the payload sent and received from Anthropic
+## Streaming Anthropic Responses
 
-As it happens with all LLM interfaces of KrakenD, you can completely replace the request and the response so you have a custom interaction with the LLM. While the default template should allow you to accomplish any day to day job, you might need to extend it using your own template.
+To forward the tokens as Anthropic produces them, set the endpoint’s `output_encoding` to `streaming`. When the backend references a provider, also set `streaming` to `true` in the provider entry. Anthropic streams through the same `/v1/messages` endpoint, so nothing else changes. [LLM Streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/) explains the `format` option, which presents the stream in the OpenAI or Anthropic format.
 
-You may override the input and output Go templates by specifying:
+## Default Anthropic Prompt Templates
 
-- `input_template`: Path to a custom template controlling how the request data is formatted before sending to Anthropic.
-- `output_template`: Path to a custom template to transform and extract the desired pieces from Anthropic’s response.
+KrakenD talks to Anthropic through a pair of default [prompt templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates). Replace either of them with your own [Go template](https://pkg.go.dev/text/template) file through `input_template` or `output_template` when you need a different payload or response. Use the defaults below as the starting point.
 
-See below how to change this interaction
+### Default Input Template
 
-### Default input\_template for Anthropic v1
+KrakenD builds the input template when it starts, writing the values of your `variables` into it. It only writes the `temperature`, `top_p`, `top_k`, and `model` lines when they have a value. With the configuration of the examples above, the payload sent to Anthropic comes from this template:
 
-When you don’t set any `input_template`, KrakenD will create the JSON payload sent to Anthropic using the following template:
-
-```gotmpl
+```go-text-template
 {
-	"model": {{ .variables.model | toJson }},
-	"max_tokens": {{ .variables.max_tokens }},
+	"model": "claude-haiku-4-5",
+	"max_tokens": 500,
 	"stream": false,
-	{{ $temperature := .variables.temperature }}{{ if ge $temperature 0.0 }}"temperature": {{ $temperature }},{{ end }}
-	{{ $top_p := .variables.top_p }}{{ if ge $top_p 0.0 }}"top_p": {{ $top_p }},{{ end }}
-	{{ $top_k := .variables.top_k }}{{ if ge $top_k 0 }}"top_k": {{ $top_k }},{{ end }}
-	"stop_sequences": {{ .variables.stop_sequences | toJson }},
+	"stop_sequences": [],
 	{{- if hasKey .req_body "instructions" }}
 	"system": [
 		{
@@ -168,13 +207,13 @@ When you don’t set any `input_template`, KrakenD will create the JSON payload 
 }
 ```
 
-Remember you can access your own `variables` declared in the configuration using `{{ .variables.xxx }}`.
+When you write your own input template, read your values from `.variables`, for example `{{ .variables.temperature }}`, and the extra attributes from `.variables.extra_payload`.
 
-### Default output\_template for Anthropic v1
+### Default Output Template
 
-When you don’t declare an `output_template`, the response from the AI is transformed to have the following format:
+The default output template returns the generated text in `ai_gateway_response` and the token count of `usage.input_tokens` plus `usage.output_tokens` in `usage`:
 
-```gotmpl
+```go-text-template
 {
 	"ai_gateway_response": [
 		{
@@ -186,8 +225,8 @@ When you don’t declare an `output_template`, the response from the AI is trans
 			]
 		}
 	],
-	"usage": "{{ add .resp_body.usage.output_tokens .resp_body.usage.input_tokens }}
+	"usage": "{{ add .resp_body.usage.output_tokens .resp_body.usage.input_tokens }}"
 }
 ```
 
-As you can see in the response template, you get the total number of tokens consumed aggregated (input and output)
+If your own output template drops the `usage` field, the [token budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) can no longer count the tokens of the response.

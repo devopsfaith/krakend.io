@@ -1,61 +1,31 @@
 # Unified LLM Interface
 
-> Simplify multi-LLM integration by exposing a single, consistent API through KrakenD's unified LLM interface.
+> Connect backends to OpenAI, Gemini, Anthropic, Mistral, Bedrock, or Qwen with the ai/llm component and give clients one request and response format.
 
 Source: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/
 
-The Unified LLM Interface of KrakenD allows you to interact with one or more LLMs, removing the complexity of dealing with LLMs for the end user. It allows you to set the grounds to communicate with LLMs, authenticate, and treat requests and responses back and forth.
+The **unified LLM interface** is the `ai/llm` component that connects a KrakenD backend to a Large Language Model (LLM) vendor. Clients send only the prompt in a short, vendor-independent JSON body, and KrakenD builds the vendor-specific payload, adds the credentials, calls the vendor, and turns the answer into the same response format for every vendor. Use it to put OpenAI, Google Gemini, Anthropic, Mistral, AWS Bedrock, or Alibaba Cloud Qwen behind your API without exposing their APIs or keys to clients. Because the client contract never changes, you can switch the model or the vendor behind an endpoint without touching any client.
 
-The unified LLM interface helps you to:
+![ai-gateway-unified-llm.seq.mmd diagram](https://www.krakend.io/images/documentation/diagrams/ai-gateway-unified-llm.seq.mmd.svg)
 
-- **Route to the right LLM**
-- **Abstract the request interface**
-- **Abstract the response interface**
-- **Declare every provider once** in a central inventory
+## How the Unified LLM Interface Works
 
-## Routing to the right LLM
+For every request to a backend with the `ai/llm` component, KrakenD:
 
-KrakenD’s LLM Routing and AI Proxy feature enables the distribution of AI requests across one or multiple Large Language Model. It supports various routing strategies including direct proxying, conditional routing based on request headers or policies, JWT claim-based routing, and path-based routing.
+1. Reads the client’s request body, which contains the prompt in `contents` and, optionally, a system prompt in `instructions`.
+2. Builds the payload the vendor expects with a **prompt template**, adding the model and the variables you configured, such as `temperature` or `max_tokens`.
+3. Sends the request to the vendor with the credentials of the configuration, so clients never see the API key.
+4. Transforms the vendor’s response with an output template into the unified response, which contains the generated text and the token usage.
 
-Read more about [LLM Routing](https://www.krakend.io/docs/enterprise/ai-gateway/llm-routing/), or use the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/) to select a provider from the inventory on every request.
+The default templates cover each vendor’s chat or completion API, and you can replace them with your own (see [Prompt Templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates)). The component also reports the token usage of every call as [OpenTelemetry](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry/) metrics and trace attributes when you enable telemetry.
 
-## Abstracting the request and response interfaces
+## Connecting a Backend to an LLM
 
-The namespace `ai/llm` makes communication with several AI providers simpler as each vendor will require a different payload and communication style. The `ai/llm` namespace is able to pre-generate **Prompt Templates** for a series of vendors:
+You can tell the `ai/llm` component which vendor to use in two ways: by referencing a provider from the LLM provider inventory, which is the recommended option, or by writing the vendor configuration inline in the backend.
 
-- [Google Gemini](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/)
-- [OpenAI / ChatGPT](https://www.krakend.io/docs/enterprise/ai-gateway/openai/)
-- [Mistral](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/)
-- [Anthropic](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/)
-- [Bedrock](https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/)
-- [Alibaba Cloud (Qwen)](https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/)
-- [Other vendors](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/)
+### LLM Provider Inventory
 
-When talking to the LLM through KrakenD, the user can concentrate in the query rather than in the whole payload needed to interact with the vendor API. The gateway takes care of formatting the API request and response, and allows you to treat different LLMs using the same format, so switching a provider is an easy task.
-
-To stream the response back to the client instead of waiting for the full completion, see [Streaming LLM Responses with the AI Gateway](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/).
-
-### Prompt Templates
-
-Prompt Templates define how the system talks to each individual LLM, respecting their format and payload characteristics, allowing the user to define only the prompt.
-
-When you talk to an LLM you need to send a body in a format that is different for each vendor. We call Prompt Templates the skeleton used to build the payload you will sned to the LLM. Prompt Templates are predefined templates that contain the variables the user needs to pass. Instead of allowing the end-user to construct the full-body that the LLM will receive (and opening the door to injecting malicious system directives), we ask just for the prompt. This is not only writing a text that you send to the LLM, but actually have the opportunity to insert place holders, values that came in the request body, headers, parameters, etc. or even apply scripting over it.
-
-The Prompt Templates offer more control on the types of requests sent to the AI and allow you to specify system and user input to ensure the final output.
-
-See each vendor documentation.
-
-## LLM Provider Inventory
-
-The **LLM provider inventory** is a service-level list of reusable LLM provider configurations declared under the `ai/providers` namespace. You define each provider once, giving it a unique `name` together with the vendor, model, and credentials it needs, and then reference that provider by name from other components instead of repeating the full configuration. Use it when several endpoints or backends connect to the same providers, so you keep credentials, models, and endpoints in a single source of truth. The inventory is intentionally minimal: a usable entry needs only a handful of options.
-
-Security notice
-
-The `credentials` of each provider live in your configuration. Set them through environment variables instead of writing the keys in plain text, and restrict access to the configuration file.
-
-### Defining Providers
-
-You declare the inventory in the root `extra_config` using the `ai/providers` namespace. The namespace holds a single `providers` list, where each entry describes one provider configuration. The minimum a usable entry needs is a `name` and a `provider` (the vendor: `openai`, `gemini`, `anthropic`, `mistral`, `bedrock`, or `alibaba`). Most vendors also require `credentials` to authenticate, but providers that rely on external authentication, such as AWS for Bedrock, can omit them. When you omit `endpoint` or `model`, KrakenD falls back to the vendor’s defaults, so entries like `gpt-default` and `reasoning` below are valid with only two or three fields:
+The [LLM Provider Inventory](https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/) declares each provider once in the root `extra_config` under the `ai/providers` namespace, with its vendor, model, and credentials. Backends then reference it by `name`. The following configuration declares an OpenAI provider and exposes it on `/chat`:
 
 ```json
 {
@@ -65,145 +35,56 @@ You declare the inventory in the root `extra_config` using the `ai/providers` na
     "ai/providers": {
       "providers": [
         {
-          "name": "cheap-quick",
+          "name": "chat",
           "provider": "openai",
-          "endpoint": "https://custom-self-hosted.example.com/v1/responses",
-          "model": "gpt-4o-mini",
+          "model": "gpt-5-nano",
           "credentials": "xxx"
-        },
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/chat",
+      "method": "POST",
+      "backend": [
         {
-          "name": "gpt-default",
-          "provider": "openai",
-          "credentials": "xxx"
-        },
-        {
-          "name": "gemini-flash",
-          "provider": "gemini",
-          "model": "gemini-2.5-flash",
-          "credentials": "xxx"
-        },
-        {
-          "name": "coding-basic",
-          "provider": "anthropic",
-          "model": "claude-haiku-4-5",
-          "credentials": "xxx"
-        },
-        {
-          "name": "coding-team",
-          "provider": "anthropic",
-          "model": "claude-sonnet-4-6",
-          "credentials": "xxx"
-        },
-        {
-          "name": "reasoning",
-          "provider": "mistral",
-          "credentials": "xxx"
-        },
-        {
-          "name": "summaries",
-          "provider": "bedrock",
-          "model": "eu.amazon.nova-lite-v1:0",
-          "debug": true,
-          "variables": {
-            "max_tokens": 1500
+          "extra_config": {
+            "ai/llm": {
+              "provider": "chat"
+            }
           }
         }
       ]
     }
-  }
+  ]
 }
 ```
 
-The configuration above declares seven providers across five vendors. The `cheap-quick` entry points to a self-hosted OpenAI-compatible endpoint, while the rest rely on each vendor’s default endpoint. The `summaries` entry omits `credentials` because Bedrock authenticates through AWS. Replace every `"xxx"` with your real credentials, preferably through an environment variable.
+The backend needs neither `host` nor `url_pattern`, because KrakenD sends the request to the provider’s endpoint, the OpenAI default in this case. To move `/chat` to another model or vendor, change the `chat` entry and every backend that references it follows. The same inventory feeds the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/), which chooses a provider on each request.
 
-A provider entry can also carry custom templates, streaming, debugging, and vendor-specific variables:
+### Inline Vendor Configuration
 
-- `input_template` and `output_template` point to [Go template](https://pkg.go.dev/text/template) files that customize the request payload and the response transformation, the same mechanism as the [Prompt Templates](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#prompt-templates).
-- `streaming` forwards the tokens to the client as the model produces them, and `format` normalizes the streamed output to the `anthropic` or `openai` wire format, regardless of the vendor. See [LLM streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/).
-- `variables` carries provider-specific parameters such as `temperature`. The accepted keys depend on the `provider` and match the variables documented on each vendor’s page.
-- `debug` logs the provider activity for troubleshooting. Do not enable it in production, as it may log sensitive data.
-
-These are all the fields of the `ai/providers` namespace:
-
-##### Fields of AI Providers
-
-\* required fields
-
-##### [`providers`](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#providers "Click to copy link to providers") * array of objects
-
-The array of AI providers available for referencing from the backends. Each object is a different provider declaration.
-
-Each item of providers accepts the following properties:
-
-##### [`credentials`](#providers-credentials "Click to copy link to credentials") string
-
-The API key used to authenticate against the provider. Inject it with an environment variable instead of writing it in the configuration.
-
-##### [`debug`](#providers-debug "Click to copy link to debug") boolean
-
-Enables the debug mode to log activity for troubleshooting. Do not set this value to `true` in production as it may log sensitive data.
-
-Defaults to `false`
-
-##### [`endpoint`](#providers-endpoint "Click to copy link to endpoint") string
-
-Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor’s public API. When you don’t set it, each provider uses its own default endpoint. Gemini and Bedrock build theirs from the `model` and `streaming` values, so their default shown here corresponds to the default `model` without streaming.
-
-##### [`format`](#providers-format "Click to copy link to format")
-
-Wire format KrakenD exposes to the client for streaming responses, when not defined, the request and response format is not modified. Only anthropic and openai stream formats are supported client-side, regardless of the upstream connector. When defined, KrakenD translates the client’s request into the upstream connector’s format, and translates the streamed response back into this format before returning it.
-
-Possible values are: `"anthropic"` , `"openai"`
-
-##### [`input_template`](#providers-input_template "Click to copy link to input_template") string
-
-A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to the provider. You don’t need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.
-
-##### [`model`](#providers-model "Click to copy link to model") string
-
-The name of the model you want to use. The value you provide is passed as is to the provider and KrakenD does not check if the model is currently accepted by the vendor. Check the available models on the vendor documentation. When you don’t set it, each provider uses its own default model.
-
-##### [`name`](#providers-name "Click to copy link to name") * string
-
-A unique name for this provider declaration. This is the name you use to reference the provider from the backends, so you declare its settings once and reuse them everywhere.
-
-Example: `"fast-chat"`
-
-##### [`output_template`](#providers-output_template "Click to copy link to output_template") string
-
-A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from the provider is transformed before being sent to the client. The default template extracts the text from the first choice returned by the provider so in most cases you don’t need to set a custom output template.
-
-##### [`provider`](#providers-provider "Click to copy link to provider") *
-
-The AI vendor this declaration connects to. The chosen vendor determines which `variables` are accepted.
-
-Possible values are: `"anthropic"` , `"bedrock"` , `"gemini"` , `"mistral"` , `"openai"` , `"alibaba"`
-
-##### [`streaming`](#providers-streaming "Click to copy link to streaming") boolean
-
-Enables streaming responses, so the tokens generated by the model are forwarded to the client as they are produced instead of waiting for the complete response.
-
-Defaults to `false`
-
-##### [`variables`](#providers-variables "Click to copy link to variables") object
-
-The variables KrakenD uses to build the payload for the chosen `provider`.
-
-Schema: [https://www.krakend.io/schema/v3.0/ai/providers.json](https://www.krakend.io/schema/v3.0/ai/providers.json "JSON schema definition")
-
-### Referencing a Provider from the LLM Component
-
-Once a provider exists in the inventory, components reference it by `name`. The `ai/llm` component replaces its inline vendor block with a single `provider` property:
+Instead of a provider reference, the `ai/llm` component accepts a vendor block keyed by the vendor name and the API version. In this case, the backend sets the `host` and `url_pattern` of the vendor API itself:
 
 ```json
 {
-  "endpoint": "/",
+  "endpoint": "/chat",
   "method": "POST",
   "backend": [
     {
+      "host": ["https://api.openai.com"],
+      "url_pattern": "/v1/responses",
       "extra_config": {
         "ai/llm": {
-          "provider": "cheap-quick"
+          "openai": {
+            "v1": {
+              "credentials": "xxx",
+              "variables": {
+                "model": "gpt-5-nano"
+              }
+            }
+          }
         }
       }
     }
@@ -211,19 +92,104 @@ Once a provider exists in the inventory, components reference it by `name`. The 
 }
 ```
 
-The backend above resolves the `cheap-quick` provider from the inventory and uses its vendor, endpoint, model, and credentials, so it needs neither `host` nor `url_pattern`. Because the provider is referenced by name, you can reuse it across many backends and change its definition in one place. To choose among several providers on each request based on headers, policies, or a classifier, use the [AI Router](https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/).
+This backend behaves like the previous example. Use the inline form when a backend needs a vendor configuration that no other backend shares, or to keep configurations written before the inventory existed. Each vendor page documents its block and the accepted `variables`:
 
-### Default Endpoints and Models
+- [OpenAI](https://www.krakend.io/docs/enterprise/ai-gateway/openai/)
+- [Google Gemini](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/)
+- [Mistral](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/)
+- [Anthropic](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/)
+- [AWS Bedrock](https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/)
+- [Alibaba Cloud (Qwen)](https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/)
 
-When you omit `endpoint` or `model` in a provider entry, KrakenD applies these defaults:
+To reach a vendor that is not on this list, see [Other AI Vendors](https://www.krakend.io/docs/enterprise/ai-gateway/other-vendors/).
 
-| Provider                                              | Default endpoint                                                                   | Default model              |
-|-------------------------------------------------------|------------------------------------------------------------------------------------|----------------------------|
-| [OpenAI](https://www.krakend.io/docs/enterprise/ai-gateway/openai/)         | `https://api.openai.com/v1/responses`                                              | `gpt-5.4-mini`             |
-| [Google Gemini](https://www.krakend.io/docs/enterprise/ai-gateway/gemini/)  | `https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent`  | `gemini-3.5-flash`         |
-| [Anthropic](https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/)   | `https://api.anthropic.com/v1/messages`                                            | `claude-haiku-4-5`         |
-| [Mistral](https://www.krakend.io/docs/enterprise/ai-gateway/mistral/)       | `https://api.mistral.ai/v1/chat/completions`                                       | `mistral-small-latest`     |
-| [AWS Bedrock](https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/)   | `https://bedrock-runtime.eu-west-1.amazonaws.com/model/{model}/converse`           | `eu.amazon.nova-lite-v1:0` |
-| [Alibaba Cloud](https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/) | `https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1/responses` | `qwen3.8-flash`            |
+The `ai/llm` namespace takes either a `provider` reference or exactly one vendor block, keyed by `openai`, `gemini`, `mistral`, `anthropic`, `bedrock`, or `alibaba`, whose fields are documented on each vendor page. Next to a vendor block, `format` sets the wire format of [streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/) responses. With a `provider` reference, set `format` in the inventory entry instead:
 
-The Gemini and Bedrock default endpoints embed the selected `model` in the URL, and also change when you enable `streaming`; the defaults shown correspond to the default `model` without streaming. The Bedrock default targets the `eu-west-1` region; set `endpoint` to use a different region. See each provider’s page for the available model names and the variables accepted in the `variables` object.
+##### Fields of the ai/llm namespace
+
+\* required fields
+
+##### [`format`](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#format "Click to copy link to format")
+
+Wire format KrakenD exposes to the client for streaming responses, when not defined, the request and response format is not modified. Only anthropic and openai stream formats are supported client-side, regardless of the upstream connector. When defined, KrakenD translates the client’s request into the upstream connector’s format, and translates the streamed response back into this format before returning it.
+
+Possible values are: `"anthropic"` , `"openai"`
+
+##### [`provider`](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/#provider "Click to copy link to provider") string
+
+The `name` of a provider declared in the service-level `ai/providers` configuration. Use it instead of a vendor block so you declare the connection settings once and reuse them on every backend.
+
+Example: `"fast-chat"`
+
+Schema: [https://www.krakend.io/schema/v3.0/ai/llm.json](https://www.krakend.io/schema/v3.0/ai/llm.json "JSON schema definition")
+
+## Request Format
+
+On endpoints that return the full completion, clients send a JSON body with these fields, whatever the vendor behind the endpoint:
+
+- `contents` (required): the prompt, as a string.
+- `instructions` (optional): a system prompt that sets the behavior of the model.
+
+For example, with the `/chat` endpoint of the previous examples:
+
+Send a prompt through the unified LLM interface 
+
+```
+$curl -XPOST --json '{"instructions": "Answer in one sentence", "contents": "What is an API gateway?"}' http://localhost:8080/chat
+```
+
+Clients cannot set the model, the system configuration, or any other part of the vendor payload, because the prompt template only reads these two fields. This keeps the payload under your control and prevents clients from injecting their own system directives or picking a more expensive model.
+
+## Response Format
+
+The default output template returns the generated text inside `ai_gateway_response`, together with the total number of tokens the call consumed in `usage`:
+
+```json
+{
+  "ai_gateway_response": [
+    {
+      "contents": [
+        "An API gateway is a single entry point that routes, secures, and manages the traffic between clients and backend services."
+      ]
+    }
+  ],
+  "usage": "52"
+}
+```
+
+The `usage` value is a string. Use it to enforce [token budgets](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) with the quota component, which reads string values too. When you prefer another name for `ai_gateway_response`, add a [`mapping`](https://www.krakend.io/docs/enterprise/backends/data-manipulation/#mapping) to the backend instead of writing a custom template:
+
+```json
+{
+  "mapping": {
+    "ai_gateway_response": "answer"
+  }
+}
+```
+
+## Prompt Templates
+
+**Prompt templates** define how KrakenD talks to each vendor. The input template builds the payload sent to the LLM, and the output template builds the response returned to the client. Every vendor has a default pair, documented on its page, and you can replace either of them with your own [Go template](https://pkg.go.dev/text/template) file:
+
+- `input_template`: the path to the template that builds the request payload.
+- `output_template`: the path to the template that transforms the vendor response.
+
+Both options go in the provider entry of the inventory or in the inline vendor block. Custom templates let you add placeholders, read values from other parts of the request, or fix part of the prompt, so the client only fills the gaps. The templates can access these values:
+
+| Value                                             | Available in     | Content                                                          |
+|---------------------------------------------------|------------------|------------------------------------------------------------------|
+| `.req_body`                                       | Input and output | The request body sent by the client                              |
+| `.req_headers`                                    | Input and output | The request headers listed in the endpoint’s `input_headers`     |
+| `.req_params`                                     | Input and output | The parameters of the endpoint URL                               |
+| `.req_querystring`                                | Input and output | The query strings listed in the endpoint’s `input_query_strings` |
+| `.req_path` and `.req_method`                     | Input and output | The path and method of the request                               |
+| `.variables`                                      | Input and output | The `variables` of the configuration, including `extra_payload`  |
+| `.resp_body`, `.resp_headers`, and `.resp_status` | Output           | The vendor response                                              |
+
+The `variables.extra_payload` object holds any extra attribute your custom input template needs, accessible as `{{ .variables.extra_payload.yourkey }}`. The default templates ignore it. Templates support the same functions as the [request body generator](https://www.krakend.io/docs/enterprise/backends/body-generator/).
+
+When your output template drops the `usage` field, the [quota](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) can no longer count tokens from the response. The token metrics are not affected, because KrakenD reads them from the vendor response before the output template runs.
+
+## Streaming LLM Responses
+
+By default, KrakenD waits for the full completion before answering. To forward the tokens as the model produces them, see [LLM Streaming](https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/). Streaming endpoints do not use the request and response format of this page: clients send their requests and receive the stream in the wire format of a vendor, either the vendor behind the endpoint or the OpenAI or Anthropic format you choose with `format`.
