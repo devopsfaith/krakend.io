@@ -26,11 +26,11 @@
 - [KrakenD vs Tyk: API Gateway Comparison & Pricing](https://www.krakend.io/krakend-vs-tyk/): Compare KrakenD vs Tyk: both started open source, only one stayed that way. See the G2 data and what changed when Tyk closed its Kubernetes Operator.
 - [KrakenD vs Google Apigee: API Gateway Comparison & Pricing](https://www.krakend.io/krakend-vs-apigee/): Compare KrakenD vs Google Apigee: flat-tiered pricing and no Google Cloud lock-in versus a per-call pricing model that grows with your traffic.
 - [KrakenD vs AWS API Gateway: Comparison & Pricing](https://www.krakend.io/krakend-vs-aws-api-gateway/): Compare KrakenD vs AWS API Gateway: flat-tiered pricing and any-cloud portability versus per-million-request pricing locked to the AWS ecosystem.
-- [API Gateway Migration Guides & Comparisons](https://www.krakend.io/api-gateway-migration/): Compare KrakenD against Kong, Google Apigee, Tyk, and AWS API Gateway, plus a migration guide for each: what changes, what stays, how to move.
-- [Migrate From Kong to KrakenD](https://www.krakend.io/api-gateway-migration/kong/): Kong works, until every upgrade becomes a project. See what changes when Lua plugins and a stateful control plane give way to declarative, stateless config.
-- [Migrate From Tyk to KrakenD](https://www.krakend.io/api-gateway-migration/tyk/): Tyk calls it open source. Check what's actually in the free tier. See what changes when a dashboard-driven control plane gives way to stateless config.
-- [Migrate From Google Apigee to KrakenD](https://www.krakend.io/api-gateway-migration/apigee/): Google Apigee grows with your traffic. So does your bill. See what changes when per-call pricing and a Google Cloud control plane give way to flat, stateless config.
-- [Migrate From AWS API Gateway to KrakenD](https://www.krakend.io/api-gateway-migration/aws-api-gateway/): AWS API Gateway is great if you plan to stay on AWS forever. See what changes when per-request pricing and AWS lock-in give way to flat, portable config.
+- [API Gateway Migration Guides & Comparisons](https://www.krakend.io/solutions/api-gateway-migration/): Compare KrakenD against Kong, Google Apigee, Tyk, and AWS API Gateway, plus a migration guide for each: what changes, what stays, how to move.
+- [Migrate From Kong to KrakenD](https://www.krakend.io/solutions/api-gateway-migration/kong/): Kong works, until every upgrade becomes a project. See what changes when Lua plugins and a stateful control plane give way to declarative, stateless config.
+- [Migrate From Tyk to KrakenD](https://www.krakend.io/solutions/api-gateway-migration/tyk/): Tyk calls it open source. Check what's actually in the free tier. See what changes when a dashboard-driven control plane gives way to stateless config.
+- [Migrate From Google Apigee to KrakenD](https://www.krakend.io/solutions/api-gateway-migration/apigee/): Google Apigee grows with your traffic. So does your bill. See what changes when per-call pricing and a Google Cloud control plane give way to flat, stateless config.
+- [Migrate From AWS API Gateway to KrakenD](https://www.krakend.io/solutions/api-gateway-migration/aws-api-gateway/): AWS API Gateway is great if you plan to stay on AWS forever. See what changes when per-request pricing and AWS lock-in give way to flat, portable config.
 
 
 ## Solutions
