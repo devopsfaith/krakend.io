@@ -16,7 +16,7 @@ When you have more than one `backend` connected to an `endpoint` that **is not**
 
 For instance, imagine you have three different API services exposing the resources `/a`,`/b`, and `/c`, and you want to disclose them all together in the KrakenD endpoint `/abc`. This is what you would get:
 
-![](https://www.krakend.io/images/documentation/krakend-merge.png "REST to Graphql")
+![KrakenD merging the responses of three backends](https://www.krakend.io/images/documentation/krakend-merge.png "KrakenD merging the responses of three backends")
 
 The merge operation chooses user experience and responsiveness first. It makes its *best effort* to get all the necessary parts from the involved backends and return the composed object as soon as possible.
 

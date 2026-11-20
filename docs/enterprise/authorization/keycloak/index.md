@@ -14,7 +14,7 @@ JSON web tokens (JWT) are an open standard ([RFC 7519](https://datatracker.ietf.
 
 Either if you are trying to protect your API from end-users or machine-to-machine access, the workflow is the same:
 
-![](https://www.krakend.io/images/documentation/keycloak/krakend-keycloak-integration-workflow.png "KrakenD-Keycloak validation")
+![KrakenD validating Keycloak tokens](https://www.krakend.io/images/documentation/keycloak/krakend-keycloak-integration-workflow.png "KrakenD validating Keycloak tokens")
 
 - End-Users use their applications to log in to Keycloak who provides an access token for the session.
 - Machine-to-machine communication also uses a token from Keycloak after providing a client\_id and a client\_secret.

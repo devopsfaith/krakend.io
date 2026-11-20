@@ -82,7 +82,7 @@ Schema: [https://www.krakend.io/schema/v3.0/qos/circuit-breaker.json](https://ww
 
 It’s easy to picture the state of the circuit breaker as an electrical component, where an open circuit means no flow of electricity between the ends, and a closed one normal flow:
 
-![](https://www.krakend.io/images/documentation/circuit-breaker.png "Circuit Breaker states")
+![Circuit breaker states](https://www.krakend.io/images/documentation/circuit-breaker.png "Circuit breaker states")
 
 The Circuit Breaker starts with the `CLOSED` state, meaning the electricity can flow to the backends as they are considered healthy (*innocent until proven guilty*).
 

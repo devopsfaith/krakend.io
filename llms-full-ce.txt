@@ -182,7 +182,7 @@ KrakenD focuses on being a pure Layer 7 API gateway, not coupled to the HTTP tra
 
 KrakenD is written in [Go](https://golang.org/). Our engine joined [The Linux Foundation on 2021](https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/) codenamed as the [Lura Project](https://luraproject.org/) and was previously known as the *Krakend Framework*.
 
-![](https://www.krakend.io/images/documentation/lura-by-tlf.png "Lura by The Linux Foundation")
+![Lura by The Linux Foundation](https://www.krakend.io/images/documentation/lura-by-tlf.png "Lura by The Linux Foundation")
 
 ## Why an API Gateway?
 
@@ -207,7 +207,7 @@ The mobile application needs to retrieve data from these four different sources,
 
 This is what KrakenD can do:
 
-![](https://www.krakend.io/images/documentation/krakend-gateway.png "Lura by The Linux Foundation")
+![KrakenD aggregating several backends into one endpoint](https://www.krakend.io/images/documentation/krakend-gateway.png "KrakenD aggregating several backends into one endpoint")
 
 With this approach, the mobile client isolated itself from the backend implementation. As a result, the backends do not need to address several shared concerns (authentication, rate-limiting, filtering malicious requests, etc.). Furthermore, whenever the backends change their contract, the API contract for the mobile client remains the same, and you can update the gateway via a simple change of configuration.
 
@@ -6545,7 +6545,7 @@ KrakenD offers a simple yet powerful way of consuming GraphQL content from your 
 
 In this scenario, **the end-user consumes traditional REST content**, without even knowing that there is a GraphQL server behind:
 
-![](https://www.krakend.io/images/documentation/graphql/krakend-rest-to-graphql-transformation.png "REST to Graphql")
+![REST to GraphQL](https://www.krakend.io/images/documentation/graphql/krakend-rest-to-graphql-transformation.png "REST to GraphQL")
 
 **KrakenD can use the variables in the body or in the endpoint URL** to generate the final GraphQL query it will send to the GraphQL server. The query is loaded from an external file or declared inline in the configuration and contains any variables needing replacement with the user input.
 
@@ -6884,7 +6884,7 @@ In this case, the GraphQL server receives a URL-encoded query with all the varia
 
 In this approach, KrakenD gets in the middle to validate or rate limit requests, but the request is forwarded to the GraphQL servers, who receive the original GraphQL query from the end user.
 
-![](https://www.krakend.io/images/documentation/graphql/krakend-graphql-proxy.png "Graphql")
+![KrakenD as a GraphQL proxy](https://www.krakend.io/images/documentation/graphql/krakend-graphql-proxy.png "KrakenD as a GraphQL proxy")
 
 When working in this mode, you only need to configure the GraphQL endpoint and add your GraphQL as the backend. An example:
 
@@ -7561,7 +7561,7 @@ When you have more than one `backend` connected to an `endpoint` that **is not**
 
 For instance, imagine you have three different API services exposing the resources `/a`,`/b`, and `/c`, and you want to disclose them all together in the KrakenD endpoint `/abc`. This is what you would get:
 
-![](https://www.krakend.io/images/documentation/krakend-merge.png "REST to Graphql")
+![KrakenD merging the responses of three backends](https://www.krakend.io/images/documentation/krakend-merge.png "KrakenD merging the responses of three backends")
 
 The merge operation chooses user experience and responsiveness first. It makes its *best effort* to get all the necessary parts from the involved backends and return the composed object as soon as possible.
 
@@ -13920,7 +13920,7 @@ JSON web tokens (JWT) are an open standard ([RFC 7519](https://datatracker.ietf.
 
 Either if you are trying to protect your API from end-users or machine-to-machine access, the workflow is the same:
 
-![](https://www.krakend.io/images/documentation/keycloak/krakend-keycloak-integration-workflow.png "KrakenD-Keycloak validation")
+![KrakenD validating Keycloak tokens](https://www.krakend.io/images/documentation/keycloak/krakend-keycloak-integration-workflow.png "KrakenD validating Keycloak tokens")
 
 - End-Users use their applications to log in to Keycloak who provides an access token for the session.
 - Machine-to-machine communication also uses a token from Keycloak after providing a client\_id and a client\_secret.
@@ -14265,7 +14265,7 @@ Schema: [https://www.krakend.io/schema/v3.0/qos/circuit-breaker.json](https://ww
 
 It’s easy to picture the state of the circuit breaker as an electrical component, where an open circuit means no flow of electricity between the ends, and a closed one normal flow:
 
-![](https://www.krakend.io/images/documentation/circuit-breaker.png "Circuit Breaker states")
+![Circuit breaker states](https://www.krakend.io/images/documentation/circuit-breaker.png "Circuit breaker states")
 
 The Circuit Breaker starts with the `CLOSED` state, meaning the electricity can flow to the backends as they are considered healthy (*innocent until proven guilty*).
 
@@ -15005,7 +15005,7 @@ The Token Bucket algorithm ([Wikipedia definition](https://en.wikipedia.org/wiki
 
 KrakenD uses the bucket capacity to determine the number of requests it can serve. At the same time, it **fills the bucket with new tokens at a constant rate** while there is free space in it. Then, **users spend one token for each request**, and a token is removed from the bucket.
 
-![](https://www.krakend.io/images/documentation/krakend-token-bucket.png "Token Bucket algorithm")
+![Token bucket algorithm](https://www.krakend.io/images/documentation/krakend-token-bucket.png "Token bucket algorithm")
 
 Users might spend the tokens faster than they are refilled. If the bucket gets empty, KrakenD rejects the requests until there is at least another token in the bucket.
 

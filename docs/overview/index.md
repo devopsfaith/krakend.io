@@ -14,7 +14,7 @@ KrakenD focuses on being a pure Layer 7 API gateway, not coupled to the HTTP tra
 
 KrakenD is written in [Go](https://golang.org/). Our engine joined [The Linux Foundation on 2021](https://www.krakend.io/blog/krakend-framework-joins-the-linux-foundation/) codenamed as the [Lura Project](https://luraproject.org/) and was previously known as the *Krakend Framework*.
 
-![](https://www.krakend.io/images/documentation/lura-by-tlf.png "Lura by The Linux Foundation")
+![Lura by The Linux Foundation](https://www.krakend.io/images/documentation/lura-by-tlf.png "Lura by The Linux Foundation")
 
 ## Why an API Gateway?
 
@@ -39,7 +39,7 @@ The mobile application needs to retrieve data from these four different sources,
 
 This is what KrakenD can do:
 
-![](https://www.krakend.io/images/documentation/krakend-gateway.png "Lura by The Linux Foundation")
+![KrakenD aggregating several backends into one endpoint](https://www.krakend.io/images/documentation/krakend-gateway.png "KrakenD aggregating several backends into one endpoint")
 
 With this approach, the mobile client isolated itself from the backend implementation. As a result, the backends do not need to address several shared concerns (authentication, rate-limiting, filtering malicious requests, etc.). Furthermore, whenever the backends change their contract, the API contract for the mobile client remains the same, and you can update the gateway via a simple change of configuration.
 
