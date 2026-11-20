@@ -1812,7 +1812,7 @@ For instance, you can declare an endpoint `/foo/*` that forwards all traffic sta
 
 Since paths are implicit, KrakenD does not know if a request is valid or not beyond checking that the pattern is correct, or checking additional components you might add. Therefore, everything it can do is to “hope for the best” before routing the request, and it is the responsibility of the backend to determine if the path is valid.
 
-![](https://www.krakend.io/images/documentation/krakend-wildcard.png "Wildcard endpoints")
+![Wildcard endpoints](https://www.krakend.io/images/documentation/krakend-wildcard.png "Wildcard endpoints")
 
 The wildcard functionality is a good candidate when you are in a migration scenario and you need to expose a lot of endpoints quickly. However, it would be best to transition to an explicit declaration instead, and you should aim for it if security is a concern.
 
@@ -4034,7 +4034,7 @@ Continue now to:
 
 # [gRPC client and gRPC to REST conversion (available in KrakenD Enterprise)](https://www.krakend.io/docs/enterprise/backends/grpc/)
 
-![](https://www.krakend.io/images/documentation/grpc.png)
+![KrakenD gRPC client and server](https://www.krakend.io/images/documentation/grpc.png "KrakenD gRPC client and server")
 
 The gRPC client integration allows KrakenD to connect to upstream services using gRPC. If you haven’t enabled the [gRPC server](https://www.krakend.io/docs/enterprise/grpc/server/) functionality, then the content is automatically transformed to a regular REST API, as shown in the picture.
 
@@ -12605,7 +12605,7 @@ Schema: [https://www.krakend.io/schema/v3.0/qos/circuit-breaker.json](https://ww
 
 It’s easy to picture the state of the circuit breaker as an electrical component, where an open circuit means no flow of electricity between the ends, and a closed one normal flow:
 
-![](https://www.krakend.io/images/documentation/circuit-breaker.png "Circuit Breaker states")
+![Circuit breaker states](https://www.krakend.io/images/documentation/circuit-breaker.png "Circuit breaker states")
 
 The Circuit Breaker starts with the `CLOSED` state, meaning the electricity can flow to the backends as they are considered healthy (*innocent until proven guilty*).
 
@@ -13395,7 +13395,7 @@ Notice that the `key` used in the `ratelimit` of each plan matches the `identifi
 
 The **Stateful Endpoint Rate Limit based on Redis** centralizes the activity of all KrakenD instances rate limiting. It works identically to the [stateful service rate limit](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/) but applies the limits to specific endpoints instead of the whole service.
 
-![](https://www.krakend.io/images/documentation/krakend-global-rate-limit.png "Global rate limit")
+![Global rate limit](https://www.krakend.io/images/documentation/krakend-global-rate-limit.png "Global rate limit")
 
 You should always use the stateless rate limit unless an unavoidable business rule forces you to choose this one. The stateless rate limit does not need any database and does not generate network activity to manage the token bucket. From a functional perspective, both rate limits, stateless and stateful, offer the same features. The difference lies in the fact that in the stateless, each node counts on its traffic, while the stateful counts all traffic. But don’t be misled; with a stateless rate limit, you can achieve the same results without adding a network dependency, even when you scale up and down your infrastructure.
 
@@ -13510,7 +13510,7 @@ Schema: [https://www.krakend.io/schema/v3.0/qos/ratelimit/redis.json](https://ww
 
 The Redis rate limit functionality enables a Redis database store to centralize all KrakenD rate limit counters. Instead of having each KrakenD node count its hits in memory, the counters are global and persist in the database.
 
-![](https://www.krakend.io/images/documentation/krakend-global-rate-limit.png "Global rate limit")
+![Global rate limit](https://www.krakend.io/images/documentation/krakend-global-rate-limit.png "Global rate limit")
 
 ## Rate limit (stateless) vs. Redis-backed rate limit (stateful)
 
@@ -19139,7 +19139,7 @@ A Handler responds to an HTTP request and is an interface modeling an HTTP proce
 
 From KrakenD’s perspective, **your handler plugins are black boxes** that expose an `http.Handler`, and you can do anything you want inside them. Each plugin is wrapping the next element in the pipe, meaning that for some operations, **it must deal with an HTTP request and response writer**. If you chain several plugins, you will add **two extra cycles** of decoding and encoding the body. From a performance perspective is better having one plugin doing two things, than two plugins doing one thing:
 
-![](https://www.krakend.io/images/documentation/http-handler-plugin.png "HTTP handler plugin")
+![HTTP handler plugin](https://www.krakend.io/images/documentation/http-handler-plugin.png "HTTP handler plugin")
 
 ## HTTP handler interface
 
@@ -19387,7 +19387,7 @@ The plugin is now working.
 
 The **HTTP client** plugins execute in the proxy layer when KrakenD tries to reach your backends for content. They allow you to intercept, transform, and manipulate the requests **before they hit your backend services**, and their way back. It is the perfect time to modify the request before it reaches the backend.
 
-![](https://www.krakend.io/images/documentation/http-client-plugin.png "HTTP client plugins")
+![HTTP client plugins](https://www.krakend.io/images/documentation/http-client-plugin.png "HTTP client plugins")
 
 You **cannot chain HTTP client plugins**, limiting them to one plugin per backend connection, and **replace the default KrakenD’s HTTP client**.
 

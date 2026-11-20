@@ -12,7 +12,7 @@ A Handler responds to an HTTP request and is an interface modeling an HTTP proce
 
 From KrakenD’s perspective, **your handler plugins are black boxes** that expose an `http.Handler`, and you can do anything you want inside them. Each plugin is wrapping the next element in the pipe, meaning that for some operations, **it must deal with an HTTP request and response writer**. If you chain several plugins, you will add **two extra cycles** of decoding and encoding the body. From a performance perspective is better having one plugin doing two things, than two plugins doing one thing:
 
-![](https://www.krakend.io/images/documentation/http-handler-plugin.png "HTTP handler plugin")
+![HTTP handler plugin](https://www.krakend.io/images/documentation/http-handler-plugin.png "HTTP handler plugin")
 
 ## HTTP handler interface
 

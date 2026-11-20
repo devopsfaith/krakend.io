@@ -6,7 +6,7 @@ Source: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/
 
 The Redis rate limit functionality enables a Redis database store to centralize all KrakenD rate limit counters. Instead of having each KrakenD node count its hits in memory, the counters are global and persist in the database.
 
-![](https://www.krakend.io/images/documentation/krakend-global-rate-limit.png "Global rate limit")
+![Global rate limit](https://www.krakend.io/images/documentation/krakend-global-rate-limit.png "Global rate limit")
 
 ## Rate limit (stateless) vs. Redis-backed rate limit (stateful)
 

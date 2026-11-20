@@ -10,7 +10,7 @@ For instance, you can declare an endpoint `/foo/*` that forwards all traffic sta
 
 Since paths are implicit, KrakenD does not know if a request is valid or not beyond checking that the pattern is correct, or checking additional components you might add. Therefore, everything it can do is to “hope for the best” before routing the request, and it is the responsibility of the backend to determine if the path is valid.
 
-![](https://www.krakend.io/images/documentation/krakend-wildcard.png "Wildcard endpoints")
+![Wildcard endpoints](https://www.krakend.io/images/documentation/krakend-wildcard.png "Wildcard endpoints")
 
 The wildcard functionality is a good candidate when you are in a migration scenario and you need to expose a lot of endpoints quickly. However, it would be best to transition to an explicit declaration instead, and you should aim for it if security is a concern.
 

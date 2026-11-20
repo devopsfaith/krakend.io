@@ -6,7 +6,7 @@ Source: https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-li
 
 The **Stateful Endpoint Rate Limit based on Redis** centralizes the activity of all KrakenD instances rate limiting. It works identically to the [stateful service rate limit](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/) but applies the limits to specific endpoints instead of the whole service.
 
-![](https://www.krakend.io/images/documentation/krakend-global-rate-limit.png "Global rate limit")
+![Global rate limit](https://www.krakend.io/images/documentation/krakend-global-rate-limit.png "Global rate limit")
 
 You should always use the stateless rate limit unless an unavoidable business rule forces you to choose this one. The stateless rate limit does not need any database and does not generate network activity to manage the token bucket. From a functional perspective, both rate limits, stateless and stateful, offer the same features. The difference lies in the fact that in the stateless, each node counts on its traffic, while the stateful counts all traffic. But don’t be misled; with a stateless rate limit, you can achieve the same results without adding a network dependency, even when you scale up and down your infrastructure.
 

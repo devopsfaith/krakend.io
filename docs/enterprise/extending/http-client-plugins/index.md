@@ -6,7 +6,7 @@ Source: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/
 
 The **HTTP client** plugins execute in the proxy layer when KrakenD tries to reach your backends for content. They allow you to intercept, transform, and manipulate the requests **before they hit your backend services**, and their way back. It is the perfect time to modify the request before it reaches the backend.
 
-![](https://www.krakend.io/images/documentation/http-client-plugin.png "HTTP client plugins")
+![HTTP client plugins](https://www.krakend.io/images/documentation/http-client-plugin.png "HTTP client plugins")
 
 You **cannot chain HTTP client plugins**, limiting them to one plugin per backend connection, and **replace the default KrakenD’s HTTP client**.
 

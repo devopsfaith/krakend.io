@@ -4,7 +4,7 @@
 
 Source: https://www.krakend.io/docs/enterprise/backends/grpc/
 
-![](https://www.krakend.io/images/documentation/grpc.png)
+![KrakenD gRPC client and server](https://www.krakend.io/images/documentation/grpc.png "KrakenD gRPC client and server")
 
 The gRPC client integration allows KrakenD to connect to upstream services using gRPC. If you haven’t enabled the [gRPC server](https://www.krakend.io/docs/enterprise/grpc/server/) functionality, then the content is automatically transformed to a regular REST API, as shown in the picture.
 
