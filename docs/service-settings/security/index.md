@@ -95,9 +95,9 @@ Defaults to `false`
 
 ##### [`host_proxy_headers`](https://www.krakend.io/docs/service-settings/security/#host_proxy_headers "Click to copy link to host_proxy_headers") array of strings
 
-A set of header keys that may hold a proxied hostname value for the request.
+A set of header keys that may hold a proxied hostname value for the request. When the request carries one of them, `allowed_hosts` checks its value instead of the `Host` header, so set it only when the proxy in front of KrakenD always overwrites that header.
 
-Example: `["X-Forwarded-Hosts"]`
+Example: `["X-Forwarded-Host"]`
 
 ##### [`hpkp_public_key`](https://www.krakend.io/docs/service-settings/security/#hpkp_public_key "Click to copy link to hpkp_public_key") string Deprecated
 
