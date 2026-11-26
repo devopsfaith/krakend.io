@@ -21,6 +21,10 @@ Jumping several versions
 
 To upgrade when you are more than one version away from the latest, adjust the configuration for all the versions that the upgrade comprehends.
 
+## Upgrading from 2.x to 3.0
+
+The following video walks you through the migration of a KrakenD 2.x configuration to 3.0:
+
 *The list below is automatically generated based on the changelog.*
 
 ## Upgrade to CE v3.0 (latest)

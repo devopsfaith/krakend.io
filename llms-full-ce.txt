@@ -2946,6 +2946,10 @@ Jumping several versions
 
 To upgrade when you are more than one version away from the latest, adjust the configuration for all the versions that the upgrade comprehends.
 
+## Upgrading from 2.x to 3.0
+
+The following video walks you through the migration of a KrakenD 2.x configuration to 3.0:
+
 *The list below is automatically generated based on the changelog.*
 
 ## Upgrade to CE v3.0 (latest)
@@ -4403,6 +4407,8 @@ Chained calls are considered an anti-pattern
 Using sequential calls is considered an anti-pattern because when you make a network service dependent on the other, you are **increasing the latency, decreasing the performance, and augmenting the error rate**.
 
 In non-sequential [aggregation](https://www.krakend.io/docs/endpoints/response-manipulation/#aggregation-and-merging), parallel requests execute simultaneously, whereas, in sequential aggregation, requests are executed one at a time, with each one waiting for the previous request to finish (or timeout) before moving on to the next. If a backend in a sequence fails, the process aborts and the next backend is never reached, so there are many more chances that your users will be left without data.
+
+![Parallel backend calls take as long as the slowest one, sequential calls add up](https://www.krakend.io/images/blog/technical-insights/api-gateway-aggregation-bff-checklist/critical-path.webp)
 
 From an error rate perspective, the nature of sequential proxy performs more deficient: Suppose you have three backends with an error rate of 10% each, then the probability of success separately in each is 90%. However, when executing the three of them sequentially, the success rate drops to 73% (because `0.9 * 0.9 * 0.9 = 0.729`).
 
@@ -12506,9 +12512,9 @@ It is possible to forward claims in a JWT as request headers. It is a common use
 }
 ```
 
-In this case, the `sub` claim’s value will be added as `x-user` header to the request. If the claim does not exist, the mapping is just skipped.
+In this case, KrakenD adds the value of the `sub` claim as an `X-User` header to the request. If the token does not contain the claim, KrakenD sends the header empty, so a value sent by the client for that header never reaches the backend. When the claim exists, its value always replaces any value sent by the client. To reject tokens that lack a claim, add a [CEL expression](https://www.krakend.io/docs/endpoints/common-expression-language-cel/#variables-for-the-jwt-rejecter) such as `has(JWT.sub)` at the endpoint level.
 
-In addition, the nested property `role` (inside `realm_access`) is passed as an `x-role` header.
+In addition, the nested property `role` (inside `realm_access`) is passed as an `X-Role` header. Claims holding an array are sent as a comma-separated string, so `["buyer","organizer"]` becomes `buyer,organizer`, unless you set `propagate_claims_preserve_array` to `true` to send each element as a separate value of the header.
 
 ## A complete running example
 
