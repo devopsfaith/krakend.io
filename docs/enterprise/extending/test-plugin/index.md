@@ -32,7 +32,7 @@ $krakend plugin test -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.5
+Version: 3.0.6
 
 Tests that one or more plugins are loadable into KrakenD.
 

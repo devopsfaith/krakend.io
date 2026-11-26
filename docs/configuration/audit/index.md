@@ -34,7 +34,7 @@ $krakend audit --help
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.5
+Version: 3.0.6
 
 Audits a KrakenD configuration.
 

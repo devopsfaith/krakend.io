@@ -30,7 +30,7 @@ $krakend openapi export -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.5
+Version: 3.0.6
 
 Generates the OpenAPI descriptor for the gateway based on the configuration file.
 
@@ -101,7 +101,7 @@ $krakend openapi import -h
 ▐███  ╙███▄▐███   ╙█████████M║██▌  ╙███▄`▀███████╨ ███▌   ███H █████████▀
                      ``                     `'`
 
-Version: 3.0.5
+Version: 3.0.6
 
 Generates a KrakenD configuration from your OpenAPI specification.
 
