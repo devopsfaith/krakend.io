@@ -2950,6 +2950,8 @@ To upgrade when you are more than one version away from the latest, adjust the c
 
 The following video walks you through the migration of a KrakenD 2.x configuration to 3.0:
 
+[Migrate a KrakenD 2.x configuration to 3.0](https://www.youtube.com/watch?v=N_DGcmRQ3OI)
+
 *The list below is automatically generated based on the changelog.*
 
 ## Upgrade to CE v3.0 (latest)
@@ -16885,6 +16887,8 @@ The dashboard is extensive and offers you metrics like:
 - Distributions, timers, garbage collection and a long etcetera
 
 The following video makes a quick tour of the information you can find on our Grafana Dashboard using Prometheus as data source:
+
+[Grafana Dashboard for Prometheus via OpenTelemetry](https://www.youtube.com/watch?v=a6F0s5aozJU)
 
 ## Importing a Grafana dashboard
 

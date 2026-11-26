@@ -25,6 +25,8 @@ To upgrade when you are more than one version away from the latest, adjust the c
 
 The following video walks you through the migration of a KrakenD 2.x configuration to 3.0:
 
+[Migrate a KrakenD 2.x configuration to 3.0](https://www.youtube.com/watch?v=N_DGcmRQ3OI)
+
 *The list below is automatically generated based on the changelog.*
 
 ## Upgrade to EE v3.0 (latest)
