@@ -14,13 +14,13 @@ The following configuration describes all possible options:
     "extra_config": {
       "security/http": {
         "allowed_hosts": [
-          "host.known.com:443"
+          "host.known.com"
         ],
         "ssl_proxy_headers": {
           "X-Forwarded-Proto": "https"
         },
         "host_proxy_headers":[
-          "X-Forwarded-Hosts"
+          "X-Forwarded-Host"
         ],
         "ssl_redirect": true,
         "ssl_host": "ssl.host.domain",
@@ -155,13 +155,15 @@ Schema: [https://www.krakend.io/schema/v3.0/security/http.json](https://www.krak
 
 ### Restrict connections by host
 
-Use `allowed_hosts`
+Use `allowed_hosts` to define the list of hosts that KrakenD accepts requests to. When the list is empty, KrakenD accepts any host.
 
-Define a list of hosts that KrakenD should accept requests to.
+Each entry must match the `Host` header of the request exactly, ignoring case. The `Host` includes the port only when the client uses a non-default port, so list `api.example.com` for standard HTTPS traffic and `api.example.com:8443` for a custom port. KrakenD rejects requests to any other host with a `500` status code and a `Bad Host` body, and they never reach your backends.
 
-When a request hits KrakenD, it will confirm if the value of the `Host` HTTP header is in the list. If so, it will further process the request. If the host is not in the allowed hosts list, KrakenD will simply reject the request.
+Use `allowed_hosts` whenever a backend relies on `X-Forwarded-Host`, because KrakenD fills that header with the `Host` of the client request (see [non-customizable headers](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#non-customizable-headers)).
 
-The list must contain the fully qualified domain names that are allowed, along with the origin port. When the list is empty accepts any host.
+Proxy headers change which host is checked
+
+When you set `host_proxy_headers` and the request carries one of those headers, `allowed_hosts` checks that header instead of `Host`. KrakenD still forwards the original `Host` to your backends as `X-Forwarded-Host`, so a client can send an allowed value in the proxy header and any value in `Host`. Set `host_proxy_headers` only when KrakenD is not reachable directly and the proxy in front of it always overwrites that header.
 
 ### Clickjacking protection
 

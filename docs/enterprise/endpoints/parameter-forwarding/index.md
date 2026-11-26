@@ -221,7 +221,10 @@ You cannot override the values of these headers (unless you have a plugin or a L
 - `X-Forwarded-Host`
 - `X-Forwarded-Via` (only when `User-Agent` is in the `input_headers`)
 
-The `X-Forwarded`-like headers are controlled by [`forwarded_by_client_ip`](https://www.krakend.io/docs/enterprise/service-settings/router-options/#forwarded_by_client_ip). All these headers **are always sent, regardless of whether you define them or not** under `input_headers`. You can override their values.
+All these headers **are always sent, regardless of whether you define them or not** under `input_headers`. KrakenD discards the `X-Forwarded-For` and `X-Forwarded-Host` values sent by the client, even with `"input_headers": ["*"]`, and sets its own:
+
+- `X-Forwarded-For` contains the client IP, resolved as described in [`forwarded_by_client_ip`](https://www.krakend.io/docs/enterprise/service-settings/router-options/#forwarded_by_client_ip).
+- `X-Forwarded-Host` contains the `Host` header of the client request, so the client controls its value. If a backend builds absolute URLs from it, such as password reset links, or selects a tenant with it, restrict the hosts KrakenD accepts with [`allowed_hosts`](https://www.krakend.io/docs/enterprise/service-settings/security/#restrict-connections-by-host), or make the backend check it against a list of known hosts.
 
 #### Customizable headers
 
@@ -295,7 +298,7 @@ Exception for X-Forwarded-like headers
 
 Even though you allow to pass all headers with `"input_headers": ["*"]`, you cannot override the headers `X-Forwarded-For`, `X-Forwarded-Host`, and `X-Forwarded-Via` which are automatically calculated by KrakenD.
 
-If you’d like to take those headers into account, use the flag [`forwarded_by_client_ip` under the router section](https://www.krakend.io/docs/enterprise/service-settings/router-options/#forwarded_by_client_ip)
+To resolve the client IP from the `X-Forwarded-For` or `X-Real-IP` headers sent by a trusted proxy, use the flag [`forwarded_by_client_ip` under the router section](https://www.krakend.io/docs/enterprise/service-settings/router-options/#forwarded_by_client_ip). `X-Forwarded-Host` always contains the `Host` of the client request, as described in [non-customizable headers](https://www.krakend.io/docs/enterprise/endpoints/parameter-forwarding/#non-customizable-headers).
 
 ### Granular header filtering
 
